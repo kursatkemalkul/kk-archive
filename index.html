@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#000000">
+    <title>Portfolio CV 2026</title>
+
+    <!-- Private portfolio — block search engines + AI crawlers -->
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="GPTBot" content="noindex, nofollow">
+    <meta name="ClaudeBot" content="noindex, nofollow">
+    <meta name="PerplexityBot" content="noindex, nofollow">
+
+    <!-- Performance hints -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://www-ccv.adobe.io">
+    <link rel="preload" href="pdf/portfolio.pdf" as="fetch" type="application/pdf" crossorigin>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="images/bb948441-2e1b-4af1-afee-9a36437f5c58_rw_1920.png">
+</head>
+<body>
+
+    <span class="page-counter"><span id="page-current">01</span> / <span id="page-total">--</span></span>
+
+    <main class="deck" id="deck">
+        <!-- Slides are inserted dynamically by JS: PDF pages + videos interleaved -->
+    </main>
+
+    <!-- Loading overlay -->
+    <div class="pdf-loading" id="pdfLoading">
+        <div class="pdf-loading__spinner"></div>
+        <div class="pdf-loading__text">Loading portfolio<span class="pdf-loading__dots">…</span></div>
+        <div class="pdf-loading__progress"><div class="pdf-loading__bar" id="pdfLoadingBar"></div></div>
+    </div>
+
+    <button class="nav-arrow nav-arrow--prev" id="navPrev" aria-label="Previous">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button class="nav-arrow nav-arrow--next" id="navNext" aria-label="Next">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+
+    <script type="module" src="js/script.js"></script>
+</body>
+</html>
