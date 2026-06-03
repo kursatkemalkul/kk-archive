@@ -9,7 +9,7 @@
 <style>
   :root{
     --black:#000;--panel:#1D1D1F;--light:#F5F5F7;--white:#fff;--dark:#1D1D1F;
-    --gray:#86868B;--gray-l:#A1A1A6;--blue:#2997FF;--blue-d:#0A6CE0;--blue-l:#7CC0FF;--hair:#2a2a2d;
+    --gray:#86868B;--gray-l:#A1A1A6;--blue:#FFC72C;--blue-d:#E0A400;--blue-l:#FFE08A;--hair:#2a2a2d;
     --maxw:1120px;--font:"SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -37,7 +37,7 @@
 
   .hero{min-height:94vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 22px 60px;background:linear-gradient(180deg,rgba(2,8,16,.74),rgba(2,8,16,.5) 45%,rgba(0,0,0,.9)),url('../assets/factory.jpg') center/cover no-repeat}
   .hero .tag{font-size:clamp(15px,1.5vw,20px);font-weight:600;color:var(--gray-l);margin-bottom:10px}
-  .hero h1{font-size:clamp(40px,7vw,92px);font-weight:600;letter-spacing:-.035em;line-height:1.0;background:linear-gradient(168deg,#E6F2FF,var(--blue-l) 32%,var(--blue) 64%,var(--blue-d));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 10px 60px rgba(41,151,255,.35))}
+  .hero h1{font-size:clamp(40px,7vw,92px);font-weight:600;letter-spacing:-.035em;line-height:1.0;background:linear-gradient(168deg,#FFF4D6,var(--blue-l) 32%,var(--blue) 64%,var(--blue-d));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 10px 60px rgba(255,199,44,.35))}
   .hero .sub{font-size:clamp(18px,2.1vw,27px);color:#eef3f8;font-weight:500;max-width:740px;margin:24px auto 0;line-height:1.34;text-shadow:0 2px 20px rgba(0,0,0,.65)}
   .hero .meta{margin-top:20px;color:#c2c8d0;font-size:15px;text-shadow:0 1px 14px rgba(0,0,0,.7)}
   .cue{margin-top:44px;color:var(--gray);font-size:12px;letter-spacing:.18em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:9px;animation:bob 2s infinite}
@@ -78,8 +78,8 @@
   .prod h4 .d{width:8px;height:8px;border-radius:50%;background:var(--blue);flex:0 0 8px}
   .prod ul{list-style:none;display:flex;flex-wrap:wrap;gap:7px}
   .prod li{font-size:12px;color:#cfd2d6;background:#0e0e10;border:1px solid var(--hair);border-radius:100px;padding:5px 11px}
-  .prod.hl{border:1px solid rgba(41,151,255,.5);background:linear-gradient(180deg,rgba(41,151,255,.10),var(--panel))}
-  .prod.hl h4{color:var(--blue-l)}.prod.hl li{border-color:rgba(41,151,255,.35)}
+  .prod.hl{border:1px solid rgba(255,199,44,.5);background:linear-gradient(180deg,rgba(255,199,44,.10),var(--panel))}
+  .prod.hl h4{color:var(--blue-l)}.prod.hl li{border-color:rgba(255,199,44,.35)}
 
   /* plan numbered rows */
   .plan{margin-top:50px;display:flex;flex-direction:column;gap:16px;text-align:left}
@@ -98,7 +98,7 @@
   .cert{background:var(--panel);border-radius:14px;padding:18px 20px}
   .cert .abbr{font-size:17px;font-weight:700;color:var(--blue)}
   .cert .desc{font-size:13px;color:var(--gray);margin-top:5px;line-height:1.4}
-  .arge{background:linear-gradient(180deg,rgba(41,151,255,.10),var(--panel));border:1px solid rgba(41,151,255,.4);border-radius:20px;padding:34px;margin-top:22px;text-align:left}
+  .arge{background:linear-gradient(180deg,rgba(255,199,44,.10),var(--panel));border:1px solid rgba(255,199,44,.4);border-radius:20px;padding:34px;margin-top:22px;text-align:left}
   .arge h3{font-size:21px;color:#fff;font-weight:600}
   .arge>p{color:var(--gray-l);margin-top:10px;font-size:15px;line-height:1.5}
   .arge .ben{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -110,7 +110,7 @@
   .split{display:grid;grid-template-columns:1fr 1fr;gap:46px;margin-top:50px;text-align:left}
   @media(max-width:860px){.split{grid-template-columns:1fr;gap:22px}}
   .col{background:var(--panel);border-radius:20px;padding:32px}
-  .col.auto{border:1px solid rgba(41,151,255,.45)}
+  .col.auto{border:1px solid rgba(255,199,44,.45)}
   .col h3{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gray);margin-bottom:16px}
   .col.auto h3{color:var(--blue)}
   .col .item{display:flex;gap:12px;margin-top:14px}
@@ -121,13 +121,13 @@
   /* steps */
   .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:50px;text-align:left}
   @media(max-width:860px){.steps{grid-template-columns:1fr 1fr}}
-  .step{background:#fff;border-radius:18px;padding:26px}
+  .step{background:var(--panel);border-radius:18px;padding:26px}
   .step .num{font-size:30px;font-weight:600;color:var(--blue)}
-  .step h3{font-size:17px;color:var(--dark);margin:12px 0 7px;font-weight:600}
+  .step h3{font-size:17px;color:#fff;margin:12px 0 7px;font-weight:600}
   .step p{font-size:14px;color:var(--gray);line-height:1.45}
 
-  .cta{text-align:center;background:radial-gradient(110% 80% at 50% 100%,#0c1a2b 0%,#06101a 42%,#000 78%)}
-  .btn{display:inline-block;margin-top:14px;background:var(--blue);color:#fff;font-weight:500;padding:15px 38px;border-radius:980px;font-size:17px;transition:background .2s,transform .2s}
+  .cta{text-align:center;background:radial-gradient(110% 80% at 50% 100%,#1c1503 0%,#0a0702 42%,#000 78%)}
+  .btn{display:inline-block;margin-top:14px;background:var(--blue);color:#15171C;font-weight:600;padding:15px 38px;border-radius:980px;font-size:17px;transition:background .2s,transform .2s}
   .btn:hover{background:var(--blue-d);transform:translateY(-2px)}
   .btn.ghost{background:transparent;border:1px solid #3a3a3d;color:#d6d6d8;margin-left:10px}
   footer{background:#000;color:#6e6e73;text-align:center;padding:36px 22px;font-size:12px}
@@ -253,7 +253,7 @@
 </section>
 
 <!-- MARKA & KURUMSALLASMA -->
-<section id="marka" class="light center">
+<section id="marka" class="center">
   <div class="wrap">
     <div class="eyebrow rv">Marka & Kurumsallaşma</div>
     <h2 class="rv d1">Üretici değil, marka olmak.</h2>
@@ -310,7 +310,7 @@
 </section>
 
 <!-- YOL HARITASI -->
-<section id="yol" class="light center">
+<section id="yol" class="center">
   <div class="wrap">
     <div class="eyebrow rv">Yol Haritası</div>
     <h2 class="rv d1">Ortaklıktan ihracata.</h2>
