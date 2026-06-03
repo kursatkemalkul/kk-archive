@@ -109,6 +109,7 @@
   /* product cards */
   .pcard{overflow:hidden;padding:0}
   .pcard img{width:100%;height:210px;object-fit:cover;display:block}
+  .pcard video{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#000}
   .pcard .body{padding:30px}
   .pcard .out{margin-top:18px;font-weight:600;color:#fff;font-size:15px}
   .pcard .out::before{content:"→ ";color:var(--blue)}
@@ -179,6 +180,11 @@
   .phase .when{color:var(--blue-d);font-weight:600;font-size:15px;margin-left:10px}
   .phase .tick{width:36px;height:4px;border-radius:4px;background:var(--blue);margin:20px 0}
   .phase p{color:var(--gray);font-size:16px;line-height:1.5}
+  .northstar{background:#14161A;color:#fff;border-radius:24px;padding:48px 40px;margin-top:30px;text-align:center}
+  .northstar .ns-label{font-size:14px;font-weight:600;letter-spacing:.08em;color:var(--blue);text-transform:uppercase}
+  .northstar .ns-h{font-size:clamp(26px,3.4vw,42px);font-weight:600;margin:14px 0 16px;color:#fff;letter-spacing:-.02em}
+  .northstar p{color:var(--gray-l);font-size:clamp(16px,1.8vw,20px);max-width:780px;margin:0 auto;line-height:1.45}
+  .northstar p b{color:#fff;font-weight:600}
 
   /* team */
   .team{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:60px}
@@ -217,7 +223,6 @@
     <div class="nav-links">
       <a href="#problem">Problem</a>
       <a href="#urun">Ürün</a>
-      <a href="#demo">Demo</a>
       <a href="#pazar">Pazar</a>
       <a href="#finansal">Finansal</a>
       <a href="#ekip">Ekip</a>
@@ -283,36 +288,24 @@
   </div>
 </section>
 
-<!-- URUN -->
+<!-- URUN + DEMO (birleşik, videolu) -->
 <section id="urun" class="center">
   <div class="wrap">
-    <div class="eyebrow rv">Ürün</div>
-    <h2 class="rv d1">Üç başlangıç modülü.</h2>
+    <div class="eyebrow rv">Ürün · Modüller</div>
+    <h2 class="rv d1">Üç modül. Çalışır halde.</h2>
+    <p class="lead rv d2">Her modül mevcut paslanmaz çelik tezgaha tam oturur, POS ile konuşur ve siparişi insan eli değmeden hazırlar.</p>
     <div class="grid g3" style="text-align:left">
-      <div class="card pcard rv d1"><img src="assets/cold.jpg" alt=""><div class="body"><div class="n">01</div><h3>Otonom Soğukçu İstasyonu</h3><p>Salata &amp; bowl üretimi. Silolardan malzeme gramı gramına porsiyonlanır, sos eklenir, servise hazır uzatılır.</p><div class="out">Soğukçu aşçısını devralır.</div></div></div>
-      <div class="card pcard rv d2"><img src="assets/cook.jpg" alt=""><div class="body"><div class="n">02</div><h3>Pide / Pizza &amp; Pişirme Tüneli</h3><p>Hamur girer; AI nozullarla sos ve malzeme milimetrik bırakılır, tünel fırına sürülür, pişmiş çıkar.</p><div class="out">3 kişilik işi tek elemana indirir.</div></div></div>
-      <div class="card pcard rv d3"><img src="assets/clean.jpg" alt=""><div class="body"><div class="n">03</div><h3>Kendi Kendini Temizleyen Modül</h3><p>Izgara/fritöz için 'Clean-In-Place'. Düğmeyle kendi deterjan ve sıcak suyunu basar, çözer, durular.</p><div class="out">Kapanış mesaisini sıfırlar.</div></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- DEMO -->
-<section id="demo" class="center">
-  <div class="wrap">
-    <div class="eyebrow rv">Örnek · Demo</div>
-    <h2 class="rv d1">Konuştuğumuz modüller.<br>Böyle bir şey.</h2>
-    <div class="videos" style="text-align:left">
-      <div class="rv d1">
-        <div class="vid"><video src="assets/salad.mp4" autoplay muted loop playsinline></video></div>
-        <div class="vcap"><b>Otonom Soğukçu / Salata</b><span>Malzeme gramı gramına porsiyonlanıp tepsiye bırakılıyor.</span></div>
+      <div class="card pcard rv d1">
+        <video src="assets/salad.mp4" autoplay muted loop playsinline></video>
+        <div class="body"><div class="n">01</div><h3>Otonom Soğukçu / Salata</h3><p>Silolardan malzeme gramı gramına porsiyonlanır, sos eklenir, servise hazır uzatılır.</p><div class="out">Soğukçu aşçısını devralır.</div></div>
       </div>
-      <div class="rv d2">
-        <div class="vid"><video src="assets/pide.mp4" autoplay muted loop playsinline></video></div>
-        <div class="vcap"><b>Pide / Pizza Hattı</b><span>Hamurun üzerine sos ve malzeme milimetrik nozullarla bırakılıyor.</span></div>
+      <div class="card pcard rv d2">
+        <video src="assets/pide.mp4" autoplay muted loop playsinline></video>
+        <div class="body"><div class="n">02</div><h3>Pide / Pizza Hattı</h3><p>Hamurun üzerine sos ve malzeme milimetrik nozullarla bırakılır, tünel fırına sürülür.</p><div class="out">3 kişilik işi tek elemana indirir.</div></div>
       </div>
-      <div class="rv d3">
-        <div class="vid"><video src="assets/cook.mp4" autoplay muted loop playsinline></video></div>
-        <div class="vcap"><b>AI Destekli Pişirme</b><span>Çoklu nozul + dokunmatik kontrol ile standart üretim.</span></div>
+      <div class="card pcard rv d3">
+        <video src="assets/cook.mp4" autoplay muted loop playsinline></video>
+        <div class="body"><div class="n">03</div><h3>AI Pişirme &amp; Porsiyonlama</h3><p>Çoklu nozul + Vision AI ile standart üretim; iş bitince kendi kendini temizler (CIP).</p><div class="out">Standart kalite, sıfır fire.</div></div>
       </div>
     </div>
     <p class="note">Yapay zeka ile üretilmiş referans konsept görüntüleridir; nihai ürün tasarımını temsil eder.</p>
@@ -358,8 +351,17 @@
       <div class="stat rv d2"><div class="big" data-count="3.5" data-suffix=" mlr $" data-prefix="~">~0</div><div class="lab">SAM</div><p>Mutfak robotiği &amp; otomasyonu (2025) · ~%14–20 büyüme</p></div>
       <div class="stat rv d3"><div class="big" data-count="70" data-suffix="K" data-prefix="~">~0</div><div class="lab">SOM</div><p>Türkiye'deki restoran (TÜİK) · ilk hedef: zincirler ve yoğun mutfaklar</p></div>
     </div>
+    <div class="rv d1" style="margin-top:80px">
+      <div class="subh" style="text-align:center">Mutfaklar robotlaşıyor <span>· mutfak robotiği pazarı, mlr $</span></div>
+      <div class="chart mchart" style="max-width:600px;margin:34px auto 0">
+        <div class="bar"><div class="val">~4</div><div class="col" data-h="80"></div><div class="yr">2025</div></div>
+        <div class="bar"><div class="val">~7</div><div class="col" data-h="140"></div><div class="yr">2030</div></div>
+        <div class="bar"><div class="val">~12</div><div class="col" data-h="240"></div><div class="yr">2035</div></div>
+      </div>
+      <p class="lead center" style="font-size:18px;margin-top:28px;max-width:800px">Önce <b style="color:#fff;font-weight:600">sanayi tipi</b>, ardından <b style="color:#fff;font-weight:600">ev tipi</b> mutfaklar robotlaşıyor — ev tipi en hızlı büyüyen segment (~%13–16/yıl). Tam otonom restoran pazarı 2033'te ~$6,7 mlr.</p>
+    </div>
     <p class="lead rv center" style="margin-top:46px;font-size:21px"><b style="color:#fff;font-weight:600">Pazarın yönü:</b> <a href="https://picnic.works" target="_blank" style="color:var(--blue)">Picnic</a>, <a href="https://www.sweetgreen.com" target="_blank" style="color:var(--blue)">Sweetgreen</a> ve <a href="https://botinkit.ai" target="_blank" style="color:var(--blue)">Botinkit</a> modeli kanıtlayıp yatırım aldı; Türkiye hâlâ 'robot garson' seviyesinde.</p>
-    <p class="note">Kaynak: Precedence / Grand View / Mordor pazar raporları (2025), TÜİK. Rakamlar yaklaşıktır.</p>
+    <p class="note">Kaynak: Precedence / Grand View / Mordor / Roots Analysis pazar raporları (2025), TÜİK. Rakamlar yaklaşıktır.</p>
   </div>
 </section>
 
@@ -437,6 +439,11 @@
       <div class="phase rv d2"><div><span class="ph">Faz 2</span><span class="when">9–18 ay</span></div><div class="tick"></div><p>Pilot verisiyle ROI kanıtı. İlk ticari satışlar + SaaS katmanı. 2. modül.</p></div>
       <div class="phase rv d3"><div><span class="ph">Faz 3</span><span class="when">18–36 ay</span></div><div class="tick"></div><p>Ürün ailesi &amp; CIP modülü. TR zincirlerinde ölçek + bölge ihracatı, premium proje hattı.</p></div>
     </div>
+    <div class="northstar rv d2">
+      <div class="ns-label">Kuzey Yıldızı · Uzun Vadeli Hedef</div>
+      <h3 class="ns-h">Sanayiden eve, tam otonom mutfağa.</h3>
+      <p>Sanayi mutfaklarında kanıtlandıktan sonra sıradaki adım: <b>ev tipi akıllı mutfaklar</b> ve <b>tamamen otonom restoranlar</b>. Pazarın gittiği yön de tam burası — nihai hedefimiz bu.</p>
+    </div>
   </div>
 </section>
 
@@ -496,7 +503,7 @@
   document.querySelectorAll('[data-count]').forEach(el=>ioC.observe(el));
 
   const ioB=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.col').forEach(c=>c.style.height=c.dataset.h+'px');ioB.unobserve(e.target);}});},{threshold:.4});
-  const ch=document.getElementById('chart');if(ch)ioB.observe(ch);
+  document.querySelectorAll('.chart').forEach(c=>ioB.observe(c));
 </script>
 </body>
 </html>
