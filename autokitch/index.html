@@ -147,6 +147,11 @@
   .m-year{margin-top:14px;font-size:15px;color:#fff;font-weight:600;border-top:1px solid #2a2a2d;padding-top:14px}
   .m-arrow{display:flex;align-items:center;color:var(--blue);font-size:28px;font-weight:700}
   @media(max-width:680px){.m-arrow{transform:rotate(90deg);justify-content:center}}
+  .perks{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px;text-align:left}
+  @media(max-width:780px){.perks{grid-template-columns:1fr 1fr}}
+  .perk{background:var(--panel);border-radius:14px;padding:18px}
+  .perk b{color:#fff;font-size:15px;font-weight:600;display:block}
+  .perk span{color:var(--gray);font-size:13px;display:block;margin-top:5px;line-height:1.35}
 
   /* product cards */
   .pcard{overflow:hidden;padding:0}
@@ -356,7 +361,7 @@
       <div class="m-card trad">
         <div class="m-top">Geleneksel · çalıştırma maliyeti</div>
         <div class="m-big">₺80.000<span> /ay</span></div>
-        <div class="m-sub">2 personel · işveren maliyeti (2026)</div>
+        <div class="m-sub">2 personel · SGK + vergi dahil toplam işveren maliyeti (2026)</div>
         <div class="m-year">≈ ₺960.000 / yıl gider</div>
       </div>
       <div class="m-arrow">→</div>
@@ -368,6 +373,13 @@
       </div>
     </div>
     <p class="lead center rv" style="font-size:18px;margin-top:30px">Basit matematik: <b style="color:#fff;font-weight:600">₺1.350.000 ÷ ₺80.000/ay ≈ 17 ay</b>. Modül ~1,5 yılda kendini öder; sonrası her yıl ~₺960.000 cebinizde kalır.</p>
+    <p class="lead center rv" style="font-size:16px;margin-top:46px;color:var(--gray-l)">Üstelik mesele sadece para değil:</p>
+    <div class="perks rv d1">
+      <div class="perk"><b>7/24 çalışır</b><span>Gece de üretir; yorulmaz, mola vermez, hastalanmaz</span></div>
+      <div class="perk"><b>İK derdi yok</b><span>İşe alım, eğitim, vardiya, izin ve personel devri yok</span></div>
+      <div class="perk"><b>Hijyen &amp; güven</b><span>İnsan kaynaklı hata ve denetim riski düşer</span></div>
+      <div class="perk"><b>Her şube aynı</b><span>Markanız her noktada birebir standart</span></div>
+    </div>
   </div>
 </section>
 
@@ -399,16 +411,32 @@
   </div>
 </section>
 
+<!-- AI MUTFAK BEYNI -->
+<section id="beyin" class="center">
+  <div class="wrap">
+    <div class="eyebrow rv">AI Mutfak Beyni</div>
+    <h2 class="rv d1">Sadece donanım değil.<br>Mutfağın beyni.</h2>
+    <p class="lead rv d2">Modüller eldir; yapay zeka beyindir. Tüm modülleri tek bir bulut tabanlı mutfak işletim sistemi yönetir — reçeteyi dijitalleştirir, üretimi planlar, fireyi ve maliyeti veriyle optimize eder.</p>
+    <div class="grid g2" style="text-align:left">
+      <div class="card rv d1"><div class="n">Reçete &amp; kalite</div><h3>Dijital reçete beyni</h3><p>Her porsiyon, her şube, her vardiya birebir aynı. Reçeteyi ekrandan güncelle; tüm modüller saniyesinde uygular.</p></div>
+      <div class="card rv d2"><div class="n">Tahmin</div><h3>Talep &amp; tedarik tahmini</h3><p>Saate, güne ve geçmiş satışa bakarak ne kadar üretileceğini öngörür; stok ve siparişi optimize eder, fireyi düşürür.</p></div>
+      <div class="card rv d1"><div class="n">Akış</div><h3>Otomatik üretim planlama</h3><p>Sipariş yoğunluğuna göre üretim sırasını ve hızını yönetir; yoğun saatte darboğazı önler.</p></div>
+      <div class="card rv d2"><div class="n">Bulut</div><h3>Uzaktan izleme &amp; öğrenme</h3><p>Telefondan tüm şubeleri izle, anlık uyarı al. Sistem topladığı veriyle sürekli iyileşir — zamanla derinleşen avantaj.</p></div>
+    </div>
+    <p class="lead center rv" style="font-size:20px;margin-top:44px">Donanım modülleri <span class="accent">×</span> AI beyni <span class="accent">=</span> otonom mutfak.</p>
+  </div>
+</section>
+
 <!-- MOAT -->
 <section id="neden" class="center">
   <div class="wrap">
     <div class="eyebrow rv">Neden Biz · Moat</div>
-    <h2 class="rv d1">Kopyalanamaz fark:<br>tasarım + mühendislik.</h2>
-    <p class="lead rv d2">Yazılım kopyalanır. Asıl giriş bariyeri; mekaniğin, yapay zekânın ve premium malzeme tasarımının (CMF) zorlu mutfak ortamına kusursuz ergonomiyle gömülmesidir.</p>
+    <h2 class="rv d1">Neden biz<br>kazanırız.</h2>
+    <p class="lead rv d2">Otomatik mutfak modülü yapmak tek başına yetmez; üç şeyin aynı anda olması gerekir — ve üçü de bizde birleşiyor.</p>
     <div class="grid g3" style="text-align:left">
-      <div class="card rv d1"><h3>Mimari tasarım DNA'sı</h3><p>Torinoarch — sınırlı alanda maksimum verim, milimetrik mekan mühendisliği ve premium CMF tecrübesi.</p></div>
-      <div class="card rv d2"><h3>Donanım + AI birleşimi</h3><p>Basit chatbot değil; ısı/yağ/buhara dayanıklı, kendini temizleyen, POS'la konuşan fiziksel sistem.</p></div>
-      <div class="card rv d3"><h3>Türkiye'de boşluk</h3><p>Yerli endüstriyel üreticiler henüz yalnız IoT/ekran tarafında. Fiziksel otonom üretim modülü yok.</p></div>
+      <div class="card rv d1"><div class="n">01</div><h3>Tasarım + mühendislik</h3><p>Kurucu mimar/endüstriyel tasarımcı. Sınırlı alanda maksimum verim, kusursuz ergonomi ve premium CMF — modül tezgaha "sonradan eklenmiş" değil, ait gibi durur.</p></div>
+      <div class="card rv d2"><div class="n">02</div><h3>Yerli üretim avantajı</h3><p>Türkiye'nin güçlü sanayi mutfağı üretim ekosistemi (Öztiryakiler / İnoksan tedarik zinciri) + düşük üretim maliyeti → global rakiplerden çok daha uygun fiyat ve yerinde servis.</p></div>
+      <div class="card rv d3"><div class="n">03</div><h3>Donanım + AI beyni</h3><p>Sadece makine değil; modülleri yöneten, reçeteyi dijitalleştiren, fireyi ve standardı veriyle optimize eden bir mutfak beyni. Zamanla derinleşen yazılım/veri avantajı.</p></div>
     </div>
   </div>
 </section>
@@ -421,18 +449,18 @@
     <div class="stats">
       <div class="stat rv d1"><div class="big" data-count="41" data-suffix=" mlr $" data-prefix="~">~0</div><div class="lab">TAM</div><p>Küresel foodservice / mutfak ekipmanları pazarı (2025) · ~%6 büyüme</p></div>
       <div class="stat rv d2"><div class="big" data-count="3.5" data-suffix=" mlr $" data-prefix="~">~0</div><div class="lab">SAM</div><p>Mutfak robotiği &amp; otomasyonu (2025) · ~%14–20 büyüme</p></div>
-      <div class="stat rv d3"><div class="big" data-count="70" data-suffix="K" data-prefix="~">~0</div><div class="lab">SOM</div><p>Türkiye'deki restoran (TÜİK) · ilk hedef: zincirler ve yoğun mutfaklar</p></div>
+      <div class="stat rv d3"><div class="big">330.000</div><div class="lab">SOM</div><p>Türkiye'deki restoran &amp; kafe (HoReCa) · ilk hedef: yüksek hacimli zincirler</p></div>
     </div>
     <div class="rv d1" style="margin-top:80px">
       <div class="subh" style="text-align:center">Mutfaklar robotlaşıyor <span>· mutfak robotiği pazarı, mlr $</span></div>
       <div class="chart mchart" style="max-width:600px;margin:34px auto 0">
-        <div class="bar"><div class="val">~4</div><div class="col" data-h="80"></div><div class="yr">2025</div></div>
-        <div class="bar"><div class="val">~7</div><div class="col" data-h="140"></div><div class="yr">2030</div></div>
-        <div class="bar"><div class="val">~12</div><div class="col" data-h="240"></div><div class="yr">2035</div></div>
+        <div class="bar"><div class="val">~3,5</div><div class="col" data-h="86"></div><div class="yr">2025</div></div>
+        <div class="bar"><div class="val">~6,5</div><div class="col" data-h="159"></div><div class="yr">2029</div></div>
+        <div class="bar"><div class="val">~9,8</div><div class="col" data-h="240"></div><div class="yr">2033</div></div>
       </div>
-      <p class="lead center" style="font-size:18px;margin-top:28px;max-width:800px">Önce <b style="color:#fff;font-weight:600">sanayi tipi</b>, ardından <b style="color:#fff;font-weight:600">ev tipi</b> mutfaklar robotlaşıyor — ev tipi en hızlı büyüyen segment (~%13–16/yıl). Tam otonom restoran pazarı 2033'te ~$6,7 mlr.</p>
+      <p class="lead center" style="font-size:18px;margin-top:28px;max-width:840px">Restoran sahiplerinin <b style="color:#fff;font-weight:600">~%50'si önümüzdeki 2–3 yılda</b> mutfağa otomasyon kurmayı planlıyor. Mutfak robotiği pazarı 2025'te ~$3,5 mlr → 2033'te ~$9,8 mlr (≈3 kat). Önce <b style="color:#fff;font-weight:600">sanayi tipi</b>, sonra <b style="color:#fff;font-weight:600">ev tipi</b> — ev tipi en hızlı büyüyen segment. Tam otonom restoran pazarı 2033'te ~$6,7 mlr.</p>
     </div>
-    <p class="lead rv center" style="margin-top:46px;font-size:21px"><b style="color:#fff;font-weight:600">Pazarın yönü:</b> <a href="https://picnic.works" target="_blank" style="color:var(--blue)">Picnic</a>, <a href="https://www.sweetgreen.com" target="_blank" style="color:var(--blue)">Sweetgreen</a> ve <a href="https://botinkit.ai" target="_blank" style="color:var(--blue)">Botinkit</a> modeli kanıtlayıp yatırım aldı; Türkiye hâlâ 'robot garson' seviyesinde.</p>
+    <p class="lead rv center" style="margin-top:46px;font-size:21px"><b style="color:#fff;font-weight:600">Pazarın yönü:</b> Picnic, <a href="https://www.sweetgreen.com" target="_blank" style="color:var(--blue)">Sweetgreen</a> ve <a href="https://botinkit.ai" target="_blank" style="color:var(--blue)">Botinkit</a> modeli kanıtlayıp yatırım aldı; Türkiye hâlâ 'robot garson' seviyesinde.</p>
     <p class="note">Kaynak: Precedence / Grand View / Mordor / Roots Analysis pazar raporları (2025), TÜİK. Rakamlar yaklaşıktır.</p>
   </div>
 </section>
@@ -446,7 +474,7 @@
     <table>
       <thead><tr><th>Oyuncu</th><th>Bölge</th><th>Ne yapıyor</th><th>Bizim farkımız</th></tr></thead>
       <tbody>
-        <tr><td><a href="https://picnic.works" target="_blank">Picnic</a> / Stellar / Pazzi</td><td>ABD / AB</td><td>Pizza montaj &amp; pişirme hatları</td><td></td></tr>
+        <tr><td>Picnic / Stellar / Pazzi</td><td>ABD / AB</td><td>Pizza montaj &amp; pişirme hatları</td><td></td></tr>
         <tr><td><a href="https://www.sweetgreen.com" target="_blank">Sweetgreen</a> · Infinite Kitchen</td><td>ABD</td><td>Otonom salata / bowl istasyonu</td><td></td></tr>
         <tr><td><a href="https://botinkit.ai" target="_blank">Botinkit</a></td><td>Çin</td><td>Akıllı wok &amp; pişirme, CIP'li modüller</td><td></td></tr>
         <tr><td>Öztiryakiler / İnoksan</td><td>Türkiye</td><td>Yalnızca IoT: akıllı fırın &amp; dolap</td><td class="diff">Fiziksel otonom üretim YOK</td></tr>
