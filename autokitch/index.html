@@ -132,6 +132,21 @@
   .ef-bar.trad{background:linear-gradient(90deg,#5a5a5e,#3a3a3d)}
   .ef-bar.auto{background:linear-gradient(90deg,var(--blue-l),var(--blue-d))}
   @media(max-width:680px){.arrow{display:none}.flow{gap:8px}.stepchip{flex:1 1 42%}}
+  .ppl{display:inline-flex;gap:4px;vertical-align:middle}
+  .pico{width:18px;height:18px;display:block}
+  .cmp-people .ppl{fill:var(--gray)}
+  .cmp-people.auto .ppl{fill:var(--blue)}
+  .money{display:flex;align-items:stretch;justify-content:center;gap:16px;margin:46px auto 0;max-width:800px;flex-wrap:wrap}
+  .m-card{flex:1 1 300px;background:var(--panel);border-radius:20px;padding:28px;text-align:left}
+  .m-card.auto{border:1px solid rgba(41,151,255,.45)}
+  .m-top{font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--gray)}
+  .m-card.auto .m-top{color:var(--blue)}
+  .m-big{font-size:40px;font-weight:600;color:#fff;letter-spacing:-.02em;margin:10px 0 6px}
+  .m-big span{font-size:18px;color:var(--gray);font-weight:400}
+  .m-sub{font-size:14px;color:var(--gray)}
+  .m-year{margin-top:14px;font-size:15px;color:#fff;font-weight:600;border-top:1px solid #2a2a2d;padding-top:14px}
+  .m-arrow{display:flex;align-items:center;color:var(--blue);font-size:28px;font-weight:700}
+  @media(max-width:680px){.m-arrow{transform:rotate(90deg);justify-content:center}}
 
   /* product cards */
   .pcard{overflow:hidden;padding:0}
@@ -306,7 +321,7 @@
       <div class="cmp-row trad">
         <div class="cmp-head">
           <span class="cmp-tag">Geleneksel mutfak</span>
-          <span class="cmp-people"><span class="dots"><i></i><i></i><i></i><i></i><i></i></span> ≈ 5 kişi</span>
+          <span class="cmp-people"><span class="ppl"><svg class="pico" viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-3.3 0-8 1.7-8 5v1h16v-1c0-3.3-4.7-5-8-5z"/></svg><svg class="pico" viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-3.3 0-8 1.7-8 5v1h16v-1c0-3.3-4.7-5-8-5z"/></svg><svg class="pico" viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-3.3 0-8 1.7-8 5v1h16v-1c0-3.3-4.7-5-8-5z"/></svg><svg class="pico" viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-3.3 0-8 1.7-8 5v1h16v-1c0-3.3-4.7-5-8-5z"/></svg><svg class="pico" viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-3.3 0-8 1.7-8 5v1h16v-1c0-3.3-4.7-5-8-5z"/></svg></span> ≈ 5 kişi</span>
         </div>
         <div class="flow">
           <div class="stepchip">Hazırlık<small>yıkama · doğrama · 2 kişi</small></div>
@@ -323,7 +338,7 @@
       <div class="cmp-row auto">
         <div class="cmp-head">
           <span class="cmp-tag accent">AUTOKITCH modülü</span>
-          <span class="cmp-people auto"><span class="dots"><i></i></span> 1 kişi</span>
+          <span class="cmp-people auto"><span class="ppl"><svg class="pico" viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-3.3 0-8 1.7-8 5v1h16v-1c0-3.3-4.7-5-8-5z"/></svg></span> 1 kişi</span>
         </div>
         <div class="flow">
           <div class="stepchip">Malzeme yükle<small>sabah · 1 kişi</small></div>
@@ -337,18 +352,22 @@
       </div>
     </div>
 
-    <div class="effort rv d1">
-      <div class="ef-row">
-        <div class="ef-label"><span>Geleneksel · efor &amp; maliyet</span><span>3×</span></div>
-        <div class="ef-track"><div class="ef-bar trad" data-w="100%">3 birim</div></div>
+    <div class="money rv d1">
+      <div class="m-card trad">
+        <div class="m-top">Geleneksel · çalıştırma maliyeti</div>
+        <div class="m-big">₺80.000<span> /ay</span></div>
+        <div class="m-sub">2 personel · işveren maliyeti (2026)</div>
+        <div class="m-year">≈ ₺960.000 / yıl gider</div>
       </div>
-      <div class="ef-row">
-        <div class="ef-label"><span>AUTOKITCH · efor &amp; maliyet</span><span>1×</span></div>
-        <div class="ef-track"><div class="ef-bar auto" data-w="34%">1 birim</div></div>
+      <div class="m-arrow">→</div>
+      <div class="m-card auto">
+        <div class="m-top">AUTOKITCH · tek seferlik</div>
+        <div class="m-big">~17 ay<span> amorti</span></div>
+        <div class="m-sub">~₺1,35M modül (tek sefer)</div>
+        <div class="m-year">sonrası: yılda ~₺960.000 kâr</div>
       </div>
     </div>
-
-    <p class="lead center rv" style="font-size:19px;margin-top:38px">Sonuç: <b style="color:#fff;font-weight:600">~%66 daha az efor ve maliyet</b> · ~5 kişiden 1 kişiye · sıfıra yakın fire.</p>
+    <p class="lead center rv" style="font-size:18px;margin-top:30px">Basit matematik: <b style="color:#fff;font-weight:600">₺1.350.000 ÷ ₺80.000/ay ≈ 17 ay</b>. Modül ~1,5 yılda kendini öder; sonrası her yıl ~₺960.000 cebinizde kalır.</p>
   </div>
 </section>
 
@@ -373,21 +392,6 @@
       </div>
     </div>
     <p class="note">Yapay zeka ile üretilmiş referans konsept görüntüleridir; nihai ürün tasarımını temsil eder.</p>
-  </div>
-</section>
-
-<!-- NASIL CALISIR -->
-<section id="nasil" class="light center">
-  <div class="wrap">
-    <div class="eyebrow rv">Nasıl Çalışır</div>
-    <h2 class="rv d1">Sipariş'ten servise —<br>insan eli değmeden.</h2>
-    <div class="steps" style="text-align:left">
-      <div class="step rv d1"><div class="num">01</div><h3>POS'tan sipariş</h3><p>Sipariş ekrana düştüğü an modül devreye girer.</p></div>
-      <div class="step rv d2"><div class="num">02</div><h3>Otomatik porsiyonlama</h3><p>Mekanik valf &amp; nozullar malzemeyi gramı gramına bırakır.</p></div>
-      <div class="step rv d3"><div class="num">03</div><h3>Vision AI kontrol</h3><p>Kameralar pişme/rengi ve eksik malzemeyi anlık denetler.</p></div>
-      <div class="step rv d4"><div class="num">04</div><h3>Servise hazır çıktı</h3><p>Standart, tam porsiyon ürün şefe / pakete uzatılır.</p></div>
-    </div>
-    <p class="lead rv center" style="margin-top:40px"><b style="color:var(--dark);font-weight:600">Reçeteler statik değil.</b> Şef “maliyeti %5 kıs, yeşillik oranını artır” dediğinde tüm porsiyonlama saniyesinde güncellenir.</p>
   </div>
 </section>
 
@@ -458,38 +462,25 @@
     <div class="grid g2" style="text-align:left">
       <div class="card rv d1"><h3>Donanım satışı <span style="float:right;color:var(--blue);font-size:13px;font-weight:600">BİRİNCİL</span></h3><p>Modül satışı (anahtar teslim). Yüksek birim fiyat, güçlü brüt marj.</p></div>
       <div class="card rv d2"><h3>SaaS / yazılım <span style="float:right;color:var(--blue);font-size:13px;font-weight:600">TEKRARLAYAN</span></h3><p>Reçete, Vision AI, uzaktan izleme &amp; güncelleme için aylık abonelik.</p></div>
-      <div class="card rv d1"><h3>Bakım &amp; sarf <span style="float:right;color:var(--blue);font-size:13px;font-weight:600">TEKRARLAYAN</span></h3><p>Servis sözleşmeleri, yedek parça, nozul/filtre sarf malzemeleri.</p></div>
+      <div class="card rv d1"><h3>Bakım &amp; yazılım desteği <span style="float:right;color:var(--blue);font-size:13px;font-weight:600">OPSİYONEL</span></h3><p>Periyodik bakım, uzaktan izleme ve yazılım/AI güncellemeleri. Sarf/malzeme satmıyoruz.</p></div>
       <div class="card rv d2"><h3>Lüks / proje <span style="float:right;color:var(--blue);font-size:13px;font-weight:600">YÜKSEK MARJ</span></h3><p>Showroom, VIP ve özel mimari projelere premium CMF'li özel çözüm.</p></div>
     </div>
+    <p class="note" style="text-align:left;max-width:800px;margin-top:26px">Not: Otomatik, yapay zeka destekli makineler üretiyoruz — nozul ucu gibi sarf malzemesi veya hammadde <b style="color:#fff;font-weight:600">satmıyoruz</b>. Gelir; donanım satışı, opsiyonel yazılım/bakım desteği ve premium projelerden gelir.</p>
   </div>
 </section>
 
 <!-- FINANSAL -->
-<section id="finansal">
+<section id="finansal" class="center">
   <div class="wrap">
-    <div class="eyebrow rv center">Finansal · İlk Tahmin</div>
-    <h2 class="rv d1 center">Birim ekonomi ve 3 yıllık hedef.</h2>
-    <div class="fin">
-      <div class="rv d1">
-        <div class="subh">Birim ekonomi <span>(modül başına)</span></div>
-        <div class="fingrid">
-          <div class="fcard"><div class="v">₺1,2–1,5 M</div><div class="l">Modül satış fiyatı (hedef)</div><div class="s">veya ~₺40k/ay abonelik</div></div>
-          <div class="fcard"><div class="v">~₺80.000</div><div class="l">Müşteriye aylık tasarruf</div><div class="s">2 personel işveren maliyeti, 2026</div></div>
-          <div class="fcard"><div class="v">~18–24 ay</div><div class="l">Müşterinin geri ödeme süresi</div><div class="s">satın alma senaryosu</div></div>
-          <div class="fcard"><div class="v">%40–50</div><div class="l">Hedef brüt marj</div><div class="s">donanım + SaaS</div></div>
-        </div>
-      </div>
-      <div class="rv d2">
-        <div class="subh">Kurulu modül hedefi <span>(kümülatif)</span></div>
-        <div class="chart" id="chart">
-          <div class="bar"><div class="val">5</div><div class="col" data-h="22"></div><div class="yr">Yıl 1</div></div>
-          <div class="bar"><div class="val">25</div><div class="col" data-h="92"></div><div class="yr">Yıl 2</div></div>
-          <div class="bar"><div class="val">70</div><div class="col" data-h="240"></div><div class="yr">Yıl 3</div></div>
-        </div>
-        <p class="note" style="margin-top:18px;text-align:left">Yıl 3 hedefi: ~70 kurulu modül + tekrarlayan SaaS / bakım geliri.</p>
-      </div>
+    <div class="eyebrow rv">Finansal · İlk Tahmin</div>
+    <h2 class="rv d1">3 yıllık hedef.</h2>
+    <p class="lead rv d2">Tek modülde mükemmelleş, ROI'yi kanıtla, sonra ölç. Hedef: kümülatif kurulu modül sayısı.</p>
+    <div class="chart rv d1" id="chart" style="max-width:640px;margin:54px auto 0">
+      <div class="bar"><div class="val">5</div><div class="col" data-h="22"></div><div class="yr">Yıl 1</div></div>
+      <div class="bar"><div class="val">25</div><div class="col" data-h="92"></div><div class="yr">Yıl 2</div></div>
+      <div class="bar"><div class="val">70</div><div class="col" data-h="240"></div><div class="yr">Yıl 3</div></div>
     </div>
-    <p class="note">İlk tahmin / varsayım — rakip fiyat referansları (Picnic, Botinkit) ve 2026 asgari ücret işveren maliyetine dayanır; pilot verisiyle netleşecek.</p>
+    <p class="note">Hedef brüt marj %40–50 (donanım + yazılım). İlk tahmin/varsayımdır; pilot verisiyle netleşecek.</p>
   </div>
 </section>
 
