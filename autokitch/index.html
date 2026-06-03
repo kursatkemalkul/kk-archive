@@ -106,6 +106,33 @@
   .vrow b{color:#fff;font-weight:600;font-size:18px}
   .vrow span{color:var(--gray);font-size:17px}
 
+  /* karşılaştırma: süreç & efor */
+  .cmp{display:flex;flex-direction:column;gap:18px;margin-top:54px}
+  .cmp-row{background:var(--panel);border-radius:20px;padding:26px 28px;text-align:left}
+  .cmp-row.auto{border:1px solid rgba(41,151,255,.45)}
+  .cmp-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px}
+  .cmp-tag{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gray)}
+  .cmp-tag.accent{color:var(--blue)}
+  .cmp-people{display:flex;align-items:center;gap:9px;color:#fff;font-weight:600;font-size:15px}
+  .dots{display:inline-flex;gap:5px}
+  .dots i{width:11px;height:11px;border-radius:50%;background:var(--gray);display:block}
+  .cmp-people.auto .dots i{background:var(--blue)}
+  .flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .stepchip{background:#0e0e10;border:1px solid #2a2a2d;border-radius:12px;padding:12px 15px;font-size:14px;font-weight:600;color:#ececed;display:flex;flex-direction:column;gap:3px}
+  .stepchip small{color:var(--gray);font-size:11px;font-weight:400}
+  .cmp-row.auto .stepchip{border-color:rgba(41,151,255,.3)}
+  .arrow{color:var(--gray);font-weight:700;font-size:15px;flex:0 0 auto}
+  .cmp-row.auto .arrow{color:var(--blue)}
+  .effort{margin:44px auto 0;display:flex;flex-direction:column;gap:20px;max-width:720px}
+  .ef-row{text-align:left}
+  .ef-label{display:flex;justify-content:space-between;font-size:14px;color:var(--gray);margin-bottom:8px}
+  .ef-label span:last-child{color:#fff;font-weight:600}
+  .ef-track{background:#1a1a1c;border-radius:12px;height:46px;overflow:hidden}
+  .ef-bar{height:100%;border-radius:12px;display:flex;align-items:center;padding-left:18px;color:#fff;font-weight:600;font-size:15px;width:0;white-space:nowrap;transition:width 1.1s cubic-bezier(.2,.6,.2,1)}
+  .ef-bar.trad{background:linear-gradient(90deg,#5a5a5e,#3a3a3d)}
+  .ef-bar.auto{background:linear-gradient(90deg,var(--blue-l),var(--blue-d))}
+  @media(max-width:680px){.arrow{display:none}.flow{gap:8px}.stepchip{flex:1 1 42%}}
+
   /* product cards */
   .pcard{overflow:hidden;padding:0}
   .pcard img{width:100%;height:210px;object-fit:cover;display:block}
@@ -268,23 +295,60 @@
   </div>
 </section>
 
-<!-- COZUM -->
-<section id="cozum">
+<!-- COZUM — süreç & efor karşılaştırması -->
+<section id="cozum" class="center">
   <div class="wrap">
     <div class="eyebrow rv">Çözüm</div>
-    <h2 class="rv d1">Mutfağı bir üretim<br>bandına dönüştürür.</h2>
-    <div class="split">
-      <div>
-        <p class="lead rv d1" style="margin-top:6px">Her modül mevcut paslanmaz çelik tezgah hattına tam oturur, POS ile konuşur ve siparişi insan eli değmeden hazırlar.</p>
-        <div class="vlist">
-          <div class="vrow rv d1"><div class="dot"></div><div><b>Daha az personel</b> <span>— bir istasyonun işçiliğini tamamen devralır</span></div></div>
-          <div class="vrow rv d2"><div class="dot"></div><div><b>Sıfıra yakın fire</b> <span>— gramı gramına porsiyonlama</span></div></div>
-          <div class="vrow rv d3"><div class="dot"></div><div><b>Standart kalite</b> <span>— her porsiyon, her vardiya birebir aynı</span></div></div>
-          <div class="vrow rv d4"><div class="dot"></div><div><b>Hızlı ROI</b> <span>— patron yatırım geri dönüşünü hesaplayabilir</span></div></div>
+    <h2 class="rv d1">Aynı sonuç.<br>Üçte bir efor.</h2>
+    <p class="lead rv d2">Bir porsiyonu geleneksel mutfakta hazırlamak — hazırlıktan temizliğe kadar — birkaç kişinin elinden geçen uzun bir süreç. AUTOKITCH bu zinciri tek modülde toplar.</p>
+
+    <div class="cmp rv d1">
+      <div class="cmp-row trad">
+        <div class="cmp-head">
+          <span class="cmp-tag">Geleneksel mutfak</span>
+          <span class="cmp-people"><span class="dots"><i></i><i></i><i></i><i></i><i></i></span> ≈ 5 kişi</span>
+        </div>
+        <div class="flow">
+          <div class="stepchip">Hazırlık<small>yıkama · doğrama · 2 kişi</small></div>
+          <span class="arrow">→</span>
+          <div class="stepchip">Pişirme / montaj<small>1 kişi</small></div>
+          <span class="arrow">→</span>
+          <div class="stepchip">Porsiyon<small>1 kişi</small></div>
+          <span class="arrow">→</span>
+          <div class="stepchip">Servis<small>1 kişi</small></div>
+          <span class="arrow">→</span>
+          <div class="stepchip">Temizlik<small>kapanış · 1 kişi</small></div>
         </div>
       </div>
-      <img class="rv d2" src="assets/solution.jpg" alt="Otonom mutfak modülü">
+      <div class="cmp-row auto">
+        <div class="cmp-head">
+          <span class="cmp-tag accent">AUTOKITCH modülü</span>
+          <span class="cmp-people auto"><span class="dots"><i></i></span> 1 kişi</span>
+        </div>
+        <div class="flow">
+          <div class="stepchip">Malzeme yükle<small>sabah · 1 kişi</small></div>
+          <span class="arrow">→</span>
+          <div class="stepchip">Otonom üretim<small>porsiyon · pişirme · montaj</small></div>
+          <span class="arrow">→</span>
+          <div class="stepchip">Kendi temizler<small>CIP · otomatik</small></div>
+          <span class="arrow">→</span>
+          <div class="stepchip">Servise hazır<small>standart porsiyon</small></div>
+        </div>
+      </div>
     </div>
+
+    <div class="effort rv d1">
+      <div class="ef-row">
+        <div class="ef-label"><span>Geleneksel · efor &amp; maliyet</span><span>3×</span></div>
+        <div class="ef-track"><div class="ef-bar trad" data-w="100%">3 birim</div></div>
+      </div>
+      <div class="ef-row">
+        <div class="ef-label"><span>AUTOKITCH · efor &amp; maliyet</span><span>1×</span></div>
+        <div class="ef-track"><div class="ef-bar auto" data-w="34%">1 birim</div></div>
+      </div>
+    </div>
+
+    <p class="lead center rv" style="font-size:19px;margin-top:38px">Sonuç: <b style="color:#fff;font-weight:600">~%66 daha az efor ve maliyet</b> · ~5 kişiden 1 kişiye · sıfıra yakın fire.</p>
   </div>
 </section>
 
@@ -504,6 +568,9 @@
 
   const ioB=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.col').forEach(c=>c.style.height=c.dataset.h+'px');ioB.unobserve(e.target);}});},{threshold:.4});
   document.querySelectorAll('.chart').forEach(c=>ioB.observe(c));
+
+  const ioE=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.ef-bar').forEach(b=>b.style.width=b.dataset.w);ioE.unobserve(e.target);}});},{threshold:.4});
+  const ef=document.querySelector('.effort');if(ef)ioE.observe(ef);
 </script>
 </body>
 </html>
