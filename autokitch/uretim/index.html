@@ -35,11 +35,11 @@
   .logo{font-weight:600;font-size:19px}.logo b{color:var(--blue)}
   .nav-back{font-size:14px;color:#d6d6d8}.nav-back:hover{color:var(--blue)}
 
-  .hero{min-height:94vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 22px 60px;background:radial-gradient(120% 80% at 50% 0%,#0c1a2b 0%,#06101a 40%,#000 78%)}
+  .hero{min-height:94vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 22px 60px;background:linear-gradient(180deg,rgba(2,8,16,.74),rgba(2,8,16,.5) 45%,rgba(0,0,0,.9)),url('../assets/factory.jpg') center/cover no-repeat}
   .hero .tag{font-size:clamp(15px,1.5vw,20px);font-weight:600;color:var(--gray-l);margin-bottom:10px}
   .hero h1{font-size:clamp(40px,7vw,92px);font-weight:600;letter-spacing:-.035em;line-height:1.0;background:linear-gradient(168deg,#E6F2FF,var(--blue-l) 32%,var(--blue) 64%,var(--blue-d));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 10px 60px rgba(41,151,255,.35))}
-  .hero .sub{font-size:clamp(18px,2.1vw,27px);color:#eef3f8;font-weight:500;max-width:740px;margin:24px auto 0;line-height:1.34}
-  .hero .meta{margin-top:20px;color:var(--gray);font-size:15px}
+  .hero .sub{font-size:clamp(18px,2.1vw,27px);color:#eef3f8;font-weight:500;max-width:740px;margin:24px auto 0;line-height:1.34;text-shadow:0 2px 20px rgba(0,0,0,.65)}
+  .hero .meta{margin-top:20px;color:#c2c8d0;font-size:15px;text-shadow:0 1px 14px rgba(0,0,0,.7)}
   .cue{margin-top:44px;color:var(--gray);font-size:12px;letter-spacing:.18em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:9px;animation:bob 2s infinite}
   .cue span{width:1px;height:30px;background:linear-gradient(var(--gray),transparent)}
   @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
@@ -67,6 +67,7 @@
   .bc .rows{margin-top:16px}
   .bc .r{display:flex;justify-content:space-between;gap:12px;font-size:14.5px;border-top:1px solid var(--hair);padding:10px 0}
   .bc .r span{color:var(--gray)}.bc .r b{color:#fff;font-weight:600}
+  .vimg{width:100%;border-radius:22px;margin-top:44px;display:block;box-shadow:0 30px 80px rgba(0,0,0,.5);border:1px solid var(--hair)}
 
   /* product range */
   .prods{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:50px;text-align:left}
@@ -178,7 +179,8 @@
         </div>
       </div>
     </div>
-    <p class="note">Kaynak: oztiryakiler.com.tr, inoksan.com — referans/karşılaştırmadır.</p>
+    <img class="vimg rv d1" src="../assets/factory2.jpg" alt="TORINO Mutfak üretim tesisi konsept görseli">
+    <p class="note">Vizyon: birlikte kuracağımız "TORINO Mutfak" tesisi & markası (konsept görsel). · Kaynak rakamlar: oztiryakiler.com.tr, inoksan.com.</p>
   </div>
 </section>
 
