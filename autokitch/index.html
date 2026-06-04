@@ -285,23 +285,23 @@
 <div id="gate">
   <div class="gbox">
     <div class="glogo">AUTO<b>KITCH</b></div>
-    <div class="gsub">Özel sunum · Devam etmek için 4 haneli kodu girin</div>
-    <input id="gpin" type="password" inputmode="numeric" maxlength="4" autocomplete="off" aria-label="4 haneli kod">
+    <div class="gsub">Özel sunum · Devam etmek için kodu girin</div>
+    <input id="gpin" type="password" inputmode="text" maxlength="4" autocomplete="off" autocapitalize="off" aria-label="Kod">
     <div class="gerr" id="gerr"></div>
   </div>
 </div>
 <script>
 (function(){
-  var CODE="2026"; /* <<< 4 HANELİ ŞİFRE BURADA */
+  var CODE="alfa"; /* <<< ŞİFRE BURADA (büyük/küçük harf farketmez) */
   var gate=document.getElementById('gate');
   if(sessionStorage.getItem('ak_ok')==='1'){ gate.remove(); return; }
   document.body.classList.add('glocked');
   var inp=document.getElementById('gpin'), err=document.getElementById('gerr');
   setTimeout(function(){inp.focus();},120);
   inp.addEventListener('input',function(){
-    inp.value=inp.value.replace(/\D/g,'').slice(0,4); err.textContent='';
+    inp.value=inp.value.replace(/[^a-zA-Z0-9]/g,'').slice(0,4); err.textContent='';
     if(inp.value.length===4){
-      if(inp.value===CODE){ sessionStorage.setItem('ak_ok','1'); gate.style.opacity='0'; setTimeout(function(){gate.remove(); document.body.classList.remove('glocked');},320); }
+      if(inp.value.toLowerCase()===CODE){ sessionStorage.setItem('ak_ok','1'); gate.style.opacity='0'; setTimeout(function(){gate.remove(); document.body.classList.remove('glocked');},320); }
       else { err.textContent='Hatalı kod, tekrar deneyin.'; inp.classList.add('gshake'); setTimeout(function(){inp.classList.remove('gshake'); inp.value='';},430); }
     }
   });
