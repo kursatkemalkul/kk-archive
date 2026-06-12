@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>2026 Nakit Takvimi </title>
+<style>
+:root{--txt:#FFFFFF;--mut:#6E6E73;--line:rgba(255,255,255,.10);--gold:#D8B25C;--in:#30D158;--out:#FF453A}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:#000}
+body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;color:var(--txt);
+  padding:28px 20px 80px;max-width:480px;margin:0 auto}
+h1{font-size:17px;font-weight:600;letter-spacing:2.5px}
+.sub{color:var(--mut);font-size:11px;margin-top:4px;letter-spacing:.4px}
+.topbar{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:26px}
+.iconbtn{background:none;border:1px solid var(--line);color:var(--txt);border-radius:0;
+  padding:8px 14px;font-size:12px;letter-spacing:1px;cursor:pointer;font-family:inherit}
+.iconbtn.on{background:#fff;color:#000;border-color:#fff}
+.panel{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;margin-bottom:26px;display:none}
+.panel.show{display:block}
+.panel .row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;gap:10px}
+.panel label{font-size:12px;color:var(--mut);letter-spacing:.5px}
+.panel input{background:none;border:none;border-bottom:1px solid var(--line);color:var(--txt);
+  padding:6px 0;width:110px;font-size:17px;text-align:right;font-variant-numeric:tabular-nums;font-family:inherit}
+.panel input:focus{outline:none;border-bottom-color:#fff}
+.strip{display:flex;gap:2px;align-items:flex-end;height:32px;margin:0 0 30px}
+.strip div{flex:1;border-radius:2px;min-height:3px;opacity:.85}
+.mcard{border-top:1px solid var(--line);margin:0}
+.mcard:last-of-type{border-bottom:1px solid var(--line)}
+.mhead{display:flex;align-items:baseline;gap:14px;padding:18px 0;cursor:pointer;user-select:none}
+.mbar{display:block;width:4px;align-self:stretch;border-radius:99px}
+.mname{font-size:12px;font-weight:600;letter-spacing:2.5px;flex:1;color:var(--mut)!important}
+.mcard.open .mname{color:#fff!important}
+.mkalan{font-size:22px;font-weight:300;font-variant-numeric:tabular-nums;color:#fff!important;letter-spacing:-.5px}
+.mbirik{font-size:10px;color:var(--mut);text-align:right;font-variant-numeric:tabular-nums;letter-spacing:.4px}
+.chev{display:none}
+.mbody{display:none;padding:0 0 20px}
+.mcard.open .mbody{display:block}
+.sec{font-size:10px;font-weight:600;letter-spacing:2px;margin:16px 0 6px;color:var(--mut)}
+.sec.in{color:#30D158} .sec.out{color:#FF453A}
+.it{display:flex;justify-content:space-between;align-items:center;padding:6px 0;font-size:14px;gap:8px}
+.it .nm{color:#fff;font-weight:300} .it .nm small{color:var(--mut)}
+.it .vl{font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:400}
+.it.yr .nm{font-weight:600;color:#fff!important}
+.it.yr .nm{font-style:normal}
+.cat{display:flex;justify-content:space-between;align-items:center;padding:9px 0;cursor:pointer;
+  font-size:14px;font-weight:400;border-bottom:1px solid var(--line)}
+.cat .vl{font-variant-numeric:tabular-nums}
+.cat .cv{color:var(--mut);font-size:10px;margin-left:8px;display:inline-block;transition:transform .2s}
+.cat.open .cv{transform:rotate(90deg)}
+.catbody{display:none;padding-left:14px}
+.cat.open + .catbody{display:block}
+.catbody .it .nm{color:var(--mut)}
+.kalanrow{display:flex;justify-content:space-between;align-items:baseline;
+  padding:14px 0 0;margin-top:14px;border-top:1px solid #fff;background:none!important;
+  border-radius:0;box-shadow:none}
+.kalanrow .l{font-size:10px;font-weight:600;letter-spacing:2px;color:var(--mut)}
+.kalanrow .v{font-weight:300;font-size:26px;color:#fff;font-variant-numeric:tabular-nums;letter-spacing:-.5px}
+.tlrow{display:flex;justify-content:space-between;font-size:11px;color:var(--mut);padding:6px 0 0;font-variant-numeric:tabular-nums}
+.birrow{display:flex;justify-content:space-between;font-size:12px;color:var(--gold);font-weight:500;padding:3px 0 0;font-variant-numeric:tabular-nums;letter-spacing:.4px}
+.addx{margin-top:14px;width:100%;background:none;border:none;color:var(--mut);padding:8px 0;
+  font-size:12px;letter-spacing:1px;cursor:pointer;text-align:left;font-family:inherit;text-decoration:underline;text-underline-offset:3px}
+.xform{display:none;margin-top:8px;padding:10px 0;border-top:1px solid var(--line)}
+.xform.show{display:block}
+.xform input,.xform select{background:none;border:none;border-bottom:1px solid var(--line);color:#fff;
+  padding:8px 0;font-size:15px;width:100%;margin-bottom:8px;font-family:inherit}
+.xform select{color:var(--mut)}
+.xform .half{display:flex;gap:14px}
+.xform button{width:100%;background:#fff;border:none;padding:11px;font-weight:600;color:#000;font-size:13px;letter-spacing:1px;cursor:pointer;font-family:inherit}
+.xtra{display:flex;justify-content:space-between;align-items:center;padding:5px 0;font-size:13px;color:var(--mut)}
+.xtra .del{color:var(--mut);background:none;border:none;font-size:15px;cursor:pointer;padding:0 5px}
+.summary{border-top:1px solid #fff;padding:18px 0;margin-top:34px}
+.summary h2{font-size:11px;font-weight:600;letter-spacing:2.5px;margin-bottom:10px;color:var(--mut)}
+.summary .it .vl{font-weight:400;font-size:16px}
+.summary .it .vl[style]{color:#fff!important}
+.summary .it .nm[style]{color:var(--gold)!important}
+.editv{background:none;border:none;border-bottom:1px solid var(--line);color:#fff;
+  padding:4px 0;width:96px;text-align:right;font-size:14px;font-variant-numeric:tabular-nums;font-family:inherit}
+.editv:focus{outline:none;border-bottom-color:#fff}
+.note{color:var(--mut);font-size:10px;margin-top:20px;text-align:center;line-height:1.7;letter-spacing:.4px}
+
+#pinGate{position:fixed;inset:0;background:#000;z-index:99;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
+#pinGate input{background:none;border:none;border-bottom:1px solid rgba(255,255,255,.3);color:#fff;font-size:28px;text-align:center;width:140px;letter-spacing:10px;padding:8px 0;font-family:inherit}
+#pinGate input:focus{outline:none;border-bottom-color:#fff}
+#pinGate .pl{color:#6E6E73;font-size:12px;letter-spacing:2px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div id="pinGate"><div class="pl">PIN</div><input type="password" inputmode="numeric" maxlength="4" id="pinIn" autofocus></div>
+<div class="topbar">
+  <div><h1>2026 NAKİT TAKVİMİ</h1><div class="sub">Aya bas → açılır · kategoriye bas → detaylar</div></div>
+  <button class="iconbtn" id="editBtn">Düzenle</button>
+</div>
+
+<div class="panel show" id="setPanel">
+  <div class="row"><label>Kur (1 € = ? ₺) <span id="kurSrc" style="display:block;font-size:10px;color:#8A94AC"></span></label>
+  <div style="display:flex;gap:6px;align-items:center"><input type="number" id="kurIn" step="0.01">
+  <button class="iconbtn" id="kurRef" style="padding:8px 10px">⟳</button></div></div>
+  <div class="row"><label>Mevcut Birikim (€)</label><input type="number" id="birIn" step="100"></div>
+</div>
+
+<div class="strip" id="strip"></div>
+<div id="months"></div>
+
+<div class="summary" id="yearbox"></div>
+<div class="note" id="saveNote">Değişiklikler bu cihazda otomatik saklanır.</div>
+
+<script>
+
+const PIN="2605"; // PIN'i buradan değiştir
+(function(){
+  if(sessionStorage.getItem("nakitPinOk")==="1"){document.getElementById("pinGate").remove();return;}
+  const i=document.getElementById("pinIn");
+  i.addEventListener("input",()=>{
+    if(i.value.length===4){
+      if(i.value===PIN){sessionStorage.setItem("nakitPinOk","1");document.getElementById("pinGate").remove();}
+      else{i.value="";i.style.borderBottomColor="#FF453A";setTimeout(()=>i.style.borderBottomColor="",600);}
+    }
+  });
+})();
+const MN=["OCAK","ŞUBAT","MART","NİSAN","MAYIS","HAZİRAN","TEMMUZ","AĞUSTOS","EYLÜL","EKİM","KASIM","ARALIK"];
+const COL=["#6366F1","#8B5CF6","#14B8A6","#10B981","#84CC16","#F59E0B","#F97316","#F43F5E","#06B6D4","#64748B","#3B82F6","#EF4444"];
+
+const DEFAULTS={
+ kur:54.95, birikim:31000,
+ mInc:[
+  {n:"Eslemisko Maaşı",c:"T",a:316000},
+  {n:"Changan Maaşı",c:"E",a:3320},
+  {n:"Eslem Evi 1 Kira Geliri",c:"T",a:85000}],
+ yInc:[
+  {n:"Kürşat Evi Yıllık Kira (12 ay)",c:"T",a:420000,m:12},
+  {n:"Changan 13. Maaş",c:"E",a:3320,m:12},
+  {n:"Changan Bonus",c:"E",a:1000,m:12}],
+ cats:[
+  {cat:"Ev & Yaşam (İtalya)",items:[
+   {n:"Ev Kirası (İtalya)",c:"E",a:1300},{n:"Yemek",c:"E",a:720},{n:"Site Aidatı",c:"E",a:300},
+   {n:"Elektrik",c:"E",a:150},{n:"Yemek (Kemal)",c:"E",a:110},{n:"İtalyanca Dersi",c:"T",a:4000},
+   {n:"Saç Kesimi",c:"E",a:37},{n:"İnternet (İtalya)",c:"E",a:25}]},
+  {cat:"Araç",items:[{n:"Benzin",c:"E",a:300}]},
+  {cat:"Kürşat Evi",items:[{n:"Konut Kredisi (kalan ₺42.000)",c:"T",a:910}]},
+  {cat:"Abonelikler",items:[
+   {n:"GSM İtalya x2",c:"E",a:18},{n:"Eslem Uygulama",c:"T",a:800},{n:"Google Gemini x2",c:"T",a:700},
+   {n:"İnternet (Türkiye)",c:"T",a:568},{n:"GSM Türkiye (Kemal)",c:"E",a:7},{n:"iCloud",c:"T",a:300},
+   {n:"Netflix",c:"T",a:300},{n:"HBO Max",c:"T",a:300},{n:"VPN",c:"T",a:300},{n:"Disney+",c:"T",a:249},
+   {n:"YouTube",c:"T",a:234},{n:"Spotify x2",c:"T",a:200},{n:"Amazon Prime",c:"T",a:200}]}],
+ yExp:[
+  {n:"Trafik Sigortası (Sara)",c:"E",a:869,m:2},
+  {n:"MTV / Bollo",c:"E",a:517,m:2},
+  {n:"Periyodik Bakım (servis)",c:"E",a:800,m:4},
+  {n:"Eslemisko Gelir Vergisi 1.T",c:"T",a:145500,m:5},
+  {n:"Kürşat Kira Gelir Vergisi 1.T",c:"T",a:38500,m:5},
+  {n:"Eslem Evleri Emlak Vergisi 1.T",c:"T",a:19750,m:5},
+  {n:"Eslem Evleri DASK (2 ev)",c:"T",a:3200,m:5},
+  {n:"Kürşat Evi Yangın Vergisi 1.T",c:"T",a:3220,m:5},
+  {n:"Kürşat Evi Emlak Vergisi 1.T",c:"T",a:3078,m:5},
+  {n:"Kürşat Evi DASK",c:"T",a:1611,m:5},
+  {n:"Eslem Evleri Yangın Vergisi",c:"T",a:0,m:5},
+  {n:"Eslemisko Gelir Vergisi 2.T",c:"T",a:145500,m:7},
+  {n:"Kürşat Kira Gelir Vergisi 2.T",c:"T",a:38500,m:7},
+  {n:"Eslem Evleri Emlak Vergisi 2.T",c:"T",a:19750,m:11},
+  {n:"Kürşat Evi Yangın Vergisi 2.T",c:"T",a:3220,m:11},
+  {n:"Kürşat Evi Emlak Vergisi 2.T",c:"T",a:3078,m:11}],
+ extras:[]
+};
+
+let S=null, editMode=false;
+const openMonths=new Set(), openCats=new Set();
+
+const fE=v=>"€"+Math.round(v).toLocaleString("tr-TR");
+const fT=v=>"₺"+Math.round(v).toLocaleString("tr-TR");
+const eur=it=>it.c==="E"?it.a:it.a/S.kur;
+const fOrig=it=>it.c==="E"?fE(it.a):fT(it.a);
+
+async function load(){
+  try{const v=localStorage.getItem("nakit2026");
+    if(v){S=JSON.parse(v);return;}}catch(e){}
+  S=JSON.parse(JSON.stringify(DEFAULTS));
+}
+let saveT=null;
+function save(){
+  clearTimeout(saveT);
+  saveT=setTimeout(async()=>{
+    try{localStorage.setItem("nakit2026",JSON.stringify(S));}
+    catch(e){document.getElementById("saveNote").textContent="Kaydedilemedi.";}
+  },400);
+}
+
+function monthCalc(m){
+  let gI=S.mInc.reduce((s,i)=>s+eur(i),0);
+  S.yInc.forEach(i=>{if(i.m===m)gI+=eur(i);});
+  S.extras.forEach(x=>{if(x.m===m&&x.t==="gelir")gI+=eur(x);});
+  let gO=0;
+  S.cats.forEach(c=>c.items.forEach(i=>gO+=eur(i)));
+  S.yExp.forEach(i=>{if(i.m===m)gO+=eur(i);});
+  S.extras.forEach(x=>{if(x.m===m&&x.t==="gider")gO+=eur(x);});
+  return {gI,gO,k:gI-gO};
+}
+
+function valHTML(it,path){
+  if(!editMode)return `<span class="vl">${fOrig(it)}</span>`;
+  return `<input class="editv" type="number" value="${it.a}" data-path="${path}">`;
+}
+
+function render(){
+  document.getElementById("kurIn").value=S.kur;
+  document.getElementById("birIn").value=S.birikim;
+  const res=MN.map((_,i)=>monthCalc(i+1));
+  const maxK=Math.max(...res.map(r=>r.k),1);
+  document.getElementById("strip").innerHTML=res.map((r,i)=>
+    `<div style="height:${Math.max(8,r.k/maxK*100)}%;background:${COL[i]};" title="${MN[i]}"></div>`).join("");
+
+  let cum=S.birikim, html="";
+  res.forEach((r,idx)=>{
+    const m=idx+1; cum+=r.k;
+    const col=COL[idx], open=openMonths.has(m)?" open":"";
+    const yIncM=S.yInc.filter(i=>i.m===m);
+    const yExpM=S.yExp.filter(i=>i.m===m);
+    const xM=S.extras.map((x,xi)=>({...x,xi})).filter(x=>x.m===m);
+    html+=`<div class="mcard${open}" data-m="${m}">
+    <div class="mhead" data-mh="${m}">
+      <div class="mbar" style="background:${col}"></div>
+      <div class="mname">${MN[idx]}</div>
+      <div><div class="mkalan">${fE(r.k)}</div>
+      <div class="mbirik">birikim ${fE(cum)}</div></div>
+      <div class="chev">▶</div>
+    </div>
+    <div class="mbody">
+      <div class="sec in">GELEN · ${fE(r.gI)}</div>`;
+    S.mInc.forEach((i,ii)=>{html+=`<div class="it"><span class="nm">${i.n}${i.c==="T"?" <small>₺</small>":""}</span>${valHTML(i,"mInc."+ii)}</div>`;});
+    yIncM.forEach(i=>{const ii=S.yInc.indexOf(i);html+=`<div class="it yr"><span class="nm" style="color:${col}">★ ${i.n}</span>${valHTML(i,"yInc."+ii)}</div>`;});
+    xM.filter(x=>x.t==="gelir").forEach(x=>{html+=`<div class="xtra"><span>+ ${x.n}</span><span class="vl">${fOrig(x)} <button class="del" data-del="${x.xi}">✕</button></span></div>`;});
+    html+=`<div class="sec out">GİDEN · ${fE(r.gO)}</div>`;
+    S.cats.forEach((c,ci)=>{
+      const sum=c.items.reduce((s,i)=>s+eur(i),0);
+      const ck=m+"_"+ci, copen=openCats.has(ck)?" open":"";
+      html+=`<div class="cat${copen}" data-cat="${ck}"><span>${c.cat}<span class="cv">▶</span></span><span class="vl">${fE(sum)}</span></div><div class="catbody">`;
+      c.items.forEach((i,ii)=>{html+=`<div class="it"><span class="nm">${i.n}${i.c==="T"?" <small>₺</small>":""}</span>${valHTML(i,"cats."+ci+".items."+ii)}</div>`;});
+      html+=`</div>`;
+    });
+    yExpM.forEach(i=>{const ii=S.yExp.indexOf(i);html+=`<div class="it yr"><span class="nm" style="color:${col}">★ ${i.n}</span>${valHTML(i,"yExp."+ii)}</div>`;});
+    xM.filter(x=>x.t==="gider").forEach(x=>{html+=`<div class="xtra"><span>− ${x.n}</span><span class="vl">${fOrig(x)} <button class="del" data-del="${x.xi}">✕</button></span></div>`;});
+    html+=`<button class="addx" data-addx="${m}">+ Bu aya ekstra ekle</button>
+    <div class="xform" id="xf${m}">
+      <input placeholder="Açıklama (örn. tatil, tamirat)" id="xn${m}">
+      <div class="half"><input type="number" placeholder="Tutar" id="xa${m}">
+      <select id="xc${m}"><option value="T">₺</option><option value="E">€</option></select>
+      <select id="xt${m}"><option value="gider">Gider</option><option value="gelir">Gelir</option></select></div>
+      <button data-xsave="${m}">Ekle</button>
+    </div>
+    <div class="kalanrow"><span class="l">KALAN</span><span class="v">${fE(r.k)}</span></div>
+    <div class="tlrow"><span>≈ TL karşılığı</span><span>${fT(r.k*S.kur)}</span></div>
+    <div class="birrow"><span>TOPLAM BİRİKİM</span><span>${fE(cum)}</span></div>
+    </div></div>`;
+  });
+  document.getElementById("months").innerHTML=html;
+
+  const yI=res.reduce((s,r)=>s+r.gI,0), yO=res.reduce((s,r)=>s+r.gO,0);
+  document.getElementById("yearbox").innerHTML=`<h2>YIL ÖZETİ</h2>
+   <div class="it"><span class="nm">Yıllık Gelir</span><span class="vl" style="color:var(--in)">${fE(yI)}</span></div>
+   <div class="it"><span class="nm">Yıllık Gider</span><span class="vl" style="color:var(--out)">${fE(yO)}</span></div>
+   <div class="it"><span class="nm">Yıllık Birikim</span><span class="vl">${fE(yI-yO)}</span></div>
+   <div class="it"><span class="nm" style="color:var(--gold)">Yıl Sonu Toplam Birikim</span><span class="vl" style="color:var(--gold)">${fE(S.birikim+yI-yO)}</span></div>`;
+  bind();
+}
+
+function setByPath(path,val){
+  const p=path.split("."); let o=S;
+  for(let i=0;i<p.length-1;i++)o=o[p[i]];
+  o[p[p.length-1]].a=val;
+}
+
+function bind(){
+  document.querySelectorAll("[data-mh]").forEach(el=>el.onclick=e=>{
+    if(e.target.closest("input"))return;
+    const m=+el.dataset.mh;
+    openMonths.has(m)?openMonths.delete(m):openMonths.add(m);
+    el.parentElement.classList.toggle("open");
+  });
+  document.querySelectorAll("[data-cat]").forEach(el=>el.onclick=()=>{
+    const k=el.dataset.cat;
+    openCats.has(k)?openCats.delete(k):openCats.add(k);
+    el.classList.toggle("open");
+  });
+  document.querySelectorAll(".editv").forEach(inp=>inp.onchange=()=>{
+    setByPath(inp.dataset.path,parseFloat(inp.value)||0); save(); render();
+  });
+  document.querySelectorAll("[data-addx]").forEach(b=>b.onclick=()=>{
+    document.getElementById("xf"+b.dataset.addx).classList.toggle("show");
+  });
+  document.querySelectorAll("[data-xsave]").forEach(b=>b.onclick=()=>{
+    const m=+b.dataset.xsave;
+    const n=document.getElementById("xn"+m).value.trim();
+    const a=parseFloat(document.getElementById("xa"+m).value);
+    if(!n||!a)return;
+    S.extras.push({n,a,c:document.getElementById("xc"+m).value,t:document.getElementById("xt"+m).value,m});
+    save(); render();
+  });
+  document.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>{
+    S.extras.splice(+b.dataset.del,1); save(); render();
+  });
+}
+
+async function fetchKur(){
+  const srcEl=document.getElementById("kurSrc");
+  try{
+    let rate=null;
+    try{
+      const r=await fetch("https://api.frankfurter.dev/v1/latest?base=EUR&symbols=TRY");
+      const j=await r.json(); rate=j.rates&&j.rates.TRY;
+    }catch(e){}
+    if(!rate){
+      const r2=await fetch("https://open.er-api.com/v6/latest/EUR");
+      const j2=await r2.json(); rate=j2.rates&&j2.rates.TRY;
+    }
+    if(rate){
+      S.kur=Math.round(rate*100)/100;
+      srcEl.textContent="otomatik güncellendi · "+new Date().toLocaleDateString("tr-TR");
+      save(); render();
+    }else{srcEl.textContent="otomatik kur alınamadı — elle gir";}
+  }catch(e){srcEl.textContent="otomatik kur alınamadı — elle gir";}
+}
+
+document.getElementById("kurRef").onclick=fetchKur;
+document.getElementById("editBtn").onclick=()=>{
+  editMode=!editMode;
+  document.getElementById("editBtn").classList.toggle("on",editMode);
+  document.getElementById("editBtn").textContent=editMode?"Bitti":"Düzenle";
+  render();
+};
+document.getElementById("kurIn").onchange=e=>{S.kur=parseFloat(e.target.value)||54.95;save();render();};
+document.getElementById("birIn").onchange=e=>{S.birikim=parseFloat(e.target.value)||0;save();render();};
+
+load().then(()=>{render();fetchKur();});
+</script>
+</body>
+</html>
