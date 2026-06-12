@@ -80,12 +80,16 @@ h1{font-size:17px;font-weight:600;letter-spacing:2.5px}
 .editv:focus{outline:none;border-bottom-color:#fff}
 .note{color:var(--mut);font-size:10px;margin-top:20px;text-align:center;line-height:1.7;letter-spacing:.4px}
 
+.vl.tap{border-bottom:1px dashed rgba(255,255,255,.25);cursor:pointer;padding-bottom:1px}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(10px);background:#fff;color:#000;
+  font-size:12px;letter-spacing:1px;padding:10px 18px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:50}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
 <div class="topbar">
-  <div><h1>2026 NAKİT TAKVİMİ</h1><div class="sub">Aya bas → açılır · kategoriye bas → detaylar</div></div>
+  <div><h1>2026 NAKİT TAKVİMİ</h1><div class="sub">Aya bas → açılır · rakama bas → düzenle (tüm aylara işler)</div></div>
   <button class="iconbtn" id="editBtn">Düzenle</button>
 </div>
 
@@ -183,8 +187,16 @@ function monthCalc(m){
 }
 
 function valHTML(it,path){
-  if(!editMode)return `<span class="vl">${fOrig(it)}</span>`;
+  if(!editMode)return `<span class="vl tap" data-path="${path}">${fOrig(it)}</span>`;
   return `<input class="editv" type="number" value="${it.a}" data-path="${path}">`;
+}
+
+let toastT=null;
+function toast(msg){
+  let t=document.getElementById("toast");
+  if(!t){t=document.createElement("div");t.id="toast";document.body.appendChild(t);}
+  t.textContent=msg;t.classList.add("show");
+  clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove("show"),1800);
 }
 
 function render(){
@@ -269,6 +281,21 @@ function bind(){
   });
   document.querySelectorAll(".editv").forEach(inp=>inp.onchange=()=>{
     setByPath(inp.dataset.path,parseFloat(inp.value)||0); save(); render();
+  });
+  document.querySelectorAll(".vl.tap").forEach(sp=>sp.onclick=e=>{
+    e.stopPropagation();
+    const path=sp.dataset.path;
+    const p=path.split("."); let o=S; for(const k of p)o=o[k];
+    const inp=document.createElement("input");
+    inp.className="editv"; inp.type="number"; inp.value=o.a; inp.inputMode="decimal";
+    sp.replaceWith(inp); inp.focus();
+    let done=false;
+    inp.onchange=()=>{
+      done=true;
+      setByPath(path,parseFloat(inp.value)||0); save(); render();
+      toast(path.startsWith("y")?"Kaydedildi ✓":"Tüm aylara uygulandı ✓");
+    };
+    inp.onblur=()=>{if(!done)render();};
   });
   document.querySelectorAll("[data-addx]").forEach(b=>b.onclick=()=>{
     document.getElementById("xf"+b.dataset.addx).classList.toggle("show");
