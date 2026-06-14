@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="tr"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AUTOKITCH — Fizibilite & Yatırım Raporu</title>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow">
+<style>
+:root{--black:#000;--panel:#1D1D1F;--gray:#86868B;--gray-l:#A1A1A6;--blue:#2FB57A;--blue-d:#1E9460;--blue-l:#7FE0B2;--hair:#2a2a2d;--font:"SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;background:#000}
+body{font-family:var(--font);background:var(--black);color:#fff;-webkit-font-smoothing:antialiased;line-height:1.5;letter-spacing:-.01em}
+a{color:var(--blue-l);text-decoration:none}
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:52px;display:flex;justify-content:center;transition:background .4s,backdrop-filter .4s}
+nav.solid{background:rgba(0,0,0,.72);backdrop-filter:saturate(180%) blur(20px)}
+.nav-in{max-width:1040px;width:100%;display:flex;align-items:center;justify-content:space-between;padding:0 22px}
+.logo{font-weight:600;font-size:19px;color:#fff}.logo b{color:var(--blue)}
+.nav-back{font-size:14px;color:#d6d6d8}.nav-back:hover{color:var(--blue)}
+.hero{min-height:64vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:130px 22px 70px;background:radial-gradient(120% 80% at 50% 0%,#06231a 0%,#04130d 42%,#000 78%)}
+.hero .tag{font-size:clamp(14px,1.5vw,19px);font-weight:600;color:var(--blue-l);margin-bottom:10px}
+.hero h1{font-size:clamp(34px,6vw,72px);font-weight:600;letter-spacing:-.035em;line-height:1.04;background:linear-gradient(168deg,#E9FFF4,var(--blue-l) 34%,var(--blue) 66%,var(--blue-d));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero .sub{font-size:clamp(16px,1.9vw,22px);color:#cfe9dd;font-weight:500;max-width:760px;margin:22px auto 0;line-height:1.35}
+.hero .dl{margin-top:34px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.btn{display:inline-block;background:var(--blue);color:#06231a;font-weight:600;padding:13px 26px;border-radius:980px;font-size:15px;transition:background .2s,transform .2s}
+.btn:hover{background:var(--blue-l);transform:translateY(-2px)}
+.btn.ghost{background:transparent;border:1px solid #34503f;color:#cfe9dd}
+.report{padding:60px 0 100px}
+.report .sec{font-size:clamp(24px,3.4vw,38px);font-weight:600;color:#fff;letter-spacing:-.02em;margin:70px 0 6px;padding-top:26px;border-top:1px solid var(--hair)}
+.report .sec:first-of-type{border-top:0;margin-top:10px}
+.report h3{font-size:20px;font-weight:600;color:#fff;margin:30px 0 8px}
+.report h4{font-size:16px;font-weight:600;color:var(--blue-l);margin:22px 0 6px}
+.report p{color:var(--gray-l);margin:9px 0;font-size:15.5px}
+.report ul{margin:8px 0 8px 4px;list-style:none}
+.report li{color:var(--gray-l);font-size:15px;line-height:1.5;padding-left:20px;position:relative;margin:5px 0}
+.report li::before{content:"";position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:50%;background:var(--blue)}
+.report strong{color:#fff;font-weight:600}
+.report hr{border:0;border-top:1px solid var(--hair);margin:20px 0}
+.report blockquote{border-left:3px solid var(--blue);background:var(--panel);padding:14px 18px;border-radius:0 12px 12px 0;margin:16px 0;color:#e6e6e8;font-size:15px}
+.report code{background:#0e0e10;border:1px solid var(--hair);border-radius:6px;padding:1px 6px;font-size:13px;color:#cfe9dd}
+.report pre{background:var(--panel);border:1px solid var(--hair);border-radius:14px;padding:20px;overflow:auto;font-family:Consolas,monospace;font-size:12.5px;color:#cfd2d6;line-height:1.45;margin:16px 0}
+.tw{overflow-x:auto;margin:16px 0;border:1px solid var(--hair);border-radius:14px}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px}
+th{background:#06231a;color:#fff;text-align:left;padding:12px 14px;font-weight:600;border-bottom:1px solid var(--hair)}
+td{padding:11px 14px;border-top:1px solid var(--hair);color:var(--gray-l);vertical-align:top}
+tr:nth-child(even) td{background:#161618}
+td strong{color:#fff}
+footer{background:#000;color:#6e6e73;text-align:center;padding:36px 22px;font-size:12px;border-top:1px solid var(--hair)}
+#gate{position:fixed;inset:0;z-index:99999;background:#000;display:flex;align-items:center;justify-content:center;text-align:center;transition:opacity .3s}
+#gate .gbox{padding:30px;max-width:380px}
+#gate .glogo{font-size:clamp(30px,7vw,40px);font-weight:600;color:#fff}#gate .glogo b{color:var(--blue)}
+#gate .gsub{color:var(--gray);margin:14px 0 26px;font-size:15px;line-height:1.45}
+#gate input{width:210px;font-size:34px;text-align:center;letter-spacing:16px;padding:14px 6px 14px 22px;border-radius:14px;border:1px solid #2a2a2d;background:#15171c;color:#fff;outline:none}
+#gate input:focus{border-color:var(--blue)}
+#gate .gerr{color:#ff6b6b;font-size:14px;height:18px;margin-top:14px}
+.gshake{animation:gshake .4s}@keyframes gshake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-9px)}40%,80%{transform:translateX(9px)}}
+body.glocked{overflow:hidden}
+</style></head><body>
+
+<div id="gate"><div class="gbox"><div class="glogo">AUTO<b>KITCH</b></div><div class="gsub">Özel sunum · Devam etmek için kodu girin</div><input id="gpin" type="password" inputmode="text" maxlength="4" autocomplete="off" autocapitalize="off" aria-label="Kod"><div class="gerr" id="gerr"></div></div></div>
+<script>(function(){var CODE="alfa";var g=document.getElementById('gate');if(sessionStorage.getItem('ak_ok')==='1'){g.remove();return;}document.body.classList.add('glocked');var inp=document.getElementById('gpin'),err=document.getElementById('gerr');setTimeout(function(){inp.focus();},120);inp.addEventListener('input',function(){inp.value=inp.value.replace(/[^a-zA-Z0-9]/g,'').slice(0,4);err.textContent='';if(inp.value.length===4){if(inp.value.toLowerCase()===CODE){sessionStorage.setItem('ak_ok','1');g.style.opacity='0';setTimeout(function(){g.remove();document.body.classList.remove('glocked');},320);}else{err.textContent='Hatalı kod, tekrar deneyin.';inp.classList.add('gshake');setTimeout(function(){inp.classList.remove('gshake');inp.value='';},430);}}});})();</script>
+
+<nav id="nav"><div class="nav-in"><a href="../" class="logo">AUTO<b>KITCH</b></a><div style="display:flex;gap:22px;align-items:center"><a href="../uretim/" class="nav-back">Üretim Ortaklığı ↗</a><a href="../" class="nav-back">← Ana sunum</a></div></div></nav>
+
+<header class="hero">
+  <div class="tag">Yatırım Belgesi · 2026</div>
+  <h1>Fizibilite &amp; Yatırım Raporu</h1>
+  <p class="sub">Endüstriyel mutfak ekipmanları + yeni nesil robotik/AI otonom mutfak modülleri üretecek sıfırdan fabrika için tam kapsamlı etüt.</p>
+  <div class="dl">
+    <a class="btn" href="AUTOKITCH_Fizibilite_Raporu.pdf" target="_blank">PDF indir</a>
+    <a class="btn ghost" href="AUTOKITCH_Fizibilite_Raporu.docx">Word indir</a>
+  </div>
+</header>
+
+<main class="report"><div class="wrap">
+<h2 class="sec">0 · Temel Varsayımlar ve Kapsam</h2>
+<ul>
+<li><strong>Lokasyon:</strong> Türkiye, bir Organize Sanayi Bölgesi (OSB).</li>
+<li><strong>Üretim kapsamı:</strong> (A) Klasik paslanmaz çelik (304/430) endüstriyel mutfak ekipmanları + (B) yeni nesil robotik/AI destekli otonom mutfak modülleri.</li>
+<li><strong>Başlangıç kapalı alan:</strong> ~6.000 m² (üretim + ofis + Ar-Ge + sosyal); 1-2 yılda ~10.000 m²'ye genişleme opsiyonu.</li>
+<li><strong>Ölçek planı:</strong> 1. yıl pilot + düşük hacim → 3. yıl seri üretim.</li>
+<li><strong>Para birimi:</strong> USD / TL yaklaşık aralıklar. Tüm finansal değerler <strong>(tahmini)</strong> olup yatırım öncesi teklif ve detaylı mühendislikle netleştirilmelidir.</li>
+</ul>
+<h2 class="sec">1 · Teknik Fizibilite ve Makine Parkuru</h2>
+<h3>1. Sac İşleme Hattı (Sheet Metal Processing)</h3>
+<p>Paslanmaz çelik (304/430) sac, fabrikanın ana hammaddesidir. Bu hat, gelen levhayı kesim, delme ve bükme yoluyla parça/kabin formuna dönüştürür ve tüm üretimin kapasite "boğazı"nı belirler.</p>
+<h3>Fiber Lazer Kesim (Ana kesim hücresi)</h3>
+<ul>
+<li><strong>Görev:</strong> 0,5–20 mm paslanmaz sacın yüksek hassasiyetli, çapaksız ve termal-deformasyonu düşük kesimi. Endüstriyel mutfak panel/gövde parçalarının %70-80'i buradan geçer.</li>
+<li><strong>Güç seçimi:</strong> 6 kW fiber kaynak, ~25 mm'ye kadar karbon çeliği ve ~20-25 mm paslanmazı keser; ince saçta (0,8-3 mm, mutfak ekipmanının çoğu) çok yüksek hız sağlar. Seri üretim ölçeğinde 8-12 kW önerilir (kalın paslanmazda temiz kesim ve yüksek besleme hızı).</li>
+<li><strong>Tabla/format:</strong> Standart 3.000 × 1.500 mm (3×1,5 m) tezgah; opsiyonel 4.000 × 2.000 mm. Otomatik palet değiştirici (shuttle table) ve levha yükleme/boşaltma otomasyonu (tower/loader) ile 7/24 çalışmaya hazırlanır.</li>
+<li><strong>Tipik kapasite (tahmini):</strong> İnce paslanmazda kesim hızı 6 kW'ta ~15-40 m/dk; günlük 1-2 vardiyada 6.000 m² fabrikada tek makine başlangıç için yeterli, seri üretimde ikinci makine.</li>
+<li><strong>Örnek marka/model:</strong> TRUMPF TruLaser 3030/5030 fiber, Bystronic ByStar Fiber / ByCut Smart (3-15 kW kaynak seçenekleri), Amada ENSIS, Yerli: Durmazlar (Durma HD-F), Ermaksan, Bodor/HSG (giriş bütçesi).</li>
+</ul>
+<h3>CNC Turret Punch (Taretli zımba presi)</h3>
+<ul>
+<li><strong>Görev:</strong> Çok sayıda standart delik, havalandırma deliği (perfore panel), kabin montaj deliği, jaluzi/louver formu, küçük büküm (rib/embossing) — lazerin verimsiz olduğu yoğun tekrarlı delme işleri.</li>
+<li><strong>Tipik spesifikasyon:</strong> ~20-30 ton zımbalama kuvveti, 2.500 × 1.250 mm format, çok istasyonlu taret (20-60 takım).</li>
+<li><strong>Örnek marka:</strong> TRUMPF TruPunch, Amada EM/EMZ, Prima Power. *(Not: Lazer + punch'ın tek makinede birleştiği "combi/punch-laser" makineler mutfak sektöründe verimli bir alternatiftir — örn. Prima Power Combi, TRUMPF TruMatic.)*</li>
+</ul>
+<h3>CNC Abkant Pres (Hidrolik/elektrikli bükme)</h3>
+<ul>
+<li><strong>Görev:</strong> Kesilen parçaların kabin/tezgah/davlumbaz formuna bükülmesi. Mutfak üretiminin en kritik ve en yoğun kullanılan ikinci tezgahıdır.</li>
+<li><strong>Tonaj/uzunluk:</strong> Mutfak paneli ince sac olduğu için tonaj yüksekliğinden çok bükme uzunluğu önemlidir. Tipik park: <strong>1× 100-135 ton / 3.000-3.100 mm</strong> (tezgah, dolap gövdesi) + <strong>1× 175-220 ton / 4.000 mm</strong> (uzun panel, davlumbaz). Seri üretimde ek 60-100 ton kısa abkant detay parçalar için.</li>
+<li><strong>Eksen/kontrol:</strong> 6+ eksenli CNC arka dayama, otomatik açı düzeltme (bombe telafisi), lazer açı ölçüm (örn. Amada Bend Indicator). Amada HG/HFE3i serisi 50-400 ton aralığında, 1-6 m uzunluk sunar.</li>
+<li><strong>Örnek marka:</strong> Amada HG / HFE3i, Bystronic Xpert, TRUMPF TruBend, Yerli: Durmazlar, Ermaksan, Baykal.</li>
+</ul>
+<h3>Giyotin Makas (Düz kesim)</h3>
+<ul>
+<li><strong>Görev:</strong> Levhayı düz şeritlere/ölçüye bölme, ön-kesim. Lazer öncesi kaba dilimleme veya basit dikdörtgen parça.</li>
+<li><strong>Spesifikasyon:</strong> Hidrolik giyotin, ~6-8 mm paslanmaz kapasite, 3.000-3.100 mm kesim uzunluğu, CNC arka dayama.</li>
+<li><strong>Örnek marka:</strong> Durmazlar SBT, Ermaksan, Baykal HGL.</li>
+</ul>
+<h3>Köşe Bükme/Panç ve Profil Bükme</h3>
+<ul>
+<li><strong>Köşe kesme presi (corner notcher):</strong> Kutu/kabin köşelerinin diş açma/kertik (notch) ile temiz katlanması için. ~6 mm paslanmaz, ayarlanabilir açı.</li>
+<li><strong>Köşe bükme/birleştirme (corner forming):</strong> Su geçirmez sızdırmaz tezgah kenarı (hijyenik kenar) üretimi.</li>
+<li><strong>Boru/profil bükme (CNC mandrel bükme):</strong> Servis arabası, raf ayağı, koruma bariyeri, tezgah ayağı için yuvarlak/kare paslanmaz boru bükme. Spesifikasyon: Ø10-60 mm boru, CNC çok yarıçaplı.</li>
+<li><strong>Örnek marka:</strong> RAS / Schröder (köşe), BLM Group, Transfluid, AMOB (boru bükme).</li>
+</ul>
+<div class="tw"><table>
+<tr><th>Makine</th><th>Tipik Spesifikasyon</th><th>Başlangıç Adedi</th><th>Örnek Marka</th></tr>
+<tr><td>Fiber lazer kesim</td><td>6-8 kW, 3×1,5 m, oto-palet</td><td>1 (seri üretimde 2)</td><td>TRUMPF, Bystronic, Durmazlar</td></tr>
+<tr><td>CNC turret punch</td><td>20-30 ton, 2,5×1,25 m</td><td>0-1 (opsiyonel/combi)</td><td>TRUMPF, Amada, Prima Power</td></tr>
+<tr><td>CNC abkant pres</td><td>100-135 t/3 m + 175-220 t/4 m</td><td>2-3</td><td>Amada, Bystronic, Durmazlar</td></tr>
+<tr><td>Giyotin makas</td><td>6-8 mm, 3 m, CNC</td><td>1</td><td>Durmazlar, Ermaksan, Baykal</td></tr>
+<tr><td>Köşe kesme/bükme</td><td>6 mm paslanmaz</td><td>1-2</td><td>RAS, Schröder</td></tr>
+<tr><td>Boru/profil bükme</td><td>Ø10-60 mm CNC</td><td>1</td><td>BLM, AMOB, Transfluid</td></tr>
+</table></div>
+<hr>
+<h3>2. Birleştirme ve Kaynak (Joining &amp; Welding)</h3>
+<p>Paslanmaz çelikte kaynak, hem yapısal hem hijyenik (gözeneksiz, düzgün dikiş) olmalıdır. Gıda temaslı yüzeylerde TIG ve nokta kaynak baskındır.</p>
+<h3>TIG (GTAW) Kaynak</h3>
+<ul>
+<li><strong>Görev:</strong> Gıda temaslı, görünür ve sızdırmaz olması gereken ince paslanmaz dikişler (tezgah birleşimi, evye, hijyenik kenar). En yüksek dikiş kalitesi ve korozyon direnci; ince sacta (0,8-3 mm) tercih edilir.</li>
+<li><strong>Donanım:</strong> AC/DC inverter TIG kaynak makineleri (200-300 A), darbeli (pulse) TIG, soy gaz (argon) dağıtım hattı + arka pürjaj (back purge) ile dikiş arkası oksitlenmesini önleme.</li>
+<li><strong>Örnek marka:</strong> Fronius MagicWave/TransTig, EWM, Kemppi MasterTig, Lincoln.</li>
+</ul>
+<h3>MIG/MAG (GMAW) Kaynak</h3>
+<ul>
+<li><strong>Görev:</strong> Daha kalın gövde/şasi, taşıyıcı iskelet, hızlı dolgu gereken dikişler. TIG'den hızlı ama daha az "temiz".</li>
+<li><strong>Donanım:</strong> Sinerjik darbeli MIG kaynak makineleri, paslanmaz teli + karışım gaz (Ar+CO₂/O₂). CMT (Cold Metal Transfer) ince sacta düşük ısı girdisi için.</li>
+<li><strong>Örnek marka:</strong> Fronius TPS/i, Kemppi, EWM, Lincoln Power Wave.</li>
+</ul>
+<h3>Punto (Nokta / Direnç) Kaynak</h3>
+<ul>
+<li><strong>Görev:</strong> Panel-panel, kabin gövdesi birleştirme; ısı girdisi ve deformasyon düşük, hızlı seri üretim. Endüstriyel mutfak kabinlerinin standart birleştirme yöntemi.</li>
+<li><strong>Donanım:</strong> Pnömatik/inverter punta kaynak presi, çift taraf erişimi için askılı (suspended) punta tabancası, çoklu nokta için kaynak portalı.</li>
+<li><strong>Örnek marka:</strong> Tecna, Aro, Dalex, Telwin (giriş).</li>
+</ul>
+<h3>Robotik Kaynak Hücresi</h3>
+<ul>
+<li><strong>Görev:</strong> Seri üretimde tekrarlı, uzun veya çok sayıda dikiş (gövde iskeleti, davlumbaz, fırın muhafazası). İnsan TIG kaynakçısı bulma zorluğunu ve kalite tutarsızlığını ortadan kaldırır.</li>
+<li><strong>Bileşenler:</strong> 6 eksenli robot (ABB, FANUC, KUKA, Yaskawa) + premium kaynak kaynağı (Fronius/Kemppi) + iş parçası pozisyoneri (1-2 eksenli döner/tilt) + parça sabitleme aparatları (jig/fixture) + tel besleme + dikiş takip (seam tracking) sensörü + duman emiş. Gıda sınıfı ince paslanmaz için <strong>robotik TIG</strong> kritik; ağır/kalın imalatta robotik MIG/MAG.</li>
+<li><strong>Örnek marka:</strong> ABB IRB / FANUC ARC Mate / KUKA + Fronius veya Kemppi kaynak paketi; anahtar teslim hücre: Valk Welding, Cloos, Yaskawa Motoman.</li>
+</ul>
+<h3>Kaynak Sonrası Temizleme</h3>
+<ul>
+<li><strong>Görev:</strong> TIG/MIG dikişlerinde oluşan oksit/renklenmenin (heat tint) giderilmesi — korozyon direncini geri kazandırmak için zorunlu.</li>
+<li><strong>Yöntem/donanım:</strong> Elektrokimyasal kaynak temizleme (weld cleaning) cihazları, taşlama/fırçalama, ardından lokal pasivasyon.</li>
+<li><strong>Örnek marka:</strong> TIG Brush, Ensitech, Cougartron.</li>
+</ul>
+<hr>
+<h3>3. Yüzey İşlem (Surface Finishing)</h3>
+<p>Paslanmaz mutfak ürününün hem estetiği hem hijyeni yüzey kalitesine bağlıdır. Hat, kaba taşlamadan hijyenik finishe doğru sıralanır.</p>
+<ul>
+<li><strong>Taşlama / Zımpara:</strong> Kaynak dikişi düzleme, çapak alma. Bant zımpara (geniş bant kalibratör), açılı taşlama istasyonları, otomatik robotik taşlama (seri üretimde). Marka: 3M, Loeser, Timesavers.</li>
+<li><strong>Parlatma / Polisaj:</strong> Ayna (mirror) yüzey gerektiren ürünler için keçe/pasta polisaj robotu veya tezgahı. Marka: Loeser, SISMA, robotik: ABB/FANUC + polisaj ucu.</li>
+<li><strong>Fırçalama (Satine / Brushed):</strong> Endüstriyel mutfakta en yaygın görünüm — yönlü saten (No.4) yüzey. Geniş bant zımpara veya fırça ünitesi. Marka: Timesavers, Costa, Loeser.</li>
+<li><strong>Pasivasyon:</strong> Sitrik veya nitrik asit ile yüzeyden serbest demiri arındırıp koruyucu krom-oksit pasif tabakası oluşturma — <strong>gıda teması ve korozyon direnci için zorunlu</strong> (FDA / hijyen uyumu). Daldırma tankı veya sprey hattı. Atık asit nötralizasyon ünitesi gerekir.</li>
+<li><strong>Elektropolisaj:</strong> Elektrokimyasal olarak mikron seviye yüzey kaldırarak en pürüzsüz, bakteri tutmayan, en korozyon dirençli yüzeyi verir; test edilen 11 finish içinde bakteri tutunmasına en dirençli olanıdır. Yüksek hijyen sınıfı (ilaç/gıda) ürünlerde tercih. Donanım: doğrultucu (rectifier) + elektrolit tankı + havalandırma + atık yönetimi.</li>
+<li><strong>Toz boya hattı (opsiyonel/gerekirse):</strong> Boyalı dış kasa veya galvaniz şasi parçaları için — ön yıkama/fosfatlama → kurutma → elektrostatik toz boya kabini → pişirme fırını (180-200 °C). Marka: Wagner, Gema, Nordson. *(Paslanmaz ana üründe gerekmez; karbon çeliği yardımcı parça/ambalaj iskeleti için.)*</li>
+</ul>
+<hr>
+<h3>4. Montaj (Assembly)</h3>
+<p>İki ayrı akış: (A) klasik mekanik montaj, (B) robotik/AI modüller için ek elektronik-yazılım montajı.</p>
+<h3>Klasik Montaj Hatları</h3>
+<ul>
+<li>Modüler montaj tezgahları, conta/sızdırmazlık uygulama, ayak/teker, menteşe-kilit, vidalı birleştirme istasyonları.</li>
+<li>Tork kontrollü vidalama, kaldırma/manipülatör (ağır gövde), pnömatik el aletleri.</li>
+</ul>
+<h3>Robotik Modüller İçin EK Montaj (klasik üretimden farklı — ayrı vurgu)</h3>
+<p>Bu, fabrikayı sıradan bir paslanmaz atölyesinden ayıran katmandır. AUTOKITCH modülleri "elektromekanik + gömülü sistem + AI" ürünleridir ve elektronik üretim disiplini gerektirir:</p>
+<ul>
+<li><strong>Elektrik-elektronik montaj:</strong> Pano/kontrol kabini montajı, motor sürücü, PLC/endüstriyel PC, güç dağıtımı. ESD (statik elektrik) korumalı çalışma istasyonları.</li>
+<li><strong>Kablaj (harness) istasyonu:</strong> Sensör, motor, kamera, ısıtıcı kablajının döşenmesi ve etiketlenmesi; kablo demeti hazırlama tezgahı.</li>
+<li><strong>Sensör / Kamera (Vision AI) kalibrasyon istasyonu:</strong> Endüstriyel robotik mutfak ünitelerinde ünite başına onlarca kamera ve yüzlerce sensör bulunur; bunların konum/optik kalibrasyonu (fiducial-tabanlı) montaj sonrası ve devreye almadan önce yapılmalıdır. Kontrollü ışık (lighting rig), kalibrasyon hedefleri (checkerboard/fiducial), referans jig.</li>
+<li><strong>Aktüatör / robot kol entegrasyonu:</strong> Modül içi robot kol, lineer eksen, dispenser, konveyör segmentlerinin mekanik-elektrik birleşimi ve eksen kalibrasyonu.</li>
+<li><strong>Yazılım yükleme (flashing) &amp; fonksiyon testi:</strong> Gömülü yazılım/firmware yükleme, ağ konfigürasyonu, AI modeli yükleme, uçtan uca fonksiyon (FAT — Factory Acceptance Test) testi; gıda hijyeni için CIP (yerinde temizleme) döngü testi.</li>
+<li><strong>Burn-in / yük testi:</strong> Modülün sürekli çalışma altında ısı, titreşim, çevrim dayanımı denenmesi.</li>
+</ul>
+<hr>
+<h3>5. Kalite ve Metroloji (Quality &amp; Metrology)</h3>
+<ul>
+<li><strong>CMM / 3B Ölçüm:</strong> Kabin/parça boyutsal doğruluk kontrolü. Sac parça denetiminde köprü tipi veya yatay kollu CMM (Zeiss, Hexagon, Mitutoyo) ile PC-DMIS / CALYPSO yazılımı kullanılır. Büyük gövdeler için taşınabilir kol-CMM (FARO, Hexagon Absolute Arm) veya 3B lazer tarayıcı.</li>
+<li><strong>Sızdırmazlık testi:</strong> Evye, tank, sıvı temaslı modüllerde su/hava basınç sızdırmazlık testi (leak test) standı.</li>
+<li><strong>Elektrik güvenlik &amp; EMC ön testi:</strong> Robotik modüller için <strong>IEC/EN 60335</strong> (ev/benzeri elektrikli cihaz güvenliği, ≤250 V tek faz / ≤480 V çok faz; izolasyon, topraklama süreklilik, dielektrik/hi-pot, sıcaklık, mekanik). EMC için emisyon <strong>EN 55014-1</strong>, harmonik akım <strong>IEC 61000-3-2</strong>, gerilim kırpışma <strong>IEC 61000-3-3</strong> ön testi. Donanım: hi-pot/topraklama test cihazı + EMC ön-tarama (pre-compliance) seti. *(Tam sertifikasyon akredite laboratuvarda; fabrikada ön-test standı yeterli.)*</li>
+<li><strong>Gıda teması / hijyen kontrolü:</strong> Yüzey pürüzlülük ölçer (Ra), pasivasyon doğrulama testi (ferroksil / damla testi), kullanılan malzemenin gıda teması uygunluk (EC 1935/2004, FDA) belge takibi.</li>
+</ul>
+<hr>
+<h3>6. Dijital Altyapı (Digital Infrastructure)</h3>
+<ul>
+<li><strong>CAD / CAM:</strong> 3B mekanik tasarım — SolidWorks veya Autodesk Inventor; sac metal modülü (büküm açılımı). Lazer/punch için CAM/nesting — Radan, Lantek, TRUMPF TruTops, Bystronic BySoft.</li>
+<li><strong>Nesting:</strong> Sac üzerinde parça yerleşimi optimizasyonu (fire minimizasyonu) — Lantek/Radan; paslanmaz hammadde maliyeti yüksek olduğundan doğrudan kâra etkir.</li>
+<li><strong>PLM:</strong> Ürün veri/revizyon yönetimi (özellikle robotik modülün mekanik+elektronik+yazılım versiyon eşleşmesi için kritik) — SolidWorks PDM, Siemens Teamcenter, Autodesk Vault.</li>
+<li><strong>ERP / MES:</strong> Sipariş→üretim→sevkiyat ve atölye iş emri/izleme. ERP: SAP Business One, Netsis, Logo, Odoo. MES: makine veri toplama (OEE), iş istasyonu takip.</li>
+<li><strong>Dijital ikiz (Digital Twin):</strong> Üretim hattı simülasyonu ve özellikle AUTOKITCH modülünün sahaya kurulmadan sanal devreye alınması/test edilmesi — Siemens Tecnomatix, NVIDIA Omniverse / Isaac (robotik+AI simülasyon).</li>
+</ul>
+<h3>Robotik/AI üretiminin EK dijital gereksinimleri (klasikten farklı — ayrı vurgu)</h3>
+<ul>
+<li>Gömülü yazılım sürüm yönetimi (Git/CI-CD), AI model eğitim/etiketleme altyapısı (vision veri seti), her ünitenin "doğum kaydı" (as-built konfigürasyon, seri no ↔ firmware ↔ kalibrasyon verisi), uzaktan izleme/OTA güncelleme için bulut backend ve siber güvenlik.</li>
+</ul>
+<hr>
+<h3>7. Yardımcı Tesisler (Utilities)</h3>
+<ul>
+<li><strong>Kompresör / kuru hava:</strong> Pnömatik aletler, abkant, punta, robotlar için. Vidalı kompresör + kurutucu (dryer) + tank; lazer kesim ve hassas elektronik için <strong>yağsız/kuru</strong> hava şart. Marka: Atlas Copco, Kaeser.</li>
+<li><strong>Davlumbaz / baca / havalandırma:</strong> Kaynak dumanı emiş (genel + lokal/torch), taşlama tozu toplama, asit/pasivasyon hattı için asit dirençli egzoz ve nötralizasyon. Marka: Kemper, Plymovent, Donaldson.</li>
+<li><strong>Vinç / forklift:</strong> Levha ve gövde taşıma — köprülü vinç (gantry/overhead, ~3-5 ton) sac depo ve abkant/lazer beslemede; forklift + transpalet. Vakumlu levha kaldırıcı (paslanmazı çizmeden).</li>
+<li><strong>Trafo / jeneratör:</strong> Fabrika güç temini için OG/AG trafo (lazer + robotlar yüksek kurulu güç); kesintide kritik proses için jeneratör + hassas ekipman için UPS.</li>
+<li><strong>Atık &amp; su yönetimi:</strong> Metal hurda (paslanmaz değerli — ayrı toplama/geri kazanım), pasivasyon/elektropolisaj asit atığı nötralizasyon + atıksu arıtma, yağ/sıvı atık bertarafı (çevre mevzuatı/OSB deşarj limitleri).</li>
+<li><strong>Soğutma:</strong> Lazer kaynağı ve robotik kaynak için kapalı devre chiller; sıcak su/buhar gerekirse CIP test için.</li>
+</ul>
+<hr>
+<h3>Robotik/AI Modül Üretiminin Klasik Üretimden Ana Farkları (özet)</h3>
+<ul>
+<li><strong>İki disiplin tek çatı altında:</strong> Klasik üretim "soğuk metal işleme"dir; robotik modül buna <strong>gömülü elektronik + yazılım + AI/vision</strong> katar — ayrı temiz/ESD montaj alanı, kablaj, kalibrasyon ve yazılım test istasyonları gerekir.</li>
+<li><strong>Metroloji ağırlaşır:</strong> Sadece boyut değil; elektrik güvenliği (IEC 60335), EMC, kamera/sensör kalibrasyon ve fonksiyon testi devreye girer.</li>
+<li><strong>Dijital iz zorunlu:</strong> Her ünitenin firmware/kalibrasyon/seri-no eşlemesi, OTA güncelleme ve uzaktan izleme backend'i — klasik mutfak ekipmanında olmayan kalıcı yazılım yaşam döngüsü.</li>
+<li><strong>Ar-Ge + dijital ikiz:</strong> Modülün sahaya gitmeden sanal devreye alınması (NVIDIA Isaac / Siemens) klasik üretimde bulunmaz.</li>
+<li><strong>Yatırım profili:</strong> Klasik hat sermaye yoğun (lazer, abkant); robotik katman ise düşük ağır-makine + yüksek mühendis/yazılım/test ekipmanı ağırlıklıdır.</li>
+</ul>
+<hr>
+<p><strong>Kaynaklar:</strong> <a href="https://www.trumpf.com/en_US/solutions/applications/laser-cutting/" target="_blank" rel="noopener">TRUMPF Laser Cutting</a> · <a href="https://www.bystronic.com/usa/en-us/l/fiber-laser-cutting-bystar-fiber" target="_blank" rel="noopener">Bystronic ByStar Fiber</a> · <a href="https://www.amada.com/america/press-brakes" target="_blank" rel="noopener">Amada Press Brakes</a> · <a href="https://www.kuka.com/en-us/applications/automated-welding/arc-welding" target="_blank" rel="noopener">KUKA Arc Welding</a> · <a href="https://www.robots.com/applications/tig-welding" target="_blank" rel="noopener">Robots.com TIG Welding</a> · <a href="https://www.evsint.com/complete-guide-robotic-welding-2026/" target="_blank" rel="noopener">Complete Guide to Robotic Welding 2026 (EVS)</a> · <a href="https://neelectropolishing.com/electropolishing-for-the-food-beverage-manufacturing-industry/" target="_blank" rel="noopener">New England Electropolishing – Food &amp; Beverage</a> · <a href="https://www.zeiss.com/metrology/us/systems/cmms.html" target="_blank" rel="noopener">Zeiss CMMs</a> · <a href="https://hexagon.com/products/product-groups/measurement-inspection-hardware/coordinate-measuring-machines/horizontal-arms-cmms" target="_blank" rel="noopener">Hexagon Horizontal-Arm CMM</a> · <a href="https://incompliancemag.com/terms/iec-60335-1/" target="_blank" rel="noopener">IEC 60335-1 (In Compliance)</a> · <a href="https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/11707160" target="_blank" rel="noopener">USPTO – Modular Autonomous Food Assembly</a> · <a href="https://www.hyper-robotics.com/blog/the-secret-behind-kitchen-robots-powering-the-fastest-robot-restaurants" target="_blank" rel="noopener">Hyper Robotics – Kitchen Robots</a></p>
+<h2 class="sec">2 · Fabrika, Ofis ve Tesis Yerleşimi</h2>
+<h3>2.1 · Yalın Malzeme Akışı ve Yerleşim Mantığı</h3>
+<p>Tesisin tasarım felsefesi, hammadde paslanmaz sacın tek bir noktadan girip, mamul modülün (klasik ekipman veya AUTOKITCH ünitesi) tek bir noktadan çıktığı, geri dönüşsüz ve kesintisiz bir akıştır. Sac metal işleme tesislerinde standart iş akışı; kesim → büküm → kaynak → yüzey işlem → montaj sırasını izler (<a href="https://rubymakina.com/sac-metal-isleme-fabrikalarinda-is-akisi-ham-maddeden-son-urune/" target="_blank" rel="noopener">Ruby Makina</a>). Bu projede akış zinciri şu şekilde kurgulanmıştır:</p>
+<ul>
+<li><strong>Hammadde girişi &amp; sac deposu</strong> → <strong>Kesim (CNC fiber lazer / plazma)</strong> → <strong>Büküm (CNC abkant pres)</strong> → <strong>Kaynak (TIG/MIG/punta)</strong> → <strong>Yüzey işlem (taşlama, parlatma, pasivasyon/elektropolisaj)</strong> → <strong>Genel montaj</strong> → <strong>Robotik/AI entegrasyon hattı (AUTOKITCH'e özel)</strong> → <strong>Test &amp; kalite</strong> → <strong>Paketleme</strong> → <strong>Mamul depo &amp; sevkiyat</strong></li>
+</ul>
+<h3>Hat tipi mi, U-tipi mi? — Gerekçeli Seçim</h3>
+<p>İki ürün ailesinin akış karakteri farklı olduğu için <strong>karma (hibrit) yerleşim</strong> önerilir:</p>
+<ul>
+<li><strong>(A) Klasik paslanmaz ekipman hattı için "U-tipi hücre yerleşimi":</strong> Sac giriş ve mamul çıkış noktalarının birbirine yakın olması, taşıma personelini ve forklift trafiğini azaltır, tek operatörün birden fazla istasyonu gözetmesini ve esnek iş gücü dağılımını mümkün kılar. Düşük-orta hacimli, çeşitliliği yüksek (tezgâh, davlumbaz, evye, dolap) üretim için idealdir.</li>
+<li><strong>(B) AUTOKITCH modülleri için "doğrusal hat (line) yerleşimi":</strong> Standartlaşmış, tekrarlı ve elektronik/robotik entegrasyon gerektiren modüller için mekanik montaj → elektrik/elektronik tesisat → yazılım yükleme &amp; kalibrasyon → fonksiyon testi sırasıyla ilerleyen sabit bir hat daha verimlidir.</li>
+</ul>
+<p>Bu iki akış, ortak ön-imalat bölgesini (kesim-büküm-kaynak) <strong>paylaşır</strong>; ayrışma montaj aşamasında başlar. Böylece pahalı CNC tezgâhları (lazer, abkant) tek noktada toplanarak yatırım ve doluluk optimize edilir.</p>
+<h3>WIP ve Malzeme Taşıma Minimizasyonu</h3>
+<ul>
+<li>İstasyonlar <strong>akış yönünde</strong> ardışık dizilir; geri-akış (backflow) ve çapraz trafik tasarımdan elenir.</li>
+<li>İstasyonlar arası <strong>ara stok (WIP) tamponları</strong> Kanban kartı/raf sistemiyle sınırlandırılır; "tek parça akış"a (one-piece flow) mümkün olduğunca yaklaşılır.</li>
+<li>Ağır sac levhalar için <strong>giriş–kesim arası mesafe minimize</strong> edilir (en ağır malzeme en az taşınır ilkesi); kesilen parçalar köprü vinç / tahrikli rulo konveyör ile bir sonraki istasyona aktarılır.</li>
+<li>Ana koridor genişliği forklift çift yönlü geçişe uygun <strong>min. 3,5–4,0 m</strong> planlanır.</li>
+</ul>
+<h3>5S ve Görsel Yönetim</h3>
+<ul>
+<li><strong>Sınıflandır–Düzenle–Temizle–Standartlaştır–Sürdür</strong> disiplini her hücrede uygulanır.</li>
+<li>Zeminde renk kodlu <strong>şerit işaretleme</strong>: yeşil (yürüme yolu), sarı (malzeme/WIP alanı), kırmızı (yangın ekipmanı/acil çıkış), mavi (mamul). Paslanmaz talaş/çapak ile karbon çelik kontaminasyonunu önlemek için <strong>paslanmaz işleme bölgesi fiziksel olarak ayrılır</strong> (ayrı taşlama/zımpara bandı, ayrı el aletleri) — paslanmaz kalitesi açısından kritik bir gerekliliktir.</li>
+</ul>
+<hr>
+<h3>2.2 · Alan Bölgeleri ve Yaklaşık m² Dağılımı (Toplam ~6.000 m²)</h3>
+<p>Aşağıdaki dağılım, ön-imalat ağırlıklı bir metal işleme + montaj tesisi için tipik oranlarla kurgulanmıştır (üretim ~%60, depo ~%17, beyaz yaka + Ar-Ge ~%12, sosyal/teknik ~%11). Tüm değerler <strong>(tahmini)</strong> ve avan proje aşamasında ±%10 oynayabilir.</p>
+<div class="tw"><table>
+<tr><th>Bölge</th><th>Alt İşlev</th><th>Alan (m²)</th><th>Pay</th></tr>
+<tr><td><strong>Üretim – Ön İmalat</strong></td><td>Kesim (lazer/plazma), büküm (abkant), CNC</td><td>900</td><td>%15,0</td></tr>
+<tr><td><strong>Üretim – Kaynak</strong></td><td>TIG/MIG/punta kaynak hücreleri, izole bölge</td><td>600</td><td>%10,0</td></tr>
+<tr><td><strong>Üretim – Yüzey İşlem</strong></td><td>Taşlama, parlatma, pasivasyon, elektropolisaj</td><td>450</td><td>%7,5</td></tr>
+<tr><td><strong>Üretim – Montaj (Klasik)</strong></td><td>U-hücreleri, paslanmaz ekipman montajı</td><td>600</td><td>%10,0</td></tr>
+<tr><td><strong>Üretim – AUTOKITCH Hattı</strong></td><td>Mekanik+elektronik+yazılım entegrasyon hattı</td><td>550</td><td>%9,2</td></tr>
+<tr><td><strong>Test &amp; Kalite Hattı</strong></td><td>Fonksiyon testi, su/elektrik/hijyen testi</td><td>250</td><td>%4,2</td></tr>
+<tr><td><strong>Hammadde &amp; Sac Deposu</strong></td><td>304/430 sac kaset rafları, sarf deposu</td><td>550</td><td>%9,2</td></tr>
+<tr><td><strong>Mamul Depo &amp; Sevkiyat</strong></td><td>Paketleme + yükleme rampası</td><td>500</td><td>%8,3</td></tr>
+<tr><td><strong>Ar-Ge / Prototip Atölyesi</strong></td><td>AUTOKITCH prototipleme, robotik test alanı</td><td>350</td><td>%5,8</td></tr>
+<tr><td><strong>Tasarım Ofisi</strong></td><td>CAD/CAM, mekatronik, yazılım ekibi</td><td>200</td><td>%3,3</td></tr>
+<tr><td><strong>Kalite Laboratuvarı</strong></td><td>Metroloji, malzeme testi, kalibrasyon</td><td>120</td><td>%2,0</td></tr>
+<tr><td><strong>Showroom</strong></td><td>Klasik + AUTOKITCH demo mutfağı</td><td>180</td><td>%3,0</td></tr>
+<tr><td><strong>Yönetim Ofisleri</strong></td><td>Genel müdürlük, satış, finans, toplantı</td><td>250</td><td>%4,2</td></tr>
+<tr><td><strong>Sosyal Alanlar</strong></td><td>Yemekhane, dinlenme, soyunma+duş, revir</td><td>350</td><td>%5,8</td></tr>
+<tr><td><strong>Teknik Hacimler</strong></td><td>Kompresör/trafo/pano, kazan, hava kompr.</td><td>150</td><td>%2,5</td></tr>
+<tr><td><strong>TOPLAM</strong></td><td></td><td><strong>6.000</strong></td><td><strong>%100</strong></td></tr>
+</table></div>
+<ul>
+<li><strong>Üretim toplamı ≈ 3.350 m² (%56)</strong> + Test/Kalite 250 m² → fonksiyonel üretim ~%60.</li>
+<li><strong>Showroom ve yönetim ofisleri</strong> ziyaretçi akışına yakın, üretim trafiğinden bağımsız bir cephede konumlandırılır.</li>
+<li>İnşaat maliyeti referansı: çelik konstrüksiyon endüstriyel yapı 2025'te <strong>~9.000–12.000 TL/m²</strong> (<a href="https://www.mfhmedya.com/fabrika-insaati-birim-maliyeti-2025/" target="_blank" rel="noopener">MFH Medya</a>); 6.000 m² kaba inşaat için <strong>~54–72 milyon TL (tahmini)</strong>, ofis/sosyal/showroom ince yapı ile bu rakam yükselir.</li>
+</ul>
+<hr>
+<h3>2.3 · İş Güvenliği, Yangın Bölgeleme, Ergonomi, Aydınlatma &amp; Havalandırma</h3>
+<h3>Yangın Bölgeleme</h3>
+<ul>
+<li>Binbolik Yangından Korunma Yönetmeliği uyarınca, <strong>sprinkler ve duman tahliye sistemi bulunmayan</strong> endüstriyel tesislerde kat alanı <strong>2.000 m²'yi aşmayan yangın kompartımanları</strong> oluşturulması gerekir (<a href="https://www.tesisat.org/tesisat-yalitimi-ve-duman-kontrolu.html" target="_blank" rel="noopener">Tesisat.org</a>). 6.000 m² kapalı alan, otomatik sprinkler + duman tahliye ile donatılarak kompartıman büyüklüğü artırılabilir; aksi halde min. 3 yangın bölmesi gerekir.</li>
+<li><strong>Yüksek riskli bölgeler</strong> (kaynak, boya/pasivasyon, kompresör/trafo) yangın dayanımlı duvarlarla ayrılır; kaynak işlemi kıvılcım, sıcak metal ve ark nedeniyle yangın kaynağıdır (<a href="https://www.propazar.com/kaynak-makinelerinde-is-guvenligi-kaynakci-kkd" target="_blank" rel="noopener">Propazar</a>).</li>
+<li>Acil çıkış kapıları kaçış yönünde, kaçış mesafeleri yönetmelik sınırlarında; her bölmede yangın dolabı + uygun söndürücü (kaynak alanında CO₂/kuru kimyevi toz).</li>
+</ul>
+<h3>Ergonomi</h3>
+<ul>
+<li>Ağır sac elleçleme için <strong>köprü vinç, vakum kaldırıcı ve tezgâh-üstü manipülatörler</strong>; bel/sırt yükünü azaltacak yükseklik-ayarlı tezgâhlar.</li>
+<li>Montaj hücrelerinde <strong>U-yerleşim</strong>, operatörün adım ve uzanma mesafesini düşürür.</li>
+</ul>
+<h3>Aydınlatma (lux hedefleri – EN 12464-1 esaslı, tahmini)</h3>
+<ul>
+<li>Genel üretim/montaj: <strong>300–500 lux</strong>; hassas montaj ve elektronik entegrasyon: <strong>750–1.000 lux</strong>; kalite kontrol/metroloji: <strong>1.000–1.500 lux</strong>; depo/koridor: <strong>150–200 lux</strong>; ofis: <strong>500 lux</strong>.</li>
+<li>Acil durum için <strong>pilli/jeneratör destekli acil aydınlatma</strong> zorunludur (<a href="https://www.ledyilighting.com/tr/a-comprehensive-guide-to-industrial-lighting/" target="_blank" rel="noopener">LEDYi</a>).</li>
+<li>Yüzey işlem ve parlatma alanında <strong>renk sıcaklığı ~4000K, yüksek CRI (&gt;80)</strong> ile yüzey kusurlarının görünürlüğü artırılır.</li>
+</ul>
+<h3>Havalandırma</h3>
+<ul>
+<li>Kaynak bölgesinde <strong>lokal duman emiş (kaynak dumanı tahliyesi)</strong> + genel havalandırma; kapalı/yetersiz havalandırmalı alanda kaynak dumanı, oksijen seviyesi ve gaz riski ayrıca değerlendirilir (<a href="https://www.propazar.com/kaynak-makinelerinde-is-guvenligi-kaynakci-kkd" target="_blank" rel="noopener">Propazar</a>).</li>
+<li>Pasivasyon/asit banyosu bölgesinde <strong>asit buharı emiş davlumbazı + nötralizasyon</strong>; boya alanında ATEX uyumlu havalandırmalı boyahane kabini.</li>
+<li>Üretim hacminde dakikada yeterli hava değişimi sağlayacak <strong>mekanik destekli doğal havalandırma</strong> (çatı bacaları + yan jaluziler).</li>
+</ul>
+<hr>
+<h3>2.4 · Beyaz Yaka – Mavi Yaka Entegrasyonu ve Ayrıştırması</h3>
+<ul>
+<li><strong>Fiziksel ayrıştırma:</strong> Ofis/Ar-Ge/tasarım bloğu, üretim holünün bir cephesine bitişik ancak <strong>ses/toz/titreşim izolasyonlu</strong> ayrı bir mezzanin (asma kat) veya bağımsız blokta konumlandırılır. Böylece üretim gürültüsü ofisi etkilemez, beyaz yaka alanı %12 zemin payını minimum ayak iziyle kullanır.</li>
+<li><strong>Görsel entegrasyon:</strong> Ar-Ge ve tasarım ofisi, üretim holüne bakan <strong>camekânlı duvarlarla</strong> sahaya görsel hâkimiyet sağlar; prototip atölyesi üretim ile Ar-Ge'nin tam <strong>arayüzünde</strong> (her ikisine de erişilebilir) konumlanır — bu, AUTOKITCH için tasarım–üretim geri besleme döngüsünü hızlandırır.</li>
+<li><strong>Sirkülasyon ayrımı:</strong> Mavi yaka, soyunma/duş → üretim girişinden; beyaz yaka, ana lobi → ofis girişinden geçer. Yemekhane <strong>ortak</strong> kullanılır (kurumsal kaynaşma), ancak vardiya saatleri kademelendirilir.</li>
+<li><strong>Showroom</strong>, ziyaretçi/müşteri akışını üretim sahasından geçirmeden ofis lobisinden besler.</li>
+</ul>
+<hr>
+<h3>2.5 · ~10.000 m²'ye Modüler Genişleme</h3>
+<ul>
+<li><strong>Tek yönlü büyüme aksı:</strong> Mevcut üretim holü, mamul depo/sevkiyat cephesinin <strong>karşı uzun kenarı boş bırakılarak</strong> tasarlanır; +4.000 m² ek hol, mevcut akışın sonuna <strong>doğrusal eklenir</strong> (akış yönü korunur, hiçbir istasyon yer değiştirmez).</li>
+<li><strong>Çelik konstrüksiyon modüler aks açıklığı:</strong> Standart kolon aks aralığı (örn. 8×24 m gridi) ek bölümde tekrarlanarak strüktürel süreklilik sağlanır; bu, prefabrik/çelik yapının en büyük avantajıdır (<a href="https://tellioglumetalyapi.com/haberdetay/celik-konstruksiyon-fabrika-imalati-ve-maliyeti-hakkinda-bilgi" target="_blank" rel="noopener">Tellioğlu Metal Yapı</a>).</li>
+<li><strong>Altyapı fazlası:</strong> Trafo, kompresör, basınçlı hava ve duman tahliye hatları 1. fazda <strong>%50 fazla kapasiteyle</strong> boyutlandırılır; genişlemede sadece şube hatları çekilir.</li>
+<li><strong>Genişleme önceliği:</strong> Ek alan öncelikle (1) AUTOKITCH seri üretim hattı ve robotik montaj, (2) otomatik dikey depo (ASRS) için ayrılır; ön-imalat (lazer/abkant) ortak kalır, gerekirse 2. lazer eklenir.</li>
+<li><strong>Arsa yerleşimi:</strong> OSB parselinde bina, genişleme cephesi açık kalacak şekilde <strong>parselin bir kenarına yaslanır</strong>; otopark/yeşil alan genişleme rezervi olarak kullanılır.</li>
+</ul>
+<hr>
+<p>*Not: İnşaat birim maliyeti (~9.000–12.000 TL/m²), paslanmaz sac fiyatı (304 kalite ~100 TL/kg veya ~4.500–5.000 USD/ton, Mart 2025) ve 2.000 m² yangın kompartıman sınırı gibi rakamlar belirtilen kaynaklara dayanır; OSB'ye, döviz kuruna ve proje detayına göre değişir, kesin bütçe için yerel keşif gereklidir.*</p>
+<p>Sources:</p>
+<ul>
+<li><a href="https://www.mfhmedya.com/fabrika-insaati-birim-maliyeti-2025/" target="_blank" rel="noopener">MFH Medya – Fabrika İnşaatı Birim Maliyeti 2025</a></li>
+<li><a href="https://www.tekme.org/1000-m2-prefabrik-fabrika-maliyeti-2025/" target="_blank" rel="noopener">Tekme – 1000 m² Prefabrik Fabrika Maliyeti 2025</a></li>
+<li><a href="https://tellioglumetalyapi.com/haberdetay/celik-konstruksiyon-fabrika-imalati-ve-maliyeti-hakkinda-bilgi" target="_blank" rel="noopener">Tellioğlu Metal Yapı – Çelik konstrüksiyon fabrika imalatı ve maliyeti</a></li>
+<li><a href="https://rubymakina.com/sac-metal-isleme-fabrikalarinda-is-akisi-ham-maddeden-son-urune/" target="_blank" rel="noopener">Ruby Makina – Sac Metal İşleme Fabrikalarında İş Akışı</a></li>
+<li><a href="https://sacfiyatlari.com.tr/paslanmaz-celik-fiyatlari/" target="_blank" rel="noopener">SacFiyatlari.com.tr – Paslanmaz çelik fiyatları</a></li>
+<li><a href="https://www.tesisat.org/tesisat-yalitimi-ve-duman-kontrolu.html" target="_blank" rel="noopener">Tesisat.org – Tesisat Yalıtımı ve Duman Kontrolü</a></li>
+<li><a href="https://www.ledyilighting.com/tr/a-comprehensive-guide-to-industrial-lighting/" target="_blank" rel="noopener">LEDYi – Kapsamlı Endüstriyel Aydınlatma Kılavuzu</a></li>
+<li><a href="https://www.propazar.com/kaynak-makinelerinde-is-guvenligi-kaynakci-kkd" target="_blank" rel="noopener">Propazar – Kaynak İş Güvenliği</a></li>
+</ul>
+<h2 class="sec">3 · Organizasyonel Fizibilite ve İnsan Kaynakları</h2>
+<hr>
+<h3>3.1 Genel İK Stratejisi ve Bölgesel İşgücü Bağlamı</h3>
+<p>Bu fabrika, <strong>çift karakterli bir işgücü</strong> gerektirir: bir yanda klasik paslanmaz çelik endüstriyel mutfak üretiminin gerektirdiği geleneksel <strong>metal işleme / kaynak / montaj</strong> yetkinlikleri (mavi yaka ağırlıklı), diğer yanda AUTOKITCH otonom modüllerinin gerektirdiği <strong>mekatronik, robotik, yazılım/AI ve gıda-proses</strong> mühendisliği (yüksek nitelikli beyaz yaka). Bu ikilik, hem işe alım stratejisini hem de ücret/eğitim politikasını ikiye böler.</p>
+<ul>
+<li>Fabrikanın bir OSB'de kurulması, <strong>nitelikli mavi yaka işgücüne erişim</strong> açısından avantajlıdır; OSB'ler tipik olarak metal/makine kümelenmelerine sahiptir ve çevrede MYK belgeli kaynakçı/operatör havuzu görece geniştir.</li>
+<li>Buna karşılık <strong>mekatronik + yazılım/AI mühendisi</strong> gibi roller için rekabet, İstanbul/Ankara/İzmir teknoloji merkezleriyle yapılır; bu nedenle uzaktan/hibrit çalışma, lojman/servis ve rekabetçi ücret paketi kritik olacaktır (bkz. 3.7).</li>
+<li>İşçilik maliyeti planlaması 2026 referans değerleriyle yapılmıştır: <strong>brüt asgari ücret 33.030 TL</strong>, <strong>işverene aylık maliyet ~39.200–40.900 TL</strong> (imalat sektörü SGK 5 puan indirimi dahil ~39.223 TL). Nitelikli kademeler asgari ücretin 1,5–6 katı bandındadır (tahmini).</li>
+</ul>
+<hr>
+<h3>3.2 Mavi Yaka Kadro: Roller, Yetkinlik/Sertifika ve Sayılar</h3>
+<p>Aşağıdaki tabloda her mavi yaka rolü için gerekli yetkinlik/sertifika ile <strong>Faz-1 (1. yıl, pilot + düşük hacim)</strong> ve <strong>Faz-3 (seri üretim)</strong> yaklaşık personel sayıları verilmiştir. Sayılar tek vardiya esaslı baz kadro olup, çok vardiyalı dönemde 3.4'teki çarpanla ölçeklenir.</p>
+<div class="tw"><table>
+<tr><th>Rol</th><th>Gerekli Yetkinlik / Sertifika</th><th>Faz-1 (tahmini)</th><th>Faz-3 (tahmini)</th></tr>
+<tr><td>Lazer / Punch (CNC sac) operatörü</td><td>CNC sac işleme tecrübesi; nesting/CAM (Lantek vb.) okuryazarlığı; MYK Metal Kesim ilgili UY</td><td>2</td><td>5–6</td></tr>
+<tr><td>Abkant (press-brake) operatörü</td><td>Büküm/açınım hesabı, abkant programlama; teknik resim okuma</td><td>2</td><td>5–6</td></tr>
+<tr><td>Sertifikalı kaynakçı (TIG/MIG)</td><td><strong>MYK Kaynakçı (zorunlu)</strong> + <strong>EN ISO 9606-1 (paslanmaz/304-430)</strong> kaynakçı sertifikası; WPS/pWPS okuma</td><td>4</td><td>12–16</td></tr>
+<tr><td>Robot kaynak operatörü / programcı</td><td>Robotik kaynak hücresi (Fanuc/ABB/KUKA) programlama; offline programlama; kaynak parametre kurulumu</td><td>1</td><td>3–4</td></tr>
+<tr><td>Yüzey işlem / polisaj / pasifleştirme</td><td>Paslanmaz tane (grain) yönlendirme, taşlama/zımpara kademeleri, elektro-polisaj &amp; pasivasyon (asit) — KKD/İSG</td><td>2</td><td>5–6</td></tr>
+<tr><td>Mekanik montajcı</td><td>Teknik resim/patlatma okuma, civata-tork, sızdırmazlık, mutfak ekipman montajı</td><td>3</td><td>9–12</td></tr>
+<tr><td>Elektrik-elektronik montajcı</td><td>Pano montajı, kablolama, sensör/aktuatör bağlantısı; AUTOKITCH modül elektriği</td><td>1</td><td>4–5</td></tr>
+<tr><td>Otomasyon / mekatronik teknisyeni (AUTOKITCH hattı)</td><td>PLC/HMI, servo, pnömatik/hidrolik; robot çevre bakımı; ön-devreye alma</td><td>1</td><td>3–4</td></tr>
+<tr><td>Kalite kontrolcü (giriş + proses + final)</td><td>Ölçü aletleri (kumpas, mikrometre, CMM okuryazarlığı), kaynak görsel muayene (VT), gıda teması/hijyen standartları</td><td>1</td><td>4–5</td></tr>
+<tr><td>Forklift operatörü</td><td><strong>MYK / G sınıfı operatör belgesi (zorunlu)</strong></td><td>1</td><td>2–3</td></tr>
+<tr><td>Depo / sevkiyat / lojistik</td><td>Stok-WMS okuryazarlığı; paketleme/yükleme</td><td>2</td><td>4–5</td></tr>
+<tr><td>Bakım (mekanik + elektrik)</td><td>Önleyici bakım, arıza giderme; makine ehliyeti</td><td>1</td><td>3</td></tr>
+<tr><td><strong>Mavi yaka ara toplam</strong></td><td></td><td><strong>~21</strong></td><td><strong>~63–73</strong></td></tr>
+</table></div>
+<blockquote>Not — MYK zorunluluğu: 23 Mart 2026 tarihli Tebliğ ile MYK belgesi zorunlu meslek sayısı 244'e çıkmış, <strong>kaynakçı</strong> ve <strong>forklift operatörü</strong> belge zorunluluğu kapsamındadır. Geçiş süresi 23 Mart 2027'de dolmaktadır; belgesiz çalıştırmada 2026'da kişi başı <strong>~8.980 TL idari para cezası</strong> uygulanır. İşe alımda bu rollerde belge <strong>ön koşul</strong> olarak aranmalıdır.</blockquote>
+<hr>
+<h3>3.3 Beyaz Yaka Organizasyon Şeması (Hiyerarşi)</h3>
+<pre>GENEL MÜDÜR (CEO)
+│
+├── ÜRETİM MÜDÜRÜ
+│     ├── Üretim Şefi (klasik PSL çelik hattı)
+│     ├── Üretim Şefi (AUTOKITCH / otonom modül hattı)
+│     ├── Vardiya amirleri
+│     └── Bakım &amp; Otomasyon sorumlusu
+│
+├── PLANLAMA / TEDARİK (Tedarik Zinciri) MÜDÜRÜ
+│     ├── Üretim planlama (MRP/ERP) sorumlusu
+│     ├── Satın alma (sac, motor, elektronik, robot bileşeni)
+│     └── Depo / lojistik sorumlusu
+│
+├── KALİTE MÜDÜRÜ
+│     ├── Kalite güvence (ISO 9001 / CE / gıda teması)
+│     ├── Kalite kontrol (giriş–proses–final)
+│     └── Kaynak koordinatörü (IWE/IWT) &amp; sertifikasyon
+│
+├── AR-GE MÜDÜRÜ  (Ar-Ge Merkezi yöneticisi)
+│     ├── Mekatronik mühendisi (robotik, servo, kinematik)
+│     ├── Yazılım / AI mühendisi (vision, kontrol yazılımı, bulut)
+│     ├── Gömülü sistem / elektronik mühendisi
+│     ├── Gıda / proses mühendisi (pişirme prosesi, hijyen, HACCP)
+│     └── Test &amp; validasyon mühendisi
+│
+├── TASARIM MÜDÜRÜ / SORUMLUSU
+│     ├── Endüstriyel tasarımcı
+│     └── CMF (Color-Material-Finish) uzmanı
+│
+├── SATIŞ – İHRACAT – PAZARLAMA MÜDÜRÜ
+│     ├── Yurt içi satış / proje satış
+│     ├── İhracat (bölge yöneticileri)
+│     └── Pazarlama / dijital / fuar &amp; marka
+│
+├── FİNANS / MUHASEBE MÜDÜRÜ
+│     ├── Mali işler &amp; raporlama
+│     ├── Teşvik / Ar-Ge muhasebesi (5746 izleme)
+│     └── Bütçe / maliyet muhasebesi
+│
+└── İK / İDARİ İŞLER MÜDÜRÜ
+      ├── İşe alım &amp; özlük
+      ├── Eğitim &amp; yetkinlik gelişimi
+      └── İSG uzmanı + işyeri hekimi (dışarıdan/OSGB destekli)</pre>
+<hr>
+<h3>3.4 Vardiya Yapısı</h3>
+<ul>
+<li><strong>Faz-1:</strong> Tek vardiya (08:00–17:00) esas; talep yoğunluğunda lazer kesim gibi darboğaz tezgâhlarda ikinci yarım vardiya. Pilot AUTOKITCH hattı tek vardiya + mühendislik nezareti.</li>
+<li><strong>Faz-2/Faz-3:</strong> Klasik üretim hattında <strong>2 vardiya</strong> (gerekirse sürekli işleyen lazer/abkant tezgâhlarında 3 vardiya); robot kaynak hücresi yüksek doluluk için 2–3 vardiya. Vardiyalı dönemde mavi yaka baz kadrosu, sürekli çalışan istasyonlarda <strong>~1,8–2,0 çarpanla</strong> büyür (tablodaki Faz-3 sayıları 2 vardiya varsayımını içerir).</li>
+<li>Bakım için <strong>planlı duruş + hafta sonu vardiyası</strong>; kalite kontrol her vardiyada en az 1 personelle temsil edilir.</li>
+</ul>
+<hr>
+<h3>3.5 Faz-1 ve Faz-3 Toplam Headcount Tahmini</h3>
+<div class="tw"><table>
+<tr><th>Kategori</th><th>Faz-1 (tahmini)</th><th>Faz-3 (tahmini)</th></tr>
+<tr><td>Mavi yaka (üretim+lojistik+bakım)</td><td>~21</td><td>~63–73</td></tr>
+<tr><td>Ar-Ge mühendis kadrosu</td><td>~6–8</td><td>~15–20+</td></tr>
+<tr><td>Tasarım (endüstriyel + CMF)</td><td>~2</td><td>~3–4</td></tr>
+<tr><td>Üretim/Planlama/Kalite yönetimi &amp; mühendisliği</td><td>~5</td><td>~12–15</td></tr>
+<tr><td>Satış-İhracat-Pazarlama</td><td>~3</td><td>~8–10</td></tr>
+<tr><td>Finans/Muhasebe + İK/İdari + İSG</td><td>~4</td><td>~8–10</td></tr>
+<tr><td>Üst yönetim (GM + müdürler)</td><td>dahil/örtüşük</td><td>dahil</td></tr>
+<tr><td><strong>TOPLAM (tahmini)</strong></td><td><strong>~40–48</strong></td><td><strong>~110–130</strong></td></tr>
+</table></div>
+<blockquote>Mavi/beyaz yaka oranı Faz-1'de yaklaşık <strong>50/50</strong> (yüksek Ar-Ge ve mühendislik yoğunluğu nedeniyle), Faz-3'te seri üretime geçişle birlikte mavi yaka lehine <strong>~60/40</strong>'a kayar.</blockquote>
+<hr>
+<h3>3.6 Ar-Ge Merkezi Statüsü (5746 Sayılı Kanun) ve Personel Eşiği</h3>
+<p>AUTOKITCH modüllerinin geliştirilmesi, <strong>5746 sayılı Kanun kapsamında Ar-Ge Merkezi statüsü</strong> için güçlü bir gerekçe oluşturur (Ar-Ge personeli gelir vergisi stopaj teşviki, SGK işveren primi desteği, Ar-Ge indirimi, damga vergisi istisnası). Ancak personel eşiği konusunda kritik bir nüans vardır:</p>
+<ul>
+<li><strong>Genel kural:</strong> En az <strong>15 tam zamanlı eşdeğer (TZE) Ar-Ge personeli</strong>.</li>
+<li><strong>DİKKAT — imalat istisnası:</strong> Belirli <strong>imalat sanayi NACE kodlarında</strong> asgari eşik <strong>30 TZE Ar-Ge personeline</strong> yükselir. Endüstriyel mutfak ekipmanı üretimi imalat sektörü kapsamında olduğundan, başvuru öncesi firmanın <strong>fiili NACE kodunun</strong> hangi eşiğe (15 mi, 30 mu) tabi olduğu mutlaka <strong>Sanayi ve Teknoloji Bakanlığı / danışman</strong> ile teyit edilmelidir (tahmini risk: 30 eşiği). Bu, Faz-3'te ~15–20 mühendisle yetinmeyip <strong>kademeli olarak 30 TZE'ye</strong> çıkmayı veya Ar-Ge başvurusunu uygun NACE/iştigal tanımıyla yapılandırmayı gerektirebilir.</li>
+<li><strong>Alternatif / ara adım — Tasarım Merkezi:</strong> Endüstriyel tasarım + CMF + ürün geliştirme yoğunluğu, <strong>en az 10 TZE tasarım personeli</strong> ile <strong>Tasarım Merkezi</strong> statüsüne erişimi mümkün kılar; bu, Ar-Ge Merkezi eşiğine ulaşılana kadar <strong>köprü teşvik</strong> olarak değerlendirilebilir.</li>
+<li>Statü için ayrıca: tüm Ar-Ge/tasarım faaliyetinin yurt içinde yürütülmesi, ayrı/fiziksel olarak ayrılmış Ar-Ge mekânı, giriş-çıkış/fiziksel kontrol mekanizması, tanımlı proje portföyü (kapsam-süre-bütçe-personel) ve yeterli Ar-Ge yönetim kapasitesi şarttır.</li>
+</ul>
+<blockquote><strong>Planlama önerisi:</strong> Ar-Ge kadrosu Faz-1'de ~6–8 mühendisle kurulur, statüye başvuru ise eşik (15 veya 30 TZE) karşılanabilir hale geldiğinde — pratikte Faz-2 sonu / Faz-3 başı — yapılır.</blockquote>
+<hr>
+<h3>3.7 İşe Alım Zorlukları ve Kritik Roller</h3>
+<ul>
+<li><strong>En kritik / en zor bulunan roller:</strong></li>
+<li><strong>Yazılım/AI mühendisi (computer vision + kontrol):</strong> Teknoloji merkezleriyle rekabet; OSB lokasyonu dezavantaj. Çözüm: hibrit/uzaktan çalışma, hisse/prim, üniversite-sanayi işbirliği.</li>
+<li><strong>Mekatronik / robotik mühendisi:</strong> Hem robot kaynak hattı hem AUTOKITCH için çekirdek; sınırlı havuz.</li>
+<li><strong>Gıda/proses mühendisi (otomasyonu anlayan):</strong> Gıda mühendisliği + otomasyon kesişimi nadir bir profil; muhtemelen yetiştirilerek kazanılacak.</li>
+<li><strong>Sertifikalı paslanmaz kaynakçı (EN ISO 9606-1):</strong> Nitelikli ve belgeli kaynakçı kıtlığı sektörel; ücret baskısı yüksek.</li>
+<li><strong>Robot kaynak operatörü/programcısı:</strong> Geleneksel kaynakçıdan farklı; ya dışarıdan ya iç eğitimle.</li>
+<li><strong>Genel zorluklar:</strong> OSB lokasyonunun beyaz yaka cazibesini düşürmesi (servis/lojman ile telafi), nitelikli kaynakçı sirkülasyonu, AUTOKITCH gibi yeni bir ürün kategorisinde tam hazır profil bulunamaması (çoğu rol melez yetkinlik gerektirir, yetiştirme zorunlu).</li>
+</ul>
+<hr>
+<h3>3.8 Eğitim ve Yetkinlik Gelişim Planı</h3>
+<ul>
+<li><strong>İşe alış oryantasyonu:</strong> İSG (tehlikeli/çok tehlikeli iş sınıfı), paslanmaz çelik/asit (pasivasyon) güvenliği, kalite ve hijyen standartları, 5S/yalın üretim temelleri.</li>
+<li><strong>Sertifikasyon programı (zorunlu meslekler):</strong> Kaynakçı ve forklift operatörü için <strong>MYK belgelendirme</strong> ve <strong>EN ISO 9606-1 kaynakçı sınavlarının</strong> maliyetinin firmaca karşılanması; mevcut belgesiz personelin 23 Mart 2027 geçiş süresi dolmadan belgelendirilmesi.</li>
+<li><strong>Robot/otomasyon eğitimi:</strong> Robot kaynak hücresi ve PLC/HMI için tedarikçi (OEM) eğitimleri + iç "train-the-trainer"; geleneksel kaynakçıların robot operatörüne dönüştürülmesi.</li>
+<li><strong>Çapraz yetkinlik (multi-skilling):</strong> Vardiya esnekliği için montajcı–polisaj–kalite arası çapraz eğitim.</li>
+<li><strong>Mühendis gelişimi &amp; Ar-Ge:</strong> Üniversite-sanayi işbirliği, TÜBİTAK/KOSGEB destekli proje deneyimi, gıda+otomasyon kesişimindeki melez profil için iç rotasyon; staj/yeni mezun programıyla uzun vadeli mühendis havuzu beslenmesi.</li>
+<li><strong>Bütçe (tahmini):</strong> Yıllık eğitim+sertifikasyon bütçesi olarak personel maliyetinin <strong>%1,5–3'ü</strong> ayrılması önerilir; Ar-Ge Merkezi statüsünde eğitim/yetiştirme faaliyetlerinin bir kısmı teşvik kapsamına girebilir.</li>
+</ul>
+<hr>
+<p><strong>Kaynaklar:</strong></p>
+<ul>
+<li><a href="https://ofisus.com/destek-ve-tesvikler/ar-ge-tasarim-merkezi-nedir-avantajlari-ve-basvuru-sartlari-5746-sayili-kanun/" target="_blank" rel="noopener">Ofisus Danışmanlık — Ar-Ge/Tasarım Merkezi Şartları (5746)</a></li>
+<li><a href="https://agtm.sanayi.gov.tr/Agtm/FaqList" target="_blank" rel="noopener">Sanayi ve Teknoloji Bakanlığı — AGTM Sıkça Sorulan Sorular</a></li>
+<li><a href="https://www.pwc.com.tr/tr/medya/kose-yazilari/celal-ozcan/2026-yili-asgari-ucreti-ve-sektorlere-gore-isveren-maliyeti.html" target="_blank" rel="noopener">PwC Türkiye — 2026 Asgari Ücret ve Sektörlere Göre İşveren Maliyeti</a></li>
+<li><a href="https://www.csgb.gov.tr/Media/gm2fekds/asgari-%C3%BCcret-2026.pdf" target="_blank" rel="noopener">ÇSGB — 2026 Asgari Ücret</a></li>
+<li><a href="https://portal.myk.gov.tr/index.php?belge_zorunlu=1&amp;option=com_yeterlilik&amp;view=arama" target="_blank" rel="noopener">MYK — Belge Zorunluluğu Kapsamındaki Meslekler</a></li>
+<li><a href="https://kobitime.com/myk-mesleki-yeterlilik-belgesi-zorunlulugu-2026/" target="_blank" rel="noopener">KobiTime — 2026 MYK Belge Zorunluluğu: 40 Yeni Meslek</a></li>
+</ul>
+<h2 class="sec">4 · Pazar Analizi (Ekonomik Fizibilite)</h2>
+<hr>
+<h3>4.1 Pazar Büyüklüğü ve Büyüme Dinamikleri</h3>
+<p>Fabrikanın iki ayaklı ürün stratejisi (klasik paslanmaz çelik endüstriyel mutfak ekipmanları + otonom robotik mutfak modülleri), iki ayrı ancak hızla yakınsayan pazarın kesişiminde konumlanır.</p>
+<h4>(A) Küresel ve Türkiye Endüstriyel Mutfak Ekipmanı Pazarı</h4>
+<p>Endüstriyel/ticari mutfak ekipmanı (commercial foodservice equipment) pazarı, olgun ancak istikrarlı büyüyen bir pazardır. Bağımsız araştırma kuruluşlarının tahminleri kaynağa göre değişmekle birlikte tutarlı bir aralık verir:</p>
+<div class="tw"><table>
+<tr><th>Kaynak</th><th>2024/2025 Büyüklük</th><th>2030 Projeksiyon</th><th>CAGR (2025-2030)</th></tr>
+<tr><td>Grand View Research</td><td>—</td><td>~58,2 milyar USD</td><td>%7,0</td></tr>
+<tr><td>Research and Markets</td><td>37,02 milyar USD (2025)</td><td>~51,52 milyar USD</td><td>%6,89</td></tr>
+<tr><td>The Business Research Company</td><td>~35 milyar USD (2025)</td><td>~46,98 milyar USD</td><td>%6,1</td></tr>
+<tr><td>Straits Research</td><td>40,97 milyar USD (2025)</td><td>— (2033'e kadar)</td><td>%6,85</td></tr>
+</table></div>
+<ul>
+<li><strong>Konsensüs:</strong> Küresel pazar 2030'a doğru ~47-58 milyar USD aralığına, <strong>%6-7 CAGR</strong> ile ilerliyor. Bu, GSYİH üstü ancak patlayıcı olmayan, sermaye yoğun ve marka/servis bağımlı bir olgun pazardır.</li>
+<li><strong>Türkiye konumu:</strong> Türkiye, endüstriyel mutfak ekipmanında küresel bir ihracat üssüdür. Sektör liderlerinin ihracat oranları %35-75 aralığında olup (İnoksan üretiminin %35'ini, Empero %75'ini ihraç ediyor), Türkiye'yi maliyet-rekabetçi bir üretim merkezi haline getirir. Türkiye'ye özgü konsolide pazar büyüklüğü kamuya açık tek bir raporla netleşmemekle birlikte, sektör ~3-4 milyar USD ihracat potansiyeli taşıyan bir küme oluşturur <strong>(tahmini)</strong>.</li>
+</ul>
+<h4>(B) Mutfak Robotiği / Otonom Mutfak Pazarı</h4>
+<p>Robotik mutfak segmenti, ana pazarın aksine yüksek büyüme oranlı ve erken aşama bir pazardır. Tanım farkları (sadece pişirme robotu vs. geniş mutfak otomasyonu) nedeniyle tahminler geniş bir aralıkta seyreder:</p>
+<div class="tw"><table>
+<tr><th>Kaynak</th><th>Büyüklük / Projeksiyon</th><th>CAGR</th></tr>
+<tr><td>The Business Research Company (Robot Kitchen)</td><td>2030'da ~7,62 milyar USD</td><td>%15,8</td></tr>
+<tr><td>Verified Market Reports (Kitchen Smart Robots)</td><td>1,2 milyar USD (2024) → 4,5 milyar USD (2033)</td><td>%16,5</td></tr>
+<tr><td>Reportprime (Robot Kitchen)</td><td>2,50 milyar USD (2022) → 5,55 milyar USD (2030)</td><td>%10,5</td></tr>
+<tr><td>Technavio (Robot Kitchen, 2025-2030)</td><td>—</td><td>~%24,6 (tahmini, üst sınır)</td></tr>
+</table></div>
+<ul>
+<li><strong>Konsensüs:</strong> Mutfak robotiği <strong>%10-25 CAGR</strong> bandında, ana pazarın yaklaşık 2-3 katı hızla büyüyor. North America en büyük bölge, Asya-Pasifik en hızlı büyüyen bölge.</li>
+<li><strong>Stratejik anlamı:</strong> Fabrikanın klasik üretim ayağı <strong>istikrarlı nakit akışı ve ölçek</strong> sağlarken; AUTOKITCH robotik ayağı <strong>yüksek büyüme ve değerleme primi</strong> taşır. Bu, riski dengeleyen klasik bir "cash cow + star" portföy yapısıdır.</li>
+</ul>
+<h3>4.2 Büyük Oyuncularla Benchmarking</h3>
+<h4>(A) Klasik Endüstriyel Mutfak Ekipmanı Üreticileri</h4>
+<div class="tw"><table>
+<tr><th>Oyuncu</th><th>Kapalı Alan</th><th>Ölçek / Ürün</th><th>İhracat Erişimi</th><th>Not</th></tr>
+<tr><td><strong>Öztiryakiler</strong></td><td>~130.000 m²</td><td>~1.300 çalışan, turnkey proje üreticisi</td><td>100+ ülke (kaynaklarda 100-130 ülke)</td><td>2024'te Japon <strong>Hoshizaki %51</strong> çoğunluk hissesini aldı; 2019'dan beri kademeli giriş (%39 → %51)</td></tr>
+<tr><td><strong>İnoksan</strong></td><td>~20.000 m²</td><td>4.000+ ürün, 1980 kuruluş</td><td>5 kıta, üretimin <strong>%35</strong>'i ihracat</td><td>Türkiye'nin köklü sanayi kuruluşlarından</td></tr>
+<tr><td><strong>Empero</strong></td><td>~57.000 m² (50.000 kapalı)</td><td>3.000+ ürün, ~65 milyon USD ciro</td><td>~90 ülke, cironun <strong>%75</strong>'i ihracat</td><td>Konya'da ~800 milyon TL'lik 80.000 m² yeni fabrika yatırımı (ithal ikamesi)</td></tr>
+<tr><td><strong>Bosfor</strong></td><td>—</td><td>Orta ölçek endüstriyel ekipman</td><td>Bölgesel/ihracat</td><td>Rekabetçi fiyatlı yerli üretici</td></tr>
+</table></div>
+<p><strong>Çıkarım:</strong> Yerleşik oyuncular 20.000-130.000 m² aralığında, on yıllarca birikmiş marka ve bayi ağıyla rekabet ediyor. Yeni fabrikanın <strong>6.000 m² başlangıç</strong> ölçeği, bu devlerle hacim yarışına değil; <strong>niş + teknolojik farklılaşma (AI/robotik)</strong> ile rekabet etmesini zorunlu kılar. Hoshizaki-Öztiryakiler birleşmesi, küresel sermayenin Türkiye üretim üssüne ilgisini ve sektörde konsolidasyon eğilimini gösterir.</p>
+<h4>(B) Robotik / Otonom Mutfak Oyuncuları</h4>
+<div class="tw"><table>
+<tr><th>Oyuncu</th><th>Konsept</th><th>Finansal / Ölçek Verisi</th><th>Not</th></tr>
+<tr><td><strong>Chef Robotics</strong> (ABD)</td><td>AI destekli yemek montaj (meal assembly) robotları, RaaS modeli</td><td><strong>43,1 milyon USD</strong> Series A (20,6M özkaynak + 22,5M ekipman finansmanı); toplam ~65,6M USD</td><td>Amy's Kitchen, Sunbasket vb. tesislerinde 40M+ öğün; CapEx'siz robotics-as-a-service</td></tr>
+<tr><td><strong>Spyce → Sweetgreen Infinite Kitchen</strong></td><td>Otonom salata/bowl hazırlama hattı</td><td>Sweetgreen 2024'te %13 ciro büyümesi; Infinite Kitchen başarılı sahaya alındı</td><td>MIT kökenli Spyce, Sweetgreen tarafından satın alındı; dikey entegre otomasyon örneği</td></tr>
+<tr><td><strong>Botinkit</strong> (Çin)</td><td>Akıllı otomatik pişirme (wok/sote) modülleri</td><td>Erken aşama, ölçeklenen donanım üreticisi</td><td>Modüler, retrofit'e yakın çözüm; Asya-Pasifik büyümesinin temsilcisi</td></tr>
+<tr><td><strong>Beastro</strong></td><td>Otonom mutfak/restoran modülü</td><td>Erken aşama startup</td><td>Tam otonom "dark kitchen" konsepti</td></tr>
+</table></div>
+<p><strong>Çıkarım:</strong> Robotik tarafı henüz <strong>fragmente ve erken aşama</strong>dır; hiçbir oyuncu küresel standardı belirlememiştir. Hakim iş modeli <strong>RaaS (Robotics-as-a-Service)</strong> olup, müşteriyi yüksek CapEx'ten kurtarır — fabrikanın AUTOKITCH modülleri için kritik bir benimseme stratejisidir. Türkiye'nin paslanmaz çelik üretim maliyet avantajı + yerli yazılım/AI ile bu boşlukta <strong>donanım maliyeti rekabetçi bir Avrupa/MENA oyuncusu</strong> olma fırsatı vardır.</p>
+<h3>4.3 Hedef Segmentler</h3>
+<ul>
+<li><strong>Oteller ve turizm tesisleri:</strong> Türkiye'nin güçlü turizm sektörü; yüksek hacimli, kalite-odaklı, turnkey mutfak talebi. Klasik ekipmanın ana pazarı.</li>
+<li><strong>Zincir restoran / QSR (Quick Service Restaurant):</strong> Standardizasyon, hız ve işgücü maliyeti baskısı nedeniyle <strong>otonom modüller için en olgun erken-benimseyen segment</strong>. Tekrarlanabilir, ölçeklenebilir sipariş yapısı.</li>
+<li><strong>Kurumsal / toplu yemek (catering, yemek fabrikaları):</strong> Yüksek hacim, tutarlılık ve gıda güvenliği önceliği; robotik montaj hatlarının (Chef Robotics modeli) en uygun olduğu segment.</li>
+<li><strong>Hastane / kurum / kamu (okul, ordu, fabrika yemekhanesi):</strong> Hijyen, izlenebilirlik ve sabit menü; hem klasik hem otonom çözümler için stabil, ihale-bazlı talep.</li>
+<li><strong>İhracat (Avrupa, MENA, Afrika, Orta Asya):</strong> Türkiye'nin coğrafi ve maliyet avantajıyla erişilebilen, sektör liderlerinin %35-75 ihracat oranlarıyla kanıtladığı ana büyüme kanalı.</li>
+</ul>
+<h3>4.4 Pazara Giriş Stratejisi</h3>
+<ul>
+<li><strong>Yerli üretim maliyet avantajı:</strong> 304/430 paslanmaz çelik sac işleme ve montajda Türkiye'nin işgücü + lojistik avantajı; ithal robotik mutfak çözümlerine kıyasla <strong>donanım maliyetinde rekabetçi fiyatlama</strong>.</li>
+<li><strong>AI + tasarım farklılaşması:</strong> Klasik ekipmanın yerli rakiplerle fiyat yarışına girmek yerine, <strong>AI/robotik entegrasyonu ve premium tasarım</strong> ile katma değer üstte konumlanma.</li>
+<li><strong>Retrofit + modüler yaklaşım:</strong> AUTOKITCH modüllerinin mevcut mutfaklara entegre edilebilir (retrofit), parça parça satın alınabilir modüler tasarımı — müşterinin tek seferde büyük CapEx'ten kaçınmasını sağlar; gerekirse <strong>RaaS / kiralama</strong> finansman modeliyle desteklenir.</li>
+<li><strong>Çok kanallı satış:</strong> Yurt içi <strong>bayi/distribütör ağı</strong> + doğrudan kurumsal satış + <strong>ihracat temsilcilikleri</strong>.</li>
+<li><strong>Fuar ve referans projeler:</strong> <strong>HOST Milano</strong>, <strong>Gulfood Manufacturing (Dubai)</strong> ve <strong>Anuga FoodTec (Köln)</strong> gibi sektörün küresel fuarlarında görünürlük; pilot referans projelerle (1. yıl) güven inşası.</li>
+</ul>
+<h3>4.5 SWOT Analizi</h3>
+<div class="tw"><table>
+<tr><th>Güçlü Yönler (Strengths)</th><th>Zayıf Yönler (Weaknesses)</th></tr>
+<tr><td>Türkiye'nin paslanmaz çelik üretim + işgücü maliyet avantajı</td><td>Yeni marka, sıfır referans ve sınırlı bayi ağı (başlangıç)</td></tr>
+<tr><td>İki ayaklı portföy: istikrarlı klasik nakit akışı + yüksek büyüme robotik</td><td>6.000 m² başlangıç ölçeği; devlerle hacim yarışı zor</td></tr>
+<tr><td>AI/robotik + premium tasarım ile farklılaşma</td><td>Yüksek Ar-Ge ve nitelikli yazılım/robotik işgücü ihtiyacı</td></tr>
+<tr><td>Coğrafi konum (Avrupa-MENA-Asya ihracat erişimi)</td><td>Robotik tarafında ispatlanmamış ürün-pazar uyumu</td></tr>
+</table></div>
+<div class="tw"><table>
+<tr><th>Fırsatlar (Opportunities)</th><th>Tehditler (Threats)</th></tr>
+<tr><td>Mutfak robotiğinde %10-25 CAGR ve fragmente, lidersiz pazar</td><td>Hoshizaki-Öztiryakiler gibi küresel sermaye destekli konsolidasyon</td></tr>
+<tr><td>İşgücü kıtlığı → otomasyon talebi itici gücü</td><td>Çin (Botinkit) kaynaklı düşük maliyetli robotik rekabeti</td></tr>
+<tr><td>RaaS modeliyle CapEx engelini aşma</td><td>Paslanmaz çelik hammadde fiyat ve döviz kuru oynaklığı</td></tr>
+<tr><td>İhracat ve fuar kanallarıyla hızlı ölçeklenme</td><td>Olgun klasik pazarda fiyat baskısı ve düşük marj</td></tr>
+</table></div>
+<h3>4.6 Talep İtici Güçler (Demand Drivers)</h3>
+<ul>
+<li><strong>İşgücü kıtlığı (yapısal):</strong> Restoran/yemek sektöründe işe alım ve elde tutma zorluğu kalıcı bir baskıdır; işletmelerin yarısından fazlası personel bulmakta zorlanıyor, bu da otomasyon ve AI'a ilgiyi hızla artırıyor.</li>
+<li><strong>NRA 2026 verileri (otomasyon benimsemesi):</strong> National Restaurant Association'ın 2026 State of the Restaurant Industry raporuna göre restoran işletmecilerinin <strong>%26'sı halihazırda AI tabanlı araçlar kullanıyor</strong> (Şubat 2026'da açıklandı). Önceki 2024 raporunda işletmecilerin <strong>%47'si işgücü açığını karşılamak için teknoloji ve otomasyonun daha yaygınlaşmasını bekliyordu</strong>; <strong>%69'u teknolojinin insan işgücünü ikame etmek yerine destekleyeceğine</strong> inanıyor.</li>
+<li><strong>Maliyet baskısı:</strong> AI tabanlı araçların vardiya optimizasyonu vb. yoluyla işgücü maliyetlerini <strong>%10'a kadar</strong> düşürebileceği öngörülüyor; 2026 NRA Show'da AI, otomasyon ve maliyet baskıları ana gündem maddesiydi.</li>
+<li><strong>Standardizasyon ve gıda güvenliği:</strong> Zincir ve toplu yemek segmentinde tutarlı kalite ve izlenebilirlik talebi, otonom hatları cazip kılıyor.</li>
+</ul>
+<blockquote><strong>Stratejik sonuç:</strong> Talep itici güçler (işgücü kıtlığı, maliyet baskısı, standardizasyon ihtiyacı), otomasyona yönelik benimsemenin "merak" aşamasından "operasyonel zorunluluk" aşamasına geçtiğini gösteriyor — bu, AUTOKITCH ürün ayağı için <strong>zamanlama avantajı</strong> anlamına gelir.</blockquote>
+<h3>Kaynaklar</h3>
+<ul>
+<li>Grand View Research — Food Service Equipment Market: https://www.grandviewresearch.com/press-release/global-food-service-equipment-market</li>
+<li>Research and Markets — Commercial Foodservice Equipment Market (Forecast to 2030): https://www.researchandmarkets.com/reports/5967942/commercial-foodservice-equipment-market-global</li>
+<li>The Business Research Company — Commercial Foodservice Equipment Market 2026: https://www.thebusinessresearchcompany.com/report/commercial-foodservice-equipment-global-market-report</li>
+<li>Straits Research — Food Service Equipment Market: https://straitsresearch.com/press-release/global-food-service-equipment-market-trend</li>
+<li>The Business Research Company — Robot Kitchen Market 2026: https://www.thebusinessresearchcompany.com/report/robot-kitchen-global-market-report</li>
+<li>Verified Market Reports — Kitchen Smart Robots Market: https://www.verifiedmarketreports.com/product/kitchen-smart-robots-market/</li>
+<li>Technavio — Robot Kitchen Market 2026-2030: https://www.technavio.com/report/robot-kitchen-market-industry-analysis</li>
+<li>Invest.gov.tr — Hoshizaki / Öztiryakiler çoğunluk hissesi: https://www.invest.gov.tr/en/news/news-from-turkey/pages/japanese-hoshizaki-plans-acquire-majority-stake-turkish-%C3%B6ztiryakiler.aspx</li>
+<li>Hoshizaki Integrated Report 2025: https://www.hoshizaki.co.jp/en/ir/library/pdf/2025/integrated_report2025_p79-86_e.pdf</li>
+<li>İnoksan — Hakkımızda (20.000 m², %35 ihracat): https://www.makinaturkiye.com/inoksan/hakkimizda</li>
+<li>Dünya Gazetesi — Empero 800 milyon TL fabrika yatırımı: https://www.dunya.com/sirketler/empero-800-milyon-tllik-fabrika-ile-ithalati-onleyecek-haberi-703915</li>
+<li>The Robot Report — Chef Robotics $43M: https://www.therobotreport.com/chef-robotics-brings-in-43m-to-deploy-more-food-assembly-robots/</li>
+<li>Built In SF — Chef Robotics Raises $43.1M: https://www.builtinsf.com/articles/chef-robotics-raises-43m-series-a-20250403</li>
+<li>Sweetgreen FY2024 SEC Filing (Infinite Kitchen): https://www.sec.gov/Archives/edgar/data/0001477815/000162828024046247/q324sweetgreenearningsrele.htm</li>
+<li>Restaurant Dive — NRA 2026: %26 operatör AI kullanıyor: https://www.restaurantdive.com/news/national-restaurant-assocation-operator-artificial-intelligence-adoption/812418/</li>
+<li>National Restaurant Association — 2026 State of the Industry: https://restaurant.org/research-and-media/research/research-reports/state-of-the-industry/</li>
+<li>Restaurant Technology News — 2026 NRA Show (AI, otomasyon, maliyet): https://restauranttechnologynews.com/2026/05/ai-automation-and-cost-pressures-take-center-stage-at-the-2026-national-restaurant-association-show/</li>
+</ul>
+<h2 class="sec">5A · Finansal Fizibilite — Capex / Opex</h2>
+<h3>Genel Yatırım Mantığı ve Varsayım Çerçevesi</h3>
+<p>Bu fizibilite, ortak varsayımlarla tutarlı olarak iki ürün ailesini (A: klasik paslanmaz endüstriyel mutfak ekipmanı + B: AUTOKITCH robotik/AI otonom mutfak modülleri) tek tesiste, ~6.000 m² kapalı alanda kuran bir OSB yatırımı için hazırlanmıştır. Tüm rakamlar <strong>(tahmini)</strong> olup, makine ve hammadde fiyatları Haziran 2026 piyasa aralıklarına göre temellendirilmiş, kesin teklif/sözleşme öncesi yön gösterici değerlerdir. Kur varsayımı: <strong>1 USD ≈ 38-41 TL (tahmini)</strong>; tablolarda USD esas alınmıştır.</p>
+<hr>
+<h3>(a) Sabit Yatırım (CAPEX) Ana Kalemleri</h3>
+<p>CAPEX iki ana bloğa ayrılır: (1) klasik üretim hattının kurulumu, (2) AUTOKITCH için robotik hücre + Ar-Ge yatırımı. Aşağıdaki aralıklar Bölüm 1 makine parkıyla tutarlıdır.</p>
+<div class="tw"><table>
+<tr><th>#</th><th>CAPEX Kalemi</th><th>Kapsam / Açıklama</th><th>Düşük (USD)</th><th>Yüksek (USD)</th><th>Not</th></tr>
+<tr><td>1</td><td>OSB arsa tahsisi</td><td>~10.000 m² parsel, OSB bedelli/teşvikli tahsis</td><td>300.000</td><td>900.000</td><td>OSB'ye göre çok değişken (tahmini)</td></tr>
+<tr><td>2</td><td>Bina inşaat (~6.000 m²)</td><td>Çelik konstrüksiyon üretim holü + ofis/Ar-Ge/sosyal; ~450-650 USD/m²</td><td>2.700.000</td><td>3.900.000</td><td>(tahmini)</td></tr>
+<tr><td>3</td><td>Fiber lazer kesim</td><td>1× 6-8 kW, kapalı kabin 3015 + 1 adet yedek/ikinci kademe</td><td>150.000</td><td>450.000</td><td>6 kW sınıfı 60-150k; otomasyonlu/yüksek güç 150-400k</td></tr>
+<tr><td>4</td><td>CNC punch / taşlama</td><td>CNC zımba presi (punch) + plazma/yardımcı</td><td>120.000</td><td>300.000</td><td>(tahmini)</td></tr>
+<tr><td>5</td><td>Abkant (press brake)</td><td>2-3 adet CNC abkant (100-220 ton)</td><td>150.000</td><td>350.000</td><td>(tahmini)</td></tr>
+<tr><td>6</td><td>Kaynak hücreleri</td><td>TIG/MIG istasyonları + 1-2 robot kaynak hücresi</td><td>200.000</td><td>600.000</td><td>Robotik kaynak üst banda iter</td></tr>
+<tr><td>7</td><td>Yüzey işlem hattı</td><td>Taşlama/parlatma, paslanmaz pasifizasyon, yıkama</td><td>150.000</td><td>400.000</td><td>(tahmini)</td></tr>
+<tr><td>8</td><td>Montaj + test hatları</td><td>Montaj bantları, sızdırmazlık/elektrik/gaz test üniteleri</td><td>150.000</td><td>400.000</td><td>(tahmini)</td></tr>
+<tr><td>9</td><td>Robot hücreleri &amp; otomasyon (AUTOKITCH)</td><td>Endüstriyel kol robotlar, vizyon, PLC/SCADA, AGV, pilot otonom modül hücresi</td><td>600.000</td><td>1.800.000</td><td>B ürün ailesinin çekirdeği (tahmini)</td></tr>
+<tr><td>10</td><td>Ar-Ge / lab ekipmanı</td><td>Prototip CNC, 3D yazıcı, sensör/test, gıda-temas validasyon</td><td>200.000</td><td>600.000</td><td>Ar-Ge Merkezi şartı için kritik</td></tr>
+<tr><td>11</td><td>Ofis &amp; IT donanımı</td><td>Sunucu, ağ, iş istasyonları, mobilya</td><td>100.000</td><td>250.000</td><td>(tahmini)</td></tr>
+<tr><td>12</td><td>ERP + CAD/CAM + PLM lisans</td><td>ERP (üretim modüllü), SolidWorks/CAM nesting, PLM</td><td>80.000</td><td>250.000</td><td>Yıllık SaaS ayrıca OPEX'te</td></tr>
+<tr><td>13</td><td>Ruhsat + danışmanlık + belgelendirme</td><td>İmar/yapı ruhsatı, CE, ISO 9001/14001, NSF/gıda, teşvik danışmanlığı</td><td>80.000</td><td>250.000</td><td>(tahmini)</td></tr>
+<tr><td>14</td><td>İlk hammadde / stok</td><td>Başlangıç 304/430 sac + komponent stoğu</td><td>300.000</td><td>700.000</td><td>İşletme sermayesiyle ilişkili</td></tr>
+<tr><td></td><td><strong>TOPLAM CAPEX</strong></td><td></td><td><strong>~5,3 M</strong></td><td><strong>~11,1 M</strong></td><td><strong>Orta senaryo ~7,5-8,5 M USD (tahmini)</strong></td></tr>
+</table></div>
+<ul>
+<li>Orta nokta planlama değeri olarak <strong>~8,0 M USD (tahmini)</strong> alınması önerilir. Arsa OSB tarafından düşük bedelle tahsis edilirse ve robotik yatırım kademelendirilirse alt banda yaklaşılabilir.</li>
+<li>Makine fiyat aralıkları uluslararası 2025-2026 piyasa verisiyle uyumludur: kapalı kabin 3-6 kW fiber lazer <strong>60.000-150.000 USD</strong>, yüksek güç/otomasyonlu sistemler <strong>150.000-400.000+ USD</strong> (<a href="https://www.gwklaser.com/about/technical/how-much-is-industrial-laser-cutting-machine.html" target="_blank" rel="noopener">GWEIKE</a>, <a href="https://hadenmachine.com/cnc-laser-cutting-machine-price/" target="_blank" rel="noopener">HADEN</a>).</li>
+</ul>
+<hr>
+<h3>(b) İşletme Giderleri (OPEX)</h3>
+<p>3. yıl seri üretim senaryosuna göre yıllıklandırılmış tahmini OPEX. Enerji kalemi lazer + robotik kaynak yoğunluğu nedeniyle bilinçli olarak yüksek tutulmuştur.</p>
+<div class="tw"><table>
+<tr><th>OPEX Kalemi</th><th>Aylık (USD, tahmini)</th><th>Yıllık (USD, tahmini)</th><th>Açıklama</th></tr>
+<tr><td>Paslanmaz çelik hammadde</td><td>250.000 – 600.000</td><td>3.000.000 – 7.200.000</td><td>Hacme bağlı; en büyük değişken kalem</td></tr>
+<tr><td>Doğrudan işçilik</td><td>120.000 – 220.000</td><td>1.440.000 – 2.640.000</td><td>~60-90 mavi yaka (tahmini)</td></tr>
+<tr><td>Enerji (elektrik, gaz, basınçlı hava)</td><td>60.000 – 130.000</td><td>720.000 – 1.560.000</td><td>Lazer/kaynak yoğun — yüksek</td></tr>
+<tr><td>Kira / amortisman</td><td>50.000 – 90.000</td><td>600.000 – 1.080.000</td><td>OSB'de mülk ise amortisman ağırlıklı</td></tr>
+<tr><td>Bakım-onarım</td><td>20.000 – 45.000</td><td>240.000 – 540.000</td><td>Lazer optik, robot servis sözleşmeleri</td></tr>
+<tr><td>Sarf malzeme</td><td>25.000 – 55.000</td><td>300.000 – 660.000</td><td>Kaynak teli, gaz, aşındırıcı, nozül</td></tr>
+<tr><td>Yazılım / SaaS</td><td>8.000 – 18.000</td><td>96.000 – 216.000</td><td>ERP/CAM/PLM bakım + bulut/AI API</td></tr>
+<tr><td>Pazarlama / fuar</td><td>15.000 – 40.000</td><td>180.000 – 480.000</td><td>HOST/Anuga/Gulfood, dijital</td></tr>
+<tr><td>Lojistik / ihracat</td><td>25.000 – 60.000</td><td>300.000 – 720.000</td><td>Nakliye, gümrük, paketleme</td></tr>
+<tr><td>Genel yönetim (idari personel, sigorta, vergi giderleri)</td><td>40.000 – 80.000</td><td>480.000 – 960.000</td><td>Beyaz yaka + overhead</td></tr>
+<tr><td><strong>TOPLAM OPEX</strong></td><td><strong>~615.000 – 1.338.000</strong></td><td><strong>~7,4 M – 16,1 M</strong></td><td>Orta senaryo <strong>~11-12 M USD/yıl (tahmini)</strong></td></tr>
+</table></div>
+<ul>
+<li>Hammadde, toplam OPEX'in <strong>%40-50</strong>'sini oluşturur. 304 paslanmaz CRC/sac fiyatı uluslararası piyasada <strong>~1.900-2.200 USD/ton</strong>, Türkiye iç piyasasında işlenmiş sac bazında daha yüksek seyretmektedir (<a href="https://ssalloy-steel.com/price/stainless-steel-sheet-price/" target="_blank" rel="noopener">ssalloy</a>). Fiyat dalgalanması net marj üzerinde en büyük risktir.</li>
+</ul>
+<hr>
+<h3>(c) İşletme Sermayesi İhtiyacı</h3>
+<p>İşletme sermayesi (net çalışma sermayesi), faaliyetin nakit döngüsünü finanse eder ve CAPEX'ten ayrı planlanmalıdır.</p>
+<ul>
+<li><strong>Hesap mantığı:</strong> Net İşletme Sermayesi = (Stok + Ticari Alacaklar) − Ticari Borçlar</li>
+<li><strong>Varsayımlar (tahmini):</strong></li>
+<li>Hammadde + yarı mamul + mamul stoğu: ~<strong>60-75 gün</strong> (paslanmaz tedarik süresi + üretim çevrimi uzun)</li>
+<li>Müşteri vade (alacak): ~<strong>60-90 gün</strong> (proje/B2B satış, ihracatta akreditif)</li>
+<li>Tedarikçi vade (borç): ~<strong>30-45 gün</strong></li>
+<li><strong>Sonuç:</strong> Net işletme sermayesi açığı ≈ yıllık OPEX'in <strong>~%20-25</strong>'i.</li>
+<li>11-12 M USD OPEX üzerinden: <strong>~2,2 – 3,0 M USD (tahmini)</strong> kalıcı işletme sermayesi.</li>
+<li>İlk 12-18 ayda (pilot + düşük hacim) gelir düşük, gider yüksek olacağından, bu döneme özel ek bir <strong>nakit tamponu (~1,0-1,5 M USD, tahmini)</strong> öngörülmelidir. Toplam finansman ihtiyacı = CAPEX + işletme sermayesi + başlangıç nakit tamponu.</li>
+</ul>
+<hr>
+<h3>(d) Basit Fizibilite Metrikleri</h3>
+<p>Aşağıdaki tüm değerler <strong>açıkça tahmini</strong> olup, kesin pazar/maliyet verisiyle revize edilmelidir.</p>
+<p><strong>Gelir Senaryosu (tahmini):</strong></p>
+<div class="tw"><table>
+<tr><th>Yıl</th><th>Faz</th><th>Ciro (USD, tahmini)</th><th>Açıklama</th></tr>
+<tr><td>1</td><td>Pilot + düşük hacim</td><td>3 – 5 M</td><td>Çoğunlukla klasik ürün (A), 1-2 AUTOKITCH pilot</td></tr>
+<tr><td>2</td><td>Ramp-up</td><td>8 – 12 M</td><td>A serileşir, B referans projeleri</td></tr>
+<tr><td>3</td><td>Seri üretim</td><td>15 – 22 M</td><td>A hacim + B katma değerli satış</td></tr>
+</table></div>
+<p><strong>Marj Aralıkları (tahmini):</strong></p>
+<ul>
+<li>Brüt marj: Klasik ürün (A) <strong>%20-30</strong>; AUTOKITCH (B) yazılım/otomasyon katma değeriyle <strong>%35-50</strong>. Karma brüt marj <strong>~%28-35</strong>.</li>
+<li>Net (vergi öncesi) marj: olgunlukta <strong>~%8-15</strong> (teşvik öncesi); vergi indirimi/Ar-Ge teşvikleri net marjı belirgin iyileştirir.</li>
+</ul>
+<p><strong>Geri Ödeme Süresi (Payback):</strong></p>
+<ul>
+<li>Olgun yıl serbest nakit akışı ~<strong>1,5-2,5 M USD/yıl (tahmini)</strong> kabul edildiğinde, ~8 M USD CAPEX için basit geri ödeme <strong>~4-6 yıl (tahmini)</strong>. Teşviklerle (vergi indirimi + SGK + Ar-Ge) etkin süre <strong>~3,5-5 yıla</strong> iner.</li>
+</ul>
+<p><strong>NPV / IRR Yaklaşımı (tahmini, varsayımlar açık):</strong></p>
+<ul>
+<li>Varsayımlar: 10 yıl projeksiyon, iskonto oranı <strong>%18-22 (TL reel/USD karması, tahmini)</strong>, kalıntı değer = son yıl FCF × 4, 3. yıldan itibaren olgun nakit akışı.</li>
+<li>Bu varsayımlarla projenin <strong>IRR aralığı ~%15-25 (tahmini)</strong>, teşviklerin nakit etkisi dahil edildiğinde üst banda yaklaşır.</li>
+<li><strong>NPV</strong>, %20 iskonto altında pozitif olması beklenir ancak gelir senaryosunun gerçekleşmesine (özellikle B ürün ailesinin satış adedine) yüksek duyarlıdır.</li>
+<li><strong>Duyarlılık:</strong> En kritik 3 değişken — (1) paslanmaz çelik fiyatı, (2) AUTOKITCH satış adedi/fiyatı, (3) kapasite kullanım oranı. Çelik fiyatında %15 artış net marjı ~3-5 puan baskılar (tahmini).</li>
+</ul>
+<hr>
+<h3>(e) Teşvikler</h3>
+<p>Türkiye'de bu profildeki bir yatırım (OSB + imalat + Ar-Ge + ihracat) çok katmanlı teşviklerden yararlanabilir. <strong>30 Mayıs 2025'te yürürlüğe giren 2025/9903 sayılı yeni teşvik sistemi</strong> ülkeyi 6 bölgeye ayırır ve OSB'de yatırımı bir alt bölge şartlarıyla destekler (<a href="https://www.muhasebetr.com/yazarlarimiz/cevdet/0670/" target="_blank" rel="noopener">muhasebetr</a>, <a href="https://www.isfaymm.com/blog/yatirim-tesvik-2025-guncellemeleri" target="_blank" rel="noopener">isfaymm</a>).</p>
+<p><strong>1) Yatırım Teşvik Belgesi (YTB):</strong></p>
+<ul>
+<li><strong>KDV istisnası:</strong> Belge kapsamı makine-teçhizat alımında KDV ödenmez (CAPEX'te ~%20 nakit avantajı, tahmini).</li>
+<li><strong>Gümrük vergisi muafiyeti:</strong> İthal makine/teçhizatta gümrük vergisi alınmaz.</li>
+<li><strong>Vergi indirimi (indirimli kurumlar vergisi):</strong> 5520 sk. 32/A; yatırıma katkı oranı kadar kurumlar vergisi indirimli uygulanır (bölge ve yatırım tutarına göre belirlenir).</li>
+<li><strong>SGK işveren prim desteği:</strong> OSB'de yatırım, bulunulan bölgenin <strong>bir alt bölgesi</strong> şartlarıyla desteklenir; süre diğer bölgelerde <strong>8 yıl</strong>, 6. bölgede <strong>12 yıl</strong> (<a href="https://www.pwc.com.tr/tr/medya/kose-yazilari/celal-ozcan/yeni-yatirim-tesvik-uygulamasi-kapsaminda-sgk-tesviki.html" target="_blank" rel="noopener">PwC</a>).</li>
+<li><strong>Faiz/kâr payı desteği:</strong> Bölgesel/öncelikli yatırımlarda kredi faizinin bir kısmı devletçe karşılanabilir.</li>
+</ul>
+<p><strong>2) OSB Avantajları:</strong></p>
+<ul>
+<li>Emlak vergisi muafiyeti (genelde 5 yıl), inşaat/yapı kullanma harcı muafiyetleri, düşük bedelli/teşvikli arsa tahsisi, altyapı (yol, elektrik, atık su) hazır, bazı OSB'lerde elektrikte indirim.</li>
+</ul>
+<p><strong>3) Ar-Ge Merkezi Teşvikleri (5746 sk.):</strong></p>
+<ul>
+<li><strong>%100 Ar-Ge indirimi:</strong> Ar-Ge harcamalarının tamamı kurumlar vergisi matrahından indirilir.</li>
+<li><strong>Gelir vergisi stopaj teşviki:</strong> Ar-Ge/tasarım personeli ücretlerinde doktoralı/temel bilimlerde <strong>%95</strong>, yüksek lisans/ilgili alanda <strong>%90</strong>, diğerlerinde <strong>%80</strong> stopaj istisnası (<a href="https://www.pwc.com.tr/turkiye-de-arge-ve-tasarim-tesvikleri" target="_blank" rel="noopener">PwC Ar-Ge</a>).</li>
+<li><strong>SGK işveren desteği:</strong> Ar-Ge personeli için işveren SGK priminin <strong>%50</strong>'si Hazine'ce karşılanır.</li>
+<li><strong>Damga vergisi istisnası</strong> ve Ar-Ge kazançlarında ek destekler.</li>
+<li><strong>Koşul:</strong> Ar-Ge Merkezi statüsü için <strong>minimum 15 tam zamanlı Ar-Ge personeli</strong> gerekir (<a href="https://www.fatiharas.com/arge-merkezi-tesvikleri-5746/" target="_blank" rel="noopener">fatiharas</a>). AUTOKITCH yatırımı için bu eşik stratejik olarak hedeflenmelidir.</li>
+</ul>
+<p><strong>4) KOSGEB Destekleri:</strong> İşletme KOBİ ölçeğindeyse (ilk yıllar) Ar-Ge-İnovasyon, KOBİGEL, makine-teçhizat ve nitelikli istihdam destekleri; geri ödemesiz hibe + faizsiz/düşük faizli kredi bileşenleri.</p>
+<p><strong>5) Eximbank İhracat Finansmanı:</strong> İhracata yönelik üretim için sevk öncesi/sonrası ihracat kredileri, alıcı kredisi ve ihracat kredi sigortası — uygun maliyetli finansman ve döviz riski yönetimi.</p>
+<p><strong>Teşviklerin Toplam Etkisi (tahmini):</strong> KDV+gümrük istisnası CAPEX'te ~<strong>0,8-1,5 M USD</strong> nakit avantajı; vergi indirimi + Ar-Ge indirimi + SGK destekleri olgun dönemde yıllık <strong>~0,5-1,2 M USD</strong> tasarruf sağlayabilir; bu da geri ödeme süresini <strong>~1-1,5 yıl</strong> kısaltarak projenin IRR'ını üst banda taşır. Tüm oran ve süreler 2025/9903 sayılı Karar ve 5746 sk. çerçevesinde <strong>(tahmini)</strong> olup, yatırım kararı öncesi bir teşvik danışmanıyla nihai belge simülasyonu yapılmalıdır.</p>
+<h2 class="sec">5B · Hukuki Fizibilite — İzin / Ruhsat / Standartlar</h2>
+<hr>
+<h3>5B.1 Genel Yaklaşım ve Süreç Mantığı</h3>
+<p>Tesis, hem (A) klasik paslanmaz çelik endüstriyel mutfak ekipmanları hem de (B) robotik/AI destekli otonom mutfak modülleri (AUTOKITCH) üreteceği için <strong>karma bir imalat sanayi tesisi</strong> statüsündedir. Bu, hukuki süreçte üç paralel hattın eş zamanlı yürütülmesini gerektirir:</p>
+<p>1. <strong>Tesis kurulum izinleri</strong> (şirket → arsa → inşaat → çevre → ruhsat) — fiziksel üretime başlamanın ön koşulu.</p>
+<p>2. <strong>Kalite/ürün belgeleri</strong> (CE, ISO, TSE, ihracat belgeleri) — ürünü yasal olarak piyasaya arz etmenin ön koşulu.</p>
+<p>3. <strong>Fikri mülkİyet + iş güvenliği</strong> — markayı/teknolojiyi korumak ve istihdamı yasal zemine oturtmak için süreklilik arz eden yükümlülükler.</p>
+<p>Aşağıdaki tüm süreler ve maliyetler ortalama OSB uygulamalarına dayalı <strong>(tahmini)</strong> değerlerdir; nihai rakamlar ilgili OSB, valilik ve belgelendirme kuruluşunun güncel tarifesine göre kesinleşir.</p>
+<hr>
+<h3>5B.2 (a) Şirket ve Tesis İzinleri — Mantıksal Sıra</h3>
+<p>Aşağıdaki tablo, sıfırdan fabrika kurulumunda izlenmesi gereken kronolojik akışı verir. Sıra önemlidir: önceki adımın çıktısı, sonraki adımın başvuru evrakıdır (örn. yapı kullanma izni olmadan GSM ruhsatı alınamaz).</p>
+<div class="tw"><table>
+<tr><th>#</th><th>İzin / Belge</th><th>Hangi Kurumdan</th><th>Ne İçin Gerekli</th><th>Tahmini Süre</th></tr>
+<tr><td>1</td><td><strong>Şirket Kuruluşu (A.Ş.)</strong></td><td>Ticaret Sicil Müdürlüğü (MERSİS üzerinden)</td><td>Tüzel kişiliğin oluşması; tüm izin/sözleşmelerin tarafı olabilmek. Yatırımcı/ortaklık ve patent sahipliği için A.Ş. tercih edilir.</td><td>1-2 hafta</td></tr>
+<tr><td>2</td><td><strong>Yatırım Teşvik Belgesi</strong> (opsiyonel ama önerilir)</td><td>Sanayi ve Teknoloji Bakanlığı (E-TUYS)</td><td>Makine-teçhizat KDV istisnası, gümrük muafiyeti, vergi indirimi, SGK primi desteği. AR-GE ve robotik üretim öncelikli alandır.</td><td>2-4 hafta</td></tr>
+<tr><td>3</td><td><strong>OSB Arsa Tahsisi</strong></td><td>İlgili OSB Bölge Müdürlüğü</td><td>Üretim parselinin tahsisi; tüm sonraki izinlerin yer/adres dayanağı. Tahsis sözleşmesinden itibaren genelde 1 yıl içinde inşaata başlama şartı vardır.</td><td>2-6 hafta</td></tr>
+<tr><td>4</td><td><strong>ÇED Süreci / Muafiyet</strong></td><td>Çevre, Şehircilik ve İklim Değişikliği İl Müdürlüğü</td><td>İnşaat ruhsatı öncesi zorunlu. Detay 5B.3'te.</td><td>1-3 ay</td></tr>
+<tr><td>5</td><td><strong>Yapı (İnşaat) Ruhsatı</strong></td><td>OSB Bölge Müdürlüğü (OSB içinde belediye yerine OSB yetkili)</td><td>Üretim binası, ofis, AR-GE ve sosyal alanların yasal inşası. Statik/mimari/mekanik/elektrik projeleri onaylanır.</td><td>1-2 ay</td></tr>
+<tr><td>6</td><td><strong>İtfaiye / Yangın Uygunluk Raporu</strong></td><td>OSB itfaiyesi veya Büyükşehir İtfaiye Daire Başkanlığı</td><td>"Binaların Yangından Korunması Hakkında Yönetmelik" uyumu; GSM ruhsatının ön şartı. Paslanmaz çelik işlemede yağ/kesme sıvısı ve elektrik yükü nedeniyle kritik.</td><td>2-4 hafta</td></tr>
+<tr><td>7</td><td><strong>Yapı Kullanma İzin Belgesi (İskan)</strong></td><td>OSB Bölge Müdürlüğü</td><td>Binanın projeye uygun tamamlandığının tescili; GSM ruhsatının zorunlu eki.</td><td>1-3 hafta</td></tr>
+<tr><td>8</td><td><strong>GSM — İşyeri Açma ve Çalışma Ruhsatı</strong></td><td>OSB Bölge Müdürlüğü (Gayrisıhhi Müessese ruhsatı)</td><td>Fiilen üretime başlamanın yasal izni. Metal işleme genelde <strong>2. sınıf GSM</strong>'dir. İskan + itfaiye + (gerekirse) ÇED + emisyon izni evrakı ile verilir.</td><td>1-2 hafta</td></tr>
+<tr><td>9</td><td><strong>Sanayi Sicil Belgesi</strong></td><td>Sanayi ve Teknoloji İl Müdürlüğü (Sanayi Sicil Bilgi Sistemi)</td><td>"Sanayici" statüsü; elektrik/doğalgazda sanayi tarifesi, ihracatta KDV iadesi, teşvik ve KOSGEB desteklerine erişim.</td><td>1-2 hafta</td></tr>
+<tr><td>10</td><td><strong>Kapasite Raporu</strong></td><td>Bağlı bulunulan Sanayi Odası / TOBB</td><td>Yıllık üretim kapasitesinin resmi tescili. Teşvik, ihale, ithalat/ihracat, gümrük ve banka kredilerinde esas belge. Eksper incelemesi ile düzenlenir.</td><td>2-4 hafta</td></tr>
+<tr><td>11</td><td><strong>Çevre İzin / Lisans</strong> (gerekiyorsa)</td><td>Çevre, Şehircilik ve İklim Değişikliği İl Müdürlüğü / Bakanlık (e-İzin)</td><td>Atık (metal talaşı, kesme yağı, atık su deşarjı), emisyon (boya/kaynak dumanı, varsa toz) faaliyetleri için. Detay 5B.6'da.</td><td>1-3 ay</td></tr>
+</table></div>
+<p><strong>Not:</strong> Yukarıdaki akış, doğrulanan OSB uygulamasıyla uyumludur: arsa tahsis sözleşmesinden 1 yıl içinde yapı ruhsatı/inşaat, yapı ruhsatından 2 yıl içinde yapı kullanma izni, ardından dosya tamamlanınca ~1 hafta içinde GSM ruhsatının düzenlenmesi tipiktir.</p>
+<hr>
+<h3>5B.3 ÇED Süreci — Seçme-Eleme ve Muafiyet</h3>
+<p>ÇED Yönetmeliği'ne (Çevresel Etki Değerlendirmesi Yönetmeliği) göre projeler EK-1 (zorunlu ÇED) ve EK-2 (seçme-eleme kriterlerine tabi) listelerine ayrılır.</p>
+<ul>
+<li><strong>Konumlandırma:</strong> Paslanmaz çelik sac işleyen, montaj-ağırlıklı bir endüstriyel mutfak/robotik modül fabrikası, ağır metalurjik döküm/haddehane içermediği sürece genellikle <strong>EK-1 kapsamında değildir</strong> ve büyük olasılıkla <strong>ÇED muafiyeti</strong> veya <strong>EK-2 (Proje Tanıtım Dosyası / PTD) → "ÇED Gerekli Değildir" kararı</strong> ile sonuçlanır.</li>
+<li><strong>Eşik dikkat noktaları:</strong> EK-2'de metal işleme tesisleri için belirli yüzölçümü/işleme kapasitesi eşikleri bulunur. ~6.000 m² kapalı alan başlangıçta düşük-orta ölçekte kalsa da, sıvama/presleme/boyahane/yüzey işlem hattının eklenmesi veya 10.000 m²'ye genişleme tesisi EK-2 eşiğinin üzerine taşıyabilir; bu durumda <strong>PTD hazırlanır.</strong></li>
+<li><strong>Süreç:</strong> Yetkili çevre danışmanlık firması PTD hazırlar → İl Müdürlüğü inceler → "ÇED Gerekli Değildir" veya "ÇED Gereklidir" kararı verir. İnşaat ruhsatı bu karara bağlıdır.</li>
+<li><strong>Önemli uyarı:</strong> ÇED muafiyeti alınsa dahi <strong>Sıfır Atık Yönetmeliği</strong> kapsamında sistem kurma zorunluluğu devam eder (doğrulanmıştır). Ayrıca atık/emisyon/deşarj profili çevre izin/lisans yükümlülüğünü ayrıca doğurabilir (5B.6).</li>
+<li><strong>Hangi kurumdan:</strong> Çevre, Şehircilik ve İklim Değişikliği İl Müdürlüğü (e-ÇED sistemi).</li>
+</ul>
+<hr>
+<h3>5B.4 (b) Kalite ve Ürün Belgeleri</h3>
+<p>Bu grup, ürünü iç pazarda ve ihracatta yasal olarak satabilmenin önkoşuludur. (A) ve (B) ürün hatları farklı belge setleri gerektirir.</p>
+<h4>Yönetim Sistemi Belgeleri (her iki hat için)</h4>
+<div class="tw"><table>
+<tr><th>Belge</th><th>Hangi Kurumdan</th><th>Ne İçin Gerekli</th></tr>
+<tr><td><strong>ISO 9001</strong> (Kalite Yönetimi)</td><td>Akredite belgelendirme kuruluşu (TÜRKAK akrediteli)</td><td>İhale/kurumsal müşteri ön şartı; süreç standardizasyonu.</td></tr>
+<tr><td><strong>ISO 14001</strong> (Çevre Yönetimi)</td><td>Akredite belgelendirme kuruluşu</td><td>Atık/emisyon yönetimi; çevre izniyle ve ihracatla uyum.</td></tr>
+<tr><td><strong>ISO 45001</strong> (İSG Yönetimi)</td><td>Akredite belgelendirme kuruluşu</td><td>6331 yükümlülükleriyle entegre, metal işleme riskini yönetir.</td></tr>
+<tr><td><strong>ISO 22000 / HACCP</strong> (gerekiyorsa)</td><td>Akredite belgelendirme kuruluşu</td><td>Gıda ile doğrudan teması olan otonom pişirme/hazırlama modülleri (AUTOKITCH) için gıda güvenliği yönetimi; özellikle ihracat ve kurumsal gıda müşterilerinde talep edilir.</td></tr>
+</table></div>
+<h4>Ürün Belgeleri ve İşaretleme</h4>
+<ul>
+<li><strong>CE İşareti (iç pazar + AB ihracatı için zorunlu):</strong> Türkiye'de AB mevzuatına uyumlu olarak makinelerin piyasaya arzı için CE işareti şarttır. Endüstriyel mutfak ekipmanları ve robotik modüller için tipik kapsam:</li>
+<li><strong>Makine Emniyeti Yönetmeliği (2006/42/AT):</strong> Hareketli/otomasyonlu tüm ekipmanlar. <strong>Önemli:</strong> Bu direktif yerini AB'de <strong>2023/1230/AB Makine Tüzüğü'ne</strong> bırakacak ve <strong>20 Ocak 2027</strong> itibarıyla bağlayıcı olacaktır (doğrulanmıştır). Yeni tüzük <strong>otonom robotlar, yapay zekâ destekli makineler ve siber güvenlik</strong> için özel kurallar getirir — bu, AUTOKITCH ürün hattını <strong>doğrudan</strong> ilgilendirir. Tasarım/teknik dosya en baştan 2023/1230'a göre yapılandırılmalıdır.</li>
+<li><strong>Alçak Gerilim Yönetmeliği (LVD, 2014/35/AB):</strong> Elektrikli ekipmanların güvenliği.</li>
+<li><strong>EMC Yönetmeliği (2014/30/AB):</strong> Elektromanyetik uyumluluk (sensör/PLC/sürücü içeren modüllerde kritik).</li>
+<li>Belgelendirme: Çoğu mutfak makinesi "Makine Direktifi Ek-IV dışı" olduğundan üretici <strong>öz beyan (Modül A)</strong> ile teknik dosya + risk analizi + uygunluk beyanı düzenler. Yüksek riskli/Ek-IV kapsamı veya müşteri talebi halinde <strong>Onaylanmış Kuruluş (Notified Body)</strong> devreye girer.</li>
+<li><strong>Gıda ile Temas Eden Malzeme Uygunluğu:</strong> AUTOKITCH ve gıda temaslı ekipman yüzeyleri için. AB tarafında <strong>EC 1935/2004</strong> çerçeve tüzüğü; Türkiye'de <strong>Türk Gıda Kodeksi — Gıda ile Temas Eden Madde ve Malzemeler Yönetmeliği</strong>. 304 paslanmaz çelik gıda teması için uygundur; göç (migrasyon) test raporu ve uygunluk beyanı gerekir. Kurum: akredite gıda/malzeme laboratuvarı + Tarım ve Orman Bakanlığı mevzuatı.</li>
+<li><strong>TSE Belgeleri:</strong> Türk Standardları Enstitüsü'nden <strong>İmalata Yeterlilik Belgesi</strong> ve ürün/hizmet yeterlilik belgeleri; kamu ihalelerinde ve yurt içi güven algısında değerlidir.</li>
+</ul>
+<h4>İhracat Pazarı Belgeleri (hedef pazara göre)</h4>
+<div class="tw"><table>
+<tr><th>Belge</th><th>Pazar</th><th>Hangi Kurumdan</th><th>Ne İçin</th></tr>
+<tr><td><strong>NSF / ETL</strong></td><td>ABD / Kanada</td><td>NSF International / Intertek (ETL)</td><td>Ticari mutfak ekipmanı sağlık-hijyen ve elektrik güvenliği standardı; ABD'de fiilen pazara giriş şartı.</td></tr>
+<tr><td><strong>SASO / SABER</strong></td><td>Suudi Arabistan</td><td>SASO (SABER platformu)</td><td>Ürün uygunluk sertifikası (PCoC) + sevkiyat uygunluğu (SCoC); Körfez ihracatında zorunlu.</td></tr>
+<tr><td><strong>EAC</strong></td><td>Avrasya Gümrük Birliği (Rusya, Kazakistan vb.)</td><td>EAEU akredite kuruluşları (TR Customs Union)</td><td>Teknik regülasyon uygunluğu (TR CU işareti).</td></tr>
+<tr><td><strong>(GCC / G-Mark)</strong></td><td>Körfez ülkeleri</td><td>GSO akredite kuruluş</td><td>Bölgesel uygunluk işareti (alternatif/ek).</td></tr>
+</table></div>
+<hr>
+<h3>5B.5 (c) Fikri Mülkiyet (Sınai Haklar)</h3>
+<p>Robotik/AI bileşeni nedeniyle bu grup stratejik öneme sahiptir; özellikle yatırımcı görüşmeleri öncesinde tescil başvurularının yapılmış olması değerlemeyi olumlu etkiler.</p>
+<div class="tw"><table>
+<tr><th>Hak Türü</th><th>Hangi Kurumdan</th><th>Ne İçin Gerekli</th></tr>
+<tr><td><strong>Marka Tescili</strong></td><td>TÜRKPATENT (yurt dışı için WIPO/Madrid Protokolü, AB için EUIPO)</td><td>"AUTOKITCH" ve şirket markasının korunması; ilgili Nice sınıflarında (07 makineler, 09 yazılım, 11 pişirme cihazları, 42 yazılım hizmetleri) tescil.</td></tr>
+<tr><td><strong>Patent</strong></td><td>TÜRKPATENT (uluslararası için PCT/EPO)</td><td>Otonom mutfak modülünün özgün teknik çözümü (mekanizma, kontrol algoritması, robotik hücre tasarımı). Yenilik + buluş basamağı şartı.</td></tr>
+<tr><td><strong>Faydalı Model</strong></td><td>TÜRKPATENT</td><td>Buluş basamağı düşük ama yeni teknik çözümler için hızlı/ucuz koruma (örn. modüler bağlantı/aparat tasarımları).</td></tr>
+<tr><td><strong>Tasarım Tescili</strong></td><td>TÜRKPATENT (AB için RCD/EUIPO)</td><td>Ekipmanların ve modüllerin görsel/endüstriyel tasarımı (form, panel, arayüz görünümü).</td></tr>
+<tr><td><strong>AI / Yazılım Fikri Hakları</strong></td><td>Telif: eser oluştuğu anda doğar; tescil opsiyonel (ör. noter/zaman damgası, kaynak kod emaneti)</td><td>Kontrol yazılımı, görme/AI modelleri telif (FSEK) ile korunur. Türkiye'de saf yazılım patentlenemez; ancak <strong>teknik etki üreten bilgisayar-uygulamalı buluş</strong> patent kapsamına girebilir. Ticari sır + NDA + çalışan buluş sözleşmeleri ile desteklenmelidir.</td></tr>
+</table></div>
+<p><strong>Pratik öneri:</strong> Kamuya açıklamadan (fuar, web, demo) önce patent başvurusunu yapın; aksi halde "yenilik" şartı zedelenir. Çalışan buluşları için 6769 sayılı SMK uyarınca <strong>hizmet buluşu</strong> düzenlemesi sözleşmelere konmalıdır.</p>
+<hr>
+<h3>5B.6 Çevre İzin/Lisans ve Atık Yükümlülükleri (Tamamlayıcı)</h3>
+<p>Metal işleme + montaj profiline göre olası yükümlülükler:</p>
+<ul>
+<li><strong>Atık Yönetimi:</strong> Metal talaşı/hurda (geri kazanım), atık kesme/soğutma sıvısı ve yağlar (tehlikeli atık), boya/çözücü atıkları → lisanslı atık taşıma/bertaraf firmalarıyla sözleşme + <strong>MOTAT/entegre çevre bilgi sistemi</strong> kaydı.</li>
+<li><strong>Emisyon İzni:</strong> Kaynak dumanı, varsa boyahane/yüzey işlem (toz/VOC) → eşik aşılırsa <strong>emisyon konulu çevre izni.</strong></li>
+<li><strong>Atıksu/Deşarj:</strong> Yüzey işlem/yıkama hattı varsa OSB <strong>merkezi atıksu arıtmaya bağlantı izni</strong> + deşarj kalite şartları; yoksa yalnız evsel atıksu.</li>
+<li><strong>Sıfır Atık Belgesi:</strong> ÇED muafiyetinden bağımsız olarak zorunludur (doğrulanmıştır).</li>
+<li><strong>Hangi kurumdan:</strong> Çevre, Şehircilik ve İklim Değişikliği İl Müdürlüğü / Bakanlık (Entegre Çevre Bilgi Sistemi — e-İzin).</li>
+</ul>
+<hr>
+<h3>5B.7 (d) İş Sağlığı ve Güvenliği (6331 Sayılı Kanun)</h3>
+<p>Metal işleme tesisi <strong>"tehlikeli"</strong> sınıfta yer alır (kaynak, presleme, kesme, sac işleme). Bu, yüksek seviyeli İSG yükümlülüğü doğurur.</p>
+<div class="tw"><table>
+<tr><th>Yükümlülük</th><th>Açıklama</th><th>Kaynak/Dayanak</th></tr>
+<tr><td><strong>Risk Değerlendirmesi</strong></td><td>İşe başlamadan önce zorunlu; tehlikeli sınıfta periyodik yenileme <strong>en geç 4 yılda bir</strong> (çok tehlikelide 2).</td><td>6331 sayılı Kanun + Risk Değerlendirmesi Yönetmeliği</td></tr>
+<tr><td><strong>İş Güvenliği Uzmanı</strong></td><td>Tehlikeli sınıfta <strong>en az (B) sınıfı</strong> belgeli uzman zorunlu (doğrulanmıştır).</td><td>6331 md. 6</td></tr>
+<tr><td><strong>İşyeri Hekimi</strong></td><td>Çalışan sayısı ve tehlike sınıfına göre görevlendirme zorunlu.</td><td>6331 md. 6</td></tr>
+<tr><td><strong>İSG Hizmet Yöntemi</strong></td><td>OSGB'den hizmet alımı veya kısmi/tam süreli istihdam. 50+ çalışanlı tehlikeli sınıfta İSG yükümlülükleri zaten tam yürürlüktedir (50'den az + az tehlikeli için 01.01.2025'te yürürlüğe giren hükümler farklıdır; bu tesis o istisnaya girmez).</td><td>doğrulanmıştır</td></tr>
+<tr><td><strong>İSG Kurulu</strong></td><td>50+ çalışan ve 6+ ay süren işlerde kurulması zorunlu.</td><td>İSG Kurulları Yönetmeliği</td></tr>
+<tr><td><strong>Çalışan Eğitimi &amp; Sağlık Gözetimi</strong></td><td>Tehlikeli sınıfta düzenli İSG eğitimi + işe giriş/periyodik sağlık muayeneleri.</td><td>6331 + ilgili yönetmelikler</td></tr>
+<tr><td><strong>Acil Durum Planı / Tahliye</strong></td><td>Yangın, kimyasal, makine kazası senaryoları; itfaiye raporuyla entegre.</td><td>Acil Durumlar Yönetmeliği</td></tr>
+</table></div>
+<p><strong>AUTOKITCH özelinde:</strong> İnsan-robot işbirliği (cobot) içeren hatlarda <strong>ISO 10218 / ISO/TS 15066</strong> (robot güvenliği) standartlarına göre ek risk analizi yapılmalı; bu, hem CE Makine Tüzüğü 2023/1230 uyumu hem de İSG açısından zorunludur.</p>
+<hr>
+<h3>5B.8 Özet Kontrol Listesi (Öncelik Sırası)</h3>
+<p>1. A.Ş. kuruluşu → 2. (Teşvik belgesi) → 3. OSB arsa tahsisi → 4. ÇED muafiyet/PTD → 5. Yapı ruhsatı → 6. İnşaat → 7. İtfaiye raporu + İskan → 8. GSM ruhsatı → 9. Sanayi sicil + Kapasite raporu → 10. (paralel) ISO + CE teknik dosya + marka/patent → 11. Üretim ve piyasaya arz → 12. (ihracat öncesi) NSF/SASO/EAC + sürekli İSG ve çevre yükümlülükleri.</p>
+<p><strong>Genel uyarı:</strong> Tüm süre ve maliyetler <strong>(tahmini)</strong> olup OSB, il müdürlüğü ve belgelendirme kuruluşu tarifelerine göre kesinleşir; başvuru öncesi ilgili OSB Bölge Müdürlüğü ve Çevre/Sanayi İl Müdürlükleri'nden güncel teyit alınması önerilir.</p>
+<p>Kaynaklar:</p>
+<ul>
+<li><a href="https://elementcevre.com.tr/ced-ek-2-listesi" target="_blank" rel="noopener">ÇED Yönetmeliği EK-2 listesi ve seçme-eleme — Element Çevre</a></li>
+<li><a href="https://sifiratik.gov.tr/sifir-atik/s-s-s/ced-yonetmeliginin-ek-1-ve-ek-2-listesinde-yer-alip-ced-muafiyeti-alan-sanayi-tesislerinin-de-sifir-atik-yonetmeligi-kapsaminda-sistem-kurma-zorunlulugu-var-midir" target="_blank" rel="noopener">ÇED EK-1/EK-2 muafiyet + Sıfır Atık zorunluluğu — sifiratik.gov.tr</a></li>
+<li><a href="https://www.bigaosb.org.tr/dokumanlar/isyeri-acma-ve-calisma-ruhsati-icin-gerekli-belgeler" target="_blank" rel="noopener">İşyeri Açma ve Çalışma Ruhsatı gerekli belgeler — Biga OSB</a></li>
+<li><a href="https://www.investinbalikesir.com/assets/upload/dosyalar/osb_yatirim_surecleri.pdf" target="_blank" rel="noopener">OSB arsa tahsisi ve yatırım süreçleri — Invest in Balıkesir (PDF)</a></li>
+<li><a href="https://mobilyacilarosb.com/arsa-tahsis-islemleri/" target="_blank" rel="noopener">Arsa tahsis işlemleri ve süreler — Elmadağ Mobilyacılar OSB</a></li>
+<li><a href="https://electrotest.com.tr/blog/detay/200642ec-makine-emniyet-yonetmeligi-ile-202311230eu-yeni-makine-emniyeti-yonetmeligi-arasinda-ne-gibi-degisiklikler-var/6" target="_blank" rel="noopener">Makine Emniyeti 2006/42/AT vs 2023/1230/AB ve 20 Ocak 2027 yürürlüğü — Electrotest</a></li>
+<li><a href="https://industrial.omron.com.tr/tr/news-discover/blog/navigating-the-new-machinery-directive" target="_blank" rel="noopener">Yeni Makine Tüzüğü ve otonom/AI makineler — OMRON Türkiye</a></li>
+<li><a href="https://nazaligundem.com/tr/yayinlar/6331-sayili-is-sagligi-ve-guvenligi-kanununun-6-maddesine-gore-50den-az-calisani-bulunan-ve-az-tehlikeli-sinifta-yer-alan-isyerlerine-iliskin-is-guvenligi-uzmani-ve-" target="_blank" rel="noopener">6331 İSG — iş güvenliği uzmanı/işyeri hekimi sınıfları ve 2025 hükümleri — Nazalı Gündem</a></li>
+<li><a href="https://ankatekosgb.com.tr/tehlike-sinifina-gore-osgb-hizmeti-zorunlulugu/" target="_blank" rel="noopener">Tehlike sınıfına göre OSGB hizmet zorunluluğu — Anka Tek OSGB</a></li>
+</ul>
+</div></main>
+
+<footer>AUTOKITCH · Fizibilite &amp; Yatırım Raporu · Kemal — Torinoarch Studio · 2026 · Tüm finansal değerler tahminîdir; kesin teklif ve mühendislikle netleştirilmelidir.</footer>
+
+<script>
+var nav=document.getElementById('nav');function s(){nav.classList.toggle('solid',window.scrollY>40);}s();window.addEventListener('scroll',s,{passive:true});
+</script>
+</body></html>
