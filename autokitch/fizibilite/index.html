@@ -63,6 +63,20 @@ td strong{color:#fff}
 .toc-nav .t3.active{color:var(--blue-l);background:#16352a}
 .report .sec,.report h3{scroll-margin-top:72px}
 @media(max-width:880px){.report-layout{flex-direction:column;gap:0}.toc{position:static;width:auto;flex:none;max-height:none;margin-bottom:26px}.toc-nav .subs,.toc-nav .car{display:none!important}}
+.mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:24px 0 30px}
+.mcard{border-radius:14px;overflow:hidden;background:var(--panel);border:1px solid var(--hair);transition:transform .3s,border-color .3s}
+.mcard:hover{transform:translateY(-4px);border-color:var(--blue-d)}
+.mcard .ph{position:relative;height:160px;overflow:hidden;background:#0d0d0f}
+.mcard .ph img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.9) contrast(1.03) brightness(.96);transition:transform .5s}
+.mcard:hover .ph img{transform:scale(1.05)}
+.mcard .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.55))}
+.mcard .num{position:absolute;top:11px;left:13px;z-index:2;font-size:11px;font-weight:700;color:var(--blue-l);letter-spacing:.05em}
+.mcard .cap{padding:11px 14px 13px}
+.mcard .cap h4{font-size:13.5px;font-weight:600;color:#fff;margin:0 0 3px}
+.mcard .cap p{font-size:12px;color:var(--gray);margin:0;line-height:1.4}
+.mcred{margin:14px 0 0;font-size:11px;color:#5a5a5e;line-height:1.5}
+@media(max-width:760px){.mgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.mgrid{grid-template-columns:1fr}}
 footer{background:#000;color:#6e6e73;text-align:center;padding:36px 22px;font-size:12px;border-top:1px solid var(--hair)}
 #gate{position:fixed;inset:0;z-index:99999;background:#000;display:flex;align-items:center;justify-content:center;text-align:center;transition:opacity .3s}
 #gate .gbox{padding:30px;max-width:380px}
@@ -199,6 +213,7 @@ body.glocked{overflow:hidden}
 <li><strong>Para birimi:</strong> USD / TL yaklaşık aralıklar. Tüm finansal değerler <strong>(tahmini)</strong> olup yatırım öncesi teklif ve detaylı mühendislikle netleştirilmelidir.</li>
 </ul>
 <h2 id="sec-1" class="sec">1 · Teknik Fizibilite ve Makine Parkuru</h2>
+<div class="mgrid"><figure class="mcard"><div class="ph"><span class="num">01</span><img src="../assets/machines/fiber_laser.jpg" alt="Fiber lazer kesim" loading="lazy"></div><figcaption class="cap"><h4>Fiber lazer kesim</h4><p>304/430 paslanmaz sacın hassas, çapaksız ve hızlı kesimi.</p></figcaption></figure><figure class="mcard"><div class="ph"><span class="num">02</span><img src="../assets/machines/press_brake.jpg" alt="CNC abkant pres" loading="lazy"></div><figcaption class="cap"><h4>CNC abkant pres</h4><p>Panel ve gövdelerin tekrarlanabilir, hassas bükümü.</p></figcaption></figure><figure class="mcard"><div class="ph"><span class="num">03</span><img src="../assets/machines/turret_punch.jpg" alt="CNC taretli zımba" loading="lazy"></div><figcaption class="cap"><h4>CNC taretli zımba</h4><p>Delik, kanal ve formların seri delinmesi.</p></figcaption></figure><figure class="mcard"><div class="ph"><span class="num">04</span><img src="../assets/machines/welding_robot.jpg" alt="Robotik kaynak hücresi" loading="lazy"></div><figcaption class="cap"><h4>Robotik kaynak hücresi</h4><p>Yüksek tekrarlı, kararlı kalitede otomatik kaynak.</p></figcaption></figure><figure class="mcard"><div class="ph"><span class="num">05</span><img src="../assets/machines/tig_welding.jpg" alt="TIG / MIG kaynak" loading="lazy"></div><figcaption class="cap"><h4>TIG / MIG kaynak</h4><p>Paslanmaz çelikte temiz, sızdırmaz el kaynağı dikişleri.</p></figcaption></figure><figure class="mcard"><div class="ph"><span class="num">06</span><img src="../assets/machines/polishing.jpg" alt="Taşlama &amp; yüzey işlem" loading="lazy"></div><figcaption class="cap"><h4>Taşlama &amp; yüzey işlem</h4><p>Pasivasyon öncesi parlatma ve son rötuş.</p></figcaption></figure></div><p class="mcred">Makine görselleri · Wikimedia Commons (temsilî): Fiber lazer — Framos123 (CC BY-SA 4.0) · Abkant pres — Gasparini Industries (CC BY-SA 4.0) · Taretli zımba — Advliege (CC BY-SA 3.0) · Robotik kaynak — PT Metindo Erasakti (CC BY-SA 4.0) · TIG kaynak — MaraZet (CC BY-SA 4.0) · Taşlama — U.S. Air Force (kamu malı).</p>
 <h3 id="sub-0">1. Sac İşleme Hattı (Sheet Metal Processing)</h3>
 <p>Paslanmaz çelik (304/430) sac, fabrikanın ana hammaddesidir. Bu hat, gelen levhayı kesim, delme ve bükme yoluyla parça/kabin formuna dönüştürür ve tüm üretimin kapasite "boğazı"nı belirler.</p>
 <h3 id="sub-1">Fiber Lazer Kesim (Ana kesim hücresi)</h3>

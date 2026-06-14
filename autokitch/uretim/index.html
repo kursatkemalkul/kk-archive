@@ -131,6 +131,28 @@
   .btn:hover{background:var(--blue-d);transform:translateY(-2px)}
   .btn.ghost{background:transparent;border:1px solid #3a3a3d;color:#d6d6d8;margin-left:10px}
   footer{background:#000;color:#6e6e73;text-align:center;padding:36px 22px;font-size:12px}
+  .mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px;text-align:left}
+  .mcard{border-radius:16px;overflow:hidden;background:var(--panel);border:1px solid var(--hair);transition:transform .3s,border-color .3s}
+  .mcard:hover{transform:translateY(-4px);border-color:var(--blue-d)}
+  .mcard .ph{position:relative;height:188px;overflow:hidden;background:#0d0d0f}
+  .mcard .ph img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.9) contrast(1.03) brightness(.96);transition:transform .5s}
+  .mcard:hover .ph img{transform:scale(1.05)}
+  .mcard .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.55))}
+  .mcard .num{position:absolute;top:12px;left:14px;z-index:2;font-size:12px;font-weight:700;color:var(--blue);letter-spacing:.05em}
+  .mcard .cap{padding:13px 16px 15px}
+  .mcard .cap h4{font-size:14.5px;font-weight:600;color:#fff;margin:0 0 4px}
+  .mcard .cap p{font-size:12.5px;color:var(--gray);margin:0;line-height:1.4}
+  .mcred{margin-top:16px;font-size:11px;color:#5a5a5e;line-height:1.5;text-align:left}
+  .mbanner{position:relative;border-radius:18px;overflow:hidden;margin-top:30px;border:1px solid var(--hair)}
+  .mbanner img{width:100%;height:300px;object-fit:cover;display:block;filter:saturate(.92) contrast(1.03) brightness(.92)}
+  .mbanner figcaption{position:absolute;left:0;right:0;bottom:0;padding:34px 24px 18px;font-size:14px;color:#f2f2f4;font-weight:500;background:linear-gradient(transparent,rgba(0,0,0,.78));text-align:left}
+  .mfeat{position:relative;border-radius:18px;overflow:hidden;margin:26px 0 6px;border:1px solid var(--hair)}
+  .mfeat img{width:100%;height:340px;object-fit:cover;display:block;filter:saturate(.95) contrast(1.02)}
+  .mfeat figcaption{position:absolute;left:0;right:0;bottom:0;padding:40px 26px 20px;background:linear-gradient(transparent,rgba(0,0,0,.8));text-align:left}
+  .mfeat figcaption b{display:block;font-size:18px;color:#fff;font-weight:600;margin-bottom:3px}
+  .mfeat figcaption span{font-size:13.5px;color:var(--gray-l)}
+  @media(max-width:760px){.mgrid{grid-template-columns:1fr 1fr}.mbanner img{height:220px}.mfeat img{height:240px}}
+  @media(max-width:480px){.mgrid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -233,6 +255,10 @@
     <div class="eyebrow rv">Ürün Gamı</div>
     <h2 class="rv d1">Tam bir endüstriyel<br>mutfak ürün ailesi.</h2>
     <p class="lead rv d2">Bu firmaların ürettiği her grubu biz de üretiriz — üzerine, kimsede olmayan otonom/AI katmanını ekleriz.</p>
+    <figure class="mfeat rv d1">
+      <img src="../assets/machines/stainless_kitchen.jpg" alt="Paslanmaz çelik ticari mutfak" loading="lazy">
+      <figcaption><b>Komple paslanmaz çelik mutfak</b><span>Pişirme adaları, davlumbazlar, hazırlık ve servis — uçtan uca tek elden.</span></figcaption>
+    </figure>
     <div class="prods">
       <div class="prod rv d1"><h4><span class="d"></span>Pişirme</h4><ul><li>Ocaklar</li><li>Fritözler</li><li>Izgaralar</li><li>Devrilir tava</li><li>Wok</li><li>İndüksiyon</li><li>Salamander</li></ul></div>
       <div class="prod rv d2"><h4><span class="d"></span>Fırınlar</h4><ul><li>Kombi</li><li>Konveksiyon</li><li>Pizza / pide</li><li>Pastane</li><li>Mikrodalga</li></ul></div>
@@ -262,6 +288,28 @@
       <div class="prow rv d2"><div class="pnum">04</div><div><h3>Satış & ihracat</h3><p>Ürünü Türkiye'ye ve dünyaya satacak ticari yapı. (Detay "Marka & Kurumsallaşma"da.)</p><div class="tags"><span class="tag2">Bayi ağı</span><span class="tag2">Kurumsal satış</span><span class="tag2">İhracat ekibi</span><span class="tag2">Fuarlar</span></div></div></div>
       <div class="prow rv d1"><div class="pnum">05</div><div><h3>Marka & ürünleştirme</h3><p>Premium, akılda kalıcı bir marka — Torinoarch'ın tasarım gücüyle. (Detay aşağıda.)</p><div class="tags"><span class="tag2">Marka kimliği</span><span class="tag2">Katalog</span><span class="tag2">Web & e-katalog</span><span class="tag2">Premium konumlandırma</span></div></div></div>
     </div>
+  </div>
+</section>
+
+<!-- MAKINE PARKI -->
+<section id="makinepark" class="center">
+  <div class="wrap">
+    <div class="eyebrow rv">Makine Parkı · Üretim altyapısı</div>
+    <h2 class="rv d1">Ürünü gramına üreten makineler.</h2>
+    <p class="lead rv d2">Paslanmaz çelik (304/430) sacı kesim, büküm, kaynak ve yüzey işlemden geçirerek mamule dönüştüren tam donanımlı bir hat. İşte o hattın çekirdeği:</p>
+    <figure class="mbanner rv d1">
+      <img src="../assets/machines/factory_floor.jpg" alt="Üretim hattı" loading="lazy">
+      <figcaption>Uçtan uca planlı üretim hattı — fiber lazerden montaj ve teste.</figcaption>
+    </figure>
+    <div class="mgrid">
+      <figure class="mcard rv d1"><div class="ph"><span class="num">01</span><img src="../assets/machines/fiber_laser.jpg" alt="Fiber lazer kesim" loading="lazy"></div><figcaption class="cap"><h4>Fiber lazer kesim</h4><p>304/430 sacın hassas, çapaksız ve hızlı kesimi.</p></figcaption></figure>
+      <figure class="mcard rv d2"><div class="ph"><span class="num">02</span><img src="../assets/machines/press_brake.jpg" alt="CNC abkant pres" loading="lazy"></div><figcaption class="cap"><h4>CNC abkant pres</h4><p>Panel ve gövdelerin tekrarlanabilir, hassas bükümü.</p></figcaption></figure>
+      <figure class="mcard rv d3"><div class="ph"><span class="num">03</span><img src="../assets/machines/turret_punch.jpg" alt="CNC taretli zımba" loading="lazy"></div><figcaption class="cap"><h4>CNC taretli zımba</h4><p>Delik, kanal ve formların seri delinmesi.</p></figcaption></figure>
+      <figure class="mcard rv d1"><div class="ph"><span class="num">04</span><img src="../assets/machines/welding_robot.jpg" alt="Robotik kaynak hücresi" loading="lazy"></div><figcaption class="cap"><h4>Robotik kaynak hücresi</h4><p>Yüksek tekrarlı, kararlı kalitede otomatik kaynak.</p></figcaption></figure>
+      <figure class="mcard rv d2"><div class="ph"><span class="num">05</span><img src="../assets/machines/tig_welding.jpg" alt="TIG / MIG kaynak" loading="lazy"></div><figcaption class="cap"><h4>TIG / MIG kaynak</h4><p>Paslanmaz çelikte temiz, sızdırmaz dikişler.</p></figcaption></figure>
+      <figure class="mcard rv d3"><div class="ph"><span class="num">06</span><img src="../assets/machines/polishing.jpg" alt="Taşlama & yüzey işlem" loading="lazy"></div><figcaption class="cap"><h4>Taşlama & yüzey işlem</h4><p>Pasivasyon öncesi parlatma ve son rötuş.</p></figcaption></figure>
+    </div>
+    <p class="mcred">Görseller · Wikimedia Commons (temsilî): Fiber lazer — Framos123 (CC BY-SA 4.0) · Abkant pres — Gasparini Industries (CC BY-SA 4.0) · Taretli zımba — Advliege (CC BY-SA 3.0) · Robotik kaynak — PT Metindo Erasakti (CC BY-SA 4.0) · TIG kaynak — MaraZet (CC BY-SA 4.0) · Taşlama — U.S. Air Force (kamu malı) · Üretim hattı — Antoniusaw (CC BY-SA 4.0) · Mutfak — Shrinks99 (CC0).</p>
   </div>
 </section>
 
