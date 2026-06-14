@@ -16,7 +16,7 @@ a{color:var(--blue-l);text-decoration:none}
 .nav-in{max-width:1040px;width:100%;display:flex;align-items:center;justify-content:space-between;padding:0 22px}
 .logo{font-weight:600;font-size:19px;color:#fff}.logo b{color:var(--blue)}
 .nav-back{font-size:14px;color:#d6d6d8}.nav-back:hover{color:var(--blue)}
-.hero{min-height:64vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:130px 22px 70px;background:radial-gradient(120% 80% at 50% 0%,#06231a 0%,#04130d 42%,#000 78%)}
+.hero{min-height:74vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 22px 64px;background:radial-gradient(120% 80% at 50% 0%,#06231a 0%,#04130d 42%,#000 78%)}
 .hero .tag{font-size:clamp(14px,1.5vw,19px);font-weight:600;color:var(--blue-l);margin-bottom:10px}
 .hero h1{font-size:clamp(34px,6vw,72px);font-weight:600;letter-spacing:-.035em;line-height:1.04;background:linear-gradient(168deg,#E9FFF4,var(--blue-l) 34%,var(--blue) 66%,var(--blue-d));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .hero .sub{font-size:clamp(16px,1.9vw,22px);color:#cfe9dd;font-weight:500;max-width:760px;margin:22px auto 0;line-height:1.35}
@@ -25,25 +25,45 @@ a{color:var(--blue-l);text-decoration:none}
 .btn:hover{background:var(--blue-l);transform:translateY(-2px)}
 .btn.ghost{background:transparent;border:1px solid #34503f;color:#cfe9dd}
 .report{padding:60px 0 100px}
-.report .sec{font-size:clamp(24px,3.4vw,38px);font-weight:600;color:#fff;letter-spacing:-.02em;margin:70px 0 6px;padding-top:26px;border-top:1px solid var(--hair)}
-.report .sec:first-of-type{border-top:0;margin-top:10px}
-.report h3{font-size:20px;font-weight:600;color:#fff;margin:30px 0 8px}
-.report h4{font-size:16px;font-weight:600;color:var(--blue-l);margin:22px 0 6px}
-.report p{color:var(--gray-l);margin:9px 0;font-size:15.5px}
-.report ul{margin:8px 0 8px 4px;list-style:none}
-.report li{color:var(--gray-l);font-size:15px;line-height:1.5;padding-left:20px;position:relative;margin:5px 0}
-.report li::before{content:"";position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:50%;background:var(--blue)}
+.secno{font-size:clamp(38px,6vw,68px);font-weight:600;line-height:1;letter-spacing:-.03em;background:linear-gradient(160deg,var(--blue-l),var(--blue) 55%,var(--blue-d));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;opacity:.92;margin-top:74px}
+.report .sec{font-size:clamp(23px,3.2vw,36px);font-weight:600;color:#fff;letter-spacing:-.02em;margin:4px 0 8px}
+.secno+.report .sec,.secno+.sec{margin-top:2px}
+.report .sec:first-of-type{margin-top:8px}
+.report h3{font-size:21px;font-weight:600;color:#fff;margin:34px 0 12px}
+.report h4{font-size:16.5px;font-weight:600;color:var(--blue-l);margin:24px 0 8px}
+.report p{color:#C2C2C7;margin:14px 0;font-size:16.5px;line-height:1.72;max-width:72ch}
+.report p.sec-lead{font-size:clamp(17px,1.7vw,20px);color:#dfe6ea;line-height:1.5;margin:8px 0 20px;font-weight:400}
+.report ul{margin:10px 0 14px 4px;list-style:none}
+.report li{color:#C2C2C7;font-size:16px;line-height:1.65;padding-left:22px;position:relative;margin:9px 0;max-width:72ch}
+.report li::before{content:"";position:absolute;left:2px;top:10px;width:6px;height:6px;border-radius:50%;background:var(--blue)}
+.report li>strong:first-child{display:block;color:var(--blue-l);font-size:13.5px;font-weight:600;letter-spacing:.01em;margin-bottom:2px}
 .report strong{color:#fff;font-weight:600}
-.report hr{border:0;border-top:1px solid var(--hair);margin:20px 0}
-.report blockquote{border-left:3px solid var(--blue);background:var(--panel);padding:14px 18px;border-radius:0 12px 12px 0;margin:16px 0;color:#e6e6e8;font-size:15px}
+.report hr{border:0;border-top:1px solid var(--hair);margin:26px 0}
+.report blockquote{border-left:4px solid var(--blue);background:var(--panel);padding:18px 22px;border-radius:0 12px 12px 0;margin:22px 0;color:#e6e6e8;font-size:16px;line-height:1.6;max-width:74ch}
 .report code{background:#0e0e10;border:1px solid var(--hair);border-radius:6px;padding:1px 6px;font-size:13px;color:#cfe9dd}
 .report pre{background:var(--panel);border:1px solid var(--hair);border-radius:14px;padding:20px;overflow:auto;font-family:Consolas,monospace;font-size:12.5px;color:#cfd2d6;line-height:1.45;margin:16px 0}
-.tw{overflow-x:auto;margin:16px 0;border:1px solid var(--hair);border-radius:14px}
-table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px}
-th{background:#06231a;color:#fff;text-align:left;padding:12px 14px;font-weight:600;border-bottom:1px solid var(--hair)}
-td{padding:11px 14px;border-top:1px solid var(--hair);color:var(--gray-l);vertical-align:top}
+.tw{overflow-x:auto;margin:18px 0;border:1px solid var(--hair);border-radius:14px}
+table{width:100%;border-collapse:collapse;font-size:15px;min-width:520px}
+th{background:#06231a;color:#fff;text-align:left;padding:14px 16px;font-weight:600;border-bottom:1px solid var(--hair)}
+td{padding:13px 16px;border-top:1px solid var(--hair);color:#C2C2C7;vertical-align:top;line-height:1.5}
+td:first-child{color:#fff;font-weight:600}
 tr:nth-child(even) td{background:#161618}
 td strong{color:#fff}
+.herostats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:780px;margin:42px auto 0}
+.herostats .hs{background:rgba(255,255,255,.04);border:1px solid var(--hair);border-radius:14px;padding:16px 12px}
+.herostats .hs-n{font-size:clamp(22px,2.8vw,34px);font-weight:600;letter-spacing:-.02em;background:linear-gradient(150deg,var(--blue-l),var(--blue-d));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.herostats .hs-l{font-size:11.5px;color:var(--gray);margin-top:6px;line-height:1.35}
+.hscope{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:24px}
+.hscope span{font-size:12.5px;color:#cfe9dd;background:rgba(255,255,255,.05);border:1px solid var(--hair);border-radius:980px;padding:6px 14px}
+.factgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:18px 0 26px;max-width:none}
+.fact{background:var(--panel);border:1px solid var(--hair);border-radius:14px;padding:16px 18px}
+.fact b{color:var(--blue-l);font-size:12.5px;font-weight:600;letter-spacing:.02em;display:block;margin-bottom:5px}
+.fact span{color:#C2C2C7;font-size:15px;line-height:1.5}
+.keystrip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:6px 0 28px}
+.kc{background:var(--panel);border:1px solid var(--hair);border-radius:14px;padding:18px 16px}
+.kc-big{font-size:clamp(24px,2.6vw,32px);font-weight:600;letter-spacing:-.02em;color:var(--blue-l)}
+.kc-lab{font-size:12.5px;color:var(--gray);margin-top:6px;line-height:1.4}
+@media(max-width:680px){.herostats{grid-template-columns:1fr 1fr}.keystrip{grid-template-columns:1fr 1fr}.factgrid{grid-template-columns:1fr}}
 .report-layout{display:flex;gap:46px;align-items:flex-start}
 .report-body{flex:1 1 auto;min-width:0}
 .toc{position:sticky;top:70px;flex:0 0 250px;width:250px;background:var(--panel);border:1px solid var(--hair);border-radius:16px;padding:16px 12px;max-height:calc(100vh - 90px);overflow-y:auto}
@@ -61,7 +81,7 @@ td strong{color:#fff}
 .toc-nav .t3{font-size:12.5px;color:var(--gray);padding:6px 10px}
 .toc-nav .t3:hover{background:#26262a;color:#fff}
 .toc-nav .t3.active{color:var(--blue-l);background:#16352a}
-.report .sec,.report h3{scroll-margin-top:72px}
+.secno{scroll-margin-top:64px}.report .sec{scroll-margin-top:122px}.report h3{scroll-margin-top:74px}
 @media(max-width:880px){.report-layout{flex-direction:column;gap:0}.toc{position:static;width:auto;flex:none;max-height:none;margin-bottom:26px}.toc-nav .subs,.toc-nav .car{display:none!important}}
 .mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:24px 0 30px}
 .mcard{border-radius:14px;overflow:hidden;background:var(--panel);border:1px solid var(--hair);transition:transform .3s,border-color .3s}
@@ -102,6 +122,13 @@ body.glocked{overflow:hidden}
     <a class="btn" href="AUTOKITCH_Fizibilite_Raporu.pdf" target="_blank">PDF indir</a>
     <a class="btn ghost" href="AUTOKITCH_Fizibilite_Raporu.docx">Word indir</a>
   </div>
+  <div class="herostats">
+    <div class="hs"><div class="hs-n">~8 M$</div><div class="hs-l">Toplam yatırım · CAPEX (orta)</div></div>
+    <div class="hs"><div class="hs-n">15–22 M$</div><div class="hs-l">3. yıl ciro hedefi</div></div>
+    <div class="hs"><div class="hs-n">~%15–25</div><div class="hs-l">IRR (tahmini)</div></div>
+    <div class="hs"><div class="hs-n">~3,5–5 yıl</div><div class="hs-l">Geri ödeme (teşvikle)</div></div>
+  </div>
+  <div class="hscope"><span>Teknik</span><span>Tesis &amp; Yerleşim</span><span>İnsan Kaynakları</span><span>Pazar</span><span>Finansal</span><span>Hukuki</span></div>
 </header>
 
 <main class="report"><div class="wrap report-layout">
@@ -204,15 +231,17 @@ body.glocked{overflow:hidden}
 </div>
 </div></aside>
 <div class="report-body">
-<h2 id="sec-0" class="sec">0 · Temel Varsayımlar ve Kapsam</h2>
-<ul>
-<li><strong>Lokasyon:</strong> Türkiye, bir Organize Sanayi Bölgesi (OSB).</li>
-<li><strong>Üretim kapsamı:</strong> (A) Klasik paslanmaz çelik (304/430) endüstriyel mutfak ekipmanları + (B) yeni nesil robotik/AI destekli otonom mutfak modülleri.</li>
-<li><strong>Başlangıç kapalı alan:</strong> ~6.000 m² (üretim + ofis + Ar-Ge + sosyal); 1-2 yılda ~10.000 m²'ye genişleme opsiyonu.</li>
-<li><strong>Ölçek planı:</strong> 1. yıl pilot + düşük hacim → 3. yıl seri üretim.</li>
-<li><strong>Para birimi:</strong> USD / TL yaklaşık aralıklar. Tüm finansal değerler <strong>(tahmini)</strong> olup yatırım öncesi teklif ve detaylı mühendislikle netleştirilmelidir.</li>
-</ul>
-<h2 id="sec-1" class="sec">1 · Teknik Fizibilite ve Makine Parkuru</h2>
+<div class="secno">0</div>
+<h2 id="sec-0" class="sec">Temel Varsayımlar ve Kapsam</h2>
+<div class="factgrid">
+<div class="fact"><b>Lokasyon</b><span>Türkiye, bir Organize Sanayi Bölgesi (OSB).</span></div>
+<div class="fact"><b>Üretim kapsamı</b><span>(A) Klasik paslanmaz çelik (304/430) endüstriyel mutfak ekipmanları + (B) yeni nesil robotik/AI destekli otonom mutfak modülleri.</span></div>
+<div class="fact"><b>Başlangıç kapalı alan</b><span>~6.000 m² (üretim + ofis + Ar-Ge + sosyal); 1-2 yılda ~10.000 m²'ye genişleme opsiyonu.</span></div>
+<div class="fact"><b>Ölçek planı</b><span>1. yıl pilot + düşük hacim → 3. yıl seri üretim.</span></div>
+<div class="fact"><b>Para birimi</b><span>USD / TL yaklaşık aralıklar. Tüm finansal değerler <strong>(tahmini)</strong> olup yatırım öncesi teklif ve detaylı mühendislikle netleştirilmelidir.</span></div>
+</div>
+<div class="secno">1</div>
+<h2 id="sec-1" class="sec">Teknik Fizibilite ve Makine Parkuru</h2>
 <div class="mgrid"><figure class="mcard"><div class="ph"><span class="num">01</span><img src="../assets/machines/fiber_laser.jpg" alt="Fiber lazer kesim" loading="lazy"></div><figcaption class="cap"><h4>Fiber lazer kesim</h4><p>304/430 paslanmaz sacın hassas, çapaksız ve hızlı kesimi.</p></figcaption></figure><figure class="mcard"><div class="ph"><span class="num">02</span><img src="../assets/machines/press_brake.jpg" alt="CNC abkant pres" loading="lazy"></div><figcaption class="cap"><h4>CNC abkant pres</h4><p>Panel ve gövdelerin tekrarlanabilir, hassas bükümü.</p></figcaption></figure><figure class="mcard"><div class="ph"><span class="num">03</span><img src="../assets/machines/turret_punch.jpg" alt="CNC taretli zımba" loading="lazy"></div><figcaption class="cap"><h4>CNC taretli zımba</h4><p>Delik, kanal ve formların seri delinmesi.</p></figcaption></figure><figure class="mcard"><div class="ph"><span class="num">04</span><img src="../assets/machines/welding_robot.jpg" alt="Robotik kaynak hücresi" loading="lazy"></div><figcaption class="cap"><h4>Robotik kaynak hücresi</h4><p>Yüksek tekrarlı, kararlı kalitede otomatik kaynak.</p></figcaption></figure><figure class="mcard"><div class="ph"><span class="num">05</span><img src="../assets/machines/tig_welding.jpg" alt="TIG / MIG kaynak" loading="lazy"></div><figcaption class="cap"><h4>TIG / MIG kaynak</h4><p>Paslanmaz çelikte temiz, sızdırmaz el kaynağı dikişleri.</p></figcaption></figure><figure class="mcard"><div class="ph"><span class="num">06</span><img src="../assets/machines/polishing.jpg" alt="Taşlama &amp; yüzey işlem" loading="lazy"></div><figcaption class="cap"><h4>Taşlama &amp; yüzey işlem</h4><p>Pasivasyon öncesi parlatma ve son rötuş.</p></figcaption></figure></div><p class="mcred">Makine görselleri · Wikimedia Commons (temsilî): Fiber lazer — Framos123 (CC BY-SA 4.0) · Abkant pres — Gasparini Industries (CC BY-SA 4.0) · Taretli zımba — Advliege (CC BY-SA 3.0) · Robotik kaynak — PT Metindo Erasakti (CC BY-SA 4.0) · TIG kaynak — MaraZet (CC BY-SA 4.0) · Taşlama — U.S. Air Force (kamu malı).</p>
 <h3 id="sub-0">1. Sac İşleme Hattı (Sheet Metal Processing)</h3>
 <p>Paslanmaz çelik (304/430) sac, fabrikanın ana hammaddesidir. Bu hat, gelen levhayı kesim, delme ve bükme yoluyla parça/kabin formuna dönüştürür ve tüm üretimin kapasite "boğazı"nı belirler.</p>
@@ -363,7 +392,8 @@ body.glocked{overflow:hidden}
 </ul>
 <hr>
 <p><strong>Kaynaklar:</strong> <a href="https://www.trumpf.com/en_US/solutions/applications/laser-cutting/" target="_blank" rel="noopener">TRUMPF Laser Cutting</a> · <a href="https://www.bystronic.com/usa/en-us/l/fiber-laser-cutting-bystar-fiber" target="_blank" rel="noopener">Bystronic ByStar Fiber</a> · <a href="https://www.amada.com/america/press-brakes" target="_blank" rel="noopener">Amada Press Brakes</a> · <a href="https://www.kuka.com/en-us/applications/automated-welding/arc-welding" target="_blank" rel="noopener">KUKA Arc Welding</a> · <a href="https://www.robots.com/applications/tig-welding" target="_blank" rel="noopener">Robots.com TIG Welding</a> · <a href="https://www.evsint.com/complete-guide-robotic-welding-2026/" target="_blank" rel="noopener">Complete Guide to Robotic Welding 2026 (EVS)</a> · <a href="https://neelectropolishing.com/electropolishing-for-the-food-beverage-manufacturing-industry/" target="_blank" rel="noopener">New England Electropolishing – Food &amp; Beverage</a> · <a href="https://www.zeiss.com/metrology/us/systems/cmms.html" target="_blank" rel="noopener">Zeiss CMMs</a> · <a href="https://hexagon.com/products/product-groups/measurement-inspection-hardware/coordinate-measuring-machines/horizontal-arms-cmms" target="_blank" rel="noopener">Hexagon Horizontal-Arm CMM</a> · <a href="https://incompliancemag.com/terms/iec-60335-1/" target="_blank" rel="noopener">IEC 60335-1 (In Compliance)</a> · <a href="https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/11707160" target="_blank" rel="noopener">USPTO – Modular Autonomous Food Assembly</a> · <a href="https://www.hyper-robotics.com/blog/the-secret-behind-kitchen-robots-powering-the-fastest-robot-restaurants" target="_blank" rel="noopener">Hyper Robotics – Kitchen Robots</a></p>
-<h2 id="sec-2" class="sec">2 · Fabrika, Ofis ve Tesis Yerleşimi</h2>
+<div class="secno">2</div>
+<h2 id="sec-2" class="sec">Fabrika, Ofis ve Tesis Yerleşimi</h2>
 <h3 id="sub-21">2.1 · Yalın Malzeme Akışı ve Yerleşim Mantığı</h3>
 <p>Tesisin tasarım felsefesi, hammadde paslanmaz sacın tek bir noktadan girip, mamul modülün (klasik ekipman veya AUTOKITCH ünitesi) tek bir noktadan çıktığı, geri dönüşsüz ve kesintisiz bir akıştır. Sac metal işleme tesislerinde standart iş akışı; kesim → büküm → kaynak → yüzey işlem → montaj sırasını izler (<a href="https://rubymakina.com/sac-metal-isleme-fabrikalarinda-is-akisi-ham-maddeden-son-urune/" target="_blank" rel="noopener">Ruby Makina</a>). Bu projede akış zinciri şu şekilde kurgulanmıştır:</p>
 <ul>
@@ -470,7 +500,8 @@ body.glocked{overflow:hidden}
 <li><a href="https://www.ledyilighting.com/tr/a-comprehensive-guide-to-industrial-lighting/" target="_blank" rel="noopener">LEDYi – Kapsamlı Endüstriyel Aydınlatma Kılavuzu</a></li>
 <li><a href="https://www.propazar.com/kaynak-makinelerinde-is-guvenligi-kaynakci-kkd" target="_blank" rel="noopener">Propazar – Kaynak İş Güvenliği</a></li>
 </ul>
-<h2 id="sec-3" class="sec">3 · Organizasyonel Fizibilite ve İnsan Kaynakları</h2>
+<div class="secno">3</div>
+<h2 id="sec-3" class="sec">Organizasyonel Fizibilite ve İnsan Kaynakları</h2>
 <hr>
 <h3 id="sub-33">3.1 Genel İK Stratejisi ve Bölgesel İşgücü Bağlamı</h3>
 <p>Bu fabrika, <strong>çift karakterli bir işgücü</strong> gerektirir: bir yanda klasik paslanmaz çelik endüstriyel mutfak üretiminin gerektirdiği geleneksel <strong>metal işleme / kaynak / montaj</strong> yetkinlikleri (mavi yaka ağırlıklı), diğer yanda AUTOKITCH otonom modüllerinin gerektirdiği <strong>mekatronik, robotik, yazılım/AI ve gıda-proses</strong> mühendisliği (yüksek nitelikli beyaz yaka). Bu ikilik, hem işe alım stratejisini hem de ücret/eğitim politikasını ikiye böler.</p>
@@ -606,7 +637,8 @@ body.glocked{overflow:hidden}
 <li><a href="https://portal.myk.gov.tr/index.php?belge_zorunlu=1&amp;option=com_yeterlilik&amp;view=arama" target="_blank" rel="noopener">MYK — Belge Zorunluluğu Kapsamındaki Meslekler</a></li>
 <li><a href="https://kobitime.com/myk-mesleki-yeterlilik-belgesi-zorunlulugu-2026/" target="_blank" rel="noopener">KobiTime — 2026 MYK Belge Zorunluluğu: 40 Yeni Meslek</a></li>
 </ul>
-<h2 id="sec-4" class="sec">4 · Pazar Analizi (Ekonomik Fizibilite)</h2>
+<div class="secno">4</div>
+<h2 id="sec-4" class="sec">Pazar Analizi (Ekonomik Fizibilite)</h2>
 <hr>
 <h3 id="sub-41">4.1 Pazar Büyüklüğü ve Büyüme Dinamikleri</h3>
 <p>Fabrikanın iki ayaklı ürün stratejisi (klasik paslanmaz çelik endüstriyel mutfak ekipmanları + otonom robotik mutfak modülleri), iki ayrı ancak hızla yakınsayan pazarın kesişiminde konumlanır.</p>
@@ -714,7 +746,9 @@ body.glocked{overflow:hidden}
 <li>National Restaurant Association — 2026 State of the Industry: https://restaurant.org/research-and-media/research/research-reports/state-of-the-industry/</li>
 <li>Restaurant Technology News — 2026 NRA Show (AI, otomasyon, maliyet): https://restauranttechnologynews.com/2026/05/ai-automation-and-cost-pressures-take-center-stage-at-the-2026-national-restaurant-association-show/</li>
 </ul>
-<h2 id="sec-5" class="sec">5A · Finansal Fizibilite — Capex / Opex</h2>
+<div class="secno">5A</div>
+<h2 id="sec-5" class="sec">Finansal Fizibilite — Capex / Opex</h2>
+<div class="keystrip"><div class="kc"><div class="kc-big">~8 M$</div><div class="kc-lab">Toplam CAPEX · orta senaryo</div></div><div class="kc"><div class="kc-big">~11–12 M$</div><div class="kc-lab">Yıllık OPEX · seri üretim</div></div><div class="kc"><div class="kc-big">~%28–35</div><div class="kc-lab">Karma brüt marj</div></div><div class="kc"><div class="kc-big">~%40–50</div><div class="kc-lab">Hammadde · en büyük gider</div></div></div>
 <h3 id="sub-48">Genel Yatırım Mantığı ve Varsayım Çerçevesi</h3>
 <p>Bu fizibilite, ortak varsayımlarla tutarlı olarak iki ürün ailesini (A: klasik paslanmaz endüstriyel mutfak ekipmanı + B: AUTOKITCH robotik/AI otonom mutfak modülleri) tek tesiste, ~6.000 m² kapalı alanda kuran bir OSB yatırımı için hazırlanmıştır. Tüm rakamlar <strong>(tahmini)</strong> olup, makine ve hammadde fiyatları Haziran 2026 piyasa aralıklarına göre temellendirilmiş, kesin teklif/sözleşme öncesi yön gösterici değerlerdir. Kur varsayımı: <strong>1 USD ≈ 38-41 TL (tahmini)</strong>; tablolarda USD esas alınmıştır.</p>
 <hr>
@@ -827,7 +861,8 @@ body.glocked{overflow:hidden}
 <p><strong>4) KOSGEB Destekleri:</strong> İşletme KOBİ ölçeğindeyse (ilk yıllar) Ar-Ge-İnovasyon, KOBİGEL, makine-teçhizat ve nitelikli istihdam destekleri; geri ödemesiz hibe + faizsiz/düşük faizli kredi bileşenleri.</p>
 <p><strong>5) Eximbank İhracat Finansmanı:</strong> İhracata yönelik üretim için sevk öncesi/sonrası ihracat kredileri, alıcı kredisi ve ihracat kredi sigortası — uygun maliyetli finansman ve döviz riski yönetimi.</p>
 <p><strong>Teşviklerin Toplam Etkisi (tahmini):</strong> KDV+gümrük istisnası CAPEX'te ~<strong>0,8-1,5 M USD</strong> nakit avantajı; vergi indirimi + Ar-Ge indirimi + SGK destekleri olgun dönemde yıllık <strong>~0,5-1,2 M USD</strong> tasarruf sağlayabilir; bu da geri ödeme süresini <strong>~1-1,5 yıl</strong> kısaltarak projenin IRR'ını üst banda taşır. Tüm oran ve süreler 2025/9903 sayılı Karar ve 5746 sk. çerçevesinde <strong>(tahmini)</strong> olup, yatırım kararı öncesi bir teşvik danışmanıyla nihai belge simülasyonu yapılmalıdır.</p>
-<h2 id="sec-6" class="sec">5B · Hukuki Fizibilite — İzin / Ruhsat / Standartlar</h2>
+<div class="secno">5B</div>
+<h2 id="sec-6" class="sec">Hukuki Fizibilite — İzin / Ruhsat / Standartlar</h2>
 <hr>
 <h3 id="sub-54">5B.1 Genel Yaklaşım ve Süreç Mantığı</h3>
 <p>Tesis, hem (A) klasik paslanmaz çelik endüstriyel mutfak ekipmanları hem de (B) robotik/AI destekli otonom mutfak modülleri (AUTOKITCH) üreteceği için <strong>karma bir imalat sanayi tesisi</strong> statüsündedir. Bu, hukuki süreçte üç paralel hattın eş zamanlı yürütülmesini gerektirir:</p>

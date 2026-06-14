@@ -55,7 +55,7 @@
   .card:hover{transform:translateY(-5px)}
   .card .n{font-size:14px;font-weight:600;color:var(--blue)}
   .card h3{font-size:19px;color:#fff;margin:10px 0 10px;font-weight:600}
-  .card p{font-size:14.5px;color:var(--gray);line-height:1.5}
+  .card p{font-size:15px;color:#B0B0B5;line-height:1.55}
   .light .card{background:#fff}.light .card h3{color:var(--dark)}
 
   /* benchmark two giants */
@@ -67,6 +67,8 @@
   .bc .rows{margin-top:16px}
   .bc .r{display:flex;justify-content:space-between;gap:12px;font-size:14.5px;border-top:1px solid var(--hair);padding:10px 0}
   .bc .r span{color:var(--gray)}.bc .r b{color:#fff;font-weight:600}
+  .bc .big{font-size:clamp(26px,3.4vw,40px);font-weight:600;letter-spacing:-.02em;line-height:1;background:linear-gradient(150deg,var(--blue-l),var(--blue-d));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin:12px 0 4px}
+  .bc .biglab{font-size:12.5px;color:var(--gray);margin-bottom:6px}
   .vimg{width:100%;border-radius:22px;margin-top:44px;display:block;box-shadow:0 30px 80px rgba(0,0,0,.5);border:1px solid var(--hair)}
 
   /* product range */
@@ -77,7 +79,7 @@
   .prod h4{font-size:16px;color:#fff;font-weight:600;margin-bottom:13px;display:flex;align-items:center;gap:9px}
   .prod h4 .d{width:8px;height:8px;border-radius:50%;background:var(--blue);flex:0 0 8px}
   .prod ul{list-style:none;display:flex;flex-wrap:wrap;gap:7px}
-  .prod li{font-size:12px;color:#cfd2d6;background:#0e0e10;border:1px solid var(--hair);border-radius:100px;padding:5px 11px}
+  .prod li{font-size:12.5px;color:#D5D8DC;background:#0e0e10;border:1px solid var(--hair);border-radius:100px;padding:5px 11px}
   .prod.hl{border:1px solid rgba(255,199,44,.5);background:linear-gradient(180deg,rgba(255,199,44,.10),var(--panel))}
   .prod.hl h4{color:var(--blue-l)}.prod.hl li{border-color:rgba(255,199,44,.35)}
 
@@ -86,7 +88,7 @@
   .prow{background:var(--panel);border-radius:18px;padding:26px 28px;display:flex;gap:22px;align-items:flex-start}
   .prow .pnum{font-size:30px;font-weight:600;color:var(--blue);min-width:46px;line-height:1.1}
   .prow h3{font-size:20px;color:#fff;margin-bottom:8px;font-weight:600}
-  .prow p{font-size:15px;color:var(--gray);line-height:1.5}
+  .prow p{font-size:15.5px;color:#B0B0B5;line-height:1.55}
   .prow .tags{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
   .tag2{background:#0e0e10;border:1px solid var(--hair);border-radius:100px;padding:6px 13px;font-size:12.5px;color:#cfd2d6}
   @media(max-width:600px){.prow{flex-direction:column;gap:10px}}
@@ -97,14 +99,15 @@
   @media(max-width:460px){.certs{grid-template-columns:1fr}}
   .cert{background:var(--panel);border-radius:14px;padding:18px 20px}
   .cert .abbr{font-size:17px;font-weight:700;color:var(--blue)}
-  .cert .desc{font-size:13px;color:var(--gray);margin-top:5px;line-height:1.4}
+  .cert .desc{font-size:13.5px;color:#A8A8AD;margin-top:5px;line-height:1.45}
   .arge{background:linear-gradient(180deg,rgba(255,199,44,.10),var(--panel));border:1px solid rgba(255,199,44,.4);border-radius:20px;padding:34px;margin-top:22px;text-align:left}
   .arge h3{font-size:21px;color:#fff;font-weight:600}
   .arge>p{color:var(--gray-l);margin-top:10px;font-size:15px;line-height:1.5}
   .arge .ben{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
   @media(max-width:680px){.arge .ben{grid-template-columns:1fr}}
-  .arge .b{display:flex;gap:10px;align-items:flex-start;color:#e6e6e8;font-size:14px;line-height:1.4}
-  .arge .b .dot{flex:0 0 7px;width:7px;height:7px;border-radius:50%;background:var(--blue);margin-top:6px}
+  .arge .b{background:#0e0e10;border:1px solid var(--hair);border-radius:14px;padding:16px 18px}
+  .arge .b .bn{font-size:clamp(25px,3vw,36px);font-weight:600;letter-spacing:-.02em;color:var(--blue);line-height:1}
+  .arge .b .bd{font-size:13px;color:#A8A8AD;margin-top:8px;line-height:1.4}
 
   /* split */
   .split{display:grid;grid-template-columns:1fr 1fr;gap:46px;margin-top:50px;text-align:left}
@@ -226,8 +229,9 @@
       <div class="bc rv d1">
         <div class="name">Öztiryakiler</div>
         <div class="since">1950'ler · 50 m² atölyeden</div>
+        <div class="big">130.000 m²</div>
+        <div class="biglab">üretim alanı — 50 m²'lik bir atölyeden bugüne</div>
         <div class="rows">
-          <div class="r"><span>Üretim alanı</span><b>130.000 m²</b></div>
           <div class="r"><span>Çalışan</span><b>~1.300+</b></div>
           <div class="r"><span>İhracat</span><b>100+ ülke</b></div>
           <div class="r"><span>Sahiplik</span><b>Hoshizaki %51 (2024)</b></div>
@@ -236,9 +240,10 @@
       <div class="bc rv d2">
         <div class="name">İnoksan</div>
         <div class="since">1980 · küçük atölyeden</div>
+        <div class="big">4.000+</div>
+        <div class="biglab">ürün çeşidi — 1980 kuruluşundan beri</div>
         <div class="rows">
           <div class="r"><span>Üretim alanı</span><b>20.000 m²</b></div>
-          <div class="r"><span>Ürün çeşidi</span><b>4.000+</b></div>
           <div class="r"><span>İhracat</span><b>100+ ülke · 5 kıta</b></div>
           <div class="r"><span>Ağ</span><b>6 bölge müdürlüğü</b></div>
         </div>
@@ -334,10 +339,10 @@
       <h3>Ar-Ge Merkezi — hem fark, hem devlet teşviki</h3>
       <p>Yeterli mühendis kadrosuyla resmi "Ar-Ge Merkezi" statüsü almak; hem ürünü sürekli geliştirir hem de ciddi mali avantajlar getirir. Bizim yapay zeka + robotik birikimimiz bu merkezin çekirdeği olur.</p>
       <div class="ben">
-        <div class="b"><span class="dot"></span>Ar-Ge harcamalarında %100 vergi indirimi</div>
-        <div class="b"><span class="dot"></span>Ücretlerde %80–95 gelir vergisi stopaj istisnası</div>
-        <div class="b"><span class="dot"></span>SGK işveren priminin %50'si Hazine'den</div>
-        <div class="b"><span class="dot"></span>Min. 15 Ar-Ge personeli · 31.12.2028'e kadar (5746 sayılı Kanun)</div>
+        <div class="b"><div class="bn">%100</div><div class="bd">Ar-Ge harcamalarında vergi indirimi</div></div>
+        <div class="b"><div class="bn">%80–95</div><div class="bd">ücretlerde gelir vergisi stopaj istisnası</div></div>
+        <div class="b"><div class="bn">%50</div><div class="bd">SGK işveren priminin yarısı Hazine'den</div></div>
+        <div class="b"><div class="bn">15</div><div class="bd">min. Ar-Ge personeli · 31.12.2028'e kadar (5746 sayılı Kanun)</div></div>
       </div>
     </div>
   </div>
