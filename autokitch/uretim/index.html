@@ -156,6 +156,53 @@
   .mfeat figcaption span{font-size:13.5px;color:var(--gray-l)}
   @media(max-width:760px){.mgrid{grid-template-columns:1fr 1fr}.mbanner img{height:220px}.mfeat img{height:240px}}
   @media(max-width:480px){.mgrid{grid-template-columns:1fr}}
+  /* === SENARYO SEÇİCİ === */
+  #olcek{background:radial-gradient(120% 80% at 50% 0%,#1c1503 0%,#0a0702 45%,#000 80%)}
+  .scn-tabs{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+  .scn-tab{cursor:pointer;background:var(--panel);border:1px solid var(--hair);border-radius:16px;padding:18px 20px 16px;text-align:center;transition:.2s;flex:1 1 220px;max-width:300px}
+  .scn-tab:hover{border-color:var(--blue-d);transform:translateY(-2px)}
+  .scn-tab.on{border-color:var(--blue);background:rgba(255,199,44,.09)}
+  .scn-tab .st-name{font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--gray)}
+  .scn-tab.on .st-name{color:var(--blue)}
+  .scn-tab .st-inv{font-size:clamp(24px,3vw,34px);font-weight:600;color:#fff;margin-top:7px;letter-spacing:-.02em}
+  .scn-tab.on .st-inv{background:linear-gradient(150deg,var(--blue-l),var(--blue-d));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .scn-tab .st-sub{font-size:12px;color:var(--gray);margin-top:4px}
+  .scn-sum{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px;text-align:left}
+  @media(max-width:760px){.scn-sum{grid-template-columns:1fr 1fr}.scn-tab{flex:1 1 100%}}
+  @media(max-width:440px){.scn-sum{grid-template-columns:1fr}}
+  .scn-c{background:var(--panel);border:1px solid var(--hair);border-radius:16px;padding:20px}
+  .scn-c .sc-lab{font-size:11.5px;color:var(--gray);text-transform:uppercase;letter-spacing:.07em}
+  .scn-c .sc-val{font-size:clamp(21px,2.4vw,28px);font-weight:600;color:#fff;letter-spacing:-.02em;margin-top:8px;transition:opacity .25s}
+  .scn-c .sc-note{font-size:12.5px;color:var(--gray-l);margin-top:7px;line-height:1.4;transition:opacity .25s}
+  .scn-hedef{text-align:center;margin-top:28px;font-size:clamp(16px,1.8vw,20px);color:#e6e6e8;max-width:820px;margin-left:auto;margin-right:auto;line-height:1.45}
+  .scn-hedef b{color:var(--blue);font-weight:600}
+  .deriv{margin-top:42px;background:#0e0e10;border:1px solid var(--hair);border-radius:20px;padding:30px;text-align:left}
+  .deriv .dh{font-size:13px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--blue)}
+  .deriv h3{font-size:clamp(19px,2.2vw,24px);color:#fff;font-weight:600;margin:6px 0 4px}
+  .deriv .dsub{font-size:14px;color:var(--gray);margin-bottom:22px;line-height:1.5}
+  .capbar{display:flex;height:46px;border-radius:11px;overflow:hidden;margin:18px 0 20px;border:1px solid var(--hair)}
+  .capbar i{display:flex;align-items:center;justify-content:center;font-size:11px;color:#0a0702;font-weight:700;min-width:0;overflow:hidden;white-space:nowrap;transition:flex-basis .4s}
+  .caplist{display:grid;grid-template-columns:1fr 1fr;gap:0 26px}
+  @media(max-width:680px){.caplist{grid-template-columns:1fr}}
+  .capitem{display:flex;justify-content:space-between;gap:12px;font-size:14px;padding:9px 0;border-top:1px solid var(--hair)}
+  .capitem .cl{color:var(--gray-l);display:flex;align-items:center;gap:9px}
+  .capitem .cl .sw{width:11px;height:11px;border-radius:3px;flex:0 0 11px}
+  .capitem .cv{color:#fff;font-weight:600;white-space:nowrap}
+  .captot{display:flex;justify-content:space-between;margin-top:14px;padding-top:14px;border-top:2px solid var(--blue);font-size:16px}
+  .captot span{color:#fff;font-weight:600}.captot b{color:var(--blue);font-weight:600}
+  .mbrand{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+  @media(max-width:680px){.mbrand{grid-template-columns:1fr}}
+  .mbrand .mb{background:#0e0e10;border:1px solid var(--hair);border-radius:12px;padding:13px 16px;font-size:14px;display:flex;justify-content:space-between;gap:12px;align-items:center}
+  .mbrand .mb span{color:var(--gray);flex:0 0 auto}
+  .mbrand .mb b{color:#fff;font-weight:600;text-align:right;transition:opacity .25s}
+  .saltab-w{overflow-x:auto;margin-top:20px;border:1px solid var(--hair);border-radius:14px}
+  .saltab{width:100%;border-collapse:collapse;font-size:14px;min-width:440px}
+  .saltab th{background:#0e0e10;color:#fff;text-align:left;padding:12px 15px;font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.04em}
+  .saltab td{padding:11px 15px;border-top:1px solid var(--hair);color:var(--gray-l)}
+  .saltab td:first-child{color:#fff;font-weight:600}
+  .saltab td:nth-child(2),.saltab td:nth-child(3){white-space:nowrap;color:#dcdce0}
+  .srcnote{font-size:11.5px;color:#5a5a5e;line-height:1.55;margin-top:14px}
+  .srcnote a{color:#7a7a7f}
 </style>
 </head>
 <body>
@@ -212,12 +259,196 @@
 
 <!-- HERO -->
 <header class="hero">
-  <div class="tag rv in">Üretim Ortaklığı · Size Özel Sunum</div>
+  <div class="tag rv in">Fabrika · Üretim Ortaklığı · Yatırım</div>
   <h1 class="rv in">Birlikte yeni nesil bir<br>mutfak markası kuralım.</h1>
-  <p class="sub rv in d1">Senin üretim gücün + bizim tasarım, yapay zeka ve markamız. Öztiryakiler ve İnoksan'ın yaptığı işi, bir sonraki nesle taşıyalım.</p>
-  <div class="meta rv in d2">Üretim Ortaklığı Sunumu · 2026 · Kemal — Torinoarch Studio</div>
-  <a href="#hedef" class="cue">DEVAM<span></span></a>
+  <p class="sub rv in d1">Senin üretim gücün + bizim tasarım, yapay zeka ve markamız. Üretim ortaklığı ve fizibilite tek yerde — başta ölçeği seç, rakamlar ona göre şekillensin.</p>
+  <div class="meta rv in d2">Üretim Ortaklığı & Fizibilite · 2026 · Kemal — Torinoarch Studio</div>
+  <a href="#olcek" class="cue">DEVAM<span></span></a>
 </header>
+
+<!-- YATIRIM ÖLÇEĞİ / SENARYO SEÇİCİ -->
+<section id="olcek" class="center">
+  <div class="wrap">
+    <div class="eyebrow rv">Yatırım Ölçeği · Senaryo Seç</div>
+    <h2 class="rv d1">Hangi ölçekte kuralım?</h2>
+    <p class="lead rv d2">Aynı vizyon, üç farklı başlangıç. Bir ölçek seç — yatırım, alan, ekip, makine markaları ve maliyet kırılımı ona göre değişsin. Tüm rakamlar <b style="color:#fff;font-weight:600">2026 Türkiye gerçek piyasa verisine</b> dayanır.</p>
+
+    <div class="scn-tabs rv d1">
+      <div class="scn-tab" data-scn-tab="lean" onclick="setScn('lean')"><div class="st-name">Hafif Başlangıç</div><div class="st-inv">~$0,5M</div><div class="st-sub">Atölye + fason</div></div>
+      <div class="scn-tab on" data-scn-tab="mid" onclick="setScn('mid')"><div class="st-name">Orta Fabrika</div><div class="st-inv">~$8M</div><div class="st-sub">Kendi üretim hattı</div></div>
+      <div class="scn-tab" data-scn-tab="large" onclick="setScn('large')"><div class="st-name">Büyük / Kurumsal</div><div class="st-inv">~$35M</div><div class="st-sub">İnoksan-Empero ölçeği</div></div>
+    </div>
+
+    <div class="scn-sum rv d1">
+      <div class="scn-c"><div class="sc-lab">Toplam yatırım</div><div class="sc-val" data-k="inv">~$8M</div><div class="sc-note" data-k="invNote">≈340 mn TL · CAPEX (orta senaryo)</div></div>
+      <div class="scn-c"><div class="sc-lab">Kapalı alan</div><div class="sc-val" data-k="alan">~6.000 m²</div><div class="sc-note" data-k="alanNote">~11.000 m² arsa (OSB tahsis)</div></div>
+      <div class="scn-c"><div class="sc-lab">Ekip</div><div class="sc-val" data-k="ekip">~60-80 kişi</div><div class="sc-note" data-k="ekipNote">Faz-1 ~45 → seri üretim ~120</div></div>
+      <div class="scn-c"><div class="sc-lab">Makine seviyesi</div><div class="sc-val" data-k="makSev">Yeni yerli hat</div><div class="sc-note" data-k="makNote">Ermaksan · Durmazlar · Baykal · Nukon</div></div>
+      <div class="scn-c"><div class="sc-lab">Yıllık OPEX</div><div class="sc-val" data-k="opex">~$11-12M</div><div class="sc-note" data-k="opexNote">seri üretim · yıllık</div></div>
+      <div class="scn-c"><div class="sc-lab">Geri ödeme</div><div class="sc-val" data-k="payback">~3,5-5 yıl</div><div class="sc-note" data-k="paybackNote">teşviklerle (IRR ~%15-25)</div></div>
+    </div>
+    <p class="scn-hedef rv"><b>Hedef:</b> <span data-k="hedef">Tam paslanmaz mutfak ürün gamı + AUTOKITCH otonom modüller. Kendi kesim-büküm hattı, yurt içi + ihracat.</span></p>
+
+    <div class="deriv rv d1">
+      <div class="dh">Bu rakam nasıl çıktı?</div>
+      <h3 data-k="derivTitle">~$8M yatırım nereye gidiyor</h3>
+      <p class="dsub" data-k="derivSub">Kendi üretim hattı kurulur: 6.000 m² bina + OSB arsa + yeni yerli makine parkı (fiber lazer, abkant, punch, kaynak, polisaj) + 1 robotik hücre + AI Ar-Ge.</p>
+      <div class="capbar" id="capbar"></div>
+      <div class="caplist" id="caplist"></div>
+      <div class="captot"><span>Toplam CAPEX</span><b data-k="capTot">~$8M (≈340 mn TL)</b></div>
+    </div>
+
+    <div class="deriv rv d1">
+      <div class="dh">Makine Parkı · bu ölçekte</div>
+      <h3 data-k="brandTitle">Yeni yerli üretim hattı</h3>
+      <p class="dsub" data-k="brandSub">Avrupa premium yerine maliyet-etkin yerli markalar — Avrupa'da da satılan kalitede.</p>
+      <div class="mbrand" id="mbrand"></div>
+    </div>
+
+    <div class="deriv rv d1">
+      <div class="dh">İşçilik · 2026 işveren maliyeti</div>
+      <h3>İşçi maaşları nereden geliyor</h3>
+      <p class="dsub">Aylık <b style="color:#fff;font-weight:600">işveren toplam maliyeti</b> (SGK + vergi dahil, imalat 5 puan indirimli; 1 USD ≈ 42 TL). Asgari ücret işveren maliyeti ~₺39.200/ay tabandır; vasıflı roller bunun katıdır. Bordro, MID senaryoda yatırımın değil yıllık OPEX'in ana kalemidir.</p>
+      <div class="saltab-w"><table class="saltab">
+        <thead><tr><th>Rol</th><th>₺ / ay (işveren)</th><th>$ / ay ≈</th></tr></thead>
+        <tbody>
+          <tr><td>TIG / Argon kaynakçı (sertifikalı)</td><td>~78.000</td><td>~1.860</td></tr>
+          <tr><td>CNC lazer kesim operatörü</td><td>~67.000</td><td>~1.595</td></tr>
+          <tr><td>CNC abkant pres operatörü</td><td>~56.000</td><td>~1.335</td></tr>
+          <tr><td>Montajcı</td><td>~42.000</td><td>~1.000</td></tr>
+          <tr><td>Taşlama / parlatma işçisi</td><td>~45.000</td><td>~1.070</td></tr>
+          <tr><td>Makine mühendisi</td><td>~83.000</td><td>~1.975</td></tr>
+          <tr><td>Ar-Ge mühendisi</td><td>~77.000</td><td>~1.835</td></tr>
+          <tr><td>Endüstriyel / CMF tasarımcı</td><td>~85.000</td><td>~2.025</td></tr>
+          <tr><td>Üretim müdürü (kurumsalda ~160K)</td><td>~80.000</td><td>~1.905</td></tr>
+          <tr><td>Asgari ücret (taban)</td><td>~39.200</td><td>~935</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="dl rv" style="margin-top:36px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+      <a class="btn" href="../fizibilite/AUTOKITCH_Fizibilite_Raporu.pdf" target="_blank" style="margin-top:0">Tam rapor · PDF</a>
+      <a class="btn ghost" href="../fizibilite/" style="margin-top:0;margin-left:0">Tam teknik fizibilite ↗</a>
+    </div>
+
+    <p class="srcnote" style="text-align:center;max-width:900px;margin:22px auto 0">Kaynaklar: 2026 asgari ücret (Alomaliye / PwC / EY), eleman.net · isbul.net · kariyer.net maaş ortalamaları (2026), net→işveren maliyeti çarpanı ≈1,45x. Makine fiyatları: machineryline.com · makinecim.com · unilaser.com.tr. İnşaat: 2026 Resmî Gazete yapı yaklaşık birim maliyetleri + tmscelik (çelik fabrika ~12–14.000 TL/m²) + OSB tahsis. Büyük ölçek benchmark: Empero (800 mn TL bina / ~2 mlr TL toplam, 80–100.000 m², 1.000–1.300 kişi), Öztiryakiler (140.000 m² / 1.400 kişi), İnoksan. Tüm rakamlar yaklaşıktır; kesin teklif ve yerel keşif gerektirir.</p>
+  </div>
+</section>
+<script>
+(function(){
+var SCN={
+ lean:{
+  inv:"~$0,5M", invNote:"≈20 mn TL · CAPEX",
+  alan:"~1.000 m²", alanNote:"kiralık atölye / sanayi sitesi",
+  ekip:"~10 kişi", ekipNote:"2 kaynakçı · 3 montaj · 1 kalite · 2-3 müh.",
+  makSev:"Fason + el tipi", makNote:"Kesim/büküm dışarı; Magmaweld kaynak",
+  opex:"~$1-1,5M", opexNote:"düşük; fason ~₺2.000/saat",
+  payback:"~2-3 yıl", paybackNote:"düşük capex, butik hacim",
+  hedef:"Metal işini fasona ver, sermayeyi AUTOKITCH modül + AI yazılım + montaja ayır. Pilot üretim ve ilk referanslar — en yalın giriş.",
+  derivTitle:"~$0,5M yatırım nereye gidiyor",
+  derivSub:"En akıllı giriş: pahalı kesim/büküm makineleri ALINMAZ — fason verilir (fiber lazer ~₺2.000/saat). Sermaye montaj, kaynak, AI ve işletme sermayesine gider; bina kiralıktır.",
+  capTot:"~$0,5M (≈20 mn TL)",
+  capex:[
+   {lab:"Kaynak & montaj ekipmanı", pct:32, val:"~₺6,5M", color:"#FFD95A"},
+   {lab:"AI / yazılım & Ar-Ge", pct:24, val:"~₺5M", color:"#E0A400"},
+   {lab:"Fason ön ödeme & stok", pct:20, val:"~₺4M", color:"#B5820a"},
+   {lab:"Atölye kurulum & depozito", pct:14, val:"~₺3M", color:"#7d5c0a"},
+   {lab:"Kuruluş, sertifika, diğer", pct:10, val:"~₺2M", color:"#4d3a08"}
+  ],
+  brandTitle:"Fason ağırlıklı, minimal donanım",
+  brandSub:"Kesim ve büküm dışarıya yaptırılır; içeride sadece kaynak, montaj ve yüzey işlem yapılır.",
+  brands:[
+   {label:"Lazer kesim", value:"Fason atölye (dışarı)"},
+   {label:"Büküm (abkant)", value:"Fason / 2.el opsiyon"},
+   {label:"Kaynak", value:"Magmaweld TIG/MIG + el tipi fiber lazer"},
+   {label:"Yüzey / parlatma", value:"El tipi polisaj / zımpara"},
+   {label:"Robotik", value:"— (manuel üretim)"},
+   {label:"2.el seçenek", value:"Ermaksan / Baykal kullanılmış"}
+  ]
+ },
+ mid:{
+  inv:"~$8M", invNote:"≈340 mn TL · CAPEX (orta senaryo)",
+  alan:"~6.000 m²", alanNote:"~11.000 m² arsa (OSB tahsis)",
+  ekip:"~60-80 kişi", ekipNote:"Faz-1 ~45 → seri üretim ~120",
+  makSev:"Yeni yerli hat", makNote:"Ermaksan · Durmazlar · Baykal · Nukon",
+  opex:"~$11-12M", opexNote:"seri üretim · yıllık",
+  payback:"~3,5-5 yıl", paybackNote:"teşviklerle (IRR ~%15-25)",
+  hedef:"Tam paslanmaz mutfak ürün gamı + AUTOKITCH otonom modüller. Kendi kesim-büküm hattı, yurt içi + ihracat.",
+  derivTitle:"~$8M yatırım nereye gidiyor",
+  derivSub:"Kendi üretim hattı kurulur: 6.000 m² bina + OSB arsa + yeni yerli makine parkı (fiber lazer, abkant, punch, kaynak, polisaj) + 1 robotik hücre + AI Ar-Ge.",
+  capTot:"~$8M (≈340 mn TL)",
+  capex:[
+   {lab:"Makine parkı (kesim·büküm·kaynak·polisaj)", pct:32, val:"~$2,5M", color:"#FFD95A"},
+   {lab:"Bina inşaat (~6.000 m²)", pct:24, val:"~$1,9M", color:"#E0A400"},
+   {lab:"ERP/yazılım + işletme sermayesi", pct:20, val:"~$1,6M", color:"#B5820a"},
+   {lab:"Robotik hücre + AI Ar-Ge", pct:15, val:"~$1,2M", color:"#7d5c0a"},
+   {lab:"Arsa (OSB tahsis) + altyapı", pct:9, val:"~$0,8M", color:"#4d3a08"}
+  ],
+  brandTitle:"Yeni yerli üretim hattı",
+  brandSub:"Avrupa premium yerine maliyet-etkin yerli markalar — Avrupa'da da satılan kalitede.",
+  brands:[
+   {label:"Fiber lazer (6 kW)", value:"Ermaksan / Nukon / Bodor"},
+   {label:"CNC abkant pres", value:"Durmazlar / Baykal / Ermaksan"},
+   {label:"Taretli zımba (punch)", value:"Baykal (2.el) / Durma"},
+   {label:"Kaynak", value:"Lincoln + Magmaweld + 1 cobot hücre"},
+   {label:"Yüzey / parlatma", value:"CNC otomatik zımpara / polisaj"},
+   {label:"Robotik", value:"1 cobot kaynak hücresi (~$40-90K)"}
+  ]
+ },
+ large:{
+  inv:"~$35M", invNote:"≈1,5 milyar TL · CAPEX",
+  alan:"~25.000 m²", alanNote:"~50.000 m² arsa (teşvikli OSB)",
+  ekip:"~250-350 kişi", ekipNote:"1 çalışan / ~80-100 m² (sektör oranı)",
+  makSev:"Premium + tam otomasyon", makNote:"Trumpf · Bystronic · ABB/KUKA",
+  opex:"~$35-50M", opexNote:"tam kapasite · yıllık",
+  payback:"~6-8 yıl", paybackNote:"büyük ölçek, yüksek hacim/marj",
+  hedef:"Sektör lideri ölçeği: dikey entegrasyon, yılda milyonlarca ürün, 90+ ülke ihracat — İnoksan / Empero / Öztiryakiler ligi.",
+  derivTitle:"~$35M yatırım nereye gidiyor",
+  derivSub:"Empero gerçeği: 800 mn TL bina / ~2 milyar TL toplam, 80-100.000 m², 1.000-1.300 kişi. Bu senaryo ~25.000 m²'lik tam otomasyonlu premium tesis.",
+  capTot:"~$35M (≈1,5 milyar TL)",
+  capex:[
+   {lab:"Makine parkı (premium Avrupa)", pct:45, val:"~$16M", color:"#FFD95A"},
+   {lab:"Bina inşaat (~25.000 m²)", pct:26, val:"~$9M", color:"#E0A400"},
+   {lab:"Robotik + otomasyon + depo", pct:13, val:"~$4,5M", color:"#B5820a"},
+   {lab:"Yazılım + işletme sermayesi", pct:10, val:"~$3,5M", color:"#7d5c0a"},
+   {lab:"Arsa (teşvikli OSB)", pct:6, val:"~$2M", color:"#4d3a08"}
+  ],
+  brandTitle:"Premium Avrupa + tam otomasyon",
+  brandSub:"Trumpf/Bystronic tezgahlar, otomatik yükleme kuleleri, çoklu robotik hücre — sektör liderlerinin kurulumu.",
+  brands:[
+   {label:"Fiber lazer (çoklu, yüksek güç)", value:"Trumpf / Bystronic / Prima Power"},
+   {label:"CNC abkant pres parkı", value:"Trumpf / Bystronic / üst-Durmazlar"},
+   {label:"Taretli zımba hattı", value:"Prima Power / Amada"},
+   {label:"Kaynak", value:"2+ robotik hücre (ABB/KUKA/FANUC)"},
+   {label:"Yüzey / parlatma", value:"Robotik polisaj hücresi"},
+   {label:"Otomasyon", value:"Otomatik depo + besleme + pasivasyon hattı"}
+  ]
+ }
+};
+function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+window.setScn=function(k){
+ var s=SCN[k]; if(!s) return;
+ var tabs=document.querySelectorAll('[data-scn-tab]');
+ for(var i=0;i<tabs.length;i++){tabs[i].classList.toggle('on', tabs[i].getAttribute('data-scn-tab')===k);}
+ for(var key in s){
+   if(key==='capex'||key==='brands') continue;
+   var els=document.querySelectorAll('[data-k="'+key+'"]');
+   for(var j=0;j<els.length;j++){els[j].textContent=s[key];}
+ }
+ var bar=document.getElementById('capbar'), list=document.getElementById('caplist');
+ bar.innerHTML=''; list.innerHTML='';
+ s.capex.forEach(function(c){
+   bar.insertAdjacentHTML('beforeend','<i style="flex:0 0 '+c.pct+'%;background:'+c.color+'">'+(c.pct>=12?c.pct+'%':'')+'</i>');
+   list.insertAdjacentHTML('beforeend','<div class="capitem"><span class="cl"><span class="sw" style="background:'+c.color+'"></span>'+esc(c.lab)+'</span><span class="cv">'+esc(c.val)+'</span></div>');
+ });
+ var mb=document.getElementById('mbrand'); mb.innerHTML='';
+ s.brands.forEach(function(b){
+   mb.insertAdjacentHTML('beforeend','<div class="mb"><span>'+esc(b.label)+'</span><b>'+esc(b.value)+'</b></div>');
+ });
+};
+setScn('mid');
+})();
+</script>
 
 <!-- HEDEF / IKI DEV -->
 <section id="hedef" class="center">
