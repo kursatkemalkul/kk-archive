@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="tr"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALAN CAST — Döküm Fabrikası Fizibilitesi</title>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<style>
+:root{--black:#000;--panel:#1D1D1F;--gray:#86868B;--gray-l:#A1A1A6;--acc:#E0852F;--acc-d:#B5611A;--acc-l:#F5B775;--hair:#2a2a2d;--font:"SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;background:#000}
+body{font-family:var(--font);background:var(--black);color:#fff;-webkit-font-smoothing:antialiased;line-height:1.5;letter-spacing:-.01em}
+a{color:var(--acc-l);text-decoration:none}
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+#nav{position:fixed;top:0;left:0;right:0;z-index:100;height:52px;display:flex;justify-content:center;transition:background .4s,backdrop-filter .4s}
+#nav.solid{background:rgba(0,0,0,.72);backdrop-filter:saturate(180%) blur(20px)}
+.nav-in{max-width:1040px;width:100%;display:flex;align-items:center;justify-content:space-between;padding:0 22px}
+.logo{font-weight:600;font-size:19px;color:#fff}.logo b{color:var(--acc)}
+.nav-back{font-size:14px;color:#d6d6d8}.nav-back:hover{color:var(--acc)}
+.hero{min-height:76vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 22px 64px;background:radial-gradient(120% 80% at 50% 0%,#2a1606 0%,#160b03 42%,#000 78%)}
+.hero .tag{font-size:clamp(14px,1.5vw,19px);font-weight:600;color:var(--acc-l);margin-bottom:10px}
+.hero h1{font-size:clamp(34px,6vw,72px);font-weight:600;letter-spacing:-.035em;line-height:1.04;background:linear-gradient(168deg,#FFF1E2,var(--acc-l) 34%,var(--acc) 66%,var(--acc-d));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero .sub{font-size:clamp(16px,1.9vw,22px);color:#ecd9c6;font-weight:500;max-width:780px;margin:22px auto 0;line-height:1.4}
+.hero .dl{margin-top:34px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.btn{display:inline-block;background:var(--acc);color:#2a1606;font-weight:600;padding:13px 26px;border-radius:980px;font-size:15px;transition:background .2s,transform .2s;cursor:pointer;border:none}
+.btn:hover{background:var(--acc-l);transform:translateY(-2px)}
+.btn.ghost{background:transparent;border:1px solid #5a4129;color:#ecd9c6}
+.herostats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:820px;margin:42px auto 0}
+.herostats .hs{background:rgba(255,255,255,.04);border:1px solid var(--hair);border-radius:14px;padding:16px 12px}
+.herostats .hs-n{font-size:clamp(22px,2.8vw,34px);font-weight:600;letter-spacing:-.02em;background:linear-gradient(150deg,var(--acc-l),var(--acc-d));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.herostats .hs-l{font-size:11.5px;color:var(--gray);margin-top:6px;line-height:1.35}
+.hscope{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:24px}
+.hscope span{font-size:12.5px;color:#ecd9c6;background:rgba(255,255,255,.05);border:1px solid var(--hair);border-radius:980px;padding:6px 14px}
+.report{padding:30px 0 100px}
+.report-layout{display:flex;gap:46px;align-items:flex-start}
+.report-body{flex:1 1 auto;min-width:0}
+.toc{position:sticky;top:70px;flex:0 0 230px;width:230px;background:var(--panel);border:1px solid var(--hair);border-radius:16px;padding:16px 12px;max-height:calc(100vh - 90px);overflow-y:auto}
+.toc-h{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);padding:2px 10px 12px}
+.toc-nav{display:flex;flex-direction:column;gap:1px}
+.toc-nav a{display:block;border-radius:8px;font-size:13.5px;font-weight:600;color:#dcdce0;padding:8px 10px;line-height:1.34;transition:background .15s,color .15s}
+.toc-nav a:hover{background:#26262a;color:#fff}
+.toc-nav a.active{color:var(--acc-l);background:#2a1606}
+.secno{font-size:clamp(38px,6vw,68px);font-weight:600;line-height:1;letter-spacing:-.03em;background:linear-gradient(160deg,var(--acc-l),var(--acc) 55%,var(--acc-d));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;opacity:.92;margin-top:72px;scroll-margin-top:64px}
+.report .sec{font-size:clamp(23px,3.2vw,36px);font-weight:600;color:#fff;letter-spacing:-.02em;margin:4px 0 8px;scroll-margin-top:122px}
+.report .sec:first-of-type{margin-top:8px}
+.report h3{font-size:21px;font-weight:600;color:#fff;margin:32px 0 12px}
+.report h4{font-size:16.5px;font-weight:600;color:var(--acc-l);margin:24px 0 8px}
+.report p{color:#C2C2C7;margin:14px 0;font-size:16.5px;line-height:1.72;max-width:74ch}
+.report p.sec-lead{font-size:clamp(17px,1.7vw,20px);color:#e8e0d8;line-height:1.5;margin:8px 0 20px;font-weight:400}
+.report ul{margin:10px 0 14px 4px;list-style:none}
+.report li{color:#C2C2C7;font-size:16px;line-height:1.65;padding-left:22px;position:relative;margin:9px 0;max-width:74ch}
+.report li::before{content:"";position:absolute;left:2px;top:10px;width:6px;height:6px;border-radius:50%;background:var(--acc)}
+.report li>strong:first-child{display:block;color:var(--acc-l);font-size:13.5px;font-weight:600;letter-spacing:.01em;margin-bottom:2px}
+.report strong{color:#fff;font-weight:600}
+.report hr{border:0;border-top:1px solid var(--hair);margin:26px 0}
+.report blockquote{border-left:4px solid var(--acc);background:var(--panel);padding:18px 22px;border-radius:0 12px 12px 0;margin:22px 0;color:#e6e6e8;font-size:16px;line-height:1.6;max-width:78ch}
+.tw{overflow-x:auto;margin:18px 0;border:1px solid var(--hair);border-radius:14px}
+table{width:100%;border-collapse:collapse;font-size:15px;min-width:540px}
+th{background:#2a1606;color:#fff;text-align:left;padding:14px 16px;font-weight:600;border-bottom:1px solid var(--hair)}
+td{padding:13px 16px;border-top:1px solid var(--hair);color:#C2C2C7;vertical-align:top;line-height:1.5}
+td:first-child{color:#fff;font-weight:600}
+tr:nth-child(even) td{background:#161618}
+td strong{color:#fff}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+tr.tot td{background:#241608;color:#fff;font-weight:600;border-top:2px solid var(--acc-d)}
+.factgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:18px 0 26px}
+.fact{background:var(--panel);border:1px solid var(--hair);border-radius:14px;padding:16px 18px}
+.fact b{color:var(--acc-l);font-size:12.5px;font-weight:600;letter-spacing:.02em;display:block;margin-bottom:5px}
+.fact span{color:#C2C2C7;font-size:15px;line-height:1.5}
+.keystrip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0 28px}
+.kc{background:var(--panel);border:1px solid var(--hair);border-radius:14px;padding:18px 16px}
+.kc-big{font-size:clamp(24px,2.6vw,32px);font-weight:600;letter-spacing:-.02em;color:var(--acc-l)}
+.kc-lab{font-size:12.5px;color:var(--gray);margin-top:6px;line-height:1.4}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.2,.6,.2,1),transform .7s cubic-bezier(.2,.6,.2,1)}
+.reveal.in{opacity:1;transform:none}
+footer{background:#000;color:#6e6e73;text-align:center;padding:36px 22px;font-size:12px;border-top:1px solid var(--hair);line-height:1.7}
+@media(max-width:880px){.report-layout{flex-direction:column;gap:0}.toc{position:static;width:auto;flex:none;max-height:none;margin-bottom:26px}}
+@media(max-width:680px){.herostats{grid-template-columns:1fr 1fr}.keystrip{grid-template-columns:1fr 1fr}.factgrid{grid-template-columns:1fr}}
+@media print{#nav,.toc,.hero .dl{display:none}.hero{min-height:auto}.reveal{opacity:1;transform:none}.secno{margin-top:30px}}
+</style></head><body>
+
+<nav id="nav"><div class="nav-in"><a href="#top" class="logo">ALAN <b>CAST</b></a><div style="display:flex;gap:20px;align-items:center"><span class="nav-back">Döküm Fabrikası · Fizibilite</span></div></div></nav>
+
+<header class="hero" id="top">
+  <div class="tag">Yatırım Belgesi · Haziran 2026</div>
+  <h1>Döküm Fabrikası<br>Fizibilite &amp; Yatırım Raporu</h1>
+  <p class="sub">Sıfırdan, yalın bir sfero/gri döküm tesisi için tam kapsamlı etüt — pazar, teknik, yatırım ve döviz-bazlı finansal analiz (NBD, İVO, geri ödeme, duyarlılık). 2019 saha verisi 2026'ya güncellenmiştir.</p>
+  <div class="dl">
+    <button class="btn" onclick="window.print()">PDF olarak yazdır</button>
+    <a class="btn ghost" href="#sec-4">Finansala git ↓</a>
+  </div>
+  <div class="herostats">
+    <div class="hs"><div class="hs-n">~53 M₺</div><div class="hs-l">Toplam yatırım · ≈ 1,0 M €</div></div>
+    <div class="hs"><div class="hs-n">50,6 M₺</div><div class="hs-l">Net Bugünkü Değer (@%15)</div></div>
+    <div class="hs"><div class="hs-n">%29,6</div><div class="hs-l">İç Verim Oranı (İVO/IRR)</div></div>
+    <div class="hs"><div class="hs-n">3,8 yıl</div><div class="hs-l">Geri ödeme süresi</div></div>
+  </div>
+  <div class="hscope"><span>Varsayımlar</span><span>Pazar</span><span>Teknik &amp; Makine</span><span>Yatırım (CAPEX)</span><span>Finansal (NBD/İVO)</span><span>Duyarlılık</span><span>Risk &amp; Teşvik</span></div>
+</header>
+
+<main class="report"><div class="wrap report-layout">
+<aside class="toc" id="toc"><div class="toc-h">İçindekiler</div>
+<div class="toc-nav" id="tocnav">
+<a href="#sec-0" class="active">0 · Yönetici Özeti &amp; Varsayımlar</a>
+<a href="#sec-1">1 · Pazar ve Talep Analizi</a>
+<a href="#sec-2">2 · Teknik &amp; Üretim</a>
+<a href="#sec-3">3 · Yatırım (CAPEX)</a>
+<a href="#sec-4">4 · Finansal Analiz</a>
+<a href="#sec-5">5 · Duyarlılık &amp; Senaryolar</a>
+<a href="#sec-6">6 · Risk &amp; Teşvik</a>
+<a href="#sec-7">7 · Sonuç ve Öneri</a>
+</div></aside>
+
+<div class="report-body">
+
+<div class="secno reveal">0</div>
+<h2 id="sec-0" class="sec reveal">Yönetici Özeti &amp; Temel Varsayımlar</h2>
+<p class="sec-lead reveal">Yalın bir döküm tesisi (4 ton indüksiyon ocağı, otomatik kalıplama hattı, kiralık fabrika) ~<strong>1,0 milyon € (53 M₺)</strong> yatırımla kurulur. Döviz-bazlı modelde proje <strong>NBD +50,6 M₺</strong>, <strong>İVO %29,6</strong> ve <strong>~3,8 yıl</strong> geri ödeme ile finansal olarak yapılabilirdir; kötümser senaryoda dahi değer kaybetmez.</p>
+<div class="keystrip reveal">
+  <div class="kc"><div class="kc-big">50,6 M₺</div><div class="kc-lab">NBD / NPV (@%15 iskonto)</div></div>
+  <div class="kc"><div class="kc-big">%29,6</div><div class="kc-lab">İVO / IRR &gt; %15 eşik</div></div>
+  <div class="kc"><div class="kc-big">3,8 yıl</div><div class="kc-lab">Basit geri ödeme</div></div>
+  <div class="kc"><div class="kc-big">%27,8</div><div class="kc-lab">Başabaş = kapasitenin ~¼'ü</div></div>
+</div>
+<div class="factgrid reveal">
+  <div class="fact"><b>Ürün</b><span>Sfero (GGG) / gri döküm; ihracat ağırlıklı. Opsiyon: döküm &amp; paslanmaz drenaj ızgarası (ACO / MEA / ULMA segmenti).</span></div>
+  <div class="fact"><b>Lokasyon</b><span>Türkiye, bir OSB (Kocaeli/Gebze ya da teşvik avantajı için 6. bölge OSB).</span></div>
+  <div class="fact"><b>Kapasite</b><span>Tam kapasite 2.400 ton/yıl (200 ton/ay). Yalın tesis, kiralık bina (inşaat yatırımı yok).</span></div>
+  <div class="fact"><b>Para birimi</b><span>Model <strong>EUR bazlı</strong> kurulmuştur (1 € = 53,3 ₺, 1 $ = 46,28 ₺ · Haz 2026). TL enflasyon gürültüsü bilinçli olarak temizlenmiştir.</span></div>
+  <div class="fact"><b>Veri tabanı</b><span>2019 saha çalışması (gerçek tedarikçi teklifleri) + güncel kur/enflasyonla 2026'ya taşınmış rakamlar.</span></div>
+  <div class="fact"><b>Statü</b><span>Tüm değerler <strong>(tahmini)</strong>; yatırım öncesi taze teklif ve detay mühendislikle netleştirilmelidir.</span></div>
+</div>
+
+<div class="secno reveal">1</div>
+<h2 id="sec-1" class="sec reveal">Pazar ve Talep Analizi</h2>
+<p class="sec-lead reveal">Türkiye, döküm üretiminde dünyada ilk sıralarda; talep ihracat odaklı ve döviz-bazlı. Bu, döviz-bazlı bir gelir modelini gerçekçi kılar.</p>
+<ul class="reveal">
+<li><strong>Sektör büyüklüğü:</strong> Türkiye ~1,9 milyon ton/yıl döküm üretimi (2016; 2017 tahmini ~2,15 M ton) ile <strong>dünyada 11., Avrupa'da 3.</strong> üretici. İhracat kıymeti ~2,8 milyar € (2016).</li>
+<li><strong>İhracat odağı:</strong> Üretimin <strong>%60'tan fazlası</strong> ihraç ediliyor — yani satış fiyatı pratikte dövize endeksli (€/ton).</li>
+<li><strong>Trend (fırsat):</strong> Çin'in emisyon/çevre baskısıyla eski dökümhanelerini kapatması, tedarik boşluğunu Türkiye KOBİ ve mikro dökümhanelerine kaydırıyor.</li>
+<li><strong>Yapı:</strong> ~930 kuruluş (≈160 büyük, ≈375 KOBİ, ≈395 mikro). Kümeler: İstanbul, Kocaeli, Bursa, Eskişehir, Bilecik, İzmir, Ankara, Samsun.</li>
+</ul>
+<h3 class="reveal">Drenaj ızgara / kanal opsiyonu (ACO · MEA · ULMA)</h3>
+<p class="reveal">Tesis, döküm/paslanmaz <strong>drenaj ızgarası</strong> üreterek yüksek katma değerli bir nişe girebilir. Avrupa polimer beton drenaj pazarı ~320 M$ (2024), yıllık büyüme ~%7. Rakipler modüler sistem (EN 1433 yük sınıfı A15–F900, CE) ve mimari şartname ağıyla kazanıyor; giriş için ürün ailesi genişliği ve sertifikasyon şart.</p>
+<div class="tw reveal"><table>
+<tr><th>Gösterge</th><th>Değer</th><th>Fizibilitedeki rolü</th></tr>
+<tr><td>Türkiye üretim (2016)</td><td>~1,9 M ton/yıl</td><td>Pazar büyüklüğü / pay konumlandırma</td></tr>
+<tr><td>İhracat oranı</td><td>%60+</td><td>Döviz-bazlı gelir gerekçesi</td></tr>
+<tr><td>Döküm verimi</td><td>~%55–65</td><td>1 ton sağlam döküm ≈ 1.700 kg sıvı metal</td></tr>
+<tr><td>Ergitme enerjisi</td><td>~530–650 kWh/ton</td><td>Maliyetin elektriğe duyarlılığı</td></tr>
+<tr><td>Metal maliyeti payı</td><td>%40–55</td><td>En büyük gider kalemi → fiyat-endeksleme klozu</td></tr>
+</table></div>
+
+<div class="secno reveal">2</div>
+<h2 id="sec-2" class="sec reveal">Teknik &amp; Üretim</h2>
+<p class="sec-lead reveal">Yalın senaryo: elektrikli indüksiyon ergitme + otomatik kalıplama hattı + reçineli/yaş kum hazırlama. Modüler kurulu, kiralık binada hızlı devreye alma.</p>
+<h4 class="reveal">Üretim akışı</h4>
+<p class="reveal">Sipariş → Model/Maça imalatı → Kum hazırlama → Presli otomatik kalıplama → Ergitme (indüksiyon) → Döküm → Soğutma/Bozma → Temizleme → Kumlama → Taşlama → Isıl işlem → (gerekirse talaşlı imalat) → Boya → Kalite kontrol → Sevk.</p>
+<h4 class="reveal">Makine parkuru ve gösterge bedeller (yalın senaryo, 2026 güncel)</h4>
+<div class="tw reveal"><table>
+<tr><th>Sistem</th><th>Teknik</th><th class="n">≈ Bedel (€)</th></tr>
+<tr><td>Ergitme — indüksiyon ocağı</td><td>4 ton çift pota, ~530 kWh/ton</td><td class="n">250.000</td></tr>
+<tr><td>Kalıplama hattı (otomatik)</td><td>~50 kalıp/saat, dikey/yatay</td><td class="n">220.000</td></tr>
+<tr><td>Kum hazırlama</td><td>~60 ton/saat mikser + elek + konveyör</td><td class="n">120.000</td></tr>
+<tr><td>Maça makinesi</td><td>Soğuk kutu + kum hazırlama</td><td class="n">40.000</td></tr>
+<tr><td>Kumlama (shot blast)</td><td>Askılı, ~3 ton</td><td class="n">35.000</td></tr>
+<tr><td>Boyahane</td><td>Daldırma + fırınlı kurutma</td><td class="n">35.000</td></tr>
+<tr><td>Test/lab + diğer</td><td>Spektrometre, çekme, vinç, trafo</td><td class="n">50.000</td></tr>
+<tr class="tot"><td>Ana ekipman + kurulum</td><td>—</td><td class="n">~750.000</td></tr>
+</table></div>
+<blockquote class="reveal"><strong>Ölçek seçeneği.</strong> Yalın senaryo (yukarıda, ~1,0 M €) baz alınmıştır. Daha büyük, 6 tonluk tam otomatik hat (2019'da İndemak ocak + Çin kalıplama hattı + Yemsa kum tesisi gerçek teklifleri) bugün ~<strong>3,5 M $ (≈150 M₺)</strong> ana ekipman gerektirir — Faz-2 büyüme opsiyonu olarak değerlendirilebilir.</blockquote>
+
+<div class="secno reveal">3</div>
+<h2 id="sec-3" class="sec reveal">Yatırım (CAPEX)</h2>
+<p class="sec-lead reveal">Kiralık bina sayesinde sabit yatırım ekipman ağırlıklı; arsa/inşaat kalemi yok. Toplam yatırım ihtiyacı ~1,0 milyon € (53,3 M₺).</p>
+<div class="tw reveal"><table>
+<tr><th>Kalem</th><th class="n">€</th><th class="n">₺ (×53,3)</th></tr>
+<tr><td>Ana ekipman + kurulum</td><td class="n">750.000</td><td class="n">39,98 M</td></tr>
+<tr><td>Demirbaş / araç / kuruluş</td><td class="n">60.000</td><td class="n">3,20 M</td></tr>
+<tr><td><strong>Sabit yatırım ara toplam</strong></td><td class="n">810.000</td><td class="n">43,17 M</td></tr>
+<tr><td>İşletme sermayesi</td><td class="n">190.000</td><td class="n">10,13 M</td></tr>
+<tr class="tot"><td>TOPLAM YATIRIM</td><td class="n">1.000.000</td><td class="n">53,30 M</td></tr>
+</table></div>
+<p class="reveal"><strong>Finansman:</strong> %50 öz kaynak (500.000 €) + %50 banka kredisi (500.000 €; ~%10/yıl EUR, 5 yıl eşit anapara). Teşvikli makine alımında KDV/gümrük muafiyeti bu tutarı ayrıca düşürür (bkz. §6).</p>
+
+<div class="secno reveal">4</div>
+<h2 id="sec-4" class="sec reveal">Finansal Analiz</h2>
+<p class="sec-lead reveal">10 yıllık döviz-bazlı (proje/unlevered) nakit akışı. Satış 1,20 €/kg, değişken maliyet gelirin %60'ı, tam kapasitede sabit gider 320.000 €/yıl.</p>
+<div class="tw reveal"><table>
+<tr><th>Yıl</th><th class="n">Kap.</th><th class="n">Üretim (t)</th><th class="n">Gelir (€)</th><th class="n">FAVOK (€)</th><th class="n">Net Kâr (€)</th><th class="n">FCF (€)</th></tr>
+<tr><td>1</td><td class="n">%0</td><td class="n">0</td><td class="n">0</td><td class="n">−96.000</td><td class="n">−227.000</td><td class="n">−96.000</td></tr>
+<tr><td>2</td><td class="n">%45</td><td class="n">1.080</td><td class="n">1.296.000</td><td class="n">294.400</td><td class="n">130.050</td><td class="n">241.050</td></tr>
+<tr><td>3</td><td class="n">%70</td><td class="n">1.680</td><td class="n">2.016.000</td><td class="n">534.400</td><td class="n">317.550</td><td class="n">421.050</td></tr>
+<tr><td>4</td><td class="n">%90</td><td class="n">2.160</td><td class="n">2.592.000</td><td class="n">716.800</td><td class="n">461.850</td><td class="n">557.850</td></tr>
+<tr><td>5</td><td class="n">%90</td><td class="n">2.160</td><td class="n">2.592.000</td><td class="n">716.800</td><td class="n">469.350</td><td class="n">557.850</td></tr>
+<tr><td>6–10</td><td class="n">%90</td><td class="n">2.160</td><td class="n">2.592.000</td><td class="n">716.800</td><td class="n">476.850</td><td class="n">557.850</td></tr>
+</table></div>
+<p class="reveal">Tam kapasitede (Yıl 4+) TL karşılığı: <strong>Gelir 138,2 M₺</strong>, FAVOK 38,2 M₺, net kâr ~25,4 M₺/yıl. Yıl 10'da işletme sermayesi (190.000 €) geri döner.</p>
+<div class="keystrip reveal">
+  <div class="kc"><div class="kc-big">50,6 M₺</div><div class="kc-lab">NBD · 948.625 € (@%15)</div></div>
+  <div class="kc"><div class="kc-big">%29,6</div><div class="kc-lab">İVO / IRR</div></div>
+  <div class="kc"><div class="kc-big">5,1 yıl</div><div class="kc-lab">İndirgenmiş geri ödeme</div></div>
+  <div class="kc"><div class="kc-big">667 t</div><div class="kc-lab">Başabaş = kapasitenin %27,8'i</div></div>
+</div>
+<p class="reveal">Tam kapasitede <strong>FAVOK marjı %27,7</strong>, <strong>net kâr marjı %17,8</strong>. Başabaş kapasitenin yalnızca ~%28'i — fabrika düşük doluluk altında bile zarara geçmez (yüksek güvenlik payı).</p>
+
+<div class="secno reveal">5</div>
+<h2 id="sec-5" class="sec reveal">Duyarlılık &amp; Senaryolar</h2>
+<p class="sec-lead reveal">Üç kilit değişkende de en kötü uçta bile NBD pozitif ve İVO &gt; %15. Model en çok <strong>değişken maliyete</strong> (metal/enerji) duyarlı.</p>
+<h4 class="reveal">(a) Satış fiyatı</h4>
+<div class="tw reveal"><table>
+<tr><th>Senaryo</th><th class="n">Fiyat</th><th class="n">NBD (₺)</th><th class="n">İVO</th></tr>
+<tr><td>−15%</td><td class="n">1.020 €/t</td><td class="n">28,0 M</td><td class="n">%23,7</td></tr>
+<tr><td><strong>Baz</strong></td><td class="n">1.200 €/t</td><td class="n">50,6 M</td><td class="n">%29,6</td></tr>
+<tr><td>+15%</td><td class="n">1.380 €/t</td><td class="n">73,1 M</td><td class="n">%34,9</td></tr>
+</table></div>
+<h4 class="reveal">(b) Değişken maliyet</h4>
+<div class="tw reveal"><table>
+<tr><th>Senaryo</th><th class="n">Oran</th><th class="n">NBD (₺)</th><th class="n">İVO</th></tr>
+<tr><td>+15%</td><td class="n">%69</td><td class="n">16,8 M</td><td class="n">%20,4</td></tr>
+<tr><td><strong>Baz</strong></td><td class="n">%60</td><td class="n">50,6 M</td><td class="n">%29,6</td></tr>
+<tr><td>−15%</td><td class="n">%51</td><td class="n">84,4 M</td><td class="n">%37,4</td></tr>
+</table></div>
+<h4 class="reveal">(c) Kapasite kullanımı</h4>
+<div class="tw reveal"><table>
+<tr><th>Senaryo</th><th class="n">Çarpan</th><th class="n">NBD (₺)</th><th class="n">İVO</th></tr>
+<tr><td>Düşük doluluk</td><td class="n">0,75×</td><td class="n">13,0 M</td><td class="n">%19,3</td></tr>
+<tr><td><strong>Baz</strong></td><td class="n">1,0×</td><td class="n">50,6 M</td><td class="n">%29,6</td></tr>
+<tr><td>Yüksek doluluk</td><td class="n">1,1×</td><td class="n">65,6 M</td><td class="n">%33,2</td></tr>
+</table></div>
+<h4 class="reveal">Üç senaryo özeti</h4>
+<div class="tw reveal"><table>
+<tr><th>Senaryo</th><th>Varsayım</th><th class="n">NBD (₺)</th><th class="n">İVO</th><th class="n">Geri Ödeme</th></tr>
+<tr><td>Kötümser</td><td>Fiyat −10%, Değ. %65, Kap. 0,85×</td><td class="n">0,9 M</td><td class="n">%15,3</td><td class="n">5,5 yıl</td></tr>
+<tr><td><strong>Baz</strong></td><td>Referans varsayımlar</td><td class="n">50,6 M</td><td class="n">%29,6</td><td class="n">3,8 yıl</td></tr>
+<tr><td>İyimser</td><td>Fiyat +10%, Değ. %57, Kap. 1,05×</td><td class="n">86,9 M</td><td class="n">%37,9</td><td class="n">3,3 yıl</td></tr>
+</table></div>
+
+<div class="secno reveal">6</div>
+<h2 id="sec-6" class="sec reveal">Risk &amp; Teşvik</h2>
+<h4 class="reveal">Başlıca riskler</h4>
+<ul class="reveal">
+<li><strong>Hammadde fiyatı:</strong> Hurda + ferroalyaj maliyetin en büyük kalemi ve volatil → ihracat sözleşmelerinde <strong>metal eskalasyon / fiyat-endeksleme klozu</strong> (TÜDÖKSAD/CAEF endeksi) ile riski müşteriye yansıt.</li>
+<li><strong>Enerji:</strong> İndüksiyon ergitme elektriğe bağımlı (~530–650 kWh/ton); sanayi tarifesi enflasyon üstü seyrediyor → tarife sözleşmesi / öz tüketim güneş opsiyonu.</li>
+<li><strong>Döviz:</strong> Hem makine hem ferroalyaj ithalatı dövizli; gelir de €-bazlı olduğu için doğal hedge mevcut.</li>
+<li><strong>Talep döngüselliği:</strong> Otomotiv/inşaat/makine talebine bağlı; düşük başabaş (%28) bu riski hafifletir.</li>
+<li><strong>Çevre/ÇED:</strong> Toz toplama, baca filtresi, atık kum yönetimi ayrı CAPEX kalemi ve emisyon izni gerektirir — bütçeye eklenmeli.</li>
+</ul>
+<h4 class="reveal">Teşvikler (yatırıma başlamadan belge alınmalı)</h4>
+<ul class="reveal">
+<li><strong>KDV + gümrük muafiyeti:</strong> Yurt içi makinede KDV istisnası, ithal makinede gümrük muafiyeti — sermaye-yoğun döküm için en kritik avantaj.</li>
+<li><strong>OSB + 6. bölge:</strong> İndirimli kurumlar vergisi, SGK işveren primi desteği (OSB'de +2 yıl), faiz desteği; altyapı hazır, çevre süreçleri kolay.</li>
+<li><strong>İstanbul:</strong> Yalnız KDV + gümrük muafiyeti (vergi indirimi/faiz desteği yok) — lokasyon kararını doğrudan etkiler.</li>
+</ul>
+
+<div class="secno reveal">7</div>
+<h2 id="sec-7" class="sec reveal">Sonuç ve Öneri</h2>
+<blockquote class="reveal"><strong>Yatırım kararı: Olumlu.</strong> Baz senaryoda ~1,0 M € yatırım, %15 iskonto altında <strong>50,6 M₺ NBD</strong> ve <strong>%29,6 İVO</strong> üretiyor; ~3,8 yılda geri ödüyor. Kötümser senaryoda bile NBD≈0 / İVO≈iskonto oranı — yani aşağı yönlü risk sınırlı, yukarı potansiyel yüksek.</blockquote>
+<p class="reveal"><strong>Öneriler:</strong> (1) Yalın senaryoyla başla, talep oturunca 6 tonluk tam otomatik Faz-2'ye geç. (2) Lokasyonu teşvik (6. bölge OSB) ve müşteri yakınlığı (Marmara) ekseninde net seç. (3) Satış sözleşmelerine metal eskalasyon klozu koy. (4) Yatırım öncesi 3–4 kilit kalemde (ocak, kalıplama hattı, elektrik) <strong>taze teklif</strong> alıp modeli kalibre et.</p>
+
+</div></div></main>
+
+<footer>
+ALAN CAST — Döküm Fabrikası Fizibilite &amp; Yatırım Raporu · Haziran 2026<br>
+Model EUR bazlı kurulmuştur (1 € = 53,3 ₺, 1 $ = 46,28 ₺). 2019 saha verisi güncel kur ve TÜFE (~9×) ile 2026'ya taşınmıştır.<br>
+Tüm finansal değerler tahminîdir ve yatırım öncesi teklif + detay mühendislikle netleştirilmelidir. · Özel belge — dağıtıma kapalı.
+</footer>
+
+<script>
+// nav arka plan
+var nav=document.getElementById('nav');
+addEventListener('scroll',function(){nav.classList.toggle('solid',scrollY>40);});
+// scroll-reveal
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+// TOC scroll-spy
+var links=[].slice.call(document.querySelectorAll('#tocnav a'));
+var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'));});
+addEventListener('scroll',function(){
+  var y=scrollY+140,idx=0;
+  secs.forEach(function(s,i){if(s&&s.offsetTop<=y)idx=i;});
+  links.forEach(function(a,i){a.classList.toggle('active',i===idx);});
+});
+</script>
+</body></html>
