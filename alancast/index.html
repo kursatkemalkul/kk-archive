@@ -9,53 +9,52 @@
 html{scroll-behavior:smooth;background:#000}
 body{font-family:var(--font);background:var(--black);color:#fff;-webkit-font-smoothing:antialiased;line-height:1.5;letter-spacing:-.01em}
 a{color:var(--acc-l);text-decoration:none}
-.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+.wrap{max-width:1060px;margin:0 auto;padding:0 22px}
 #nav{position:fixed;top:0;left:0;right:0;z-index:100;height:52px;display:flex;justify-content:center;transition:background .4s,backdrop-filter .4s}
 #nav.solid{background:rgba(0,0,0,.72);backdrop-filter:saturate(180%) blur(20px)}
-.nav-in{max-width:1040px;width:100%;display:flex;align-items:center;justify-content:space-between;padding:0 22px}
+.nav-in{max-width:1060px;width:100%;display:flex;align-items:center;justify-content:space-between;padding:0 22px}
 .logo{font-weight:600;font-size:19px;color:#fff}.logo b{color:var(--acc)}
-.nav-back{font-size:14px;color:#d6d6d8}.nav-back:hover{color:var(--acc)}
-.hero{min-height:76vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 22px 64px;background:radial-gradient(120% 80% at 50% 0%,#2a1606 0%,#160b03 42%,#000 78%)}
+.nav-back{font-size:14px;color:#d6d6d8}
+.hero{min-height:78vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 22px 64px;background:radial-gradient(120% 80% at 50% 0%,#2a1606 0%,#160b03 42%,#000 78%)}
 .hero .tag{font-size:clamp(14px,1.5vw,19px);font-weight:600;color:var(--acc-l);margin-bottom:10px}
 .hero h1{font-size:clamp(34px,6vw,72px);font-weight:600;letter-spacing:-.035em;line-height:1.04;background:linear-gradient(168deg,#FFF1E2,var(--acc-l) 34%,var(--acc) 66%,var(--acc-d));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.hero .sub{font-size:clamp(16px,1.9vw,22px);color:#ecd9c6;font-weight:500;max-width:780px;margin:22px auto 0;line-height:1.4}
+.hero .sub{font-size:clamp(16px,1.9vw,22px);color:#ecd9c6;font-weight:500;max-width:800px;margin:22px auto 0;line-height:1.4}
 .hero .dl{margin-top:34px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
 .btn{display:inline-block;background:var(--acc);color:#2a1606;font-weight:600;padding:13px 26px;border-radius:980px;font-size:15px;transition:background .2s,transform .2s;cursor:pointer;border:none}
 .btn:hover{background:var(--acc-l);transform:translateY(-2px)}
 .btn.ghost{background:transparent;border:1px solid #5a4129;color:#ecd9c6}
-.herostats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:820px;margin:42px auto 0}
+.herostats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:840px;margin:42px auto 0}
 .herostats .hs{background:rgba(255,255,255,.04);border:1px solid var(--hair);border-radius:14px;padding:16px 12px}
 .herostats .hs-n{font-size:clamp(22px,2.8vw,34px);font-weight:600;letter-spacing:-.02em;background:linear-gradient(150deg,var(--acc-l),var(--acc-d));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .herostats .hs-l{font-size:11.5px;color:var(--gray);margin-top:6px;line-height:1.35}
-.hscope{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:24px}
+.hscope{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:24px;max-width:900px}
 .hscope span{font-size:12.5px;color:#ecd9c6;background:rgba(255,255,255,.05);border:1px solid var(--hair);border-radius:980px;padding:6px 14px}
 .report{padding:30px 0 100px}
-.report-layout{display:flex;gap:46px;align-items:flex-start}
+.report-layout{display:flex;gap:42px;align-items:flex-start}
 .report-body{flex:1 1 auto;min-width:0}
-.toc{position:sticky;top:70px;flex:0 0 230px;width:230px;background:var(--panel);border:1px solid var(--hair);border-radius:16px;padding:16px 12px;max-height:calc(100vh - 90px);overflow-y:auto}
+.toc{position:sticky;top:70px;flex:0 0 232px;width:232px;background:var(--panel);border:1px solid var(--hair);border-radius:16px;padding:16px 12px;max-height:calc(100vh - 90px);overflow-y:auto}
 .toc-h{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);padding:2px 10px 12px}
 .toc-nav{display:flex;flex-direction:column;gap:1px}
-.toc-nav a{display:block;border-radius:8px;font-size:13.5px;font-weight:600;color:#dcdce0;padding:8px 10px;line-height:1.34;transition:background .15s,color .15s}
+.toc-nav a{display:block;border-radius:8px;font-size:13px;font-weight:600;color:#dcdce0;padding:7px 10px;line-height:1.3;transition:background .15s,color .15s}
 .toc-nav a:hover{background:#26262a;color:#fff}
 .toc-nav a.active{color:var(--acc-l);background:#2a1606}
 .secno{font-size:clamp(38px,6vw,68px);font-weight:600;line-height:1;letter-spacing:-.03em;background:linear-gradient(160deg,var(--acc-l),var(--acc) 55%,var(--acc-d));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;opacity:.92;margin-top:72px;scroll-margin-top:64px}
 .report .sec{font-size:clamp(23px,3.2vw,36px);font-weight:600;color:#fff;letter-spacing:-.02em;margin:4px 0 8px;scroll-margin-top:122px}
-.report .sec:first-of-type{margin-top:8px}
 .report h3{font-size:21px;font-weight:600;color:#fff;margin:32px 0 12px}
 .report h4{font-size:16.5px;font-weight:600;color:var(--acc-l);margin:24px 0 8px}
-.report p{color:#C2C2C7;margin:14px 0;font-size:16.5px;line-height:1.72;max-width:74ch}
+.report p{color:#C2C2C7;margin:14px 0;font-size:16.5px;line-height:1.72;max-width:76ch}
 .report p.sec-lead{font-size:clamp(17px,1.7vw,20px);color:#e8e0d8;line-height:1.5;margin:8px 0 20px;font-weight:400}
 .report ul{margin:10px 0 14px 4px;list-style:none}
-.report li{color:#C2C2C7;font-size:16px;line-height:1.65;padding-left:22px;position:relative;margin:9px 0;max-width:74ch}
+.report li{color:#C2C2C7;font-size:16px;line-height:1.65;padding-left:22px;position:relative;margin:9px 0;max-width:76ch}
 .report li::before{content:"";position:absolute;left:2px;top:10px;width:6px;height:6px;border-radius:50%;background:var(--acc)}
-.report li>strong:first-child{display:block;color:var(--acc-l);font-size:13.5px;font-weight:600;letter-spacing:.01em;margin-bottom:2px}
+.report li>strong:first-child{display:block;color:var(--acc-l);font-size:13.5px;font-weight:600;margin-bottom:2px}
 .report strong{color:#fff;font-weight:600}
 .report hr{border:0;border-top:1px solid var(--hair);margin:26px 0}
-.report blockquote{border-left:4px solid var(--acc);background:var(--panel);padding:18px 22px;border-radius:0 12px 12px 0;margin:22px 0;color:#e6e6e8;font-size:16px;line-height:1.6;max-width:78ch}
+.report blockquote{border-left:4px solid var(--acc);background:var(--panel);padding:18px 22px;border-radius:0 12px 12px 0;margin:22px 0;color:#e6e6e8;font-size:16px;line-height:1.6;max-width:80ch}
 .tw{overflow-x:auto;margin:18px 0;border:1px solid var(--hair);border-radius:14px}
-table{width:100%;border-collapse:collapse;font-size:15px;min-width:540px}
-th{background:#2a1606;color:#fff;text-align:left;padding:14px 16px;font-weight:600;border-bottom:1px solid var(--hair)}
-td{padding:13px 16px;border-top:1px solid var(--hair);color:#C2C2C7;vertical-align:top;line-height:1.5}
+table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:560px}
+th{background:#2a1606;color:#fff;text-align:left;padding:13px 15px;font-weight:600;border-bottom:1px solid var(--hair)}
+td{padding:12px 15px;border-top:1px solid var(--hair);color:#C2C2C7;vertical-align:top;line-height:1.5}
 td:first-child{color:#fff;font-weight:600}
 tr:nth-child(even) td{background:#161618}
 td strong{color:#fff}
@@ -63,29 +62,43 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
 tr.tot td{background:#241608;color:#fff;font-weight:600;border-top:2px solid var(--acc-d)}
 .factgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:18px 0 26px}
 .fact{background:var(--panel);border:1px solid var(--hair);border-radius:14px;padding:16px 18px}
-.fact b{color:var(--acc-l);font-size:12.5px;font-weight:600;letter-spacing:.02em;display:block;margin-bottom:5px}
+.fact b{color:var(--acc-l);font-size:12.5px;font-weight:600;display:block;margin-bottom:5px}
 .fact span{color:#C2C2C7;font-size:15px;line-height:1.5}
 .keystrip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0 28px}
 .kc{background:var(--panel);border:1px solid var(--hair);border-radius:14px;padding:18px 16px}
 .kc-big{font-size:clamp(24px,2.6vw,32px);font-weight:600;letter-spacing:-.02em;color:var(--acc-l)}
 .kc-lab{font-size:12.5px;color:var(--gray);margin-top:6px;line-height:1.4}
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.2,.6,.2,1),transform .7s cubic-bezier(.2,.6,.2,1)}
+.cwrap{margin:22px 0;background:var(--panel);border:1px solid var(--hair);border-radius:16px;padding:18px 18px 14px}
+.cwrap .ctitle{font-size:15px;font-weight:600;color:#fff;margin-bottom:14px}
+.cwrap .cnote{font-size:12px;color:var(--gray);margin-top:12px;line-height:1.5}
+.swot{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
+.swot .sb{background:var(--panel);border:1px solid var(--hair);border-radius:14px;padding:16px 18px}
+.swot .sb h5{font-size:13px;font-weight:700;color:var(--acc-l);margin-bottom:8px;letter-spacing:.02em}
+.swot .sb ul{margin:0}.swot .sb li{font-size:14.5px;margin:6px 0}
+.statbox{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0 24px}
+.statbox .sx{background:var(--panel);border:1px solid var(--hair);border-radius:12px;padding:15px 16px}
+.statbox .sx b{display:block;font-size:22px;color:var(--acc-l);font-weight:600;letter-spacing:-.02em}
+.statbox .sx span{font-size:12px;color:var(--gray);line-height:1.4}
+.modgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}
+.modgrid .md{background:var(--panel);border:1px solid var(--hair);border-radius:11px;padding:11px 13px;font-size:13px;color:#cfcfd3}
+.modgrid .md b{color:var(--acc-l);font-weight:600;font-size:13px}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.6,.2,1),transform .7s cubic-bezier(.2,.6,.2,1)}
 .reveal.in{opacity:1;transform:none}
 footer{background:#000;color:#6e6e73;text-align:center;padding:36px 22px;font-size:12px;border-top:1px solid var(--hair);line-height:1.7}
 @media(max-width:880px){.report-layout{flex-direction:column;gap:0}.toc{position:static;width:auto;flex:none;max-height:none;margin-bottom:26px}}
-@media(max-width:680px){.herostats{grid-template-columns:1fr 1fr}.keystrip{grid-template-columns:1fr 1fr}.factgrid{grid-template-columns:1fr}}
+@media(max-width:680px){.herostats{grid-template-columns:1fr 1fr}.keystrip{grid-template-columns:1fr 1fr}.factgrid{grid-template-columns:1fr}.swot{grid-template-columns:1fr}.statbox{grid-template-columns:1fr 1fr}.modgrid{grid-template-columns:1fr 1fr}}
 @media print{#nav,.toc,.hero .dl{display:none}.hero{min-height:auto}.reveal{opacity:1;transform:none}.secno{margin-top:30px}}
 </style></head><body>
 
-<nav id="nav"><div class="nav-in"><a href="#top" class="logo">ALAN <b>CAST</b></a><div style="display:flex;gap:20px;align-items:center"><span class="nav-back">Döküm Fabrikası · Fizibilite</span></div></div></nav>
+<nav id="nav"><div class="nav-in"><a href="#top" class="logo">ALAN <b>CAST</b></a><span class="nav-back">Döküm Fabrikası · Fizibilite</span></div></nav>
 
 <header class="hero" id="top">
   <div class="tag">Yatırım Belgesi · Haziran 2026</div>
   <h1>Döküm Fabrikası<br>Fizibilite &amp; Yatırım Raporu</h1>
-  <p class="sub">Sıfırdan, yalın bir döküm tesisi için tam kapsamlı etüt. Ürün: belediye/altyapı dökümü — <strong>rögar kapağı + drenaj ızgarası</strong> (sfero/gri döküm). Pazar, teknik, yatırım ve döviz-bazlı finansal analiz (NBD, İVO, geri ödeme, duyarlılık). 2019 ALAN CAST saha verisi 2026'ya güncellenmiştir.</p>
+  <p class="sub">Sıfırdan, yalın bir sfero (GGG50) döküm tesisi. Ürün: belediye/altyapı dökümü — <strong>baca/rögar kapakları + yağmur suyu ızgaraları</strong> (EN124, C250/D400). Pazar, ürün, teknik, yatırım ve döviz-bazlı finansal analiz; strateji, yönetim ve Ar-Ge dahil tam kapsamlı etüt. 2019 ALAN CAST saha verisi 2026'ya güncellenmiştir.</p>
   <div class="dl">
     <button class="btn" onclick="window.print()">PDF olarak yazdır</button>
-    <a class="btn ghost" href="#sec-4">Finansala git ↓</a>
+    <a class="btn ghost" href="#sec-6">Finansala git ↓</a>
   </div>
   <div class="herostats">
     <div class="hs"><div class="hs-n">~53 M₺</div><div class="hs-l">Toplam yatırım · ≈ 1,0 M €</div></div>
@@ -93,26 +106,31 @@ footer{background:#000;color:#6e6e73;text-align:center;padding:36px 22px;font-si
     <div class="hs"><div class="hs-n">%29,6</div><div class="hs-l">İç Verim Oranı (İVO/IRR)</div></div>
     <div class="hs"><div class="hs-n">3,8 yıl</div><div class="hs-l">Geri ödeme süresi</div></div>
   </div>
-  <div class="hscope"><span>Varsayımlar</span><span>Pazar</span><span>Teknik &amp; Makine</span><span>Yatırım (CAPEX)</span><span>Finansal (NBD/İVO)</span><span>Duyarlılık</span><span>Risk &amp; Teşvik</span></div>
+  <div class="hscope"><span>Ürün Yelpazesi</span><span>Pazar</span><span>Teknik &amp; Üretim</span><span>Yatırım (CAPEX)</span><span>İşletme &amp; Kazanç</span><span>Finansal (NBD/İVO)</span><span>Duyarlılık</span><span>Strateji &amp; SWOT</span><span>Yönetim</span><span>Ar-Ge &amp; Kalite</span><span>Risk &amp; Teşvik</span></div>
 </header>
 
 <main class="report"><div class="wrap report-layout">
 <aside class="toc" id="toc"><div class="toc-h">İçindekiler</div>
 <div class="toc-nav" id="tocnav">
-<a href="#sec-0" class="active">0 · Yönetici Özeti &amp; Varsayımlar</a>
-<a href="#sec-1">1 · Pazar ve Talep Analizi</a>
-<a href="#sec-2">2 · Teknik &amp; Üretim</a>
-<a href="#sec-3">3 · Yatırım (CAPEX)</a>
-<a href="#sec-4">4 · Finansal Analiz</a>
-<a href="#sec-5">5 · Duyarlılık &amp; Senaryolar</a>
-<a href="#sec-6">6 · Risk &amp; Teşvik</a>
-<a href="#sec-7">7 · Sonuç ve Öneri</a>
+<a href="#sec-0" class="active">0 · Yönetici Özeti</a>
+<a href="#sec-1">1 · Ürün Yelpazesi</a>
+<a href="#sec-2">2 · Pazar ve Talep</a>
+<a href="#sec-3">3 · Teknik &amp; Üretim</a>
+<a href="#sec-4">4 · Yatırım (CAPEX)</a>
+<a href="#sec-5">5 · İşletme &amp; Kazanç</a>
+<a href="#sec-6">6 · Finansal Analiz (2026)</a>
+<a href="#sec-7">7 · Duyarlılık &amp; Senaryolar</a>
+<a href="#sec-8">8 · Strateji &amp; SWOT</a>
+<a href="#sec-9">9 · Yönetim &amp; Organizasyon</a>
+<a href="#sec-10">10 · Ar-Ge &amp; Kalite</a>
+<a href="#sec-11">11 · Risk &amp; Teşvik</a>
+<a href="#sec-12">12 · Sonuç ve Öneri</a>
 </div></aside>
 
 <div class="report-body">
 
 <div class="secno reveal">0</div>
-<h2 id="sec-0" class="sec reveal">Yönetici Özeti &amp; Temel Varsayımlar</h2>
+<h2 id="sec-0" class="sec reveal">Yönetici Özeti &amp; Varsayımlar</h2>
 <p class="sec-lead reveal">Yalın bir döküm tesisi (4 ton indüksiyon ocağı, otomatik kalıplama hattı, kiralık fabrika) ~<strong>1,0 milyon € (53 M₺)</strong> yatırımla kurulur. Döviz-bazlı modelde proje <strong>NBD +50,6 M₺</strong>, <strong>İVO %29,6</strong> ve <strong>~3,8 yıl</strong> geri ödeme ile finansal olarak yapılabilirdir; kötümser senaryoda dahi değer kaybetmez.</p>
 <div class="keystrip reveal">
   <div class="kc"><div class="kc-big">50,6 M₺</div><div class="kc-lab">NBD / NPV (@%15 iskonto)</div></div>
@@ -121,76 +139,994 @@ footer{background:#000;color:#6e6e73;text-align:center;padding:36px 22px;font-si
   <div class="kc"><div class="kc-big">%27,8</div><div class="kc-lab">Başabaş = kapasitenin ~¼'ü</div></div>
 </div>
 <div class="factgrid reveal">
-  <div class="fact"><b>Ürün</b><span><strong>Rögar kapağı + drenaj ızgarası</strong> (belediye/altyapı dökümü; sfero GGG / gri döküm), ihracat ağırlıklı. Drenaj ızgarası <strong>ACO / MEA / ULMA</strong> segmentine doğrudan rakip.</span></div>
-  <div class="fact"><b>Lokasyon</b><span>Türkiye, bir OSB (Kocaeli/Gebze ya da teşvik avantajı için 6. bölge OSB).</span></div>
+  <div class="fact"><b>Ürün</b><span><strong>Baca/rögar kapakları + yağmur suyu ızgaraları</strong> (sfero GGG50, EN124, C250/D400). Belediye/altyapı; ACO/MEA/ULMA segmentine rakip.</span></div>
+  <div class="fact"><b>Lokasyon</b><span>Türkiye, bir OSB (Kocaeli/Gebze ya da teşvik için 6. bölge OSB).</span></div>
   <div class="fact"><b>Kapasite</b><span>Tam kapasite 2.400 ton/yıl (200 ton/ay). Yalın tesis, kiralık bina (inşaat yatırımı yok).</span></div>
-  <div class="fact"><b>Para birimi</b><span>Model <strong>EUR bazlı</strong> kurulmuştur (1 € = 53,3 ₺, 1 $ = 46,28 ₺ · Haz 2026). TL enflasyon gürültüsü bilinçli olarak temizlenmiştir.</span></div>
-  <div class="fact"><b>Veri tabanı</b><span>2019 ALAN CAST mali sunumu (30 slayt) + gerçek tedarikçi teklifleri; güncel kur/enflasyonla 2026'ya taşınmış. Sunumdaki künye: 1.890 ton/ay, 5 M₺, 2,5 yıl geri ödeme, %20 kârlılık.</span></div>
+  <div class="fact"><b>Para birimi</b><span>Model <strong>EUR bazlı</strong> (1 € = 53,3 ₺, 1 $ = 46,28 ₺ · Haz 2026). TL enflasyon gürültüsü temizlendi.</span></div>
+  <div class="fact"><b>Veri tabanı</b><span>2019 ALAN CAST mali sunumu (30 slayt) + gerçek tedarikçi teklifleri + DOKUM FAB arşivinin 74 belgesi; 2026'ya taşındı.</span></div>
   <div class="fact"><b>Statü</b><span>Tüm değerler <strong>(tahmini)</strong>; yatırım öncesi taze teklif ve detay mühendislikle netleştirilmelidir.</span></div>
 </div>
 
 <div class="secno reveal">1</div>
-<h2 id="sec-1" class="sec reveal">Pazar ve Talep Analizi</h2>
-<p class="sec-lead reveal">Türkiye, döküm üretiminde dünyada ilk sıralarda; talep ihracat odaklı ve döviz-bazlı. Bu, döviz-bazlı bir gelir modelini gerçekçi kılar.</p>
-<ul class="reveal">
-<li><strong>Sektör büyüklüğü:</strong> Türkiye ~1,9 milyon ton/yıl döküm üretimi (2016; 2017 tahmini ~2,15 M ton) ile <strong>dünyada 11., Avrupa'da 3.</strong> üretici. İhracat kıymeti ~2,8 milyar € (2016).</li>
-<li><strong>İhracat odağı:</strong> Üretimin <strong>%60'tan fazlası</strong> ihraç ediliyor — yani satış fiyatı pratikte dövize endeksli (€/ton).</li>
-<li><strong>Trend (fırsat):</strong> Çin'in emisyon/çevre baskısıyla eski dökümhanelerini kapatması, tedarik boşluğunu Türkiye KOBİ ve mikro dökümhanelerine kaydırıyor.</li>
-<li><strong>Yapı:</strong> ~930 kuruluş (≈160 büyük, ≈375 KOBİ, ≈395 mikro). Kümeler: İstanbul, Kocaeli, Bursa, Eskişehir, Bilecik, İzmir, Ankara, Samsun.</li>
-</ul>
-<h3 class="reveal">Drenaj ızgara / kanal opsiyonu (ACO · MEA · ULMA)</h3>
-<p class="reveal">Tesis, döküm/paslanmaz <strong>drenaj ızgarası</strong> üreterek yüksek katma değerli bir nişe girebilir. Avrupa polimer beton drenaj pazarı ~320 M$ (2024), yıllık büyüme ~%7. Rakipler modüler sistem (EN 1433 yük sınıfı A15–F900, CE) ve mimari şartname ağıyla kazanıyor; giriş için ürün ailesi genişliği ve sertifikasyon şart.</p>
-<h4 class="reveal">Döküm talebinin sektörel dağılımı (hitap edilen pazar)</h4>
+<h2 id="sec-1" class="sec reveal">Ürün Yelpazesi</h2>
+<p class="sec-lead reveal">Fabrikanın gerçek ürün hattı, teknik resim arşivinden çıkarıldı: <strong>belediye/altyapı dökümü</strong> — baca/rögar kapakları ve yağmur suyu ızgaraları. Tümü sfero (GGG50), EN 124 yük sınıflarına göre (C250 / D400).</p>
 <div class="tw reveal"><table>
-<tr><th>Sektör</th><th class="n">Pazar payı</th><th>Sektör</th><th class="n">Pazar payı</th></tr>
-<tr><td>Otomotiv</td><td class="n">%28</td><td>Demir yolları</td><td class="n">%6</td></tr>
-<tr><td>Dökme demir + fittings</td><td class="n">%15</td><td>Ev aksesuar / elektrik</td><td class="n">%6</td></tr>
-<tr><td>İşletme + tekstil tezgâhları</td><td class="n">%13</td><td>Motor parçaları</td><td class="n">%5</td></tr>
-<tr><td>Petrol ve kimya</td><td class="n">%11</td><td>Metalurji sanayi</td><td class="n">%5</td></tr>
-<tr><td>Tarım araçları</td><td class="n">%4</td><td>İnşaat + diğer</td><td class="n">%7</td></tr>
+<tr><th>Ürün</th><th>Kod</th><th>Tip</th><th>Ebat (mm)</th><th class="n">Yük</th><th class="n">Ağırlık</th></tr>
+<tr><td>M1173 Metro Kapak Takımı 800×800</td><td>15201.M1173.0000</td><td>Baca kapağı</td><td>950×950, açıklık 800</td><td class="n">D400</td><td class="n">125 kg</td></tr>
+<tr><td>M1187 Yazısız Baca Kapak Tk.</td><td>15201.M1187.0000</td><td>Baca kapağı</td><td>□850, kapak Ø600</td><td class="n">D400</td><td class="n">76 kg</td></tr>
+<tr><td>M1188 Yazısız Baca Kapak Tk.</td><td>15201.M1188.0000</td><td>Baca kapağı</td><td>□850, kapak Ø600</td><td class="n">C250</td><td class="n">52 kg</td></tr>
+<tr><td>M1115 Yağmur Suyu Izgara Tk. (BUSKİ)</td><td>152023.M1115.0000</td><td>Yağmur suyu ızgarası</td><td>920×825, açıklık 780×611</td><td class="n">D400</td><td class="n">118 kg</td></tr>
+<tr><td>M191 800×800 Yağmur Suyu Izgara Tk.</td><td>152023.M191.0000</td><td>Yağmur suyu ızgarası</td><td>929×929, açıklık 799</td><td class="n">D400</td><td class="n">105 kg</td></tr>
+<tr><td>M192 Döküm Kova Takımı (sepetli)</td><td>15201.M192.0000</td><td>Yağmur suyu mazgalı</td><td>615×615, derinlik 207</td><td class="n">—</td><td class="n">54 kg</td></tr>
+<tr><td>Baca/rögar çerçeveleri (3 tip)</td><td>taslak</td><td>Çerçeve</td><td>917×871 / 1000×596 / 920×790</td><td class="n">D400</td><td class="n">25,5 kg+</td></tr>
 </table></div>
-<p class="reveal">ALAN CAST'in hedefi <strong>belediye/altyapı dökümü</strong> (rögar kapağı, drenaj ızgarası) — fittings ve inşaat/altyapı kalemlerine denk gelen, ihale ve ihracat ağırlıklı bir niş.</p>
-<div class="tw reveal"><table>
-<tr><th>Gösterge</th><th>Değer</th><th>Fizibilitedeki rolü</th></tr>
-<tr><td>Türkiye üretim (2016)</td><td>~1,9 M ton/yıl</td><td>Pazar büyüklüğü / pay konumlandırma</td></tr>
-<tr><td>İhracat oranı</td><td>%60+</td><td>Döviz-bazlı gelir gerekçesi</td></tr>
-<tr><td>Döküm verimi</td><td>~%55–65</td><td>1 ton sağlam döküm ≈ 1.700 kg sıvı metal</td></tr>
-<tr><td>Ergitme enerjisi</td><td>~530–650 kWh/ton</td><td>Maliyetin elektriğe duyarlılığı</td></tr>
-<tr><td>Metal maliyeti payı</td><td>%40–55</td><td>En büyük gider kalemi → fiyat-endeksleme klozu</td></tr>
-</table></div>
+<blockquote class="reveal">Tüm ürünler <strong>GGG50 sfero döküm + EN 124</strong> standardında, kilitli (cıvatalı) ve EPDM contalı takımlar olarak tasarlanmış; kendi teknik resim ve ürün ağacı (BOM) altyapısı mevcut. <strong>M191 ızgara takımı bizzat Kürşad Kemal Kul tarafından tasarlanmıştır.</strong> Bu ürün ailesi, ACO / MEA / ULMA gibi ithal markaların hâkim olduğu drenaj/altyapı segmentine yerli, sertifikalı bir alternatiftir.</blockquote>
 
 <div class="secno reveal">2</div>
-<h2 id="sec-2" class="sec reveal">Teknik &amp; Üretim</h2>
-<p class="sec-lead reveal">Yalın senaryo: elektrikli indüksiyon ergitme + otomatik kalıplama hattı + reçineli/yaş kum hazırlama. Modüler kurulu, kiralık binada hızlı devreye alma.</p>
-<h4 class="reveal">Üretim akışı</h4>
-<p class="reveal">Sipariş → Model/Maça imalatı → Kum hazırlama → Presli otomatik kalıplama → Ergitme (indüksiyon) → Döküm → Soğutma/Bozma → Temizleme → Kumlama → Taşlama → Isıl işlem → (gerekirse talaşlı imalat) → Boya → Kalite kontrol → Sevk.</p>
-<h4 class="reveal">Makine parkuru ve gösterge bedeller (yalın senaryo, 2026 güncel)</h4>
-<div class="tw reveal"><table>
-<tr><th>Sistem</th><th>Teknik</th><th class="n">≈ Bedel (€)</th></tr>
-<tr><td>Ergitme — indüksiyon ocağı</td><td>4 ton çift pota, ~530 kWh/ton</td><td class="n">250.000</td></tr>
-<tr><td>Kalıplama hattı (otomatik)</td><td>~50 kalıp/saat, dikey/yatay</td><td class="n">220.000</td></tr>
-<tr><td>Kum hazırlama</td><td>~60 ton/saat mikser + elek + konveyör</td><td class="n">120.000</td></tr>
-<tr><td>Maça makinesi</td><td>Soğuk kutu + kum hazırlama</td><td class="n">40.000</td></tr>
-<tr><td>Kumlama (shot blast)</td><td>Askılı, ~3 ton</td><td class="n">35.000</td></tr>
-<tr><td>Boyahane</td><td>Daldırma + fırınlı kurutma</td><td class="n">35.000</td></tr>
-<tr><td>Test/lab + diğer</td><td>Spektrometre, çekme, vinç, trafo</td><td class="n">50.000</td></tr>
-<tr class="tot"><td>Ana ekipman + kurulum</td><td>—</td><td class="n">~750.000</td></tr>
-</table></div>
-<h4 class="reveal">İlk tercih → Yeni öneri</h4>
-<p class="reveal">Çalışma iki kurguyu karşılaştırdı: <strong>İlk tercih</strong> geleneksel/manuel dökümhane (potadan elle döküm); <strong>yeni öneri</strong> ise presli otomatik kalıplama hattıyla yalın, az işçili, tutarlı kaliteli tesis. Bu fizibilite <strong>yeni öneriyi (yalın/otomatik)</strong> baz alır.</p>
-<h4 class="reveal">Yalın yerleşim &amp; çevrim süreleri</h4>
-<p class="reveal">Yerleşim, malzeme akışını kısaltacak şekilde istasyon istasyon planlandı (kum hazırlama → kalıplama → ergitme → döküm → soğutma → temizleme → taşlama → boya → sevk). Sunumdaki gösterge çevrim süreleri:</p>
-<div class="tw reveal"><table>
-<tr><th>İstasyon</th><th>Çevrim</th></tr>
-<tr><td>Presli kalıplama</td><td>~80 sn / kalıp</td></tr>
-<tr><td>Ergitme (indüksiyon ocağı)</td><td>~4 ton / şarj</td></tr>
-<tr><td>Maça / hazırlık</td><td>20 dk / 16 ünite</td></tr>
-<tr><td>Temizleme / taşlama istasyonları</td><td>~50 sn / ünite</td></tr>
-</table></div>
-<blockquote class="reveal"><strong>Ölçek seçeneği.</strong> Yalın senaryo (yukarıda, ~1,0 M €) baz alınmıştır. Daha büyük, 6 tonluk tam otomatik hat (2019'da İndemak ocak + Çin kalıplama hattı + Yemsa kum tesisi gerçek teklifleri) bugün ~<strong>3,5 M $ (≈150 M₺)</strong> ana ekipman gerektirir — Faz-2 büyüme opsiyonu olarak değerlendirilebilir.</blockquote>
+<h2 id="sec-2" class="sec reveal">Pazar ve Talep</h2>
+<p class="sec-lead reveal">Türkiye döküm üretiminde dünyada ilk sıralarda; talep ihracat odaklı ve döviz-bazlı — bu da döviz-bazlı bir gelir modelini gerçekçi kılar.</p>
+<figure class="cwrap reveal"><div class="ctitle">Dünya Döküm Üretimi (ton)</div><svg viewBox="0 0 720 440" width="100%" style="height:auto;display:block" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="barAmber" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F5B775"/>
+      <stop offset="1" stop-color="#B5611A"/>
+    </linearGradient>
+    <linearGradient id="barDim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8a6238"/>
+      <stop offset="1" stop-color="#5a3d1f"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="720" height="440" rx="14" fill="#161618"/>
+
+  <!-- Title -->
+  <text x="40" y="46" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="20" font-weight="600" fill="#FFFFFF">Dünya Döküm Üretimi</text>
+  <text x="40" y="68" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#86868B">milyon ton, AFS 51st Census</text>
+
+  <!-- Plot geometry: x 90..680 , y 100..370 ; value range 94M..106M -->
+  <!-- Gridlines + Y axis labels (94,96,98,100,102,104,106) -->
+  <!-- 106 -> y=100 ; 94 -> y=370 ; scale: 270px / 12M = 22.5px per M -->
+  <g style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11" fill="#86868B">
+    <line x1="90" y1="100" x2="680" y2="100" stroke="#2a2a2d" stroke-width="1"/>
+    <text x="80" y="104" text-anchor="end">106M</text>
+    <line x1="90" y1="145" x2="680" y2="145" stroke="#2a2a2d" stroke-width="1"/>
+    <text x="80" y="149" text-anchor="end">104M</text>
+    <line x1="90" y1="190" x2="680" y2="190" stroke="#2a2a2d" stroke-width="1"/>
+    <text x="80" y="194" text-anchor="end">102M</text>
+    <line x1="90" y1="235" x2="680" y2="235" stroke="#2a2a2d" stroke-width="1"/>
+    <text x="80" y="239" text-anchor="end">100M</text>
+    <line x1="90" y1="280" x2="680" y2="280" stroke="#2a2a2d" stroke-width="1"/>
+    <text x="80" y="284" text-anchor="end">98M</text>
+    <line x1="90" y1="325" x2="680" y2="325" stroke="#2a2a2d" stroke-width="1"/>
+    <text x="80" y="329" text-anchor="end">96M</text>
+    <line x1="90" y1="370" x2="680" y2="370" stroke="#2a2a2d" stroke-width="1.5"/>
+    <text x="80" y="374" text-anchor="end">94M</text>
+  </g>
+
+  <!-- Bars: width 56, slot ~84, start x=104 -->
+  <!-- y = 370 - (val-94)*22.5 ; h = 370 - y -->
+  <!-- 2011: 98.593122 -> y=266.66 h=103.34 -->
+  <!-- 2012: 100.915681 -> y=214.40 h=155.60 -->
+  <!-- 2013: 103.229774 -> y=162.33 h=207.67 -->
+  <!-- 2014: 103.641518 -> y=153.07 h=216.93 -->
+  <!-- 2015: 104.129257 -> y=142.09 h=227.91 -->
+  <!-- 2016: 104.378931 -> y=136.47 h=233.53 -->
+
+  <g>
+    <rect x="104" y="266.7" width="56" height="103.3" rx="4" fill="url(#barDim)"/>
+    <rect x="200" y="214.4" width="56" height="155.6" rx="4" fill="url(#barDim)"/>
+    <rect x="296" y="162.3" width="56" height="207.7" rx="4" fill="url(#barDim)"/>
+    <rect x="392" y="153.1" width="56" height="216.9" rx="4" fill="url(#barDim)"/>
+    <rect x="488" y="142.1" width="56" height="227.9" rx="4" fill="url(#barDim)"/>
+    <rect x="584" y="136.5" width="56" height="233.5" rx="4" fill="url(#barAmber)"/>
+  </g>
+
+  <!-- Trend line connecting bar tops -->
+  <polyline points="132,266.7 228,214.4 324,162.3 420,153.1 516,142.1 612,136.5"
+    fill="none" stroke="#F5B775" stroke-width="1.5" stroke-opacity="0.55" stroke-dasharray="2 4"/>
+  <g fill="#F5B775" fill-opacity="0.65">
+    <circle cx="132" cy="266.7" r="2.5"/>
+    <circle cx="228" cy="214.4" r="2.5"/>
+    <circle cx="324" cy="162.3" r="2.5"/>
+    <circle cx="420" cy="153.1" r="2.5"/>
+    <circle cx="516" cy="142.1" r="2.5"/>
+    <circle cx="612" cy="136.5" r="2.5"/>
+  </g>
+
+  <!-- Value labels on top of bars -->
+  <g style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-weight="600" text-anchor="middle">
+    <text x="132" y="256.7" fill="#C2C2C7">98,6M</text>
+    <text x="228" y="204.4" fill="#C2C2C7">100,9M</text>
+    <text x="324" y="152.3" fill="#C2C2C7">103,2M</text>
+    <text x="420" y="143.1" fill="#C2C2C7">103,6M</text>
+    <text x="516" y="132.1" fill="#C2C2C7">104,1M</text>
+    <text x="612" y="126.5" fill="#F5B775">104,4M</text>
+  </g>
+
+  <!-- X axis labels (years) -->
+  <g style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" text-anchor="middle">
+    <text x="132" y="392" fill="#86868B">2011</text>
+    <text x="228" y="392" fill="#86868B">2012</text>
+    <text x="324" y="392" fill="#86868B">2013</text>
+    <text x="420" y="392" fill="#86868B">2014</text>
+    <text x="516" y="392" fill="#86868B">2015</text>
+    <text x="612" y="392" fill="#FFFFFF" font-weight="600">2016</text>
+  </g>
+
+  <!-- Footer caption -->
+  <text x="40" y="424" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11" fill="#86868B">Kaynak: AFS 51st Census · 2011–2016 toplam +%5,9</text>
+</svg><div class="cnote">Kaynak: AFS 51st Census; 2011–2016 dünya toplam döküm üretimi.</div></figure>
+<figure class="cwrap reveal"><div class="ctitle">Dünya Döküm Üretimi — İlk 15 Ülke (2016)</div><svg viewBox="0 0 720 560" width="100%" style="height:auto;display:block" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="amTr" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#B5611A"/>
+      <stop offset="1" stop-color="#F5B775"/>
+    </linearGradient>
+    <linearGradient id="amDim" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#5e4528"/>
+      <stop offset="1" stop-color="#7a5a38"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="720" height="560" rx="14" fill="#161618"/>
+
+  <text x="36" y="44" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="20" font-weight="700" fill="#FFFFFF">Dünya Döküm Üretimi — İlk 15 Ülke</text>
+  <text x="36" y="66" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-weight="400" fill="#86868B">2016 · ton · Kaynak: AFS</text>
+
+  <line x1="36" y1="82" x2="684" y2="82" stroke="#2a2a2d" stroke-width="1"/>
+
+  <!-- Plot geometry: labels x=36..150, bars start x=158, axis max x=636 (478px = 47.2M) -->
+  <!-- scale: 478 / 47200000 = 1.0127e-5 px per ton -->
+
+  <!-- gridlines at 0,10,20,30,40,47.2M -->
+  <g style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="10" fill="#86868B">
+    <line x1="158" y1="98" x2="158" y2="500" stroke="#2a2a2d" stroke-width="1"/>
+    <line x1="259" y1="98" x2="259" y2="500" stroke="#2a2a2d" stroke-width="1" stroke-dasharray="2 4"/>
+    <line x1="360" y1="98" x2="360" y2="500" stroke="#2a2a2d" stroke-width="1" stroke-dasharray="2 4"/>
+    <line x1="462" y1="98" x2="462" y2="500" stroke="#2a2a2d" stroke-width="1" stroke-dasharray="2 4"/>
+    <line x1="563" y1="98" x2="563" y2="500" stroke="#2a2a2d" stroke-width="1" stroke-dasharray="2 4"/>
+    <text x="158" y="514" text-anchor="middle">0</text>
+    <text x="259" y="514" text-anchor="middle">10M</text>
+    <text x="360" y="514" text-anchor="middle">20M</text>
+    <text x="462" y="514" text-anchor="middle">30M</text>
+    <text x="563" y="514" text-anchor="middle">40M</text>
+  </g>
+
+  <!-- Rows: 15 rows, top y=100, row height 26, bar height 16 -->
+  <g style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif">
+
+    <!-- Çin -->
+    <text x="150" y="112" text-anchor="end" font-size="12" font-weight="400" fill="#C2C2C7">Çin</text>
+    <rect x="158" y="102" width="478" height="16" rx="3" fill="url(#amDim)"/>
+    <text x="630" y="113" text-anchor="end" font-size="11" font-weight="700" fill="#0e0e10" letter-spacing="0.2">47,2M</text>
+
+    <!-- Hindistan -->
+    <text x="150" y="138" text-anchor="end" font-size="12" font-weight="400" fill="#C2C2C7">Hindistan</text>
+    <rect x="158" y="128" width="115" height="16" rx="3" fill="url(#amDim)"/>
+    <text x="279" y="139" font-size="11" font-weight="500" fill="#C2C2C7">11.350.000</text>
+
+    <!-- ABD -->
+    <text x="150" y="164" text-anchor="end" font-size="12" font-weight="400" fill="#C2C2C7">ABD</text>
+    <rect x="158" y="154" width="95" height="16" rx="3" fill="url(#amDim)"/>
+    <text x="259" y="165" font-size="11" font-weight="500" fill="#C2C2C7">9.395.305</text>
+
+    <!-- Japonya -->
+    <text x="150" y="190" text-anchor="end" font-size="12" font-weight="400" fill="#C2C2C7">Japonya</text>
+    <rect x="158" y="180" width="53" height="16" rx="3" fill="url(#amDim)"/>
+    <text x="217" y="191" font-size="11" font-weight="500" fill="#C2C2C7">5.203.300</text>
+
+    <!-- Almanya -->
+    <text x="150" y="216" text-anchor="end" font-size="12" font-weight="400" fill="#C2C2C7">Almanya</text>
+    <rect x="158" y="206" width="52" height="16" rx="3" fill="url(#amDim)"/>
+    <text x="216" y="217" font-size="11" font-weight="500" fill="#C2C2C7">5.167.824</text>
+
+    <!-- Rusya -->
+    <text x="150" y="242" text-anchor="end" font-size="12" font-weight="400" fill="#C2C2C7">Rusya</text>
+    <rect x="158" y="232" width="39" height="16" rx="3" fill="url(#amDim)"/>
+    <text x="203" y="243" font-size="11" font-weight="500" fill="#C2C2C7">3.900.000</text>
+
+    <!-- Kore -->
+    <text x="150" y="268" text-anchor="end" font-size="12" font-weight="400" fill="#C2C2C7">Kore</text>
+    <rect x="158" y="258" width="26" height="16" rx="3" fill="url(#amDim)"/>
+    <text x="190" y="269" font-size="11" font-weight="500" fill="#C2C2C7">2.610.000</text>
+
+    <!-- Meksika -->
+    <text x="150" y="294" text-anchor="end" font-size="12" font-weight="400" fill="#C2C2C7">Meksika</text>
+    <rect x="158" y="284" width="26" height="16" rx="3" fill="url(#amDim)"/>
+    <text x="190" y="295" font-size="11" font-weight="500" fill="#C2C2C7">2.560.190</text>
+
+    <!-- Brezilya -->
+    <text x="150" y="320" text-anchor="end" font-size="12" font-weight="400" fill="#C2C2C7">Brezilya</text>
+    <rect x="158" y="310" width="21" height="16" rx="3" fill="url(#amDim)"/>
+    <text x="185" y="321" font-size="11" font-weight="500" fill="#C2C2C7">2.103.000</text>
+
+    <!-- İtalya -->
+    <text x="150" y="346" text-anchor="end" font-size="12" font-weight="400" fill="#C2C2C7">İtalya</text>
+    <rect x="158" y="336" width="21" height="16" rx="3" fill="url(#amDim)"/>
+    <text x="185" y="347" font-size="11" font-weight="500" fill="#C2C2C7">2.079.684</text>
+
+    <!-- TÜRKİYE (highlight) -->
+    <rect x="34" y="360" width="650" height="26" rx="5" fill="#E0852F" opacity="0.08"/>
+    <text x="150" y="372" text-anchor="end" font-size="12.5" font-weight="700" fill="#F5B775">TÜRKİYE</text>
+    <rect x="158" y="362" width="19" height="16" rx="3" fill="url(#amTr)"/>
+    <text x="183" y="373" font-size="11.5" font-weight="700" fill="#F5B775">1.898.500</text>
+
+    <!-- Fransa -->
+    <text x="150" y="398" text-anchor="end" font-size="12" font-weight="400" fill="#C2C2C7">Fransa</text>
+    <rect x="158" y="388" width="16" height="16" rx="3" fill="url(#amDim)"/>
+    <text x="180" y="399" font-size="11" font-weight="500" fill="#C2C2C7">1.628.195</text>
+
+    <!-- Ukrayna -->
+    <text x="150" y="424" text-anchor="end" font-size="12" font-weight="400" fill="#C2C2C7">Ukrayna</text>
+    <rect x="158" y="414" width="16" height="16" rx="3" fill="url(#amDim)"/>
+    <text x="180" y="425" font-size="11" font-weight="500" fill="#C2C2C7">1.560.000</text>
+
+    <!-- İspanya -->
+    <text x="150" y="450" text-anchor="end" font-size="12" font-weight="400" fill="#C2C2C7">İspanya</text>
+    <rect x="158" y="440" width="13" height="16" rx="3" fill="url(#amDim)"/>
+    <text x="177" y="451" font-size="11" font-weight="500" fill="#C2C2C7">1.280.374</text>
+
+    <!-- Tayvan -->
+    <text x="150" y="476" text-anchor="end" font-size="12" font-weight="400" fill="#C2C2C7">Tayvan</text>
+    <rect x="158" y="466" width="11" height="16" rx="3" fill="url(#amDim)"/>
+    <text x="175" y="477" font-size="11" font-weight="500" fill="#C2C2C7">1.099.846</text>
+
+  </g>
+
+  <line x1="36" y1="500" x2="684" y2="500" stroke="#2a2a2d" stroke-width="1"/>
+
+  <text x="36" y="540" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11" font-weight="400" fill="#86868B">Çin, dünya döküm üretiminin yaklaşık yarısını tek başına gerçekleştiriyor.</text>
+</svg><div class="cnote">Kaynak: AFS (American Foundry Society), 2016 verileri; üretim ton cinsinden.</div></figure>
+<ul class="reveal">
+<li><strong>Sektör büyüklüğü:</strong> Türkiye ~1,9 milyon ton/yıl (2016; 2012'de 1,445 M ton) ile dünyada 11.–13., Avrupa'da 3.–4. üretici. İhracat kıymeti ~2,8 milyar € (2016).</li>
+<li><strong>İhracat odağı:</strong> Üretimin <strong>%60'tan fazlası</strong> ihraç ediliyor → satış fiyatı pratikte €-endeksli.</li>
+<li><strong>İstihdam/yapı (2012):</strong> 1.388 işletme, ~33.000 çalışan (27.000 demir-çelik + 6.000 demir-dışı); mavi yaka 19.300, %67,4 kalifiye. Üretimin %65'i otomotiv. <span style="color:var(--gray);font-size:13px">(Kaynak: CSGB İSG uzmanlık tezi, A. Şentürk 2016)</span></li>
+<li><strong>Trend (fırsat):</strong> Çin'in emisyon/çevre baskısıyla eski dökümhanelerini kapatması tedarik boşluğu yaratıyor; talep Türkiye KOBİ/mikro dökümhanelerine kayıyor.</li>
+</ul>
+<figure class="cwrap reveal"><div class="ctitle">Türkiye Döküm İhracatı (2011–2017)</div><svg viewBox="0 0 720 470" width="100%" style="height:auto;display:block" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="barAmb" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E0852F"/>
+      <stop offset="1" stop-color="#B5611A"/>
+    </linearGradient>
+    <linearGradient id="barAmbHi" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F5B775"/>
+      <stop offset="1" stop-color="#E0852F"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="720" height="470" rx="14" fill="#161618"/>
+
+  <!-- Title -->
+  <text x="40" y="48" fill="#FFFFFF" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="22" font-weight="600">Türkiye Döküm İhracatı</text>
+  <text x="40" y="70" fill="#86868B" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13">2011 – 2017</text>
+
+  <!-- Legend -->
+  <rect x="468" y="34" width="22" height="11" rx="3" fill="url(#barAmb)"/>
+  <text x="496" y="44" fill="#C2C2C7" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12">Miktar (ton)</text>
+  <line x1="468" y1="62" x2="490" y2="62" stroke="#F5B775" stroke-width="2.5"/>
+  <circle cx="479" cy="62" r="3" fill="#F5B775"/>
+  <text x="496" y="66" fill="#C2C2C7" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12">Kıymet (Mr. €)</text>
+
+  <!-- ===== Plot geometry =====
+       plot x: 92..632 ; plot y top=110 bottom=380
+       Left axis (tons): 0 .. 1.500.000  -> y = 380 - (v/1500000)*270
+       Right axis (EUR): 0 .. 3.5        -> y = 380 - (v/3.5)*270
+  -->
+
+  <!-- Gridlines + Left axis labels (ton, thousands) -->
+  <!-- 0 -->
+  <line x1="92" y1="380" x2="632" y2="380" stroke="#2a2a2d" stroke-width="1"/>
+  <text x="84" y="384" text-anchor="end" fill="#86868B" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11">0</text>
+  <!-- 300k -->
+  <line x1="92" y1="326" x2="632" y2="326" stroke="#2a2a2d" stroke-width="1"/>
+  <text x="84" y="330" text-anchor="end" fill="#86868B" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11">300 b</text>
+  <!-- 600k -->
+  <line x1="92" y1="272" x2="632" y2="272" stroke="#2a2a2d" stroke-width="1"/>
+  <text x="84" y="276" text-anchor="end" fill="#86868B" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11">600 b</text>
+  <!-- 900k -->
+  <line x1="92" y1="218" x2="632" y2="218" stroke="#2a2a2d" stroke-width="1"/>
+  <text x="84" y="222" text-anchor="end" fill="#86868B" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11">900 b</text>
+  <!-- 1.2M -->
+  <line x1="92" y1="164" x2="632" y2="164" stroke="#2a2a2d" stroke-width="1"/>
+  <text x="84" y="168" text-anchor="end" fill="#86868B" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11">1,2 M</text>
+  <!-- 1.5M -->
+  <line x1="92" y1="110" x2="632" y2="110" stroke="#2a2a2d" stroke-width="1"/>
+  <text x="84" y="114" text-anchor="end" fill="#86868B" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11">1,5 M</text>
+
+  <!-- Left axis title -->
+  <text x="40" y="245" text-anchor="middle" fill="#86868B" transform="rotate(-90 40 245)" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11">İhracat Miktarı (ton)</text>
+
+  <!-- Right axis labels (EUR billion) 0,1,2,3,3.5 -->
+  <!-- 0 at y=380 -->
+  <text x="644" y="384" fill="#86868B" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11">0</text>
+  <!-- 1.0 -> y=380-(1/3.5)*270=302.9 -->
+  <text x="644" y="307" fill="#86868B" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11">1,0</text>
+  <!-- 2.0 -> y=225.7 -->
+  <text x="644" y="230" fill="#86868B" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11">2,0</text>
+  <!-- 3.0 -> y=148.6 -->
+  <text x="644" y="153" fill="#86868B" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11">3,0</text>
+
+  <!-- Right axis title -->
+  <text x="700" y="245" text-anchor="middle" fill="#86868B" transform="rotate(90 700 245)" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11">İhracat Kıymeti (Mr. €)</text>
+
+  <!-- ===== Bars =====
+       7 slots from x=92..632 (width 540), slot=77.14, bar width=44, centers:
+       c0=130.6 c1=207.7 c2=284.9 c3=362.0 c4=439.1 c5=516.3 c6=593.4
+       tons -> height = (v/1500000)*270 ; top = 380 - height
+  -->
+  <!-- 869.000 -> h=156.4 top=223.6 -->
+  <rect x="108.6" y="223.6" width="44" height="156.4" rx="4" fill="url(#barAmb)" opacity="0.78"/>
+  <!-- 840.000 -> h=151.2 top=228.8 -->
+  <rect x="185.7" y="228.8" width="44" height="151.2" rx="4" fill="url(#barAmb)" opacity="0.78"/>
+  <!-- 901.500 -> h=162.3 top=217.7 -->
+  <rect x="262.9" y="217.7" width="44" height="162.3" rx="4" fill="url(#barAmb)" opacity="0.78"/>
+  <!-- 1.026.500 -> h=184.8 top=195.2 -->
+  <rect x="340.0" y="195.2" width="44" height="184.8" rx="4" fill="url(#barAmb)" opacity="0.85"/>
+  <!-- 1.142.500 -> h=205.7 top=174.3 -->
+  <rect x="417.1" y="174.3" width="44" height="205.7" rx="4" fill="url(#barAmb)" opacity="0.85"/>
+  <!-- 1.143.500 -> h=205.8 top=174.2 -->
+  <rect x="494.3" y="174.2" width="44" height="205.8" rx="4" fill="url(#barAmb)" opacity="0.85"/>
+  <!-- 1.336.100 (2017, highlight) -> h=240.5 top=139.5 -->
+  <rect x="571.4" y="139.5" width="44" height="240.5" rx="4" fill="url(#barAmbHi)"/>
+
+  <!-- Bar value labels (ton, in thousands) -->
+  <text x="130.6" y="216" text-anchor="middle" fill="#C2C2C7" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="10.5">869b</text>
+  <text x="207.7" y="221" text-anchor="middle" fill="#C2C2C7" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="10.5">840b</text>
+  <text x="284.9" y="210" text-anchor="middle" fill="#C2C2C7" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="10.5">902b</text>
+  <text x="362.0" y="187.5" text-anchor="middle" fill="#C2C2C7" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="10.5">1.027b</text>
+  <text x="439.1" y="166.5" text-anchor="middle" fill="#C2C2C7" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="10.5">1.143b</text>
+  <text x="516.3" y="166.5" text-anchor="middle" fill="#C2C2C7" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="10.5">1.144b</text>
+  <text x="593.4" y="131.5" text-anchor="middle" fill="#F5B775" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11" font-weight="600">1.336b</text>
+
+  <!-- ===== Line (EUR value) =====
+       y = 380 - (v/3.5)*270
+       1.84 -> 238.1 | 1.91 -> 232.7 | 2.31 -> 201.9 | 2.74 -> 168.7
+       2.70 -> 171.8 | 2.79 -> 164.9 | 3.27 -> 127.7
+  -->
+  <polyline points="130.6,238.1 207.7,232.7 284.9,201.9 362.0,168.7 439.1,171.8 516.3,164.9 593.4,127.7"
+            fill="none" stroke="#F5B775" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+
+  <!-- Line points -->
+  <circle cx="130.6" cy="238.1" r="3.5" fill="#161618" stroke="#F5B775" stroke-width="2"/>
+  <circle cx="207.7" cy="232.7" r="3.5" fill="#161618" stroke="#F5B775" stroke-width="2"/>
+  <circle cx="284.9" cy="201.9" r="3.5" fill="#161618" stroke="#F5B775" stroke-width="2"/>
+  <circle cx="362.0" cy="168.7" r="3.5" fill="#161618" stroke="#F5B775" stroke-width="2"/>
+  <circle cx="439.1" cy="171.8" r="3.5" fill="#161618" stroke="#F5B775" stroke-width="2"/>
+  <circle cx="516.3" cy="164.9" r="3.5" fill="#161618" stroke="#F5B775" stroke-width="2"/>
+  <circle cx="593.4" cy="127.7" r="4" fill="#F5B775" stroke="#161618" stroke-width="1.5"/>
+
+  <!-- Line value labels (EUR) -->
+  <text x="130.6" y="252" text-anchor="middle" fill="#F5B775" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="10.5">1,84</text>
+  <text x="207.7" y="247" text-anchor="middle" fill="#F5B775" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="10.5">1,91</text>
+  <text x="284.9" y="195" text-anchor="middle" fill="#F5B775" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="10.5">2,31</text>
+  <text x="362.0" y="161.5" text-anchor="middle" fill="#F5B775" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="10.5">2,74</text>
+  <text x="446" y="186" text-anchor="middle" fill="#F5B775" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="10.5">2,70</text>
+  <text x="516.3" y="157.5" text-anchor="middle" fill="#F5B775" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="10.5">2,79</text>
+  <text x="600" y="118" text-anchor="middle" fill="#F5B775" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11" font-weight="600">3,27</text>
+
+  <!-- X axis baseline -->
+  <line x1="92" y1="380" x2="632" y2="380" stroke="#2a2a2d" stroke-width="1.5"/>
+
+  <!-- X labels (years) -->
+  <text x="130.6" y="400" text-anchor="middle" fill="#C2C2C7" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12">2011</text>
+  <text x="207.7" y="400" text-anchor="middle" fill="#C2C2C7" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12">2012</text>
+  <text x="284.9" y="400" text-anchor="middle" fill="#C2C2C7" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12">2013</text>
+  <text x="362.0" y="400" text-anchor="middle" fill="#C2C2C7" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12">2014</text>
+  <text x="439.1" y="400" text-anchor="middle" fill="#C2C2C7" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12">2015</text>
+  <text x="516.3" y="400" text-anchor="middle" fill="#C2C2C7" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12">2016</text>
+  <text x="593.4" y="400" text-anchor="middle" fill="#FFFFFF" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12" font-weight="600">2017</text>
+  <text x="593.4" y="414" text-anchor="middle" fill="#86868B" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="9">tahmin</text>
+
+  <!-- Footer note: avg growth -->
+  <line x1="40" y1="434" x2="680" y2="434" stroke="#2a2a2d" stroke-width="1"/>
+  <text x="40" y="455" fill="#86868B" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11.5">Ort. yıllık artış</text>
+  <text x="150" y="455" fill="#F5B775" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600">miktar %7</text>
+  <text x="230" y="455" fill="#86868B" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11.5">·</text>
+  <text x="242" y="455" fill="#F5B775" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600">kıymet %10</text>
+  <text x="680" y="455" text-anchor="end" fill="#86868B" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11.5">Kaynak: TÜDÖKSAD</text>
+</svg><div class="cnote">Kaynak: TÜDÖKSAD — 2011–2017 ortalama yıllık artış: miktar %7, kıymet %10 (2017 tahmin).</div></figure>
+<figure class="cwrap reveal"><div class="ctitle">Türkiye Döküm Sektörü Kuruluş Sayıları (2011–2017)</div><svg viewBox="0 0 720 460" width="100%" style="height:auto;display:block" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gTotal" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F5B775"/>
+      <stop offset="1" stop-color="#E0852F"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="720" height="460" rx="14" fill="#161618"/>
+
+  <text x="36" y="44" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="20" font-weight="600" fill="#FFFFFF">Türkiye Döküm Sektörü Kuruluş Sayıları</text>
+  <text x="36" y="66" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#86868B">2011–2017 · ölçeğe göre kuruluş adedi</text>
+
+  <!-- Legend -->
+  <g style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12">
+    <rect x="430" y="34" width="11" height="11" rx="2.5" fill="#7a5a38"/>
+    <text x="447" y="44" fill="#C2C2C7">Büyük Sanayi</text>
+    <rect x="535" y="34" width="11" height="11" rx="2.5" fill="#B5611A"/>
+    <text x="552" y="44" fill="#C2C2C7">KOBİ</text>
+    <rect x="600" y="34" width="11" height="11" rx="2.5" fill="#F5B775"/>
+    <text x="617" y="44" fill="#C2C2C7">Mikro</text>
+    <line x1="430" y1="62" x2="448" y2="62" stroke="#E0852F" stroke-width="3"/>
+    <circle cx="439" cy="62" r="3" fill="#F5B775"/>
+    <text x="455" y="66" fill="#C2C2C7">Toplam</text>
+  </g>
+
+  <!-- Plot geometry: x 60..690, y baseline 380, top 100. Max value 440 -> scale -->
+  <!-- y grid lines for 0,100,200,300,400 ; baseline=380 represents 0, top scale 440->105 -->
+  <g style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11" fill="#86868B">
+    <line x1="60" y1="380" x2="690" y2="380" stroke="#2a2a2d" stroke-width="1"/>
+    <line x1="60" y1="318" x2="690" y2="318" stroke="#2a2a2d" stroke-width="1" stroke-dasharray="2 4"/>
+    <line x1="60" y1="256" x2="690" y2="256" stroke="#2a2a2d" stroke-width="1" stroke-dasharray="2 4"/>
+    <line x1="60" y1="194" x2="690" y2="194" stroke="#2a2a2d" stroke-width="1" stroke-dasharray="2 4"/>
+    <line x1="60" y1="132" x2="690" y2="132" stroke="#2a2a2d" stroke-width="1" stroke-dasharray="2 4"/>
+    <text x="52" y="384" text-anchor="end">0</text>
+    <text x="52" y="322" text-anchor="end">100</text>
+    <text x="52" y="260" text-anchor="end">200</text>
+    <text x="52" y="198" text-anchor="end">300</text>
+    <text x="52" y="136" text-anchor="end">400</text>
+  </g>
+
+  <!-- Bars. 7 year groups across x 60..690 (width 630). slot width 90, group span centered. -->
+  <!-- y = 380 - value*0.62 ; bar widths 16, gap 3 -->
+
+  <!-- 2011: center 105 -->
+  <g>
+    <rect x="78" y="270.26" width="16" height="109.74" rx="3" fill="#7a5a38"/>
+    <rect x="97" y="117.74" width="16" height="262.26" rx="3" fill="#B5611A"/>
+    <rect x="116" y="107.2" width="16" height="272.8" rx="3" fill="#F5B775"/>
+  </g>
+  <!-- 2012: center 195 -->
+  <g>
+    <rect x="168" y="267.16" width="16" height="112.84" rx="3" fill="#7a5a38"/>
+    <rect x="187" y="125.8" width="16" height="254.2" rx="3" fill="#B5611A"/>
+    <rect x="206" y="150.6" width="16" height="229.4" rx="3" fill="#F5B775"/>
+  </g>
+  <!-- 2013: center 285 -->
+  <g>
+    <rect x="258" y="278.94" width="16" height="101.06" rx="3" fill="#7a5a38"/>
+    <rect x="277" y="138.2" width="16" height="241.8" rx="3" fill="#B5611A"/>
+    <rect x="296" y="130.76" width="16" height="249.24" rx="3" fill="#F5B775"/>
+  </g>
+  <!-- 2014: center 375 -->
+  <g>
+    <rect x="348" y="280.18" width="16" height="99.82" rx="3" fill="#7a5a38"/>
+    <rect x="367" y="149.98" width="16" height="230.02" rx="3" fill="#B5611A"/>
+    <rect x="386" y="133.86" width="16" height="246.14" rx="3" fill="#F5B775"/>
+  </g>
+  <!-- 2015: center 465 -->
+  <g>
+    <rect x="438" y="280.8" width="16" height="99.2" rx="3" fill="#7a5a38"/>
+    <rect x="457" y="150.6" width="16" height="229.4" rx="3" fill="#B5611A"/>
+    <rect x="476" y="141.3" width="16" height="238.7" rx="3" fill="#F5B775"/>
+  </g>
+  <!-- 2016: center 555 -->
+  <g>
+    <rect x="528" y="280.18" width="16" height="99.82" rx="3" fill="#7a5a38"/>
+    <rect x="547" y="148.12" width="16" height="231.88" rx="3" fill="#B5611A"/>
+    <rect x="566" y="136.34" width="16" height="243.66" rx="3" fill="#F5B775"/>
+  </g>
+  <!-- 2017: center 645 -->
+  <g>
+    <rect x="618" y="279.56" width="16" height="100.44" rx="3" fill="#7a5a38"/>
+    <rect x="637" y="147.5" width="16" height="232.5" rx="3" fill="#B5611A"/>
+    <rect x="656" y="135.1" width="16" height="244.9" rx="3" fill="#F5B775"/>
+  </g>
+
+  <!-- Total line (secondary axis: total 1040..915 mapped to top region 96..120). 
+       Map: y = 220 - (total-900)*0.86 -> keeps line near top above bars. 
+       1040->100.4, 962->167.48, 955->173.5, 929->195.86, 915->207.9, 928->196.72, 932->193.28 -->
+  <polyline points="105,100.4 195,167.48 285,173.5 375,195.86 465,207.9 555,196.72 645,193.28"
+            fill="none" stroke="#E0852F" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+  <g>
+    <circle cx="105" cy="100.4" r="3.5" fill="#F5B775"/>
+    <circle cx="195" cy="167.48" r="3.5" fill="#F5B775"/>
+    <circle cx="285" cy="173.5" r="3.5" fill="#F5B775"/>
+    <circle cx="375" cy="195.86" r="3.5" fill="#F5B775"/>
+    <circle cx="465" cy="207.9" r="3.5" fill="#F5B775"/>
+    <circle cx="555" cy="196.72" r="3.5" fill="#F5B775"/>
+    <circle cx="645" cy="193.28" r="3.5" fill="#F5B775"/>
+  </g>
+  <!-- Total labels -->
+  <g style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11" font-weight="600" fill="#F5B775" text-anchor="middle">
+    <text x="105" y="92">1.040</text>
+    <text x="195" y="159">962</text>
+    <text x="285" y="165">955</text>
+    <text x="375" y="187.5">929</text>
+    <text x="465" y="199.5">915</text>
+    <text x="555" y="188.5">928</text>
+    <text x="645" y="185">932</text>
+  </g>
+
+  <!-- X axis year labels -->
+  <g style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#C2C2C7" text-anchor="middle">
+    <text x="105" y="402">2011</text>
+    <text x="195" y="402">2012</text>
+    <text x="285" y="402">2013</text>
+    <text x="375" y="402">2014</text>
+    <text x="465" y="402">2015</text>
+    <text x="555" y="402">2016</text>
+    <text x="645" y="402">2017</text>
+  </g>
+
+  <!-- Footer / source -->
+  <line x1="36" y1="424" x2="684" y2="424" stroke="#2a2a2d" stroke-width="1"/>
+  <text x="36" y="446" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11" fill="#86868B">Kaynak: TÜDÖKSAD · Toplam kuruluş çizgisi ayrı ölçek</text>
+  <text x="684" y="446" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11" fill="#86868B">7 yıl · adet</text>
+</svg><div class="cnote">Kaynak: TÜDÖKSAD — Büyük Sanayi, KOBİ ve Mikro ölçekli kuruluş sayıları; toplam çizgisi ile.</div></figure>
+<figure class="cwrap reveal"><div class="ctitle">Döküm Talebinin Sektörel Dağılımı (%)</div><svg viewBox="0 0 720 520" width="100%" style="height:auto;display:block" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="amberBright" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#B5611A"/>
+      <stop offset="1" stop-color="#F5B775"/>
+    </linearGradient>
+    <linearGradient id="amberMid" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7a4d22"/>
+      <stop offset="1" stop-color="#E0852F"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="720" height="520" rx="14" fill="#161618"/>
+
+  <text x="40" y="48" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="21" font-weight="700" fill="#FFFFFF">Döküm Talebinin Sektörel Dağılımı</text>
+  <text x="40" y="72" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#86868B">Pazar payı (%) — toplam 100</text>
+
+  <!-- grid baseline reference at x=300, scale: 28% -> max bar width ~340px -->
+  <!-- bar zone: x start 300, width per % = 11.6px -->
+
+  <!-- Row template: label x=40, value pill right, bar from x=300 -->
+
+  <!-- Otomotiv 28 -->
+  <rect x="300" y="100" width="324.8" height="22" rx="4" fill="url(#amberMid)"/>
+  <text x="288" y="116" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#FFFFFF">Otomotiv</text>
+  <text x="634" y="116" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#E0852F">28</text>
+
+  <!-- Dökme demir + fittings 15 — HIGHLIGHT -->
+  <rect x="300" y="132" width="174" height="22" rx="4" fill="url(#amberBright)"/>
+  <text x="288" y="148" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#F5B775">Dökme demir + fittings</text>
+  <text x="484" y="148" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#F5B775">15</text>
+  <rect x="558" y="135" width="118" height="16" rx="8" fill="#2a1606" stroke="#B5611A" stroke-width="1"/>
+  <text x="617" y="146.5" text-anchor="middle" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="10" font-weight="600" fill="#F5B775">ALAN CAST hedefi</text>
+
+  <!-- İşletme + tekstil tezgahları 13 -->
+  <rect x="300" y="164" width="150.8" height="22" rx="4" fill="#7a5a38"/>
+  <text x="288" y="180" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#C2C2C7">İşletme + tekstil tezgahları</text>
+  <text x="460" y="180" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#C2C2C7">13</text>
+
+  <!-- Petrol ve kimya 11 -->
+  <rect x="300" y="196" width="127.6" height="22" rx="4" fill="#7a5a38"/>
+  <text x="288" y="212" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#C2C2C7">Petrol ve kimya</text>
+  <text x="437" y="212" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#C2C2C7">11</text>
+
+  <!-- Demir yolları 6 -->
+  <rect x="300" y="228" width="69.6" height="22" rx="4" fill="#7a5a38"/>
+  <text x="288" y="244" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#C2C2C7">Demir yolları</text>
+  <text x="379" y="244" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#C2C2C7">6</text>
+
+  <!-- Ev aksesuar / elektrik 6 -->
+  <rect x="300" y="260" width="69.6" height="22" rx="4" fill="#7a5a38"/>
+  <text x="288" y="276" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#C2C2C7">Ev aksesuar / elektrik</text>
+  <text x="379" y="276" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#C2C2C7">6</text>
+
+  <!-- Motor parçaları 5 -->
+  <rect x="300" y="292" width="58" height="22" rx="4" fill="#7a5a38"/>
+  <text x="288" y="308" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#C2C2C7">Motor parçaları</text>
+  <text x="367" y="308" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#C2C2C7">5</text>
+
+  <!-- Metalurji sanayi 5 -->
+  <rect x="300" y="324" width="58" height="22" rx="4" fill="#7a5a38"/>
+  <text x="288" y="340" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#C2C2C7">Metalurji sanayi</text>
+  <text x="367" y="340" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#C2C2C7">5</text>
+
+  <!-- Tarım araçları 4 -->
+  <rect x="300" y="356" width="46.4" height="22" rx="4" fill="#7a5a38"/>
+  <text x="288" y="372" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#C2C2C7">Tarım araçları</text>
+  <text x="356" y="372" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#C2C2C7">4</text>
+
+  <!-- İnşaat 3 -->
+  <rect x="300" y="388" width="34.8" height="22" rx="4" fill="#7a5a38"/>
+  <text x="288" y="404" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#C2C2C7">İnşaat</text>
+  <text x="344" y="404" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#C2C2C7">3</text>
+
+  <!-- Diğer 4 -->
+  <rect x="300" y="420" width="46.4" height="22" rx="4" fill="#3a3a3d"/>
+  <text x="288" y="436" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#86868B">Diğer</text>
+  <text x="356" y="436" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#86868B">4</text>
+
+  <!-- separator -->
+  <line x1="40" y1="466" x2="680" y2="466" stroke="#2a2a2d" stroke-width="1"/>
+
+  <!-- legend -->
+  <rect x="40" y="484" width="12" height="12" rx="3" fill="url(#amberBright)"/>
+  <text x="58" y="494" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#C2C2C7">ALAN CAST hedef segmenti — rögar / ızgara / altyapı fittings</text>
+</svg><div class="cnote">Dökme demir + fittings (%15) ALAN CAST'in hedef segmenti; otomotiv %28 ile pazar lideri.</div></figure>
+<p class="reveal">ALAN CAST'in hedefi, segmentin <strong>dökme demir + fittings / altyapı</strong> kısmı — belediye, su idareleri (BUSKİ tipi), altyapı ihaleleri ve ihracat. Avrupa drenaj/trench pazarı ~320 M$ (2024), yıllık büyüme ~%7; ızgara tarafında EN 1433 yük sınıfı ve CE sertifikasyonu giriş şartı.</p>
 
 <div class="secno reveal">3</div>
-<h2 id="sec-3" class="sec reveal">Yatırım (CAPEX)</h2>
+<h2 id="sec-3" class="sec reveal">Teknik &amp; Üretim</h2>
+<p class="sec-lead reveal">Yalın senaryo: elektrikli indüksiyon ergitme + otomatik (dikey deresiz / Disamatic tipi) kalıplama + reçineli/yaş kum hazırlama. Kiralık binada modüler kurulu, hızlı devreye alma.</p>
+<figure class="cwrap reveal"><div class="ctitle">İlk Tercih → Yeni Öneri: Dökümhaneden Yalın Hatta</div><div style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif;background:#0e0e10;padding:28px 22px;border-radius:18px;color:#FFFFFF;box-sizing:border-box;width:100%;">
+  <div style="display:flex;align-items:stretch;justify-content:center;gap:0;flex-wrap:wrap;">
+
+    <!-- SOL KART: Ilk Tercih -->
+    <div style="flex:1 1 280px;min-width:260px;background:#161618;border:1px solid #2a2a2d;border-radius:14px;padding:22px 20px;box-sizing:border-box;">
+      <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#86868B;font-weight:600;margin-bottom:6px;">İlk Tercih</div>
+      <div style="font-size:19px;font-weight:600;color:#C2C2C7;margin-bottom:4px;">Manuel Dökümhane</div>
+      <div style="font-size:13px;color:#86868B;margin-bottom:18px;">Potadan elle döküm</div>
+      <div style="height:1px;background:#2a2a2d;margin-bottom:16px;"></div>
+      <div style="display:flex;flex-direction:column;gap:13px;">
+        <div style="display:flex;align-items:flex-start;gap:10px;"><span style="color:#86868B;font-size:14px;line-height:1.2;flex:0 0 auto;">—</span><div><div style="font-size:14px;color:#C2C2C7;font-weight:500;">Yüksek işçilik</div><div style="font-size:12px;color:#86868B;">Yoğun el emeği gerektirir</div></div></div>
+        <div style="display:flex;align-items:flex-start;gap:10px;"><span style="color:#86868B;font-size:14px;line-height:1.2;flex:0 0 auto;">—</span><div><div style="font-size:14px;color:#C2C2C7;font-weight:500;">Değişken kalite</div><div style="font-size:12px;color:#86868B;">Parçadan parçaya sapma</div></div></div>
+        <div style="display:flex;align-items:flex-start;gap:10px;"><span style="color:#86868B;font-size:14px;line-height:1.2;flex:0 0 auto;">—</span><div><div style="font-size:14px;color:#C2C2C7;font-weight:500;">Düşük otomasyon</div><div style="font-size:12px;color:#86868B;">Süreç operatöre bağlı</div></div></div>
+        <div style="display:flex;align-items:flex-start;gap:10px;"><span style="color:#86868B;font-size:14px;line-height:1.2;flex:0 0 auto;">—</span><div><div style="font-size:14px;color:#C2C2C7;font-weight:500;">Düşük tekrarlanabilirlik</div><div style="font-size:12px;color:#86868B;">Tutarsız çıktı</div></div></div>
+      </div>
+    </div>
+
+    <!-- ORTA GECIS OKU -->
+    <div style="flex:0 0 56px;display:flex;align-items:center;justify-content:center;padding:0 4px;">
+      <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#E0852F,#B5611A);display:flex;align-items:center;justify-content:center;box-shadow:0 0 18px rgba(224,133,47,0.35);">
+        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M4 12h13M12 6l6 6-6 6" fill="none" stroke="#0e0e10" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+
+    <!-- SAG KART: Yeni Oneri (secilen, amber vurgulu) -->
+    <div style="flex:1 1 280px;min-width:260px;background:#161618;border:1.5px solid #E0852F;border-radius:14px;padding:22px 20px;box-sizing:border-box;position:relative;box-shadow:0 0 28px rgba(224,133,47,0.18);">
+      <div style="position:absolute;top:-11px;right:18px;background:linear-gradient(135deg,#F5B775,#E0852F);color:#0e0e10;font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;padding:4px 11px;border-radius:20px;">Seçilen</div>
+      <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#E0852F;font-weight:700;margin-bottom:6px;">Yeni Öneri</div>
+      <div style="font-size:19px;font-weight:600;color:#FFFFFF;margin-bottom:4px;">Otomatik Yalın Hat</div>
+      <div style="font-size:13px;color:#C2C2C7;margin-bottom:18px;">Presli otomatik kalıplama</div>
+      <div style="height:1px;background:#2a2a2d;margin-bottom:16px;"></div>
+      <div style="display:flex;flex-direction:column;gap:13px;">
+        <div style="display:flex;align-items:flex-start;gap:10px;"><span style="color:#F5B775;font-size:14px;line-height:1.2;flex:0 0 auto;font-weight:700;">+</span><div><div style="font-size:14px;color:#FFFFFF;font-weight:500;">Az işçi</div><div style="font-size:12px;color:#C2C2C7;">Otomasyonla minimum operatör</div></div></div>
+        <div style="display:flex;align-items:flex-start;gap:10px;"><span style="color:#F5B775;font-size:14px;line-height:1.2;flex:0 0 auto;font-weight:700;">+</span><div><div style="font-size:14px;color:#FFFFFF;font-weight:500;">Tutarlı / yüksek kalite</div><div style="font-size:12px;color:#C2C2C7;">Parça başına sabit standart</div></div></div>
+        <div style="display:flex;align-items:flex-start;gap:10px;"><span style="color:#F5B775;font-size:14px;line-height:1.2;flex:0 0 auto;font-weight:700;">+</span><div><div style="font-size:14px;color:#FFFFFF;font-weight:500;">Yüksek tekrarlanabilirlik</div><div style="font-size:12px;color:#C2C2C7;">Öngörülebilir çıktı</div></div></div>
+        <div style="display:flex;align-items:flex-start;gap:10px;"><span style="color:#F5B775;font-size:14px;line-height:1.2;flex:0 0 auto;font-weight:700;">+</span><div><div style="font-size:14px;color:#FFFFFF;font-weight:500;">Yalın akış</div><div style="font-size:12px;color:#C2C2C7;">Kesintisiz üretim hattı</div></div></div>
+        <div style="display:flex;align-items:flex-start;gap:10px;"><span style="color:#F5B775;font-size:14px;line-height:1.2;flex:0 0 auto;font-weight:700;">+</span><div><div style="font-size:14px;color:#FFFFFF;font-weight:500;">Düşük birim maliyet</div><div style="font-size:12px;color:#C2C2C7;">Ölçekte verimli üretim</div></div></div>
+      </div>
+    </div>
+
+  </div>
+</div><div class="cnote">Manuel pota dökümünden presli otomatik yalın hatta geçişin operasyonel karşılaştırması.</div></figure>
+<figure class="cwrap reveal"><div class="ctitle">Üretim Akış Şeması</div><svg viewBox="0 0 720 1180" width="100%" style="height:auto;display:block" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#E0852F"/>
+    </marker>
+    <marker id="arrF" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#7a5a38"/>
+    </marker>
+    <linearGradient id="gAmb" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a2410"/>
+      <stop offset="1" stop-color="#241405"/>
+    </linearGradient>
+  </defs>
+
+  <style>
+    .lbl{font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif;fill:#FFFFFF;font-size:13px;font-weight:600;text-anchor:middle}
+    .lbl2{font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif;fill:#C2C2C7;font-size:11px;text-anchor:middle}
+    .dlbl{font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif;fill:#F5B775;font-size:12px;font-weight:600;text-anchor:middle}
+    .yn{font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif;fill:#86868B;font-size:10px;font-weight:600}
+    .feed{font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif;fill:#7a5a38;font-size:10px;font-style:italic;text-anchor:middle}
+    .node{fill:#161618;stroke:#2a2a2d;stroke-width:1;rx:4}
+    .branch{fill:#161618;stroke:#7a5a38;stroke-width:1;rx:4}
+    .flow{stroke:#E0852F;stroke-width:1.6;fill:none}
+    .ffeed{stroke:#7a5a38;stroke-width:1.4;fill:none;stroke-dasharray:5 4}
+  </style>
+
+  <rect x="0" y="0" width="720" height="1180" fill="#0e0e10"/>
+
+  <!-- Title -->
+  <text x="32" y="40" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif;fill:#FFFFFF;font-size:20px;font-weight:600">Üretim Akış Şeması</text>
+  <rect x="32" y="50" width="46" height="3" rx="1.5" fill="#E0852F"/>
+
+  <!-- Legend -->
+  <g transform="translate(470,30)">
+    <rect x="0" y="0" width="16" height="11" rx="3" class="node"/>
+    <text x="22" y="9" class="lbl2" text-anchor="start">İşlem</text>
+    <path d="M82 6 l9 -7 l9 7 l-9 7 z" fill="#161618" stroke="#7a5a38" stroke-width="1"/>
+    <text x="100" y="9" class="lbl2" text-anchor="start">Karar</text>
+    <line x1="148" y1="6" x2="172" y2="6" class="ffeed"/>
+    <text x="178" y="9" class="lbl2" text-anchor="start">Geri besleme</text>
+  </g>
+
+  <!-- ============ LEFT COLUMN ============ -->
+  <!-- 1 YENI SIPARIS -->
+  <rect x="120" y="78" width="200" height="40" rx="4" class="node"/>
+  <text x="220" y="103" class="lbl">YENİ SİPARİŞ</text>
+  <line x1="220" y1="118" x2="220" y2="138" class="flow" marker-end="url(#arr)"/>
+
+  <!-- 2 MODEL/TEKNIK DOKUMAN/NUMUNE -->
+  <rect x="110" y="140" width="220" height="46" rx="4" class="node"/>
+  <text x="220" y="160" class="lbl">MODEL / TEKNİK DOKÜMAN</text>
+  <text x="220" y="176" class="lbl2">/ NUMUNE</text>
+  <line x1="220" y1="186" x2="220" y2="206" class="flow" marker-end="url(#arr)"/>
+
+  <!-- 3 MODEL IMALATI -->
+  <rect x="120" y="208" width="200" height="40" rx="4" class="node"/>
+  <text x="220" y="233" class="lbl">MODEL İMALATI</text>
+  <line x1="220" y1="248" x2="220" y2="266" class="flow" marker-end="url(#arr)"/>
+
+  <!-- 4 DECISION MACA GEREKLI MI -->
+  <path d="M220 268 l66 40 l-66 40 l-66 -40 z" fill="#161618" stroke="#7a5a38" stroke-width="1.2"/>
+  <text x="220" y="304" class="dlbl">MAÇA</text>
+  <text x="220" y="320" class="dlbl">GEREKLİ Mİ?</text>
+  <!-- Evet -> MACA IMALATI (right) -->
+  <text x="294" y="302" class="yn">Evet</text>
+  <line x1="286" y1="308" x2="430" y2="308" class="flow" marker-end="url(#arr)"/>
+  <rect x="430" y="288" width="150" height="40" rx="4" class="branch"/>
+  <text x="505" y="313" class="lbl">MAÇA İMALATI</text>
+  <!-- maca rejoins downstream into KUM HAZIRLAMA -->
+  <path d="M505 328 L505 392 L320 392" class="flow" marker-end="url(#arr)"/>
+  <!-- Hayir down -->
+  <text x="170" y="362" class="yn">Hayır</text>
+  <line x1="220" y1="348" x2="220" y2="392" class="flow" marker-end="url(#arr)"/>
+
+  <!-- 5 KUM HAZIRLAMA -->
+  <rect x="120" y="394" width="200" height="40" rx="4" class="node"/>
+  <text x="220" y="419" class="lbl">KUM HAZIRLAMA</text>
+  <line x1="220" y1="434" x2="220" y2="454" class="flow" marker-end="url(#arr)"/>
+
+  <!-- 6 PRESLI KALIPLAMA -->
+  <rect x="120" y="456" width="200" height="40" rx="4" class="node"/>
+  <text x="220" y="481" class="lbl">PRESLİ KALIPLAMA</text>
+  <line x1="220" y1="496" x2="220" y2="516" class="flow" marker-end="url(#arr)"/>
+
+  <!-- 7 DECISION OCAK ASTAR TAMIRI -->
+  <path d="M220 518 l66 40 l-66 40 l-66 -40 z" fill="#161618" stroke="#7a5a38" stroke-width="1.2"/>
+  <text x="220" y="554" class="dlbl">OCAK ASTAR</text>
+  <text x="220" y="570" class="dlbl">TAMİRİ?</text>
+  <!-- Evet -> SINTERLEME (right) -->
+  <text x="294" y="552" class="yn">Evet</text>
+  <line x1="286" y1="558" x2="430" y2="558" class="flow" marker-end="url(#arr)"/>
+  <rect x="430" y="538" width="150" height="40" rx="4" class="branch"/>
+  <text x="505" y="563" class="lbl">SİNTERLEME</text>
+  <path d="M505 578 L505 642 L320 642" class="flow" marker-end="url(#arr)"/>
+  <text x="170" y="612" class="yn">Hayır</text>
+  <line x1="220" y1="598" x2="220" y2="642" class="flow" marker-end="url(#arr)"/>
+
+  <!-- 8 ERGITME -->
+  <rect x="120" y="644" width="200" height="40" rx="4" class="node"/>
+  <text x="220" y="669" class="lbl">ERGİTME</text>
+  <line x1="220" y1="684" x2="220" y2="704" class="flow" marker-end="url(#arr)"/>
+
+  <!-- 9 DOKUM -->
+  <rect x="120" y="706" width="200" height="40" rx="4" class="node"/>
+  <text x="220" y="731" class="lbl">DÖKÜM</text>
+  <line x1="220" y1="746" x2="220" y2="766" class="flow" marker-end="url(#arr)"/>
+
+  <!-- 10 KALIBIN BOZULMASI -->
+  <rect x="120" y="768" width="200" height="44" rx="4" class="node"/>
+  <text x="220" y="788" class="lbl">KALIBIN BOZULMASI</text>
+  <text x="220" y="804" class="lbl2">(kum geri beslemesi)</text>
+  <!-- feedback to KUM HAZIRLAMA -->
+  <path d="M120 790 L60 790 L60 414 L120 414" class="ffeed" marker-end="url(#arrF)"/>
+  <text x="60" y="606" class="feed" transform="rotate(-90 60 606)">kum sistemine geri besleme</text>
+  <line x1="220" y1="812" x2="220" y2="832" class="flow" marker-end="url(#arr)"/>
+
+  <!-- 11 TEMIZLEME -->
+  <rect x="120" y="834" width="200" height="40" rx="4" class="node"/>
+  <text x="220" y="859" class="lbl">TEMİZLEME</text>
+  <line x1="220" y1="874" x2="220" y2="894" class="flow" marker-end="url(#arr)"/>
+
+  <!-- 12 YOLLUK-BESLEYICI KESIM -->
+  <rect x="110" y="896" width="220" height="44" rx="4" class="node"/>
+  <text x="220" y="916" class="lbl">YOLLUK-BESLEYİCİ</text>
+  <text x="220" y="932" class="lbl2">KESİM</text>
+
+  <!-- Cross-over to right column: from KESIM down then to top of right col -->
+  <line x1="220" y1="940" x2="220" y2="966" class="flow"/>
+  <path d="M220 966 L505 966 L505 138" class="flow" marker-end="url(#arr)"/>
+
+  <!-- ============ RIGHT COLUMN ============ -->
+  <!-- 13 SON TEMIZLEME -->
+  <rect x="405" y="98" width="200" height="40" rx="4" class="node"/>
+  <text x="505" y="123" class="lbl">SON TEMİZLEME</text>
+  <line x1="505" y1="138" x2="505" y2="158" class="flow" marker-end="url(#arr)"/>
+
+  <!-- 14 TASLAMA -->
+  <rect x="405" y="160" width="200" height="44" rx="4" class="node"/>
+  <text x="505" y="180" class="lbl">TAŞLAMA</text>
+  <text x="505" y="196" class="lbl2">(manuel / robotik)</text>
+  <line x1="505" y1="204" x2="505" y2="224" class="flow" marker-end="url(#arr)"/>
+
+  <!-- 15 DECISION CELIK MI -->
+  <path d="M505 226 l60 36 l-60 36 l-60 -36 z" fill="#161618" stroke="#7a5a38" stroke-width="1.2"/>
+  <text x="505" y="266" class="dlbl">ÇELİK Mİ?</text>
+  <text x="572" y="258" class="yn">Evet</text>
+  <line x1="565" y1="262" x2="625" y2="262" class="flow"/>
+  <path d="M625 262 L658 262 L658 320 L595 320" class="flow" marker-end="url(#arr)"/>
+  <rect x="445" y="300" width="150" height="38" rx="4" class="branch"/>
+  <text x="520" y="324" class="lbl">ISIL İŞLEM</text>
+  <text x="455" y="300" class="yn">Hayır</text>
+  <line x1="505" y1="298" x2="505" y2="352" class="flow" marker-end="url(#arr)"/>
+
+  <!-- 16 DECISION BOYANACAK MI -->
+  <path d="M505 354 l60 36 l-60 36 l-60 -36 z" fill="#161618" stroke="#7a5a38" stroke-width="1.2"/>
+  <text x="505" y="394" class="dlbl">BOYANACAK MI?</text>
+  <text x="572" y="386" class="yn">Evet</text>
+  <line x1="565" y1="390" x2="625" y2="390" class="flow"/>
+  <path d="M625 390 L658 390 L658 448 L595 448" class="flow" marker-end="url(#arr)"/>
+  <rect x="445" y="428" width="150" height="38" rx="4" class="branch"/>
+  <text x="520" y="452" class="lbl">BOYA</text>
+  <text x="455" y="428" class="yn">Hayır</text>
+  <line x1="505" y1="426" x2="505" y2="480" class="flow" marker-end="url(#arr)"/>
+
+  <!-- 17 DECISION TALASLI -->
+  <path d="M505 482 l60 36 l-60 36 l-60 -36 z" fill="#161618" stroke="#7a5a38" stroke-width="1.2"/>
+  <text x="505" y="522" class="dlbl">TALAŞLI?</text>
+  <text x="572" y="514" class="yn">Evet</text>
+  <line x1="565" y1="518" x2="625" y2="518" class="flow"/>
+  <path d="M625 518 L658 518 L658 576 L595 576" class="flow" marker-end="url(#arr)"/>
+  <rect x="445" y="556" width="150" height="38" rx="4" class="branch"/>
+  <text x="520" y="580" class="lbl">TALAŞLI İMALAT</text>
+  <text x="455" y="556" class="yn">Hayır</text>
+  <line x1="505" y1="554" x2="505" y2="608" class="flow" marker-end="url(#arr)"/>
+
+  <!-- 18 MONTAJ -->
+  <rect x="405" y="610" width="200" height="40" rx="4" class="node"/>
+  <text x="505" y="635" class="lbl">MONTAJ</text>
+  <line x1="505" y1="650" x2="505" y2="670" class="flow" marker-end="url(#arr)"/>
+
+  <!-- 19 STOK -->
+  <rect x="405" y="672" width="200" height="40" rx="4" class="node"/>
+  <text x="505" y="697" class="lbl">STOK</text>
+  <line x1="505" y1="712" x2="505" y2="732" class="flow" marker-end="url(#arr)"/>
+
+  <!-- 20 SEVK (highlighted final) -->
+  <rect x="405" y="734" width="200" height="46" rx="4" fill="url(#gAmb)" stroke="#E0852F" stroke-width="1.6"/>
+  <text x="505" y="763" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif;fill:#F5B775;font-size:15px;font-weight:700;text-anchor:middle">SEVK</text>
+
+</svg><div class="cnote">Yeni siparişten sevkiyata kadar döküm üretim akışı; amber çerçeveli elmaslar karar noktalarını, kesik oklar geri besleme döngülerini gösterir.</div></figure>
+<figure class="cwrap reveal"><div class="ctitle">Yalın Yerleşim & Çevrim Süreleri</div><svg viewBox="0 0 720 460" width="100%" style="height:auto;display:block" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="amberFlow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#B5611A"/>
+      <stop offset="1" stop-color="#E0852F"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#E0852F"/>
+    </marker>
+    <marker id="arrowS" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#7a5a38"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="720" height="460" fill="#0e0e10"/>
+
+  <!-- subtle grid frame -->
+  <rect x="20" y="56" width="680" height="380" fill="none" stroke="#2a2a2d" stroke-width="1" rx="6"/>
+
+  <!-- Title -->
+  <text x="28" y="34" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="20" font-weight="600" fill="#FFFFFF">Yalın Yerleşim &amp; Çevrim Süreleri</text>
+  <text x="28" y="50" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11.5" fill="#86868B">Üst görünüm · malzeme akışı kısa ve tek yönlü</text>
+
+  <!-- ============ MAIN LINE (top row) ============ -->
+  <!-- station geometry: w=92 h=58 -->
+
+  <!-- 1 Kum Hazırlama -->
+  <g>
+    <rect x="34" y="92" width="92" height="58" rx="7" fill="#161618" stroke="#2a2a2d"/>
+    <rect x="34" y="92" width="4" height="58" rx="2" fill="#7a5a38"/>
+    <text x="80" y="118" text-anchor="middle" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12" font-weight="600" fill="#FFFFFF">Kum</text>
+    <text x="80" y="133" text-anchor="middle" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12" font-weight="600" fill="#FFFFFF">Hazırlama</text>
+  </g>
+
+  <!-- 2 Kaliplama -->
+  <g>
+    <rect x="178" y="92" width="92" height="58" rx="7" fill="#161618" stroke="#2a2a2d"/>
+    <rect x="178" y="92" width="4" height="58" rx="2" fill="#E0852F"/>
+    <text x="224" y="116" text-anchor="middle" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#FFFFFF">Kalıplama</text>
+    <rect x="190" y="125" width="68" height="17" rx="4" fill="#2a1606" stroke="#B5611A" stroke-width="0.8"/>
+    <text x="224" y="137" text-anchor="middle" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="10.5" font-weight="600" fill="#F5B775">80 sn/kalıp</text>
+  </g>
+
+  <!-- 3 Ergitme/Ocak -->
+  <g>
+    <rect x="322" y="92" width="92" height="58" rx="7" fill="#161618" stroke="#2a2a2d"/>
+    <rect x="322" y="92" width="4" height="58" rx="2" fill="#E0852F"/>
+    <text x="368" y="112" text-anchor="middle" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12" font-weight="600" fill="#FFFFFF">Ergitme</text>
+    <text x="368" y="125" text-anchor="middle" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="10" fill="#C2C2C7">Ocak</text>
+    <rect x="332" y="129" width="72" height="17" rx="4" fill="#2a1606" stroke="#B5611A" stroke-width="0.8"/>
+    <text x="368" y="141" text-anchor="middle" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="10.5" font-weight="600" fill="#F5B775">4 ton/şarj</text>
+  </g>
+
+  <!-- 4 Dokum -->
+  <g>
+    <rect x="466" y="92" width="92" height="58" rx="7" fill="#161618" stroke="#2a2a2d"/>
+    <rect x="466" y="92" width="4" height="58" rx="2" fill="#7a5a38"/>
+    <text x="512" y="125" text-anchor="middle" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#FFFFFF">Döküm</text>
+  </g>
+
+  <!-- 5 Sogutma -->
+  <g>
+    <rect x="610" y="92" width="92" height="58" rx="7" fill="#161618" stroke="#2a2a2d"/>
+    <rect x="610" y="92" width="4" height="58" rx="2" fill="#7a5a38"/>
+    <text x="656" y="125" text-anchor="middle" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#FFFFFF">Soğutma</text>
+  </g>
+
+  <!-- main line arrows (left -> right) -->
+  <line x1="126" y1="121" x2="176" y2="121" stroke="url(#amberFlow)" stroke-width="2.4" marker-end="url(#arrow)"/>
+  <line x1="270" y1="121" x2="320" y2="121" stroke="url(#amberFlow)" stroke-width="2.4" marker-end="url(#arrow)"/>
+  <line x1="414" y1="121" x2="464" y2="121" stroke="url(#amberFlow)" stroke-width="2.4" marker-end="url(#arrow)"/>
+  <line x1="558" y1="121" x2="608" y2="121" stroke="url(#amberFlow)" stroke-width="2.4" marker-end="url(#arrow)"/>
+
+  <!-- U-turn down from Sogutma to second row (Temizleme) -->
+  <path d="M656,150 L656,196 L612,196" fill="none" stroke="url(#amberFlow)" stroke-width="2.4" marker-end="url(#arrow)"/>
+
+  <!-- ============ SECOND LINE (return row, right -> left) ============ -->
+
+  <!-- 6 Temizleme/Taslama -->
+  <g>
+    <rect x="466" y="226" width="100" height="58" rx="7" fill="#161618" stroke="#2a2a2d"/>
+    <rect x="466" y="226" width="4" height="58" rx="2" fill="#E0852F"/>
+    <text x="516" y="246" text-anchor="middle" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#FFFFFF">Temizleme</text>
+    <text x="516" y="259" text-anchor="middle" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="10" fill="#C2C2C7">Taşlama</text>
+    <rect x="476" y="263" width="80" height="17" rx="4" fill="#2a1606" stroke="#B5611A" stroke-width="0.8"/>
+    <text x="516" y="275" text-anchor="middle" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="10.5" font-weight="600" fill="#F5B775">50 sn/ünite</text>
+  </g>
+
+  <!-- 7 Boya -->
+  <g>
+    <rect x="322" y="226" width="92" height="58" rx="7" fill="#161618" stroke="#2a2a2d"/>
+    <rect x="322" y="226" width="4" height="58" rx="2" fill="#7a5a38"/>
+    <text x="368" y="259" text-anchor="middle" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#FFFFFF">Boya</text>
+  </g>
+
+  <!-- 8 Stok/Sevk -->
+  <g>
+    <rect x="178" y="226" width="92" height="58" rx="7" fill="#161618" stroke="#E0852F" stroke-width="1.4"/>
+    <rect x="178" y="226" width="4" height="58" rx="2" fill="#F5B775"/>
+    <text x="224" y="252" text-anchor="middle" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12" font-weight="600" fill="#F5B775">Stok</text>
+    <text x="224" y="267" text-anchor="middle" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12" font-weight="600" fill="#F5B775">Sevk</text>
+  </g>
+
+  <!-- second line arrows (right -> left) -->
+  <line x1="464" y1="255" x2="416" y2="255" stroke="url(#amberFlow)" stroke-width="2.4" marker-end="url(#arrow)"/>
+  <line x1="320" y1="255" x2="272" y2="255" stroke="url(#amberFlow)" stroke-width="2.4" marker-end="url(#arrow)"/>
+
+  <!-- ============ SIDE BRANCH: Maca -> Kaliplama ============ -->
+  <g>
+    <rect x="178" y="346" width="120" height="56" rx="7" fill="#161618" stroke="#2a2a2d" stroke-dasharray="4 3"/>
+    <rect x="178" y="346" width="4" height="56" rx="2" fill="#7a5a38"/>
+    <text x="238" y="366" text-anchor="middle" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12" font-weight="600" fill="#FFFFFF">Maça</text>
+    <text x="238" y="380" text-anchor="middle" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="9.5" fill="#86868B">yan besleme</text>
+    <rect x="186" y="384" width="104" height="15" rx="4" fill="#2a1606" stroke="#7a5a38" stroke-width="0.8"/>
+    <text x="238" y="395" text-anchor="middle" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="9.5" font-weight="600" fill="#F5B775">20 dk / 16 ünite</text>
+  </g>
+
+  <!-- Maca feeds up into Kaliplama (dashed amber, secondary) -->
+  <path d="M238,346 L238,160 L224,160 L224,152" fill="none" stroke="#7a5a38" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrowS)"/>
+
+  <!-- legend -->
+  <g>
+    <line x1="430" y1="372" x2="456" y2="372" stroke="#E0852F" stroke-width="2.4"/>
+    <text x="462" y="376" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="10.5" fill="#C2C2C7">Ana akış</text>
+    <line x1="430" y1="392" x2="456" y2="392" stroke="#7a5a38" stroke-width="2" stroke-dasharray="5 4"/>
+    <text x="462" y="396" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="10.5" fill="#C2C2C7">Yan besleme</text>
+  </g>
+</svg><div class="cnote">Üst görünüm yalın akış: kısa yol, tek hatta dökümhane istasyonları ve çevrim süreleri.</div></figure>
+<h4 class="reveal">Kalıplama teknolojisi — kapasite seçenekleri (DISAMATIC referans)</h4>
+<div class="tw reveal"><table>
+<tr><th>Makine</th><th class="n">Kalıp/saat (deresiz)</th><th>Kalıp ölçüsü (mm)</th><th class="n">Kaçık</th><th>Konum</th></tr>
+<tr><td>DISAMATIC C3</td><td class="n">150 / 250 / 350</td><td>480×600 – 535×650</td><td class="n">≤0,25</td><td>Giriş / ekonomik</td></tr>
+<tr><td>DISAMATIC D1</td><td class="n">205 / 315</td><td>400×500</td><td class="n">0,2</td><td>Kompakt</td></tr>
+<tr><td>DISAMATIC D3</td><td class="n">365 / 425 / 555</td><td>480×600 – 570×750</td><td class="n">&lt;0,10</td><td>Amiral gemisi</td></tr>
+<tr><td>DISAMATIC 240–280</td><td class="n">210 – 450</td><td>600×750 – 1050×1200</td><td class="n">0,15–0,4</td><td>Büyük döküm</td></tr>
+<tr><td>SAM kum mikseri</td><td class="n">30 – 180 t/saat</td><td>şarj 1.000–5.000 kg</td><td class="n">—</td><td>Green sand</td></tr>
+</table></div>
+<p class="reveal">ALAN CAST yalın senaryosu ~50 kalıp/saat sınıfında; ölçek büyürse C3/D1 sınıfı dikey deresiz hat (saatte 150–315 kalıp) ürün ailesine (rögar/ızgara, 600×750'ye kadar) uyumludur. Disamatic teknolojisi 1964'te icat edilmiş, 1.500+ kurulumla kanıtlı.</p>
+<h4 class="reveal">Otomatik döküm ocağının (otomatik pota) kazanımı — saha verisi</h4>
+<div class="statbox reveal">
+  <div class="sx"><b>−%52</b><span>Hatalı parça oranı</span></div>
+  <div class="sx"><b>−%56,9</b><span>Metal bekleme duruşları</span></div>
+  <div class="sx"><b>9,28→2,57</b><span>Gaz boşluğu hatası (%)</span></div>
+  <div class="sx"><b>0,03→0</b><span>Cüruf hatası (%)</span></div>
+  <div class="sx"><b>0,50→0</b><span>Eksik döküm (%)</span></div>
+  <div class="sx"><b>−20 °C</b><span>Döküm sıcaklığı (yüzey kalitesi ↑)</span></div>
+</div>
+<p class="reveal"><span style="color:var(--gray);font-size:13px">Kaynak: Erkunt A.Ş. saha uygulaması (Erkunt-2, 1999+); otomatik pota dakikada ~250 kg döküm.</span> Ayrıca <strong>3B kum kalıp/maça yazıcısı (binder-jet)</strong> ile hızlı prototipleme: model ve maça sandığı ihtiyacını kaldırır, CAD'den doğrudan kullanıma hazır kalıp; özellikle yeni rögar/ızgara modellerinin numune sürecini kısaltır.</p>
+
+<div class="secno reveal">4</div>
+<h2 id="sec-4" class="sec reveal">Yatırım (CAPEX)</h2>
 <p class="sec-lead reveal">Kiralık bina sayesinde sabit yatırım ekipman ağırlıklı; arsa/inşaat kalemi yok. Toplam yatırım ihtiyacı ~1,0 milyon € (53,3 M₺).</p>
 <div class="tw reveal"><table>
 <tr><th>Kalem</th><th class="n">€</th><th class="n">₺ (×53,3)</th></tr>
@@ -200,12 +1136,409 @@ footer{background:#000;color:#6e6e73;text-align:center;padding:36px 22px;font-si
 <tr><td>İşletme sermayesi</td><td class="n">190.000</td><td class="n">10,13 M</td></tr>
 <tr class="tot"><td>TOPLAM YATIRIM</td><td class="n">1.000.000</td><td class="n">53,30 M</td></tr>
 </table></div>
-<p class="reveal"><strong>Finansman:</strong> %50 öz kaynak (500.000 €) + %50 banka kredisi (500.000 €; ~%10/yıl EUR, 5 yıl eşit anapara). Teşvikli makine alımında KDV/gümrük muafiyeti bu tutarı ayrıca düşürür (bkz. §6).</p>
+<figure class="cwrap reveal"><div class="ctitle">Makine & Ekipman Yatırımı — Kategori Dağılımı (2019, TL)</div><svg viewBox="0 0 720 470" width="100%" style="height:auto;display:block" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="barMain" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#B5611A"/>
+      <stop offset="1" stop-color="#E0852F"/>
+    </linearGradient>
+    <linearGradient id="barTop" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#E0852F"/>
+      <stop offset="1" stop-color="#F5B775"/>
+    </linearGradient>
+  </defs>
 
-<div class="secno reveal">4</div>
-<h2 id="sec-4" class="sec reveal">Finansal Analiz</h2>
+  <rect x="0" y="0" width="720" height="470" rx="14" fill="#161618"/>
+
+  <text x="32" y="40" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="19" font-weight="600" fill="#FFFFFF">Makine &amp; Ekipman Yatırımı</text>
+  <text x="32" y="62" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#86868B">Kategori Dağılımı · 2019, TL · yalın senaryo (4 ton ocak)</text>
+
+  <!-- Bars: max value 1.550.000 -> bar area x 200..672 (width 472) -->
+  <!-- Row pattern: label x=32, bar x0=200, value at end -->
+
+  <!-- KALIPLAMA 1.550.000 (highlight) -->
+  <g>
+    <text x="188" y="96" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#FFFFFF">KALIPLAMA</text>
+    <rect x="200" y="86" width="472" height="14" rx="3.5" fill="url(#barTop)"/>
+    <text x="668" y="96" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12" font-weight="600" fill="#0e0e10">1.550.000</text>
+  </g>
+
+  <!-- DOKUM 1.100.000 -->
+  <g>
+    <text x="188" y="124" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#C2C2C7">DÖKÜM</text>
+    <rect x="200" y="114" width="335" height="14" rx="3.5" fill="url(#barMain)"/>
+    <text x="543" y="124" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#C2C2C7">1.100.000</text>
+  </g>
+
+  <!-- KUM HAZIRLAMA 1.000.000 -->
+  <g>
+    <text x="188" y="152" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#C2C2C7">KUM HAZIRLAMA</text>
+    <rect x="200" y="142" width="305" height="14" rx="3.5" fill="url(#barMain)"/>
+    <text x="513" y="152" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#C2C2C7">1.000.000</text>
+  </g>
+
+  <!-- BOYAHANE 284.000 -->
+  <g>
+    <text x="188" y="180" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#C2C2C7">BOYAHANE</text>
+    <rect x="200" y="170" width="87" height="14" rx="3.5" fill="#7a5a38"/>
+    <text x="295" y="180" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#C2C2C7">284.000</text>
+  </g>
+
+  <!-- KUMLAMA 284.000 -->
+  <g>
+    <text x="188" y="208" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#C2C2C7">KUMLAMA</text>
+    <rect x="200" y="198" width="87" height="14" rx="3.5" fill="#7a5a38"/>
+    <text x="295" y="208" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#C2C2C7">284.000</text>
+  </g>
+
+  <!-- TEST CIHAZLARI 150.000 -->
+  <g>
+    <text x="188" y="236" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#C2C2C7">TEST CİHAZLARI</text>
+    <rect x="200" y="226" width="46" height="14" rx="3.5" fill="#7a5a38"/>
+    <text x="254" y="236" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#C2C2C7">150.000</text>
+  </g>
+
+  <!-- DIGER 104.600 -->
+  <g>
+    <text x="188" y="264" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#C2C2C7">DİĞER</text>
+    <rect x="200" y="254" width="32" height="14" rx="3.5" fill="#7a5a38"/>
+    <text x="240" y="264" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#86868B">104.600</text>
+  </g>
+
+  <!-- MONTAJ 14.100 -->
+  <g>
+    <text x="188" y="292" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#C2C2C7">MONTAJ</text>
+    <rect x="200" y="282" width="6" height="14" rx="3" fill="#7a5a38"/>
+    <text x="214" y="292" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#86868B">14.100</text>
+  </g>
+
+  <!-- TASLAMA 12.000 -->
+  <g>
+    <text x="188" y="320" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#C2C2C7">TAŞLAMA</text>
+    <rect x="200" y="310" width="5" height="14" rx="2.5" fill="#7a5a38"/>
+    <text x="213" y="320" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#86868B">12.000</text>
+  </g>
+
+  <!-- divider -->
+  <line x1="32" y1="344" x2="688" y2="344" stroke="#2a2a2d" stroke-width="1"/>
+
+  <!-- Mini table: top categories share -->
+  <text x="32" y="372" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11" font-weight="600" fill="#86868B" letter-spacing="0.5">EN BÜYÜK ÜÇ KALEM</text>
+
+  <!-- col headers -->
+  <text x="200" y="372" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11" font-weight="600" fill="#86868B">TUTAR (TL)</text>
+  <text x="300" y="372" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11" font-weight="600" fill="#86868B">PAY</text>
+
+  <line x1="32" y1="382" x2="320" y2="382" stroke="#2a2a2d" stroke-width="1"/>
+
+  <text x="32" y="402" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#F5B775">Kalıplama</text>
+  <text x="200" y="402" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12.5" fill="#C2C2C7">1.550.000</text>
+  <text x="300" y="402" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12.5" fill="#C2C2C7">34,5%</text>
+
+  <text x="32" y="422" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#FFFFFF">Döküm</text>
+  <text x="200" y="422" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12.5" fill="#C2C2C7">1.100.000</text>
+  <text x="300" y="422" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12.5" fill="#C2C2C7">24,5%</text>
+
+  <text x="32" y="442" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#FFFFFF">Kum Hazırlama</text>
+  <text x="200" y="442" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12.5" fill="#C2C2C7">1.000.000</text>
+  <text x="300" y="442" text-anchor="end" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12.5" fill="#C2C2C7">22,2%</text>
+
+  <!-- Total badge -->
+  <rect x="372" y="388" width="316" height="58" rx="10" fill="#2a1606" stroke="#2a2a2d" stroke-width="1"/>
+  <text x="392" y="412" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11" font-weight="600" fill="#86868B" letter-spacing="0.5">TOPLAM YATIRIM</text>
+  <text x="392" y="436" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="20" font-weight="700" fill="#F5B775">4.498.700 <tspan font-size="13" font-weight="500" fill="#C2C2C7">TL</tspan></text>
+</svg><div class="cnote">2019 fiyatları, yalın senaryo (4 ton ocak). Toplam ≈ 4.498.700 TL.</div></figure>
+<h4 class="reveal">İkinci el kalıplama hattı seçenekleri (gerçek 2019 teklifleri)</h4>
+<p class="reveal">İkinci el hat ile kalıplama yatırımı <strong>%50–70 düşebilir</strong> (sökme/nakliye/modernizasyon riski karşılığında). Toplanan gerçek teklifler:</p>
+<div class="tw reveal"><table>
+<tr><th>Tedarikçi</th><th>Makine / Hat</th><th>Yıl</th><th class="n">Kapasite</th><th class="n">Fiyat</th></tr>
+<tr><td>Polonya (M. Stachelek)</td><td>DISAMATIC 2095 + Junker 3t ocak</td><td>1974</td><td class="n">300 kalıp/sa</td><td class="n">35.000 €</td></tr>
+<tr><td>TCT Tesic (DE)</td><td>DISAMATIC 2013 MK3 (modernize)</td><td>1975/2000</td><td class="n">350 kalıp/sa</td><td class="n">94.500 €</td></tr>
+<tr><td>Genten (BE)</td><td>DISAMATIC 2032 + PMC 26m</td><td>1974/1992</td><td class="n">775×600</td><td class="n">110.000 €</td></tr>
+<tr><td>Genten (BE)</td><td>HWS EFA SD6 (SEIATSU yaş kum)</td><td>2002</td><td class="n">40–45 kalıp/sa</td><td class="n">380.000 €</td></tr>
+<tr><td>Nemetech (HU)</td><td>Komple hat (kalıplama+ocak+kum+soğutma)</td><td>1995</td><td class="n">246 kalıp/sa</td><td class="n">~549.000 €</td></tr>
+<tr><td>Luoyang Dinghong (CN)</td><td>4,5t indüksiyon ocağı (yeni)</td><td>—</td><td class="n">5 t/sa, ~550 kWh/t</td><td class="n">142.800 $</td></tr>
+</table></div>
+<figure class="cwrap reveal"><div class="ctitle">Personel Kadrosu & Aylık Maliyet (2019)</div><svg viewBox="0 0 720 470" width="100%" style="height:auto;display:block" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="barAmber" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#B5611A"/>
+      <stop offset="1" stop-color="#E0852F"/>
+    </linearGradient>
+    <linearGradient id="barAmberHi" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#E0852F"/>
+      <stop offset="1" stop-color="#F5B775"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="720" height="470" rx="14" fill="#161618"/>
+
+  <text x="32" y="44" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="20" font-weight="600" fill="#FFFFFF">Personel Kadrosu &amp; Aylık Maliyet</text>
+  <text x="32" y="66" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#86868B">2019 · Nitelik Profil Tablosu</text>
+
+  <!-- Birim kartları -->
+  <g style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif">
+    <!-- Ofis -->
+    <rect x="32" y="88" width="320" height="78" rx="8" fill="#0e0e10" stroke="#2a2a2d"/>
+    <text x="52" y="116" font-size="13" fill="#86868B" letter-spacing="1.5">OFİS</text>
+    <text x="52" y="146" font-size="22" font-weight="600" fill="#FFFFFF">16 <tspan font-size="13" font-weight="400" fill="#C2C2C7">kişi</tspan></text>
+    <text x="332" y="146" text-anchor="end" font-size="20" font-weight="600" fill="#F5B775">94.175 <tspan font-size="12" font-weight="400" fill="#86868B">TL/ay</tspan></text>
+
+    <!-- Üretim -->
+    <rect x="368" y="88" width="320" height="78" rx="8" fill="#0e0e10" stroke="#2a2a2d"/>
+    <text x="388" y="116" font-size="13" fill="#86868B" letter-spacing="1.5">ÜRETİM</text>
+    <text x="388" y="146" font-size="22" font-weight="600" fill="#FFFFFF">30 <tspan font-size="13" font-weight="400" fill="#C2C2C7">kişi</tspan></text>
+    <text x="668" y="146" text-anchor="end" font-size="20" font-weight="600" fill="#F5B775">126.000 <tspan font-size="12" font-weight="400" fill="#86868B">TL/ay</tspan></text>
+  </g>
+
+  <!-- Bölüm başlığı: vardiya -->
+  <text x="32" y="206" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#86868B" letter-spacing="1.5">VARDİYAYA GÖRE TOPLAM</text>
+  <line x1="32" y1="218" x2="688" y2="218" stroke="#2a2a2d"/>
+
+  <!-- Tablo başlık satırı -->
+  <g style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#86868B">
+    <text x="44" y="246">Vardiya</text>
+    <text x="180" y="246" text-anchor="end">Kişi</text>
+    <text x="318" y="246" text-anchor="end">Maliyet (TL/ay)</text>
+    <text x="350" y="246">Aylık maliyet (oransal)</text>
+  </g>
+  <line x1="32" y1="258" x2="688" y2="258" stroke="#2a2a2d"/>
+
+  <!-- Satırlar: bar genişliği maks 472.175 -> 320px. 1v=220175->149, 2v=346175->235, 3v=472175->320 -->
+  <g style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif">
+    <!-- 1 vardiya -->
+    <text x="44" y="294" font-size="14" font-weight="600" fill="#FFFFFF">1 vardiya</text>
+    <text x="180" y="294" text-anchor="end" font-size="14" fill="#C2C2C7">46</text>
+    <text x="318" y="294" text-anchor="end" font-size="14" fill="#C2C2C7">220.175</text>
+    <rect x="350" y="284" width="149" height="12" rx="3" fill="url(#barAmber)" opacity="0.85"/>
+    <line x1="32" y1="312" x2="688" y2="312" stroke="#2a2a2d"/>
+
+    <!-- 2 vardiya -->
+    <text x="44" y="348" font-size="14" font-weight="600" fill="#FFFFFF">2 vardiya</text>
+    <text x="180" y="348" text-anchor="end" font-size="14" fill="#C2C2C7">76</text>
+    <text x="318" y="348" text-anchor="end" font-size="14" fill="#C2C2C7">346.175</text>
+    <rect x="350" y="338" width="235" height="12" rx="3" fill="url(#barAmber)" opacity="0.9"/>
+    <line x1="32" y1="366" x2="688" y2="366" stroke="#2a2a2d"/>
+
+    <!-- 3 vardiya (öne çıkan) -->
+    <text x="44" y="402" font-size="14" font-weight="600" fill="#F5B775">3 vardiya</text>
+    <text x="180" y="402" text-anchor="end" font-size="14" font-weight="600" fill="#FFFFFF">106</text>
+    <text x="318" y="402" text-anchor="end" font-size="14" font-weight="600" fill="#FFFFFF">472.175</text>
+    <rect x="350" y="392" width="320" height="12" rx="3" fill="url(#barAmberHi)"/>
+    <line x1="32" y1="420" x2="688" y2="420" stroke="#2a2a2d"/>
+  </g>
+
+  <!-- Alt not -->
+  <text x="32" y="450" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11.5" fill="#86868B">Ofis kadrosu sabit; üretim kadrosu vardiya sayısıyla katlanır. Parlak bar 3 vardiyalı tam kapasiteyi gösterir.</text>
+</svg><div class="cnote">Nitelik Profil Tablosu</div></figure>
+
+<div class="secno reveal">5</div>
+<h2 id="sec-5" class="sec reveal">İşletme &amp; Kazanç</h2>
+<p class="sec-lead reveal">2019 mali sunumundaki vardiya bazlı kazanç çalışması ve kuruluş takvimi (referans / tarihsel taban).</p>
+<figure class="cwrap reveal"><div class="ctitle">Kazanç Tablosu — Vardiyaya Göre (2019)</div><svg viewBox="0 0 720 470" width="100%" style="height:auto;display:block" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="barAmber" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#F5B775"/>
+<stop offset="1" stop-color="#E0852F"/>
+</linearGradient>
+<linearGradient id="barDim" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#8a6638"/>
+<stop offset="1" stop-color="#6a4d2a"/>
+</linearGradient>
+</defs>
+<rect x="0" y="0" width="720" height="470" rx="14" fill="#161618"/>
+<text x="32" y="44" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="20" font-weight="600" fill="#FFFFFF">Kazanç Tablosu — Vardiyaya Göre</text>
+<text x="32" y="66" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-weight="400" fill="#86868B">2019 · TL · günlük baz</text>
+
+<!-- Table -->
+<g style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif">
+<!-- header row -->
+<rect x="32" y="86" width="656" height="38" rx="6" fill="#2a1606"/>
+<text x="48" y="110" font-size="13" font-weight="600" fill="#FFFFFF">Kalem</text>
+<text x="356" y="110" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">1 Vardiya</text>
+<text x="500" y="110" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">2 Vardiya</text>
+<text x="652" y="110" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="end">3 Vardiya</text>
+
+<!-- row 1: maliyet -->
+<text x="48" y="150" font-size="13.5" font-weight="600" fill="#FFFFFF">Günlük maliyet</text>
+<text x="408" y="150" font-size="13.5" fill="#C2C2C7" text-anchor="end">119.534</text>
+<text x="556" y="150" font-size="13.5" fill="#C2C2C7" text-anchor="end">224.253</text>
+<text x="656" y="150" font-size="13.5" fill="#C2C2C7" text-anchor="end">332.572</text>
+<line x1="32" y1="166" x2="688" y2="166" stroke="#2a2a2d" stroke-width="1"/>
+
+<!-- row 2: ciro -->
+<text x="48" y="190" font-size="13.5" font-weight="600" fill="#FFFFFF">Günlük ciro</text>
+<text x="408" y="190" font-size="13.5" fill="#C2C2C7" text-anchor="end">132.300</text>
+<text x="556" y="190" font-size="13.5" fill="#C2C2C7" text-anchor="end">264.600</text>
+<text x="656" y="190" font-size="13.5" fill="#C2C2C7" text-anchor="end">396.900</text>
+<line x1="32" y1="206" x2="688" y2="206" stroke="#2a2a2d" stroke-width="1"/>
+
+<!-- row 3: kar -->
+<text x="48" y="230" font-size="13.5" font-weight="600" fill="#FFFFFF">Günlük kâr</text>
+<text x="408" y="230" font-size="13.5" fill="#C2C2C7" text-anchor="end">12.766</text>
+<text x="556" y="230" font-size="13.5" fill="#C2C2C7" text-anchor="end">39.813</text>
+<text x="656" y="230" font-size="13.5" fill="#C2C2C7" text-anchor="end">64.328</text>
+<line x1="32" y1="246" x2="688" y2="246" stroke="#2a2a2d" stroke-width="1"/>
+
+<!-- row 4: AYLIK KAR (amber highlight) -->
+<rect x="32" y="252" width="656" height="42" rx="6" fill="#2a1606"/>
+<text x="48" y="278" font-size="13.5" font-weight="700" fill="#F5B775">AYLIK KÂR</text>
+<text x="408" y="278" font-size="14" font-weight="700" fill="#F5B775" text-anchor="end">331.916</text>
+<text x="556" y="278" font-size="14" font-weight="700" fill="#F5B775" text-anchor="end">1.035.138</text>
+<text x="656" y="278" font-size="14" font-weight="700" fill="#F5B775" text-anchor="end">1.672.528</text>
+</g>
+
+<!-- Mini bar chart: Aylık kâr -->
+<g style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif">
+<text x="32" y="330" font-size="12" font-weight="600" fill="#86868B" letter-spacing="0.5">AYLIK KÂR KARŞILAŞTIRMASI</text>
+<line x1="32" y1="430" x2="688" y2="430" stroke="#2a2a2d" stroke-width="1"/>
+
+<!-- max 1.672.528 -> height scale, plot area top y=346 bottom y=430 (84px). Use ~78px max -->
+<!-- bar1: 331.916 -> 78*0.1984=15.5 -->
+<rect x="120" y="414.5" width="120" height="15.5" rx="3" fill="url(#barDim)"/>
+<text x="180" y="406" font-size="12.5" font-weight="600" fill="#C2C2C7" text-anchor="middle">331.916</text>
+<text x="180" y="448" font-size="12" fill="#86868B" text-anchor="middle">1 Vardiya</text>
+
+<!-- bar2: 1.035.138 -> 78*0.6189=48.3 -->
+<rect x="300" y="381.7" width="120" height="48.3" rx="3" fill="url(#barDim)"/>
+<text x="360" y="373" font-size="12.5" font-weight="600" fill="#C2C2C7" text-anchor="middle">1.035.138</text>
+<text x="360" y="448" font-size="12" fill="#86868B" text-anchor="middle">2 Vardiya</text>
+
+<!-- bar3: 1.672.528 -> 78 (max, bright amber) -->
+<rect x="480" y="352" width="120" height="78" rx="3" fill="url(#barAmber)"/>
+<text x="540" y="343" font-size="12.5" font-weight="700" fill="#F5B775" text-anchor="middle">1.672.528</text>
+<text x="540" y="448" font-size="12" font-weight="600" fill="#F5B775" text-anchor="middle">3 Vardiya</text>
+</g>
+</svg><div class="cnote">Hammadde 4,5 TL/kg, satış 1 EUR/kg.</div></figure>
+<p class="reveal"><strong>Hammadde maliyeti (2019 sunumu):</strong> ~4,5 TL/kg (Çelik 1,96 + Sfero pik 2,12 + Yolluk 1,14 + silis/karbon/magnezyum). Satış fiyatı 1 EUR/kg (o gün 6,3 TL). 2026 modelinde bu, 1,20 €/ton satış ve gelirin %60'ı değişken maliyet olarak güncellenmiştir (bkz. §6).</p>
+<figure class="cwrap reveal"><div class="ctitle">Faaliyet Plani — Kurulus Takvimi (~16 ay)</div><svg viewBox="0 0 720 480" width="100%" style="height:auto;display:block" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="amberBar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#B5611A"/>
+      <stop offset="1" stop-color="#E0852F"/>
+    </linearGradient>
+    <linearGradient id="amberBright" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#E0852F"/>
+      <stop offset="1" stop-color="#F5B775"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="720" height="480" fill="#0e0e10"/>
+  <rect x="14" y="14" width="692" height="452" rx="10" fill="#161618"/>
+
+  <text x="34" y="46" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="17" font-weight="600" fill="#FFFFFF">Faaliyet Plani — Kurulus Takvimi</text>
+  <text x="34" y="66" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#86868B">~16 aylik kurulus ve devreye alma sureci</text>
+
+  <!-- Plot geometry: label col ends at x=242; chart x:242..686 over 16 months -->
+  <!-- month width = (686-242)/16 = 27.75 -->
+
+  <!-- Month grid lines + axis labels (top) -->
+  <g>
+    <!-- vertical grid lines at month boundaries 0..16 -->
+    <line x1="242" y1="86" x2="242" y2="430" stroke="#2a2a2d" stroke-width="1"/>
+    <line x1="269.75" y1="86" x2="269.75" y2="430" stroke="#2a2a2d" stroke-width="1"/>
+    <line x1="297.5" y1="86" x2="297.5" y2="430" stroke="#2a2a2d" stroke-width="1"/>
+    <line x1="325.25" y1="86" x2="325.25" y2="430" stroke="#2a2a2d" stroke-width="1"/>
+    <line x1="353" y1="86" x2="353" y2="430" stroke="#2a2a2d" stroke-width="1"/>
+    <line x1="380.75" y1="86" x2="380.75" y2="430" stroke="#2a2a2d" stroke-width="1"/>
+    <line x1="408.5" y1="86" x2="408.5" y2="430" stroke="#2a2a2d" stroke-width="1"/>
+    <line x1="436.25" y1="86" x2="436.25" y2="430" stroke="#2a2a2d" stroke-width="1"/>
+    <line x1="464" y1="86" x2="464" y2="430" stroke="#2a2a2d" stroke-width="1"/>
+    <line x1="491.75" y1="86" x2="491.75" y2="430" stroke="#2a2a2d" stroke-width="1"/>
+    <line x1="519.5" y1="86" x2="519.5" y2="430" stroke="#2a2a2d" stroke-width="1"/>
+    <line x1="547.25" y1="86" x2="547.25" y2="430" stroke="#2a2a2d" stroke-width="1"/>
+    <line x1="575" y1="86" x2="575" y2="430" stroke="#2a2a2d" stroke-width="1"/>
+    <line x1="602.75" y1="86" x2="602.75" y2="430" stroke="#2a2a2d" stroke-width="1"/>
+    <line x1="630.5" y1="86" x2="630.5" y2="430" stroke="#2a2a2d" stroke-width="1"/>
+    <line x1="658.25" y1="86" x2="658.25" y2="430" stroke="#2a2a2d" stroke-width="1"/>
+    <line x1="686" y1="86" x2="686" y2="430" stroke="#2a2a2d" stroke-width="1"/>
+
+    <!-- month number labels centered in each month -->
+    <g style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="10" fill="#86868B" text-anchor="middle">
+      <text x="255.9" y="80">1</text>
+      <text x="283.6" y="80">2</text>
+      <text x="311.4" y="80">3</text>
+      <text x="339.1" y="80">4</text>
+      <text x="366.9" y="80">5</text>
+      <text x="394.6" y="80">6</text>
+      <text x="422.4" y="80">7</text>
+      <text x="450.1" y="80">8</text>
+      <text x="477.9" y="80">9</text>
+      <text x="505.6" y="80">10</text>
+      <text x="533.4" y="80">11</text>
+      <text x="561.1" y="80">12</text>
+      <text x="588.9" y="80">13</text>
+      <text x="616.6" y="80">14</text>
+      <text x="644.4" y="80">15</text>
+      <text x="672.1" y="80">16</text>
+    </g>
+    <text x="664" y="80" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="9" fill="#86868B" text-anchor="end" opacity="0"></text>
+    <text x="242" y="80" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="9" fill="#86868B" text-anchor="start" opacity="0"></text>
+  </g>
+
+  <!-- Axis caption -->
+  <text x="464" y="450" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="10" fill="#86868B" text-anchor="middle">Ay</text>
+
+  <!-- Rows: 12 activities, row pitch 27, bars start y=92 -->
+  <!-- bar x = 242 + (start-1)*27.75 ; width = (end-start+1)*27.75 -->
+  <g style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11" fill="#C2C2C7" text-anchor="end">
+    <!-- 1 Yer kiralama 1-2 -->
+    <text x="232" y="103">Yer kiralama</text>
+    <rect x="242" y="94.5" width="55.5" height="14" rx="3.5" fill="url(#amberBar)"/>
+
+    <!-- 2 Tadilat 1-3 -->
+    <text x="232" y="130">Tadilat</text>
+    <rect x="242" y="121.5" width="83.25" height="14" rx="3.5" fill="url(#amberBar)"/>
+
+    <!-- 3 Ofis kurulumu 1-2 -->
+    <text x="232" y="157">Ofis kurulumu</text>
+    <rect x="242" y="148.5" width="55.5" height="14" rx="3.5" fill="url(#amberBar)"/>
+
+    <!-- 4 Makine-ekipman alimi 1-2 -->
+    <text x="232" y="184">Makine-ekipman alimi</text>
+    <rect x="242" y="175.5" width="55.5" height="14" rx="3.5" fill="url(#amberBar)"/>
+
+    <!-- 5 Hat kurulumu 1-6 -->
+    <text x="232" y="211">Hat kurulumu</text>
+    <rect x="242" y="202.5" width="166.5" height="14" rx="3.5" fill="url(#amberBar)"/>
+
+    <!-- 6 Induksiyon ocagi kurulumu 1-4 -->
+    <text x="232" y="238">Induksiyon ocagi kurulumu</text>
+    <rect x="242" y="229.5" width="111" height="14" rx="3.5" fill="url(#amberBar)"/>
+
+    <!-- 7 Model imalati 3-5 -->
+    <text x="232" y="265">Model imalati</text>
+    <rect x="297.5" y="256.5" width="83.25" height="14" rx="3.5" fill="url(#amberBar)"/>
+
+    <!-- 8 ERP kurulumu 5-5 -->
+    <text x="232" y="292">ERP kurulumu</text>
+    <rect x="353" y="283.5" width="27.75" height="14" rx="3.5" fill="url(#amberBar)"/>
+
+    <!-- 9 Laboratuvar kurulumu 4-6 -->
+    <text x="232" y="319">Laboratuvar kurulumu</text>
+    <rect x="325.25" y="310.5" width="83.25" height="14" rx="3.5" fill="url(#amberBar)"/>
+
+    <!-- 10 Belgelendirme ISO/TSE 5-10 -->
+    <text x="232" y="346">Belgelendirme ISO/TSE</text>
+    <rect x="353" y="337.5" width="166.5" height="14" rx="3.5" fill="url(#amberBar)"/>
+
+    <!-- 11 Deneme dokumleri 6-8 -->
+    <text x="232" y="373">Deneme dokumleri</text>
+    <rect x="380.75" y="364.5" width="83.25" height="14" rx="3.5" fill="url(#amberBar)"/>
+
+    <!-- 12 Kapasite doldurma 10-16 (final phase, bright accent) -->
+    <text x="232" y="400">Kapasite doldurma</text>
+    <rect x="491.75" y="391.5" width="194.25" height="14" rx="3.5" fill="url(#amberBright)"/>
+  </g>
+
+  <!-- baseline under chart -->
+  <line x1="242" y1="430" x2="686" y2="430" stroke="#2a2a2d" stroke-width="1"/>
+</svg><div class="cnote">Faaliyet Plani</div></figure>
+
+<div class="secno reveal">6</div>
+<h2 id="sec-6" class="sec reveal">Finansal Analiz (2026)</h2>
 <p class="sec-lead reveal">10 yıllık döviz-bazlı (proje/unlevered) nakit akışı. Satış 1,20 €/kg, değişken maliyet gelirin %60'ı, tam kapasitede sabit gider 320.000 €/yıl.</p>
-<blockquote class="reveal"><strong>2019 sunumuyla ilişki.</strong> Orijinal ALAN CAST sunumunda yatırım rakamları kendi içinde tutarsızdı (künye 5 M₺ · makine listesi 4,68 M₺ · "toplam sabit yatırım" elle 3 M₺) ve <strong>finansman dağılımı ile NBD/İVO boş bırakılmıştı.</strong> Bu model o verileri tek bir tutarlı çerçevede normalize eder, 2026 kuruna taşır ve eksik kalan finansal katmanı (nakit akışı + NBD + İVO + duyarlılık) tamamlar.</blockquote>
+<blockquote class="reveal"><strong>2019 sunumuyla ilişki.</strong> Orijinal sunumda yatırım rakamları kendi içinde tutarsızdı (künye 5 M₺ · makine 4,68 M₺ · "toplam sabit yatırım" elle 3 M₺) ve <strong>finansman dağılımı ile NBD/İVO boş bırakılmıştı.</strong> Bu model o verileri tutarlı bir çerçevede normalize eder, 2026 kuruna taşır ve eksik finansal katmanı tamamlar.</blockquote>
 <div class="tw reveal"><table>
 <tr><th>Yıl</th><th class="n">Kap.</th><th class="n">Üretim (t)</th><th class="n">Gelir (€)</th><th class="n">FAVOK (€)</th><th class="n">Net Kâr (€)</th><th class="n">FCF (€)</th></tr>
 <tr><td>1</td><td class="n">%0</td><td class="n">0</td><td class="n">0</td><td class="n">−96.000</td><td class="n">−227.000</td><td class="n">−96.000</td></tr>
@@ -222,33 +1555,17 @@ footer{background:#000;color:#6e6e73;text-align:center;padding:36px 22px;font-si
   <div class="kc"><div class="kc-big">5,1 yıl</div><div class="kc-lab">İndirgenmiş geri ödeme</div></div>
   <div class="kc"><div class="kc-big">667 t</div><div class="kc-lab">Başabaş = kapasitenin %27,8'i</div></div>
 </div>
-<p class="reveal">Tam kapasitede <strong>FAVOK marjı %27,7</strong>, <strong>net kâr marjı %17,8</strong>. Başabaş kapasitenin yalnızca ~%28'i — fabrika düşük doluluk altında bile zarara geçmez (yüksek güvenlik payı).</p>
+<p class="reveal">Tam kapasitede <strong>FAVOK marjı %27,7</strong>, <strong>net kâr marjı %17,8</strong>. Başabaş kapasitenin yalnızca ~%28'i — fabrika düşük doluluk altında bile zarara geçmez.</p>
 
-<div class="secno reveal">5</div>
-<h2 id="sec-5" class="sec reveal">Duyarlılık &amp; Senaryolar</h2>
-<p class="sec-lead reveal">Üç kilit değişkende de en kötü uçta bile NBD pozitif ve İVO &gt; %15. Model en çok <strong>değişken maliyete</strong> (metal/enerji) duyarlı.</p>
-<h4 class="reveal">(a) Satış fiyatı</h4>
+<div class="secno reveal">7</div>
+<h2 id="sec-7" class="sec reveal">Duyarlılık &amp; Senaryolar</h2>
+<p class="sec-lead reveal">Üç kilit değişkende de en kötü uçta bile NBD pozitif ve İVO &gt; %15. Model en çok değişken maliyete (metal/enerji) duyarlı.</p>
 <div class="tw reveal"><table>
-<tr><th>Senaryo</th><th class="n">Fiyat</th><th class="n">NBD (₺)</th><th class="n">İVO</th></tr>
-<tr><td>−15%</td><td class="n">1.020 €/t</td><td class="n">28,0 M</td><td class="n">%23,7</td></tr>
-<tr><td><strong>Baz</strong></td><td class="n">1.200 €/t</td><td class="n">50,6 M</td><td class="n">%29,6</td></tr>
-<tr><td>+15%</td><td class="n">1.380 €/t</td><td class="n">73,1 M</td><td class="n">%34,9</td></tr>
+<tr><th>Değişken</th><th>Kötü</th><th class="n">NBD (₺)</th><th class="n">İVO</th><th>İyi</th><th class="n">NBD (₺)</th><th class="n">İVO</th></tr>
+<tr><td>Satış fiyatı (±15%)</td><td>1.020 €/t</td><td class="n">28,0 M</td><td class="n">%23,7</td><td>1.380 €/t</td><td class="n">73,1 M</td><td class="n">%34,9</td></tr>
+<tr><td>Değişken maliyet</td><td>%69</td><td class="n">16,8 M</td><td class="n">%20,4</td><td>%51</td><td class="n">84,4 M</td><td class="n">%37,4</td></tr>
+<tr><td>Kapasite kullanımı</td><td>0,75×</td><td class="n">13,0 M</td><td class="n">%19,3</td><td>1,1×</td><td class="n">65,6 M</td><td class="n">%33,2</td></tr>
 </table></div>
-<h4 class="reveal">(b) Değişken maliyet</h4>
-<div class="tw reveal"><table>
-<tr><th>Senaryo</th><th class="n">Oran</th><th class="n">NBD (₺)</th><th class="n">İVO</th></tr>
-<tr><td>+15%</td><td class="n">%69</td><td class="n">16,8 M</td><td class="n">%20,4</td></tr>
-<tr><td><strong>Baz</strong></td><td class="n">%60</td><td class="n">50,6 M</td><td class="n">%29,6</td></tr>
-<tr><td>−15%</td><td class="n">%51</td><td class="n">84,4 M</td><td class="n">%37,4</td></tr>
-</table></div>
-<h4 class="reveal">(c) Kapasite kullanımı</h4>
-<div class="tw reveal"><table>
-<tr><th>Senaryo</th><th class="n">Çarpan</th><th class="n">NBD (₺)</th><th class="n">İVO</th></tr>
-<tr><td>Düşük doluluk</td><td class="n">0,75×</td><td class="n">13,0 M</td><td class="n">%19,3</td></tr>
-<tr><td><strong>Baz</strong></td><td class="n">1,0×</td><td class="n">50,6 M</td><td class="n">%29,6</td></tr>
-<tr><td>Yüksek doluluk</td><td class="n">1,1×</td><td class="n">65,6 M</td><td class="n">%33,2</td></tr>
-</table></div>
-<h4 class="reveal">Üç senaryo özeti</h4>
 <div class="tw reveal"><table>
 <tr><th>Senaryo</th><th>Varsayım</th><th class="n">NBD (₺)</th><th class="n">İVO</th><th class="n">Geri Ödeme</th></tr>
 <tr><td>Kötümser</td><td>Fiyat −10%, Değ. %65, Kap. 0,85×</td><td class="n">0,9 M</td><td class="n">%15,3</td><td class="n">5,5 yıl</td></tr>
@@ -256,50 +1573,106 @@ footer{background:#000;color:#6e6e73;text-align:center;padding:36px 22px;font-si
 <tr><td>İyimser</td><td>Fiyat +10%, Değ. %57, Kap. 1,05×</td><td class="n">86,9 M</td><td class="n">%37,9</td><td class="n">3,3 yıl</td></tr>
 </table></div>
 
-<div class="secno reveal">6</div>
-<h2 id="sec-6" class="sec reveal">Risk &amp; Teşvik</h2>
+<div class="secno reveal">8</div>
+<h2 id="sec-8" class="sec reveal">Strateji &amp; SWOT</h2>
+<p class="sec-lead reveal">Konumlandırma: <strong>odaklanmış farklılaştırma</strong> — belediye/altyapı dökümünde sertifikalı, tasarım-yetkin niş oyuncu (Porter jenerik stratejileri).</p>
+<div class="swot reveal">
+  <div class="sb"><h5>ÜSTÜNLÜKLER (S)</h5><ul>
+    <li>Yalın/otomatik hat, düşük birim maliyet</li>
+    <li>EN124 sertifikalı kendi ürün tasarımı + BOM/teknik resim altyapısı</li>
+    <li>Polimer beton Ar-Ge (akademik yayın)</li>
+    <li>İhracat/döviz geliri (doğal hedge)</li></ul></div>
+  <div class="sb"><h5>ZAYIFLIKLAR (W)</h5><ul>
+    <li>Yüksek ilk yatırım / sermaye yoğunluğu</li>
+    <li>Enerji bağımlılığı (indüksiyon)</li>
+    <li>Yeni marka / referans birikimi sınırlı</li></ul></div>
+  <div class="sb"><h5>FIRSATLAR (O)</h5><ul>
+    <li>Çin'in çıkışıyla tedarik boşluğu</li>
+    <li>Altyapı / belediye / su idaresi yatırımları</li>
+    <li>ACO/MEA/ULMA ithal ürüne yerli alternatif</li>
+    <li>AB ihracatı, EN 1433 pazarı</li></ul></div>
+  <div class="sb"><h5>TEHDİTLER (T)</h5><ul>
+    <li>Hammadde / enerji / döviz volatilitesi</li>
+    <li>Talep döngüselliği (inşaat/altyapı)</li>
+    <li>Mevcut rakipler (Kent Döküm vb.)</li></ul></div>
+</div>
+<h4 class="reveal">Porter 5 Güç — döküm sektörü</h4>
+<ul class="reveal">
+<li><strong>Yeni girenler:</strong> Düşük tehdit — yüksek sermaye, ölçek ekonomisi, lisans/izin ve çıkış engelleri (özel/dönüştürülemez varlıklar) giriş bariyeri.</li>
+<li><strong>Tedarikçi gücü:</strong> Orta-yüksek — hurda/ferro alaşım fiyatı volatil; fiyat-endeksleme klozuyla dengelenir.</li>
+<li><strong>İkame ürün:</strong> Düşük — EN124 altyapı dökümünde sfero standart.</li>
+<li><strong>Müşteri gücü:</strong> Orta — belediye/ihale alıcıları fiyat duyarlı ama sertifika/kalite şart koşar.</li>
+<li><strong>Rekabet:</strong> Orta — yerli dökümhaneler + ithal markalar; farklılaşma sertifika + tasarım + termin.</li>
+</ul>
+
+<div class="secno reveal">9</div>
+<h2 id="sec-9" class="sec reveal">Yönetim &amp; Organizasyon</h2>
+<p class="sec-lead reveal">Fabrika uçtan uca, tek bir <strong>ERP (Uyumsoft) çatısı</strong> altında dijital yönetilecek — 14 fonksiyonel modül tek veri havuzunda.</p>
+<div class="modgrid reveal">
+  <div class="md"><b>Üretim</b> BOM/rota, kapasite planlama, MES/MRP, 3 katman maliyet (standart/safha/fiili)</div>
+  <div class="md"><b>Kalite</b> SPC, DÖF, kalibrasyon, kabul/şartlı/ret, kalite el kitabı</div>
+  <div class="md"><b>Bakım (EAM)</b> Periyodik + kestirimci (titreşim/yağ/sıcaklık), LOTO güvenlik</div>
+  <div class="md"><b>Malzeme/Depo</b> WMS, MRP, FIFO/lot/seri, kantar entegrasyonu</div>
+  <div class="md"><b>Tedarik (SCM)</b> Talep→teklif→sipariş, EDI, tedarikçi değerlendirme</div>
+  <div class="md"><b>Satış / Dış Ticaret</b> Çok dilli teklif, ihracat dosya, gümrük</div>
+  <div class="md"><b>İK / Organizasyon</b> Norm kadro, org şeması, bordro, performans (BSC/KPI)</div>
+  <div class="md"><b>Bütçe</b> Departman bazlı, senaryo + versiyonlama, plan-gerçekleşen</div>
+  <div class="md"><b>İş Zekası (BI)</b> KPI dashboard, kârlılık analizi, otomatik raporlama</div>
+</div>
+<p class="reveal">Bu entegre yapı; döküm fabrikasının ağır ekipmanı (ocak, kalıp makinesi, vinç) için kestirimci bakımı, hammadde için kantar/lot izlenebilirliğini ve ihracat için çok dilli/gümrük süreçlerini tek sistemde toplar.</p>
+
+<div class="secno reveal">10</div>
+<h2 id="sec-10" class="sec reveal">Ar-Ge &amp; Kalite</h2>
+<p class="sec-lead reveal">Sertifikalı ürün + üniversite işbirlikli Ar-Ge, fabrikanın farklılaşma ve kalite kanıtıdır.</p>
+<ul class="reveal">
+<li><strong>Akademik yayın:</strong> Mert Döküm + İstanbul Aydın Üniversitesi ortak çalışması — 10. Uluslararası Beton Kongresi (2019): "MEKP katalizörünün polimer beton mekanik özelliklerine etkisi" (yazarlar arası <strong>Kemal Kürşad Kul</strong>). 5 karışım, %0,15–0,55 MEKP; eğilme dayanımı max 24,0 MPa (Mix-2, %0,25), basınç dayanımı max 109,93 MPa (Mix-1, %0,15). Kullanım: drenaj kanalı.</li>
+<li><strong>Polimer beton drenaj kanalı yetkinliği:</strong> Bu Ar-Ge, döküm ızgaranın tamamlayıcısı olan polimer beton kanal gövdesi üretimine teknik temel sağlar — komple ACO/MEA/ULMA tipi sistem (kanal + ızgara) potansiyeli.</li>
+<li><strong>Kalite altyapısı:</strong> EN 124 yük sınıfları (C250/D400), GGG50 sfero malzeme, kendi teknik resim + BOM sistemi, ERP kalite modülü (SPC/DÖF/kalibrasyon), spektrometre + çekme test laboratuvarı.</li>
+<li><strong>İnovasyon:</strong> 3B kum kalıp/maça baskısı (binder-jet) ile hızlı prototipleme — yeni model devreye alma süresini kısaltır.</li>
+</ul>
+
+<div class="secno reveal">11</div>
+<h2 id="sec-11" class="sec reveal">Risk &amp; Teşvik</h2>
 <h4 class="reveal">Başlıca riskler</h4>
 <ul class="reveal">
-<li><strong>Hammadde fiyatı:</strong> Hurda + ferroalyaj maliyetin en büyük kalemi ve volatil → ihracat sözleşmelerinde <strong>metal eskalasyon / fiyat-endeksleme klozu</strong> (TÜDÖKSAD/CAEF endeksi) ile riski müşteriye yansıt.</li>
-<li><strong>Enerji:</strong> İndüksiyon ergitme elektriğe bağımlı (~530–650 kWh/ton); sanayi tarifesi enflasyon üstü seyrediyor → tarife sözleşmesi / öz tüketim güneş opsiyonu.</li>
-<li><strong>Döviz:</strong> Hem makine hem ferroalyaj ithalatı dövizli; gelir de €-bazlı olduğu için doğal hedge mevcut.</li>
-<li><strong>Talep döngüselliği:</strong> Otomotiv/inşaat/makine talebine bağlı; düşük başabaş (%28) bu riski hafifletir.</li>
-<li><strong>Çevre/ÇED:</strong> Toz toplama, baca filtresi, atık kum yönetimi ayrı CAPEX kalemi ve emisyon izni gerektirir — bütçeye eklenmeli.</li>
+<li><strong>Hammadde fiyatı:</strong> Hurda + ferroalyaj maliyetin en büyük kalemi ve volatil → ihracat sözleşmelerinde <strong>metal eskalasyon / fiyat-endeksleme klozu</strong> (TÜDÖKSAD/CAEF endeksi).</li>
+<li><strong>Enerji:</strong> İndüksiyon ergitme elektriğe bağımlı (~530–650 kWh/ton); tarife enflasyon üstü → tarife sözleşmesi / öz tüketim güneş opsiyonu.</li>
+<li><strong>Döviz:</strong> Makine + ferroalyaj ithalatı dövizli; gelir de €-bazlı → doğal hedge.</li>
+<li><strong>Talep döngüselliği:</strong> Altyapı/inşaat talebine bağlı; düşük başabaş (%28) bu riski hafifletir.</li>
+<li><strong>Çevre/ÇED:</strong> Toz toplama, baca filtresi, atık kum yönetimi ayrı CAPEX kalemi ve emisyon izni.</li>
 </ul>
 <h4 class="reveal">Teşvikler (yatırıma başlamadan belge alınmalı)</h4>
 <ul class="reveal">
 <li><strong>KDV + gümrük muafiyeti:</strong> Yurt içi makinede KDV istisnası, ithal makinede gümrük muafiyeti — sermaye-yoğun döküm için en kritik avantaj.</li>
-<li><strong>OSB + 6. bölge:</strong> İndirimli kurumlar vergisi, SGK işveren primi desteği (OSB'de +2 yıl), faiz desteği; altyapı hazır, çevre süreçleri kolay.</li>
-<li><strong>İstanbul:</strong> Yalnız KDV + gümrük muafiyeti (vergi indirimi/faiz desteği yok) — lokasyon kararını doğrudan etkiler.</li>
+<li><strong>OSB + 6. bölge:</strong> İndirimli kurumlar vergisi, SGK işveren primi desteği (OSB'de +2 yıl), faiz desteği; altyapı hazır.</li>
+<li><strong>İstanbul:</strong> Yalnız KDV + gümrük muafiyeti — lokasyon kararını etkiler.</li>
 </ul>
 
-<div class="secno reveal">7</div>
-<h2 id="sec-7" class="sec reveal">Sonuç ve Öneri</h2>
-<blockquote class="reveal"><strong>Yatırım kararı: Olumlu.</strong> Baz senaryoda ~1,0 M € yatırım, %15 iskonto altında <strong>50,6 M₺ NBD</strong> ve <strong>%29,6 İVO</strong> üretiyor; ~3,8 yılda geri ödüyor. Kötümser senaryoda bile NBD≈0 / İVO≈iskonto oranı — yani aşağı yönlü risk sınırlı, yukarı potansiyel yüksek.</blockquote>
-<p class="reveal"><strong>Öneriler:</strong> (1) Yalın senaryoyla başla, talep oturunca 6 tonluk tam otomatik Faz-2'ye geç. (2) Lokasyonu teşvik (6. bölge OSB) ve müşteri yakınlığı (Marmara) ekseninde net seç. (3) Satış sözleşmelerine metal eskalasyon klozu koy. (4) Yatırım öncesi 3–4 kilit kalemde (ocak, kalıplama hattı, elektrik) <strong>taze teklif</strong> alıp modeli kalibre et.</p>
+<div class="secno reveal">12</div>
+<h2 id="sec-12" class="sec reveal">Sonuç ve Öneri</h2>
+<blockquote class="reveal"><strong>Yatırım kararı: Olumlu.</strong> Baz senaryoda ~1,0 M € yatırım, %15 iskonto altında <strong>50,6 M₺ NBD</strong> ve <strong>%29,6 İVO</strong> üretiyor; ~3,8 yılda geri ödüyor. Kötümser senaryoda bile NBD≈0 / İVO≈iskonto oranı — aşağı yönlü risk sınırlı, yukarı potansiyel yüksek.</blockquote>
+<ul class="reveal">
+<li><strong>Faz-1:</strong> Yalın senaryoyla (4 ton ocak, ~50 kalıp/saat, kiralık OSB binası) başla; rögar/ızgara ürün ailesine odaklan.</li>
+<li><strong>Faz-2:</strong> Talep oturunca C3/D1 sınıfı dikey deresiz hatta + ikinci ocağa büyü; polimer beton kanal hattını ekleyerek komple sistem (kanal + ızgara) sun.</li>
+<li><strong>Lokasyon:</strong> Teşvik (6. bölge OSB) ve müşteri yakınlığı (Marmara) ekseninde net seç.</li>
+<li><strong>Sözleşme:</strong> Satışlara metal eskalasyon klozu koy; yatırım öncesi 3–4 kilit kalemde (ocak, hat, elektrik) taze teklif al.</li>
+</ul>
 
 </div></div></main>
 
 <footer>
 ALAN CAST — Döküm Fabrikası Fizibilite &amp; Yatırım Raporu · Haziran 2026<br>
-Model EUR bazlı kurulmuştur (1 € = 53,3 ₺, 1 $ = 46,28 ₺). 2019 saha verisi güncel kur ve TÜFE (~9×) ile 2026'ya taşınmıştır.<br>
-Tüm finansal değerler tahminîdir ve yatırım öncesi teklif + detay mühendislikle netleştirilmelidir. · Özel belge — dağıtıma kapalı.
+Model EUR bazlı (1 € = 53,3 ₺, 1 $ = 46,28 ₺). 2019 saha verisi güncel kur ve TÜFE (~9×) ile 2026'ya taşınmıştır. Kaynak: DOKUM FAB arşivi (74 belge) + gerçek tedarikçi teklifleri.<br>
+Tüm finansal değerler tahminîdir; yatırım öncesi teklif + detay mühendislikle netleştirilmelidir. · Özel belge — dağıtıma kapalı.
 </footer>
 
 <script>
-// nav arka plan
 var nav=document.getElementById('nav');
 addEventListener('scroll',function(){nav.classList.toggle('solid',scrollY>40);});
-// scroll-reveal
-var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.10});
 document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
-// TOC scroll-spy
 var links=[].slice.call(document.querySelectorAll('#tocnav a'));
 var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'));});
-addEventListener('scroll',function(){
-  var y=scrollY+140,idx=0;
-  secs.forEach(function(s,i){if(s&&s.offsetTop<=y)idx=i;});
-  links.forEach(function(a,i){a.classList.toggle('active',i===idx);});
-});
+addEventListener('scroll',function(){var y=scrollY+140,idx=0;secs.forEach(function(s,i){if(s&&s.offsetTop<=y)idx=i;});links.forEach(function(a,i){a.classList.toggle('active',i===idx);});});
 </script>
 </body></html>
