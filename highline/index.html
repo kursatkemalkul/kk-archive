@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="tr"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HIGHLINE — Polimer Beton Kanal Fizibilitesi</title>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<style>
+:root{--black:#000;--panel:#1D1D1F;--gray:#86868B;--acc:#1FB6C9;--acc-d:#0E8A9B;--acc-l:#7BE0EC;--hair:#2a2a2d;--font:"SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:hidden;max-width:100%}
+html{scroll-behavior:smooth;background:#000}
+body{font-family:var(--font);background:var(--black);color:#fff;-webkit-font-smoothing:antialiased;line-height:1.5;letter-spacing:-.01em}
+a{color:var(--acc-l);text-decoration:none}
+.wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+#nav{position:fixed;top:0;left:0;right:0;z-index:100;height:52px;display:flex;justify-content:center;transition:background .4s,backdrop-filter .4s}
+#nav.solid{background:rgba(0,0,0,.72);backdrop-filter:saturate(180%) blur(20px)}
+.nav-in{max-width:1060px;width:100%;display:flex;align-items:center;justify-content:space-between;padding:0 22px}
+.logo{font-weight:600;font-size:19px;color:#fff}.logo b{color:var(--acc)}
+.nav-back{font-size:14px;color:#d6d6d8}
+.hero{min-height:76vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 22px 60px;background:radial-gradient(120% 80% at 50% 0%,#06232a 0%,#04161a 42%,#000 78%)}
+.hero .tag{font-size:clamp(14px,1.5vw,19px);font-weight:600;color:var(--acc-l);margin-bottom:10px}
+.hero h1{font-size:clamp(34px,6vw,72px);font-weight:600;letter-spacing:-.035em;line-height:1.04;background:linear-gradient(168deg,#E6FBFF,var(--acc-l) 34%,var(--acc) 66%,var(--acc-d));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero .sub{font-size:clamp(16px,1.9vw,22px);color:#cfeef2;font-weight:500;max-width:800px;margin:22px auto 0;line-height:1.4}
+.hero .dl{margin-top:34px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.btn{display:inline-block;background:var(--acc);color:#06232a;font-weight:600;padding:13px 26px;border-radius:980px;font-size:15px;cursor:pointer;border:none;transition:background .2s,transform .2s}
+.btn:hover{background:var(--acc-l);transform:translateY(-2px)}
+.btn.ghost{background:transparent;border:1px solid #2a5a63;color:#cfeef2}
+.herostats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:840px;margin:42px auto 0}
+.herostats .hs{background:rgba(255,255,255,.04);border:1px solid var(--hair);border-radius:14px;padding:16px 12px}
+.herostats .hs-n{font-size:clamp(22px,2.8vw,34px);font-weight:600;letter-spacing:-.02em;background:linear-gradient(150deg,var(--acc-l),var(--acc-d));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.herostats .hs-l{font-size:11.5px;color:var(--gray);margin-top:6px;line-height:1.35}
+.hscope{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:24px;max-width:900px}
+.hscope span{font-size:12.5px;color:#cfeef2;background:rgba(255,255,255,.05);border:1px solid var(--hair);border-radius:980px;padding:6px 14px}
+.report{padding:30px 0 100px}
+.report-layout{display:flex;gap:42px;align-items:flex-start}
+.report-body{flex:1 1 auto;min-width:0;width:100%;max-width:100%}
+.toc{position:sticky;top:70px;flex:0 0 232px;width:232px;background:var(--panel);border:1px solid var(--hair);border-radius:16px;padding:16px 12px;max-height:calc(100vh - 90px);overflow-y:auto}
+.toc-h{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);padding:2px 10px 12px}
+.toc-nav{display:flex;flex-direction:column;gap:1px}
+.toc-nav a{display:block;border-radius:8px;font-size:13px;font-weight:600;color:#dcdce0;padding:7px 10px;line-height:1.3;transition:background .15s,color .15s}
+.toc-nav a:hover{background:#26262a;color:#fff}
+.toc-nav a.active{color:var(--acc-l);background:#06232a}
+.secno{font-size:clamp(38px,6vw,68px);font-weight:600;line-height:1;letter-spacing:-.03em;background:linear-gradient(160deg,var(--acc-l),var(--acc) 55%,var(--acc-d));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;opacity:.92;margin-top:72px;scroll-margin-top:64px}
+.report .sec{font-size:clamp(23px,3.2vw,36px);font-weight:600;color:#fff;letter-spacing:-.02em;margin:4px 0 8px;scroll-margin-top:122px}
+.report h3{font-size:21px;font-weight:600;color:#fff;margin:32px 0 12px}
+.report h4{font-size:16.5px;font-weight:600;color:var(--acc-l);margin:24px 0 8px}
+.report p{color:#C2C2C7;margin:14px 0;font-size:16.5px;line-height:1.72;max-width:76ch;overflow-wrap:break-word}
+.report p.sec-lead{font-size:clamp(17px,1.7vw,20px);color:#e6eef0;line-height:1.5;margin:8px 0 20px;font-weight:400}
+.report ul{margin:10px 0 14px 4px;list-style:none}
+.report li{color:#C2C2C7;font-size:16px;line-height:1.65;padding-left:22px;position:relative;margin:9px 0;max-width:76ch;overflow-wrap:break-word}
+.report li::before{content:"";position:absolute;left:2px;top:10px;width:6px;height:6px;border-radius:50%;background:var(--acc)}
+.report li>strong:first-child{display:block;color:var(--acc-l);font-size:13.5px;font-weight:600;margin-bottom:2px}
+.report strong{color:#fff;font-weight:600}
+.report blockquote{border-left:4px solid var(--acc);background:var(--panel);padding:18px 22px;border-radius:0 12px 12px 0;margin:22px 0;color:#e6e6e8;font-size:16px;line-height:1.6;max-width:80ch}
+.tw{overflow-x:auto;max-width:100%;margin:18px 0;border:1px solid var(--hair);border-radius:14px}
+table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:520px}
+th{background:#06232a;color:#fff;text-align:left;padding:13px 15px;font-weight:600;border-bottom:1px solid var(--hair)}
+td{padding:12px 15px;border-top:1px solid var(--hair);color:#C2C2C7;vertical-align:top;line-height:1.5}
+td:first-child{color:#fff;font-weight:600}
+tr:nth-child(even) td{background:#161618}
+td strong{color:#fff}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+tr.tot td{background:#08272e;color:#fff;font-weight:600;border-top:2px solid var(--acc-d)}
+.factgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:18px 0 26px}
+.fact{background:var(--panel);border:1px solid var(--hair);border-radius:14px;padding:16px 18px}
+.fact b{color:var(--acc-l);font-size:12.5px;font-weight:600;display:block;margin-bottom:5px}
+.fact span{color:#C2C2C7;font-size:15px;line-height:1.5}
+.keystrip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0 28px}
+.kc{background:var(--panel);border:1px solid var(--hair);border-radius:14px;padding:18px 16px}
+.kc-big{font-size:clamp(24px,2.6vw,32px);font-weight:600;letter-spacing:-.02em;color:var(--acc-l)}
+.kc-lab{font-size:12.5px;color:var(--gray);margin-top:6px;line-height:1.4}
+.cwrap{margin:22px 0;background:var(--panel);border:1px solid var(--hair);border-radius:16px;padding:18px 18px 14px;max-width:100%;overflow-x:auto}
+.cwrap .cnote{font-size:12px;color:var(--gray);margin-top:12px;line-height:1.5}
+.statbox{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0 24px}
+.statbox .sx{background:var(--panel);border:1px solid var(--hair);border-radius:12px;padding:15px 16px}
+.statbox .sx b{display:block;font-size:22px;color:var(--acc-l);font-weight:600;letter-spacing:-.02em}
+.statbox .sx span{font-size:12px;color:var(--gray);line-height:1.4}
+.swot{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
+.swot .sb{background:var(--panel);border:1px solid var(--hair);border-radius:14px;padding:16px 18px}
+.swot .sb h5{font-size:13px;font-weight:700;color:var(--acc-l);margin-bottom:8px}
+.swot .sb li{font-size:14.5px;margin:6px 0}
+/* katlanir galeri + lightbox */
+.galwrap{margin:24px 0;background:var(--panel);border:1px solid var(--hair);border-radius:16px;overflow:hidden}
+.galwrap>summary{cursor:pointer;list-style:none;padding:16px 20px;font-size:16px;font-weight:600;color:#fff;display:flex;align-items:center;gap:10px}
+.galwrap>summary::-webkit-details-marker{display:none}
+.galwrap>summary .ar{color:var(--acc);transition:transform .25s;display:inline-block}
+.galwrap[open]>summary .ar{transform:rotate(90deg)}
+.galwrap>summary small{color:var(--gray);font-weight:400;font-size:12.5px}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 16px 18px}
+.gallery figure{margin:0;border:1px solid var(--hair);border-radius:11px;overflow:hidden;cursor:zoom-in;background:#0d0d0f}
+.gallery img{width:100%;height:165px;object-fit:cover;display:block;transition:transform .4s}
+.gallery figure:hover img{transform:scale(1.05)}
+.gallery figcaption{font-size:11.5px;color:var(--gray);padding:7px 10px;line-height:1.35}
+#lb{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;padding:30px;cursor:zoom-out}
+#lb.on{display:flex}
+#lb img{max-width:96%;max-height:88%;border-radius:10px;border:1px solid #333}
+#lb .cap{position:absolute;bottom:22px;left:0;right:0;text-align:center;color:#cfeef2;font-size:13px}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.6,.2,1),transform .7s cubic-bezier(.2,.6,.2,1)}
+.reveal.in{opacity:1;transform:none}
+footer{background:#000;color:#6e6e73;text-align:center;padding:36px 22px;font-size:12px;border-top:1px solid var(--hair);line-height:1.7}
+@media(max-width:880px){.report-layout{flex-direction:column;gap:0}.toc{position:static;width:auto;max-width:100%;flex:none;max-height:none;margin-bottom:26px}.wrap{max-width:none}}
+@media(max-width:680px){.herostats,.keystrip,.statbox{grid-template-columns:1fr 1fr}.factgrid,.swot{grid-template-columns:1fr}.gallery{grid-template-columns:1fr 1fr}table{min-width:460px}}
+@media print{#nav,.toc,.hero .dl,.galwrap{display:none}.hero{min-height:auto}.reveal{opacity:1;transform:none}.secno{margin-top:30px}}
+</style></head><body>
+
+<nav id="nav"><div class="nav-in"><a href="#top" class="logo">HIGH<b>LINE</b></a><span class="nav-back">Polimer Beton Kanal · Fizibilite</span></div></nav>
+
+<header class="hero" id="top">
+  <div class="tag">Yatırım Belgesi · Haziran 2026</div>
+  <h1>HIGHLINE<br>Polimer Beton Kanal Fizibilitesi</h1>
+  <p class="sub">Polimer beton (doymamış polyester reçineli) drenaj kanalı sistemi — ACO / ULMA / MEA rakibi. EN 1433; V100–V300 kanal + döküm/paslanmaz ızgara. Pazar, ürün, reçete, teknik, yatırım ve döviz-bazlı finansal analiz. Mert Döküm için hazırlanan sunumdan profesyonel fizibiliteye.</p>
+  <div class="dl">
+    <button class="btn" onclick="window.print()">PDF olarak yazdır</button>
+    <a class="btn ghost" href="#sec-6">Finansala git ↓</a>
+  </div>
+  <div class="herostats">
+    <div class="hs"><div class="hs-n">~1,4 M€</div><div class="hs-l">Toplam yatırım · ~72 M₺</div></div>
+    <div class="hs"><div class="hs-n">121 M₺</div><div class="hs-l">Net Bugünkü Değer (@%15)</div></div>
+    <div class="hs"><div class="hs-n">%39,5</div><div class="hs-l">İç Verim Oranı (İVO)</div></div>
+    <div class="hs"><div class="hs-n">3,1 yıl</div><div class="hs-l">Geri ödeme süresi</div></div>
+  </div>
+  <div class="hscope"><span>Ürün</span><span>Pazar</span><span>Reçete &amp; Teknik</span><span>Yatırım</span><span>Hammadde</span><span>Finansal</span><span>Duyarlılık</span><span>Rekabet</span><span>Risk</span></div>
+</header>
+<div class="wrap" style="margin-top:-6px"><img src="img/kanal_kesit.jpg" alt="HIGHLINE polimer beton kanal — V-kesit render" style="width:100%;border-radius:16px;border:1px solid var(--hair);display:block" loading="eager"></div>
+
+<main class="report"><div class="wrap report-layout">
+<aside class="toc" id="toc"><div class="toc-h">İçindekiler</div>
+<div class="toc-nav" id="tocnav">
+<a href="#sec-0" class="active">0 · Yönetici Özeti</a>
+<a href="#sec-1">1 · Ürün Yelpazesi</a>
+<a href="#sec-2">2 · Pazar ve Talep</a>
+<a href="#sec-3">3 · Reçete &amp; Teknik</a>
+<a href="#sec-4">4 · Yatırım (CAPEX)</a>
+<a href="#sec-5">5 · Hammadde &amp; Birim Ekonomi</a>
+<a href="#sec-6">6 · Finansal Analiz</a>
+<a href="#sec-7">7 · Duyarlılık</a>
+<a href="#sec-8">8 · Rekabet &amp; Konumlandırma</a>
+<a href="#sec-9">9 · Risk &amp; Teşvik</a>
+<a href="#sec-10">10 · Sonuç</a>
+</div></aside>
+<div class="report-body">
+
+<div class="secno reveal">0</div>
+<h2 id="sec-0" class="sec reveal">Yönetici Özeti &amp; Varsayımlar</h2>
+<p class="sec-lead reveal">Polimer beton drenaj kanalı yüksek marjlı, hafif, korozyonsuz bir üründür. Yalın bir hat (~3.000 ton/yıl) ~<strong>1,4 milyon € (72 M₺)</strong> yatırımla kurulur; döviz-bazlı modelde <strong>NBD +121 M₺</strong>, <strong>İVO %39,5</strong>, geri ödeme <strong>~3,1 yıl</strong>. Reçinenin reçetede yalnızca %12,3 olması ve oda-sıcaklığı (fırınsız) kür, maliyet avantajının temelidir.</p>
+<div class="keystrip reveal">
+  <div class="kc"><div class="kc-big">121 M₺</div><div class="kc-lab">NBD / NPV (@%15)</div></div>
+  <div class="kc"><div class="kc-big">%39,5</div><div class="kc-lab">İVO / IRR</div></div>
+  <div class="kc"><div class="kc-big">3,1 yıl</div><div class="kc-lab">Geri ödeme</div></div>
+  <div class="kc"><div class="kc-big">%76,5</div><div class="kc-lab">Brüt hammadde marjı</div></div>
+</div>
+<div class="factgrid reveal">
+  <div class="fact"><b>Ürün</b><span>Polimer beton drenaj kanalı (HIGHLINE) — V100/V150/V200/V300 + döküm &amp; paslanmaz ızgara; EN 1433. ACO/ULMA/MEA rakibi.</span></div>
+  <div class="fact"><b>Kapasite</b><span>~3.000 ton/yıl (yalın tek hat); ~167.000 m V100 eşdeğeri.</span></div>
+  <div class="fact"><b>Fiyat</b><span>İhracat 1,20 €/kg (~21,6 €/m, V100). Yurt içi de döviz-paralel.</span></div>
+  <div class="fact"><b>Para birimi</b><span>Model <strong>EUR bazlı</strong> (1 € = 53,3 ₺ · Haz 2026). Reçine USD/EUR-bağlı; ihracat geliri doğal hedge.</span></div>
+  <div class="fact"><b>Rekabet avantajı</b><span><strong>6 kalıp</strong> ile tüm sistem (ACO 15–16 kalıp) → düşük kod/işçilik/stok + maliyet liderliği.</span></div>
+  <div class="fact"><b>Veri tabanı</b><span>Mert Döküm / K.K.Kul 2019 sunumu (41 slayt) + akredite reçete/dayanım testleri + 2026 pazar/hammadde araştırması.</span></div>
+</div>
+<blockquote class="reveal"><strong>Sinerji notu.</strong> HIGHLINE polimer kanal, döküm ızgara (ALAN CAST) ile <strong>aynı sistemin iki yarısıdır</strong> (kanal gövdesi + üstüne oturan ızgara). İkisini birlikte üretmek, ACO/MEA/ULMA gibi <strong>komple sistem</strong> sunabilen tek yerli oyuncu konumu verir.</blockquote>
+
+<div class="secno reveal">1</div>
+<h2 id="sec-1" class="sec reveal">Ürün Yelpazesi</h2>
+<p class="sec-lead reveal">Eksiksiz EN 1433 sistemi: 4 genişlik serisi, 17 yükseklik kademesi, tam aksesuar ailesi + döküm/paslanmaz ızgara seçenekleri.</p>
+<div class="tw reveal"><table>
+<tr><th>Seri</th><th class="n">Genişlik</th><th>Yükseklik (mm)</th><th>Düz kanal</th><th>Aksesuarlar</th></tr>
+<tr><td>V100</td><td class="n">100 mm</td><td>H150 / 175 / 200 / 250</td><td>L1000</td><td>dört çıkış, müdahale kutusu, kapak (MFC), boru çıkış, yön değiştirme, ek</td></tr>
+<tr><td>V150</td><td class="n">150 mm</td><td>H210 / 235 / 260 / 310</td><td>L1000</td><td>aynı aile</td></tr>
+<tr><td>V200</td><td class="n">200 mm</td><td>H265 / 290 / 315 / 365</td><td>L1000</td><td>aynı aile</td></tr>
+<tr><td>V300</td><td class="n">300 mm</td><td>H385 / 410 / 435 / 460 / 485</td><td>L1000</td><td>aynı aile + contalı</td></tr>
+</table></div>
+<p class="reveal"><strong>Izgaralar:</strong> Döküm (sfero CI — V100–V300 + LIGHT), döküm köşebend (çerçeve), paslanmaz (4 tip + FUGA gizli slot); L250/L500. Yük sınıfı ızgara tipiyle belirlenir (EN 1433 A15–F900). <strong>Cıvata:</strong> V100 M6, V150/V200 M8, V300 M10 + perçin.</p>
+<blockquote class="reveal"><strong>6 kalıp avantajı.</strong> Mert Döküm karşılaştırması: aynı ürün ailesini ACO <strong>15–16 kalıpla</strong> üretirken HIGHLINE <strong>6 kalıpla</strong> üretiyor → daha az kod, daha az işçilik, daha az stok, hızlı adaptasyon ve daha düşük kalıp CAPEX'i. Montaj süresi ~70 dk.</blockquote>
+
+<div class="secno reveal">2</div>
+<h2 id="sec-2" class="sec reveal">Pazar ve Talep</h2>
+<p class="sec-lead reveal">Polimer beton drenaj kanalı, büyüyen ve ithal-ağırlıklı bir pazar; ihracat ve altyapı talebiyle döviz-bazlı.</p>
+<figure class="cwrap reveal"><svg viewBox="0 0 720 440" width="100%" style="height:auto;display:block" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="amber" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7BE0EC"/>
+      <stop offset="1" stop-color="#0E8A9B"/>
+    </linearGradient>
+    <linearGradient id="amberGlow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1FB6C9" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#1FB6C9" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="720" height="440" fill="#0e0e10"/>
+
+  <!-- Title -->
+  <text x="32" y="42" font-family="-apple-system" font-size="19" font-weight="600" fill="#ffffff">Global Polimer Beton Drenaj Kanalı Pazarı</text>
+  <text x="32" y="64" font-family="-apple-system" font-size="12.5" fill="#86868B">Bölgesel pazar büyüklüğü · 2024 · milyon USD</text>
+
+  <!-- Growth note card -->
+  <rect x="468" y="24" width="220" height="58" rx="4" fill="#161618" stroke="#2a2a2d"/>
+  <text x="482" y="44" font-family="-apple-system" font-size="11" fill="#86868B">Toplam pazar (2024 → 2033)</text>
+  <text x="482" y="64" font-family="-apple-system" font-size="14.5" font-weight="600" fill="#C2C2C7">1,42 <tspan fill="#86868B" font-weight="400">→</tspan> 2,42 mlr $</text>
+  <text x="652" y="64" font-family="-apple-system" font-size="13" font-weight="700" fill="#7BE0EC" text-anchor="end">CAGR %6,1</text>
+
+  <!-- Chart geometry: baseline y=360, top y=120, max value 497 -->
+  <!-- Gridlines -->
+  <g font-family="-apple-system" font-size="10.5" fill="#86868B">
+    <line x1="92" y1="360" x2="688" y2="360" stroke="#2a2a2d"/>
+    <line x1="92" y1="312" x2="688" y2="312" stroke="#2a2a2d" stroke-dasharray="2 4" opacity="0.6"/>
+    <line x1="92" y1="264" x2="688" y2="264" stroke="#2a2a2d" stroke-dasharray="2 4" opacity="0.6"/>
+    <line x1="92" y1="216" x2="688" y2="216" stroke="#2a2a2d" stroke-dasharray="2 4" opacity="0.6"/>
+    <line x1="92" y1="168" x2="688" y2="168" stroke="#2a2a2d" stroke-dasharray="2 4" opacity="0.6"/>
+    <text x="84" y="364" text-anchor="end">0</text>
+    <text x="84" y="316" text-anchor="end">125</text>
+    <text x="84" y="268" text-anchor="end">250</text>
+    <text x="84" y="220" text-anchor="end">375</text>
+    <text x="84" y="172" text-anchor="end">500</text>
+  </g>
+
+  <!-- Bars: scale 0.4833 px per mn USD (240px / 497) -->
+  <!-- Asya-Pasifik 497 -> h=240, y=120 -->
+  <g>
+    <rect x="138" y="120" width="92" height="240" rx="3" fill="#3a3a3e"/>
+    <text x="184" y="108" text-anchor="middle" font-family="-apple-system" font-size="13" font-weight="600" fill="#ffffff">497</text>
+    <text x="184" y="382" text-anchor="middle" font-family="-apple-system" font-size="11.5" fill="#C2C2C7">Asya-Pasifik</text>
+    <text x="184" y="398" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868B">%35</text>
+  </g>
+  <!-- Kuzey Amerika 370 -> h=178.8, y=181.2 -->
+  <g>
+    <rect x="270" y="181" width="92" height="179" rx="3" fill="#3a3a3e"/>
+    <text x="316" y="169" text-anchor="middle" font-family="-apple-system" font-size="13" font-weight="600" fill="#ffffff">370</text>
+    <text x="316" y="382" text-anchor="middle" font-family="-apple-system" font-size="11.5" fill="#C2C2C7">Kuzey Amerika</text>
+    <text x="316" y="398" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868B">%26</text>
+  </g>
+  <!-- Avrupa 320 -> h=154.7, y=205.3 — AMBER HIGHLIGHT -->
+  <g>
+    <rect x="402" y="205" width="92" height="155" rx="3" fill="url(#amberGlow)"/>
+    <rect x="402" y="205" width="92" height="155" rx="3" fill="url(#amber)"/>
+    <text x="448" y="193" text-anchor="middle" font-family="-apple-system" font-size="13" font-weight="700" fill="#7BE0EC">320</text>
+    <text x="448" y="382" text-anchor="middle" font-family="-apple-system" font-size="11.5" font-weight="600" fill="#7BE0EC">Avrupa</text>
+    <text x="448" y="398" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#1FB6C9">%23 · HIGHLINE hedefi</text>
+  </g>
+  <!-- LATAM+MEA 233 -> h=112.6, y=247.4 -->
+  <g>
+    <rect x="534" y="247" width="92" height="113" rx="3" fill="#3a3a3e"/>
+    <text x="580" y="235" text-anchor="middle" font-family="-apple-system" font-size="13" font-weight="600" fill="#ffffff">233</text>
+    <text x="580" y="382" text-anchor="middle" font-family="-apple-system" font-size="11.5" fill="#C2C2C7">LATAM + MEA</text>
+    <text x="580" y="398" text-anchor="middle" font-family="-apple-system" font-size="10" fill="#86868B">%16</text>
+  </g>
+
+  <!-- Footer / source -->
+  <line x1="32" y1="416" x2="688" y2="416" stroke="#2a2a2d"/>
+  <text x="32" y="433" font-family="-apple-system" font-size="10.5" fill="#86868B">Kaynak: GrowthMarketReports</text>
+  <text x="688" y="433" text-anchor="end" font-family="-apple-system" font-size="10.5" fill="#86868B">Toplam 2024 ≈ 1.420 mn USD</text>
+</svg><div class="cnote">Bölgesel pazar büyüklüğü 2024 (mn USD). Toplam 2024: 1,42 milyar USD → 2033: 2,42 milyar USD, CAGR %6,1. Avrupa, HIGHLINE ihracat hedefi olarak amber vurgulanmıştır. Kaynak: GrowthMarketReports.</div></figure>
+<ul class="reveal">
+<li><strong>Pazar büyüklüğü:</strong> Global polimer beton drenaj kanalı <strong>1,42 milyar $ (2024) → 2,42 milyar $ (2033), CAGR %6,1</strong>; Avrupa 320 mn $. Geniş trench-drain (tüm malzemeler) ~2,1 milyar $.</li>
+<li><strong>Türkiye:</strong> Kamuya açık ayrı veri yok; inşaat/altyapı proxy ile ~10–20 mn €/yıl tahmini. 2025 Kamu Yatırım Programı 46,2 milyar $, deprem sonrası ~100 milyar $ kentsel dönüşüm itici güç.</li>
+<li><strong>Talep segmentleri:</strong> altyapı/karayolu (D400), havalimanı (F900), AVM/otopark (D400), sanayi/lojistik (E600, kimyasal direnç), peyzaj (A15–B125), veri merkezleri (yükselen).</li>
+<li><strong>Avantaj (döküm demir/betona göre):</strong> hafif (V100 1m ~18 kg), korozyonsuz, düşük su emme (&lt;%0,3, donma direnci), pürüzsüz iç yüzey (yüksek debi, sediman tutmaz), düşük bakım.</li>
+</ul>
+<h4 class="reveal">EN 1433 Yük Sınıfları</h4>
+<div class="tw reveal"><table>
+<tr><th>Sınıf</th><th class="n">Test yükü</th><th>Kullanım</th></tr>
+<tr><td>A15</td><td class="n">1,5 t</td><td>yaya, peyzaj, bahçe</td></tr>
+<tr><td>B125</td><td class="n">12,5 t</td><td>hafif araç, ev girişi</td></tr>
+<tr><td>C250</td><td class="n">25 t</td><td>kaldırım kenarı, oto yıkama</td></tr>
+<tr><td>D400</td><td class="n">40 t</td><td>anayol, otopark, AVM</td></tr>
+<tr><td>E600</td><td class="n">60 t</td><td>sanayi, lojistik, kargo</td></tr>
+<tr><td>F900</td><td class="n">90 t</td><td>havalimanı apron, liman</td></tr>
+</table></div>
+<p class="reveal"><strong>Rakipler:</strong> küresel — ACO (lider), Hauraton, ULMA, MEA, Zurn; yerli — Asil Döküm, Urban Döküm, Kent Teknik Kimya, Albayrak, ASF, Asya, Desa. ACO Türkiye'de aktif (Multiline/Seal-in).</p>
+
+<div class="secno reveal">3</div>
+<h2 id="sec-3" class="sec reveal">Reçete &amp; Teknik</h2>
+<p class="sec-lead reveal">Polimer beton = ~%72 silis kum + doymamış polyester reçine + kalsit dolgu + kobalt/MEKP (su yok). Reçete bu işin asıl fikri mülkiyetidir; akredite laboratuvarda doğrulanmıştır.</p>
+<figure class="cwrap reveal"><svg viewBox="0 0 720 380" width="100%" style="height:auto;display:block" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="720" height="380" rx="4" fill="#0e0e10"/>
+<text x="36" y="46" font-family="-apple-system" font-size="20" font-weight="600" fill="#ffffff">Polimer Beton Reçetesi</text>
+<text x="36" y="68" font-family="-apple-system" font-size="13" fill="#86868B">Ağırlıkça (%) · Mert Döküm formülü E02</text>
+
+<g transform="translate(206,212)">
+<!-- Donut slices. Stroke-based ring, r=104, circumference=653.45. Start at top, clockwise.
+     Silis 72%   -> 470.48
+     Kalsit 20.4%-> 133.30
+     Reçine 12.3%-> 80.37 (amber)
+     MEKP 0.7%   -> 4.57
+     Kobalt 0.2% -> 1.31
+     total 105.6% scaled to full ring proportionally (each as fraction of 105.6) -->
+<!-- scaled fractions of 105.6: silis .6818 kalsit .1932 recine .1165 mekp .00663 kobalt .001894 -->
+<!-- circ 653.45 -->
+<circle r="104" fill="none" stroke="#3A4A55" stroke-width="46" transform="rotate(-90)"
+        stroke-dasharray="445.52 207.93"/>
+<!-- kalsit: starts after silis (445.52), len .1932*653.45=126.25 -->
+<circle r="104" fill="none" stroke="#5A6770" stroke-width="46" transform="rotate(-90)"
+        stroke-dasharray="126.25 527.20" stroke-dashoffset="-445.52"/>
+<!-- recine amber: starts after silis+kalsit (571.77), len .1165*653.45=76.12 -->
+<circle r="104" fill="none" stroke="#1FB6C9" stroke-width="50" transform="rotate(-90)"
+        stroke-dasharray="76.12 577.33" stroke-dashoffset="-571.77"/>
+<!-- mekp: starts at 647.89, len .00663*653.45=4.33 -->
+<circle r="104" fill="none" stroke="#0E8A9B" stroke-width="46" transform="rotate(-90)"
+        stroke-dasharray="4.33 649.12" stroke-dashoffset="-647.89"/>
+<!-- kobalt: starts at 652.22, len .001894*653.45=1.24 -->
+<circle r="104" fill="none" stroke="#7BE0EC" stroke-width="46" transform="rotate(-90)"
+        stroke-dasharray="1.24 652.21" stroke-dashoffset="-652.22"/>
+
+<text x="0" y="-6" font-family="-apple-system" font-size="13" font-weight="600" fill="#C2C2C7" text-anchor="middle">TS EN 1433</text>
+<text x="0" y="18" font-family="-apple-system" font-size="22" font-weight="700" fill="#ffffff" text-anchor="middle">90,8 MPa</text>
+<text x="0" y="38" font-family="-apple-system" font-size="11" fill="#86868B" text-anchor="middle">basma dayanımı</text>
+</g>
+
+<!-- Legend -->
+<g font-family="-apple-system">
+<g transform="translate(410,118)">
+<rect x="0" y="-11" width="14" height="14" rx="3" fill="#3A4A55"/>
+<text x="26" y="0" font-size="14" fill="#ffffff">Silis / kuvars kumu</text>
+<text x="280" y="0" font-size="14" font-weight="600" fill="#C2C2C7" text-anchor="end">%72</text>
+</g>
+<g transform="translate(410,156)">
+<rect x="0" y="-11" width="14" height="14" rx="3" fill="#5A6770"/>
+<text x="26" y="0" font-size="14" fill="#ffffff">Kalsit (CaCO₃ dolgu)</text>
+<text x="280" y="0" font-size="14" font-weight="600" fill="#C2C2C7" text-anchor="end">%20,4</text>
+</g>
+<g transform="translate(410,194)">
+<rect x="0" y="-11" width="14" height="14" rx="3" fill="#1FB6C9"/>
+<text x="26" y="0" font-size="14" font-weight="600" fill="#7BE0EC">Polimer Reçine E6</text>
+<text x="280" y="0" font-size="14" font-weight="700" fill="#7BE0EC" text-anchor="end">%12,3</text>
+</g>
+<g transform="translate(410,232)">
+<rect x="0" y="-11" width="14" height="14" rx="3" fill="#0E8A9B"/>
+<text x="26" y="0" font-size="14" fill="#ffffff">MEKP katalizör</text>
+<text x="280" y="0" font-size="14" font-weight="600" fill="#C2C2C7" text-anchor="end">%0,7</text>
+</g>
+<g transform="translate(410,270)">
+<rect x="0" y="-11" width="14" height="14" rx="3" fill="#7BE0EC"/>
+<text x="26" y="0" font-size="14" fill="#ffffff">Kobalt hızlandırıcı</text>
+<text x="280" y="0" font-size="14" font-weight="600" fill="#C2C2C7" text-anchor="end">%0,2</text>
+</g>
+<line x1="410" y1="298" x2="690" y2="298" stroke="#2a2a2d" stroke-width="1"/>
+<text x="410" y="324" font-size="11" fill="#86868B">Kobalt + MEKP, dolgu / reçine üzerine katkıdır</text>
+<text x="410" y="342" font-size="11" fill="#86868B">— toplam ≈ %105,6</text>
+</g>
+</svg><div class="cnote">Mert Döküm üretim formülü (E02). Reçine dilimi (en pahalı bileşen) amber vurgulu. Not: kobalt + MEKP, dolgu/reçine üzerine katkıdır; toplam ~%105. Basma dayanımı TS EN 1433 · 90,8 MPa.</div></figure>
+<p class="reveal"><strong>Üretim formülü (E6):</strong> Silis/kuvars kumu (0,3–0,7mm %33,3 + 1–3mm %16,63 + 3–5mm %16,63) + Polimer Reçine E6 %12,3 + Kalsit %20,4 + Kobalt %0,2 + MEKP (max) %0,7. Reçinenin %12,3 ile patent aralığının (%10–35) <strong>alt/verimli ucunda</strong> olması maliyet avantajıdır (reçine en pahalı bileşen). Tedarikçiler: Siltaş (kum), Özer/Erco (reçine), Aydın Madencilik (kalsit).</p>
+<figure class="cwrap reveal"><svg viewBox="0 0 720 440" width="100%" style="height:auto;display:block" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="720" height="440" rx="4" fill="#0e0e10"/>
+  <rect x="16" y="16" width="688" height="408" rx="4" fill="#161618"/>
+
+  <text x="40" y="48" font-family="-apple-system" font-size="17" font-weight="600" fill="#ffffff">MEKP Katalizör Optimizasyonu</text>
+  <text x="40" y="68" font-family="-apple-system" font-size="12" fill="#86868B">7 gün kür · 40×40×155 mm · TS EN 1433</text>
+
+  <!-- legend -->
+  <g font-family="-apple-system" font-size="12">
+    <line x1="468" y1="44" x2="492" y2="44" stroke="#1FB6C9" stroke-width="2.5"/>
+    <circle cx="480" cy="44" r="3" fill="#1FB6C9"/>
+    <text x="500" y="48" fill="#C2C2C7">Eğilme (MPa)</text>
+    <line x1="468" y1="64" x2="492" y2="64" stroke="#86868B" stroke-width="2.5"/>
+    <circle cx="480" cy="64" r="3" fill="#86868B"/>
+    <text x="500" y="68" fill="#C2C2C7">Basınç (MPa)</text>
+  </g>
+
+  <!-- plot area: x 96..648, y 110..360 -->
+  <!-- LEFT axis (Eğilme) 19..25 -->
+  <!-- RIGHT axis (Basınç) 102..112 -->
+
+  <!-- horizontal gridlines (5 ticks) -->
+  <g stroke="#2a2a2d" stroke-width="1">
+    <line x1="96" y1="110" x2="648" y2="110"/>
+    <line x1="96" y1="172.5" x2="648" y2="172.5"/>
+    <line x1="96" y1="235" x2="648" y2="235"/>
+    <line x1="96" y1="297.5" x2="648" y2="297.5"/>
+    <line x1="96" y1="360" x2="648" y2="360"/>
+  </g>
+
+  <!-- optimum vertical highlight at 5 gr (x = 96 + (5-3)/(11-3)*552 = 96+138 = 234) -->
+  <rect x="222" y="110" width="24" height="250" rx="3" fill="#1FB6C9" fill-opacity="0.12"/>
+  <line x1="234" y1="110" x2="234" y2="360" stroke="#1FB6C9" stroke-width="1.5" stroke-dasharray="4 4" stroke-opacity="0.75"/>
+  <text x="234" y="100" font-family="-apple-system" font-size="12" font-weight="600" fill="#7BE0EC" text-anchor="middle">optimum ~5 gr</text>
+
+  <!-- LEFT y axis labels (Eğilme 19..25) -->
+  <g font-family="-apple-system" font-size="11" fill="#86868B" text-anchor="end">
+    <text x="88" y="114">25</text>
+    <text x="88" y="176.5">23,5</text>
+    <text x="88" y="239">22</text>
+    <text x="88" y="301.5">20,5</text>
+    <text x="88" y="364">19</text>
+  </g>
+  <text x="46" y="235" font-family="-apple-system" font-size="11" fill="#1FB6C9" text-anchor="middle" transform="rotate(-90 46 235)">Eğilme (MPa)</text>
+
+  <!-- RIGHT y axis labels (Basınç 102..112) -->
+  <g font-family="-apple-system" font-size="11" fill="#86868B" text-anchor="start">
+    <text x="656" y="114">112</text>
+    <text x="656" y="176.5">109,5</text>
+    <text x="656" y="239">107</text>
+    <text x="656" y="301.5">104,5</text>
+    <text x="656" y="364">102</text>
+  </g>
+  <text x="700" y="235" font-family="-apple-system" font-size="11" fill="#86868B" text-anchor="middle" transform="rotate(90 700 235)">Basınç (MPa)</text>
+
+  <!-- X axis labels (MEKP gr): 3,5,7,9,11 -> x = 96,234,372,510,648 -->
+  <g font-family="-apple-system" font-size="11" fill="#C2C2C7" text-anchor="middle">
+    <text x="96" y="380">3</text>
+    <text x="234" y="380">5</text>
+    <text x="372" y="380">7</text>
+    <text x="510" y="380">9</text>
+    <text x="648" y="380">11</text>
+  </g>
+  <text x="372" y="404" font-family="-apple-system" font-size="12" fill="#86868B" text-anchor="middle">MEKP Katalizör (gr)</text>
+
+  <!-- BASINÇ line (right axis 102..112) -->
+  <!-- y = 360 - (v-102)/10 * 250 -->
+  <!-- 110.06->159.5  108.29->203.75  108.0->210.0  104.30->302.5  103.67->318.25 -->
+  <polyline fill="none" stroke="#86868B" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"
+    points="96,159.5 234,203.75 372,210 510,302.5 648,318.25"/>
+  <g fill="#86868B">
+    <circle cx="96" cy="159.5" r="3.5"/>
+    <circle cx="234" cy="203.75" r="3.5"/>
+    <circle cx="372" cy="210" r="3.5"/>
+    <circle cx="510" cy="302.5" r="3.5"/>
+    <circle cx="648" cy="318.25" r="3.5"/>
+  </g>
+  <g font-family="-apple-system" font-size="10" fill="#86868B" text-anchor="middle">
+    <text x="96" y="151">110,06</text>
+    <text x="372" y="200">108,0</text>
+    <text x="510" y="320">104,30</text>
+    <text x="648" y="310">103,67</text>
+  </g>
+
+  <!-- EĞİLME line (left axis 19..25) -->
+  <!-- y = 360 - (v-19)/6 * 250 -->
+  <!-- 20.04->316.67  23.71->163.75  23.44->175.0  22.52->213.33  21.71->247.08 -->
+  <polyline fill="none" stroke="#1FB6C9" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"
+    points="96,316.67 234,163.75 372,175 510,213.33 648,247.08"/>
+  <g fill="#1FB6C9">
+    <circle cx="96" cy="316.67" r="3.5"/>
+    <circle cx="372" cy="175" r="3.5"/>
+    <circle cx="510" cy="213.33" r="3.5"/>
+    <circle cx="648" cy="247.08" r="3.5"/>
+  </g>
+  <!-- optimum point emphasized -->
+  <circle cx="234" cy="163.75" r="5" fill="#7BE0EC" stroke="#0e0e10" stroke-width="1.5"/>
+  <g font-family="-apple-system" font-size="10" fill="#1FB6C9" text-anchor="middle">
+    <text x="96" y="332">20,04</text>
+    <text x="372" y="167">23,44</text>
+    <text x="510" y="205">22,52</text>
+    <text x="648" y="239">21,71</text>
+  </g>
+  <text x="234" y="153" font-family="-apple-system" font-size="11" font-weight="600" fill="#7BE0EC" text-anchor="middle">23,71</text>
+
+</svg><div class="cnote">7 günlük kür, 40x40x155 mm numuneler. MEKP katalizör oranı arttıkça hem eğilme hem basınç dayanımı düşüş eğiliminde; en iyi denge ~5 gr seviyesinde. Kaynak: İst. Aydın Üniv. akredite lab, TS EN 1433.</div></figure>
+<h4 class="reveal">Mekanik Dayanım (akredite, TS EN 1433)</h4>
+<div class="statbox reveal">
+  <div class="sx"><b>90,8 MPa</b><span>28 gün basınç dayanımı</span></div>
+  <div class="sx"><b>24,3 MPa</b><span>28 gün eğilme dayanımı</span></div>
+  <div class="sx"><b>17,6 GPa</b><span>Elastisite modülü (E)</span></div>
+  <div class="sx"><b>&lt;%0,3</b><span>Su emme (donma direnci)</span></div>
+  <div class="sx"><b>~5 gr</b><span>MEKP optimum (eğilme tepe)</span></div>
+  <div class="sx"><b>oda sıc.</b><span>Ekzotermik kür — fırın yok</span></div>
+</div>
+<h4 class="reveal">Üretim Hattı &amp; Kür Avantajı</h4>
+<p class="reveal">Hat: <strong>Respecta tipi sürekli gravimetrik dozaj + mikser + döküm</strong> → çelik kalıplara baskı → <strong>oda sıcaklığında ekzotermik kür</strong> (kobalt+MEKP; su/fırın yok) → otomatik kutulama/paletleme (LINEA tipi pnömatik manipülatör + konveyör) → çemberleme. Fırın gerekmemesi enerji maliyetini gelirin ~%1–3'üne indirir (Portland beton prekastında %5–10). Hızlı kalıp devri, 6 kalıpla yüksek devir sağlar.</p>
+<blockquote class="reveal"><strong>Yapısal doğrulama (dürüst not).</strong> Döküm ızgaranın EN 124/1433 yük testi (600 kN × 5 + 900 kN, E600 seviyesi) için SolidWorks nonlineer FEA yapıldı; analizler tam yükte yakınsamadı (plastik göçme/limit nokta) — yüksek yük sınıfı (E600+) ızgara tasarımı yatırım öncesi gözden geçirilmeli/doğrulanmalı. Polimer kanal gövdesi A15–D400 bandında sorunsuz.</p></blockquote>
+
+<div class="secno reveal">4</div>
+<h2 id="sec-4" class="sec reveal">Yatırım (CAPEX)</h2>
+<p class="sec-lead reveal">Yalın tek hat; ekipman ağırlıklı (kiralık bina varsayımı). Toplam yatırım ihtiyacı ~1,4 M € (72 M₺).</p>
+<figure class="cwrap reveal"><svg viewBox="0 0 720 430" width="100%" style="height:auto;display:block" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="bar" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0E8A9B"/><stop offset="1" stop-color="#1FB6C9"/></linearGradient></defs><rect x="0" y="0" width="720" height="430" rx="4" fill="#0e0e10"/><rect x="16" y="16" width="688" height="398" rx="4" fill="#161618"/><text x="40" y="50" font-family="-apple-system" font-size="19" font-weight="600" fill="#ffffff">Yatırım (CAPEX) Dağılımı</text><text x="40" y="72" font-family="-apple-system" font-size="12.5" fill="#86868B">Sabit yatırım toplamı ~1.150.000 EUR · değerler EUR</text><g font-family="-apple-system"><g><text x="40" y="106" font-size="12.5" fill="#C2C2C7">Mikser/dozaj + döküm ünitesi</text><rect x="40" y="114" width="500" height="22" rx="3" fill="#2a2a2d"/><rect x="40" y="114" width="500" height="22" rx="3" fill="url(#bar)"/><text x="552" y="130" font-size="12.5" font-weight="600" fill="#7BE0EC">450.000</text></g><g><text x="40" y="158" font-size="12.5" fill="#C2C2C7">Kalıp seti (6 profil, kademeli)</text><rect x="40" y="166" width="500" height="22" rx="3" fill="#2a2a2d"/><rect x="40" y="166" width="277.8" height="22" rx="3" fill="url(#bar)"/><text x="329.8" y="182" font-size="12.5" font-weight="600" fill="#7BE0EC">250.000</text></g><g><text x="40" y="210" font-size="12.5" fill="#C2C2C7">Otomatik kutulama/paletleme + konveyör</text><rect x="40" y="218" width="500" height="22" rx="3" fill="#2a2a2d"/><rect x="40" y="218" width="222.2" height="22" rx="3" fill="url(#bar)"/><text x="274.2" y="234" font-size="12.5" font-weight="600" fill="#7BE0EC">200.000</text></g><g><text x="40" y="262" font-size="12.5" fill="#C2C2C7">Lab + bina tadilatı</text><rect x="40" y="270" width="500" height="22" rx="3" fill="#2a2a2d"/><rect x="40" y="270" width="111.1" height="22" rx="3" fill="url(#bar)"/><text x="163.1" y="286" font-size="12.5" font-weight="600" fill="#7BE0EC">100.000</text></g><g><text x="40" y="314" font-size="12.5" fill="#C2C2C7">Silo / SCADA / forklift</text><rect x="40" y="322" width="500" height="22" rx="3" fill="#2a2a2d"/><rect x="40" y="322" width="88.9" height="22" rx="3" fill="url(#bar)"/><text x="140.9" y="338" font-size="12.5" font-weight="600" fill="#7BE0EC">80.000</text></g><g><text x="40" y="366" font-size="12.5" fill="#C2C2C7">Yardımcı (yıkama/vakum/çemberleme)</text><rect x="40" y="374" width="500" height="22" rx="3" fill="#2a2a2d"/><rect x="40" y="374" width="77.8" height="22" rx="3" fill="url(#bar)"/><text x="129.8" y="390" font-size="12.5" font-weight="600" fill="#7BE0EC">70.000</text></g></g></svg><div class="cnote">+ işletme sermayesi ~250.000 EUR → toplam yatırım ~1,4 M EUR (~72 M TL). Tahmini; RFQ ile netleşir.</div></figure>
+<div class="tw reveal"><table>
+<tr><th>Kalem</th><th class="n">€</th><th class="n">₺ (×53,3)</th></tr>
+<tr><td>Respecta tipi mikser/dozaj + döküm ünitesi</td><td class="n">450.000</td><td class="n">24,0 M</td></tr>
+<tr><td>Kalıp seti (6 profil, kademeli)</td><td class="n">250.000</td><td class="n">13,3 M</td></tr>
+<tr><td>Otomatik kutulama/paletleme + konveyör</td><td class="n">200.000</td><td class="n">10,7 M</td></tr>
+<tr><td>Laboratuvar + bina tadilatı</td><td class="n">100.000</td><td class="n">5,3 M</td></tr>
+<tr><td>Silo / SCADA / forklift</td><td class="n">80.000</td><td class="n">4,3 M</td></tr>
+<tr><td>Yardımcı (yıkama / vakum / çemberleme)</td><td class="n">70.000</td><td class="n">3,7 M</td></tr>
+<tr><td><strong>Sabit yatırım ara toplam</strong></td><td class="n">1.150.000</td><td class="n">61,3 M</td></tr>
+<tr><td>İşletme sermayesi</td><td class="n">250.000</td><td class="n">13,3 M</td></tr>
+<tr class="tot"><td>TOPLAM YATIRIM</td><td class="n">1.400.000</td><td class="n">74,6 M</td></tr>
+</table></div>
+<p class="reveal" style="font-size:13px;color:var(--gray)">Anahtar makineler (Respecta/Autocaster, otomatik hat) teklif-bazlı satılır; değerler 2026 referans + mühendislik tahminidir, RFQ ile netleşir. Kalıp seti kademeli alınabilir (kapasiteyi belirleyen darboğaz).</p>
+
+<div class="secno reveal">5</div>
+<h2 id="sec-5" class="sec reveal">Hammadde &amp; Birim Ekonomi</h2>
+<p class="sec-lead reveal">1 kg polimer beton hammadde maliyeti ~15,0 TL (0,28 €); reçine kalemin yarısından fazlası. 1,20 €/kg satışta brüt hammadde marjı yüksek.</p>
+<figure class="cwrap reveal"><svg viewBox="0 0 720 430" width="100%" style="height:auto;display:block" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="amberBar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0E8A9B"/>
+      <stop offset="1" stop-color="#1FB6C9"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="720" height="430" fill="#0e0e10"/>
+  <rect x="16" y="16" width="688" height="398" rx="4" fill="#161618"/>
+
+  <text x="40" y="50" font-family="-apple-system,system-ui,sans-serif" font-size="19" font-weight="600" fill="#ffffff">1 kg Polimer Beton Hammadde Maliyeti</text>
+  <text x="40" y="72" font-family="-apple-system,system-ui,sans-serif" font-size="12.5" fill="#86868B">2026 piyasa · TL/kg</text>
+
+  <!-- baseline axis -->
+  <line x1="170" y1="98" x2="170" y2="318" stroke="#2a2a2d" stroke-width="1"/>
+
+  <!-- Recine 7.867 / 52.4% -->
+  <text x="158" y="118" text-anchor="end" font-family="-apple-system,system-ui,sans-serif" font-size="13" font-weight="600" fill="#ffffff">Reçine</text>
+  <rect x="170" y="105" width="441" height="22" rx="3" fill="url(#amberBar)"/>
+  <text x="621" y="121" font-family="-apple-system,system-ui,sans-serif" font-size="12.5" font-weight="600" fill="#7BE0EC">7,867</text>
+  <text x="178" y="121" font-family="-apple-system,system-ui,sans-serif" font-size="11" font-weight="600" fill="#0e0e10">%52,4</text>
+
+  <!-- MEKP 3.500 / 23.3% -->
+  <text x="158" y="158" text-anchor="end" font-family="-apple-system,system-ui,sans-serif" font-size="13" fill="#C2C2C7">MEKP</text>
+  <rect x="170" y="145" width="196" height="22" rx="3" fill="#5a5a5e"/>
+  <text x="376" y="161" font-family="-apple-system,system-ui,sans-serif" font-size="12.5" fill="#C2C2C7">3,500</text>
+  <text x="500" y="161" font-family="-apple-system,system-ui,sans-serif" font-size="11.5" fill="#86868B">%23,3</text>
+
+  <!-- Silis kum 1.944 / 12.9% -->
+  <text x="158" y="198" text-anchor="end" font-family="-apple-system,system-ui,sans-serif" font-size="13" fill="#C2C2C7">Silis kum</text>
+  <rect x="170" y="185" width="109" height="22" rx="3" fill="#5a5a5e"/>
+  <text x="289" y="201" font-family="-apple-system,system-ui,sans-serif" font-size="12.5" fill="#C2C2C7">1,944</text>
+  <text x="413" y="201" font-family="-apple-system,system-ui,sans-serif" font-size="11.5" fill="#86868B">%12,9</text>
+
+  <!-- Kobalt 1.200 / 8.0% -->
+  <text x="158" y="238" text-anchor="end" font-family="-apple-system,system-ui,sans-serif" font-size="13" fill="#C2C2C7">Kobalt</text>
+  <rect x="170" y="225" width="67" height="22" rx="3" fill="#5a5a5e"/>
+  <text x="247" y="241" font-family="-apple-system,system-ui,sans-serif" font-size="12.5" fill="#C2C2C7">1,200</text>
+  <text x="371" y="241" font-family="-apple-system,system-ui,sans-serif" font-size="11.5" fill="#86868B">%8,0</text>
+
+  <!-- Kalsit 0.510 / 3.4% -->
+  <text x="158" y="278" text-anchor="end" font-family="-apple-system,system-ui,sans-serif" font-size="13" fill="#C2C2C7">Kalsit</text>
+  <rect x="170" y="265" width="29" height="22" rx="3" fill="#5a5a5e"/>
+  <text x="209" y="281" font-family="-apple-system,system-ui,sans-serif" font-size="12.5" fill="#C2C2C7">0,510</text>
+  <text x="333" y="281" font-family="-apple-system,system-ui,sans-serif" font-size="11.5" fill="#86868B">%3,4</text>
+
+  <!-- Total row -->
+  <line x1="40" y1="305" x2="680" y2="305" stroke="#2a2a2d" stroke-width="1"/>
+  <text x="158" y="333" text-anchor="end" font-family="-apple-system,system-ui,sans-serif" font-size="13" font-weight="600" fill="#ffffff">TOPLAM</text>
+  <text x="170" y="333" font-family="-apple-system,system-ui,sans-serif" font-size="14" font-weight="600" fill="#1FB6C9">15,02 TL/kg</text>
+  <text x="320" y="333" font-family="-apple-system,system-ui,sans-serif" font-size="12.5" fill="#86868B">= 0,28 EUR/kg</text>
+
+  <!-- footer note -->
+  <rect x="40" y="356" width="640" height="42" rx="4" fill="#0e0e10" stroke="#2a2a2d" stroke-width="1"/>
+  <text x="56" y="374" font-family="-apple-system,system-ui,sans-serif" font-size="12" fill="#C2C2C7">Satış <tspan fill="#ffffff" font-weight="600">1,20 EUR/kg</tspan> (63,96 TL) &#8594; brüt hammadde marjı <tspan fill="#7BE0EC" font-weight="600">%76,5</tspan></text>
+  <text x="56" y="390" font-family="-apple-system,system-ui,sans-serif" font-size="10.5" fill="#86868B">Kaynak: 2026 piyasa</text>
+</svg><div class="cnote">Reçine maliyetin yarısından fazlasını (%52,4) oluşturuyor. Toplam hammadde 15,02 TL/kg (0,28 EUR/kg); 1,20 EUR/kg satış fiyatında brüt hammadde marjı %76,5.</div></figure>
+<div class="statbox reveal">
+  <div class="sx"><b>15,0 TL/kg</b><span>Hammadde maliyeti (0,28 €)</span></div>
+  <div class="sx"><b>%52,4</b><span>Reçine — baskın kalem</span></div>
+  <div class="sx"><b>1,20 €/kg</b><span>İhracat satış fiyatı</span></div>
+  <div class="sx"><b>~21,6 €</b><span>V100 1m kanal (~18 kg)</span></div>
+  <div class="sx"><b>%76,5</b><span>Brüt hammadde marjı</span></div>
+  <div class="sx"><b>~%1–3</b><span>Enerji/gelir (fırınsız kür)</span></div>
+</div>
+<p class="reveal">En büyük girdi ve risk <strong>reçine (UPR)</strong> fiyatıdır (maliyetin %52'si, dünya ~1,6–2,0 €/kg). Reçineyi modelde ayrı kalem tutmak ve tedarik sözleşmesi/stok yönetimi kritik. Silis kum hacimce baskın ama maliyetçe sadece %13.</p>
+
+<div class="secno reveal">6</div>
+<h2 id="sec-6" class="sec reveal">Finansal Analiz</h2>
+<p class="sec-lead reveal">10 yıllık döviz-bazlı (proje/unlevered) nakit akışı. Satış 1,20 €/kg, değişken maliyet gelirin %52'si, tam kapasitede sabit gider 280.000 €/yıl, kapasite rampası Yıl2 %50 → Yıl4+ %90.</p>
+<div class="tw reveal"><table>
+<tr><th>Yıl</th><th class="n">Kap.</th><th class="n">Üretim (t)</th><th class="n">Gelir (€)</th><th class="n">FAVOK (€)</th><th class="n">Net Kâr (€)</th></tr>
+<tr><td>1</td><td class="n">%0</td><td class="n">0</td><td class="n">0</td><td class="n">−84.000</td><td class="n">−194.000</td></tr>
+<tr><td>2</td><td class="n">%50</td><td class="n">1.500</td><td class="n">1.800.000</td><td class="n">668.000</td><td class="n">419.000</td></tr>
+<tr><td>3</td><td class="n">%75</td><td class="n">2.250</td><td class="n">2.700.000</td><td class="n">1.058.000</td><td class="n">711.000</td></tr>
+<tr><td>4</td><td class="n">%90</td><td class="n">2.700</td><td class="n">3.240.000</td><td class="n">1.275.000</td><td class="n">874.000</td></tr>
+<tr><td>5–10</td><td class="n">%90</td><td class="n">2.700</td><td class="n">3.240.000</td><td class="n">1.275.000</td><td class="n">874.000</td></tr>
+</table></div>
+<p class="reveal">Tam kapasitede (Yıl 4+): <strong>Gelir 172,7 M₺</strong>, FAVOK 68 M₺ (marj %39), net kâr ~46,6 M₺/yıl.</p>
+<div class="keystrip reveal">
+  <div class="kc"><div class="kc-big">121 M₺</div><div class="kc-lab">NBD · 2,27 M€ (@%15)</div></div>
+  <div class="kc"><div class="kc-big">%39,5</div><div class="kc-lab">İVO / IRR</div></div>
+  <div class="kc"><div class="kc-big">3,1 yıl</div><div class="kc-lab">Geri ödeme</div></div>
+  <div class="kc"><div class="kc-big">%39</div><div class="kc-lab">FAVOK marjı (tam kap.)</div></div>
+</div>
+
+<div class="secno reveal">7</div>
+<h2 id="sec-7" class="sec reveal">Duyarlılık</h2>
+<p class="sec-lead reveal">Model en çok reçine fiyatına ve satış fiyatına duyarlı; her uçta da getiri güçlü kalıyor.</p>
+<div class="tw reveal"><table>
+<tr><th>Değişken</th><th>Senaryo</th><th class="n">NBD (₺)</th><th class="n">İVO</th></tr>
+<tr><td rowspan="3">Değişken maliyet (reçine)</td><td>düşük (%46)</td><td class="n">149,8 M</td><td class="n">%44,0</td></tr>
+<tr><td><strong>baz (%52)</strong></td><td class="n">121,0 M</td><td class="n">%39,5</td></tr>
+<tr><td>yüksek (%60)</td><td class="n">82,6 M</td><td class="n">%33,0</td></tr>
+<tr><td rowspan="3">Satış fiyatı</td><td>−15% (1,02 €/kg)</td><td class="n">86,4 M</td><td class="n">%33,6</td></tr>
+<tr><td><strong>baz (1,20 €/kg)</strong></td><td class="n">121,0 M</td><td class="n">%39,5</td></tr>
+<tr><td>+15% (1,38 €/kg)</td><td class="n">155,5 M</td><td class="n">%44,9</td></tr>
+</table></div>
+
+<div class="secno reveal">8</div>
+<h2 id="sec-8" class="sec reveal">Rekabet &amp; Konumlandırma</h2>
+<p class="sec-lead reveal">Konumlandırma: <strong>maliyet liderliği + yalın gam</strong> (6 kalıp) ve sertifikalı yerli + komple sistem (kanal + ızgara).</p>
+<div class="tw reveal"><table>
+<tr><th>Oyuncu</th><th>Menşe</th><th>Güç</th><th>Zayıf</th></tr>
+<tr><td>ACO</td><td>DE · lider</td><td>Modüler platform, şartname ağı, marka</td><td>15–16 kalıp, yüksek fiyat, uzun termin</td></tr>
+<tr><td>Hauraton</td><td>DE</td><td>Endüstrinin kurucusu, lif takviyeli/PP</td><td>Pahalı, ithalat</td></tr>
+<tr><td>ULMA</td><td>ES</td><td>Yüksek performans, EPD</td><td>Pahalı, ithalat</td></tr>
+<tr><td>MEA</td><td>DE</td><td>Yüksek yük sınıfı, sanayi</td><td>Pahalı, ithalat</td></tr>
+<tr><td>Yerli (Asil, Urban, Kent…)</td><td>TR</td><td>Fiyat, yakınlık</td><td>Gam/sertifika/tasarım sınırlı</td></tr>
+<tr class="tot"><td>HIGHLINE</td><td>TR</td><td>6 kalıp (maliyet lideri) + sertifikalı + komple sistem (kanal+ızgara) + EUR-fiyat</td><td>Yeni marka; E600+ ızgara doğrulama</td></tr>
+</table></div>
+<div class="swot reveal">
+  <div class="sb"><h5>ÜSTÜNLÜKLER</h5><ul><li>6 kalıp = düşük kod/işçilik/stok</li><li>Reçine-verimli reçete (%12,3), fırınsız kür</li><li>Komple sistem (kanal + döküm/paslanmaz ızgara)</li><li>Yüksek brüt marj, EUR ihracat geliri</li></ul></div>
+  <div class="sb"><h5>FIRSATLAR</h5><ul><li>Altyapı + kentsel dönüşüm + veri merkezi talebi</li><li>İthal ürüne yerli/hızlı alternatif</li><li>AB/MENA ihracatı (EN 1433 + CE)</li></ul></div>
+  <div class="sb"><h5>ZAYIFLIKLAR</h5><ul><li>Yeni marka/referans</li><li>E600+ ızgara yapısal doğrulama</li><li>Reçine fiyatına bağımlılık</li></ul></div>
+  <div class="sb"><h5>TEHDİTLER</h5><ul><li>Reçine (UPR) fiyat oynaklığı</li><li>Premium markaların şartname gücü</li><li>Düşük kapasite kullanımı riski</li></ul></div>
+</div>
+
+<div class="secno reveal">9</div>
+<h2 id="sec-9" class="sec reveal">Risk &amp; Teşvik</h2>
+<ul class="reveal">
+<li><strong>Reçine (UPR) fiyatı:</strong> en büyük risk (maliyetin %52'si); %10 artış brüt marjı ~2–3 puan düşürür → tedarik sözleşmesi, stok, alternatif tedarikçi (Erco/Biyester).</li>
+<li><strong>Kapasite kullanımı:</strong> &lt;%60 ise FAVOK negatife döner → ihale/ihracat satış kanalı önceliği.</li>
+<li><strong>Çevre/ÇED:</strong> polimer beton düşük emisyonlu (su/fırın yok) — döküme göre çok daha hafif ÇED yükü; yine de reçine/MEKP/peroksit depolama + yangın güvenliği ve emisyon izni gerekir.</li>
+<li><strong>Teşvik:</strong> metal/plastik dışı imalat — 6. bölge OSB'de KDV/gümrük muafiyeti + vergi indirimi + SGK desteği; yatırıma başlamadan teşvik belgesi alınmalı (bkz. ALAN CAST §11 teşvik tablosu).</li>
+</ul>
+
+<div class="secno reveal">10</div>
+<h2 id="sec-10" class="sec reveal">Sonuç ve Öneri</h2>
+<blockquote class="reveal"><strong>Yatırım kararı: Güçlü pozitif.</strong> ~1,4 M € yatırım, %15 iskonto altında <strong>NBD 121 M₺</strong>, <strong>İVO %39,5</strong>, geri ödeme ~3,1 yıl. Polimer betonun yüksek marjı + reçine-verimli reçete + fırınsız kür + 6 kalıp avantajı, döküm ızgaraya göre daha kârlı bir iş ortaya koyuyor.</blockquote>
+<ul class="reveal">
+<li><strong>Faz-1:</strong> Yalın tek hat (Respecta mikser + 6 kalıp + otomatik kutulama), V100–V300 + döküm ızgara; ihracat (1,20 €/kg) odaklı.</li>
+<li><strong>Sinerji:</strong> Döküm ızgara (ALAN CAST) ile birleştirip <strong>komple sistem</strong> sat — ACO/MEA/ULMA'ya karşı tek yerli komple çözüm.</li>
+<li><strong>Doğrulama:</strong> Respecta/Autocaster + kalıp için taze RFQ; E600+ ızgara FEA'sını yeniden çöz; reçine tedarik sözleşmesi.</li>
+<li><strong>Belgelendirme:</strong> TS EN 1433 + CE (ihracat şartı), KIWA/TSE; 6. bölge OSB teşvik belgesi.</li>
+</ul>
+
+<details class="galwrap reveal"><summary><span class="ar">▸</span> Ürün &amp; Tesis Görselleri <small>(tıkla aç — büyütmek için resme tıkla)</small></summary>
+<div class="gallery" id="gal">
+<figure data-cap="V-kanal kesiti (3B render)"><img src="img/kanal_kesit.jpg" loading="lazy" alt="V-kanal kesiti"><figcaption>V-kanal kesiti (render)</figcaption></figure>
+<figure data-cap="Müdahale kutusu + ızgara (render)"><img src="img/mudahale_kutusu.jpg" loading="lazy" alt="Müdahale kutusu"><figcaption>Müdahale kutusu (render)</figcaption></figure>
+<figure data-cap="Boru çıkış aksesuarı (render)"><img src="img/boru_cikis.jpg" loading="lazy" alt="Boru çıkış"><figcaption>Boru çıkış aksesuarı (render)</figcaption></figure>
+<figure data-cap="Paslanmaz FUGA slot ızgara (render)"><img src="img/paslanmaz_fuga.jpg" loading="lazy" alt="Paslanmaz fuga"><figcaption>Paslanmaz FUGA ızgara (render)</figcaption></figure>
+<figure data-cap="Döküm ızgara + çerçeve (render)"><img src="img/dokum_izgara_render.jpg" loading="lazy" alt="Döküm ızgara"><figcaption>Döküm ızgara (render)</figcaption></figure>
+<figure data-cap="Paslanmaz ızgara — saha"><img src="img/izgara_saha.jpg" loading="lazy" alt="Izgara saha"><figcaption>Paslanmaz ızgara (saha)</figcaption></figure>
+<figure data-cap="Respecta tipi mikser / dozaj (saha)"><img src="img/mikser.jpg" loading="lazy" alt="Mikser"><figcaption>Mikser / dozaj (saha)</figcaption></figure>
+<figure data-cap="Hammadde — silis kum / kalsit big-bag (saha)"><img src="img/hammadde_bigbag.jpg" loading="lazy" alt="Hammadde"><figcaption>Hammadde big-bag (saha)</figcaption></figure>
+<figure data-cap="Döküm ızgara istifi (saha)"><img src="img/izgara_istif.jpg" loading="lazy" alt="Izgara istif"><figcaption>Izgara istifi (saha)</figcaption></figure>
+</div></details>
+
+</div></div></main>
+<div id="lb"><img src="" alt=""><div class="cap"></div></div>
+
+<footer>
+HIGHLINE — Polimer Beton Kanal Fizibilite &amp; Yatırım Raporu · Haziran 2026<br>
+Model EUR bazlı (1 € = 53,3 ₺). Mert Döküm / Kürşat Kemal Kul 2019 sunumu + akredite reçete/dayanım testleri + 2026 pazar/hammadde araştırmasından derlenmiştir.<br>
+Tüm değerler tahminîdir; makine/kalıp RFQ ve detay mühendislikle netleştirilmelidir. · Özel belge — dağıtıma kapalı.
+</footer>
+
+<script>
+var nav=document.getElementById('nav');
+addEventListener('scroll',function(){nav.classList.toggle('solid',scrollY>40);});
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+var links=[].slice.call(document.querySelectorAll('#tocnav a')),secs=links.map(function(a){return document.querySelector(a.getAttribute('href'));});
+addEventListener('scroll',function(){var y=scrollY+140,idx=0;secs.forEach(function(s,i){if(s&&s.offsetTop<=y)idx=i;});links.forEach(function(a,i){a.classList.toggle('active',i===idx);});});
+// lightbox
+var lb=document.getElementById('lb'),lbi=lb.querySelector('img'),lbc=lb.querySelector('.cap'),gal=document.getElementById('gal');
+if(gal){gal.addEventListener('click',function(e){var f=e.target.closest('figure');if(!f)return;lbi.src=f.querySelector('img').src;lbc.textContent=f.getAttribute('data-cap')||'';lb.classList.add('on');});}
+lb.addEventListener('click',function(){lb.classList.remove('on');lbi.src='';});
+</script>
+</body></html>
