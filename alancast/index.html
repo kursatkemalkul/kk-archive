@@ -88,6 +88,25 @@ footer{background:#000;color:#6e6e73;text-align:center;padding:36px 22px;font-si
 @media(max-width:880px){.report-layout{flex-direction:column;gap:0}.toc{position:static;width:auto;flex:none;max-height:none;margin-bottom:26px}}
 @media(max-width:680px){.herostats{grid-template-columns:1fr 1fr}.keystrip{grid-template-columns:1fr 1fr}.factgrid{grid-template-columns:1fr}.swot{grid-template-columns:1fr}.statbox{grid-template-columns:1fr 1fr}.modgrid{grid-template-columns:1fr 1fr}}
 @media print{#nav,.toc,.hero .dl{display:none}.hero{min-height:auto}.reveal{opacity:1;transform:none}.secno{margin-top:30px}}
+
+/* --- RE-FIX 2026-06-16: mobil tasma + cift baslik --- */
+html,body{overflow-x:hidden;max-width:100%}
+.cwrap{overflow-x:auto}
+.cwrap>.ctitle{display:none}
+.cwrap svg{max-width:100%;height:auto}
+.hero h1,.report p,.report li,.report h3,.report h4,.report .sec{overflow-wrap:break-word;word-break:normal}
+@media(max-width:680px){table{min-width:480px}.report p,.report li{font-size:15px}}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}
+.gallery figure{margin:0;background:var(--panel);border:1px solid var(--hair);border-radius:12px;overflow:hidden}
+.gallery img{width:100%;height:180px;object-fit:cover;display:block;background:#0d0d0f}
+.gallery figcaption{font-size:12px;color:var(--gray);padding:8px 11px;line-height:1.4}
+@media(max-width:760px){.gallery{grid-template-columns:1fr 1fr}.gallery img{height:150px}}
+@media(max-width:480px){.gallery{grid-template-columns:1fr}}
+
+/* --- RE-FIX2 2026-06-16: report-body daralma zorla --- */
+.report-body{width:100%;min-width:0;max-width:100%}
+.tw,.cwrap{max-width:100%;overflow-x:auto}
+@media(max-width:880px){.report-layout{flex-direction:column;gap:0}.report-body{width:100%!important;min-width:0!important;max-width:100%!important}.toc{position:static;width:auto;max-width:100%;flex:none}.wrap{max-width:none}}
 </style></head><body>
 
 <nav id="nav"><div class="nav-in"><a href="#top" class="logo">ALAN <b>CAST</b></a><span class="nav-back">Döküm Fabrikası · Fizibilite</span></div></nav>
@@ -165,6 +184,56 @@ footer{background:#000;color:#6e6e73;text-align:center;padding:36px 22px;font-si
 <div class="secno reveal">2</div>
 <h2 id="sec-2" class="sec reveal">Pazar ve Talep</h2>
 <p class="sec-lead reveal">Türkiye döküm üretiminde dünyada ilk sıralarda; talep ihracat odaklı ve döviz-bazlı — bu da döviz-bazlı bir gelir modelini gerçekçi kılar.</p>
+<h4 class="reveal">Güncel Sektör Verileri (2022–2024)</h4>
+<figure class="cwrap reveal"><div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0e0e10;padding:4px 0;width:100%;box-sizing:border-box">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;width:100%">
+
+<div style="background:#161618;border:1px solid #2a2a2d;border-radius:14px;padding:18px 16px">
+<div style="font-size:13px;color:#86868B;font-weight:500;letter-spacing:.2px">Üretim (2024)</div>
+<div style="font-size:30px;color:#fff;font-weight:600;margin-top:6px;line-height:1.05">2,6 <span style="font-size:16px;color:#C2C2C7;font-weight:500">M ton</span></div>
+<div style="font-size:12px;color:#86868B;margin-top:6px">2022 rekoru: <span style="color:#F5B775">3,1 M ton</span></div>
+</div>
+
+<div style="background:#161618;border:1px solid #2a2a2d;border-radius:14px;padding:18px 16px">
+<div style="font-size:13px;color:#86868B;font-weight:500;letter-spacing:.2px">Dünya Sıralaması</div>
+<div style="font-size:30px;color:#fff;font-weight:600;margin-top:6px;line-height:1.05">9.–10.</div>
+<div style="font-size:12px;color:#86868B;margin-top:6px">Avrupa <span style="color:#F5B775">2.</span> (Almanya'dan sonra)</div>
+</div>
+
+<div style="background:#161618;border:1px solid #2a2a2d;border-radius:14px;padding:18px 16px">
+<div style="font-size:13px;color:#86868B;font-weight:500;letter-spacing:.2px">Sektör Cirosu (2024)</div>
+<div style="font-size:30px;color:#fff;font-weight:600;margin-top:6px;line-height:1.05">~8,5 <span style="font-size:16px;color:#C2C2C7;font-weight:500">milyar €</span></div>
+<div style="font-size:12px;color:#86868B;margin-top:6px">TÜDÖKSAD güncel ihracat: <span style="color:#F5B775">9,5 milyar €</span></div>
+</div>
+
+<div style="background:#161618;border:1px solid #2a2a2d;border-radius:14px;padding:18px 16px">
+<div style="font-size:13px;color:#86868B;font-weight:500;letter-spacing:.2px">İhracat Yoğunluğu</div>
+<div style="font-size:30px;color:#E0852F;font-weight:600;margin-top:6px;line-height:1.05">%74,4</div>
+<div style="font-size:12px;color:#86868B;margin-top:6px">üretimin ihracata oranı</div>
+</div>
+
+<div style="background:#161618;border:1px solid #2a2a2d;border-radius:14px;padding:18px 16px">
+<div style="font-size:13px;color:#86868B;font-weight:500;letter-spacing:.2px">TÜDÖKSAD Üyeleri</div>
+<div style="font-size:30px;color:#fff;font-weight:600;margin-top:6px;line-height:1.05">204 <span style="font-size:16px;color:#C2C2C7;font-weight:500">üye</span></div>
+<div style="font-size:12px;color:#86868B;margin-top:6px">kuruluş: <span style="color:#F5B775">1976</span></div>
+</div>
+
+<div style="background:#161618;border:1px solid #2a2a2d;border-radius:14px;padding:18px 16px">
+<div style="font-size:13px;color:#86868B;font-weight:500;letter-spacing:.2px">Drenaj / Trench Pazarı</div>
+<div style="font-size:30px;color:#fff;font-weight:600;margin-top:6px;line-height:1.05">1,42 <span style="font-size:16px;color:#C2C2C7;font-weight:500">milyar $</span></div>
+<div style="font-size:12px;color:#86868B;margin-top:6px">2024 global · CAGR <span style="color:#F5B775">%6,1</span></div>
+</div>
+
+<div style="background:#161618;border:1px solid #2a2a2d;border-radius:14px;padding:18px 16px">
+<div style="font-size:13px;color:#86868B;font-weight:500;letter-spacing:.2px">Rögar / Izgara Pazarı</div>
+<div style="font-size:30px;color:#fff;font-weight:600;margin-top:6px;line-height:1.05">~4,5 <span style="font-size:16px;color:#C2C2C7;font-weight:500">milyar $</span></div>
+<div style="font-size:12px;color:#86868B;margin-top:6px">global pazar büyüklüğü</div>
+</div>
+
+</div>
+<div style="font-size:12px;color:#86868B;margin-top:14px;line-height:1.5;border-top:1px solid #2a2a2d;padding-top:12px">Türkiye, üretimini büyük oranda ihraç eden, Avrupa'nın 2. büyük döküm üreticisidir; pik düşüşüne rağmen ciro ve ihracat değeri yüksek seyretmektedir.</div>
+</div><div class="cnote">Kaynak: TÜDÖKSAD / Metal Dünyası 2024. Sayfadaki 2016-2017 grafikleri tarihseldir; bu kutu güncel özet niteliğindedir.</div></figure>
+
 <figure class="cwrap reveal"><div class="ctitle">Dünya Döküm Üretimi (ton)</div><svg viewBox="0 0 720 440" width="100%" style="height:auto;display:block" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="barAmber" x1="0" y1="0" x2="0" y2="1">
@@ -378,8 +447,8 @@ footer{background:#000;color:#6e6e73;text-align:center;padding:36px 22px;font-si
   <text x="36" y="540" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="11" font-weight="400" fill="#86868B">Çin, dünya döküm üretiminin yaklaşık yarısını tek başına gerçekleştiriyor.</text>
 </svg><div class="cnote">Kaynak: AFS (American Foundry Society), 2016 verileri; üretim ton cinsinden.</div></figure>
 <ul class="reveal">
-<li><strong>Sektör büyüklüğü:</strong> Türkiye ~1,9 milyon ton/yıl (2016; 2012'de 1,445 M ton) ile dünyada 11.–13., Avrupa'da 3.–4. üretici. İhracat kıymeti ~2,8 milyar € (2016).</li>
-<li><strong>İhracat odağı:</strong> Üretimin <strong>%60'tan fazlası</strong> ihraç ediliyor → satış fiyatı pratikte €-endeksli.</li>
+<li><strong>Sektör büyüklüğü:</strong> Türkiye üretimi 2022'de rekor <strong>3,1 milyon ton</strong>, 2024'te 2,6 milyon ton (kur/maliyet baskısı); <strong>dünyada 9.–10., Avrupa'da 2.</strong> üretici. Sektör cirosu ~8,5 milyar € (2024), TÜDÖKSAD güncel ihracat ~9,5 milyar €. <span style="color:var(--gray)">(Alttaki grafikler 2011–2017 tarihsel serisidir.)</span></li>
+<li><strong>İhracat odağı:</strong> Sektör cirosunun <strong>%74,4'ü</strong> ihracat (2024) → satış €-endeksli; döviz-bazlı gelir modeli güçlü. TÜDÖKSAD: 204 üye (1976).</li>
 <li><strong>İstihdam/yapı (2012):</strong> 1.388 işletme, ~33.000 çalışan (27.000 demir-çelik + 6.000 demir-dışı); mavi yaka 19.300, %67,4 kalifiye. Üretimin %65'i otomotiv. <span style="color:var(--gray);font-size:13px">(Kaynak: CSGB İSG uzmanlık tezi, A. Şentürk 2016)</span></li>
 <li><strong>Trend (fırsat):</strong> Çin'in emisyon/çevre baskısıyla eski dökümhanelerini kapatması tedarik boşluğu yaratıyor; talep Türkiye KOBİ/mikro dökümhanelerine kayıyor.</li>
 </ul>
@@ -739,7 +808,7 @@ footer{background:#000;color:#6e6e73;text-align:center;padding:36px 22px;font-si
   <rect x="40" y="484" width="12" height="12" rx="3" fill="url(#amberBright)"/>
   <text x="58" y="494" style="font-family:-apple-system,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif" font-size="12" fill="#C2C2C7">ALAN CAST hedef segmenti — rögar / ızgara / altyapı fittings</text>
 </svg><div class="cnote">Dökme demir + fittings (%15) ALAN CAST'in hedef segmenti; otomotiv %28 ile pazar lideri.</div></figure>
-<p class="reveal">ALAN CAST'in hedefi, segmentin <strong>dökme demir + fittings / altyapı</strong> kısmı — belediye, su idareleri (BUSKİ tipi), altyapı ihaleleri ve ihracat. Avrupa drenaj/trench pazarı ~320 M$ (2024), yıllık büyüme ~%7; ızgara tarafında EN 1433 yük sınıfı ve CE sertifikasyonu giriş şartı.</p>
+<p class="reveal">ALAN CAST'in hedefi, segmentin <strong>dökme demir + fittings / altyapı</strong> kısmı — belediye, su idareleri (BUSKİ tipi), altyapı ihaleleri ve ihracat. Global polimer beton kanal (trench) pazarı ~1,42 milyar $ (2024, CAGR %6,1), rögar+ızgara pazarı ~4,5 milyar $; EN 1433 yük sınıfı ve CE sertifikasyonu giriş şartı.</p>
 
 <h4 class="reveal">Referans: Elazığ / Fırat KA 2011 fizibilitesi (tarihsel)</h4>
 <p class="reveal">Aşağıdakiler ALAN CAST verisi değil; bir referans fizibiliteden (2011) yeniden çizilmiş tarihsel Türkiye sektör grafikleridir.</p>
@@ -1665,6 +1734,41 @@ footer{background:#000;color:#6e6e73;text-align:center;padding:36px 22px;font-si
 </g>
 <text x="440" y="660" style="font-family:-apple-system,'SF Pro Display','Segoe UI',sans-serif" font-size="11" fill="#C2C2C7">~1.000.000 TL · 300.000 TL/ay × 8 ay</text>
 </svg><div class="cnote">Kaynak slayttan okunan değerler. "≈" işaretli kalemler kaynakta "?" olarak geçtiğinden tahminîdir; Havalandırma ve Silo besleme için kaynakta fiyat verilmemiştir. Para birimleri kaynaktaki gibi ($ / TL) korunmuştur. Sağ alttaki not kuruluş takvimini özetler.</div></figure>
+<h4 class="reveal">Tesis Alan Dağılımı (m²)</h4>
+<figure class="cwrap reveal"><table style="width:100%;border-collapse:collapse;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;background:#161618;border-radius:10px;overflow:hidden">
+<thead>
+<tr>
+<th style="background:#2a1606;color:#F5B775;text-align:left;padding:11px 14px;font-weight:600;border-bottom:1px solid #2a2a2d">Bölüm</th>
+<th style="background:#2a1606;color:#F5B775;text-align:right;padding:11px 14px;font-weight:600;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">Alan (m²)</th>
+</tr>
+</thead>
+<tbody>
+<tr><td style="color:#fff;padding:10px 14px;border-bottom:1px solid #2a2a2d">Ergitme (ocak)</td><td style="color:#C2C2C7;text-align:right;padding:10px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">250</td></tr>
+<tr><td style="color:#fff;padding:10px 14px;border-bottom:1px solid #2a2a2d">Kalıp hattı</td><td style="color:#C2C2C7;text-align:right;padding:10px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">400</td></tr>
+<tr><td style="color:#fff;padding:10px 14px;border-bottom:1px solid #2a2a2d">Kum hazırlama</td><td style="color:#C2C2C7;text-align:right;padding:10px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">300</td></tr>
+<tr><td style="color:#fff;padding:10px 14px;border-bottom:1px solid #2a2a2d">Maça</td><td style="color:#C2C2C7;text-align:right;padding:10px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">120</td></tr>
+<tr><td style="color:#fff;padding:10px 14px;border-bottom:1px solid #2a2a2d">Döküm/soğutma</td><td style="color:#C2C2C7;text-align:right;padding:10px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">350</td></tr>
+<tr><td style="color:#fff;padding:10px 14px;border-bottom:1px solid #2a2a2d">Temizleme-taşlama</td><td style="color:#C2C2C7;text-align:right;padding:10px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">250</td></tr>
+<tr><td style="color:#fff;padding:10px 14px;border-bottom:1px solid #2a2a2d">Isıl işlem</td><td style="color:#C2C2C7;text-align:right;padding:10px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">100</td></tr>
+<tr><td style="color:#fff;padding:10px 14px;border-bottom:1px solid #2a2a2d">Boyahane</td><td style="color:#C2C2C7;text-align:right;padding:10px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">120</td></tr>
+<tr><td style="color:#fff;padding:10px 14px;border-bottom:1px solid #2a2a2d">Kalite laboratuvarı</td><td style="color:#C2C2C7;text-align:right;padding:10px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">80</td></tr>
+<tr><td style="color:#fff;padding:10px 14px;border-bottom:1px solid #2a2a2d">Hammadde + mamul depo</td><td style="color:#C2C2C7;text-align:right;padding:10px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">350</td></tr>
+<tr><td style="color:#fff;padding:10px 14px;border-bottom:1px solid #2a2a2d">İdari ofis + sosyal</td><td style="color:#C2C2C7;text-align:right;padding:10px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">280</td></tr>
+<tr><td style="color:#fff;padding:12px 14px;font-weight:600;background:#1c1409">TOPLAM</td><td style="color:#F5B775;text-align:right;padding:12px 14px;font-weight:700;background:#1c1409;font-variant-numeric:tabular-nums">~2.600</td></tr>
+</tbody>
+</table><div class="cnote">Yalın tesis tahmini yerleşim; kiralık OSB binası.</div></figure>
+<h4 class="reveal">Tesis Görselleri — 3B Render &amp; Saha</h4>
+<div class="gallery reveal">
+<figure><img src="img/render_layout.jpg" loading="lazy" alt="Tesis 3B yerleşim render'ı — kum tesisi · konveyör · finisaj holü"><figcaption>Tesis 3B yerleşim render'ı — kum tesisi · konveyör · finisaj holü</figcaption></figure>
+<figure><img src="img/render_finisaj.jpg" loading="lazy" alt="Finisaj / işleme holü (vinç + ekip)"><figcaption>Finisaj / işleme holü (vinç + ekip)</figcaption></figure>
+<figure><img src="img/render_3.jpg" loading="lazy" alt="Kum hazırlama & kalıplama hattı (render)"><figcaption>Kum hazırlama & kalıplama hattı (render)</figcaption></figure>
+<figure><img src="img/foto_bunker.jpg" loading="lazy" alt="Kum dağıtım bunker hattı (saha)"><figcaption>Kum dağıtım bunker hattı (saha)</figcaption></figure>
+<figure><img src="img/foto_kalippres.jpg" loading="lazy" alt="Kalıp presi — rögar kapağı modeli (saha)"><figcaption>Kalıp presi — rögar kapağı modeli (saha)</figcaption></figure>
+<figure><img src="img/foto_lab.jpg" loading="lazy" alt="Spektrometre / kalite laboratuvarı (saha)"><figcaption>Spektrometre / kalite laboratuvarı (saha)</figcaption></figure>
+<figure><img src="img/render_4.jpg" loading="lazy" alt="Tesis genel görünüm (render)"><figcaption>Tesis genel görünüm (render)</figcaption></figure>
+<figure><img src="img/render_5.jpg" loading="lazy" alt="Ergitme & döküm bölgesi (render)"><figcaption>Ergitme & döküm bölgesi (render)</figcaption></figure>
+<figure><img src="img/render_6.jpg" loading="lazy" alt="Tesis perspektif (render)"><figcaption>Tesis perspektif (render)</figcaption></figure>
+</div>
 <div class="secno reveal">4</div>
 <h2 id="sec-4" class="sec reveal">Yatırım (CAPEX)</h2>
 <p class="sec-lead reveal">Kiralık bina sayesinde sabit yatırım ekipman ağırlıklı; arsa/inşaat kalemi yok. Toplam yatırım ihtiyacı ~1,0 milyon € (53,3 M₺).</p>
@@ -1982,6 +2086,94 @@ footer{background:#000;color:#6e6e73;text-align:center;padding:36px 22px;font-si
   <text x="48" y="1138" class="qty" font-size="11" fill="#86868B">2019 — endüstriyel mutfak hariç</text>
   <text x="676" y="1128" class="h" font-size="28" fill="#F5B775" text-anchor="end">48.360 <tspan font-size="16" fill="#E0852F">TL</tspan></text>
 </svg><div class="cnote">Slayt 19'daki "Ofis Maliyeti" tablosundan kalem-kalem çıkarılmış ofis ve donanım maliyeti. Sekiz bölüm (Workstation Ofis, Toplantı Odası, Mutfak, Diğer, Genel Müdür Odası, Bekleme Alanı, Laboratuvar, İşçi Bölümleri, Yönetim) adet ve tutarlarıyla listelendi; üstü çizili "Endüstriyel Mutfak" (8.000 TL) toplama dahil değil. Genel toplam 48.360 TL.</div></figure>
+<h4 class="reveal">Güncel Maaşlar (2026)</h4>
+<figure class="cwrap reveal"><table style="width:100%;border-collapse:collapse;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:14px;background:#161618;border-radius:10px;overflow:hidden">
+<thead>
+<tr>
+<th style="background:#2a1606;color:#F5B775;text-align:left;padding:11px 14px;font-weight:600;border-bottom:1px solid #2a2a2d">Pozisyon</th>
+<th style="background:#2a1606;color:#F5B775;text-align:right;padding:11px 14px;font-weight:600;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">Net aylık (TL)</th>
+</tr>
+</thead>
+<tbody>
+<tr><td colspan="2" style="background:#0e0e10;color:#E0852F;padding:9px 14px;font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid #2a2a2d">Mavi Yaka</td></tr>
+<tr><td style="color:#fff;padding:10px 14px;border-bottom:1px solid #2a2a2d">Vasıfsız işçi</td><td style="color:#C2C2C7;padding:10px 14px;text-align:right;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">33.000 – 41.000</td></tr>
+<tr><td style="color:#fff;padding:10px 14px;border-bottom:1px solid #2a2a2d">Döküm operatörü</td><td style="color:#C2C2C7;padding:10px 14px;text-align:right;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">41.300</td></tr>
+<tr><td style="color:#fff;padding:10px 14px;border-bottom:1px solid #2a2a2d">Usta / kalıpçı</td><td style="color:#C2C2C7;padding:10px 14px;text-align:right;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">54.800</td></tr>
+<tr><td style="color:#fff;padding:10px 14px;border-bottom:1px solid #2a2a2d">Forklift operatörü</td><td style="color:#C2C2C7;padding:10px 14px;text-align:right;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">42.400</td></tr>
+<tr><td style="color:#fff;padding:10px 14px;border-bottom:1px solid #2a2a2d">Kaynakçı</td><td style="color:#C2C2C7;padding:10px 14px;text-align:right;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">63.300</td></tr>
+<tr><td style="color:#fff;padding:10px 14px;border-bottom:1px solid #2a2a2d">Ocakçı</td><td style="color:#C2C2C7;padding:10px 14px;text-align:right;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">~50.000</td></tr>
+<tr><td colspan="2" style="background:#0e0e10;color:#E0852F;padding:9px 14px;font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid #2a2a2d">Beyaz Yaka</td></tr>
+<tr><td style="color:#fff;padding:10px 14px;border-bottom:1px solid #2a2a2d">Metalurji mühendisi</td><td style="color:#C2C2C7;padding:10px 14px;text-align:right;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">63.300</td></tr>
+<tr><td style="color:#fff;padding:10px 14px;border-bottom:1px solid #2a2a2d">Makine mühendisi</td><td style="color:#C2C2C7;padding:10px 14px;text-align:right;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">57.100</td></tr>
+<tr><td style="color:#fff;padding:10px 14px;border-bottom:1px solid #2a2a2d">Kalite müdürü</td><td style="color:#C2C2C7;padding:10px 14px;text-align:right;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">109.000</td></tr>
+<tr><td style="color:#fff;padding:10px 14px;border-bottom:1px solid #2a2a2d">Üretim müdürü</td><td style="color:#C2C2C7;padding:10px 14px;text-align:right;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">127.000</td></tr>
+<tr><td style="color:#fff;padding:10px 14px;border-bottom:1px solid #2a2a2d">Satış – pazarlama</td><td style="color:#C2C2C7;padding:10px 14px;text-align:right;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">88.000</td></tr>
+<tr><td style="color:#fff;padding:10px 14px;border-bottom:1px solid #2a2a2d">Mali müşavir / muhasebe</td><td style="color:#C2C2C7;padding:10px 14px;text-align:right;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">67.000</td></tr>
+<tr><td style="color:#fff;padding:10px 14px">Genel müdür</td><td style="color:#C2C2C7;padding:10px 14px;text-align:right;font-variant-numeric:tabular-nums">130.000</td></tr>
+</tbody>
+</table><div class="cnote">Kaynak: 2026 iş portalları + CSGB; net aylık. Asgari ücret 2026: brüt 33.030 TL · net 28.075 TL · işveren maliyeti (imalat) 39.223 TL.</div></figure>
+<h4 class="reveal">Personel Maliyeti — 2026 Güncel</h4>
+<figure class="cwrap reveal"><div style="width:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#fff">
+<table style="width:100%;border-collapse:collapse;font-size:14px">
+<thead>
+<tr>
+<th style="background:#2a1606;color:#F5B775;text-align:left;padding:11px 12px;font-weight:600;border-bottom:1px solid #2a2a2d">Birim</th>
+<th style="background:#2a1606;color:#F5B775;text-align:right;padding:11px 12px;font-weight:600;border-bottom:1px solid #2a2a2d">Kişi</th>
+<th style="background:#2a1606;color:#F5B775;text-align:right;padding:11px 12px;font-weight:600;border-bottom:1px solid #2a2a2d">2019 (TL/ay)</th>
+<th style="background:#2a1606;color:#F5B775;text-align:right;padding:11px 12px;font-weight:600;border-bottom:1px solid #2a2a2d">2026 (TL/ay)</th>
+<th style="background:#2a1606;color:#F5B775;text-align:left;padding:11px 12px;font-weight:600;border-bottom:1px solid #2a2a2d">Artış</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="color:#fff;padding:11px 12px;border-bottom:1px solid #2a2a2d;font-weight:500">Ofis</td>
+<td style="color:#C2C2C7;padding:11px 12px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">16</td>
+<td style="color:#C2C2C7;padding:11px 12px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">94.175</td>
+<td style="color:#C2C2C7;padding:11px 12px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">1.450.000</td>
+<td style="padding:9px 12px;border-bottom:1px solid #2a2a2d">
+<div style="display:flex;align-items:center;gap:8px">
+<div style="flex:1;height:7px;background:#2a2a2d;border-radius:4px;overflow:hidden;min-width:50px"><div style="width:81%;height:100%;background:linear-gradient(90deg,#B5611A,#E0852F)"></div></div>
+<span style="color:#F5B775;font-variant-numeric:tabular-nums;font-weight:600;font-size:13px;white-space:nowrap">15,4×</span>
+</div>
+</td>
+</tr>
+<tr>
+<td style="color:#fff;padding:11px 12px;border-bottom:1px solid #2a2a2d;font-weight:500">Üretim</td>
+<td style="color:#C2C2C7;padding:11px 12px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">30</td>
+<td style="color:#C2C2C7;padding:11px 12px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">126.000</td>
+<td style="color:#C2C2C7;padding:11px 12px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">1.450.000</td>
+<td style="padding:9px 12px;border-bottom:1px solid #2a2a2d">
+<div style="display:flex;align-items:center;gap:8px">
+<div style="flex:1;height:7px;background:#2a2a2d;border-radius:4px;overflow:hidden;min-width:50px"><div style="width:61%;height:100%;background:linear-gradient(90deg,#B5611A,#E0852F)"></div></div>
+<span style="color:#F5B775;font-variant-numeric:tabular-nums;font-weight:600;font-size:13px;white-space:nowrap">11,5×</span>
+</div>
+</td>
+</tr>
+<tr>
+<td style="color:#fff;padding:12px;font-weight:600">Toplam</td>
+<td style="color:#fff;padding:12px;text-align:right;font-variant-numeric:tabular-nums;font-weight:600">46</td>
+<td style="color:#fff;padding:12px;text-align:right;font-variant-numeric:tabular-nums;font-weight:600">220.000</td>
+<td style="color:#fff;padding:12px;text-align:right;font-variant-numeric:tabular-nums;font-weight:600">2.900.000</td>
+<td style="padding:10px 12px">
+<div style="display:flex;align-items:center;gap:8px">
+<div style="flex:1;height:9px;background:#2a2a2d;border-radius:4px;overflow:hidden;min-width:50px"><div style="width:100%;height:100%;background:linear-gradient(90deg,#B5611A,#E0852F,#F5B775)"></div></div>
+<span style="color:#F5B775;font-variant-numeric:tabular-nums;font-weight:700;font-size:14px;white-space:nowrap">13,2×</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+<div style="flex:1;min-width:130px;background:#161618;border:1px solid #2a2a2d;border-radius:10px;padding:13px 15px">
+<div style="color:#86868B;font-size:11px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:5px">Yıllık Toplam (2026)</div>
+<div style="color:#F5B775;font-size:22px;font-weight:600;font-variant-numeric:tabular-nums">~35 M TL</div>
+</div>
+<div style="flex:1;min-width:130px;background:#161618;border:1px solid #2a2a2d;border-radius:10px;padding:13px 15px">
+<div style="color:#86868B;font-size:11px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:5px">Kişi Başı Ort. (2026)</div>
+<div style="color:#fff;font-size:22px;font-weight:600;font-variant-numeric:tabular-nums">~63.000 TL/ay</div>
+</div>
+</div>
+</div><div class="cnote">İşveren maliyeti, 2026 maaşları. 2019 → 2026 aylık karşılaştırma; toplam ~13× artış (~35 M TL/yıl).</div></figure>
 <div class="secno reveal">5</div>
 <h2 id="sec-5" class="sec reveal">İşletme &amp; Kazanç</h2>
 <p class="sec-lead reveal">2019 mali sunumundaki vardiya bazlı kazanç çalışması ve kuruluş takvimi (referans / tarihsel taban).</p>
@@ -2184,6 +2376,115 @@ footer{background:#000;color:#6e6e73;text-align:center;padding:36px 22px;font-si
 <text x="32" y="552" fill="#86868B" font-size="10.5" style="font-family:-apple-system,'SF Pro Display','Segoe UI',sans-serif">Değerler slayttan birebir; bazı kalem/toplam satırları kaynakta ölçek bakımından tutarsız (≈ ile işaretli). Ölçek: ciro/maliyet farkı ton arttıkça açılıyor.</text>
 </svg><div class="cnote">2019 ton-bazlı üretim ölçekleme: 1/2/3/8 ton günlük seviyeleri için kalem maliyetleri, toplam günlük maliyet ve günlük ciro tablosu + ciro/maliyet karşılaştırma barları. Kaynaktaki değerler birebir alındı; bazı satırlar slaytta ölçek olarak tutarsız (≈ ile işaretlendi).</div></figure>
 <p class="reveal"><strong>Hammadde maliyeti (2019 sunumu):</strong> ~4,5 TL/kg (Çelik 1,96 + Sfero pik 2,12 + Yolluk 1,14 + silis/karbon/magnezyum). Satış fiyatı 1 EUR/kg (o gün 6,3 TL). 2026 modelinde bu, 1,20 €/ton satış ve gelirin %60'ı değişken maliyet olarak güncellenmiştir (bkz. §6).</p>
+<h4 class="reveal">SFERO (GGG50) Şarj & Hammadde Reçetesi</h4>
+<figure class="cwrap reveal"><div style="width:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+<table style="width:100%;border-collapse:collapse;font-size:14px;background:#161618">
+<thead>
+<tr>
+<th style="background:#2a1606;color:#F5B775;text-align:left;padding:11px 14px;font-weight:600;border-bottom:1px solid #2a2a2d">Kalem</th>
+<th style="background:#2a1606;color:#F5B775;text-align:right;padding:11px 14px;font-weight:600;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">Şarj Oranı %</th>
+<th style="background:#2a1606;color:#F5B775;text-align:right;padding:11px 14px;font-weight:600;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">Birim Fiyat</th>
+<th style="background:#2a1606;color:#F5B775;text-align:left;padding:11px 14px;font-weight:600;border-bottom:1px solid #2a2a2d">Not</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="color:#fff;padding:11px 14px;border-bottom:1px solid #2a2a2d">Çelik hurdası</td>
+<td style="color:#C2C2C7;padding:11px 14px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">50–55</td>
+<td style="color:#C2C2C7;padding:11px 14px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">~16.500 TL/ton</td>
+<td style="color:#C2C2C7;padding:11px 14px;border-bottom:1px solid #2a2a2d">Yurtiçi, Haz 2026</td>
+</tr>
+<tr>
+<td style="color:#fff;padding:11px 14px;border-bottom:1px solid #2a2a2d">Sfero pik / dönüş hurda</td>
+<td style="color:#C2C2C7;padding:11px 14px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">35</td>
+<td style="color:#C2C2C7;padding:11px 14px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">USD-bazlı</td>
+<td style="color:#C2C2C7;padding:11px 14px;border-bottom:1px solid #2a2a2d">—</td>
+</tr>
+<tr>
+<td style="color:#fff;padding:11px 14px;border-bottom:1px solid #2a2a2d">FeSiMg nodülarizan</td>
+<td style="color:#C2C2C7;padding:11px 14px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">1,2–1,5</td>
+<td style="color:#C2C2C7;padding:11px 14px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">~1.250 USD/ton</td>
+<td style="color:#C2C2C7;padding:11px 14px;border-bottom:1px solid #2a2a2d">Küreselleştirici</td>
+</tr>
+<tr>
+<td style="color:#fff;padding:11px 14px;border-bottom:1px solid #2a2a2d">FeSi inokulant</td>
+<td style="color:#C2C2C7;padding:11px 14px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">0,5–0,7</td>
+<td style="color:#C2C2C7;padding:11px 14px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">~1.500 USD/ton</td>
+<td style="color:#C2C2C7;padding:11px 14px;border-bottom:1px solid #2a2a2d">Aşılayıcı</td>
+</tr>
+<tr>
+<td style="color:#fff;padding:11px 14px;border-bottom:1px solid #2a2a2d">Recarburizer</td>
+<td style="color:#C2C2C7;padding:11px 14px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">0,8–1,0</td>
+<td style="color:#86868B;padding:11px 14px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">—</td>
+<td style="color:#C2C2C7;padding:11px 14px;border-bottom:1px solid #2a2a2d">Karbon arttırıcı</td>
+</tr>
+<tr>
+<td style="color:#fff;padding:11px 14px;border-bottom:1px solid #2a2a2d">Silis kumu + reçine</td>
+<td style="color:#86868B;padding:11px 14px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">ayrıca</td>
+<td style="color:#86868B;padding:11px 14px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">—</td>
+<td style="color:#C2C2C7;padding:11px 14px;border-bottom:1px solid #2a2a2d">Kalıp / maça</td>
+</tr>
+</tbody>
+</table>
+<div style="color:#86868B;font-size:12.5px;padding:12px 14px 2px;line-height:1.5">Not: 1 ton sağlam döküm ~1.700 kg sıvı metal (ergitme + yolluk).</div>
+</div><div class="cnote">GGG50 sfero şarj; fiyatlar Haz 2026, günlük değişken.</div></figure>
+<h4 class="reveal">Ürün Bazlı Gelir Kırılımı</h4>
+<figure class="cwrap reveal"><table style="width:100%;border-collapse:collapse;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;background:#161618;border-radius:10px;overflow:hidden">
+<thead>
+<tr>
+<th style="background:#2a1606;color:#F5B775;text-align:left;padding:12px 14px;font-weight:600;border-bottom:1px solid #2a2a2d">Ürün ailesi</th>
+<th style="background:#2a1606;color:#F5B775;text-align:right;padding:12px 14px;font-weight:600;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">Üretim payı</th>
+<th style="background:#2a1606;color:#F5B775;text-align:right;padding:12px 14px;font-weight:600;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">Yıllık ton</th>
+<th style="background:#2a1606;color:#F5B775;text-align:right;padding:12px 14px;font-weight:600;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">Birim fiyat<br><span style="font-weight:400;color:#86868B;font-size:12px">EUR/kg</span></th>
+<th style="background:#2a1606;color:#F5B775;text-align:right;padding:12px 14px;font-weight:600;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">Yıllık gelir<br><span style="font-weight:400;color:#86868B;font-size:12px">EUR</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="color:#fff;padding:11px 14px;border-bottom:1px solid #2a2a2d">Baca kapağı D400 <span style="color:#86868B;font-size:12px">(M1173/M1187)</span></td>
+<td style="color:#C2C2C7;text-align:right;padding:11px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">35%</td>
+<td style="color:#C2C2C7;text-align:right;padding:11px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">840</td>
+<td style="color:#C2C2C7;text-align:right;padding:11px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">1,35</td>
+<td style="color:#C2C2C7;text-align:right;padding:11px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">1.134.000</td>
+</tr>
+<tr>
+<td style="color:#fff;padding:11px 14px;border-bottom:1px solid #2a2a2d">Yağmur ızgara D400 <span style="color:#86868B;font-size:12px">(M1115/M191)</span></td>
+<td style="color:#C2C2C7;text-align:right;padding:11px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">30%</td>
+<td style="color:#C2C2C7;text-align:right;padding:11px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">720</td>
+<td style="color:#C2C2C7;text-align:right;padding:11px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">1,30</td>
+<td style="color:#C2C2C7;text-align:right;padding:11px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">936.000</td>
+</tr>
+<tr>
+<td style="color:#fff;padding:11px 14px;border-bottom:1px solid #2a2a2d">Baca kapağı C250 <span style="color:#86868B;font-size:12px">(M1188)</span></td>
+<td style="color:#C2C2C7;text-align:right;padding:11px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">15%</td>
+<td style="color:#C2C2C7;text-align:right;padding:11px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">360</td>
+<td style="color:#C2C2C7;text-align:right;padding:11px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">1,20</td>
+<td style="color:#C2C2C7;text-align:right;padding:11px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">432.000</td>
+</tr>
+<tr>
+<td style="color:#fff;padding:11px 14px;border-bottom:1px solid #2a2a2d">Kova/mazgal <span style="color:#86868B;font-size:12px">(M192)</span></td>
+<td style="color:#C2C2C7;text-align:right;padding:11px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">12%</td>
+<td style="color:#C2C2C7;text-align:right;padding:11px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">288</td>
+<td style="color:#C2C2C7;text-align:right;padding:11px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">1,15</td>
+<td style="color:#C2C2C7;text-align:right;padding:11px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">331.200</td>
+</tr>
+<tr>
+<td style="color:#fff;padding:11px 14px;border-bottom:1px solid #2a2a2d">Çerçeve</td>
+<td style="color:#C2C2C7;text-align:right;padding:11px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">8%</td>
+<td style="color:#C2C2C7;text-align:right;padding:11px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">192</td>
+<td style="color:#C2C2C7;text-align:right;padding:11px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">1,10</td>
+<td style="color:#C2C2C7;text-align:right;padding:11px 14px;border-bottom:1px solid #2a2a2d;font-variant-numeric:tabular-nums">211.200</td>
+</tr>
+<tr>
+<td style="color:#fff;padding:13px 14px;font-weight:600;border-top:2px solid #E0852F">TOPLAM</td>
+<td style="color:#F5B775;text-align:right;padding:13px 14px;font-weight:600;border-top:2px solid #E0852F;font-variant-numeric:tabular-nums">100%</td>
+<td style="color:#F5B775;text-align:right;padding:13px 14px;font-weight:600;border-top:2px solid #E0852F;font-variant-numeric:tabular-nums">2.400</td>
+<td style="color:#F5B775;text-align:right;padding:13px 14px;font-weight:600;border-top:2px solid #E0852F;font-variant-numeric:tabular-nums">~1,28</td>
+<td style="color:#F5B775;text-align:right;padding:13px 14px;font-weight:600;border-top:2px solid #E0852F;font-variant-numeric:tabular-nums">3.044.400</td>
+</tr>
+</tbody>
+</table><div class="cnote">Tek-fiyat varsayımı yerine ürün kompozisyonu baz alındı; ağırlıklı ortalama satış fiyatı ~1,28 EUR/kg.</div></figure>
+
 <figure class="cwrap reveal"><div class="ctitle">Faaliyet Plani — Kurulus Takvimi (~16 ay)</div><svg viewBox="0 0 720 480" width="100%" style="height:auto;display:block" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="amberBar" x1="0" y1="0" x2="1" y2="0">
@@ -2330,6 +2631,94 @@ footer{background:#000;color:#6e6e73;text-align:center;padding:36px 22px;font-si
 </div>
 <p class="reveal">Tam kapasitede <strong>FAVOK marjı %27,7</strong>, <strong>net kâr marjı %17,8</strong>. Başabaş kapasitenin yalnızca ~%28'i — fabrika düşük doluluk altında bile zarara geçmez.</p>
 
+<h4 class="reveal">Amortisman & Sabit Gider Kırılımı</h4>
+<figure class="cwrap reveal"><table style="width:100%;border-collapse:collapse;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;background:#161618">
+<thead>
+<tr>
+<th style="background:#2a1606;color:#F5B775;text-align:left;padding:11px 12px;font-weight:600;border-bottom:1px solid #2a2a2d">Kalem</th>
+<th style="background:#2a1606;color:#F5B775;text-align:left;padding:11px 12px;font-weight:600;border-bottom:1px solid #2a2a2d">Oran / Yöntem</th>
+<th style="background:#2a1606;color:#F5B775;text-align:right;padding:11px 12px;font-weight:600;border-bottom:1px solid #2a2a2d">Tutar (EUR)</th>
+<th style="background:#2a1606;color:#F5B775;text-align:right;padding:11px 12px;font-weight:600;border-bottom:1px solid #2a2a2d">Tutar (TL ×53,3)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="color:#fff;padding:10px 12px;border-bottom:1px solid #2a2a2d">Amortisman (makine-teçhizat)</td>
+<td style="color:#C2C2C7;padding:10px 12px;border-bottom:1px solid #2a2a2d">810.000 EUR'nin %10'u</td>
+<td style="color:#C2C2C7;padding:10px 12px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">81.000</td>
+<td style="color:#C2C2C7;padding:10px 12px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">4.317.300</td>
+</tr>
+<tr>
+<td style="color:#fff;padding:10px 12px;border-bottom:1px solid #2a2a2d">Bina amortismanı</td>
+<td style="color:#C2C2C7;padding:10px 12px;border-bottom:1px solid #2a2a2d">Kiralık → 0</td>
+<td style="color:#86868B;padding:10px 12px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">0</td>
+<td style="color:#86868B;padding:10px 12px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">0</td>
+</tr>
+<tr>
+<td style="color:#fff;padding:10px 12px;border-bottom:1px solid #2a2a2d">Sigorta (makine)</td>
+<td style="color:#C2C2C7;padding:10px 12px;border-bottom:1px solid #2a2a2d">Makine değeri ~%3</td>
+<td style="color:#C2C2C7;padding:10px 12px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">~24.000</td>
+<td style="color:#C2C2C7;padding:10px 12px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">~1.279.200</td>
+</tr>
+<tr>
+<td style="color:#fff;padding:10px 12px;border-bottom:1px solid #2a2a2d">Bakım-onarım</td>
+<td style="color:#C2C2C7;padding:10px 12px;border-bottom:1px solid #2a2a2d">Sabit kıymet %2</td>
+<td style="color:#C2C2C7;padding:10px 12px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">~16.000</td>
+<td style="color:#C2C2C7;padding:10px 12px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">~852.800</td>
+</tr>
+<tr>
+<td style="color:#fff;padding:10px 12px;border-bottom:1px solid #2a2a2d">Personel (çekirdek)</td>
+<td style="color:#C2C2C7;padding:10px 12px;border-bottom:1px solid #2a2a2d">Yalın ~25-30 kişi, EUR bazlı</td>
+<td style="color:#C2C2C7;padding:10px 12px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">~180.000</td>
+<td style="color:#C2C2C7;padding:10px 12px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">~9.594.000</td>
+</tr>
+<tr>
+<td style="color:#fff;padding:10px 12px;border-bottom:1px solid #2a2a2d">Genel / idari giderler</td>
+<td style="color:#C2C2C7;padding:10px 12px;border-bottom:1px solid #2a2a2d">Kalan denge kalemi</td>
+<td style="color:#C2C2C7;padding:10px 12px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">~19.000</td>
+<td style="color:#C2C2C7;padding:10px 12px;border-bottom:1px solid #2a2a2d;text-align:right;font-variant-numeric:tabular-nums">~1.012.700</td>
+</tr>
+<tr>
+<td style="color:#fff;padding:11px 12px;font-weight:600;border-top:2px solid #E0852F">TOPLAM</td>
+<td style="color:#C2C2C7;padding:11px 12px;border-top:2px solid #E0852F">Yıllık sabit gider</td>
+<td style="color:#F5B775;padding:11px 12px;border-top:2px solid #E0852F;text-align:right;font-weight:600;font-variant-numeric:tabular-nums">~320.000</td>
+<td style="color:#F5B775;padding:11px 12px;border-top:2px solid #E0852F;text-align:right;font-weight:600;font-variant-numeric:tabular-nums">~17.056.000</td>
+</tr>
+</tbody>
+</table><div class="cnote">Finansal modeldeki 320.000 EUR/yıl sabit giderin kalem kırılımı; amortisman oran-bazlı (makine-teçhizat 810.000 EUR'nin %10'u). TL kuru ×53,3.</div></figure>
+<h4 class="reveal">Milli Ekonomiye Katkı (tahmini)</h4>
+<figure class="cwrap reveal"><div style="width:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;box-sizing:border-box;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;">
+<div style="background:#161618;border:1px solid #2a2a2d;border-radius:14px;padding:18px 18px 16px;box-sizing:border-box;">
+<div style="font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#86868B;">Net Yurtiçi Katma Değer</div>
+<div style="margin-top:10px;font-size:26px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums;">~70 <span style="font-size:14px;font-weight:500;color:#C2C2C7;">M TL/yıl</span></div>
+<div style="margin-top:8px;font-size:11.5px;line-height:1.5;color:#C2C2C7;">Net kâr ~25M + işçilik ~35M + amortisman/vergi ~10M</div>
+</div>
+<div style="background:#161618;border:1px solid #2a2a2d;border-radius:14px;padding:18px 18px 16px;box-sizing:border-box;">
+<div style="font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#86868B;">Yatırım Üretkenliği</div>
+<div style="margin-top:10px;font-size:26px;font-weight:700;color:#E0852F;font-variant-numeric:tabular-nums;">~%131</div>
+<div style="margin-top:8px;font-size:11.5px;line-height:1.5;color:#C2C2C7;">Katma değer / toplam yatırım (53,3M TL)</div>
+</div>
+<div style="background:#161618;border:1px solid #2a2a2d;border-radius:14px;padding:18px 18px 16px;box-sizing:border-box;">
+<div style="font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#86868B;">Sermaye–İstihdam Oranı</div>
+<div style="margin-top:10px;font-size:26px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums;">~1,16 <span style="font-size:14px;font-weight:500;color:#C2C2C7;">M TL/kişi</span></div>
+<div style="margin-top:8px;font-size:11.5px;line-height:1.5;color:#C2C2C7;">53,3M TL / 46 kişi</div>
+</div>
+<div style="background:#161618;border:1px solid #2a2a2d;border-radius:14px;padding:18px 18px 16px;box-sizing:border-box;">
+<div style="font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#86868B;">Sermaye–Hasıla Oranı</div>
+<div style="margin-top:10px;font-size:26px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums;">~0,73</div>
+<div style="margin-top:8px;font-size:11.5px;line-height:1.5;color:#C2C2C7;">Yatırılan sermaye başına yıllık üretim değeri</div>
+</div>
+<div style="background:#161618;border:1px solid #2a2a2d;border-radius:14px;padding:18px 18px 16px;box-sizing:border-box;">
+<div style="font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#86868B;">İstihdam</div>
+<div style="margin-top:10px;font-size:26px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums;">46 <span style="font-size:14px;font-weight:500;color:#C2C2C7;">kişi</span></div>
+<div style="margin-top:8px;font-size:11.5px;line-height:1.5;color:#C2C2C7;">Doğrudan tam zamanlı istihdam</div>
+</div>
+<div style="background:#161618;border:1px solid #2a2a2d;border-radius:14px;padding:18px 18px 16px;box-sizing:border-box;">
+<div style="font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#86868B;">İhracat Geliri (döviz)</div>
+<div style="margin-top:10px;font-size:26px;font-weight:700;color:#F5B775;font-variant-numeric:tabular-nums;">Potansiyel</div>
+<div style="margin-top:8px;font-size:11.5px;line-height:1.5;color:#C2C2C7;">Yıllık döviz kazandırıcı ihracat geliri potansiyeli</div>
+</div>
+</div><div class="cnote">ALAN CAST rakamlarıyla tahmini; yatırımcı/teşvik sunumu göstergeleri.</div></figure>
 <div class="secno reveal">7</div>
 <h2 id="sec-7" class="sec reveal">Duyarlılık &amp; Senaryolar</h2>
 <p class="sec-lead reveal">Üç kilit değişkende de en kötü uçta bile NBD pozitif ve İVO &gt; %15. Model en çok değişken maliyete (metal/enerji) duyarlı.</p>
