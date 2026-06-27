@@ -101,16 +101,17 @@ h1{font-size:17px;font-weight:600;letter-spacing:2.5px}
   font-size:14px;font-weight:400;padding:2px 0;font-family:inherit;text-overflow:ellipsis}
 .enm:focus{outline:none;color:#fff!important;border-bottom-color:var(--line)}
 .val{display:flex;align-items:baseline;justify-content:flex-end;gap:2px;flex:none;
-  font-variant-numeric:tabular-nums;overflow:hidden}
-.val.tl{width:74px} .val.eur{width:60px}
-.val::before{font-size:9px;color:var(--mut);font-weight:400;flex:none}
+  font-variant-numeric:tabular-nums}
+.val.tl{width:80px} .val.eur{width:68px}
+.val::before{font-size:12px;color:var(--mut);font-weight:400;flex:none}
 .val.tl::before{content:'₺'} .val.eur::before{content:'€'}
-.val.paid{font-weight:700}
+.vnum{font-size:14px;cursor:pointer;white-space:nowrap;padding:2px 0;font-variant-numeric:tabular-nums}
+.val.paid .vnum{font-weight:700}
 .val.calc{opacity:.4}
-.vin{background:none;border:none;border-bottom:1px solid transparent;font-size:14px;font-weight:700;
-  text-align:right;padding:2px 0;width:100%;min-width:0;font-variant-numeric:tabular-nums;font-family:inherit}
-.vin:focus{outline:none;color:#fff!important;border-bottom-color:#fff}
-.vc{font-size:14px;color:var(--mut);cursor:pointer;font-weight:400;padding:2px 0;white-space:nowrap}
+.val.calc .vnum{color:#fff;font-weight:400}
+.vedit{width:54px;font-size:14px;font-weight:700;text-align:right;background:none;border:none;
+  border-bottom:1px solid #fff;color:#fff;padding:2px 0;font-variant-numeric:tabular-nums;font-family:inherit}
+.vedit:focus{outline:none}
 .emonths{flex:none;width:46px;box-sizing:border-box;background:none;border:1px solid var(--line);color:var(--mut);
   font-size:9px;letter-spacing:.2px;padding:3px 2px;cursor:pointer;font-family:inherit;white-space:nowrap;
   overflow:hidden;text-overflow:ellipsis;text-align:center}

@@ -32,7 +32,7 @@ const GROUPS=[
 
 /* Tek tip kalem: {id,t(gelir/gider),g(grup),n(ad),cur(E/T),a(tutar),months('all' | [aylar])} */
 const DEFAULTS={
- v:4, kur:54.95, birikim:31000,
+ v:5, kur:54.95, birikim:31000,
  items:[
   // --- Gelirler (tüm gelirler tek grupta) ---
   {id:"g1",t:"gelir",g:"Gelirler",n:"Eslemisko Maaşı",cur:"T",a:316000,months:"all"},
@@ -142,6 +142,15 @@ function remapV4(st){
   st.v=4;
   return st;
 }
+/* v4 → v5: Ekstralar'a düşmüş ev kalemleri (emlak/dask/yangın/ev) Diğer Evler'e gitsin */
+function remapV5(st){
+  const houseRe=/emlak|dask|yang[ıi]n|\bev\b/i;
+  (st.items||[]).forEach(it=>{
+    if(it.g==="Ekstralar" && it.t==="gider" && houseRe.test(it.n)) it.g="Diğer Evler (Türkiye)";
+  });
+  st.v=5;
+  return st;
+}
 function load(){
   let raw=null;
   try{raw=localStorage.getItem("nakit2026");}catch(e){}
@@ -152,10 +161,11 @@ function load(){
         S=d; let changed=false;
         if(S.v<3){remapGroups(S); changed=true;}
         if(S.v<4){remapV4(S); changed=true;}
+        if(S.v<5){remapV5(S); changed=true;}
         if(changed)save();
         return;
       }
-      S=remapV4(remapGroups(migrate(d))); save(); return;
+      S=remapV5(remapV4(remapGroups(migrate(d)))); save(); return;
     }catch(e){}
   }
   S=JSON.parse(JSON.stringify(DEFAULTS));
@@ -345,11 +355,11 @@ function renderEditor(){
       const tlNum=Math.round(it.cur==="T"?it.a:it.a*S.kur);
       const eurNum=Math.round(it.cur==="E"?it.a:it.a/S.kur);
       const tlCell=it.cur==="T"
-        ? `<input class="vin" type="number" inputmode="decimal" value="${it.a}" data-id="${it.id}" style="color:${base}">`
-        : `<span class="vc" data-sw="${it.id}" data-to="T">${tlNum.toLocaleString("tr-TR")}</span>`;
+        ? `<span class="vnum ed" data-ed="${it.id}" style="color:${base}">${tlNum.toLocaleString("tr-TR")}</span>`
+        : `<span class="vnum sw" data-sw="${it.id}" data-to="T">${tlNum.toLocaleString("tr-TR")}</span>`;
       const eurCell=it.cur==="E"
-        ? `<input class="vin" type="number" inputmode="decimal" value="${it.a}" data-id="${it.id}" style="color:${base}">`
-        : `<span class="vc" data-sw="${it.id}" data-to="E">${eurNum.toLocaleString("tr-TR")}</span>`;
+        ? `<span class="vnum ed" data-ed="${it.id}" style="color:${base}">${eurNum.toLocaleString("tr-TR")}</span>`
+        : `<span class="vnum sw" data-sw="${it.id}" data-to="E">${eurNum.toLocaleString("tr-TR")}</span>`;
       html+=`<div class="ewrap" data-id="${it.id}">
         <div class="erow">
           <span class="dh" data-dh="${it.id}" title="Sürükle">⠿</span>
@@ -380,11 +390,17 @@ function bindEditor(){
   document.querySelectorAll(".enm").forEach(inp=>inp.onchange=()=>{
     const it=findItem(inp.dataset.id); if(it){it.n=inp.value.trim()||it.n; save();}
   });
-  document.querySelectorAll(".vin").forEach(inp=>inp.onchange=()=>{
-    const it=findItem(inp.dataset.id); if(it){it.a=parseFloat(inp.value)||0; save(); renderEditor();
-      toast(it.months==="all"?"Tüm aylara uygulandı ✓":"Kaydedildi ✓");}
+  document.querySelectorAll(".vnum.ed").forEach(sp=>sp.onclick=()=>{
+    const it=findItem(sp.dataset.ed); if(!it)return;
+    const inp=document.createElement("input");
+    inp.type="number"; inp.inputMode="decimal"; inp.value=it.a; inp.className="vedit";
+    sp.replaceWith(inp); inp.focus(); inp.select();
+    let done=false;
+    inp.onchange=()=>{done=true; it.a=parseFloat(inp.value)||0; save(); renderEditor();
+      toast(it.months==="all"?"Tüm aylara uygulandı ✓":"Kaydedildi ✓");};
+    inp.onblur=()=>{if(!done)renderEditor();};
   });
-  document.querySelectorAll(".vc[data-sw]").forEach(s=>s.onclick=()=>{
+  document.querySelectorAll(".vnum.sw").forEach(s=>s.onclick=()=>{
     const it=findItem(s.dataset.sw); if(!it)return;
     const to=s.dataset.to; if(to===it.cur)return;
     // gösterilen değer aynı kalsın diye tutarı hedef para birimine çevir
