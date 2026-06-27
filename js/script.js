@@ -55,15 +55,20 @@ function resetZoom(wrap) {
     setZoomState(wrap, { scale: 1, tx: 0, ty: 0 });
 }
 
+// Adobe/Behance CCV embed URL from a video id
+function ccvUrl(videoId) {
+    return `https://www-ccv.adobe.io/v1/player/ccv/${videoId}/embed?bgcolor=%23000000&autoplay=true&muted=true&api_key=BehancePro2View`;
+}
+
 // Create a video slide — iframe stays empty until the slide becomes active (prevents all videos auto-playing at once)
-function createVideoSlide(videoId) {
+// Accepts a FULL embed URL (ccv or youtube).
+function createVideoSlide(src) {
     const videoSlide = document.createElement('section');
     videoSlide.className = 'page page--video';
-    videoSlide.dataset.videoId = videoId;
     const vw = document.createElement('div');
     vw.className = 'video-wrap';
     const iframe = document.createElement('iframe');
-    iframe.dataset.src = `https://www-ccv.adobe.io/v1/player/ccv/${videoId}/embed?bgcolor=%23000000&autoplay=true&muted=true&api_key=BehancePro2View`;
+    iframe.dataset.src = src;
     iframe.setAttribute('frameborder', '0');
     iframe.setAttribute('allowfullscreen', '');
     iframe.setAttribute('allow', 'autoplay; fullscreen');
@@ -71,6 +76,45 @@ function createVideoSlide(videoId) {
     vw.appendChild(iframe);
     videoSlide.appendChild(vw);
     return videoSlide;
+}
+
+// Create a full-screen image slide (for added images via the deck manager)
+function createImgSlide(src) {
+    const slide = document.createElement('section');
+    slide.className = 'page page--img';
+    const img = document.createElement('img');
+    img.src = src;
+    img.style.cssText = 'width:100%;height:100%;object-fit:contain;display:block';
+    slide.appendChild(img);
+    return slide;
+}
+
+// Build one PDF page slide (canvas + zoom)
+function buildPdfSlide(p) {
+    const slide = document.createElement('section');
+    slide.className = 'page page--pdf';
+    slide.dataset.pdfPage = p;
+    const stage = document.createElement('div'); stage.className = 'pdf-stage';
+    const wrap = document.createElement('div'); wrap.className = 'pdf-zoom';
+    wrap.dataset.scale = '1'; wrap.dataset.tx = '0'; wrap.dataset.ty = '0';
+    const canvas = document.createElement('canvas'); canvas.className = 'pdf-page-canvas';
+    wrap.appendChild(canvas); stage.appendChild(wrap); slide.appendChild(stage);
+    attachZoomHandlers(stage, wrap);
+    return slide;
+}
+
+// Build deck from deck.json slide list ({t:'pdf',p} | {t:'video',src} | {t:'img',src})
+function buildDeckFromConfig(slides) {
+    slides.forEach(sl => {
+        let el = null;
+        if (sl.t === 'pdf') el = buildPdfSlide(sl.p);
+        else if (sl.t === 'video' && sl.src) el = createVideoSlide(sl.src);
+        else if (sl.t === 'img' && sl.src) el = createImgSlide(sl.src);
+        if (!el) return;
+        deck.appendChild(el);
+        allSlides.push(el);
+    });
+    counterTotal.textContent = String(allSlides.length).padStart(2, '0');
 }
 
 // Activate the video for the current slide; pause all others
@@ -122,7 +166,7 @@ function buildDeck(totalPdfPages) {
         attachZoomHandlers(stage, wrap);
 
         if (videoMap.has(p)) {
-            const videoSlide = createVideoSlide(videoMap.get(p));
+            const videoSlide = createVideoSlide(ccvUrl(videoMap.get(p)));
             deck.appendChild(videoSlide);
             allSlides.push(videoSlide);
         }
@@ -130,7 +174,7 @@ function buildDeck(totalPdfPages) {
 
     // Outro videos (after all PDF pages) — e.g. moved intro to the end
     OUTRO_VIDEO_IDS.forEach(id => {
-        const videoSlide = createVideoSlide(id);
+        const videoSlide = createVideoSlide(ccvUrl(id));
         deck.appendChild(videoSlide);
         allSlides.push(videoSlide);
     });
@@ -450,7 +494,26 @@ if (screen.orientation && screen.orientation.addEventListener) {
             if (p.total > 0) loadingBar.style.width = Math.min(100, (p.loaded / p.total) * 100) + '%';
         };
         pdfDoc = await loadingTask.promise;
-        buildDeck(pdfDoc.numPages);
+        // deck.json varsa ondan kur (sıra/sil/ekle yönetilebilir); yoksa veya hata olursa eski davranışa düş
+        let deckCfg = null;
+        try {
+            const r = await fetch('deck.json', { cache: 'no-store' });
+            if (r.ok) {
+                const j = await r.json();
+                if (j && Array.isArray(j.slides) && j.slides.length) deckCfg = j.slides;
+            }
+        } catch (e) { /* yok say → fallback */ }
+        if (deckCfg) {
+            try {
+                buildDeckFromConfig(deckCfg);
+            } catch (e) {
+                console.warn('deck.json build failed, fallback to PDF order', e);
+                allSlides = []; renderedPages.clear(); deck.innerHTML = '';
+                buildDeck(pdfDoc.numPages);
+            }
+        } else {
+            buildDeck(pdfDoc.numPages);
+        }
         updateUI();
         const firstPdf = allSlides.find(s => s.classList.contains('page--pdf'));
         if (firstPdf) await renderPdfPage(firstPdf);
