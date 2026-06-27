@@ -7,7 +7,7 @@ const COL=["#6366F1","#8B5CF6","#14B8A6","#10B981","#84CC16","#F59E0B","#F97316"
 
 /* Her grubun rengi: başlık tam renk, alt kalemler bu rengin soluk hali. */
 const GCOL={
-  "Maaşlar":"#5FBE8C",
+  "Gelirler":"#5FBE8C",
   "Yaşadığımız Ev (İtalya)":"#C25B6E",
   "Diğer Evler (Türkiye)":"#A07BC8",
   "Araç":"#5B9CC2",
@@ -19,26 +19,28 @@ function gColor(key,gi){return GCOL[key]||COL[gi%COL.length];}
 function rgbaOf(hex,a){const h=hex.replace("#","");
   return `rgba(${parseInt(h.slice(0,2),16)},${parseInt(h.slice(2,4),16)},${parseInt(h.slice(4,6),16)},${a})`;}
 
-/* Grup sırası + tipi (gelir / gider / mix). items[].g bu anahtarlardan biri olur. */
+/* Grup sırası + tipi. Tüm gelirler ilk grupta; geri kalanı gider grupları. */
 const GROUPS=[
-  {key:"Maaşlar", t:"gelir"},
+  {key:"Gelirler", t:"gelir"},
   {key:"Yaşadığımız Ev (İtalya)", t:"gider"},
-  {key:"Diğer Evler (Türkiye)", t:"mix"},
+  {key:"Diğer Evler (Türkiye)", t:"gider"},
   {key:"Araç", t:"gider"},
   {key:"Abonelikler", t:"gider"},
   {key:"Vergiler", t:"gider"},
-  {key:"Ekstralar", t:"mix"}
+  {key:"Ekstralar", t:"gider"}
 ];
 
 /* Tek tip kalem: {id,t(gelir/gider),g(grup),n(ad),cur(E/T),a(tutar),months('all' | [aylar])} */
 const DEFAULTS={
- v:3, kur:54.95, birikim:31000,
+ v:4, kur:54.95, birikim:31000,
  items:[
-  // --- Maaşlar ---
-  {id:"g1",t:"gelir",g:"Maaşlar",n:"Eslemisko Maaşı",cur:"T",a:316000,months:"all"},
-  {id:"g2",t:"gelir",g:"Maaşlar",n:"Changan Maaşı",cur:"E",a:3320,months:"all"},
-  {id:"g5",t:"gelir",g:"Maaşlar",n:"Changan 13. Maaş",cur:"E",a:3320,months:[12]},
-  {id:"g6",t:"gelir",g:"Maaşlar",n:"Changan Bonus",cur:"E",a:1000,months:[12]},
+  // --- Gelirler (tüm gelirler tek grupta) ---
+  {id:"g1",t:"gelir",g:"Gelirler",n:"Eslemisko Maaşı",cur:"T",a:316000,months:"all"},
+  {id:"g2",t:"gelir",g:"Gelirler",n:"Changan Maaşı",cur:"E",a:3320,months:"all"},
+  {id:"g3",t:"gelir",g:"Gelirler",n:"Eslem Evi (kirada) — Kira Geliri",cur:"T",a:85000,months:"all"},
+  {id:"g4",t:"gelir",g:"Gelirler",n:"Kürşat Evi (kirada) — Yıllık Kira",cur:"T",a:420000,months:[12]},
+  {id:"g5",t:"gelir",g:"Gelirler",n:"Changan 13. Maaş",cur:"E",a:3320,months:[12]},
+  {id:"g6",t:"gelir",g:"Gelirler",n:"Changan Bonus",cur:"E",a:1000,months:[12]},
   // --- Yaşadığımız Ev (İtalya) ---
   {id:"h1",t:"gider",g:"Yaşadığımız Ev (İtalya)",n:"Ev Kirası (İtalya)",cur:"E",a:1300,months:"all"},
   {id:"h2",t:"gider",g:"Yaşadığımız Ev (İtalya)",n:"Yemek",cur:"E",a:720,months:"all"},
@@ -48,9 +50,7 @@ const DEFAULTS={
   {id:"h6",t:"gider",g:"Yaşadığımız Ev (İtalya)",n:"İtalyanca Dersi",cur:"T",a:4000,months:"all"},
   {id:"h7",t:"gider",g:"Yaşadığımız Ev (İtalya)",n:"Saç Kesimi",cur:"E",a:37,months:"all"},
   {id:"h8",t:"gider",g:"Yaşadığımız Ev (İtalya)",n:"İnternet (İtalya)",cur:"E",a:25,months:"all"},
-  // --- Diğer Evler (Türkiye): kira gelirleri + bu evlerin vergi/kredi giderleri ---
-  {id:"g3",t:"gelir",g:"Diğer Evler (Türkiye)",n:"Eslem Evi (kirada) — Kira Geliri",cur:"T",a:85000,months:"all"},
-  {id:"g4",t:"gelir",g:"Diğer Evler (Türkiye)",n:"Kürşat Evi (kirada) — Yıllık Kira",cur:"T",a:420000,months:[12]},
+  // --- Diğer Evler (Türkiye): bu evlerin vergi/kredi giderleri ---
   {id:"k1",t:"gider",g:"Diğer Evler (Türkiye)",n:"Kürşat Evi — Konut Kredisi (kalan ₺42.000)",cur:"T",a:910,months:"all"},
   {id:"y5",t:"gider",g:"Diğer Evler (Türkiye)",n:"Kürşat Evi — Kira Gelir Vergisi (2 taksit)",cur:"T",a:38500,months:[5,7]},
   {id:"y6",t:"gider",g:"Diğer Evler (Türkiye)",n:"Eslem Evleri — Emlak Vergisi (2 taksit)",cur:"T",a:19750,months:[5,11]},
@@ -136,6 +136,12 @@ function remapGroups(st){
   st.v=3;
   return st;
 }
+/* v3 → v4: tüm gelirler tek "Gelirler" grubunda toplansın */
+function remapV4(st){
+  (st.items||[]).forEach(it=>{ if(it.t==="gelir") it.g="Gelirler"; });
+  st.v=4;
+  return st;
+}
 function load(){
   let raw=null;
   try{raw=localStorage.getItem("nakit2026");}catch(e){}
@@ -143,11 +149,13 @@ function load(){
     try{
       const d=JSON.parse(raw);
       if(d&&d.v>=2&&Array.isArray(d.items)){
-        S=d;
-        if(d.v<3){remapGroups(S); save();}
+        S=d; let changed=false;
+        if(S.v<3){remapGroups(S); changed=true;}
+        if(S.v<4){remapV4(S); changed=true;}
+        if(changed)save();
         return;
       }
-      S=remapGroups(migrate(d)); save(); return;
+      S=remapV4(remapGroups(migrate(d))); save(); return;
     }catch(e){}
   }
   S=JSON.parse(JSON.stringify(DEFAULTS));
@@ -319,41 +327,39 @@ function renderEditor(){
     if(!items.length && g.key==="Ekstralar")return;  // boş ekstralar grubunu gizle
     let inSum=0,outSum=0;
     items.forEach(i=>{const an=annual(i); if(i.t==="gelir")inSum+=an; else outSum+=an;});
-    const net=inSum-outSum;
     const base=gColor(g.key,gi);
-    const cTxt=rgbaOf(base,.72), cAmt=rgbaOf(base,.82), cCur=rgbaOf(base,.9), cBd=rgbaOf(base,.35);
+    const cTxt=rgbaOf(base,.72);
     const share=totOut>0?outSum/totOut*100:0;
-    let totHtml,totCol;
-    if(g.t==="mix"){totCol=net>=0?"var(--in)":"var(--out)";totHtml=(net>=0?"+":"−")+"€"+Math.round(Math.abs(net)).toLocaleString("tr-TR");}
-    else if(g.t==="gelir"){totCol=base;totHtml=fE(inSum);}
-    else{totCol=base;totHtml=fE(outSum);}
+    const totVal=g.t==="gelir"?inSum:outSum;
     html+=`<div class="grp">
       <div class="grphead"><span class="grpname" style="color:${base}">${g.key}</span>
-      <span class="grptot" style="color:${totCol}">${totHtml}<small> /yıl</small></span></div>`;
+      <span class="grptot" style="color:${base}">${fE(totVal)}<small> /yıl</small></span></div>`;
     if(g.t!=="gelir"&&outSum>0)html+=`<div class="grpbar"><div style="width:${share}%;background:${base}"></div></div>`;
+    html+=`<div class="glist" data-group="${escapeHtml(g.key)}">`;
     items.forEach(it=>{
       const open=openPicker===it.id?" open":"";
-      const isInc=it.t==="gelir";
-      const aCol=isInc?"var(--in)":cAmt;
-      html+=`<div class="ewrap">
+      const tlNum=Math.round(it.cur==="T"?it.a:it.a*S.kur);
+      const eurNum=Math.round(it.cur==="E"?it.a:it.a/S.kur);
+      const tlCell=it.cur==="T"
+        ? `<input class="vin" type="number" inputmode="decimal" value="${it.a}" data-id="${it.id}" style="color:${base}">`
+        : `<span class="vc" data-sw="${it.id}" data-to="T">${tlNum.toLocaleString("tr-TR")}</span>`;
+      const eurCell=it.cur==="E"
+        ? `<input class="vin" type="number" inputmode="decimal" value="${it.a}" data-id="${it.id}" style="color:${base}">`
+        : `<span class="vc" data-sw="${it.id}" data-to="E">${eurNum.toLocaleString("tr-TR")}</span>`;
+      html+=`<div class="ewrap" data-id="${it.id}">
         <div class="erow">
+          <span class="dh" data-dh="${it.id}" title="Sürükle">⠿</span>
           <input class="enm" value="${escapeHtml(it.n)}" data-id="${it.id}" style="color:${cTxt}">
-          <span class="eeq">≈ ${fOther(it)}</span>
-          ${isInc?'<span class="eplus">+</span>':''}
-          <input class="eamt" type="number" inputmode="decimal" value="${it.a}" data-id="${it.id}" style="color:${aCol}">
-          <button class="ecur" data-cur="${it.id}" style="color:${cCur};border-color:${cBd}">${it.cur==="E"?"€":"₺"}</button>
+          <div class="val tl ${it.cur==='T'?'paid':'calc'}">${tlCell}</div>
+          <div class="val eur ${it.cur==='E'?'paid':'calc'}">${eurCell}</div>
           <button class="emonths${open}" data-mp="${it.id}">${monthsLabel(it)}</button>
           <button class="edel" data-del="${it.id}">✕</button>
         </div>
         ${open?monthPickerHTML(it):""}
       </div>`;
     });
-    if(g.t==="mix"){
-      html+=`<button class="addrow" data-add="${escapeHtml(g.key)}" data-addt="gelir">+ gelir ekle</button>`
-          +`<button class="addrow" data-add="${escapeHtml(g.key)}" data-addt="gider">+ gider ekle</button>`;
-    }else{
-      html+=`<button class="addrow" data-add="${escapeHtml(g.key)}" data-addt="${g.t}">+ ${g.t==="gelir"?"gelir":"gider"} ekle</button>`;
-    }
+    html+=`</div>`;
+    html+=`<button class="addrow" data-add="${escapeHtml(g.key)}" data-addt="${g.t==='gelir'?'gelir':'gider'}">+ ${g.t==='gelir'?'gelir':'gider'} ekle</button>`;
     html+=`</div>`;
   });
   document.getElementById("groups").innerHTML=html;
@@ -370,15 +376,17 @@ function bindEditor(){
   document.querySelectorAll(".enm").forEach(inp=>inp.onchange=()=>{
     const it=findItem(inp.dataset.id); if(it){it.n=inp.value.trim()||it.n; save();}
   });
-  document.querySelectorAll(".eamt").forEach(inp=>inp.onchange=()=>{
+  document.querySelectorAll(".vin").forEach(inp=>inp.onchange=()=>{
     const it=findItem(inp.dataset.id); if(it){it.a=parseFloat(inp.value)||0; save(); renderEditor();
       toast(it.months==="all"?"Tüm aylara uygulandı ✓":"Kaydedildi ✓");}
   });
-  document.querySelectorAll(".ecur").forEach(b=>b.onclick=()=>{
-    const it=findItem(b.dataset.cur); if(!it)return;
-    if(it.cur==="E"){it.a=Math.round(it.a*S.kur*100)/100; it.cur="T";}
-    else{it.a=Math.round(it.a/S.kur*100)/100; it.cur="E";}
-    save(); renderEditor(); toast("Para birimi çevrildi ✓");
+  document.querySelectorAll(".vc[data-sw]").forEach(s=>s.onclick=()=>{
+    const it=findItem(s.dataset.sw); if(!it)return;
+    const to=s.dataset.to; if(to===it.cur)return;
+    // gösterilen değer aynı kalsın diye tutarı hedef para birimine çevir
+    if(to==="E") it.a=Math.round((it.cur==="T"?it.a/S.kur:it.a)*100)/100;
+    else it.a=Math.round((it.cur==="E"?it.a*S.kur:it.a)*100)/100;
+    it.cur=to; save(); renderEditor(); toast(to==="E"?"€ ile ödeniyor ✓":"₺ ile ödeniyor ✓");
   });
   document.querySelectorAll("[data-mp]").forEach(b=>b.onclick=()=>{
     openPicker=openPicker===b.dataset.mp?null:b.dataset.mp; renderEditor();
@@ -409,7 +417,72 @@ function bindEditor(){
     S.items.push(it); openPicker=null; save(); renderEditor();
     setTimeout(()=>{const el=document.querySelector('.enm[data-id="'+it.id+'"]'); if(el){el.focus(); el.select();}},0);
   });
+  setupDrag();
   wireSettings(renderEditor);
+}
+
+/* Tut-çek ile sıralama (dokunmatik + fare). Tutamaçtan sürüklenir;
+   başka gruba bırakılırsa o kaleme yeni grup atanır. */
+function setupDrag(){
+  let dragEl=null;
+  const listUnder=(x,y)=>{const el=document.elementFromPoint(x,y); return el?el.closest(".glist"):null;};
+  const afterEl=(list,y)=>{
+    let res=null,min=Infinity;
+    list.querySelectorAll(".ewrap:not(.dragging)").forEach(c=>{
+      const b=c.getBoundingClientRect(), center=b.top+b.height/2;
+      if(y<center && center-y<min){min=center-y; res=c;}
+    });
+    return res;
+  };
+  const commit=()=>{
+    const seen=[], newItems=[];
+    document.querySelectorAll(".glist").forEach(list=>{
+      const gk=list.dataset.group;
+      list.querySelectorAll(".ewrap").forEach(w=>{
+        const it=findItem(w.dataset.id);
+        if(it){it.g=gk; newItems.push(it); seen.push(it.id);}
+      });
+    });
+    S.items.forEach(it=>{if(!seen.includes(it.id))newItems.push(it);}); // gizli grupları koru
+    S.items=newItems; save(); renderEditor();
+  };
+  let lastX=0,lastY=0,scrollTimer=null;
+  const place=()=>{
+    if(!dragEl)return;
+    const list=listUnder(lastX,lastY)||dragEl.parentElement;
+    const ref=afterEl(list,lastY);
+    if(ref)list.insertBefore(dragEl,ref); else list.appendChild(dragEl);
+  };
+  const autoScroll=()=>{
+    if(!dragEl){clearInterval(scrollTimer);scrollTimer=null;return;}
+    const h=window.innerHeight;
+    let d=0;
+    if(lastY<70)d=-Math.min(14,(70-lastY)/3+4);
+    else if(lastY>h-70)d=Math.min(14,(lastY-(h-70))/3+4);
+    if(d){window.scrollBy(0,d); place();}
+  };
+  document.querySelectorAll(".dh").forEach(h=>{
+    h.addEventListener("pointerdown",e=>{
+      e.preventDefault();
+      dragEl=h.closest(".ewrap"); if(!dragEl)return;
+      dragEl.classList.add("dragging");
+      lastX=e.clientX; lastY=e.clientY;
+      if(!scrollTimer)scrollTimer=setInterval(autoScroll,16);
+      const move=ev=>{
+        ev.preventDefault();
+        lastX=ev.clientX; lastY=ev.clientY; place();
+      };
+      const up=()=>{
+        document.removeEventListener("pointermove",move);
+        document.removeEventListener("pointerup",up);
+        clearInterval(scrollTimer); scrollTimer=null;
+        if(dragEl)dragEl.classList.remove("dragging");
+        dragEl=null; commit();
+      };
+      document.addEventListener("pointermove",move);
+      document.addEventListener("pointerup",up);
+    });
+  });
 }
 
 /* ---- ortak: kur / birikim ayar alanı + otomatik kur ---- */
