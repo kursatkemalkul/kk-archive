@@ -5,6 +5,20 @@ const MT=["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos",
 const MS=["Oca","Şub","Mar","Nis","May","Haz","Tem","Ağu","Eyl","Eki","Kas","Ara"];
 const COL=["#6366F1","#8B5CF6","#14B8A6","#10B981","#84CC16","#F59E0B","#F97316","#F43F5E","#06B6D4","#64748B","#3B82F6","#EF4444"];
 
+/* Her grubun rengi: başlık tam renk, alt kalemler bu rengin soluk hali. */
+const GCOL={
+  "Gelirler":"#5FBE8C",
+  "Ev & Yaşam (İtalya)":"#C25B6E",
+  "Araç":"#5B9CC2",
+  "Kürşat Evi":"#A07BC8",
+  "Abonelikler":"#C79A5B",
+  "Yıllık Giderler & Vergiler":"#C77B5B",
+  "Ekstralar":"#8FA85B"
+};
+function gColor(key,gi){return GCOL[key]||COL[gi%COL.length];}
+function rgbaOf(hex,a){const h=hex.replace("#","");
+  return `rgba(${parseInt(h.slice(0,2),16)},${parseInt(h.slice(2,4),16)},${parseInt(h.slice(4,6),16)},${a})`;}
+
 /* Grup sırası + tipi. items[].g bu anahtarlardan biri olur. */
 const GROUPS=[
   {key:"Gelirler", t:"gelir"},
@@ -280,21 +294,22 @@ function renderEditor(){
     if(!items.length && g.key==="Ekstralar")return;  // boş ekstralar grubunu gizle
     const gTot=items.reduce((s,i)=>s+annual(i),0);
     const share=g.t==="gider"&&totOut>0?gTot/totOut*100:0;
-    const col=g.t==="gelir"?"var(--in)":COL[gi%COL.length];
+    const base=gColor(g.key,gi);
+    const cTxt=rgbaOf(base,.72), cAmt=rgbaOf(base,.82), cCur=rgbaOf(base,.9), cBd=rgbaOf(base,.35);
     html+=`<div class="grp">
-      <div class="grphead"><span class="grpname">${g.key}</span>
-      <span class="grptot">${fE(gTot)}<small> /yıl</small></span></div>`;
-    if(g.t==="gider")html+=`<div class="grpbar"><div style="width:${share}%;background:${col}"></div></div>`;
+      <div class="grphead"><span class="grpname" style="color:${base}">${g.key}</span>
+      <span class="grptot" style="color:${base}">${fE(gTot)}<small> /yıl</small></span></div>`;
+    if(g.t==="gider")html+=`<div class="grpbar"><div style="width:${share}%;background:${base}"></div></div>`;
     items.forEach(it=>{
       const open=openPicker===it.id?" open":"";
       html+=`<div class="erow">
-        <div class="erow-top">
-          <input class="enm" value="${escapeHtml(it.n)}" data-id="${it.id}">
+        <div class="erow-main">
+          <input class="enm" value="${escapeHtml(it.n)}" data-id="${it.id}" style="color:${cTxt}">
+          <input class="eamt" type="number" inputmode="decimal" value="${it.a}" data-id="${it.id}" style="color:${cAmt}">
+          <button class="ecur" data-cur="${it.id}" style="color:${cCur};border-color:${cBd}">${it.cur==="E"?"€":"₺"}</button>
           <button class="edel" data-del="${it.id}">✕</button>
         </div>
-        <div class="erow-mid">
-          <input class="eamt" type="number" inputmode="decimal" value="${it.a}" data-id="${it.id}">
-          <button class="ecur" data-cur="${it.id}">${it.cur==="E"?"€":"₺"}</button>
+        <div class="erow-meta">
           <span class="eeq">≈ ${fOther(it)}</span>
           <button class="emonths${open}" data-mp="${it.id}">${monthsLabel(it)}</button>
         </div>

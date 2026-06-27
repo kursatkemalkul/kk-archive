@@ -83,41 +83,41 @@ h1{font-size:17px;font-weight:600;letter-spacing:2.5px}
 .note{color:var(--mut);font-size:10px;margin-top:20px;text-align:center;line-height:1.7;letter-spacing:.4px}
 .vl.tap{border-bottom:1px dashed rgba(255,255,255,.25);cursor:pointer;padding-bottom:1px}
 
-/* ---- gider yönetimi (sayfa 2) ---- */
-.grp{margin-top:18px}
+/* ---- gider yönetimi (sayfa 2) — kompakt + grup renkli ---- */
+.grp{margin-top:13px}
 .grphead{display:flex;justify-content:space-between;align-items:baseline;
-  padding:10px 0 4px;border-top:1px solid var(--line)}
-.grpname{font-size:12px;font-weight:600;letter-spacing:2px;color:#fff}
-.grptot{font-size:16px;font-weight:300;color:#fff;font-variant-numeric:tabular-nums;letter-spacing:-.3px}
-.grptot small{color:var(--mut);font-size:10px;letter-spacing:.3px;font-weight:400}
-.grpbar{height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;margin:0 0 6px}
+  padding:7px 0 3px;border-top:1px solid var(--line)}
+.grpname{font-size:14px;font-weight:700;letter-spacing:.4px}
+.grptot{font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.2px}
+.grptot small{font-size:10px;letter-spacing:.3px;font-weight:400;opacity:.7}
+.grpbar{height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;margin:0 0 3px}
 .grpbar div{height:100%;border-radius:2px}
-.erow{padding:11px 0;border-bottom:1px solid var(--line)}
-.erow-top{display:flex;align-items:center;gap:8px}
-.enm{flex:1;background:none;border:none;border-bottom:1px solid transparent;color:#fff;font-size:14px;
-  font-weight:300;padding:3px 0;font-family:inherit}
-.enm:focus{outline:none;border-bottom-color:var(--line)}
-.edel{background:none;border:none;color:var(--mut);font-size:14px;cursor:pointer;padding:2px 4px}
-.erow-mid{display:flex;align-items:center;gap:8px;margin-top:9px}
-.eamt{width:104px;background:none;border:none;border-bottom:1px solid var(--line);color:#fff;font-size:18px;
-  text-align:right;padding:4px 0;font-variant-numeric:tabular-nums;font-family:inherit}
-.eamt:focus{outline:none;border-bottom-color:#fff}
-.ecur{width:36px;height:32px;flex:none;background:none;border:1px solid var(--line);color:#fff;
-  font-size:16px;cursor:pointer;border-radius:0;font-family:inherit}
-.eeq{font-size:11px;color:var(--mut);font-variant-numeric:tabular-nums;flex:1;letter-spacing:.3px}
-.emonths{flex:none;background:none;border:1px solid var(--line);color:var(--mut);font-size:11px;letter-spacing:.5px;
-  padding:7px 11px;cursor:pointer;font-family:inherit;white-space:nowrap}
+.erow{padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.erow-main{display:flex;align-items:center;gap:7px}
+.enm{flex:1;min-width:0;background:none;border:none;border-bottom:1px solid transparent;
+  font-size:15px;font-weight:400;padding:2px 0;font-family:inherit}
+.enm:focus{outline:none;color:#fff!important;border-bottom-color:var(--line)}
+.eamt{width:82px;flex:none;background:none;border:none;border-bottom:1px solid transparent;
+  font-size:15px;font-weight:600;text-align:right;padding:2px 0;font-variant-numeric:tabular-nums;font-family:inherit}
+.eamt:focus{outline:none;color:#fff!important;border-bottom-color:#fff}
+.ecur{width:24px;height:24px;flex:none;background:none;border:1px solid var(--line);
+  font-size:13px;cursor:pointer;border-radius:0;font-family:inherit;padding:0;line-height:1}
+.edel{background:none;border:none;color:var(--mut);font-size:13px;cursor:pointer;padding:0 2px;flex:none;opacity:.6}
+.erow-meta{display:flex;justify-content:space-between;align-items:center;margin-top:1px;gap:8px}
+.eeq{font-size:10px;color:var(--mut);font-variant-numeric:tabular-nums;letter-spacing:.2px}
+.emonths{flex:none;background:none;border:1px solid var(--line);color:var(--mut);font-size:10px;letter-spacing:.4px;
+  padding:3px 8px;cursor:pointer;font-family:inherit;white-space:nowrap}
 .emonths.open{background:#fff;color:#000;border-color:#fff}
-.mpick{margin-top:11px;padding:11px 0 4px}
-.mall{display:block;width:100%;background:none;border:1px solid var(--line);color:#fff;padding:9px;
-  font-size:12px;letter-spacing:1px;cursor:pointer;margin-bottom:8px;font-family:inherit}
+.mpick{margin-top:8px;padding:8px 0 3px}
+.mall{display:block;width:100%;background:none;border:1px solid var(--line);color:#fff;padding:7px;
+  font-size:11px;letter-spacing:1px;cursor:pointer;margin-bottom:6px;font-family:inherit}
 .mall.on{background:#fff;color:#000;border-color:#fff}
-.mgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
-.mchip{background:none;border:1px solid var(--line);color:var(--mut);padding:9px 0;font-size:11px;
+.mgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:5px}
+.mchip{background:none;border:1px solid var(--line);color:var(--mut);padding:7px 0;font-size:10px;
   cursor:pointer;font-family:inherit}
 .mchip.on{background:var(--gold);color:#000;border-color:var(--gold);font-weight:600}
-.addrow{width:100%;background:none;border:none;color:var(--mut);padding:11px 0;font-size:12px;letter-spacing:1px;
-  cursor:pointer;text-align:left;font-family:inherit;text-decoration:underline;text-underline-offset:3px}
+.addrow{width:100%;background:none;border:none;color:var(--mut);padding:7px 0;font-size:11px;letter-spacing:.8px;
+  cursor:pointer;text-align:left;font-family:inherit;text-decoration:underline;text-underline-offset:3px;opacity:.7}
 
 #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(10px);background:#fff;color:#000;
   font-size:12px;letter-spacing:1px;padding:10px 18px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:50}
