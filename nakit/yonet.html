@@ -4,17 +4,16 @@
 <meta charset="UTF-8">
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>2026 Nakit Takvimi</title>
+<title>Gider Yönetimi — 2026</title>
 <link rel="stylesheet" href="nakit.css?v=4">
 </head>
-<body data-page="calendar">
+<body data-page="editor">
 <nav class="nav">
-  <a href="index.html" class="on">AYLIK TAKVİM</a>
-  <a href="yonet.html">GİDER YÖNETİMİ</a>
+  <a href="index.html">AYLIK TAKVİM</a>
+  <a href="yonet.html" class="on">GİDER YÖNETİMİ</a>
 </nav>
 <div class="topbar">
-  <div><h1>2026 NAKİT TAKVİMİ</h1><div class="sub">Aya bas → açılır · rakama bas → düzenle (tüm aylara işler)</div></div>
-  <button class="iconbtn" id="editBtn">Düzenle</button>
+  <div><h1>GİDER YÖNETİMİ</h1><div class="sub">Rakama bas → değiştir · €/₺ → çevir · ay düğmesi → hangi ay(lar)</div></div>
 </div>
 
 <div class="panel" id="setPanel">
@@ -24,11 +23,10 @@
   <div class="row"><label>Mevcut Birikim (€)</label><input type="number" id="birIn" step="100"></div>
 </div>
 
-<div class="strip" id="strip"></div>
-<div id="months"></div>
+<div id="groups"></div>
 
-<div class="summary" id="yearbox"></div>
-<div class="note">Değişiklikler bu cihazda otomatik saklanır.</div>
+<div class="summary" id="esum"></div>
+<div class="note">Buradaki her değişiklik Aylık Takvim'e de işler · otomatik saklanır.</div>
 
 <script src="nakit.js?v=4"></script>
 </body>
