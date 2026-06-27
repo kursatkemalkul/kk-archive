@@ -100,9 +100,9 @@ h1{font-size:17px;font-weight:600;letter-spacing:2.5px}
 .enm{flex:1;min-width:0;background:none;border:none;border-bottom:1px solid transparent;
   font-size:14px;font-weight:400;padding:2px 0;font-family:inherit;text-overflow:ellipsis}
 .enm:focus{outline:none;color:#fff!important;border-bottom-color:var(--line)}
-.val{display:flex;align-items:baseline;justify-content:flex-end;gap:1px;flex:none;
+.val{display:flex;align-items:baseline;justify-content:flex-end;gap:2px;flex:none;
   font-variant-numeric:tabular-nums;overflow:hidden}
-.val.tl{width:62px} .val.eur{width:54px}
+.val.tl{width:74px} .val.eur{width:60px}
 .val::before{font-size:9px;color:var(--mut);font-weight:400;flex:none}
 .val.tl::before{content:'₺'} .val.eur::before{content:'€'}
 .val.paid{font-weight:700}
@@ -110,11 +110,12 @@ h1{font-size:17px;font-weight:600;letter-spacing:2.5px}
 .vin{background:none;border:none;border-bottom:1px solid transparent;font-size:14px;font-weight:700;
   text-align:right;padding:2px 0;width:100%;min-width:0;font-variant-numeric:tabular-nums;font-family:inherit}
 .vin:focus{outline:none;color:#fff!important;border-bottom-color:#fff}
-.vc{font-size:13px;color:var(--mut);cursor:pointer;font-weight:400;padding:2px 0;white-space:nowrap}
-.emonths{flex:none;background:none;border:1px solid var(--line);color:var(--mut);font-size:9px;letter-spacing:.3px;
-  padding:3px 5px;cursor:pointer;font-family:inherit;white-space:nowrap;max-width:50px;overflow:hidden;text-overflow:ellipsis}
+.vc{font-size:14px;color:var(--mut);cursor:pointer;font-weight:400;padding:2px 0;white-space:nowrap}
+.emonths{flex:none;width:46px;box-sizing:border-box;background:none;border:1px solid var(--line);color:var(--mut);
+  font-size:9px;letter-spacing:.2px;padding:3px 2px;cursor:pointer;font-family:inherit;white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis;text-align:center}
 .emonths.open{background:#fff;color:#000;border-color:#fff}
-.edel{background:none;border:none;color:var(--mut);font-size:12px;cursor:pointer;padding:0 1px;flex:none;opacity:.5}
+.edel{background:none;border:none;color:var(--mut);font-size:12px;cursor:pointer;padding:0 1px;flex:none;opacity:.5;width:14px}
 .mpick{margin-top:8px;padding:8px 0 3px}
 .mall{display:block;width:100%;background:none;border:1px solid var(--line);color:#fff;padding:7px;
   font-size:11px;letter-spacing:1px;cursor:pointer;margin-bottom:6px;font-family:inherit}

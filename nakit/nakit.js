@@ -195,6 +195,7 @@ function renderCalendar(){
     `<div style="height:${Math.max(8,r.k>0?r.k/maxK*100:8)}%;background:${COL[i]}" title="${MN[i]}"></div>`).join("");
 
   const expGroups=groupList().filter(g=>g.t!=="gelir");
+  const grpOpts=groupList().map(g=>`<option value="${escapeHtml(g.key)}"${g.key==="Ekstralar"?" selected":""}>${g.key}</option>`).join("");
   let cum=S.birikim, html="";
   res.forEach((r,idx)=>{
     const m=idx+1; cum+=r.k;
@@ -229,6 +230,7 @@ function renderCalendar(){
     html+=`<button class="addx" data-addx="${m}">+ Bu aya ekstra ekle</button>
     <div class="xform" id="xf${m}">
       <input placeholder="Açıklama (örn. tatil, tamirat)" id="xn${m}">
+      <select id="xg${m}">${grpOpts}</select>
       <div class="half"><input type="number" placeholder="Tutar" id="xa${m}">
       <select id="xc${m}"><option value="T">₺</option><option value="E">€</option></select>
       <select id="xt${m}"><option value="gider">Gider</option><option value="gelir">Gelir</option></select></div>
@@ -280,7 +282,9 @@ function bindCalendar(){
     const n=document.getElementById("xn"+m).value.trim();
     const a=parseFloat(document.getElementById("xa"+m).value);
     if(!n||!a)return;
-    S.items.push({id:newId(),t:document.getElementById("xt"+m).value,g:"Ekstralar",n,
+    const xt=document.getElementById("xt"+m).value;
+    const xg=document.getElementById("xg"+m).value || "Ekstralar";
+    S.items.push({id:newId(),t:xt,g:xt==="gelir"?"Gelirler":xg,n,
       cur:document.getElementById("xc"+m).value,a,months:[m]});
     save(); renderCalendar();
   });
