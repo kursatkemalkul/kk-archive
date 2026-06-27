@@ -92,22 +92,22 @@ h1{font-size:17px;font-weight:600;letter-spacing:2.5px}
 .grptot small{font-size:10px;letter-spacing:.3px;font-weight:400;opacity:.7}
 .grpbar{height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;margin:0 0 3px}
 .grpbar div{height:100%;border-radius:2px}
-.erow{padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)}
-.erow-main{display:flex;align-items:center;gap:7px}
+.ewrap{padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.erow{display:flex;align-items:center;gap:5px}
 .enm{flex:1;min-width:0;background:none;border:none;border-bottom:1px solid transparent;
-  font-size:15px;font-weight:400;padding:2px 0;font-family:inherit}
+  font-size:14px;font-weight:400;padding:2px 0;font-family:inherit;text-overflow:ellipsis}
 .enm:focus{outline:none;color:#fff!important;border-bottom-color:var(--line)}
-.eamt{width:82px;flex:none;background:none;border:none;border-bottom:1px solid transparent;
-  font-size:15px;font-weight:600;text-align:right;padding:2px 0;font-variant-numeric:tabular-nums;font-family:inherit}
+.eeq{flex:none;font-size:9px;color:var(--mut);font-variant-numeric:tabular-nums;letter-spacing:.1px;white-space:nowrap}
+.eplus{flex:none;color:var(--in);font-size:14px;font-weight:600;margin-right:-3px}
+.eamt{width:62px;flex:none;background:none;border:none;border-bottom:1px solid transparent;
+  font-size:14px;font-weight:600;text-align:right;padding:2px 0;font-variant-numeric:tabular-nums;font-family:inherit}
 .eamt:focus{outline:none;color:#fff!important;border-bottom-color:#fff}
-.ecur{width:24px;height:24px;flex:none;background:none;border:1px solid var(--line);
-  font-size:13px;cursor:pointer;border-radius:0;font-family:inherit;padding:0;line-height:1}
-.edel{background:none;border:none;color:var(--mut);font-size:13px;cursor:pointer;padding:0 2px;flex:none;opacity:.6}
-.erow-meta{display:flex;justify-content:space-between;align-items:center;margin-top:1px;gap:8px}
-.eeq{font-size:10px;color:var(--mut);font-variant-numeric:tabular-nums;letter-spacing:.2px}
-.emonths{flex:none;background:none;border:1px solid var(--line);color:var(--mut);font-size:10px;letter-spacing:.4px;
-  padding:3px 8px;cursor:pointer;font-family:inherit;white-space:nowrap}
+.ecur{width:22px;height:22px;flex:none;background:none;border:1px solid var(--line);
+  font-size:12px;cursor:pointer;border-radius:0;font-family:inherit;padding:0;line-height:1}
+.emonths{flex:none;background:none;border:1px solid var(--line);color:var(--mut);font-size:9px;letter-spacing:.3px;
+  padding:3px 6px;cursor:pointer;font-family:inherit;white-space:nowrap;max-width:58px;overflow:hidden;text-overflow:ellipsis}
 .emonths.open{background:#fff;color:#000;border-color:#fff}
+.edel{background:none;border:none;color:var(--mut);font-size:12px;cursor:pointer;padding:0 1px;flex:none;opacity:.55}
 .mpick{margin-top:8px;padding:8px 0 3px}
 .mall{display:block;width:100%;background:none;border:1px solid var(--line);color:#fff;padding:7px;
   font-size:11px;letter-spacing:1px;cursor:pointer;margin-bottom:6px;font-family:inherit}
