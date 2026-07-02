@@ -209,7 +209,7 @@ function renderCalendar(){
     `<div style="height:${Math.max(8,r.k>0?r.k/maxK*100:8)}%;background:${COL[i]}" title="${MN[i]}"></div>`).join("");
 
   const expGroups=groupList().filter(g=>g.t!=="gelir");
-  const grpOpts=groupList().map(g=>`<option value="${escapeHtml(g.key)}"${g.key==="Ekstralar"?" selected":""}>${g.key}</option>`).join("");
+  const grpOpts=groupList().map(g=>`<option value="${escapeHtml(g.key)}"${g.key==="Ekstralar"?" selected":""}>${escapeHtml(g.key)}</option>`).join("");
   let cum=S.birikim, html="";
   res.forEach((r,idx)=>{
     const m=idx+1; cum+=r.k;
@@ -226,7 +226,7 @@ function renderCalendar(){
       <div class="sec in">GELEN · ${fE(r.gI)}</div>`;
     S.items.filter(i=>i.t==="gelir"&&appliesTo(i,m)).forEach(it=>{
       const star=it.months!=="all";
-      html+=`<div class="it${star?" yr":""}"><span class="nm"${star?` style="color:${col}"`:""}>${star?"★ ":""}${it.n}${it.cur==="T"?' <small>₺</small>':""}</span>${valHTML(it)}</div>`;
+      html+=`<div class="it${star?" yr":""}"><span class="nm"${star?` style="color:${col}"`:""}>${star?"★ ":""}${escapeHtml(it.n)}${it.cur==="T"?' <small>₺</small>':""}</span>${valHTML(it)}</div>`;
     });
     html+=`<div class="sec out">GİDEN · ${fE(r.gO)}</div>`;
     expGroups.forEach(g=>{
@@ -234,10 +234,10 @@ function renderCalendar(){
       if(!items.length)return;
       const sum=items.reduce((s,i)=>s+eur(i),0);
       const ck=m+"_"+g.key, copen=openCats.has(ck)?" open":"";
-      html+=`<div class="cat${copen}" data-cat="${escapeHtml(ck)}"><span>${g.key}<span class="cv">▶</span></span><span class="vl">${fE(sum)}</span></div><div class="catbody">`;
+      html+=`<div class="cat${copen}" data-cat="${escapeHtml(ck)}"><span>${escapeHtml(g.key)}<span class="cv">▶</span></span><span class="vl">${fE(sum)}</span></div><div class="catbody">`;
       items.forEach(it=>{
         const star=it.months!=="all";
-        html+=`<div class="it"><span class="nm"${star?` style="color:${col}"`:""}>${star?"★ ":""}${it.n}${it.cur==="T"?' <small>₺</small>':""}</span>${valHTML(it)}</div>`;
+        html+=`<div class="it"><span class="nm"${star?` style="color:${col}"`:""}>${star?"★ ":""}${escapeHtml(it.n)}${it.cur==="T"?' <small>₺</small>':""}</span>${valHTML(it)}</div>`;
       });
       html+=`</div>`;
     });
@@ -350,7 +350,7 @@ function renderEditor(){
     const share=totOut>0?outSum/totOut*100:0;
     const totVal=g.t==="gelir"?inSum:outSum;
     html+=`<div class="grp">
-      <div class="grphead"><span class="grpname" style="color:${base}">${g.key}</span>
+      <div class="grphead"><span class="grpname" style="color:${base}">${escapeHtml(g.key)}</span>
       <span class="grptot" style="color:${base}">${fE(totVal)}<small> /yıl</small></span></div>`;
     if(g.t!=="gelir"&&outSum>0)html+=`<div class="grpbar"><div style="width:${share}%;background:${base}"></div></div>`;
     html+=`<div class="glist" data-group="${escapeHtml(g.key)}">`;
