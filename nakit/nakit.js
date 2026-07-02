@@ -173,7 +173,11 @@ function load(){
 let saveT=null;
 function save(){
   clearTimeout(saveT);
-  saveT=setTimeout(()=>{try{localStorage.setItem("nakit2026",JSON.stringify(S));}catch(e){}},350);
+  saveT=setTimeout(()=>{
+    S._mt=Date.now();
+    try{localStorage.setItem("nakit2026",JSON.stringify(S));}catch(e){}
+    cloudPush();
+  },350);
 }
 
 function monthCalc(m){
@@ -527,7 +531,85 @@ async function fetchKur(){
   }catch(e){if(srcEl)srcEl.textContent="otomatik kur alınamadı — elle gir";}
 }
 
+/* ---- bulut eşitleme (Firebase · veri sadece kursatkemalkul@gmail.com hesabına açık) ---- */
+const FB_CONFIG={
+  apiKey:"AIzaSyAffxPdRyYEvhlsHlDBlGf7g4iu2wnzf3c",
+  authDomain:"gen-lang-client-0276539885.firebaseapp.com",
+  projectId:"gen-lang-client-0276539885"
+};
+const CID=(()=>{try{let c=localStorage.getItem("nakit_cid");
+  if(!c){c="c"+Date.now().toString(36)+Math.floor(Math.random()*1e6).toString(36);localStorage.setItem("nakit_cid",c);}
+  return c;}catch(e){return "c0";}})();
+const cloud={ref:null,applying:false,first:true};
+
+function cloudStatus(txt,ok){
+  let el=document.getElementById("cstat");
+  if(!el){el=document.createElement("div");el.id="cstat";
+    el.style.cssText="position:fixed;bottom:10px;right:10px;z-index:60;font-size:11px;padding:4px 10px;border-radius:12px;background:rgba(20,22,30,.85);color:#9aa3b5;border:1px solid rgba(255,255,255,.08);pointer-events:none;";
+    document.body.appendChild(el);}
+  el.textContent=txt; el.style.color=ok?"#5FBE8C":"#c2a35b";
+}
+
+function cloudPush(){
+  if(!cloud.ref||cloud.applying)return;
+  cloud.ref.set({data:JSON.stringify(S),cid:CID,mt:S._mt||Date.now()})
+    .then(()=>cloudStatus("☁ eşitlendi",true))
+    .catch(()=>cloudStatus("☁ bu hesabın erişimi yok",false));
+}
+function cloudApply(r){
+  try{
+    const d=JSON.parse(r.data);
+    if(!d||!Array.isArray(d.items))return;
+    cloud.applying=true; S=d;
+    try{localStorage.setItem("nakit2026",r.data);}catch(e){}
+    rerender(); cloud.applying=false;
+    cloudStatus("☁ eşitlendi",true);
+  }catch(e){}
+}
+function startSync(){
+  const db=firebase.firestore();
+  cloud.ref=db.collection("nakit").doc("2026");
+  cloud.ref.onSnapshot(snap=>{
+    if(snap.metadata.hasPendingWrites)return;          // kendi yazmamızın yerel yankısı
+    if(!snap.exists){cloudPush();return;}              // bulut boş → bu cihazdaki veriyi yükle
+    const r=snap.data();
+    if(cloud.first){cloud.first=false;
+      if((r.mt||0)>=(S._mt||0))cloudApply(r); else cloudPush();  // ilk bağlantı: yeni olan kazanır
+      return;}
+    if(r.cid===CID)return;                             // kendi yazmamız → uygulama gerekmez
+    cloudApply(r);
+  },()=>cloudStatus("☁ bu hesabın erişimi yok",false));
+}
+function showGate(){
+  if(document.getElementById("cloudGate"))return;
+  const ov=document.createElement("div");
+  ov.id="cloudGate";
+  ov.style.cssText="position:fixed;inset:0;z-index:99;display:flex;align-items:center;justify-content:center;background:rgba(8,10,16,.96)";
+  ov.innerHTML=`<div style="text-align:center;max-width:320px;padding:24px">
+    <div style="font-size:40px;margin-bottom:10px">☁</div>
+    <div style="color:#e7ecf5;font-size:17px;font-weight:600;margin-bottom:6px">2026 Nakit</div>
+    <div style="color:#9aa3b5;font-size:13px;margin-bottom:20px">Kişisel bütçe — verilerin tüm cihazlarında eşitlenmesi için Google hesabınla giriş yap.</div>
+    <button id="gBtn" style="font-size:15px;font-weight:600;padding:12px 22px;border-radius:10px;border:0;background:#e7ecf5;color:#10131c;cursor:pointer">Google ile Giriş</button>
+    <div id="gErr" style="color:#c2a35b;font-size:12px;margin-top:12px"></div></div>`;
+  document.body.appendChild(ov);
+  document.getElementById("gBtn").onclick=()=>{
+    firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
+      .catch(e=>{document.getElementById("gErr").textContent="Giriş açılamadı — tekrar dene ("+(e.code||"hata")+")";});
+  };
+}
+function authInit(){
+  if(!window.firebase||!firebase.auth){cloudStatus("☁ çevrimdışı mod",false);return;}
+  firebase.initializeApp(FB_CONFIG);
+  try{firebase.firestore().enablePersistence({synchronizeTabs:true}).catch(()=>{});}catch(e){}
+  firebase.auth().onAuthStateChanged(u=>{
+    if(u){const g=document.getElementById("cloudGate");if(g)g.remove();
+      cloudStatus("☁ bağlanıyor…",true); startSync();}
+    else showGate();
+  });
+}
+
 /* ---- başlat ---- */
 load();
 rerender();
 fetchKur();
+authInit();
