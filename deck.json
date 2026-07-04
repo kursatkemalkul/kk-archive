@@ -5,11 +5,6 @@
    "p": 1
   },
   {
-   "t": "video",
-   "prov": "ccv",
-   "src": "video/cv-showreel.mp4"
-  },
-  {
    "t": "imgvid",
    "bg": "images/cv-index-v2.png",
    "src": "video/cv-showreel.mp4",
