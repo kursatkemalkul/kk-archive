@@ -5,19 +5,8 @@
    "p": 1
   },
   {
-   "t": "imgvid",
-   "bg": "images/cv-index-v2.png",
-   "src": "video/cv-showreel.mp4",
-   "rect": [
-    56.53,
-    22.79,
-    40.17,
-    68.64
-   ]
-  },
-  {
-   "t": "img",
-   "src": "images/index-cars.png"
+   "t": "pdf",
+   "p": 2
   },
   {
    "t": "pdf",
@@ -98,16 +87,16 @@
    "p": 19
   },
   {
-   "t": "video",
-   "src": "video/aion-ssr-interior.mp4"
-  },
-  {
    "t": "pdf",
    "p": 20
   },
   {
    "t": "pdf",
    "p": 21
+  },
+  {
+   "t": "video",
+   "src": "video/aion-ssr-interior.mp4"
   },
   {
    "t": "pdf",
@@ -146,17 +135,17 @@
    "p": 30
   },
   {
-   "t": "video",
-   "prov": "ccv",
-   "src": "video/hyper-gt.mp4"
-  },
-  {
    "t": "pdf",
    "p": 31
   },
   {
    "t": "pdf",
    "p": 32
+  },
+  {
+   "t": "video",
+   "prov": "ccv",
+   "src": "video/hyper-gt.mp4"
   },
   {
    "t": "pdf",
@@ -175,17 +164,17 @@
    "p": 36
   },
   {
-   "t": "video",
-   "prov": "ccv",
-   "src": "video/maserati-grecale.mp4"
-  },
-  {
    "t": "pdf",
    "p": 37
   },
   {
    "t": "pdf",
    "p": 38
+  },
+  {
+   "t": "video",
+   "prov": "ccv",
+   "src": "video/maserati-grecale.mp4"
   },
   {
    "t": "pdf",
@@ -208,13 +197,21 @@
    "p": 43
   },
   {
+   "t": "pdf",
+   "p": 44
+  },
+  {
+   "t": "pdf",
+   "p": 45
+  },
+  {
    "t": "video",
    "prov": "ccv",
    "src": "video/mercedes-sprinter.mp4"
   },
   {
    "t": "pdf",
-   "p": 44
+   "p": 46
   },
   {
    "t": "video",
@@ -223,7 +220,7 @@
   },
   {
    "t": "pdf",
-   "p": 45
+   "p": 47
   }
  ]
 }
