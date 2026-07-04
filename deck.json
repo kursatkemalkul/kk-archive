@@ -120,11 +120,6 @@
    "p": 26
   },
   {
-   "t": "video",
-   "prov": "ccv",
-   "src": "https://www-ccv.adobe.io/v1/player/ccv/NbyBT3YdRgi/embed?bgcolor=%23000000&autoplay=true&muted=true&api_key=BehancePro2View"
-  },
-  {
    "t": "pdf",
    "p": 27
   },
@@ -141,17 +136,17 @@
    "p": 30
   },
   {
+   "t": "video",
+   "prov": "ccv",
+   "src": "https://www-ccv.adobe.io/v1/player/ccv/NbyBT3YdRgi/embed?bgcolor=%23000000&autoplay=true&muted=true&api_key=BehancePro2View"
+  },
+  {
    "t": "pdf",
    "p": 31
   },
   {
    "t": "pdf",
    "p": 32
-  },
-  {
-   "t": "video",
-   "prov": "ccv",
-   "src": "https://www-ccv.adobe.io/v1/player/ccv/4AR3C88TVjp/embed?bgcolor=%23000000&autoplay=true&muted=true&api_key=BehancePro2View"
   },
   {
    "t": "pdf",
@@ -170,6 +165,11 @@
    "p": 36
   },
   {
+   "t": "video",
+   "prov": "ccv",
+   "src": "https://www-ccv.adobe.io/v1/player/ccv/4AR3C88TVjp/embed?bgcolor=%23000000&autoplay=true&muted=true&api_key=BehancePro2View"
+  },
+  {
    "t": "pdf",
    "p": 37
   },
@@ -182,17 +182,33 @@
    "p": 39
   },
   {
-   "t": "video",
-   "prov": "ccv",
-   "src": "https://www-ccv.adobe.io/v1/player/ccv/A2z6AA3bWEp/embed?bgcolor=%23000000&autoplay=true&muted=true&api_key=BehancePro2View"
-  },
-  {
    "t": "pdf",
    "p": 40
   },
   {
    "t": "pdf",
    "p": 41
+  },
+  {
+   "t": "pdf",
+   "p": 42
+  },
+  {
+   "t": "pdf",
+   "p": 43
+  },
+  {
+   "t": "video",
+   "prov": "ccv",
+   "src": "https://www-ccv.adobe.io/v1/player/ccv/A2z6AA3bWEp/embed?bgcolor=%23000000&autoplay=true&muted=true&api_key=BehancePro2View"
+  },
+  {
+   "t": "pdf",
+   "p": 44
+  },
+  {
+   "t": "pdf",
+   "p": 45
   },
   {
    "t": "video",
