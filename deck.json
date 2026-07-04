@@ -7,7 +7,7 @@
   {
    "t": "video",
    "prov": "ccv",
-   "src": "https://www-ccv.adobe.io/v1/player/ccv/Mo6jeeaUWHt/embed?bgcolor=%23000000&autoplay=true&muted=true&api_key=BehancePro2View"
+   "src": "video/cv-showreel.mp4"
   },
   {
    "t": "pdf",
@@ -20,7 +20,7 @@
   {
    "t": "video",
    "prov": "ccv",
-   "src": "https://www-ccv.adobe.io/v1/player/ccv/Q558CfKxWdZ/embed?bgcolor=%23000000&autoplay=true&muted=true&api_key=BehancePro2View"
+   "src": "video/gove.mp4"
   },
   {
    "t": "pdf",
@@ -49,7 +49,7 @@
   {
    "t": "video",
    "prov": "ccv",
-   "src": "https://www-ccv.adobe.io/v1/player/ccv/IQR4iTSugyb/embed?bgcolor=%23000000&autoplay=true&muted=true&api_key=BehancePro2View"
+   "src": "video/airjet.mp4"
   },
   {
    "t": "pdf",
@@ -142,7 +142,7 @@
   {
    "t": "video",
    "prov": "ccv",
-   "src": "https://www-ccv.adobe.io/v1/player/ccv/NbyBT3YdRgi/embed?bgcolor=%23000000&autoplay=true&muted=true&api_key=BehancePro2View"
+   "src": "video/hyper-gt.mp4"
   },
   {
    "t": "pdf",
@@ -171,7 +171,7 @@
   {
    "t": "video",
    "prov": "ccv",
-   "src": "https://www-ccv.adobe.io/v1/player/ccv/4AR3C88TVjp/embed?bgcolor=%23000000&autoplay=true&muted=true&api_key=BehancePro2View"
+   "src": "video/maserati-grecale.mp4"
   },
   {
    "t": "pdf",
@@ -204,7 +204,7 @@
   {
    "t": "video",
    "prov": "ccv",
-   "src": "https://www-ccv.adobe.io/v1/player/ccv/A2z6AA3bWEp/embed?bgcolor=%23000000&autoplay=true&muted=true&api_key=BehancePro2View"
+   "src": "video/mercedes-sprinter.mp4"
   },
   {
    "t": "pdf",
@@ -213,7 +213,7 @@
   {
    "t": "video",
    "prov": "ccv",
-   "src": "https://www-ccv.adobe.io/v1/player/ccv/MGNGPg5bZgQ/embed?bgcolor=%23000000&autoplay=true&muted=true&api_key=BehancePro2View"
+   "src": "video/togg-t10x.mp4"
   },
   {
    "t": "pdf",

@@ -75,7 +75,7 @@ function createVideoSlide(src) {
         video.playsInline = true;
         video.controls = true;
         video.preload = 'none';
-        video.style.cssText = 'width:100%;height:100%;object-fit:contain;background:#000;display:block';
+        video.style.cssText = 'width:100%;height:100%;object-fit:cover;background:#000;display:block';
         vw.appendChild(video);
     } else {
         const iframe = document.createElement('iframe');
