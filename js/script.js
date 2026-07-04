@@ -98,6 +98,11 @@ function createImgVideoSlide(bg, src, rect) {
     const stage = document.createElement('div');
     stage.style.cssText = 'position:relative;flex:none;width:min(100vw,calc(100dvh*1.31708));aspect-ratio:2027/1539;background:#fff';
     const img = document.createElement('img');
+    img.onload = () => {
+        const r = img.naturalWidth / img.naturalHeight;
+        stage.style.aspectRatio = `${img.naturalWidth}/${img.naturalHeight}`;
+        stage.style.width = `min(100vw, calc(100dvh * ${r}))`;
+    };
     img.src = bg;
     img.style.cssText = 'width:100%;height:100%;object-fit:contain;display:block';
     const video = document.createElement('video');
