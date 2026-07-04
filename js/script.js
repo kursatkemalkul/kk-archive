@@ -61,19 +61,31 @@ function ccvUrl(videoId) {
 }
 
 // Create a video slide — iframe stays empty until the slide becomes active (prevents all videos auto-playing at once)
-// Accepts a FULL embed URL (ccv or youtube).
+// Accepts a FULL embed URL (ccv or youtube) or a direct .mp4 path (self-hosted, played with a native <video> tag).
 function createVideoSlide(src) {
     const videoSlide = document.createElement('section');
     videoSlide.className = 'page page--video';
     const vw = document.createElement('div');
     vw.className = 'video-wrap';
-    const iframe = document.createElement('iframe');
-    iframe.dataset.src = src;
-    iframe.setAttribute('frameborder', '0');
-    iframe.setAttribute('allowfullscreen', '');
-    iframe.setAttribute('allow', 'autoplay; fullscreen');
-    iframe.setAttribute('loading', 'lazy');
-    vw.appendChild(iframe);
+    if (/\.mp4(\?|$)/i.test(src)) {
+        const video = document.createElement('video');
+        video.dataset.src = src;
+        video.muted = true;
+        video.loop = true;
+        video.playsInline = true;
+        video.controls = true;
+        video.preload = 'none';
+        video.style.cssText = 'width:100%;height:100%;object-fit:contain;background:#000;display:block';
+        vw.appendChild(video);
+    } else {
+        const iframe = document.createElement('iframe');
+        iframe.dataset.src = src;
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('allowfullscreen', '');
+        iframe.setAttribute('allow', 'autoplay; fullscreen');
+        iframe.setAttribute('loading', 'lazy');
+        vw.appendChild(iframe);
+    }
     videoSlide.appendChild(vw);
     return videoSlide;
 }
@@ -121,6 +133,16 @@ function buildDeckFromConfig(slides) {
 function activateVideoFor(idx) {
     allSlides.forEach((s, i) => {
         if (!s.classList.contains('page--video')) return;
+        const video = s.querySelector('video');
+        if (video) {
+            if (i === idx) {
+                if (!video.src && video.dataset.src) video.src = video.dataset.src;
+                video.play().catch(() => {});
+            } else if (!video.paused) {
+                video.pause();
+            }
+            return;
+        }
         const iframe = s.querySelector('iframe');
         if (i === idx) {
             // Set src to start playback (only for active)
