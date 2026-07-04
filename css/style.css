@@ -215,3 +215,29 @@ html, body {
     .nav-arrow { width: 38px; height: 38px; }
     .nav-arrow svg { width: 22px; height: 22px; }
 }
+
+/* Basa don dugmesi — silik, hover'da belirginlesir */
+.home-btn {
+    position: fixed;
+    left: 16px;
+    bottom: 16px;
+    z-index: 90;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    padding: 0;
+    color: #9a9a9a;
+    opacity: 0.22;
+    cursor: pointer;
+    transition: opacity 0.25s ease;
+}
+.home-btn svg { width: 20px; height: 20px; }
+.home-btn:hover { opacity: 0.85; }
+@media (max-width: 480px) {
+    .home-btn { width: 32px; height: 32px; opacity: 0.18; }
+    .home-btn svg { width: 17px; height: 17px; }
+}

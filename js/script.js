@@ -468,6 +468,8 @@ function goTo(idx) {
 
 navPrev.addEventListener('click', () => goTo(current - 1));
 navNext.addEventListener('click', () => goTo(current + 1));
+var navHome = document.getElementById('navHome');
+if (navHome) navHome.addEventListener('click', () => goTo(0));
 
 document.addEventListener('keydown', (e) => {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
