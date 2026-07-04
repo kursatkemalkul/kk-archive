@@ -1,0 +1,55 @@
+name: deploy
+
+# industrialproductdesigner.com — portfolyo + alt siteleri birlestirip yayinlar.
+# Alt siteler kendi depolarindan cekilir: alancast, autokitch, highline, nakit.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  repository_dispatch:
+    types: [site-updated]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Stage portfolio
+        run: |
+          mkdir -p _site
+          rsync -a --exclude '.git' --exclude '.github' --exclude '_site' \
+                --exclude 'alancast' --exclude 'autokitch' \
+                --exclude 'highline' --exclude 'nakit' \
+                ./ _site/
+
+      - uses: actions/checkout@v4
+        with: { repository: kursatkemalkul/alancast, path: _site/alancast }
+      - uses: actions/checkout@v4
+        with: { repository: kursatkemalkul/autokitch, path: _site/autokitch }
+      - uses: actions/checkout@v4
+        with: { repository: kursatkemalkul/highline, path: _site/highline }
+      - uses: actions/checkout@v4
+        with: { repository: kursatkemalkul/nakit, path: _site/nakit }
+
+      - name: Drop nested .git dirs
+        run: rm -rf _site/*/.git
+
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: _site }
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
