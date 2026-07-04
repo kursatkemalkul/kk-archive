@@ -5,8 +5,15 @@
    "p": 1
   },
   {
-   "t": "pdf",
-   "p": 2
+   "t": "imgvid",
+   "bg": "images/cv-index-v2.png",
+   "src": "video/cv-showreel.mp4",
+   "rect": [
+    56.53,
+    22.79,
+    40.17,
+    68.64
+   ]
   },
   {
    "t": "pdf",
