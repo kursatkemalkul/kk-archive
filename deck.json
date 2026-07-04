@@ -211,13 +211,13 @@
    "p": 44
   },
   {
-   "t": "pdf",
-   "p": 45
-  },
-  {
    "t": "video",
    "prov": "ccv",
    "src": "https://www-ccv.adobe.io/v1/player/ccv/MGNGPg5bZgQ/embed?bgcolor=%23000000&autoplay=true&muted=true&api_key=BehancePro2View"
+  },
+  {
+   "t": "pdf",
+   "p": 45
   }
  ]
 }
