@@ -90,6 +90,31 @@ function createVideoSlide(src) {
     return videoSlide;
 }
 
+// Create an image slide with a video playing inside a region of the image
+// rect = [left%, top%, width%, height%] relative to the image
+function createImgVideoSlide(bg, src, rect) {
+    const slide = document.createElement('section');
+    slide.className = 'page page--video page--imgvid';
+    const stage = document.createElement('div');
+    stage.style.cssText = 'position:relative;flex:none;width:min(100vw,calc(100dvh*1.31708));aspect-ratio:2027/1539;background:#fff';
+    const img = document.createElement('img');
+    img.src = bg;
+    img.style.cssText = 'width:100%;height:100%;object-fit:contain;display:block';
+    const video = document.createElement('video');
+    video.dataset.src = src;
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.controls = true;
+    video.preload = 'none';
+    const [l, t, w, h] = rect;
+    video.style.cssText = `position:absolute;left:${l}%;top:${t}%;width:${w}%;height:${h}%;object-fit:cover;background:#fff`;
+    stage.appendChild(img);
+    stage.appendChild(video);
+    slide.appendChild(stage);
+    return slide;
+}
+
 // Create a full-screen image slide (for added images via the deck manager)
 function createImgSlide(src) {
     const slide = document.createElement('section');
@@ -121,6 +146,7 @@ function buildDeckFromConfig(slides) {
         let el = null;
         if (sl.t === 'pdf') el = buildPdfSlide(sl.p);
         else if (sl.t === 'video' && sl.src) el = createVideoSlide(sl.src);
+        else if (sl.t === 'imgvid' && sl.bg && sl.src) el = createImgVideoSlide(sl.bg, sl.src, sl.rect || [2, 19, 96, 76]);
         else if (sl.t === 'img' && sl.src) el = createImgSlide(sl.src);
         if (!el) return;
         deck.appendChild(el);
