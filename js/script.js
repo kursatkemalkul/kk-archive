@@ -137,7 +137,13 @@ function activateVideoFor(idx) {
         if (video) {
             if (i === idx) {
                 if (!video.src && video.dataset.src) video.src = video.dataset.src;
+                video.preload = 'auto';
                 video.play().catch(() => {});
+            } else if (Math.abs(i - idx) <= 1) {
+                // Komşu slayttaki videoyu önden yüklemeye başla (hızlı açılış)
+                if (!video.src && video.dataset.src) video.src = video.dataset.src;
+                video.preload = 'auto';
+                if (!video.paused) video.pause();
             } else if (!video.paused) {
                 video.pause();
             }
