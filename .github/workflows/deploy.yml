@@ -51,5 +51,12 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with: { path: _site }
 
+      # GitHub'in gecici "try again later" hatasina karsi: basarisizsa bekleyip tekrar dene
       - id: deployment
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+      - if: steps.deployment.outcome == 'failure'
+        run: sleep 60
+      - id: deployment-retry
+        if: steps.deployment.outcome == 'failure'
         uses: actions/deploy-pages@v4
