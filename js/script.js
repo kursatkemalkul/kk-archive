@@ -158,6 +158,44 @@ function buildDeckFromConfig(slides) {
         allSlides.push(el);
     });
     counterTotal.textContent = String(allSlides.length).padStart(2, '0');
+    attachIndexHotspots();
+}
+
+
+// Index sayfasi tiklanabilir arac alanlari: [x%, y%, w%, h%] -> hedef pdf sayfasi
+const INDEX_HOTSPOTS = [
+    {r:[82.4,20.3,13.3,17.4], p:4},   // GOVE
+    {r:[2.6,19.2,13.5,20.3],  p:16},  // Avatr MPV
+    {r:[66.1,57.8,12.9,20.0], p:45},  // Maserati Quattroporte
+    {r:[49.9,37.9,14.0,21.6], p:33},  // Hyper GT
+    {r:[34.3,19.1,13.8,56.7], p:47},  // Togg
+    {r:[19.0,20.0,13.7,19.9], p:39},  // Maserati Grecale
+    {r:[66.0,18.4,13.2,39.3], p:44},  // UX-UI-VR
+    {r:[81.2,39.4,17.5,17.7], p:10},  // AirJet
+    {r:[17.9,40.7,14.6,20.9], p:39},  // GranCabrio
+    {r:[50.2,17.9,13.9,20.3], p:22},  // Aion Hyper SSR
+];
+
+function attachIndexHotspots() {
+    const slide = allSlides.find(sl => sl.dataset && sl.dataset.pdfPage === '3');
+    if (!slide) return;
+    const wrap = slide.querySelector('.pdf-zoom');
+    if (!wrap || wrap.querySelector('.idx-spot')) return;
+    wrap.style.position = 'relative';
+    INDEX_HOTSPOTS.forEach(h => {
+        const el = document.createElement('div');
+        el.className = 'idx-spot';
+        el.style.left = h.r[0] + '%';
+        el.style.top = h.r[1] + '%';
+        el.style.width = h.r[2] + '%';
+        el.style.height = h.r[3] + '%';
+        el.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const t = allSlides.findIndex(sl => sl.dataset && sl.dataset.pdfPage === String(h.p));
+            if (t >= 0) goTo(t);
+        });
+        wrap.appendChild(el);
+    });
 }
 
 // Activate the video for the current slide; pause all others
@@ -239,6 +277,7 @@ function buildDeck(totalPdfPages) {
     });
 
     counterTotal.textContent = String(allSlides.length).padStart(2, '0');
+    attachIndexHotspots();
 }
 
 // ───── Detect device & memory constraints ─────

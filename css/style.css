@@ -241,3 +241,15 @@ html, body {
     .home-btn { width: 32px; height: 32px; opacity: 0.18; }
     .home-btn svg { width: 17px; height: 17px; }
 }
+
+/* Index arac hotspot'lari — hover'da parlar, tiklaninca projeye gider */
+.idx-spot {
+    position: absolute;
+    cursor: pointer;
+    border-radius: 12px;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    background: radial-gradient(closest-side, rgba(255,255,255,0.85), rgba(255,255,255,0) 78%);
+    mix-blend-mode: screen;
+}
+.idx-spot:hover { opacity: 0.5; }
