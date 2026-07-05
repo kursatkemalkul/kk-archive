@@ -74,7 +74,7 @@ function createVideoSlide(src) {
         video.loop = true;
         video.playsInline = true;
         video.controls = true;
-        video.preload = 'none';
+        video.preload = 'metadata';
         video.style.cssText = 'width:100%;height:100%;object-fit:cover;background:#000;display:block';
         vw.appendChild(video);
     } else {
@@ -111,7 +111,7 @@ function createImgVideoSlide(bg, src, rect) {
     video.loop = true;
     video.playsInline = true;
     video.controls = true;
-    video.preload = 'none';
+    video.preload = 'metadata';
     const [l, t, w, h] = rect;
     video.style.cssText = `position:absolute;left:${l}%;top:${t}%;width:${w}%;height:${h}%;object-fit:cover;background:#fff`;
     stage.appendChild(img);
