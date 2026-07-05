@@ -1,0 +1,134 @@
+:root{--txt:#FFFFFF;--mut:#6E6E73;--line:rgba(255,255,255,.10);--gold:#D8B25C;--in:#30D158;--out:#FF453A}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:#000}
+body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;color:var(--txt);
+  padding:24px 20px 80px;max-width:480px;margin:0 auto}
+h1{font-size:17px;font-weight:600;letter-spacing:2.5px}
+.sub{color:var(--mut);font-size:11px;margin-top:4px;letter-spacing:.4px}
+
+/* ---- top nav (sayfa geçişi) ---- */
+.nav{display:flex;border:1px solid var(--line);margin-bottom:22px}
+.nav a{flex:1;text-align:center;padding:12px 6px;font-size:11px;letter-spacing:1.5px;
+  color:var(--mut);text-decoration:none;font-weight:600}
+.nav a.on{background:#fff;color:#000}
+
+.topbar{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px}
+.iconbtn{background:none;border:1px solid var(--line);color:var(--txt);border-radius:0;
+  padding:8px 14px;font-size:12px;letter-spacing:1px;cursor:pointer;font-family:inherit}
+.iconbtn.on{background:#fff;color:#000;border-color:#fff}
+.panel{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;margin-bottom:24px}
+.panel .row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;gap:10px}
+.panel label{font-size:12px;color:var(--mut);letter-spacing:.5px}
+.panel input{background:none;border:none;border-bottom:1px solid var(--line);color:var(--txt);
+  padding:6px 0;width:110px;font-size:17px;text-align:right;font-variant-numeric:tabular-nums;font-family:inherit}
+.panel input:focus{outline:none;border-bottom-color:#fff}
+.kurwrap{display:flex;gap:6px;align-items:center}
+#kurSrc{display:block;font-size:10px;color:#8A94AC}
+#kurRef{padding:8px 10px}
+
+/* ---- aylık takvim (sayfa 1) ---- */
+.strip{display:flex;gap:2px;align-items:flex-end;height:32px;margin:0 0 30px}
+.strip div{flex:1;border-radius:2px;min-height:3px;opacity:.85}
+.mcard{border-top:1px solid var(--line);margin:0}
+.mcard:last-of-type{border-bottom:1px solid var(--line)}
+.mhead{display:flex;align-items:baseline;gap:14px;padding:18px 0;cursor:pointer;user-select:none}
+.mbar{display:block;width:4px;align-self:stretch;border-radius:99px}
+.mname{font-size:12px;font-weight:600;letter-spacing:2.5px;flex:1;color:var(--mut)!important}
+.mcard.open .mname{color:#fff!important}
+.mkalan{font-size:22px;font-weight:300;font-variant-numeric:tabular-nums;color:#fff!important;letter-spacing:-.5px}
+.mbirik{font-size:10px;color:var(--mut);text-align:right;font-variant-numeric:tabular-nums;letter-spacing:.4px}
+.chev{display:none}
+.mbody{display:none;padding:0 0 20px}
+.mcard.open .mbody{display:block}
+.sec{font-size:10px;font-weight:600;letter-spacing:2px;margin:16px 0 6px;color:var(--mut)}
+.sec.in{color:#30D158} .sec.out{color:#FF453A}
+.it{display:flex;justify-content:space-between;align-items:center;padding:6px 0;font-size:14px;gap:8px}
+.it .nm{color:#fff;font-weight:300} .it .nm small{color:var(--mut)}
+.it .vl{font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:400}
+.it.yr .nm{font-weight:600;color:#fff!important;font-style:normal}
+.cat{display:flex;justify-content:space-between;align-items:center;padding:9px 0;cursor:pointer;
+  font-size:14px;font-weight:400;border-bottom:1px solid var(--line)}
+.cat .vl{font-variant-numeric:tabular-nums}
+.cat .cv{color:var(--mut);font-size:10px;margin-left:8px;display:inline-block;transition:transform .2s}
+.cat.open .cv{transform:rotate(90deg)}
+.catbody{display:none;padding-left:14px}
+.cat.open + .catbody{display:block}
+.catbody .it .nm{color:var(--mut)}
+.kalanrow{display:flex;justify-content:space-between;align-items:baseline;
+  padding:14px 0 0;margin-top:14px;border-top:1px solid #fff}
+.kalanrow .l{font-size:10px;font-weight:600;letter-spacing:2px;color:var(--mut)}
+.kalanrow .v{font-weight:300;font-size:26px;color:#fff;font-variant-numeric:tabular-nums;letter-spacing:-.5px}
+.tlrow{display:flex;justify-content:space-between;font-size:11px;color:var(--mut);padding:6px 0 0;font-variant-numeric:tabular-nums}
+.birrow{display:flex;justify-content:space-between;font-size:12px;color:var(--gold);font-weight:500;padding:3px 0 0;font-variant-numeric:tabular-nums;letter-spacing:.4px}
+.addx{margin-top:14px;width:100%;background:none;border:none;color:var(--mut);padding:8px 0;
+  font-size:12px;letter-spacing:1px;cursor:pointer;text-align:left;font-family:inherit;text-decoration:underline;text-underline-offset:3px}
+.xform{display:none;margin-top:8px;padding:10px 0;border-top:1px solid var(--line)}
+.xform.show{display:block}
+.xform input,.xform select{background:none;border:none;border-bottom:1px solid var(--line);color:#fff;
+  padding:8px 0;font-size:15px;width:100%;margin-bottom:8px;font-family:inherit}
+.xform select{color:var(--mut)}
+.xform .half{display:flex;gap:14px}
+.xform button{width:100%;background:#fff;border:none;padding:11px;font-weight:600;color:#000;font-size:13px;letter-spacing:1px;cursor:pointer;font-family:inherit}
+
+/* ---- yıl özeti / editör özeti ---- */
+.summary{border-top:1px solid #fff;padding:18px 0;margin-top:34px}
+.summary h2{font-size:11px;font-weight:600;letter-spacing:2.5px;margin-bottom:10px;color:var(--mut)}
+.summary .it .vl{font-weight:400;font-size:16px}
+.summary .it .vl[style]{color:#fff!important}
+.summary .it .nm[style]{color:var(--gold)!important}
+
+.editv{background:none;border:none;border-bottom:1px solid var(--line);color:#fff;
+  padding:4px 0;width:96px;text-align:right;font-size:14px;font-variant-numeric:tabular-nums;font-family:inherit}
+.editv:focus{outline:none;border-bottom-color:#fff}
+.note{color:var(--mut);font-size:10px;margin-top:20px;text-align:center;line-height:1.7;letter-spacing:.4px}
+.vl.tap{border-bottom:1px dashed rgba(255,255,255,.25);cursor:pointer;padding-bottom:1px}
+
+/* ---- gider yönetimi (sayfa 2) — kompakt + grup renkli ---- */
+.grp{margin-top:13px}
+.grphead{display:flex;justify-content:space-between;align-items:baseline;
+  padding:7px 0 3px;border-top:1px solid var(--line)}
+.grpname{font-size:14px;font-weight:700;letter-spacing:.4px}
+.grptot{font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.2px}
+.grptot small{font-size:10px;letter-spacing:.3px;font-weight:400;opacity:.7}
+.grpbar{height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;margin:0 0 3px}
+.grpbar div{height:100%;border-radius:2px}
+.ewrap{padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05);background:#000}
+.ewrap.dragging{opacity:.5;pointer-events:none;border:1px dashed rgba(255,255,255,.4)}
+.glist{min-height:4px}
+.erow{display:flex;align-items:center;gap:4px}
+.dh{flex:none;color:var(--mut);font-size:13px;cursor:grab;opacity:.5;padding:0 1px;touch-action:none;line-height:1;letter-spacing:-2px}
+.enm{flex:1;min-width:0;background:none;border:none;border-bottom:1px solid transparent;
+  font-size:14px;font-weight:400;padding:2px 0;font-family:inherit;text-overflow:ellipsis}
+.enm:focus{outline:none;color:#fff!important;border-bottom-color:var(--line)}
+.val{display:flex;align-items:baseline;justify-content:flex-end;gap:2px;flex:none;
+  font-variant-numeric:tabular-nums}
+.val.tl{width:80px} .val.eur{width:68px}
+.val::before{font-size:12px;color:var(--mut);font-weight:400;flex:none}
+.val.tl::before{content:'₺'} .val.eur::before{content:'€'}
+.vnum{font-size:14px;cursor:pointer;white-space:nowrap;padding:2px 0;font-variant-numeric:tabular-nums}
+.val.paid .vnum{font-weight:700}
+.val.calc{opacity:.4}
+.val.calc .vnum{color:#fff;font-weight:400}
+.vedit{width:54px;font-size:14px;font-weight:700;text-align:right;background:none;border:none;
+  border-bottom:1px solid #fff;color:#fff;padding:2px 0;font-variant-numeric:tabular-nums;font-family:inherit}
+.vedit:focus{outline:none}
+.emonths{flex:none;width:46px;box-sizing:border-box;background:none;border:1px solid var(--line);color:var(--mut);
+  font-size:9px;letter-spacing:.2px;padding:3px 2px;cursor:pointer;font-family:inherit;white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis;text-align:center}
+.emonths.open{background:#fff;color:#000;border-color:#fff}
+.edel{background:none;border:none;color:var(--mut);font-size:12px;cursor:pointer;padding:0 1px;flex:none;opacity:.5;width:14px}
+.mpick{margin-top:8px;padding:8px 0 3px}
+.mall{display:block;width:100%;background:none;border:1px solid var(--line);color:#fff;padding:7px;
+  font-size:11px;letter-spacing:1px;cursor:pointer;margin-bottom:6px;font-family:inherit}
+.mall.on{background:#fff;color:#000;border-color:#fff}
+.mgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:5px}
+.mchip{background:none;border:1px solid var(--line);color:var(--mut);padding:7px 0;font-size:10px;
+  cursor:pointer;font-family:inherit}
+.mchip.on{background:var(--gold);color:#000;border-color:var(--gold);font-weight:600}
+.addrow{width:100%;background:none;border:none;color:var(--mut);padding:7px 0;font-size:11px;letter-spacing:.8px;
+  cursor:pointer;text-align:left;font-family:inherit;text-decoration:underline;text-underline-offset:3px;opacity:.7}
+
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(10px);background:#fff;color:#000;
+  font-size:12px;letter-spacing:1px;padding:10px 18px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:50}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
