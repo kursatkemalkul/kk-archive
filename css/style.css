@@ -231,14 +231,14 @@ html, body {
     border: none;
     padding: 0;
     color: #9a9a9a;
-    opacity: 0.22;
+    opacity: 0.55;
     cursor: pointer;
     transition: opacity 0.25s ease;
 }
 .home-btn svg { width: 20px; height: 20px; }
-.home-btn:hover { opacity: 0.85; }
+.home-btn:hover { opacity: 1; }
 @media (max-width: 480px) {
-    .home-btn { width: 32px; height: 32px; opacity: 0.18; }
+    .home-btn { width: 32px; height: 32px; opacity: 0.5; }
     .home-btn svg { width: 17px; height: 17px; }
 }
 

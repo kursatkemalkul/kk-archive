@@ -164,16 +164,14 @@ function buildDeckFromConfig(slides) {
 
 // Index sayfasi tiklanabilir arac alanlari: [x%, y%, w%, h%] -> hedef pdf sayfasi
 const INDEX_HOTSPOTS = [
-    {r:[82.4,20.3,13.3,17.4], p:4},   // GOVE
-    {r:[2.6,19.2,13.5,20.3],  p:16},  // Avatr MPV
-    {r:[66.1,57.8,12.9,20.0], p:45},  // Maserati Quattroporte
-    {r:[49.9,37.9,14.0,21.6], p:33},  // Hyper GT
-    {r:[34.3,19.1,13.8,56.7], p:47},  // Togg
+    {r:[2.6,19.2,13.5,20.3],  p:46},  // Minibus -> Mercedes Sprinter
     {r:[19.0,20.0,13.7,19.9], p:39},  // Maserati Grecale
-    {r:[66.0,18.4,13.2,39.3], p:44},  // UX-UI-VR
+    {r:[34.3,19.1,13.8,19.5], p:47},  // Togg (sadece ustteki)
+    {r:[49.9,37.9,14.0,21.6], p:33},  // Hyper GT (alttaki)
+    {r:[66.0,18.4,13.2,20.0], p:23},  // Direksiyon -> SSR direksiyon sayfasi
+    {r:[66.1,57.8,12.9,20.0], p:45},  // Maserati Quattroporte
+    {r:[82.4,20.3,13.3,17.4], p:4},   // GOVE
     {r:[81.2,39.4,17.5,17.7], p:10},  // AirJet
-    {r:[17.9,40.7,14.6,20.9], p:39},  // GranCabrio
-    {r:[50.2,17.9,13.9,20.3], p:22},  // Aion Hyper SSR
 ];
 
 function attachIndexHotspots() {
@@ -508,7 +506,10 @@ function goTo(idx) {
 navPrev.addEventListener('click', () => goTo(current - 1));
 navNext.addEventListener('click', () => goTo(current + 1));
 var navHome = document.getElementById('navHome');
-if (navHome) navHome.addEventListener('click', () => goTo(0));
+if (navHome) navHome.addEventListener('click', () => {
+    const t = allSlides.findIndex(sl => sl.dataset && sl.dataset.pdfPage === '3');
+    goTo(t >= 0 ? t : 0);
+});
 
 document.addEventListener('keydown', (e) => {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;

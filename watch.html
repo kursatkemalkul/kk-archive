@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Video</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; background: #000; overflow: hidden; }
+  video { width: 100vw; height: 100vh; object-fit: contain; display: block; background: #000; }
+  .back {
+    position: fixed; top: 18px; left: 18px; z-index: 10;
+    display: flex; align-items: center; gap: 8px;
+    color: #ccc; font: 13px/1 "Segoe UI", Arial, sans-serif; letter-spacing: .12em;
+    background: rgba(0,0,0,.45); border: 1px solid rgba(255,255,255,.25);
+    padding: 9px 16px; border-radius: 999px; cursor: pointer; text-decoration: none;
+    opacity: .75; transition: opacity .2s;
+  }
+  .back:hover { opacity: 1; }
+</style>
+</head>
+<body>
+<a class="back" href="javascript:history.back()">&#8592;&nbsp;BACK</a>
+<video id="v" controls autoplay playsinline></video>
+<script>
+  // sadece bilinen videolar oynatilir
+  var OK = ["cv-showreel","gove","airjet","aion-ssr-interior","hyper-gt",
+            "maserati-grecale","mercedes-sprinter","togg-t10x"];
+  var name = new URLSearchParams(location.search).get("v") || "";
+  if (OK.indexOf(name) >= 0) {
+      document.getElementById("v").src = "video/" + name + ".mp4";
+      document.title = name.replace(/-/g, " ").toUpperCase();
+  } else {
+      location.replace("/");
+  }
+</script>
+</body>
+</html>
