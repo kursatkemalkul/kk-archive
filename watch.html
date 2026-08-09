@@ -29,7 +29,7 @@
             "maserati-grecale","mercedes-sprinter","togg-t10x"];
   var name = new URLSearchParams(location.search).get("v") || "";
   if (OK.indexOf(name) >= 0) {
-      var FILE = { "cv-showreel": "cv-showreel-1080" };
+      var FILE = { "cv-showreel": "showreel" };
       document.getElementById("v").src = "video/" + (FILE[name] || name) + ".mp4";
       document.title = name.replace(/-/g, " ").toUpperCase();
   } else {
