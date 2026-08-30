@@ -24,6 +24,42 @@
 </head>
 <body>
 
+    <!-- Erisim kapisi -->
+    <style>
+      #ipd-gate{position:fixed;inset:0;z-index:99999;background:#000;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+      #ipd-gate.hide{display:none}
+      #ipd-gate .box{text-align:center;padding:24px}
+      #ipd-gate .mark{color:#fff;font-size:15px;letter-spacing:.28em;margin-bottom:26px;opacity:.85}
+      #ipd-gate input{background:transparent;border:none;border-bottom:1px solid #555;color:#fff;font-size:20px;letter-spacing:.35em;text-align:center;padding:8px 4px;width:190px;outline:none}
+      #ipd-gate input:focus{border-bottom-color:#fff}
+      #ipd-gate .hint{color:#666;font-size:11px;margin-top:16px;letter-spacing:.06em}
+      #ipd-gate.err input{border-bottom-color:#c0392b}
+      html.ipd-locked body>*:not(#ipd-gate){visibility:hidden}
+    </style>
+    <div id="ipd-gate">
+      <div class="box">
+        <div class="mark">K K K</div>
+        <input id="ipd-pass" type="password" inputmode="numeric" autocomplete="off" autofocus>
+        <div class="hint">enter code</div>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var KEY='ipd_ok_v1', CODE='1783', root=document.documentElement;
+      var gate=document.getElementById('ipd-gate'), inp=document.getElementById('ipd-pass');
+      function unlock(){ root.classList.remove('ipd-locked'); gate.classList.add('hide'); }
+      try{ if(localStorage.getItem(KEY)==='1'){ unlock(); return; } }catch(e){}
+      root.classList.add('ipd-locked');
+      function tryCode(){
+        if(inp.value===CODE){ try{localStorage.setItem(KEY,'1');}catch(e){} unlock(); }
+        else { gate.classList.add('err'); inp.value=''; setTimeout(function(){gate.classList.remove('err');},600); }
+      }
+      inp.addEventListener('keydown', function(e){ if(e.key==='Enter') tryCode(); });
+      inp.addEventListener('input', function(){ if(inp.value.length>=4) tryCode(); });
+      setTimeout(function(){ try{inp.focus();}catch(e){} }, 50);
+    })();
+    </script>
+
     <span class="page-counter"><span id="page-current">01</span> / <span id="page-total">--</span></span>
 
     <main class="deck" id="deck">
