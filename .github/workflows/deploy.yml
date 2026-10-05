@@ -48,6 +48,10 @@ jobs:
       - name: Drop nested .git dirs
         run: rm -rf _site/*/.git
 
+      # Güvenlik: autokitch'in _local klasörü (yerel yedekler, oturum kayıtları) siteye konmaz
+      - name: Drop autokitch _local
+        run: rm -rf _site/autokitch/_local
+
       - uses: actions/upload-pages-artifact@v3
         with: { path: _site }
 
