@@ -1,14 +1,20 @@
 <!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>AUTOKITCH · Canlı Digital Twin</title><style>body{margin:0;background:#101820;color:#e8edf3;font:18px/1.5 system-ui}main{max-width:650px;margin:12vh auto;padding:30px}h1{font-size:34px;line-height:1.2}a{display:inline-block;background:#e8b04a;color:#111;padding:14px 24px;border-radius:8px;text-decoration:none}small{display:block;color:#a8b6c6;margin:22px 0}</style></head><body><main><h1>AUTOKITCH<br>Canlı Digital Twin</h1><p id="status">Yereldeki çalışan makineye bağlanılıyor…</p><a id="open" hidden>Twin’i aç ↗</a><small>Canlı uygulama: 3B model, sipariş ekranları, program ve robot simülasyonu.<br>İlk model yüklemesi yaklaşık 358 MB. Yayın bilgisayarı açık olmalıdır.</small><a href="../pdf/autokitch-fuar/" style="background:transparent;color:#e8b04a;padding-left:0">Teklif PDF’leri ↗</a></main><script>
 const statusEl=document.getElementById('status'),openEl=document.getElementById('open');
 const key=new URLSearchParams(location.hash.slice(1)).get('anahtar');
-const registry='https://raw.githubusercontent.com/kursatkemalkul/kk-archive/main/digital-twin/live.json';
-let pending=false;
+const registry='https://api.github.com/repos/kursatkemalkul/kk-archive/contents/digital-twin/live.json';
+let pending=false,lastLookup=0,cachedData=null;
 async function connect(){
  if(pending)return;pending=true;
  try{
-  const r=await fetch(registry+'?v='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(10000)});
-  if(!r.ok)throw Error('Adres bekleniyor');
-  const data=await r.json(),url=new URL(data.url);
+  if(Date.now()-lastLookup>=60000){
+   lastLookup=Date.now();
+   const r=await fetch(registry+'?ref=main&v='+lastLookup,{cache:'no-store',signal:AbortSignal.timeout(10000)});
+   if(!r.ok)throw Error('Adres bekleniyor');
+   const record=await r.json();
+   cachedData=record.url?record:JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(record.content),c=>c.charCodeAt(0))));
+  }
+  if(!cachedData)throw Error('Adres bekleniyor');
+  const url=new URL(cachedData.url);
   if(url.protocol!=='https:'||!url.hostname.endsWith('.trycloudflare.com'))throw Error('Adres doğrulanamadı');
   const check=await fetch(url.origin+'/healthz?v='+Date.now(),{cache:'no-store',credentials:'omit',signal:AbortSignal.timeout(8000)});
   if(!check.ok||(await check.json()).gateway!=='ok')throw Error('Twin hazırlanıyor');
