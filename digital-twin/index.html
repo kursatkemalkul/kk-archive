@@ -11,7 +11,7 @@ async function connect(){
    const r=await fetch(registry+'?ref=main&v='+lastLookup,{cache:'no-store',signal:AbortSignal.timeout(10000)});
    if(!r.ok)throw Error('Adres bekleniyor');
    const record=await r.json();
-   cachedData=record.url?record:JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(record.content),c=>c.charCodeAt(0))));
+   cachedData=JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(record.content),c=>c.charCodeAt(0))));
   }
   if(!cachedData)throw Error('Adres bekleniyor');
   const url=new URL(cachedData.url);
