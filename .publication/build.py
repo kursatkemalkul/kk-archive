@@ -23,6 +23,11 @@ def copy_source(repo,destination):
    if not name.startswith('otonom/'):continue
    target=destination/name/'index.html';target.parent.mkdir(parents=True,exist_ok=True)
    target.write_text('<html><head><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=/digital-twin/"></head><body><a href="/digital-twin/">AUTOKITCH Digital Twin</a></body></html>','utf8')
+  # Legacy E animation links stay reachable through authenticated publication.
+  redirect49='<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta http-equiv="refresh" content="0;url=/digital-twin/e-taslak/?gorunum=montaj"><title>AUTOKITCH · E montajı</title></head><body><a href="/digital-twin/e-taslak/?gorunum=montaj">Şifreli E montaj animasyonunu aç</a></body></html>'
+  for rel in ['otonom/hat/e-montaj.html','otonom/hat/e-montaj/index.html']:
+   target=destination/rel;target.parent.mkdir(parents=True,exist_ok=True);target.write_text(redirect49,'utf8')
+
 def compile_cloudflare(site):
  for suffix in ['', 'e-taslak/']:
   file=site/'digital-twin'/suffix/'index.html'

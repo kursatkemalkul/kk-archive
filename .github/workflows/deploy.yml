@@ -107,6 +107,9 @@ jobs:
               if name.startswith('otonom/'):
                   target.mkdir(parents=True,exist_ok=True)
                   (target/'index.html').write_text(redirect,encoding='utf8')
+          redirect49='<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta http-equiv="refresh" content="0;url=/digital-twin/e-taslak/?gorunum=montaj"><title>AUTOKITCH · E montajı</title></head><body><a href="/digital-twin/e-taslak/?gorunum=montaj">Şifreli E montaj animasyonunu aç</a></body></html>'
+          for rel in ['otonom/hat/e-montaj.html','otonom/hat/e-montaj/index.html']:
+              target=root/rel;target.parent.mkdir(parents=True,exist_ok=True);target.write_text(redirect49,encoding='utf8')
           suffixes={'.md','.py','.ps1','.sh','.yaml','.yml','.glb','.gltf','.stp','.step','.stl','.obj','.mtl','.iges','.igs','.sldprt','.sldasm','.fcstd','.blend','.fbx','.dae','.3dm','.dxf','.dwg','.bin','.zip','.scl','.st','.awl','.lad','.fbd','.zap','.ap17','.ap18','.ap19','.db','.sqlite','.sqlite3'}
           for item in root.rglob('*'):
               if item.is_file() and (item.suffix.lower() in suffixes or '.glb.' in item.name.lower()): item.unlink()
