@@ -101,8 +101,14 @@ jobs:
           remaining=[str(p.relative_to(root)) for p in root.rglob('*') if p.is_file() and (p.suffix.lower() in suffixes or '.glb.' in p.name.lower())]
           assert not remaining, 'Private model files found in website artifact'
 
-      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
-        with: { path: _site }
+      - name: Archive GitHub Pages artifact
+        run: tar --dereference --hard-dereference --directory _site -cf "$RUNNER_TEMP/artifact.tar" --exclude=.git --exclude=.github .
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: github-pages
+          path: ${{ runner.temp }}/artifact.tar
+          retention-days: 1
+          if-no-files-found: error
 
       # GitHub'in gecici "try again later" hatasina karsi: basarisizsa bekleyip tekrar dene
       - id: deployment
