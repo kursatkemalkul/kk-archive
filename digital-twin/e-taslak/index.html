@@ -22,7 +22,7 @@ async function connect(){
   if(url.origin!==activeOrigin){
    const r=await fetch(url.origin+'/healthz?v='+Date.now(),{credentials:'omit',cache:'no-store',signal:AbortSignal.timeout(8000)});if(!r.ok)throw Error();
    const health=await r.json();if(health.gateway!=='ok')throw Error();
-   activeOrigin=url.origin;url.pathname='/ikiz/';url.search='?taslak=kutu-profil-v3&rev=production27';url.hash='';frame.hidden=true;logout.hidden=true;loaded=false;statusEl.hidden=false;frame.src=url.href;
+   activeOrigin=url.origin;url.pathname='/ikiz/';url.search='?taslak=kutu-profil-v3&rev=production27';url.hash='';frame.hidden=false;logout.hidden=true;loaded=false;statusEl.hidden=false;frame.src=url.href;
   }
  }catch{if(!loaded){statusEl.hidden=false;statusEl.textContent='Yayın şu anda hazır değil. Bağlantı otomatik olarak tekrar denenecek.';}}
  finally{pending=false;}
