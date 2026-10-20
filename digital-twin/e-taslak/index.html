@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><meta name="robots" content="noindex,nofollow"><title>AUTOKITCH · E İstasyonu Taslağı</title>
+<style>body{margin:0;background:#101820;color:#e8edf3;font:18px/1.5 system-ui}main{max-width:650px;margin:12vh auto;padding:30px}h1{font-size:34px;line-height:1.2}a,button{display:inline-block;background:#e8b04a;color:#111;padding:14px 24px;border:0;border-radius:8px;text-decoration:none;font:inherit;cursor:pointer}small{display:block;color:#a8b6c6;margin:22px 0}.back{background:transparent;color:#e8b04a;padding-left:0}</style></head>
+<body><main><h1>E istasyonu<br>Ayrı taslak</h1><p id="status" role="status">Güncel taslağa bağlanılıyor…</p><a id="open" hidden>Taslağı aç ↗</a><small>Paslanmaz iskelet, kapaklar, katlama animasyonu ve Siemens pano yerleşimi.<br>Digital Twin ile aynı erişim şifresi kullanılır. Yayın bilgisayarı açık olmalıdır.</small><a class="back" href="../">Ana Digital Twin ↗</a></main>
+<script>
+const statusEl=document.getElementById('status'),openEl=document.getElementById('open');
+const registry='https://api.github.com/repos/kursatkemalkul/kk-archive/contents/digital-twin/e-taslak/live.json';
+let pending=false,lastLookup=0,cachedData=null;
+async function connect(){
+ if(pending)return;pending=true;
+ try{
+  if(Date.now()-lastLookup>=60000){
+   lastLookup=Date.now();
+   const r=await fetch(registry+'?ref=main&v='+lastLookup,{cache:'no-store',signal:AbortSignal.timeout(10000)});
+   if(!r.ok)throw Error('Adres bekleniyor');
+   const record=await r.json();cachedData=JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(record.content),c=>c.charCodeAt(0))));
+  }
+  if(!cachedData)throw Error('Adres bekleniyor');
+  const url=new URL(cachedData.url);
+  if(url.protocol!=='https:'||!url.hostname.endsWith('.trycloudflare.com'))throw Error('Adres doğrulanamadı');
+  const check=await fetch(url.origin+'/healthz?v='+Date.now(),{cache:'no-store',credentials:'omit',signal:AbortSignal.timeout(8000)});
+  if(!check.ok||(await check.json()).gateway!=='ok')throw Error('Taslak hazırlanıyor');
+  url.pathname='/ikiz/';url.search='?taslak=kutu-profil-v3&rev=production27';openEl.href=url.href;openEl.hidden=false;
+  statusEl.textContent='Güncel E taslağı açılıyor…';location.replace(url.href);
+ }catch(e){openEl.hidden=true;statusEl.textContent='Yayın bilgisayarı bekleniyor. Bilgisayar açılıp Windows’a giriş yapıldığında taslak otomatik bağlanacak; bu sayfa tekrar deniyor…';}
+ finally{pending=false;}
+}
+connect();setInterval(connect,5000);
+</script></body></html>
