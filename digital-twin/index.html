@@ -1,27 +1,30 @@
-<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>AUTOKITCH · Canlı Digital Twin</title><style>body{margin:0;background:#101820;color:#e8edf3;font:18px/1.5 system-ui}main{max-width:650px;margin:12vh auto;padding:30px}h1{font-size:34px;line-height:1.2}a{display:inline-block;background:#e8b04a;color:#111;padding:14px 24px;border-radius:8px;text-decoration:none}small{display:block;color:#a8b6c6;margin:22px 0}</style></head><body><main><h1>AUTOKITCH<br>Canlı Digital Twin</h1><p id="status">Yereldeki çalışan makineye bağlanılıyor…</p><a id="open" hidden>Twin’i aç ↗</a><small>Canlı uygulama: 3B model, sipariş ekranları, program ve robot simülasyonu.<br>İlk model yüklemesi yaklaşık 358 MB. Yayın bilgisayarı açık olmalıdır.</small><a href="../pdf/autokitch-fuar/" style="background:transparent;color:#e8b04a;padding-left:0">Teklif PDF’leri ↗</a></main><script>
-const statusEl=document.getElementById('status'),openEl=document.getElementById('open');
-const key=new URLSearchParams(location.hash.slice(1)).get('anahtar');
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><meta name="robots" content="noindex,nofollow"><title>AUTOKITCH · Digital Twin</title>
+<style>*{box-sizing:border-box}html,body{margin:0;height:100%;background:#101820;color:#edf2f5;font:14px system-ui}body{display:flex;flex-direction:column}header{display:flex;align-items:center;gap:22px;padding:12px 18px;min-height:54px;border-bottom:1px solid #344451;background:#17232c}strong{color:#e8b04a;letter-spacing:.12em;font-size:13px}nav{display:flex;gap:16px}a{color:#b8c6d0;text-decoration:none}a[aria-current]{color:#fff}button{background:transparent;color:#edf2f5;border:1px solid #637887;border-radius:5px;padding:6px 12px;cursor:pointer;font:inherit}#logout{margin-left:auto}main{position:relative;flex:1;min-height:0}iframe{width:100%;height:100%;border:0;display:block}#status{position:absolute;inset:0;display:grid;place-content:center;text-align:center;padding:24px;background:#101820;color:#bac8d1;pointer-events:none}#status[hidden],[hidden]{display:none!important}@media(max-width:520px){header{gap:12px;padding:10px;font-size:12px}nav{gap:10px}strong{font-size:11px;letter-spacing:.06em}}</style></head>
+<body><header><a href="/" aria-label="Ana sayfa"><strong>AUTOKITCH</strong></a><nav aria-label="Uygulamalar"><a href="/digital-twin/" aria-current="page">Digital Twin</a><a href="/digital-twin/e-taslak/" >E İstasyonu</a></nav><button id="logout" hidden>Çıkış yap</button></header>
+<main><div id="status" role="status">Digital Twin bağlantısı hazırlanıyor…</div><iframe id="viewer" title="AUTOKITCH · Digital Twin" sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-downloads" allow="fullscreen; autoplay; clipboard-write" allowfullscreen referrerpolicy="no-referrer" hidden></iframe></main>
+<script>
 const registry='https://api.github.com/repos/kursatkemalkul/kk-archive/contents/digital-twin/live.json';
-let pending=false,lastLookup=0,cachedData=null;
+const frame=document.getElementById('viewer'),statusEl=document.getElementById('status'),logout=document.getElementById('logout');
+let pending=false,lastLookup=0,record=null,activeOrigin='',loaded=false;
+history.replaceState(null,'',location.pathname);
+frame.addEventListener('load',()=>{if(!activeOrigin)return;loaded=true;frame.hidden=false;statusEl.hidden=true;});
+addEventListener('message',e=>{if(e.source!==frame.contentWindow||e.origin!==activeOrigin||e.data?.type!=='autokitch:session')return;logout.hidden=!e.data.authenticated;});
+logout.addEventListener('click',()=>{if(activeOrigin)frame.contentWindow.postMessage({type:'autokitch:logout'},activeOrigin);});
 async function connect(){
  if(pending)return;pending=true;
  try{
-  if(Date.now()-lastLookup>=60000){
-   lastLookup=Date.now();
-   const r=await fetch(registry+'?ref=main&v='+lastLookup,{cache:'no-store',signal:AbortSignal.timeout(10000)});
-   if(!r.ok)throw Error('Adres bekleniyor');
-   const record=await r.json();
-   cachedData=JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(record.content),c=>c.charCodeAt(0))));
+  if(!record||Date.now()-lastLookup>60000){
+   const r=await fetch(registry+'?ref=main&v='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(10000)});if(!r.ok)throw Error();
+   const j=await r.json();record=JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(j.content),c=>c.charCodeAt(0))));lastLookup=Date.now();
   }
-  if(!cachedData)throw Error('Adres bekleniyor');
-  const url=new URL(cachedData.url);
-  if(url.protocol!=='https:'||!url.hostname.endsWith('.trycloudflare.com'))throw Error('Adres doğrulanamadı');
-  const check=await fetch(url.origin+'/healthz?v='+Date.now(),{cache:'no-store',credentials:'omit',signal:AbortSignal.timeout(8000)});
-  if(!check.ok||(await check.json()).gateway!=='ok')throw Error('Twin hazırlanıyor');
-  url.pathname=key?'/enter':'/ikiz/';if(key)url.searchParams.set('key',key);
-  openEl.href=url.href;openEl.hidden=false;statusEl.textContent='Güncel Digital Twin açılıyor…';
-  history.replaceState(null,'',location.pathname);location.replace(url.href);
- }catch(e){openEl.hidden=true;statusEl.textContent='Yayın bilgisayarı bekleniyor. PC açılıp Windows’a giriş yapıldığında otomatik bağlanacak; bu sayfa tekrar deniyor…';}
+  const url=new URL(record.url);if(url.protocol!=='https:'||!url.hostname.endsWith('.trycloudflare.com'))throw Error();
+  if(url.origin!==activeOrigin){
+   const r=await fetch(url.origin+'/healthz?v='+Date.now(),{credentials:'omit',cache:'no-store',signal:AbortSignal.timeout(8000)});if(!r.ok)throw Error();
+   const health=await r.json();if(health.gateway!=='ok')throw Error();
+   activeOrigin=url.origin;url.pathname='/ikiz/';url.search='';url.hash='';frame.hidden=true;logout.hidden=true;loaded=false;statusEl.hidden=false;frame.src=url.href;
+  }
+ }catch{if(!loaded){statusEl.hidden=false;statusEl.textContent='Yayın şu anda hazır değil. Bağlantı otomatik olarak tekrar denenecek.';}}
  finally{pending=false;}
 }
 connect();setInterval(connect,5000);
