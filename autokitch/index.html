@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AUTOKITCH — Otonom Endüstriyel Mutfak</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{--blue:#2997ff;--dark:#0a0c10;--panel:#12151c;--line:#232833;--gray:#8a94a4;--gray-l:#b7bfcc}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--dark);color:#fff;min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit;text-decoration:none}
+
+/* ---- intro ---- */
+.top{padding:64px 24px 26px;text-align:center}
+.logo{font-size:clamp(34px,6vw,52px);font-weight:600;letter-spacing:-.02em}
+.logo b{color:var(--blue);font-weight:600}
+.sub{color:var(--gray-l);margin-top:12px;font-size:clamp(15px,2.2vw,17px)}
+.meta{color:var(--gray);margin-top:8px;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+
+/* ---- hub ---- */
+.hub{flex:1;display:flex;align-items:flex-start;justify-content:center;padding:26px 24px 70px}
+.cols{display:grid;grid-template-columns:1fr 1px 1fr;gap:0;max-width:1180px;width:100%}
+.col{padding:0 34px}
+.divider{background:linear-gradient(180deg,transparent,var(--line) 12%,var(--line) 88%,transparent)}
+.gh{margin:6px 0 20px}
+.gh .gt{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+.gh .gs{color:var(--gray);font-size:13.5px;margin-top:5px}
+.tiles{display:flex;flex-direction:column;gap:20px}
+.tile{display:block;background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:transform .25s,border-color .25s,box-shadow .25s}
+.tile:hover{transform:translateY(-4px);border-color:rgba(41,151,255,.55);box-shadow:0 18px 44px rgba(0,0,0,.45)}
+.tile .media{position:relative;aspect-ratio:16/8.4;overflow:hidden;background:#0e1117}
+.tile .media video,.tile .media img{width:100%;height:100%;object-fit:cover;display:block}
+.tile .media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,12,16,0) 45%,rgba(10,12,16,.72))}
+.tile .body{padding:18px 20px 20px;position:relative}
+.tile h2{font-size:19px;font-weight:600;letter-spacing:-.01em}
+.tile p{color:var(--gray-l);font-size:14px;line-height:1.5;margin-top:6px;padding-right:34px}
+.tile .go{position:absolute;right:18px;bottom:18px;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--gray-l);font-size:16px;transition:all .25s}
+.tile:hover .go{background:var(--blue);border-color:var(--blue);color:#fff}
+
+footer{padding:26px 24px 34px;text-align:center;color:var(--gray);font-size:12.5px;border-top:1px solid var(--line)}
+
+@media(max-width:900px){
+  .cols{grid-template-columns:1fr;max-width:560px}
+  .divider{height:1px;width:100%;margin:34px 0;background:linear-gradient(90deg,transparent,var(--line) 12%,var(--line) 88%,transparent)}
+  .col{padding:0}
+  .top{padding-top:48px}
+}
+
+/* ---- gate ---- */
+#gate{position:fixed;inset:0;z-index:99999;background:#000;display:flex;align-items:center;justify-content:center;text-align:center;transition:opacity .3s}
+#gate .gbox{padding:30px;max-width:380px}
+#gate .glogo{font-size:clamp(30px,7vw,40px);font-weight:600;color:#fff;letter-spacing:-.02em}
+#gate .glogo b{color:var(--blue)}
+#gate .gsub{color:var(--gray);margin:14px 0 26px;font-size:15px;line-height:1.45}
+#gate input{width:210px;font-size:34px;text-align:center;letter-spacing:16px;padding:14px 6px 14px 22px;border-radius:14px;border:1px solid #2a2a2d;background:#15171c;color:#fff;outline:none}
+#gate input:focus{border-color:var(--blue)}
+#gate .gerr{color:#ff6b6b;font-size:14px;height:18px;margin-top:14px}
+.gshake{animation:gshake .4s}
+@keyframes gshake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-9px)}40%,80%{transform:translateX(9px)}}
+body.glocked{overflow:hidden}
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div class="gbox">
+    <div class="glogo">AUTO<b>KITCH</b></div>
+    <div class="gsub">Özel sunum · Devam etmek için kodu girin</div>
+    <input id="gpin" type="password" inputmode="text" maxlength="4" autocomplete="off" autocapitalize="off" aria-label="Kod">
+    <div class="gerr" id="gerr"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var CODE="alfa"; /* <<< ŞİFRE BURADA (büyük/küçük harf farketmez) */
+  var gate=document.getElementById('gate');
+  if(sessionStorage.getItem('ak_ok')==='1'){ gate.remove(); return; }
+  document.body.classList.add('glocked');
+  var inp=document.getElementById('gpin'), err=document.getElementById('gerr');
+  setTimeout(function(){inp.focus();},120);
+  inp.addEventListener('input',function(){
+    inp.value=inp.value.replace(/[^a-zA-Z0-9]/g,'').slice(0,4); err.textContent='';
+    if(inp.value.length===4){
+      if(inp.value.toLowerCase()===CODE){ sessionStorage.setItem('ak_ok','1'); gate.style.opacity='0'; setTimeout(function(){gate.remove(); document.body.classList.remove('glocked');},320); }
+      else { err.textContent='Hatalı kod, tekrar deneyin.'; inp.classList.add('gshake'); setTimeout(function(){inp.classList.remove('gshake'); inp.value='';},430); }
+    }
+  });
+})();
+</script>
+
+<nav aria-label="Ana gezinme" style="display:flex;justify-content:center;gap:24px;padding:20px;border-bottom:1px solid var(--line)"><a href="./" aria-current="page">AUTOKITCH</a><a href="/digital-twin/" target="_blank" rel="noopener" style="color:var(--blue)">Digital Twin ↗</a><a href="/pdf/autokitch-fuar/" target="_blank" rel="noopener">Teklif PDF’leri ↗</a></nav>
+<div class="top">
+  <div class="logo" style="display:flex;align-items:center;justify-content:center;gap:14px"><svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true" style="flex:0 0 auto"><rect x="3" y="3" width="8.6" height="8.6" rx="2.2" fill="currentColor"/><rect x="12.4" y="3" width="8.6" height="8.6" rx="2.2" fill="currentColor" opacity=".38"/><rect x="3" y="12.4" width="8.6" height="8.6" rx="2.2" fill="currentColor" opacity=".38"/><rect x="12.4" y="12.4" width="8.6" height="8.6" rx="2.2" fill="currentColor"/></svg>AUTO<b>KITCH</b></div>
+  <div class="sub">Endüstriyel mutfağın otonom geleceği — dört bölüm, tek proje.</div>
+  <div class="meta">Özel Sunum · 2026 · Kemal — Torinoarch Studio</div>
+</div>
+
+<div class="hub">
+  <div class="cols">
+
+    <div class="col">
+      <div class="gh">
+        <div class="gt">Otonom Mutfak</div>
+        <div class="gs">Robotik + yapay zekâ tarafı — geleceğin mutfağı</div>
+      </div>
+      <div class="tiles">
+        <a class="tile" href="moduller/index.html">
+          <div class="media"><video src="assets/pide.mp4" autoplay muted loop playsinline></video></div>
+          <div class="body">
+            <h2>AUTOKITCH Line</h2>
+            <p>Otonom mutfak hatları: pizza &amp; bowl — modüller, maliyet, pazar.</p>
+            <span class="go">→</span>
+          </div>
+        </a>
+        <a class="tile" href="otonom/index.html">
+          <div class="media"><img src="assets/store-final.jpg" alt="Tam Otonom İnsansız Mutfak — AUTOKITCH Store" loading="lazy"></div>
+          <div class="body">
+            <h2>AUTOKITCH Store</h2>
+            <p>İnsansız 7/24 satış noktası — siparişten teslimata uçtan uca otonom.</p>
+            <span class="go">→</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="col">
+      <div class="gh">
+        <div class="gt" style="color:#d8a03c">Klasik Mutfak</div>
+        <div class="gs">Günümüz mutfakları tarafı — üretim işi</div>
+      </div>
+      <div class="tiles">
+        <a class="tile" href="uretim/index.html">
+          <div class="media"><img src="assets/factory.jpg" alt="Fabrika &amp; Yatırım" loading="lazy"></div>
+          <div class="body">
+            <h2>AUTOKITCH Fabrika</h2>
+            <p>Üretim tesisi &amp; yatırım planı — detaylı fizibilite raporu içinde.</p>
+            <span class="go">→</span>
+          </div>
+        </a>
+        
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>AUTOKITCH · Otonom Endüstriyel Mutfak · Kemal — Torinoarch Studio · 2026</footer>
+
+</body>
+</html>

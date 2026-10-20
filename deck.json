@@ -1,0 +1,231 @@
+{
+ "slides": [
+  {
+   "t": "pdf",
+   "p": 1
+  },
+  {
+   "t": "imgvid",
+   "bg": "images/cv-index-v2.png",
+   "src": "video/showreel.mp4",
+   "rect": [
+    56.53,
+    22.79,
+    40.17,
+    68.64
+   ]
+  },
+  {
+   "t": "pdf",
+   "p": 3
+  },
+  {
+   "t": "pdf",
+   "p": 4
+  },
+  {
+   "t": "video",
+   "src": "video/gove.mp4"
+  },
+  {
+   "t": "pdf",
+   "p": 5
+  },
+  {
+   "t": "pdf",
+   "p": 6
+  },
+  {
+   "t": "pdf",
+   "p": 7
+  },
+  {
+   "t": "pdf",
+   "p": 8
+  },
+  {
+   "t": "pdf",
+   "p": 9
+  },
+  {
+   "t": "pdf",
+   "p": 10
+  },
+  {
+   "t": "video",
+   "src": "video/airjet.mp4"
+  },
+  {
+   "t": "pdf",
+   "p": 11
+  },
+  {
+   "t": "pdf",
+   "p": 12
+  },
+  {
+   "t": "pdf",
+   "p": 13
+  },
+  {
+   "t": "pdf",
+   "p": 14
+  },
+  {
+   "t": "pdf",
+   "p": 15
+  },
+  {
+   "t": "pdf",
+   "p": 16
+  },
+  {
+   "t": "pdf",
+   "p": 17
+  },
+  {
+   "t": "pdf",
+   "p": 18
+  },
+  {
+   "t": "pdf",
+   "p": 19
+  },
+  {
+   "t": "pdf",
+   "p": 20
+  },
+  {
+   "t": "pdf",
+   "p": 21
+  },
+  {
+   "t": "pdf",
+   "p": 22
+  },
+  {
+   "t": "video",
+   "src": "video/aion-ssr-interior.mp4"
+  },
+  {
+   "t": "pdf",
+   "p": 23
+  },
+  {
+   "t": "pdf",
+   "p": 24
+  },
+  {
+   "t": "pdf",
+   "p": 25
+  },
+  {
+   "t": "pdf",
+   "p": 26
+  },
+  {
+   "t": "pdf",
+   "p": 27
+  },
+  {
+   "t": "pdf",
+   "p": 28
+  },
+  {
+   "t": "pdf",
+   "p": 29
+  },
+  {
+   "t": "pdf",
+   "p": 30
+  },
+  {
+   "t": "pdf",
+   "p": 31
+  },
+  {
+   "t": "pdf",
+   "p": 32
+  },
+  {
+   "t": "pdf",
+   "p": 33
+  },
+  {
+   "t": "video",
+   "src": "video/hyper-gt.mp4"
+  },
+  {
+   "t": "pdf",
+   "p": 34
+  },
+  {
+   "t": "pdf",
+   "p": 35
+  },
+  {
+   "t": "pdf",
+   "p": 36
+  },
+  {
+   "t": "pdf",
+   "p": 37
+  },
+  {
+   "t": "pdf",
+   "p": 38
+  },
+  {
+   "t": "pdf",
+   "p": 39
+  },
+  {
+   "t": "video",
+   "src": "video/maserati-grecale.mp4"
+  },
+  {
+   "t": "pdf",
+   "p": 40
+  },
+  {
+   "t": "pdf",
+   "p": 41
+  },
+  {
+   "t": "pdf",
+   "p": 42
+  },
+  {
+   "t": "pdf",
+   "p": 43
+  },
+  {
+   "t": "pdf",
+   "p": 44
+  },
+  {
+   "t": "pdf",
+   "p": 45
+  },
+  {
+   "t": "pdf",
+   "p": 46
+  },
+  {
+   "t": "video",
+   "src": "video/mercedes-sprinter.mp4"
+  },
+  {
+   "t": "pdf",
+   "p": 47
+  },
+  {
+   "t": "video",
+   "src": "video/togg-t10x.mp4"
+  },
+  {
+   "t": "pdf",
+   "p": 48
+  }
+ ]
+}

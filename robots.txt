@@ -1,0 +1,5 @@
+# Private portfolio — not for public indexing
+# Kürşad Kemal Kul
+
+User-agent: *
+Disallow: /

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><meta name="robots" content="noindex,nofollow"><title>AUTOKITCH · E İstasyonu</title>
+<style>*{box-sizing:border-box}html,body{margin:0;height:100%;background:#101820;color:#edf2f5;font:14px system-ui}body{display:flex;flex-direction:column}header{display:flex;align-items:center;gap:22px;padding:12px 18px;min-height:54px;border-bottom:1px solid #344451;background:#17232c}strong{color:#e8b04a;letter-spacing:.12em;font-size:13px}nav{display:flex;gap:16px}a{color:#b8c6d0;text-decoration:none}a[aria-current]{color:#fff}button{background:transparent;color:#edf2f5;border:1px solid #637887;border-radius:5px;padding:6px 12px;cursor:pointer;font:inherit}#logout{margin-left:auto}main{position:relative;flex:1;min-height:0}iframe{width:100%;height:100%;border:0;display:block}#status{position:absolute;inset:0;display:grid;place-content:center;text-align:center;padding:24px;background:#101820;color:#bac8d1;pointer-events:none}#status[hidden],[hidden]{display:none!important}@media(max-width:520px){header{gap:12px;padding:10px;font-size:12px}nav{gap:10px}strong{font-size:11px;letter-spacing:.06em}}</style></head>
+<body><header><a href="/" aria-label="Ana sayfa"><strong>AUTOKITCH</strong></a><nav aria-label="Uygulamalar"><a href="/digital-twin/" >Digital Twin</a><a href="/digital-twin/e-taslak/" aria-current="page">E İstasyonu</a></nav><button id="logout" hidden>Çıkış yap</button></header>
+<main><div id="status" role="status">E İstasyonu bağlantısı hazırlanıyor…</div><iframe id="viewer" title="AUTOKITCH · E İstasyonu" sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-downloads" allow="fullscreen; autoplay; clipboard-write" allowfullscreen referrerpolicy="no-referrer" hidden></iframe></main>
+<script>
+const registry='/digital-twin/e-taslak/live.json';
+const frame=document.getElementById('viewer'),statusEl=document.getElementById('status'),logout=document.getElementById('logout');
+let pending=false,lastLookup=0,record=null,activeOrigin='',loaded=false;
+history.replaceState(null,'',location.pathname);
+frame.addEventListener('load',()=>{if(!activeOrigin)return;loaded=true;frame.hidden=false;statusEl.hidden=true;});
+addEventListener('message',e=>{if(e.source!==frame.contentWindow||e.origin!==activeOrigin||e.data?.type!=='autokitch:session')return;logout.hidden=!e.data.authenticated;});
+logout.addEventListener('click',()=>{if(activeOrigin)frame.contentWindow.postMessage({type:'autokitch:logout'},activeOrigin);});
+async function connect(){
+ if(pending)return;pending=true;
+ try{
+  if(!record||Date.now()-lastLookup>60000){
+   const r=await fetch(registry+'?v='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(10000)});if(!r.ok)throw Error();
+   record=await r.json();lastLookup=Date.now();
+  }
+  const url=new URL(record.url);if(url.protocol!=='https:'||!url.hostname.endsWith('.trycloudflare.com'))throw Error();
+  if(url.origin!==activeOrigin){
+   const r=await fetch(url.origin+'/healthz?v='+Date.now(),{credentials:'omit',cache:'no-store',signal:AbortSignal.timeout(8000)});if(!r.ok)throw Error();
+   const health=await r.json();if(health.gateway!=='ok')throw Error();
+   activeOrigin=url.origin;url.pathname='/ikiz/';url.search='?taslak=kutu-profil-v3&rev=production27';url.hash='';frame.hidden=true;logout.hidden=true;loaded=false;statusEl.hidden=false;frame.src=url.href;
+  }
+ }catch{if(!loaded){statusEl.hidden=false;statusEl.textContent='Yayın şu anda hazır değil. Bağlantı otomatik olarak tekrar denenecek.';}}
+ finally{pending=false;}
+}
+connect();setInterval(connect,5000);
+</script></body></html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AUTOKITCH — Makine Yatırım Tablosu</title>
+<meta name="color-scheme" content="only light">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="ClaudeBot" content="noindex, nofollow">
+<meta name="GPTBot" content="noindex, nofollow">
+<style>
+  :root{color-scheme:only light}
+  :root{
+    --black:#000;--panel:#1D1D1F;--panel2:#242427;--line:#333336;--white:#fff;
+    --gray:#86868B;--gray-l:#A1A1A6;--blue:#2997FF;--blue-l:#7CC0FF;
+    --green:#34C759;--orange:#FF9F0A;--maxw:1080px;
+    --font:"SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:var(--font);background:var(--black);color:var(--white);-webkit-font-smoothing:antialiased;
+       line-height:1.45;letter-spacing:-.01em;padding:0 20px 90px}
+  .wrap{max-width:var(--maxw);margin:0 auto}
+  header{padding:54px 0 26px}
+  h1{font-size:clamp(28px,4vw,42px);font-weight:600;letter-spacing:-.02em}
+  .sub{color:var(--gray-l);font-size:15px;margin-top:10px}
+  .sub b{color:#fff;font-weight:600}
+  .grp{background:var(--panel);border:1px solid var(--line);border-radius:14px;margin-top:16px;overflow:hidden}
+  .ghead{display:flex;align-items:baseline;gap:12px;padding:16px 18px;border-bottom:1px solid var(--line)}
+  .ghead h2{font-size:17px;font-weight:600;letter-spacing:-.01em}
+  .ghead .gt{margin-left:auto;font-size:15px;font-weight:600;color:var(--blue-l);white-space:nowrap}
+  .row{border-bottom:1px solid #2b2b2e}
+  .row:last-child{border-bottom:0}
+  .rh{display:flex;align-items:center;gap:12px;padding:13px 18px;cursor:pointer;transition:background .15s}
+  .rh:hover{background:var(--panel2)}
+  .nm{font-size:15px}
+  .nm small{display:block;color:var(--gray);font-size:12.5px;margin-top:2px}
+  .chip{font-size:11px;font-weight:600;padding:3px 8px;border-radius:999px;white-space:nowrap}
+  .c-teklif{background:rgba(52,199,89,.16);color:var(--green)}
+  .c-liste{background:rgba(41,151,255,.16);color:var(--blue)}
+  .c-bekle{background:rgba(255,159,10,.16);color:var(--orange)}
+  .c-tahmin{background:rgba(160,160,170,.16);color:var(--gray-l)}
+  .pr{margin-left:auto;text-align:right;font-size:14.5px;white-space:nowrap}
+  .pr small{display:block;color:var(--gray);font-size:12px}
+  .alt .nm,.alt .pr{color:var(--gray-l)}
+  .det{display:none;padding:0 18px 16px 18px;color:var(--gray-l);font-size:13.5px}
+  .det.on{display:block}
+  .det ul{margin:4px 0 0 18px}
+  .det li{margin:3px 0}
+  .det .kay{margin-top:8px;color:var(--gray);font-size:12.5px}
+  .tot{background:var(--panel);border:1px solid var(--blue);border-radius:14px;margin-top:22px;padding:18px}
+  .tot .l{display:flex;align-items:baseline;padding:7px 0;font-size:15px;border-bottom:1px solid #2b2b2e}
+  .tot .l:last-child{border-bottom:0}
+  .tot .l b{margin-left:auto;font-weight:600}
+  .tot .big{font-size:20px;padding-top:14px}
+  .tot .big b{color:var(--blue-l)}
+  .note{color:var(--gray);font-size:12.5px;margin-top:14px;line-height:1.6}
+  a.back{display:inline-block;margin-top:26px;color:var(--blue);font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Makine Yatırım Tablosu</h1>
+  <div class="sub">Hattın makine maliyeti · her başlığın altında aldığımız teklifler · satıra bas, özellikleri açılır.<br>
+  Tutarlar <b>KDV hariç</b>. Kur: 1 € = <b>56,22 TL</b> (16.09.2026) · 1 $ = <b>48,52 TL</b> (TCMB 11.09.2026).</div>
+</header>
+<div id="app"></div>
+<a class="back" href="../">← AUTOKITCH</a>
+</div>
+
+<script>
+const EUR = 56.22, USD = 48.52;
+const e = v => v * EUR, d = v => v * USD;
+
+/* sec:true → toplama girer.  alt/ust: TL */
+const DATA = [
+ {g:"ROBOT · RAY · TUTUCU", rows:[
+  {n:"Senaryo A · 2 × Fairino FR5", k:"Logorob (Fairino Türkiye)", c:"teklif", sec:true, alt:e(16980), ust:e(16980),
+   d:["Robot başına 8.490 €; ikisi 16.980 €","Fiyata dahil: kontrol kutusu, acil stop, kablosuz teach tablet, router, nakliye, operatör eğitimi","FR5: 922 mm erişim · 5 kg (max 7) · ±0,02 mm · uç hızı 1 m/s · 22 kg · taban Ø149","IP54 (IP65 opsiyonel) · 0–45 °C · 260 W (tepe 310 W)","Stoktan teslim · 1 yıl garanti (2 yıl +500 €, 3 yıl +1.000 €)","Ray gerekmiyor: iki robot da makine gövdesine 1.400 kotunda bağlanıyor"],
+   s:"Logorob 2026 fiyat listesi, 16.09.2026"},
+  {n:"Senaryo B · 1 × FR5 + 5 m ray", k:"Logorob · ray fiyatı bekleniyor", c:"bekle", sec:false, alt:e(8490)+630000, ust:e(8490)+1250000,
+   d:["Robot 8.490 € = 477.308 TL","Ray için bütçe aralığı: 630.000 – 1.250.000 TL (Vention 2 m 12.917 $ referansı, 5–6 m fiyatı yok)","Ray 8.400 €'nun altına inmezse Senaryo A daha ucuz","Yer rayı ve asma ray fiyatı 16.09'da soruldu"],
+   s:"Logorob'a sorulan mail, 16.09.2026"},
+  {n:"Tutucu (gripper)", k:"teklif bekleniyor", c:"bekle", sec:true, alt:250000, ust:580000,
+   d:["Hamur topu (220 g, yapışkan), karton kutu, 0,33 L içecek ve tepsi taşıyacak","Gıdaya uygun olmalı; tepsi için ayrı çözüm/takım değiştirici sorusu açık","Bütçe aralığı proje tahmini"],
+   s:"Logorob'a sorulan mail, 16.09.2026"},
+  {n:"Alternatif · FR5 WML (1.900 mm)", k:"Logorob", c:"liste", sec:false, alt:e(12000), ust:e(12000),
+   d:["1.900 mm erişim · 5 kg · ±0,1 mm","Uzun kol gerektiren yerleşimlerde FR20'ye (15.490 €) göre 3.490 € ucuz"], s:"Logorob 2026 fiyat listesi"},
+  {n:"Alternatif · FR10 (1.400 mm)", k:"Logorob", c:"liste", sec:false, alt:e(13590), ust:e(13590),
+   d:["1.400 mm erişim · 10 kg · ±0,05 mm · uç hızı 1,5 m/s"], s:"Logorob 2026 fiyat listesi"}
+ ]},
+ {g:"PRESS", rows:[
+  {n:"Fersah PZP-400 (ısıtmalı pres)", k:"Fersah Makina", c:"liste", sec:true, alt:e(3750), ust:e(3750),
+   d:["64 × 80 × 95 cm · 170 kg · 3,5 kW / 220 V","500–700 adet/saat","Zemine oturuyor, 70'lik kabini dolduruyor"], s:"fersahmakina.com katalog"},
+  {n:"Alternatif · OPM-400", k:"teklif", c:"teklif", sec:false, alt:e(8500), ust:e(8500),
+   d:["Aynı sınıf pres, teklif bedeli 8.500 €"], s:"Firma teklifi"}
+ ]},
+ {g:"TOPPING (dozaj)", rows:[
+  {n:"Yindu / Atosa dozaj ünitesi", k:"fiyat bekleniyor", c:"bekle", sec:true, alt:d(9800), ust:d(39000)+d(1200),
+   d:["13–15 Eylül yazışması: ürün özelleştirilebilir, 220-230 V / 50 Hz CE ihracat sürümü var","Standart Auto Pizza Artisan fiyatı iki kez istendi, R&D değerlendiriyor","Alt sınır: emsal Çin topping ünitesi 9.800 $","Üst sınır: xPizza Cube 39.000 $ + 1.200 $ nakliye"], s:"Yindu yazışması ve emsal fiyatlar"}
+ ]},
+ {g:"OVEN (konveyör fırın)", rows:[
+  {n:"Senoven SF 1300LS", k:"Senoven", c:"liste", sec:true, alt:e(12245), ust:e(12245),
+   d:["Yerli konveyör fırın","Daha uzun hazne gerekirse SF 1900LS 15.396 €"], s:"Senoven fiyat listesi"},
+  {n:"Davlumbaz (fan hariç)", k:"proje tahmini", c:"tahmin", sec:true, alt:47000, ust:47000,
+   d:["Kanalsız sistem alternatifi 18.359 $ (890.779 TL)"], s:"Tedarikçi snippet"},
+  {n:"Alternatif · ithal 1,4 m fırın", k:"ithal marka", c:"liste", sec:false, alt:e(21000), ust:e(35000),
+   d:["Aynı hazne boyunda ithal marka aralığı"], s:"Piyasa taraması"}
+ ]},
+ {g:"KESME + SPREY", rows:[
+  {n:"Kesme yıldızı, piston, yağ spreyi", k:"proje tahmini", c:"tahmin", sec:true, alt:50000, ust:480000,
+   d:["Cancan bıçak yıldızı + 24 V piston + itici","Üst sınır hazır ünite alınması hâli"], s:"Proje tahmini"}
+ ]},
+ {g:"PACK (kutulama)", rows:[
+  {n:"Kutu şarjörü + kapak mekanizması", k:"proje tahmini", c:"tahmin", sec:true, alt:50000, ust:50000,
+   d:["Kutuları eleman katlıyor, şarjör 506 kutu alıyor","Çin'den hazır makine 13.000 $ ama boyu hatta uymuyor"], s:"Proje tahmini"}
+ ]},
+ {g:"STORE (soğutmalı çekmeceler)", rows:[
+  {n:"36 çekmece", k:"Öztiryakiler / Empero", c:"liste", sec:true, alt:442800, ust:712800,
+   d:["Çekmece başı 12.300 – 19.800 TL","Özel STORE yapılırsa soğutma grubu ayrı (1,5 HP Embraco set 65–88 bin TL)"], s:"Tedarikçi fiyat listeleri"},
+  {n:"Yedek hazne dolabı", k:"liste", c:"liste", sec:true, alt:54000, ust:71000, d:["Yedek Atosa kasetleri için raflı dolap"], s:"Tedarikçi fiyat listeleri"}
+ ]},
+ {g:"QR TESLİM DOLABI", rows:[
+  {n:"12 gözlü ısıtmalı teslim dolabı", k:"Çin tedarikçi", c:"liste", sec:true, alt:d(3300), ust:d(3300),
+   d:["Göz 380 × 200, kutu yatay giriyor","Hatco 8 göz alternatifi 22.543 $ (1.093.786 TL)"], s:"Tedarikçi listesi"}
+ ]},
+ {g:"KONTROL (PLC · pano)", rows:[
+  {n:"PLC + HMI", k:"liste", c:"liste", sec:true, alt:e(880), ust:e(1849), d:["Siemens S7-1200 sınıfı + operatör paneli"], s:"Tedarikçi listesi"},
+  {n:"Pano imalatı", k:"proje tahmini", c:"tahmin", sec:true, alt:100000, ust:200000, d:["Şalt malzemesi, kablaj, montaj"], s:"Proje tahmini"}
+ ]},
+ {g:"YAZILIM · ENTEGRASYON · MONTAJ", rows:[
+  {n:"Yazılım, entegrasyon, saha montajı", k:"proje tahmini", c:"tahmin", sec:true, alt:665000, ust:865000,
+   d:["Robot programlama, PLC yazılımı, kiosk ve sipariş bağlantısı, devreye alma"], s:"Proje sitesi tahmini"}
+ ]}
+];
+
+const TL = v => Math.round(v).toLocaleString("tr-TR") + " TL";
+const rng = (a,b) => a === b ? TL(a) : TL(a) + " – " + TL(b);
+let alt = 0, ust = 0, ithalAlt = 0, ithalUst = 0;
+const ITHAL = ["ROBOT · RAY · TUTUCU","PRESS","TOPPING (dozaj)","OVEN (konveyör fırın)","QR TESLİM DOLABI"];
+
+const app = document.getElementById("app");
+DATA.forEach((g, gi) => {
+  let ga = 0, gu = 0;
+  g.rows.forEach(r => { if (r.sec) { ga += r.alt; gu += r.ust; } });
+  alt += ga; ust += gu;
+  if (ITHAL.includes(g.g)) { ithalAlt += ga; ithalUst += gu; }
+  const box = document.createElement("div");
+  box.className = "grp";
+  box.innerHTML = '<div class="ghead"><h2>' + g.g + '</h2><div class="gt">' + rng(ga, gu) + '</div></div>' +
+    g.rows.map((r, i) =>
+      '<div class="row' + (r.sec ? '' : ' alt') + '">' +
+        '<div class="rh" data-i="' + gi + '-' + i + '">' +
+          '<div class="nm">' + r.n + '<small>' + r.k + '</small></div>' +
+          '<span class="chip c-' + r.c + '">' + ({teklif:"TEKLİF",liste:"LİSTE",bekle:"BEKLENİYOR",tahmin:"TAHMİN"})[r.c] + '</span>' +
+          '<div class="pr">' + rng(r.alt, r.ust) + (r.sec ? '' : '<small>toplama girmiyor</small>') + '</div>' +
+        '</div>' +
+        '<div class="det" id="d' + gi + '-' + i + '"><ul>' + r.d.map(x => '<li>' + x + '</li>').join('') +
+        '</ul><div class="kay">Kaynak: ' + r.s + '</div></div>' +
+      '</div>').join('');
+  app.appendChild(box);
+});
+
+const nakAlt = ithalAlt * 0.03, nakUst = ithalUst * 0.10;
+const araAlt = alt + nakAlt, araUst = ust + nakUst;
+const genAlt = araAlt * 1.10, genUst = araUst * 1.10;
+const tot = document.createElement("div");
+tot.className = "tot";
+tot.innerHTML =
+  '<div class="l">Ara toplam (seçili kalemler)<b>' + rng(alt, ust) + '</b></div>' +
+  '<div class="l">Nakliye + gümrük (ithal kalemlerin %3 – %10\'u)<b>' + rng(nakAlt, nakUst) + '</b></div>' +
+  '<div class="l">Beklenmeyen payı %10<b>' + rng(araAlt * 0.10, araUst * 0.10) + '</b></div>' +
+  '<div class="l big">GENEL TOPLAM (KDV hariç)<b>' + rng(genAlt, genUst) + '</b></div>' +
+  '<div class="note">Toplama yalnız <b>seçili</b> satırlar giriyor; alternatifler bilgi olarak duruyor. ' +
+  'Dahil değil: yedek hazneler, Fersah ve Atosa uyarlama bedelleri, CE belgesi, mekân tadilatı, ilk stok. ' +
+  'TOPPING, ray ve tutucu fiyatları geldiğinde aralık daralacak.</div>';
+app.appendChild(tot);
+
+document.addEventListener("click", ev => {
+  const h = ev.target.closest(".rh");
+  if (!h) return;
+  document.getElementById("d" + h.dataset.i).classList.toggle("on");
+});
+</script>
+</body>
+</html>
