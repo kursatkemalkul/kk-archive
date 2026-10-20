@@ -26,7 +26,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
       - name: Stage portfolio
         run: |
@@ -36,9 +36,9 @@ jobs:
                 --exclude 'highline' --exclude 'nakit' \
                 ./ _site/
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with: { repository: kursatkemalkul/alancast, path: _site/alancast }
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           repository: kursatkemalkul/autokitch
           path: _site/autokitch
@@ -64,9 +64,9 @@ jobs:
             !*.stl
             !*.bin
             !*.zip
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with: { repository: kursatkemalkul/highline, path: _site/highline }
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with: { repository: kursatkemalkul/nakit, path: _site/nakit }
 
       - name: Drop nested .git dirs
@@ -101,15 +101,15 @@ jobs:
           remaining=[str(p.relative_to(root)) for p in root.rglob('*') if p.is_file() and (p.suffix.lower() in suffixes or '.glb.' in p.name.lower())]
           assert not remaining, 'Private model files found in website artifact'
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
         with: { path: _site }
 
       # GitHub'in gecici "try again later" hatasina karsi: basarisizsa bekleyip tekrar dene
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
         continue-on-error: true
       - if: steps.deployment.outcome == 'failure'
         run: sleep 60
       - id: deployment-retry
         if: steps.deployment.outcome == 'failure'
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
