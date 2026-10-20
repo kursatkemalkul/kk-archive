@@ -37,7 +37,11 @@ jobs:
                 ./ _site/
 
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-        with: { repository: kursatkemalkul/alancast, path: _site/alancast }
+        with:
+          repository: kursatkemalkul/alancast
+          path: _site/alancast
+          ssh-key: ${{ secrets.ALANCAST_SITE_READ_KEY }}
+          persist-credentials: false
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           repository: kursatkemalkul/autokitch
@@ -65,9 +69,17 @@ jobs:
             !*.bin
             !*.zip
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-        with: { repository: kursatkemalkul/highline, path: _site/highline }
+        with:
+          repository: kursatkemalkul/highline
+          path: _site/highline
+          ssh-key: ${{ secrets.HIGHLINE_SITE_READ_KEY }}
+          persist-credentials: false
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-        with: { repository: kursatkemalkul/nakit, path: _site/nakit }
+        with:
+          repository: kursatkemalkul/nakit
+          path: _site/nakit
+          ssh-key: ${{ secrets.NAKIT_SITE_READ_KEY }}
+          persist-credentials: false
 
       - name: Drop nested .git dirs
         run: rm -rf _site/*/.git
@@ -95,7 +107,7 @@ jobs:
               if name.startswith('otonom/'):
                   target.mkdir(parents=True,exist_ok=True)
                   (target/'index.html').write_text(redirect,encoding='utf8')
-          suffixes={'.glb','.gltf','.stp','.step','.stl','.obj','.mtl','.iges','.igs','.sldprt','.sldasm','.fcstd','.blend','.fbx','.dae','.3dm','.dxf','.dwg','.bin','.zip','.scl','.st','.awl','.lad','.fbd','.zap','.ap17','.ap18','.ap19','.db','.sqlite','.sqlite3'}
+          suffixes={'.md','.py','.ps1','.sh','.yaml','.yml','.glb','.gltf','.stp','.step','.stl','.obj','.mtl','.iges','.igs','.sldprt','.sldasm','.fcstd','.blend','.fbx','.dae','.3dm','.dxf','.dwg','.bin','.zip','.scl','.st','.awl','.lad','.fbd','.zap','.ap17','.ap18','.ap19','.db','.sqlite','.sqlite3'}
           for item in root.rglob('*'):
               if item.is_file() and (item.suffix.lower() in suffixes or '.glb.' in item.name.lower()): item.unlink()
           remaining=[str(p.relative_to(root)) for p in root.rglob('*') if p.is_file() and (p.suffix.lower() in suffixes or '.glb.' in p.name.lower())]

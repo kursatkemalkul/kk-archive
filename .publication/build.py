@@ -8,7 +8,7 @@ args=parser.parse_args()
 ROOT=Path(__file__).resolve().parent;SOURCES=args.sources;OUTPUT=args.output
 CHUNK=20*1024*1024
 PRIVATE=('._local/','_local/','arastirma/','uretim/','supplier-review/','otonom/hat/','otonom/hat3d/','otonom/birlesik/','otonom/kaset3d/','otonom/elektrik/','otonom/onizleme-9eki/')
-DENIED={'.glb','.gltf','.stp','.step','.stl','.obj','.mtl','.iges','.igs','.sldprt','.sldasm','.fcstd','.blend','.fbx','.dae','.3dm','.dxf','.dwg','.bin','.zip','.scl','.st','.awl','.lad','.fbd','.zap','.ap17','.ap18','.ap19','.db','.sqlite','.sqlite3'}
+DENIED={'.md','.py','.ps1','.sh','.yaml','.yml','.glb','.gltf','.stp','.step','.stl','.obj','.mtl','.iges','.igs','.sldprt','.sldasm','.fcstd','.blend','.fbx','.dae','.3dm','.dxf','.dwg','.bin','.zip','.scl','.st','.awl','.lad','.fbd','.zap','.ap17','.ap18','.ap19','.db','.sqlite','.sqlite3'}
 def copy_source(repo,destination):
  source=SOURCES/repo
  for item in source.rglob('*'):
@@ -28,11 +28,12 @@ def compile_cloudflare(site):
   file=site/'digital-twin'/suffix/'index.html'
   text=file.read_text('utf8')
   old="const registry='https://api.github.com/repos/kursatkemalkul/kk-archive/contents/digital-twin/"+suffix+"live.json';"
-  assert old in text
+  assert old in text or "const registry='/digital-twin/"+suffix+"live.json';" in text
   text=text.replace(old,"const registry='/digital-twin/"+suffix+"live.json';")
   text=text.replace("registry+'?ref=main&v='","registry+'?v='")
   olddecode="const j=await r.json();record=JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(j.content),c=>c.charCodeAt(0))));"
-  assert olddecode in text;text=text.replace(olddecode,'record=await r.json();')
+  assert olddecode in text or 'record=await r.json();' in text
+  text=text.replace(olddecode,'record=await r.json();')
   file.write_text(text,'utf8')
  videos={}
  for file in list(site.rglob('*')):
