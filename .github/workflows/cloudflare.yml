@@ -1,0 +1,84 @@
+name: Cloudflare publication
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  repository_dispatch:
+    types: [site-updated]
+permissions:
+  contents: write
+concurrency:
+  group: cloudflare-publication
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          path: sources/kk-archive
+          persist-credentials: false
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: kursatkemalkul/alancast
+          path: sources/alancast
+          ssh-key: ${{ secrets.ALANCAST_SITE_READ_KEY }}
+          persist-credentials: false
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: kursatkemalkul/autokitch
+          path: sources/autokitch
+          ssh-key: ${{ secrets.AUTOKITCH_SITE_READ_KEY }}
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*
+            !/_local/
+            !/arastirma/
+            !/uretim/
+            !/supplier-review/
+            !/otonom/hat/
+            !/otonom/hat3d/
+            !/otonom/birlesik/
+            !/otonom/kaset3d/
+            !/otonom/elektrik/
+            !/otonom/onizleme-9eki/
+            !*.glb*
+            !*.gltf*
+            !*.stp
+            !*.step
+            !*.stl
+            !*.bin
+            !*.zip
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: kursatkemalkul/highline
+          path: sources/highline
+          ssh-key: ${{ secrets.HIGHLINE_SITE_READ_KEY }}
+          persist-credentials: false
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: kursatkemalkul/nakit
+          path: sources/nakit
+          ssh-key: ${{ secrets.NAKIT_SITE_READ_KEY }}
+          persist-credentials: false
+      - name: Compile public assets
+        run: python3 sources/kk-archive/.publication/build.py --sources sources --output public
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: cloudflare-publication
+          path: publication
+          fetch-depth: 1
+      - name: Update Cloudflare publication branch
+        env:
+          SOURCE_REVISION: ${{ github.sha }}
+        run: |
+          rsync -a --delete --exclude='.git' public/ publication/
+          cd publication
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add --all
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish website from ${SOURCE_REVISION}"
+            git push origin HEAD:cloudflare-publication
+          fi

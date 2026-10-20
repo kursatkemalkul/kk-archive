@@ -31,7 +31,7 @@ jobs:
       - name: Stage portfolio
         run: |
           mkdir -p _site
-          rsync -a --exclude '.git' --exclude '.github' --exclude '_site' \
+          rsync -a --exclude '.git' --exclude '.github' --exclude '.publication' --exclude '_site' \
                 --exclude 'alancast' --exclude 'autokitch' \
                 --exclude 'highline' --exclude 'nakit' \
                 ./ _site/
