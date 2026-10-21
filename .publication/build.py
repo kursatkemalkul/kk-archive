@@ -32,6 +32,10 @@ def compile_cloudflare(site):
  for suffix in ['', 'e-taslak/']:
   file=site/'digital-twin'/suffix/'index.html'
   text=file.read_text('utf8')
+  # The legacy E address now opens the canonical protected main viewer.
+  # Redirect pages do not contain a live-tunnel registry to rewrite.
+  if suffix=='e-taslak/' and "const target=new URL('/digital-twin/',location.origin);" in text and 'location.replace(target.href);' in text:
+   continue
   old="const registry='https://api.github.com/repos/kursatkemalkul/kk-archive/contents/digital-twin/"+suffix+"live.json';"
   assert old in text or "const registry='/digital-twin/"+suffix+"live.json';" in text
   text=text.replace(old,"const registry='/digital-twin/"+suffix+"live.json';")
