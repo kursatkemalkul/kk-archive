@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AUTOKITCH — Sunum</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#07090C; --bg2:#0D1015; --fg:#F2F4F7; --mut:#8C94A3; --dim:#4A5160; --line:#1C212A;
+    --ak:#2997FF;   /* AUTOKITCH mavisi */
+    --pin:#FFC083;  /* PIN şeftalisi (marka paleti) */
+    --pin-kiremit:#8A2C08; --pin-krem:#FFF4E6; --pin-pudra:#F0D8C6;
+    --font:"Inter Tight","SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{color-scheme:dark;background:var(--bg);scroll-behavior:smooth}
+  body{font-family:var(--font);background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
+  a{color:inherit;text-decoration:none}
+
+  .ust{position:fixed;inset:0 0 auto 0;z-index:10;display:flex;justify-content:space-between;align-items:center;
+       padding:20px clamp(16px,4vw,48px);font-size:13px;color:var(--mut);
+       background:linear-gradient(var(--bg) 40%,transparent)}
+  .ust .logo{font-weight:600;letter-spacing:.02em;color:var(--fg)}
+  .ust .logo b{color:var(--ak);font-weight:600}
+  .ust .etiket{border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+
+  /* KAPAK */
+  .kapak{min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+         padding:120px clamp(16px,6vw,96px) 72px;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .kapak::before{content:"";position:absolute;inset:0;pointer-events:none;
+         background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+         background-size:72px 72px;opacity:.35;
+         mask-image:radial-gradient(ellipse 70% 60% at 30% 50%,#000 20%,transparent 75%);
+         -webkit-mask-image:radial-gradient(ellipse 70% 60% at 30% 50%,#000 20%,transparent 75%)}
+  .kapak .ust-yazi{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);margin-bottom:28px;position:relative}
+  .kapak h1{font-size:clamp(56px,12.5vw,190px);font-weight:700;letter-spacing:-.055em;line-height:.88;position:relative}
+  .kapak h1 span{color:var(--ak)}
+  .kapak .alt{margin-top:36px;font-size:clamp(20px,2.6vw,34px);font-weight:300;line-height:1.25;max-width:20ch;position:relative;text-wrap:balance}
+  .kapak .alt b{font-weight:500}
+  .kapak .alt-cizgi{width:64px;height:2px;background:var(--ak);margin-top:36px;position:relative}
+  .kapak .dip{position:absolute;left:clamp(16px,6vw,96px);right:clamp(16px,6vw,96px);bottom:28px;display:flex;justify-content:space-between;
+              font-size:12px;color:var(--dim);letter-spacing:.08em;text-transform:uppercase}
+  .kapak .dip .ok{animation:in 2.4s ease-in-out infinite}
+  @keyframes in{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(6px);opacity:1}}
+
+  /* BOLUM */
+  .bolum{padding:clamp(72px,12vw,140px) clamp(16px,6vw,96px);border-bottom:1px solid var(--line)}
+  .bolum .k{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut)}
+  .bolum .k i{font-style:normal;color:var(--ak);margin-right:10px}
+  .bolum h2{font-size:clamp(34px,5.6vw,76px);font-weight:600;letter-spacing:-.045em;line-height:.98;margin:14px 0 clamp(40px,6vw,72px);max-width:14ch;text-wrap:balance}
+  .kisi{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,4vw,64px)}
+  .kisi>div{border-top:1px solid var(--line);padding-top:22px}
+  .kisi h3{font-size:clamp(22px,2.4vw,30px);font-weight:500;letter-spacing:-.025em}
+  .kisi .rol{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ak);margin:8px 0 18px}
+  .kisi p{font-size:17px;line-height:1.55;color:var(--mut);max-width:44ch}
+  .kisi p b{color:var(--fg);font-weight:500}
+  .kisi .is{margin-top:16px;font-size:15px;color:var(--fg)}
+  .kisi .is span{color:var(--dim);margin-right:8px}
+  .sorun{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:1px 0 0 1px}
+  .sorun>div{background:var(--bg);padding:28px 26px 30px;border:1px solid var(--line);margin:-1px 0 0 -1px}
+  .sorun .no{font-size:12px;color:var(--dim);letter-spacing:.12em}
+  .sorun h3{font-size:21px;font-weight:500;letter-spacing:-.02em;margin:14px 0 10px}
+  .sorun .rk{font-size:clamp(28px,2.8vw,38px);font-weight:600;letter-spacing:-.04em;color:var(--fg);line-height:1}
+  .sorun .rk small{font-size:15px;font-weight:400;color:var(--mut);letter-spacing:0;margin-left:6px}
+  .sorun p{font-size:15px;line-height:1.55;color:var(--mut);margin-top:12px}
+  .kaynak{margin-top:28px;font-size:12px;line-height:1.6;color:var(--dim)}
+  .kaynak a{text-decoration:underline;text-underline-offset:2px}
+  .lead{font-size:clamp(17px,1.8vw,21px);font-weight:300;line-height:1.35;color:var(--fg);max-width:34ch;margin:calc(-1 * clamp(16px,3vw,40px)) 0 clamp(40px,6vw,64px)}
+  .eslem{border-top:1px solid var(--line)}
+  .eslem>div{display:grid;grid-template-columns:minmax(0,1fr) 28px minmax(0,1.6fr);gap:16px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--line)}
+  .eslem .s{font-size:15px;color:var(--dim)}
+  .eslem .o{color:var(--ak);font-size:15px}
+  .eslem .c{font-size:18px;line-height:1.45;color:var(--fg)}
+  .eslem .c span{display:block;font-size:14px;color:var(--mut);margin-top:4px}
+  .alt-bas{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);margin:clamp(56px,8vw,96px) 0 20px}
+  .neden{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,40px)}
+  .neden>div{border-top:2px solid var(--ak);padding-top:18px}
+  .neden h3{font-size:20px;font-weight:500;letter-spacing:-.02em;margin-bottom:10px}
+  .neden p{font-size:15px;line-height:1.55;color:var(--mut)}
+  .neden ul{list-style:none;display:grid;gap:8px;margin-top:4px}
+  .neden li{font-size:15px;line-height:1.45;color:var(--mut)}
+  .neden li b{color:var(--fg);font-weight:500}
+  .neden li em{font-style:normal;color:var(--dim)}
+  .ucuz{margin-top:28px;display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,1fr);gap:12px 40px;align-items:baseline;padding:24px 0;border-bottom:1px solid var(--line)}
+  .ucuz .bas{font-size:clamp(24px,2.6vw,32px);font-weight:600;letter-spacing:-.03em;color:var(--ak)}
+  .ucuz div{font-size:16px;line-height:1.45;color:var(--mut)}
+  .ucuz div b{display:block;color:var(--fg);font-weight:500;font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
+  .sektor{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(24px,4vw,64px);border-top:1px solid var(--line)}
+  .sektor>div{display:grid;grid-template-columns:44px minmax(0,1fr);gap:4px 14px;padding:22px 0;border-bottom:1px solid var(--line)}
+  .sektor .n{font-size:13px;color:var(--ak);letter-spacing:.08em;padding-top:5px;font-variant-numeric:tabular-nums}
+  .sektor h3{font-size:20px;font-weight:500;letter-spacing:-.02em}
+  .sektor p{grid-column:2;font-size:15px;line-height:1.5;color:var(--mut)}
+  .sektor .gelecek .n,.sektor .gelecek h3{color:var(--mut)}
+  .kopru{margin-top:clamp(40px,6vw,72px);font-size:clamp(20px,2.4vw,28px);font-weight:300;letter-spacing:-.01em}
+  .kopru b{font-weight:500;color:var(--pin)}
+  .hat{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .hat>div{padding:20px 14px 22px;border-left:1px solid var(--line);position:relative}
+  .hat>div:first-child{border-left:none;padding-left:0}
+  .hat .n{font-size:12px;color:var(--ak);letter-spacing:.08em;font-variant-numeric:tabular-nums}
+  .hat h3{font-size:16px;font-weight:500;letter-spacing:-.01em;margin:8px 0 6px}
+  .hat p{font-size:13px;line-height:1.45;color:var(--mut)}
+  .rakam{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(16px,3vw,40px);margin-top:clamp(40px,6vw,64px)}
+  .rakam b{display:block;font-size:clamp(28px,3.4vw,42px);font-weight:600;letter-spacing:-.045em;line-height:1}
+  .rakam span{display:block;font-size:14px;color:var(--mut);margin-top:8px;line-height:1.4}
+  .katman{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(24px,4vw,64px);border-top:1px solid var(--line);margin-top:clamp(40px,6vw,64px)}
+  .katman>div{padding:20px 0;border-bottom:1px solid var(--line)}
+  .katman h3{font-size:18px;font-weight:500;letter-spacing:-.015em;margin-bottom:6px}
+  .katman p{font-size:15px;line-height:1.5;color:var(--mut)}
+  .durum{margin-top:28px;display:inline-flex;gap:10px;align-items:center;font-size:14px;color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:8px 16px}
+  .durum i{width:8px;height:8px;border-radius:50%;background:var(--ak);display:inline-block}
+  .gorsel{margin:0 0 clamp(36px,5vw,56px)}
+  .gorsel img{display:block;width:100%;height:auto;border-radius:6px;border:1px solid var(--line)}
+  .gorsel figcaption{font-size:12px;color:var(--dim);margin-top:10px;letter-spacing:.02em}
+  .pazar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,3vw,40px);margin-top:clamp(40px,6vw,64px);padding-top:28px;border-top:1px solid var(--line)}
+  .pazar b{display:block;font-size:clamp(26px,3vw,40px);font-weight:600;letter-spacing:-.045em;line-height:1}
+  .pazar span{display:block;font-size:14px;color:var(--mut);margin-top:8px;line-height:1.4}
+  .e40{margin-top:clamp(48px,7vw,88px);border:1px solid var(--line);border-radius:8px;padding:clamp(22px,3vw,36px)}
+  .e40 .ust2{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 24px}
+  .e40 h3{font-size:clamp(26px,3.2vw,40px);font-weight:600;letter-spacing:-.035em}
+  .e40 .skor{font-size:15px;color:var(--mut)}
+  .e40 .skor b{color:var(--ak);font-weight:600}
+  .e40 p.ac{font-size:15px;color:var(--mut);margin:8px 0 22px;max-width:62ch;line-height:1.5}
+  .e40 ul{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(24px,4vw,56px)}
+  .e40 li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;padding:11px 0;border-top:1px solid var(--line);font-size:15px;line-height:1.45}
+  .e40 li i{font-style:normal;color:var(--ak);font-size:14px}
+  .e40 li.yarim i{color:var(--mut)}
+  .e40 li small{display:block;color:var(--dim);font-size:13px}
+  .spec{width:100%;border-collapse:collapse;margin-top:clamp(40px,6vw,64px);font-size:15px}
+  .spec caption{text-align:left;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);padding-bottom:14px}
+  .spec th,.spec td{text-align:left;vertical-align:top;padding:12px 0;border-top:1px solid var(--line)}
+  .spec th{width:26%;font-weight:500;color:var(--fg);padding-right:20px}
+  .spec td{color:var(--mut);line-height:1.5}
+  .sema{margin-top:clamp(48px,7vw,88px)}
+  .sema .alt-bas{margin-top:0}
+  .sema{overflow-x:auto}
+  .sema svg{width:100%;min-width:860px;height:auto;display:block}
+  .sema .yz{fill:var(--mut);font:400 13px var(--font)}
+  .sema .yb{fill:var(--fg);font:500 15px var(--font)}
+  .sema .ya{fill:var(--ak);font:500 12px var(--font);letter-spacing:.1em}
+  .sema .kut{fill:var(--bg2);stroke:var(--line)}
+  .sema .kutA{fill:var(--bg2);stroke:var(--ak)}
+  .sema .ok3{stroke:var(--dim);stroke-width:1.5;fill:none}
+  .sema .okv{stroke:var(--ak);stroke-width:1.5;fill:none;stroke-dasharray:4 4}
+  .rakip-sar{overflow-x:auto;margin-top:clamp(8px,2vw,16px)}
+  .rakip{width:100%;min-width:880px;border-collapse:collapse;font-size:15px}
+  .rakip th,.rakip td{text-align:left;vertical-align:top;padding:12px 18px 12px 0;border-top:1px solid var(--line);line-height:1.45}
+  .rakip thead th{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);font-weight:500;border-top:none;padding-bottom:10px}
+  .rakip tbody th{font-weight:500;color:var(--fg);width:20%}
+  .rakip td{color:var(--mut)}
+  .rakip td.u{color:var(--dim);width:13%}
+  .rakip tr.grup td{padding-top:26px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ak);border-top:none}
+  .rakip tr.kapandi th,.rakip tr.kapandi td{color:var(--dim)}
+  .rakip tr.tr th{color:var(--ak)}
+  .rakip.neden-t{min-width:720px}
+  .neden-t tbody th{width:26%}
+  .neden-t td:last-child{color:var(--fg)}
+  .bolum.b .k i{color:var(--pin)}
+  .bolum.b .neden>div{border-top-color:var(--pin)}
+  .bolum.b .sorun .no{color:var(--pin)}
+  .bolum.b .eslem .o{color:var(--pin)}
+  .kitle{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+  .kitle span{border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:15px;color:var(--fg)}
+  .kitle-not{font-size:clamp(18px,2vw,22px);font-weight:300;line-height:1.4;color:var(--mut);max-width:44ch;margin-top:22px}
+  .kitle-not b{color:var(--fg);font-weight:500}
+  .yapi{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2.4vw,32px)}
+  .yapi>div{border:1px solid var(--line);border-radius:8px;padding:22px 22px 24px}
+  .yapi .et{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+  .yapi h3{font-size:24px;font-weight:600;letter-spacing:-.03em;margin:10px 0 8px}
+  .yapi p{font-size:15px;line-height:1.5;color:var(--mut)}
+  .yapi .cati h3{color:var(--ak)}
+  .yapi .pinm{border-color:var(--pin)}
+  .yapi .pinm h3{color:var(--pin)}
+  .yapi .sonra{opacity:.6}
+  .ozu{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px clamp(24px,4vw,56px);align-items:baseline;padding:26px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:8px}
+  .ozu b{font-size:clamp(28px,3.6vw,46px);font-weight:600;letter-spacing:-.04em;color:var(--pin)}
+  .ozu span{font-size:16px;line-height:1.5;color:var(--mut);max-width:52ch}
+  .bolum.b .sektor .n{color:var(--pin)}
+  .gorunur{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(24px,4vw,64px);border-top:1px solid var(--line)}
+  .gorunur h3{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--fg);padding:18px 0 6px}
+  .gorunur .yok h3{color:var(--dim)}
+  .gorunur ul{list-style:none}
+  .gorunur li{font-size:15px;line-height:1.45;color:var(--mut);padding:10px 0;border-bottom:1px solid var(--line)}
+  .gorunur .yok li{text-decoration:line-through;text-decoration-color:var(--dim)}
+  .bilim{margin-top:clamp(40px,6vw,64px);border:1px solid var(--line);border-radius:8px;padding:clamp(22px,3vw,36px)}
+  .bilim h3{font-size:clamp(24px,3vw,36px);font-weight:600;letter-spacing:-.035em;line-height:1.1;max-width:22ch}
+  .bilim .ras{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,3vw,40px);margin:26px 0 8px}
+  .bilim .ras b{display:block;font-size:clamp(24px,2.8vw,34px);font-weight:600;letter-spacing:-.04em;line-height:1}
+  .bilim .ras span{display:block;font-size:14px;color:var(--mut);margin-top:8px;line-height:1.4}
+  .bilim p{font-size:16px;line-height:1.6;color:var(--mut);max-width:68ch;margin-top:18px}
+  .bilim p b{color:var(--fg);font-weight:500}
+  .bilim .sonuc{color:var(--fg);border-left:2px solid var(--pin);padding-left:16px}
+  .renk{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+  .renk.yard{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:12px}
+  .renk>div{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--bg2)}
+  .renk i{display:block;height:96px}
+  .renk.yard i{height:56px}
+  .renk b{display:block;font-size:16px;font-weight:500;padding:12px 14px 0}
+  .renk span{display:block;font-size:13px;color:var(--mut);padding:4px 14px 14px;line-height:1.4}
+  .renk code{font:12px ui-monospace,Consolas,monospace;color:var(--dim)}
+  .renk-alt{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin:20px 0 10px}
+  .maskot{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(20px,4vw,48px);align-items:center;background:var(--pin-kiremit);border-radius:10px;padding:clamp(22px,3.5vw,40px)}
+  .maskot img{width:100%;max-width:360px;height:auto;display:block;justify-self:center}
+  .maskot h3{font-size:clamp(24px,3vw,34px);font-weight:600;letter-spacing:-.03em;color:var(--pin-krem)}
+  .maskot p{font-size:16px;line-height:1.55;color:var(--pin-pudra);margin-top:10px;max-width:46ch}
+  .renk7{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+  .renk7>div{display:flex;flex-direction:column;gap:4px}
+  .renk7 i{display:block;height:34px;border-radius:5px;border:1px solid var(--line)}
+  .renk7 .ana i{height:46px}
+  .renk7 b{font-size:12px;font-weight:500;color:var(--mut)}
+  .renk7 .ana b{color:var(--fg)}
+  .renk7 code{font:11px ui-monospace,Consolas,monospace;color:var(--dim)}
+  .renk-not{font-size:12px;color:var(--dim);margin-top:12px;line-height:1.5}
+  .gecegunduz{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,3vw,32px);margin-top:clamp(40px,6vw,64px)}
+  .gecegunduz>div{border-top:2px solid var(--pin);padding-top:18px}
+  .gecegunduz .gece{border-top-color:var(--dim)}
+  .gecegunduz .sa{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+  .gecegunduz h3{font-size:22px;font-weight:500;letter-spacing:-.02em;margin:8px 0 8px}
+  .gecegunduz p{font-size:15px;line-height:1.55;color:var(--mut)}
+  .gun-bar{position:relative;height:30px;border-radius:6px;overflow:hidden;background:var(--bg2);border:1px solid var(--line);margin-top:8px}
+  .gun-bar .sg{position:absolute;top:0;bottom:0}
+  .gun-bar .gece{background:#151a22}
+  .gun-bar .ikmal{background:var(--pin-pudra)}
+  .gun-bar .gun{background:color-mix(in srgb,var(--pin) 30%,var(--bg2))}
+  .gun-bar .yo{position:absolute;top:0;bottom:0;background:var(--pin)}
+  .gun-saat{position:relative;height:18px;margin-top:6px;font-size:11px;color:var(--dim);font-variant-numeric:tabular-nums}
+  .gun-saat span{position:absolute;transform:translateX(-50%)}
+  .gun-saat span:first-child{transform:none}.gun-saat span:last-child{transform:translateX(-100%)}
+  .gun-lej{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:12px;font-size:13px;color:var(--mut)}
+  .gun-lej i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+  .gun-liste{margin-top:22px;border-top:1px solid var(--line)}
+  .gun-liste>div{display:grid;grid-template-columns:120px minmax(0,1fr);gap:4px 18px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .gun-liste .s{font-size:14px;color:var(--pin);font-variant-numeric:tabular-nums;padding-top:2px}
+  .gun-liste b{display:block;font-size:17px;font-weight:500}
+  .gun-liste p{font-size:15px;line-height:1.5;color:var(--mut);margin-top:2px}
+  .agac{display:flex;flex-direction:column;align-items:center}
+  .agac .kok{border:1px solid var(--ak);border-radius:8px;padding:14px 28px;text-align:center;position:relative}
+  .agac .kok b{display:block;font-size:26px;font-weight:600;letter-spacing:-.03em;color:var(--ak)}
+  .agac .et{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+  .agac .kok::after{content:"";position:absolute;left:50%;top:100%;height:28px;border-left:1px solid var(--line)}
+  .agac .dal{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,3vw,40px);width:100%;margin-top:28px;padding-top:28px;position:relative}
+  .agac .dal::before{content:"";position:absolute;top:0;left:25%;right:25%;border-top:1px solid var(--line)}
+  .agac .agkol{position:relative}
+  .agac .agkol::before{content:"";position:absolute;left:50%;top:-28px;height:28px;border-left:1px solid var(--line)}
+  .agac .dugum{border:1px solid var(--line);border-radius:8px;padding:18px 20px;background:var(--bg2)}
+  .agac .pinkol .dugum{border-color:var(--pin)}
+  .agac .dugum b{display:block;font-size:24px;font-weight:600;letter-spacing:-.03em;margin-top:6px}
+  .agac .pinkol .dugum b{color:var(--pin)}
+  .agac .akkol .dugum b{color:var(--ak)}
+  .agac .dugum span{display:block;font-size:14px;line-height:1.5;color:var(--mut);margin-top:6px}
+  .agac .yap{list-style:none;margin:10px 0 0 22px;border-left:1px solid var(--line)}
+  .agac .yap li{position:relative;padding:10px 0 10px 18px;font-size:15px}
+  .agac .yap li::before{content:"";position:absolute;left:0;top:50%;width:12px;border-top:1px solid var(--line)}
+  .agac .yap b{font-weight:500}
+  .agac .yap i{font-style:normal;color:var(--dim);font-size:13px;margin-left:8px}
+  .katmanlar{border-top:1px solid var(--line)}
+  .katmanlar>div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 24px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--line)}
+  .katmanlar h3{font-size:17px;font-weight:500}
+  .katmanlar p{grid-column:1;font-size:14px;color:var(--mut);line-height:1.45}
+  .katmanlar b{grid-row:1 / span 2;grid-column:2;font-size:clamp(22px,2.6vw,32px);font-weight:600;letter-spacing:-.03em;font-variant-numeric:tabular-nums;text-align:right}
+  .katmanlar .biz b{color:var(--pin)}
+  .katmanlar>div:nth-child(1){padding-left:0}.katmanlar>div:nth-child(2){padding-left:4%}.katmanlar>div:nth-child(3){padding-left:4%}.katmanlar>div:nth-child(4){padding-left:8%}
+  .subeler{display:grid;gap:10px}
+  .subeler .sb{display:grid;grid-template-columns:130px minmax(0,1fr) 56px;gap:14px;align-items:center}
+  .subeler .ad{font-size:15px;color:var(--mut)}
+  .subeler .cubuk{height:14px;background:var(--bg2);border-radius:3px;overflow:hidden}
+  .subeler .cubuk i{display:block;height:100%;background:var(--dim);border-radius:3px}
+  .subeler .pide .ad{color:var(--fg)}
+  .subeler .pide .cubuk i{background:var(--pin)}
+  .subeler b{font-size:15px;font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+  .rakip.kars{min-width:600px}.kars tbody th{width:14%}
+  .kurbilgi{display:inline-flex;gap:10px;align-items:center;font-size:13px;color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:7px 14px;margin:-8px 0 clamp(32px,5vw,48px)}
+  .usd{display:block;font-size:12px;font-weight:400;color:var(--dim);margin-top:2px;letter-spacing:0}
+  .fiyatkars td.pin,.fiyatkars th.pin{color:var(--pin);font-weight:600}
+  .senaryo td,.senaryo th{font-variant-numeric:tabular-nums}
+  .senaryo tbody td{color:var(--fg)}
+  .senaryo tr.kar td,.senaryo tr.kar th{font-weight:600;color:var(--pin);border-top:1px solid var(--pin)}
+  .odeme{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,3vw,40px);margin-top:24px}
+  .odeme b{display:block;font-size:clamp(24px,2.6vw,34px);font-weight:600;letter-spacing:-.04em;line-height:1.05}
+  .odeme>div>span{display:block;font-size:14px;color:var(--mut);margin-top:8px;line-height:1.45}
+  @media (max-width:820px){.odeme{grid-template-columns:1fr!important}}
+  .ayrac.c b{color:var(--ak)}
+  .gelir td:nth-child(2){color:var(--fg)}
+  .gelir tr.tekrar th::after{content:"tekrarlayan";margin-left:8px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ak);border:1px solid var(--ak);border-radius:999px;padding:2px 7px;vertical-align:2px}
+  .agac .grp{margin:14px 0 0 22px;border-left:1px solid var(--line);padding-left:18px}
+  .agac .grp>div{position:relative;padding:10px 0}
+  .agac .grp>div::before{content:"";position:absolute;left:-18px;top:21px;width:12px;border-top:1px solid var(--line)}
+  .agac .grp .bas{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+  .agac .grp .bas em{font-style:normal;color:var(--dim);letter-spacing:0;text-transform:none;font-size:13px;margin-left:6px}
+  .agac .grp .yaprak{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .agac .grp .yaprak span{border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:14px;color:var(--fg)}
+  .agac .pinkol .grp .yaprak span.ilk{border-color:var(--pin);color:var(--pin)}
+  .agac .akkol .grp .yaprak span.ilk{border-color:var(--ak);color:var(--ak)}
+  .agac .grp p{font-size:14px;color:var(--mut);line-height:1.45;margin-top:6px}
+  .kollar{display:flex;flex-direction:column;align-items:center}
+  .kollar .kok{border:1px solid var(--ak);border-radius:8px;padding:14px 30px;text-align:center;position:relative}
+  .kollar .kok b{display:block;font-size:26px;font-weight:600;letter-spacing:-.03em;color:var(--ak)}
+  .kollar .kok::after{content:"";position:absolute;left:50%;top:100%;height:28px;border-left:1px solid var(--line)}
+  .kollar .et{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+  .kollar .uc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2.4vw,28px);width:100%;margin-top:28px;padding-top:28px;position:relative}
+  .kollar .uc::before{content:"";position:absolute;top:0;left:16.6%;right:16.6%;border-top:1px solid var(--line)}
+  .kollar .kol3{position:relative;border:1px solid var(--line);border-radius:10px;padding:20px 20px 22px;background:var(--bg2);display:flex;flex-direction:column;gap:14px}
+  .kollar .kol3::before{content:"";position:absolute;left:50%;top:-29px;height:28px;border-left:1px solid var(--line)}
+  .kollar .kol3 h3{font-size:26px;font-weight:600;letter-spacing:-.03em;margin-top:4px}
+  .kollar .kol3 .ne{font-size:15px;line-height:1.5;color:var(--mut)}
+  .kollar .kol3 .bas{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:6px}
+  .kollar .yap2{display:grid;gap:6px}
+  .kollar .yap2 div{display:flex;justify-content:space-between;gap:10px;font-size:15px;border-top:1px solid var(--line);padding-top:6px}
+  .kollar .yap2 div i{font-style:normal;color:var(--dim);font-size:13px;text-align:right}
+  .kollar .kaz{font-size:14px;line-height:1.5;color:var(--fg)}
+  .kollar .kaz em{font-style:normal;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ak);border:1px solid var(--ak);border-radius:999px;padding:1px 6px;margin-left:4px;vertical-align:1px}
+  .kollar .k-pin{border-color:var(--pin)} .kollar .k-pin h3{color:var(--pin)}
+  .kollar .k-depo{border-color:var(--pin-pudra)} .kollar .k-depo h3{color:var(--pin-krem)}
+  .kollar .k-mak{border-color:var(--ak)} .kollar .k-mak h3{color:var(--ak)}
+  .besler{margin-top:clamp(28px,4vw,40px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2.4vw,28px)}
+  .besler div{font-size:15px;line-height:1.5;color:var(--mut);border-top:1px solid var(--line);padding-top:12px}
+  .besler b{color:var(--fg);font-weight:500}
+  .kollar .sekt{display:flex;flex-wrap:wrap;gap:6px}
+  .kollar .sekt span{font-size:14px;font-weight:500;color:var(--ak);background:color-mix(in srgb,var(--ak) 12%,transparent);border:1px solid color-mix(in srgb,var(--ak) 45%,transparent);border-radius:999px;padding:5px 11px}
+  .yapildi{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,3vw,32px)}
+  .yapildi>div{border-top:2px solid var(--ak);padding-top:16px}
+  .yapildi h3{font-size:20px;font-weight:500;letter-spacing:-.02em;margin-bottom:10px}
+  .yapildi ul{list-style:none;display:grid;gap:8px}
+  .yapildi li{display:grid;grid-template-columns:18px minmax(0,1fr);gap:8px;font-size:15px;line-height:1.45;color:var(--mut)}
+  .yapildi li::before{content:"✓";color:var(--ak);font-size:13px;padding-top:2px}
+  .yapildi li b{color:var(--fg);font-weight:500}
+  .yol{position:relative;border-left:1px solid var(--line);margin-left:6px}
+  .yol>div{position:relative;display:grid;grid-template-columns:150px minmax(0,1fr);gap:4px 24px;padding:0 0 26px 26px}
+  .yol>div::before{content:"";position:absolute;left:-6px;top:6px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--ak)}
+  .yol>div.simdi::before{background:var(--ak)}
+  .yol>div.hedef::before{border-color:var(--pin);background:var(--pin)}
+  .yol .ta{font-size:14px;color:var(--ak);font-variant-numeric:tabular-nums;padding-top:2px}
+  .yol .hedef .ta{color:var(--pin)}
+  .yol b{display:block;font-size:18px;font-weight:500}
+  .yol p{font-size:15px;line-height:1.5;color:var(--mut);margin-top:3px}
+  .fazlar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,3vw,32px)}
+  .fazlar>div{border:1px solid var(--line);border-radius:8px;padding:18px 20px;background:var(--bg2)}
+  .fazlar .no{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ak)}
+  .fazlar h3{font-size:20px;font-weight:500;margin:8px 0 6px}
+  .fazlar p{font-size:15px;line-height:1.5;color:var(--mut)}
+  .fazlar span{display:block;font-size:13px;color:var(--dim);margin-top:10px}
+  .depo{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:center}
+  .depo svg{width:100%;height:auto;display:block}
+  .depo .hA{stroke:var(--pin);stroke-width:1.5;stroke-dasharray:5 5}
+  .depo .hB{stroke:var(--ak);stroke-width:1.5;stroke-dasharray:5 5}
+  .depo .dp{fill:var(--bg2);stroke:var(--pin-pudra);stroke-width:1.5}
+  .depo .dpt{fill:var(--fg);font:600 17px var(--font)}
+  .depo .dps{fill:var(--mut);font:400 13px var(--font)}
+  .depo .dA{fill:var(--bg);stroke:var(--pin);stroke-width:1.5}
+  .depo .dB{fill:var(--bg);stroke:var(--ak);stroke-width:1.5}
+  .depo .dkt{fill:var(--fg);font:500 13px var(--font)}
+  .hafta{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;margin-top:14px}
+  .hafta div{border-radius:6px;padding:10px 4px;text-align:center;background:var(--bg2);border:1px solid var(--line)}
+  .hafta b{display:block;font-size:13px;font-weight:500;color:var(--mut)}
+  .hafta span{display:block;font-size:20px;font-weight:600;margin-top:2px}
+  .hafta .gA span{color:var(--pin)} .hafta .gB span{color:var(--ak)}
+  .depo-not{display:grid;gap:12px}
+  .depo-not div{font-size:15px;line-height:1.5;color:var(--mut);border-top:1px solid var(--line);padding-top:10px}
+  .depo-not b{color:var(--fg);font-weight:500}
+  .iki-yol{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,2.4vw,28px);margin-bottom:clamp(40px,6vw,64px)}
+  .iki-yol>div{border:1px solid var(--line);border-radius:8px;padding:18px 20px;background:var(--bg2)}
+  .iki-yol h3{font-size:19px;font-weight:500;margin-bottom:8px}
+  .iki-yol p{font-size:15px;line-height:1.5;color:var(--mut)}
+  .iki-yol p b{color:var(--fg);font-weight:500}
+  .talep{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,3vw,32px)}
+  .talep>div{border:1px solid var(--line);border-radius:10px;padding:clamp(20px,3vw,30px);background:var(--bg2);display:flex;flex-direction:column;gap:14px}
+  .talep .t-ak{border-color:var(--ak)} .talep .t-pin{border-color:var(--pin)}
+  .talep .et{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+  .talep h3{font-size:24px;font-weight:600;letter-spacing:-.03em;margin-top:4px}
+  .talep .t-ak h3{color:var(--ak)} .talep .t-pin h3{color:var(--pin)}
+  .talep .tutar{font-size:clamp(30px,3.4vw,42px);font-weight:600;letter-spacing:-.045em;line-height:1}
+  .talep .tutar small{display:block;font-size:14px;font-weight:400;color:var(--mut);letter-spacing:0;margin-top:6px}
+  .talep .kul{display:grid;gap:8px}
+  .talep .kul div{display:grid;grid-template-columns:minmax(0,1fr) 48px;gap:10px;align-items:center;font-size:15px;color:var(--fg)}
+  .talep .kul div i{font-style:normal;text-align:right;color:var(--mut);font-variant-numeric:tabular-nums}
+  .talep .cub{grid-column:1 / -1;height:6px;border-radius:3px;background:var(--line);overflow:hidden;margin-top:-2px}
+  .talep .cub b{display:block;height:100%}
+  .talep .t-ak .cub b{background:var(--ak)} .talep .t-pin .cub b{background:var(--pin)}
+  .talep .son{font-size:15px;line-height:1.5;color:var(--mut);border-top:1px solid var(--line);padding-top:12px}
+  .talep .son b{color:var(--fg);font-weight:500}
+  .toplam{margin-top:clamp(24px,4vw,40px);display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px 30px;padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .toplam span{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+  .toplam b{font-size:clamp(26px,3vw,38px);font-weight:600;letter-spacing:-.04em}
+  .toplam small{font-size:15px;color:var(--mut);margin-left:10px}
+  .son-sayfa{min-height:80svh;display:flex;flex-direction:column;justify-content:center;padding:clamp(72px,12vw,140px) clamp(16px,6vw,96px)}
+  .son-sayfa .k{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut)}
+  .son-sayfa .k i{font-style:normal;color:var(--ak);margin-right:10px}
+  .son-sayfa h2{font-size:clamp(56px,11vw,160px);font-weight:700;letter-spacing:-.055em;line-height:.9;margin-top:14px}
+  .son-sayfa h2 span{color:var(--ak)}
+  .son-sayfa .alt{margin-top:24px;font-size:clamp(20px,2.6vw,32px);font-weight:300;line-height:1.25;max-width:22ch}
+  .son-sayfa .alt b{font-weight:500}
+  .iletisim{margin-top:clamp(48px,7vw,80px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,3vw,40px);border-top:1px solid var(--line);padding-top:24px}
+  .iletisim .et{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:8px}
+  .iletisim p{font-size:17px;line-height:1.5;color:var(--fg)}
+  .iletisim p span{display:block;font-size:14px;color:var(--mut)}
+  .iletisim a{color:var(--ak)}
+  body.pop .bolum.b h2,body.pop .bolum.b h3,body.pop .bolum.b .k,body.pop .ayrac b,body.pop .pintanit .ad,body.pop .bolum.b .rk,body.pop .bolum.b .pazar b,body.pop .bolum.b .agac b{font-family:"Poppins",var(--font);letter-spacing:-.02em}
+  body.pop .bolum.b h2{font-weight:700}
+  .yazi-anahtar{border:1px solid var(--line);border-radius:999px;padding:5px 12px;font:inherit;font-size:12px;color:var(--mut);background:transparent;cursor:pointer;margin-left:10px}
+  .yazi-anahtar b{color:var(--pin);font-weight:500}
+  .kapak{background:var(--bg)}
+  .kapak .kapak-gorsel{position:absolute;right:-2%;bottom:6%;width:min(56vw,980px);pointer-events:none;opacity:.55;
+    mask-image:linear-gradient(90deg,transparent 0%,#000 45%,#000 90%,transparent 100%);-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 45%,#000 90%,transparent 100%)}
+  .kapak .kapak-gorsel img{width:100%;height:auto;display:block}
+  .yakin{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,2vw,24px);margin:clamp(32px,5vw,56px) 0 0}
+  .yakin figure{margin:0}
+  .yakin img{width:100%;height:auto;display:block;border-radius:6px;border:1px solid var(--line);aspect-ratio:4/3;object-fit:cover}
+  .yakin figcaption{font-size:12px;color:var(--dim);margin-top:8px}
+  :root{--bg-b:#100B08;--bg2-b:#1A120D}
+  .bolum.b,.ayrac.bayrac{background:var(--bg-b)}
+  .bolum.b .sorun>div,.bolum.b .renk>div{background:var(--bg-b)}
+  .bolum.b .kol3,.bolum.b .iki-yol>div,.bolum.b .talep>div{background:var(--bg2-b)}
+  /* sayfa düzeni: her sayfa bir ekran */
+  .sayfa{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-block:clamp(56px,7vh,84px);scroll-snap-align:start}
+  .sayfa + .sayfa{border-top:1px solid var(--line)}
+  .bolum{padding-block:0}
+  .sayfa .k-devam{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:18px}
+  .sayfa .k-devam i{font-style:normal;color:var(--ak);margin-right:10px}
+  .bolum.b .sayfa .k-devam i{color:var(--pin)}
+  .sayfa > .alt-bas:first-child,.sayfa > .k-devam + .alt-bas{margin-top:0}
+  .kapak,.akis,.son-sayfa{min-height:100svh;scroll-snap-align:start}
+  .sayfa .alt-bas{margin:28px 0 14px}
+  .sayfa > .alt-bas:first-child,.sayfa > .k-devam + .alt-bas{margin-top:0}
+  .bolum .sayfa h2{margin:12px 0 22px}
+  .sayfa .lead{margin:0 0 26px}
+  .sayfa .gorsel{margin:0 0 20px}
+  .sayfa .gorsel img{max-height:50vh;width:auto;max-width:100%;margin:0 auto}
+  .sayfa .sorun>div{padding:18px 20px 20px}
+  .sayfa .sorun h3{margin:8px 0 6px}
+  .sayfa .sorun p{margin-top:8px}
+  .sayfa .sektor>div{padding:13px 0}
+  .sayfa .rakip th,.sayfa .rakip td{padding:7px 14px 7px 0;font-size:14px}
+  .sayfa .rakip tr.grup td{padding-top:14px}
+  .sayfa .eslem>div{padding:11px 0}
+  .sayfa .spec th,.sayfa .spec td{padding:7px 0}
+  .sayfa .spec{margin-top:20px}
+  .sayfa .rakam,.sayfa .pazar,.sayfa .katman{margin-top:22px}
+  .sayfa .e40,.sayfa .sema,.sayfa .bilim{margin-top:0}
+  .sayfa .pintanit{margin-top:24px;padding:22px 28px}
+  .sayfa .serit{margin-top:28px}
+  .sayfa .durum{margin-top:18px}
+  .sayfa .kaynak{margin-top:16px}
+  .sayfa .neden>div{padding-top:12px}
+  .sayfa .kopru{margin-top:24px}
+  .sayfa .yakin{margin-top:16px}
+  .sayfa .yakin img{max-height:34vh}
+  .sayfa .gun-liste>div{padding:9px 0}
+  .sayfa .yol>div{padding-bottom:16px}
+  .sayfa .gorsel img{max-height:40vh}
+  .sayfa .kollar .kol3{padding:16px 18px;gap:10px}
+  .sayfa .kollar .kol3 h3{font-size:22px}
+  .sayfa .kollar .yap2 div{padding-top:4px;font-size:14px}
+  .sayfa .talep>div{padding:18px 22px;gap:10px}
+  .sayfa .eslem>div{padding:8px 0}
+  .sayfa .sektor>div{padding:10px 0}
+  .sayfa .sektor p{font-size:14px}
+  .bolum h2.slogan{font-family:"Poppins",var(--font);font-weight:700;letter-spacing:-.02em}
+  .sayfa .sorun{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+  .sayfa .serit{font-size:14px;font-weight:400;color:var(--mut);gap:6px 28px;margin-top:22px}
+  .sayfa .serit b{color:var(--fg);font-weight:500}
+  .sayfa .lead{font-size:clamp(16px,1.6vw,19px)}
+  .sayfa .alt-bas{margin:22px 0 10px}
+  .sayfa .sektor p,.sayfa .neden p,.sayfa .katman p{font-size:14px}
+  .sayfa .sektor h3,.sayfa .neden h3{font-size:18px}
+  .sayfa{padding-block:clamp(48px,6vh,72px)}
+  /* ORTAK BİLEŞENLER · sade, tekrarlı */
+  .sayfa .sorun,.sayfa .neden,.sayfa .yapildi,.sayfa .fazlar,.sayfa .iki-yol,.sayfa .talep{gap:14px}
+  .sayfa .sorun{padding:0}
+  .sayfa .sorun>div,.sayfa .neden>div,.sayfa .yapildi>div,.sayfa .fazlar>div,.sayfa .iki-yol>div{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:0}
+  .bolum.b .sayfa .sorun>div,.bolum.b .sayfa .neden>div,.bolum.b .sayfa .iki-yol>div{background:var(--bg2-b)}
+  .sayfa .neden>div,.sayfa .yapildi>div{border-top:1px solid var(--line)}
+  .sayfa .sorun h3,.sayfa .neden h3,.sayfa .yapildi h3,.sayfa .fazlar h3,.sayfa .iki-yol h3{font-size:17px;font-weight:500;letter-spacing:-.01em;margin:6px 0 6px}
+  .sayfa .sorun p,.sayfa .neden p,.sayfa .fazlar p,.sayfa .iki-yol p,.sayfa .yapildi li{font-size:14px;line-height:1.45}
+  .sayfa .sorun .no,.sayfa .sektor .n,.sayfa .fazlar .no{font-size:12px;letter-spacing:.1em}
+  .sayfa .rakam b,.sayfa .pazar b,.sayfa .bilim .ras b,.sayfa .odeme b{font-size:clamp(24px,2.6vw,34px);letter-spacing:-.035em}
+  .sayfa .rakam span,.sayfa .pazar span,.sayfa .bilim .ras span,.sayfa .odeme>div>span{font-size:13px;color:var(--mut)}
+  .sayfa .sorun .rk{font-size:clamp(22px,2.2vw,28px)}
+  .sayfa .rakip thead th,.sayfa .spec caption{font-size:11px;letter-spacing:.14em;color:var(--dim)}
+  .sayfa .e40,.sayfa .bilim,.sayfa .kol3,.sayfa .talep>div{border-radius:10px}
+  .sayfa .e40 h3,.sayfa .bilim h3{font-size:clamp(20px,2.2vw,26px)}
+  .ayrac{min-height:100svh;flex-direction:column;align-items:flex-start;justify-content:center;gap:14px;scroll-snap-align:start;padding-block:0!important}
+  .ayrac b{font-size:clamp(90px,14vw,200px)!important;line-height:.9}
+  .ayrac{padding:clamp(56px,9vw,110px) clamp(16px,6vw,96px) 0;display:flex;align-items:baseline;gap:18px;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut)}
+  .ayrac b{font-size:clamp(40px,6vw,72px);font-weight:600;letter-spacing:-.04em;color:var(--pin);text-transform:none}
+  .pintanit{margin-top:clamp(56px,8vw,96px);display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px clamp(24px,4vw,56px);align-items:center;padding:clamp(28px,4vw,48px);background:var(--pin-kiremit);border-radius:10px}
+  .pintanit .ad{font-size:clamp(64px,9vw,120px);font-weight:700;letter-spacing:-.06em;line-height:.85;color:var(--pin-krem)}
+  .pintanit p{font-size:clamp(19px,2.2vw,26px);font-weight:300;line-height:1.35;color:var(--pin-krem);max-width:30ch}
+  .pintanit p span{display:block;font-size:15px;color:var(--pin-pudra);margin-top:10px;font-weight:400}
+  .serit{margin-top:clamp(48px,7vw,88px);display:flex;flex-wrap:wrap;gap:12px 40px;font-size:clamp(18px,2vw,24px);font-weight:300;letter-spacing:-.01em}
+  .serit b{font-weight:500}
+  .serit .ok2{color:var(--ak)}
+
+  /* AKIS */
+  .akis{padding:clamp(72px,12vw,140px) clamp(16px,6vw,96px)}
+  .akis .k{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut)}
+  .akis h2{font-size:clamp(32px,5vw,64px);font-weight:600;letter-spacing:-.04em;line-height:1;margin:14px 0 56px;max-width:16ch}
+  .kol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,48px)}
+  .kol>div{border-top:1px solid var(--line);padding-top:20px}
+  .kol .harf{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ak);margin-bottom:6px}
+  .kol .pin .harf{color:var(--pin)}
+  .kol h3{font-size:22px;font-weight:500;letter-spacing:-.02em;margin-bottom:18px}
+  .kol ol{list-style:none;display:grid;gap:9px;counter-reset:n}
+  .kol li{font-size:15px;color:var(--mut);display:flex;gap:12px}
+  .kol li i{font-style:normal;color:var(--dim);font-variant-numeric:tabular-nums;min-width:2.2ch}
+  .kol li.hazir{color:var(--fg)}
+  .not{margin-top:56px;font-size:13px;color:var(--dim)}
+
+  .gor{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease}
+  .gor.on{opacity:1;transform:none}
+  @media (max-width:560px){.hat{grid-template-columns:repeat(2,minmax(0,1fr))}.hat>div{border-left:none;padding-left:0;border-top:1px solid var(--line)}.hat>div:nth-child(even){padding-left:14px;border-left:1px solid var(--line)}}
+  @media (prefers-reduced-motion:reduce){.gor{opacity:1;transform:none;transition:none}.kapak .dip .ok{animation:none}}
+  @media (max-width:1000px){.hat{grid-template-columns:repeat(4,minmax(0,1fr))}.hat>div:nth-child(5){border-left:none;padding-left:0}.hat>div:nth-child(n+5){border-top:1px solid var(--line)}}
+  @media (max-width:820px){.subeler .sb{grid-template-columns:96px minmax(0,1fr) 48px;gap:10px}.agac .dal{grid-template-columns:1fr}.agac .dal::before,.agac .agkol::before{display:none}.gun-liste>div{grid-template-columns:1fr}.gecegunduz{grid-template-columns:1fr}.renk7{grid-template-columns:repeat(4,minmax(0,1fr))}.maskot{grid-template-columns:1fr}.renk.yard{grid-template-columns:repeat(2,minmax(0,1fr))}.renk i{height:64px}.renk b{font-size:15px;padding:10px 10px 0}.renk span{padding:4px 10px 12px}.bilim .ras{grid-template-columns:1fr}.yapi,.gorunur,.ozu{grid-template-columns:1fr}.pintanit{grid-template-columns:1fr}.rakam,.katman{grid-template-columns:repeat(2,minmax(0,1fr))}.kol,.kisi,.neden,.ucuz,.sektor,.pazar,.e40 ul{grid-template-columns:1fr}.spec th{width:38%}.eslem>div{grid-template-columns:1fr;gap:4px}.eslem .o{display:none}.ust .etiket{display:none}}
+  @media (max-width:560px){.hat{grid-template-columns:repeat(2,minmax(0,1fr))}.hat>div{border-left:none!important;padding-left:0!important;border-top:1px solid var(--line)}.hat>div:nth-child(-n+2){border-top:none}.hat>div:nth-child(even){padding-left:14px!important;border-left:1px solid var(--line)!important}}
+  @media (max-width:820px){.kollar .uc,.besler{grid-template-columns:1fr}.kollar .uc::before,.kollar .kol3::before{display:none}}
+  @media (max-width:820px){.yapildi{grid-template-columns:1fr}}
+  @media (max-width:820px){.yol>div{grid-template-columns:1fr}.fazlar{grid-template-columns:1fr}}
+  @media (max-width:820px){.depo{grid-template-columns:1fr}}
+  @media (max-width:820px){.iki-yol{grid-template-columns:1fr}}
+  @media (max-width:820px){.talep{grid-template-columns:1fr}}
+  @media (max-width:820px){.iletisim{grid-template-columns:1fr}}
+  @media (max-width:820px){.kapak .kapak-gorsel{opacity:.28;width:130vw;right:-35%;bottom:14%}.yakin{grid-template-columns:1fr}}
+  .ayrac{min-height:100svh;padding-block:0}
+  .hat.akisli>div{position:relative}
+  .hat.akisli>div:not(:last-child)::after{content:"→";position:absolute;right:-7px;top:18px;font-size:13px;color:var(--pin);background:var(--bg-b);line-height:1;padding:1px 0}
+  .gezin{position:fixed;right:clamp(12px,2vw,24px);bottom:calc(clamp(12px,2vw,24px) + env(safe-area-inset-bottom,0px));z-index:20;display:flex;flex-direction:column;gap:6px}
+  .gezin button{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:color-mix(in srgb,var(--bg2) 85%,transparent);color:var(--fg);font-size:16px;cursor:pointer}
+  .gezin button:hover{border-color:var(--ak)}
+  .eklenecek{margin-top:clamp(40px,6vw,64px);font-size:12px;line-height:1.6;color:var(--dim);max-width:70ch}
+  .eklenecek b{color:var(--mut);font-weight:500}
+#gate{position:fixed;inset:0;z-index:99999;background:#000;display:flex;align-items:center;justify-content:center;text-align:center;transition:opacity .3s}
+#gate .gbox{padding:30px;max-width:380px}
+#gate .glogo{font-size:clamp(30px,7vw,40px);font-weight:600;color:#fff;letter-spacing:-.02em}
+#gate .glogo b{color:#2997FF}
+#gate .gsub{color:#8a8f98;margin:14px 0 26px;font-size:15px;line-height:1.45}
+#gate input{width:210px;font-size:34px;text-align:center;letter-spacing:16px;padding:14px 6px 14px 22px;border-radius:14px;border:1px solid #2a2a2d;background:#15171c;color:#fff;outline:none}
+#gate input:focus{border-color:#2997FF}
+#gate .gerr{color:#ff6b6b;font-size:14px;height:18px;margin-top:14px}
+.gshake{animation:gshake .4s}
+@keyframes gshake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-9px)}40%,80%{transform:translateX(9px)}}
+body.glocked{overflow:hidden}
+</style>
+</head>
+<body>
+<div id="gate">
+  <div class="gbox">
+    <div class="glogo">AUTO<b>KITCH</b></div>
+    <div class="gsub">Özel sunum · Devam etmek için kodu girin</div>
+    <input id="gpin" type="password" inputmode="text" maxlength="4" autocomplete="off" autocapitalize="off" aria-label="Kod">
+    <div class="gerr" id="gerr"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var CODE="alfa";
+  var gate=document.getElementById('gate');
+  if(sessionStorage.getItem('ak_ok')==='1'){ gate.remove(); return; }
+  document.body.classList.add('glocked');
+  var inp=document.getElementById('gpin'), err=document.getElementById('gerr');
+  setTimeout(function(){inp.focus();},120);
+  inp.addEventListener('keydown',function(e){ e.stopPropagation(); });
+  inp.addEventListener('input',function(){
+    inp.value=inp.value.replace(/[^a-zA-Z0-9]/g,'').slice(0,4); err.textContent='';
+    if(inp.value.length===4){
+      if(inp.value.toLowerCase()===CODE){ sessionStorage.setItem('ak_ok','1'); gate.style.opacity='0'; setTimeout(function(){gate.remove(); document.body.classList.remove('glocked');},320); }
+      else { err.textContent='Hatalı kod, tekrar deneyin.'; inp.classList.add('gshake'); setTimeout(function(){inp.classList.remove('gshake'); inp.value='';},430); }
+    }
+  });
+})();
+</script>
+
+<header class="ust">
+  <a class="logo" href="../">AUTO<b>KITCH</b></a>
+  <span class="etiket">Sunum · taslak v66 · 23.10.2026</span>
+</header>
+
+<section class="kapak">
+  <div class="kapak-gorsel"><img src="img/sunum_kapak_v1.jpg" alt=""></div>
+  <div class="ust-yazi gor">Sunum</div>
+  <h1 class="gor">AUTO<span>KITCH</span></h1>
+  <p class="alt gor">Mutfağın otonom geleceği. <b>Her sektörde, her ölçekte.</b></p>
+  <div class="alt-cizgi gor"></div>
+  <div class="dip"><span>Torino · İstanbul</span><span class="ok">Kaydır ↓</span><span>2026</span></div>
+</section>
+
+<section class="akis">
+  <div class="k gor">Sunumun akışı</div>
+  <h2 class="gor">Teknolojiden sofraya.</h2>
+  <div class="kol">
+    <div class="gor">
+      <div class="harf">A</div><h3>AUTOKITCH</h3>
+      <ol>
+        <li class="hazir"><i>01</i>Kapak</li>
+        <li class="hazir"><i>02</i>Kurucu ekip</li>
+        <li class="hazir"><i>03</i>Sorun</li>
+        <li class="hazir"><i>04</i>Çözüm ve neden şimdi</li>
+        <li class="hazir"><i>05</i>Nerelerde çalışır</li>
+        <li class="hazir"><i>06</i>Teknoloji · platform</li>
+        <li class="hazir"><i>07</i>Rakipler ve farkımız</li>
+        <li class="hazir"><i>08</i>İş modeli · üç kol</li>
+      </ol>
+    </div>
+    <div class="gor pin">
+      <div class="harf">B</div><h3>Nereden başlıyoruz</h3>
+      <ol>
+        <li class="hazir"><i>09</i>Neden pide</li>
+        <li class="hazir"><i>10</i>Pazar</li>
+        <li class="hazir"><i>11</i>PIN hattı</li>
+        <li class="hazir"><i>12</i>Marka</li>
+        <li class="hazir"><i>13</i>Müşteri deneyimi</li>
+        <li class="hazir"><i>14</i>Birim ekonomisi</li>
+        <li class="hazir"><i>15</i>PIN’in büyümesi · merkez depo</li>
+      </ol>
+    </div>
+    <div class="gor">
+      <div class="harf">C</div><h3>İş ve gelecek</h3>
+      <ol>
+        <li class="hazir"><i>16</i>Şimdiye kadar ne yaptık · Traction</li>
+        <li class="hazir"><i>17</i>Yol haritası</li>
+        <li class="hazir"><i>18</i>Yatırım · iki talep</li>
+        <li class="hazir"><i>19</i>İletişim</li>
+      </ol>
+    </div>
+  </div>
+  <p class="not gor">Taslak. Bütün bölümler hazır; son sadeleştirme turu yapılacak.</p>
+</section>
+
+<section class="bolum">
+<div class="sayfa" data-b="02">
+  <div class="k gor"><i>02</i>Kurucu ekip</div>
+  <h2 class="gor">Ürün tasarımı ve marka stratejisi.</h2>
+  <div class="kisi">
+    <div class="gor">
+      <h3>Kürşat Kemal Kul</h3>
+      <div class="rol">Kurucu ortak · Ürün ve sistem tasarımı</div>
+      <p><b>Mimar ve endüstriyel tasarımcı</b> (Mimar Sinan Güzel Sanatlar Üniversitesi). TOGG ve FIAT başta olmak üzere Türkiye, İtalya ve Çin merkezli otomotiv markalarında tasarım deneyimi. Torinoarch kurucu ortağı.</p>
+      <p class="is"><span>Sorumluluk</span>Makine, mekân ve sistem tasarımı.</p>
+    </div>
+    <div class="gor">
+      <h3>Eslem Soylu Kul</h3>
+      <div class="rol">Kurucu ortak · Marka ve strateji</div>
+      <p><b>Sosyolog; pazarlama iletişimi yüksek lisansı</b> (Londra). Tüketici davranışı, marka stratejisi ve iletişim. Torinoarch kurucu ortağı.</p>
+      <p class="is"><span>Sorumluluk</span>Marka stratejisi, iş planı, pazar ve iletişim.</p>
+    </div>
+  </div>
+  <div class="serit gor"><span>Tasarım ve Ar-Ge: <b>Torino, İtalya</b></span><span class="ok2">Şirket, üretim ve operasyon: <b>Türkiye</b></span></div>
+
+</div>
+</section>
+
+<section class="bolum">
+<div class="sayfa" data-b="03">
+  <div class="k gor"><i>03</i>Sorun</div>
+  <h2 class="gor">Mutfak hâlâ insana bağımlı.</h2>
+  <div class="sorun gor">
+    <div><div class="no">01</div><h3>Personel bulunamıyor</h3><div class="rk">894 bin<small>açık iş</small></div><p>İŞKUR’a göre 2026’nın ilk beş ayında. Turizm ve otelcilik tek başına 36.784 personel arıyor.</p></div>
+    <div><div class="no">02</div><h3>Personel pahalı</h3><div class="rk">40.214 TL<small>/ ay</small></div><p>2026’da asgari ücretli tek bir çalışanın işverene aylık maliyeti.</p></div>
+    <div><div class="no">03</div><h3>7/24 açık kalmak zor</h3><div class="rk">4 kişi<small>/ tek pozisyon</small></div><p>Haftada 168 saat açık kalmak için, yasal haftalık 45 saat ve gece 7,5 saat sınırıyla, tek bir pozisyona en az dört çalışan gerekir. Asgari ücretle bile ayda yaklaşık 160 bin TL.</p></div>
+    <div><div class="no">04</div><h3>Kalite kişiye bağlı</h3><p>Tat, porsiyon ve hijyen o gün mutfakta kimin olduğuna göre değişir. Şube sayısı arttıkça standart düşer.</p></div>
+    <div><div class="no">05</div><h3>Geçici yerde mutfak kurulamıyor</h3><p>Şantiye, festival, gemi, sezonluk alan: birkaç aylık ihtiyaç için personel bulmak ve mutfak kurmak ekonomik değil.</p></div>
+  </div>
+  <p class="kaynak gor">Kaynak: İŞKUR 2026 ocak–mayıs açık iş verisi (haber aracılığıyla) · asgari ücretin işverene maliyeti, Çalışma ve Sosyal Güvenlik Bakanlığı hesabı, 2 puan SGK indirimli (<a href="https://www.pwc.com.tr/tr/Hizmetlerimiz/vergi/vergi-bultenleri/2025/asgari-ucret-ve-asgari-ucrete-bagli-tutarlar.pdf">PwC bülteni</a>) · gece çalışması: 4857 sayılı İş Kanunu md. 69 (<a href="https://mevzuat.gov.tr/mevzuatmetin/1.5.4857.pdf">mevzuat.gov.tr</a>). 4 kişi = 168 saat ÷ 45 saat, izinler hariç.</p>
+
+</div>
+</section>
+
+<section class="bolum">
+<div class="sayfa" data-b="04">
+  <div class="k gor"><i>04</i>Çözüm ve neden şimdi</div>
+  <h2 class="gor">Mutfağı bir sisteme dönüştürüyoruz.</h2>
+  <p class="lead gor">Üretimi makine yapar. İnsan yalnız ikmali, temizliği ve gerekirse satışı yapar.</p>
+  <div class="eslem gor">
+    <div><div class="s">Personel bulunamıyor</div><div class="o">→</div><div class="c">Siparişten teslime üretim makinede.<span>Robot, otomatik istasyonlar ve tek bir kontrol sistemi.</span></div></div>
+    <div><div class="s">Personel pahalı</div><div class="o">→</div><div class="c">Personel en aza iner.<span>Üretimde insan yok. Dükkânda gündüz tek kişi; gece ve box ünitelerde hiç kimse.</span></div></div>
+    <div><div class="s">7/24 açık kalmak zor</div><div class="o">→</div><div class="c">Gece de aynı hızla çalışır.<span>Gece vardiyası gerekmez.</span></div></div>
+    <div><div class="s">Kalite kişiye bağlı</div><div class="o">→</div><div class="c">Aynı reçete, aynı gramaj, aynı süre.<span>Her şube, her saat aynı ürün.</span></div></div>
+    <div><div class="s">Geçici yerde mutfak kurulamıyor</div><div class="o">→</div><div class="c">Modüler, taşınabilir, ihtiyaca göre tasarlanır.<span>İstasyonlar birbirine bağlanır, sökülüp başka yere kurulur. Kapasite ve menü, kurulduğu yerin ihtiyacına göre belirlenir.</span></div></div>
+  </div>
+  <div class="ucuz gor"><div class="bas">Sonuç: daha ucuz</div><div><b>İşletmeye (B2B)</b>Personel maliyeti düşer.</div><div><b>Müşteriye (B2C)</b>Ürün daha ucuza satılır.</div></div>
+</div>
+<div class="sayfa" data-b="04">
+  <div class="k-devam"><i>04</i>Çözüm ve neden şimdi</div>
+  <div class="alt-bas gor">Neden şimdi</div>
+  <div class="neden">
+    <div class="gor"><h3>Personel sorunu kalıcı</h3><p>Açık iş sayısı ve işçilik maliyeti her yıl artıyor. Otomasyon artık bir tercih değil, bir zorunluluk.</p></div>
+    <div class="gor"><h3>Teknoloji sahada kanıtlandı</h3><ul>
+      <li><b>İsrail</b> · Pizza Hut için konteyner pizza <em>(Hyper Food Robotics)</em></li>
+      <li><b>İspanya</b> · Robotlu pizzacı, Madrid <em>(Pazzi)</em></li>
+      <li><b>Almanya</b> · Süpermarkette otonom mutfak, saatte ~120 öğün <em>(Circus CA-1, REWE)</em></li>
+      <li><b>ABD</b> · Ordu için konteyner mutfak denemesi, saatte 100–120 öğün <em>(Sustained Autonomous Meals)</em></li>
+    </ul></div>
+    <div class="gor"><h3>Sipariş dijitalleşti</h3><p>Sipariş artık uygulamadan geliyor; müşteri mutfağı görmüyor. Mutfağın nasıl çalıştığı değil, ürünün aynı olması önemli.</p></div>
+  </div>
+  <p class="kaynak gor">Kaynak: ABD Ordusu “Sustained Autonomous Meals” denemesi (<a href="https://www.stripes.com/theaters/asia_pacific/2026-05-13/army-robotic-field-kitchen-sam-21665162.html">Stars and Stripes, Mayıs 2026</a>; <a href="https://www.ausa.org/news/soldiers-test-mobile-autonomous-kitchen">AUSA</a>).</p>
+
+</div>
+</section>
+
+<section class="bolum">
+<div class="sayfa" data-b="05">
+  <div class="k gor"><i>05</i>Nerelerde çalışır</div>
+  <h2 class="gor">Mutfağın olduğu her yer.</h2>
+  <p class="lead gor">Hedef alanlar. Her birinde aynı ihtiyaç: personelsiz, tutarlı, taşınabilir mutfak.</p>
+  <div class="sektor">
+    <div class="gor"><div class="n">01</div><h3>Fast-food zincirleri</h3><p>Rakip değil, çözüm ortağı: şubelerindeki personel yükünü ve kalite farkını alır.</p></div>
+    <div class="gor"><div class="n">02</div><h3>Kurumsal yerleşkeler</h3><p>Fabrika, kampüs ve ofis yemekhaneleri; vardiyalı, 7/24 çalışan yerler.</p></div>
+    <div class="gor"><div class="n">03</div><h3>Şantiyeler</h3><p>Müteahhit sahalarında dönemlik mutfak; proje bitince sökülüp bir sonrakine taşınır.</p></div>
+    <div class="gor"><div class="n">04</div><h3>Festival, etkinlik, sezon alanları</h3><p>Küçük “box” üniteler: sahil, fuar, stadyum. Sezon bitince taşınır.</p></div>
+    <div class="gor"><div class="n">05</div><h3>7/24 açık noktalar</h3><p>Hastaneler, havalimanları, otoyol tesisleri: gece de açık kalan küçük “box” üniteler.</p></div>
+    <div class="gor"><div class="n">06</div><h3>Gemiler</h3><p>Sefer boyunca, sınırlı alanda, az personelle çalışan hazır mutfak.</p></div>
+    <div class="gor"><div class="n">07</div><h3>Savunma</h3><p>Sahada kurulan, ihtiyaca göre tasarlanan konteyner mutfak.</p></div>
+    <div class="gor"><div class="n">08</div><h3>Uzak ve kârsız noktalar</h3><p>Uzak ilçe ve beldeler, sanayi siteleri, yurt çevreleri: talep var ama restoran yok, personel bulunmuyor, personelli dükkân kâr etmiyor.</p></div>
+    <div class="gor gelecek"><div class="n">09</div><h3>Evler · uzun vade</h3><p>Ev tipi otonom mutfak.</p></div>
+  </div>
+</div>
+<div class="sayfa" data-b="05">
+  <div class="k-devam"><i>05</i>Nerelerde çalışır</div>
+  <div class="pazar">
+    <div class="gor"><b>275 bin</b><span>yiyecek-içecek işletmesi<br>Türkiye, 2024</span></div>
+    <div class="gor"><b>1 milyon+</b><span>sektörde çalışan<br>Türkiye, 2026</span></div>
+    <div class="gor"><b>6,7 mlr $</b><span>tam otomatik restoran pazarı<br>dünya, 2033 tahmini</span></div>
+  </div>
+  <p class="kaynak gor">Kaynak: TÜİK Yıllık Sanayi ve Hizmet İstatistikleri (<a href="https://files.tepav.org.tr/upload/files/1787904391748-0.Cafe_latte_ekonomisiBir_fincanda_iki_Turkiye.pdf">TEPAV, Ağustos 2026</a>) · çalışan sayısı Haziran 2026 (<a href="https://www.haberturk.com/ekonomi/konaklama-ve-yiyecek-hizmetlerinde-calisan-sayisi-rekor-kirdi-3905822">haber</a>) · dünya pazarı Data Horizzon Research tahmini, 2024’te 1,9 mlr $ (<a href="https://foodondemand.com/12222025/forecasts-anticipate-transformative-decade-ahead-for-fully-automated-restaurant-market/">Food On Demand</a>). Dünya pazarı tahminleri raporlara göre çok değişir.</p>
+  <p class="kopru gor">İlk adım: <b>kendi restoranımız.</b></p>
+
+</div>
+</section>
+
+<section class="bolum">
+<div class="sayfa" data-b="06">
+  <div class="k gor"><i>06</i>Teknoloji</div>
+  <h2 class="gor">Tek platform, farklı makineler.</h2>
+  <p class="lead gor">AUTOKITCH’in teknolojisi tek bir makine değil, bir platform. Aynı yapı taşları farklı biçimlerde birleşir; her birleşim yeni bir makine olur.</p>
+  <figure class="gorsel gor"><img src="img/sunum_patlat_v1.jpg" alt="Hattın istasyonları birbirinden ayrılmış 3B görünüm: soğuk dolap, robot, açıcı, malzeme, fırın, kesme, kutulama" loading="lazy"><figcaption>İstasyonlar ayrı modüller · her biri kendi gövdesinde, birbirine bağlanır</figcaption></figure>
+</div>
+<div class="sayfa" data-b="06">
+  <div class="k-devam"><i>06</i>Teknoloji</div>
+  <div class="alt-bas gor" style="margin-top:0">Yapı taşları</div>
+  <div class="hat gor"><div><div class="n">01</div><h3>Soğuk depolama</h3><p>Çekmeceli soğuk dolap; malzeme ve stok.</p></div><div><div class="n">02</div><h3>Robot</h3><p>Raylı robot kol; istasyonlar arası taşıma.</p></div><div><div class="n">03</div><h3>Hazırlama</h3><p>Açma, kesme, karıştırma; ürüne göre seçilir.</p></div><div><div class="n">04</div><h3>Dozaj</h3><p>Her malzeme gramajında.</p></div><div><div class="n">05</div><h3>Pişirme</h3><p>Fırın, ızgara ya da fritöz; ürüne göre.</p></div><div><div class="n">06</div><h3>Paketleme</h3><p>Kutulama ve kapatma.</p></div><div><div class="n">07</div><h3>Teslim</h3><p>Kodlu dolap; müşteri ya da kurye alır.</p></div><div><div class="n">08</div><h3>Yazılım</h3><p>Kontrol sistemi ve dijital ikiz; hepsini yönetir.</p></div></div>
+  <div class="alt-bas gor">İstasyon değişir, ürün değişir</div>
+  <div class="neden">
+    <div class="gor"><h3>AUTOKITCH Line · bugün</h3><p>Dükkân hattı. İlk uygulaması pide ve lahmacun; PIN dükkânlarında çalışır.</p></div>
+    <div class="gor"><h3>AUTOKITCH Box · sonra</h3><p>Konteyner ve box ünite: şantiye, festival, gemi, savunma. Taşınır, kurulur.</p></div>
+    <div class="gor"><h3>AUTOKITCH Home · uzun vade</h3><p>Ev tipi. Aynı platformun küçük ölçeği.</p></div>
+  </div>
+  <div class="alt-bas gor">Makine kendini yönetir</div>
+  <div class="sektor">
+    <div class="gor"><div class="n">01</div><h3>Stoğunu kendi sayar</h3><p>Kasetlerde ve çekmecelerde sensörler var; her malzemeden ne kadar kaldığını bilir.</p></div>
+    <div class="gor"><div class="n">02</div><h3>Ne zaman sipariş verileceğini söyler</h3><p>Malzeme azalınca uyarır; ne zaman, neyin, ne kadar getirileceğini ikmal listesi olarak hazırlar.</p></div>
+    <div class="gor"><div class="n">03</div><h3>Fireyi ayırır</h3><p>Hatalı ürün ve atık ayrı bir kapta toplanır, ikmalde boşaltılır.</p></div>
+    <div class="gor"><div class="n">04</div><h3>Soğuk zinciri izler</h3><p>Dolap sıcaklığını sürekli ölçer; sınır aşılırsa alarm verir.</p></div>
+    <div class="gor"><div class="n">05</div><h3>Arızayı kendi bildirir</h3><p>Arızayı teşhis eder, uzaktan haber verir. Elektrik kesilirse kaldığı yerden devam eder.</p></div>
+    <div class="gor"><div class="n">06</div><h3>Her ürünü kaydeder</h3><p>Gramaj, pişme süresi ve sıcaklık kayda geçer; tutarlılığın kanıtı.</p></div>
+  </div>
+</div>
+<div class="sayfa" data-b="06">
+  <div class="k-devam"><i>06</i>Teknoloji</div>
+  <div class="e40 gor">
+    <div class="ust2"><h3>Endüstri 4.0</h3></div>
+    <p class="ac">Endüstri 4.0 kriterlerine göre tasarlandı.</p>
+    <ul><li><i>●</i><span>PLC ile kontrol<small>Siemens endüstriyel kontrol</small></span></li><li><i>●</i><span>Bilgi sistemine bağlı, uzaktan talimat<small>Reçete ve sipariş merkezden yüklenir</small></span></li><li><i>●</i><span>Satış ve tedarik ağıyla bağlantı<small>Sipariş platformlarına bağlı · tedarik bağlantısına hazır</small></span></li><li><i>●</i><span>Basit kullanıcı ekranı<small>Dokunmatik ekran ve tablet</small></span></li><li><i>●</i><span>Güvenlik ve hijyen<small>CE uygunluğuna göre tasarlandı</small></span></li><li><i>●</i><span>Uzaktan bakım ve arıza teşhisi<small>Alarm ve kayıtlar uzaktan izlenir</small></span></li><li><i>●</i><span>Sensörlerle sürekli izleme<small>Kaset, kapak ve sıcaklık sensörleri</small></span></li><li><i>●</i><span>Dijital ikiz<small>Makinenin sanal kopyası, gerçek kontrol yazılımıyla; her senaryo önce burada denenir</small></span></li></ul>
+  </div>
+  <table class="spec gor"><caption>Ortak altyapı · teknik özellikler</caption><tr><th>Kontrol</th><td>Siemens SIMATIC S7-1500F emniyetli PLC · PROFINET ve PROFIsafe haberleşme</td></tr><tr><th>Hareket</th><td>SINAMICS S200 servo sürücüler · çok turlu mutlak enkoderli SIMOTICS servo motorlar</td></tr><tr><th>Robot</th><td>6 eksenli robot kol · yer rayı ile 7. eksen</td></tr><tr><th>Emniyet</th><td>EN ISO 13849 emniyet fonksiyonları (PL d/e) · CE uygunluğu (çalışma sürüyor)</td></tr><tr><th>Hijyen</th><td>Paslanmaz çelik · sökülebilir gıda temas parçaları · endüstriyel bulaşık makinesinde yıkama</td></tr><tr><th>Yazılım</th><td>IEC 61131-3 PLC programı · dijital ikiz · sipariş platformu entegrasyonları</td></tr></table>
+
+</div>
+</section>
+
+<section class="bolum">
+<div class="sayfa" data-b="07">
+  <div class="k gor"><i>07</i>Rakipler ve farkımız</div>
+  <h2 class="gor">Dünyada yarış başladı. Türkiye’de üretici yok.</h2>
+  <p class="lead gor">Dünyada 60’tan fazla firma mutfak robotu geliştiriyor. Çoğu tek bir işi ya da tek bir ürünü yapıyor. Siparişten teslime bütün işi yapan tam hat az.</p>
+</div>
+<div class="sayfa" data-b="07">
+  <div class="k-devam"><i>07</i>Rakipler ve farkımız</div>
+  <div class="rakip-sar gor"><table class="rakip">
+    <thead><tr><th>Firma</th><th>Ülke</th><th>Ne yapıyor</th><th>Büyüklük</th><th>Durum · 2026</th></tr></thead>
+    <tbody>
+      <tr class="grup"><td colspan="5">Tam hat · en yakın rakipler</td></tr>
+      <tr><th>Hyper Food Robotics</th><td class="u">İsrail</td><td>Konteyner içinde insansız pizza restoranı</td><td>~10 milyon $ yatırım*</td><td>Pizza Hut İsrail ile çalışıyor; büyüme haberi sınırlı</td></tr>
+      <tr><th>Pazzi</th><td class="u">Fransa · İspanya</td><td>Üç robot kollu pizzacı</td><td>12 milyon € üzeri yatırım (2022’ye kadar)</td><td>2022’de tasfiye; 2026’da Madrid’de yeniden açılış, franchise ile büyüme hedefi</td></tr>
+      <tr><th>Nala Robotics</th><td class="u">ABD</td><td>Robot kolla pizza, saatte 50</td><td>Açıklanmadı</td><td>Satış yok, aylık kiralama</td></tr>
+      <tr><th>Let’s Pizza</th><td class="u">İtalya</td><td>Hazır tabandan sosla, pişir, kutula: otomat</td><td>Açıklanmadı</td><td>Satılık; taban dışarıda hazırlanır</td></tr>
+      <tr class="grup"><td colspan="5">Genel otonom mutfaklar</td></tr>
+      <tr><th>Circus · CA-1</th><td class="u">Almanya</td><td>Otonom pişirme robotu; süpermarket, fabrika yemekhanesi, ordu</td><td>Borsada · 2025 geliri ~1,5 milyon €, zararı ~18 milyon €</td><td>Temmuz 2026’da yıllık gelir beklentisini 44–55 milyon €’dan 5,2 milyon €’ya indirdi; kurulum ve servis maliyeti beklenenden yüksek çıktı</td></tr>
+      <tr><th>Infinite Kitchen</th><td class="u">ABD</td><td>Otomatik kâse (bowl) mutfağı</td><td>2025’te 186,4 milyon $’a satıldı</td><td>Sweetgreen’den Wonder’a geçti; 20’den fazla restoranda</td></tr>
+      </tbody>
+  </table></div>
+</div>
+<div class="sayfa" data-b="07">
+  <div class="k-devam"><i>07</i>Rakipler ve farkımız</div>
+  <div class="alt-bas gor">Rakipler · devamı</div>
+  <div class="rakip-sar gor"><table class="rakip">
+    <thead><tr><th>Firma</th><th>Ülke</th><th>Ne yapıyor</th><th>Büyüklük</th><th>Durum · 2026</th></tr></thead>
+    <tbody>
+      <tr class="grup"><td colspan="5">Tek iş yapan robotlar</td></tr>
+      <tr><th>Miso Robotics</th><td class="u">ABD</td><td>Fritöz robotu</td><td>~130–200 milyon $ yatırım*</td><td>Mevcut mutfağa eklenir; tek başına mutfak değil</td></tr>
+      <tr><th>Lab2Fab · Middleby</th><td class="u">ABD</td><td>Sos ve peynir hattı</td><td>Sahibi Middleby: 2025 cirosu 3,2 milyar $</td><td>Büyük mutfak ekipmanı grubunun bir ürünü</td></tr>
+      <tr class="grup"><td colspan="5">Kapananlar</td></tr>
+      <tr class="kapandi"><th>Zume</th><td class="u">ABD</td><td>Kamyonda pişiren pizza robotu</td><td>~445 milyon $ yatırım</td><td>2020’de pizzayı bıraktı, 2023’te kapandı</td></tr>
+      <tr class="kapandi"><th>Picnic</th><td class="u">ABD</td><td>Pizza malzeme hattı</td><td>~25 milyon $ yatırım</td><td>Mayıs 2026’da borcunu ödeyemedi, varlıkları satıldı</td></tr>
+      <tr class="kapandi"><th>Karakuri</th><td class="u">İngiltere</td><td>Kâse robotu</td><td>~13 milyon £ yatırım</td><td>2023’te yeni yatırım bulamadı, kapandı</td></tr>
+      <tr class="kapandi"><th>Piestro · Chowbotics</th><td class="u">ABD</td><td>Pizza kioskı, salata robotu</td><td>~12 milyon $ · DoorDash’in</td><td>Seri ürün teslim edemedi · beklenen performansı vermedi</td></tr>
+      <tr class="grup"><td colspan="5">Türkiye</td></tr>
+      <tr class="tr"><th>Yerli üretici yok</th><td class="u">Türkiye</td><td>Örnekler robot garson ve robot barista düzeyinde</td><td>—</td><td>Otonom mutfak üreten yerli firma bulunmuyor</td></tr>
+    </tbody>
+  </table></div>
+  <p class="kaynak gor" style="margin-top:12px">* Şirket açıklaması değil, yatırım veri tabanlarının tahmini.</p>
+</div>
+<div class="sayfa" data-b="07">
+  <div class="k-devam"><i>07</i>Rakipler ve farkımız</div>
+  <div class="alt-bas gor">Neden kapandılar · bizim önlemimiz</div>
+  <div class="rakip-sar gor"><table class="rakip neden-t">
+    <thead><tr><th>Neden</th><th>Örnek</th><th>Bizim önlemimiz</th></tr></thead>
+    <tbody>
+      <tr><th>İnsanlar robota hazır değildi</th><td>Pazzi kurucusu: halkın robotlara güvensizliği</td><td>Dükkânda gündüz müşterinin karşısında bir insan var. Müşteri sisteme yavaş yavaş alışır.</td></tr>
+      <tr><th>Maliyet düşmedi, fiyat avantajı yoktu</th><td>Circus: kurulum ve servis maliyeti beklenenden yüksek</td><td>Hedef, ürünü piyasadan daha ucuza satmak. Standart modüller, uzaktan izleme ve bakım.</td></tr>
+      <tr><th>Büyük alan, pahalı kurulum</th><td>Pazzi: “ölçeklenemedi”, Paris şubeleri kapandı</td><td>Yaklaşık 4,5 m’lik kompakt hat; istasyonlar sökülüp taşınır.</td></tr>
+      <tr><th>Ürün hazır olmadan büyüme</th><td>Piestro seri ürün teslim edemedi; Zume teknik sorunlarla pizzayı bıraktı</td><td>Önce dijital ikizde simülasyon, sonra tek dükkânda deneme, ondan sonra çoğaltma.</td></tr>
+      <tr><th>Yalnız yatırımla yaşamak</th><td>Karakuri ve Picnic yeni para bulamadı</td><td>Makine önce kendi restoranımızda çalışır ve gelir üretir.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="alt-bas gor">Farkımız</div>
+  <div class="sektor">
+    <div class="gor"><div class="n">01</div><h3>Kendi makinemiz</h3><p>Makine, kontrol yazılımı ve dijital ikiz bizim tasarımımız. Hazır bir makine alıp üstüne marka koymuyoruz.</p></div>
+    <div class="gor"><div class="n">02</div><h3>Makine ve restoran aynı şirkette</h3><p>Hat önce kendi dükkânımızda çalışır. Sahadan gelen her veri makineye geri döner.</p></div>
+    <div class="gor"><div class="n">03</div><h3>Siparişten teslime, tam hat</h3><p>Rakiplerin çoğu tek bir işi ya da tek bir ürünü yapar. Bizim hat bütün işi yapar; istasyonlar değişince ürün de değişir.</p></div>
+    <div class="gor"><div class="n">04</div><h3>Modüler, her sektöre</h3><p>Aynı istasyonlar farklı kapasite ve menüyle kurulur: dükkân, şantiye, gemi, box ünitesi.</p></div>
+    <div class="gor"><div class="n">05</div><h3>Endüstriyel altyapı</h3><p>Siemens kontrol ve emniyet sistemi, CE uygunluğu, Endüstri 4.0.</p></div>
+    <div class="gor"><div class="n">06</div><h3>İtalya’da tasarım, Türkiye’de üretim</h3><p>Avrupa tasarımı, Türkiye üretim maliyeti. Türkiye’de bu alandaki ilk üretici.</p></div>
+  </div>
+  <p class="kaynak gor">Kaynak: “Kitchens of Tomorrow” küresel robotik mutfak haritası, Mart 2026 (64 firma) · Circus 2025 sonuçları ve 2026 beklenti düzeltmesi (<a href="https://www.businesswire.com/news/home/20260529636611/en/Circus-Releases-Preliminary-Financial-Results-for-FY2025">Business Wire, Mayıs 2026</a>; <a href="https://www.boerse-online.de/dpa-afx/eqs-adhoc-circus-passt-finanzprognose-fuer-geschaeftsjahr-2026-an-schaerft-fokus-auf-operative-skalierbarkeit-deutsch-538314.html">EQS, Temmuz 2026</a>) · Pazzi kapanışı ve kurucunun açıklaması (<a href="https://thespoon.tech/french-robot-pizza-restaurant-startup-pazzi-shuts-its-doors">The Spoon, Ekim 2022</a>; <a href="https://www.blick.ch/wirtschaft/vollautomatisierte-take-away-pizzeria-in-der-schweiz-gibt-es-pizza-bald-vom-roboter-id21567274.html">Blick</a>) · Infinite Kitchen satışı (<a href="https://www.restaurantdive.com/news/sweetgreen-sells-spyce-to-wonder-186m/804959">Restaurant Dive</a>) · Middleby 2025 sonuçları (<a href="https://www.businesswire.com/news/home/20260226604426/en/The-Middleby-Corporation-Reports-Fourth-Quarter-and-Fiscal-Year-Results">Business Wire</a>) · Zume (<a href="https://www.nrn.com/restaurant-segments/-400-million-ex-pizza-robot-company-zume-shuts-down">NRN</a>) · Picnic (<a href="https://www.geekwire.com/2026/robot-pizza-startup-runs-out-of-dough-picnic-shuts-down-sells-assets-to-mystery-buyer/">GeekWire, 2026</a>) · Karakuri (<a href="https://thespoon.tech/karakuri-joins-the-growing-list-of-food-robot-startups-that-have-shut-down/">The Spoon</a>) · Chowbotics (<a href="https://techcrunch.com/2022/07/11/doordash-bought-chowbotics-last-year-now-its-shutting-down-the-salad-robot-startup">TechCrunch</a>) · Nala (<a href="https://www.therobotreport.com/nala-robotics-launches-fully-autonomous-pizzeria-robot-pizzaiola">The Robot Report</a>) · Hyper, Miso, Piestro yatırım tutarları: yatırım veri tabanları (Startupim, CB Insights, Caplight). Türkiye için tarama Ekim 2026.</p>
+
+</div>
+</section>
+
+<section class="bolum">
+<div class="sayfa" data-b="08">
+  <div class="k gor"><i>08</i>İş modeli</div>
+  <h2 class="gor">Tek teknoloji, üç kol.</h2>
+  <p class="lead gor">AUTOKITCH’in teknolojisi üç ayrı işte para kazanır: restoranda, merkez depoda ve makine satışında.</p>
+
+</div>
+<div class="sayfa" data-b="08">
+  <div class="k-devam"><i>08</i>İş modeli</div>
+  <div class="kollar gor">
+    <div class="kok"><div class="et">Teknoloji</div><b>AUTOKITCH</b></div>
+    <div class="uc">
+      <div class="kol3 k-pin">
+        <div><div class="et">01 · Restoran</div><h3>PIN</h3></div>
+        <p class="ne">Kendi dükkânlarımız. Kanıtlandıkça yeni noktalar: kendi dükkânlarımız ve franchise.</p>
+        <div><div class="bas">Markalar</div><div class="yap2">
+          <div><span>Pin Pide</span><i>bugün</i></div>
+          <div><span>Pin Burger</span><i>ileride</i></div>
+          <div><span>Pin Bowl</span><i>ileride · kâse</i></div>
+          <div><span>Pin Salat</span><i>ileride</i></div>
+        </div></div>
+        <p class="kaz"><b>Kazanç:</b> ürün satışı. Franchise verilirse giriş ücreti ve cirodan pay <em>tekrarlayan</em></p>
+      </div>
+      <div class="kol3 k-depo">
+        <div><div class="et">02 · Merkez üretim</div><h3>Depo</h3></div>
+        <p class="ne">Hamur ve harç tek merkezde, tek reçeteyle üretilir; ileride otonom, tek kişi yönetir. Dükkânlara oradan dağıtılır.</p>
+        <div><div class="bas">Örnek</div><div class="yap2">
+          <div><span>Her sabah üretim</span><i></i></div>
+          <div><span>Her gün bir tur, iki gün arayla</span><i>6 dükkân</i></div>
+          <div><span>Kendi dükkânlar + franchise</span><i>aynı depo</i></div>
+        </div></div>
+        <p class="kaz"><b>Kazanç:</b> franchise’a hamur ve harç satışı <em>tekrarlayan</em>; kendi dükkânlarda toplu alımla daha düşük malzeme maliyeti.</p>
+      </div>
+      <div class="kol3 k-mak">
+        <div><div class="et">03 · Makine</div><h3>AUTOKITCH</h3></div>
+        <p class="ne">PIN’de sahada denenmiş makine, başka işletmelere satılır ya da kiralanır.</p>
+        <div><div class="bas">Ürünler</div><div class="yap2">
+          <div><span>Line</span><i>dükkân hattı</i></div>
+          <div><span>Box</span><i>konteyner ve box ünite</i></div>
+          <div><span>Home</span><i>ev tipi · uzun vade</i></div>
+        </div></div>
+        <div><div class="bas">Sektörler</div><div class="sekt">
+          <span>Havalimanı</span><span>Hastane</span><span>Otoyol tesisi</span><span>Şantiye</span><span>Savunma</span><span>Gemi</span><span>Festival ve sezon</span><span>Fast-food zincirleri</span><span>Fabrika ve kampüs yemekhaneleri</span>
+        </div></div>
+        <p class="kaz"><b>Kazanç:</b> makine satışı ya da kirası; bakım ve yazılım aboneliği <em>tekrarlayan</em></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="alt-bas gor">Kollar birbirini besler</div>
+  <div class="besler">
+    <div class="gor"><b>PIN makineyi kanıtlar.</b> Her dükkân, makinenin vitrini ve test sahası.</div>
+    <div class="gor"><b>Depo PIN’i ucuzlatır.</b> Tek merkezde üretim maliyeti düşürür, her dükkânda aynı tadı sağlar.</div>
+    <div class="gor"><b>Makine yeni pazar açar.</b> Restoran dışındaki sektörlere aynı teknolojiyle girer.</div>
+  </div>
+
+</div>
+<div class="sayfa" data-b="08">
+  <div class="k-devam"><i>08</i>İş modeli</div>
+  <div class="alt-bas gor">Sıra</div>
+  <div class="sektor">
+    <div class="gor"><div class="n">01</div><h3>Kanıtla</h3><p>İlk dükkânlar bizim. Rakamlar sahada gerçekleşir; makine kendi dükkânımızda olgunlaşır.</p></div>
+    <div class="gor"><div class="n">02</div><h3>Çoğalt</h3><p>Yeni dükkânları kendimiz açarız ya da franchise veririz. Dükkân sayısı artınca merkez depo kurulur.</p></div>
+    <div class="gor"><div class="n">03</div><h3>Sat</h3><p>Sahada denenmiş makineyi başka sektörlere satarız: zincirler, kurumlar, şantiyeler, gemiler, savunma.</p></div>
+    <div class="gor"><div class="n">04</div><h3>Tekrarlayan gelir</h3><p>Cirodan pay, depo tedariki, bakım ve yazılım her ay gelir. Her yeni dükkân ve her yeni makine bu geliri büyütür.</p></div>
+  </div>
+  <p class="kitle-not gor">Kendi dükkân sayısını yatırım belirler. Franchise oranları ve ücretleri ilk dükkânların rakamlarıyla belirlenecek.</p>
+
+</div>
+</section>
+
+<div class="ayrac bayrac"><b>B</b>Nereden başlıyoruz</div>
+<section class="bolum b">
+<div class="sayfa" data-b="09">
+  <div class="k gor"><i>09</i>Neden pide</div>
+  <h2 class="gor slogan">Türkiye’nin kendi fast food’u.</h2>
+  <p class="lead gor">İlk ürünümüz pide ve lahmacun. Herkesin bildiği, her saate ve her bütçeye uyan bir ürün. Ama bugün herkese, her saatte ulaşmıyor.</p>
+
+  <div class="alt-bas gor" style="margin-top:0">Müşteri ne yaşıyor</div>
+  <div class="sorun">
+    <div class="gor"><div class="no">01</div><h3>Gece seçenek yok</h3><div class="rk">Sabaha karşı<small>her yer kapalı</small></div><p>Büfe, dönerci, hamburgerci de 7/24 değil. Gece yarısından sonra sıcak yemek bulmak neredeyse imkânsız.</p></div>
+    <div class="gor"><div class="no">02</div><h3>Gece daha pahalı</h3><div class="rk">+ mesai<small>fiyata biner</small></div><p>Gece açık kalan işletme fazla mesai ve vardiya öder; bu fark müşterinin hesabına yansır.</p></div>
+    <div class="gor"><div class="no">03</div><h3>Dışarıda yemek pahalı</h3><div class="rk">⅓<small>günlük asgari ücretin</small></div><p>Dışarıda iki lahmacun ortalama 308 TL. Bu, asgari ücretlinin bir günlük net kazancının (yaklaşık 936 TL) üçte biri.</p></div>
+    <div class="gor"><div class="no">04</div><h3>Fiyat ve kalite belirsiz</h3><div class="rk">97–328 TL<small>il ortalamaları</small></div><p>Aynı ürün şehre, semte ve ustaya göre değişiyor. Hesabın ne geleceği, mutfağın ne kadar temiz olduğu belli değil.</p></div>
+  </div>
+
+  <div class="alt-bas gor">Gece kimin için</div>
+  <div class="kitle gor"><span>Taksici</span><span>Sağlıkçı · gece nöbeti</span><span>Güvenlik görevlisi</span><span>Kurye</span><span>Vardiyalı çalışan</span><span>Sabahlayan öğrenci</span><span>Sabah erken çıkan</span></div>
+  <p class="kitle-not gor">Hedef kitlemiz: <b>saati ve bütçesi ne olursa olsun, içi rahat bir şekilde doymak isteyen herkes.</b> Gece çalışan bunların başında geliyor.</p>
+
+</div>
+<div class="sayfa" data-b="09">
+  <div class="k-devam"><i>09</i>Neden pide</div>
+  <div class="alt-bas gor">Neden pide</div>
+  <div class="neden">
+    <div class="gor"><h3>Herkes biliyor</h3><p>Her yaşa, her öğüne uyar. Yeni bir ürünü tanıtmaya gerek yok; tarif tanıdık, yalnız yapılış biçimi yeni.</p></div>
+    <div class="gor"><h3>Zincirler küçük kaldı</h3><p>Pide zincirleri var, ama hamburger ve pizza zincirlerinin yanında küçük kalıyorlar. Büyüme alanı açık.</p></div>
+    <div class="gor"><h3>Otomasyona uygun</h3><p>Düz hamur, standart harç, kısa pişirme. Kutuda bozulmaz, paket servise dayanıklı.</p></div>
+  </div>
+
+</div>
+<div class="sayfa" data-b="09">
+  <div class="k-devam"><i>09</i>Neden pide</div>
+  <div class="alt-bas gor">PIN’in cevabı</div>
+  <div class="eslem gor">
+    <div><div class="s">Gece seçenek yok</div><div class="o">→</div><div class="c">7/24 açık.<span>Sabaha karşı da açık; gece menü kısalmaz, kalite düşmez.</span></div></div>
+    <div><div class="s">Gece daha pahalı</div><div class="o">→</div><div class="c">Gece zammı yok.<span>Gece de gündüzle aynı fiyat.</span></div></div>
+    <div><div class="s">Dışarıda yemek pahalı</div><div class="o">→</div><div class="c">Amacımız yemeği ucuzlaştırmak.<span>Ucuzluk indirimden değil, düşük işletme maliyetinden gelir.</span></div></div>
+    <div><div class="s">Kalite belirsiz</div><div class="o">→</div><div class="c">Her seferinde aynı.<span>Aynı reçete, aynı gramaj, aynı pişme süresi. Gramaj menüde ve kutuda yazar.</span></div></div>
+    <div><div class="s">Hijyen şüphesi</div><div class="o">→</div><div class="c">Sipariş verildikten sonra pidene kimse dokunmaz.<span>Kapalı üretim, mühürlü kutu.</span></div></div>
+    <div><div class="s">Robota yabancılık</div><div class="o">→</div><div class="c">Önde bir insan.<span>Gündüz müşteriyi bir kişi karşılar; makine arkada kalır, vitrinde değil.</span></div></div>
+  </div>
+
+  <div class="pintanit gor"><div class="ad">PIN</div><p>İlk markamız. Her keseye, her saate uygun; insanın içi rahat doyduğu yeni nesil pideci.<span>Pide ve lahmacun · 7/24 · ürün her saat teslim dolabından.</span></p></div>
+  <p class="kaynak gor">Kaynak: Research İstanbul Lahmacun Endeksi, Haziran 2026: Türkiye ortalaması 153,9 TL, en düşük Konya, en yüksek Adana (<a href="https://www.dunya.com/ekonomi/fiyati-enflasyona-fark-atti-lahmacun-artik-luks-mu-oluyor-haberi-831497">Dünya</a>) · 2026 net asgari ücret 28.075,50 TL ÷ 30 gün (<a href="https://kpmgvergi.com/yayinlar/mali-bultenler/sosyal-guvenlik/2026-yili-asgari-ucreti-aciklandi/3342">KPMG</a>) · gece açık yer ve gece fiyatı: saha gözlemi · hedef kitle ve cevaplar: PIN marka kararları, Eylül 2026. Marka adı PIN çalışma adıdır; tescil başvurusu yapılacak.</p>
+
+</div>
+</section>
+
+<section class="bolum b">
+<div class="sayfa" data-b="10">
+  <div class="k gor"><i>10</i>Pazar</div>
+  <h2 class="gor">Türkiye’nin en çok sipariş edilen ürünü.</h2>
+  <p class="lead gor">Yemeksepeti’nin 25 yıllık verisinde zirvede lahmacun var. Pide ve lahmacun için ayrı bir resmî pazar istatistiği yok; ama sipariş verisi büyüklüğü tek başına gösteriyor.</p>
+  <div class="pazar" style="margin-top:0;padding-top:0;border-top:none">
+    <div class="gor"><b>141 milyon</b><span>Yemeksepeti’nde 25 yılda verilen lahmacun siparişi; tüm zamanların bir numaralı ürünü</span></div>
+    <div class="gor"><b>6,67 mlr TL</b><span>2025’te yalnız motokuryeyle teslim edilen lahmacun; hamburger, pizza ve tavuk dönerden sonra dördüncü</span></div>
+    <div class="gor"><b>%22 → %38</b><span>Hızlı servisin yeme-içme harcamasındaki payı, 2019’dan 2025’e</span></div>
+  </div>
+
+</div>
+<div class="sayfa" data-b="10">
+  <div class="k-devam"><i>10</i>Pazar</div>
+  <div class="alt-bas gor">Pazarın katmanları · 2025</div>
+  <div class="katmanlar gor">
+    <div><h3>Yeme-içme hizmetleri</h3><p>Türkiye’de dışarıda yemek pazarının tamamı</p><b>~22 mlr $</b></div>
+    <div><h3>Hızlı servis restoranları</h3><p>Burger, pizza, döner gibi standart ve hızlı servis</p><b>~8,4 mlr $</b></div>
+    <div><h3>Kuryeyle gelen hazır yemek</h3><p>Hızlı ticaretin %69,5’i; 388,7 mlr TL’lik hacmin yemek payı</p><b>~270 mlr TL</b></div>
+    <div class="biz"><h3>Kuryeyle gelen lahmacun</h3><p>Pide ayrıca raporlanmıyor; dükkân satışları bu rakama dahil değil</p><b>6,67 mlr TL</b></div>
+  </div>
+
+  <div class="alt-bas gor">Zincirlerin büyüklüğü · Türkiye’deki restoran sayısı</div>
+  <div class="subeler gor">
+    <div class="sb "><span class="ad">Burger King</span><span class="cubuk"><i style="width:100.0%"></i></span><b>830</b></div><div class="sb "><span class="ad">Domino’s</span><span class="cubuk"><i style="width:90.4%"></i></span><b>~750</b></div><div class="sb "><span class="ad">Popeyes</span><span class="cubuk"><i style="width:60.4%"></i></span><b>501</b></div>
+    <div class="sb pide"><span class="ad">Pidem</span><span class="cubuk"><i style="width:24.1%"></i></span><b>~200</b></div><div class="sb pide"><span class="ad">Usta Pideci</span><span class="cubuk"><i style="width:7.6%"></i></span><b>63</b></div>
+  </div>
+  <p class="renk-not gor">Hamburger, tavuk ve pizza zincirleri 500–830 restorana ulaştı. En büyük pide zinciri yaklaşık 200 restoranda.</p>
+
+</div>
+<div class="sayfa" data-b="10">
+  <div class="k-devam"><i>10</i>Pazar</div>
+  <div class="alt-bas gor">Ne anlama geliyor</div>
+  <div class="neden">
+    <div class="gor"><h3>Talep kanıtlanmış</h3><p>Yeni bir ürünü sevdirmemiz gerekmiyor; insanlar lahmacunu zaten en çok sipariş edilen ürün yapmış.</p></div>
+    <div class="gor"><h3>Para hızlı servise ve zincirlere akıyor</h3><p>Hızlı servisin payı altı yılda %22’den %38’e çıktı; bu pazarın %44’ünü ilk 10 marka tutuyor.</p></div>
+    <div class="gor"><h3>Pide zincirleri var, ama küçük</h3><p>Pidem ve Usta Pideci gibi zincirler pazarda. Ancak en büyüğü bile hamburger ve pizza zincirlerinin dörtte biri kadar; kategori zincirleşmenin başında.</p></div>
+  </div>
+  <div class="alt-bas gor">Bizim için fırsat</div>
+  <p class="kitle-not gor" style="margin-top:0;max-width:60ch">Talep en üst sırada, ama kategoride henüz bir lider yok. Pide zincirlerinin küçük kalmasının nedeni talep değil, <b>üretimin ustaya bağlı olması</b>. Biz tam bu darboğazı çözüyoruz.</p>
+  <div class="rakip-sar gor"><table class="rakip neden-t kars">
+    <thead><tr><th></th><th>Bugünkü pide zinciri</th><th>PIN</th></tr></thead>
+    <tbody>
+      <tr><th>Üretim</th><td>Usta ve mutfak ekibi; büyümek için her şubeye yeni usta gerekir</td><td>Makine; yeni şube = yeni hat, usta aranmaz</td></tr>
+      <tr><th>Alan</th><td>Franchise için en az 110 m² zemin, toplam 280 m² (Usta Pideci şartı)</td><td>15–20 m²; mahallede, kampüste, yol üstünde açılır</td></tr>
+      <tr><th>Saat</th><td>Restoran ya da AVM saatleri</td><td>7/24; gece teslim dolabıyla</td></tr>
+      <tr><th>Kalite</th><td>Ustaya ve vardiyaya göre değişir; zincirler bile reçete sadeleştirmeyle uğraşıyor</td><td>Reçete, gramaj ve pişme süresi makinede sabit</td></tr>
+      <tr><th>Fiyat</th><td>Personel ve büyük alan kirası fiyata biner</td><td>Düşük personel ve kira; fiyatta rekabet edebilir</td></tr>
+    </tbody>
+  </table></div>
+</div>
+<div class="sayfa" data-b="10">
+  <div class="k-devam"><i>10</i>Pazar</div>
+  <div class="alt-bas gor">İki kanıt</div>
+  <div class="neden" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+    <div class="gor"><h3>Bir zincir şubesine 14 PIN sığar</h3><p>Usta Pideci franchise için en az 110 m² zemin ve toplam 280 m² alan istiyor. PIN 15–20 m²’ye sığıyor; aynı alanda 14 nokta. Daha az kira, daha çok yer, daha hızlı büyüme.</p></div>
+    <div class="gor"><h3>En büyük zincir bile ustayla zorlanıyor</h3><p>Türkiye’nin en büyük hızlı servis şirketi TAB Gıda, 2025’te Usta Pideci’de reçeteleri sadeleştirip süreçleri yalınlaştırdı; amaç ürünün her şubede aynı çıkması. Ustayla zor olan bu tutarlılık, makinede baştan var.</p></div>
+  </div>
+  <p class="kopru gor">Pizzada lider zincirin yaptığını pidede henüz kimse yapmadı. <b>Biz bunu ustayla değil, makineyle yapacağız.</b></p>
+
+  <p class="kaynak gor">Kaynak: Yemeksepeti 25. yıl verileri, Mayıs 2026 (<a href="https://www.ekonomist.com.tr/haberler/turkiye-25-yilda-141-milyon-lahmacun-yedi-74536">Ekonomist</a>; <a href="https://www.dha.com.tr/ekonomi/yemeksepeti-25inci-yilinda-1-7-milyar-adetlik-siparis-arsivini-paylasti-2872178">DHA</a>) · Ticaret Bakanlığı, Türkiye’de e-Ticaretin Görünümü Raporu 2025 (<a href="https://www.dunya.com/gundem/motokuryeli-hizli-ticarette-rekor-buyume-en-cok-siparis-edilen-yemek-belli-oldu-haberi-825135">Dünya</a>) · HSBC Global Investment Research, TAB Gıda raporu, 2026 (<a href="https://bianet.org/haber/turkiyede-disarida-yeme-sektoru-tekellesiyor-322172">Bianet</a>) · restoran sayıları: TAB Gıda 2025 Faaliyet Raporu, KAP (Burger King 830, Popeyes 501, Usta Pideci 63) · Domino’s 2025 (<a href="https://www.paradergi.com.tr/sektorler/2025/06/02/pizzada-pazar-payi-her-yil-artiyor">Para Dergi</a>) · Pidem: HD Holding kendi beyanı, “200’e yakın” · Usta Pideci franchise alan şartı: bayilik ilanı (<a href="https://www.bayimolurmusun.com.tr/en/franchise/usta-pideci">bayimolurmusun.com.tr</a>) · reçete sadeleştirme: TAB Gıda 2025 Faaliyet Raporu. Kuryeyle gelen hazır yemek = 388,7 mlr TL × %69,5.</p>
+
+</div>
+</section>
+
+<section class="bolum b">
+<div class="sayfa" data-b="11">
+  <div class="k gor"><i>11</i>PIN hattı</div>
+  <h2 class="gor">İlk makine: pide ve lahmacun hattı.</h2>
+  <p class="lead gor">Platformun ilk uygulaması. Tek robot, otomatik istasyonlar, tek kontrol sistemi; her şey önce dijital ikizde çalıştırıldı.</p>
+</div>
+<div class="sayfa" data-b="11">
+  <div class="k-devam"><i>11</i>PIN hattı</div>
+  <figure class="gorsel gor"><img src="img/sunum_makine_v1.jpg" alt="Üretim hattının güncel 3B modeli: soğuk dolap, istasyonlar ve raylı robot" loading="lazy"><figcaption>Güncel 3B model · soğuk dolabın üstünde istasyonlar, önünde raylı tek robot</figcaption></figure>
+  <div class="alt-bas gor" style="margin:18px 0 10px">Bir siparişin yolu</div>
+  <div class="hat akisli gor"><div><div class="n">01</div><h3>Sipariş gelir</h3><p>Dükkândan, uygulamadan ya da platformdan.</p></div><div><div class="n">02</div><h3>Robot hamuru alır</h3><p>Soğuk dolaptan alıp açıcıya koyar.</p></div><div><div class="n">03</div><h3>Açıcı açar</h3><p>Hamur saniyeler içinde açılır.</p></div><div><div class="n">04</div><h3>Malzeme konur</h3><p>Harç, kıyma, kaşar, sucuk; gramajında.</p></div><div><div class="n">05</div><h3>Fırında pişer</h3><p>Aynı anda dört ürün.</p></div><div><div class="n">06</div><h3>Kesilir</h3><p>Dilimlenir, tereyağı sürülür.</p></div><div><div class="n">07</div><h3>Kutulanır</h3><p>Kutu katlanır, ürün içine girer.</p></div><div><div class="n">08</div><h3>Dolaba gider</h3><p>Robot teslim dolabına koyar; müşteri kodla alır.</p></div></div>
+  <div class="rakam">
+    <div class="gor"><b>~60</b><span>ürün / saat<br>(simülasyon)</span></div>
+    <div class="gor"><b>280</b><span>ürün / gün<br>hedef</span></div>
+    <div class="gor"><b>~4,5 m</b><span>hat uzunluğu</span></div>
+    <div class="gor"><b>1</b><span>kişi<br>ikmal ve temizlik</span></div>
+  </div>
+</div>
+<div class="sayfa" data-b="11">
+  <div class="k-devam"><i>11</i>PIN hattı</div>
+  <table class="spec gor"><caption>Hat özellikleri</caption><tr><th>Dozaj</th><td>Hacimsel dozaj: vidalı (kıyma, kuşbaşı), kanatlı (kaşar), yayıcı (harç, sos) · ürün başına gramaj</td></tr><tr><th>Pişirme</th><td>Konveyörlü fırın · aynı anda 4 ürün · hedef pişirme ~3,5 dk (denemeyle doğrulanacak)</td></tr><tr><th>Soğuk zincir</th><td>Çekmeceli soğuk dolap 0–4 °C · iki günlük stok · parti ve süre takibi</td></tr></table>
+</div>
+<div class="sayfa" data-b="11">
+  <div class="k-devam"><i>11</i>PIN hattı</div>
+  <div class="sema gor"><div class="alt-bas">Sistem şeması</div><svg viewBox="0 0 1200 520" role="img" aria-label="Sistem şeması: sipariş kanalları kontrol sistemine bağlanır; kontrol sistemi üretim hattını yönetir ve uzaktan izlenir; ürün teslim dolabına gider; ikmal iki günde bir yapılır">
+  <defs><marker id="uc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#4A5160"/></marker>
+  <marker id="ucm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#2997FF"/></marker></defs>
+  <text class="ya" x="20" y="28">SİPARİŞ</text>
+  <rect class="kut" x="20" y="44" width="230" height="56" rx="6"/><text class="yb" x="38" y="78">Getir · Yemeksepeti · Trendyol</text>
+  <rect class="kut" x="20" y="112" width="230" height="56" rx="6"/><text class="yb" x="38" y="146">Dükkân ekranı · kiosk</text>
+  <text class="ya" x="470" y="28">BEYİN</text>
+  <rect class="kutA" x="470" y="44" width="260" height="124" rx="6"/>
+  <text class="yb" x="490" y="80">Kontrol sistemi</text><text class="yz" x="490" y="104">Siemens PLC · emniyet</text>
+  <text class="yb" x="490" y="134">Dijital ikiz</text><text class="yz" x="490" y="156">her senaryo önce burada</text>
+  <text class="ya" x="950" y="28">UZAKTAN İZLEME</text>
+  <rect class="kut" x="950" y="44" width="230" height="124" rx="6"/>
+  <text class="yb" x="968" y="80">Panel</text><text class="yz" x="968" y="104">stok · arıza · sıcaklık</text><text class="yz" x="968" y="126">satış · tüm noktalar</text>
+  <path class="okv" d="M250 72 H470" marker-end="url(#ucm)"/><path class="okv" d="M250 140 H470" marker-end="url(#ucm)"/>
+  <path class="okv" d="M730 106 H950" marker-end="url(#ucm)" marker-start="url(#ucm)"/>
+  <text class="yz" x="790" y="96">veri</text>
+  <path class="okv" d="M600 168 V230" marker-end="url(#ucm)"/><text class="yz" x="612" y="206">komut</text>
+  <text class="ya" x="20" y="226">ÜRETİM HATTI</text>
+  <g><rect class="kut" x="20" y="244" width="130" height="64" rx="6"/><text class="yz" x="34" y="268">01</text><text class="yb" x="34" y="292">Soğuk dolap</text><path class="ok3" d="M150 276 H165" marker-end="url(#uc)"/><rect class="kut" x="165" y="244" width="130" height="64" rx="6"/><text class="yz" x="179" y="268">02</text><text class="yb" x="179" y="292">Robot</text><path class="ok3" d="M295 276 H310" marker-end="url(#uc)"/><rect class="kut" x="310" y="244" width="130" height="64" rx="6"/><text class="yz" x="324" y="268">03</text><text class="yb" x="324" y="292">Açıcı</text><path class="ok3" d="M440 276 H455" marker-end="url(#uc)"/><rect class="kut" x="455" y="244" width="130" height="64" rx="6"/><text class="yz" x="469" y="268">04</text><text class="yb" x="469" y="292">Malzeme</text><path class="ok3" d="M585 276 H600" marker-end="url(#uc)"/><rect class="kut" x="600" y="244" width="130" height="64" rx="6"/><text class="yz" x="614" y="268">05</text><text class="yb" x="614" y="292">Fırın</text><path class="ok3" d="M730 276 H745" marker-end="url(#uc)"/><rect class="kut" x="745" y="244" width="130" height="64" rx="6"/><text class="yz" x="759" y="268">06</text><text class="yb" x="759" y="292">Kesme</text><path class="ok3" d="M875 276 H890" marker-end="url(#uc)"/><rect class="kut" x="890" y="244" width="130" height="64" rx="6"/><text class="yz" x="904" y="268">07</text><text class="yb" x="904" y="292">Kutulama</text><path class="ok3" d="M1020 276 H1035" marker-end="url(#uc)"/><rect class="kutA" x="1035" y="244" width="130" height="64" rx="6"/><text class="yz" x="1049" y="268">08</text><text class="yb" x="1049" y="292">Teslim dolabı</text></g>
+  <path class="ok3" d="M1100 308 V372" marker-end="url(#uc)"/>
+  <rect class="kut" x="950" y="380" width="230" height="64" rx="6"/><text class="yb" x="968" y="406">Müşteri · kurye</text><text class="yz" x="968" y="428">kodu girer, alır</text>
+  <rect class="kut" x="20" y="380" width="430" height="64" rx="6"/><text class="yb" x="38" y="406">İkmal · iki günde bir</text><text class="yz" x="38" y="428">hamur · et · kaşar · içecek · kutu → dolap ve kasetler</text>
+  <path class="ok3" d="M85 380 V308" marker-end="url(#uc)"/>
+  <text class="yz" x="20" y="490">Gündüz: tek kişi ikmal ve sipariş · Gece ve box ünitelerde: insansız</text>
+  <text class="yz" x="1180" y="490" text-anchor="end">— fiziksel akış     - - veri</text>
+</svg></div>
+  <div class="durum gor"><i></i>Tasarım ve simülasyon tamam · fiziksel prototip 2027</div>
+
+</div>
+</section>
+
+<section class="bolum b">
+<div class="sayfa" data-b="12">
+  <div class="k gor"><i>12</i>Marka</div>
+  <h2 class="gor">Bildiğin pide, her saatte, her keseye.</h2>
+  <p class="lead gor">Müşteri makineyi değil, pideyi görür. Marka sade, sıcak ve her seferinde aynı.</p>
+
+  <div class="alt-bas gor" style="margin-top:0">Marka yapısı</div>
+  <div class="agac gor">
+    <div class="kok"><div class="et">Şirket · çatı</div><b>AUTOKITCH</b></div>
+    <div class="dal">
+      <div class="agkol pinkol">
+        <div class="dugum"><div class="et">Restoran markası</div><b>PIN</b><span>Pin Pide · müşterisi yemek yiyen kişi. Makine görünmez.</span></div>
+      </div>
+      <div class="agkol akkol">
+        <div class="dugum"><div class="et">Makine markası</div><b>AUTOKITCH</b><span>Müşterisi işletme ve kurum. Satılan şey makinenin kendisi.</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="sayfa" data-b="12">
+  <div class="k-devam"><i>12</i>Marka</div>
+  <div class="alt-bas gor">Marka özü ve çekirdek</div>
+  <div class="ozu gor"><b>Gönül rahatlığı</b><span>Saati ve bütçesi ne olursa olsun, müşteri içi rahat doyar. Aşağıdaki dört öğe hem müşteride hem bizim çalışma şeklimizde geçerli.</span></div>
+  <div class="sektor">
+    <div class="gor"><div class="n">01</div><h3>Tutarlı</h3><p>Aynı reçete, aynı gramaj, aynı pişme süresi. Gramaj menüde ve kutuda yazar.</p></div>
+    <div class="gor"><div class="n">02</div><h3>7/24</h3><p>Gece de gündüzle aynı: aynı kalite, aynı menü, aynı fiyat.</p></div>
+    <div class="gor"><div class="n">03</div><h3>Sade</h3><p>Menü kısa; ne istediğini bir bakışta bulursun. Tarif tanıdık, gereksiz süs yok. Mekân sakin ve düzenli; kalabalık, gürültü, karmaşa yok.</p></div>
+    <div class="gor"><div class="n">04</div><h3>Ulaşılabilir</h3><p><b>Fiyatıyla:</b> herkesin ödeyebileceği fiyat. <b>Saatiyle:</b> gece de gündüz de açık. <b>Yeriyle:</b> 15–20 m²’ye sığar; mahallede, kampüste, yol üstünde açılabilir.</p></div>
+  </div>
+
+  <div class="alt-bas gor">Makineyi göstermiyoruz</div>
+  <div class="gorunur gor">
+    <div><h3>Müşteri görür</h3><ul><li>Gündüz önde bir kişi; yemeğe dokunmadan</li><li>Mühürlü kutu; kutuyu ilk açan müşteri</li><li>Sade ve temiz bir satış alanı</li></ul></div>
+    <div class="yok"><h3>Müşteri görmez</h3><ul><li>Robot kol göz hizasında</li><li>Robot için açılmış vitrin</li><li>Reklamda teknoloji dili</li></ul></div>
+  </div>
+</div>
+<div class="sayfa" data-b="12">
+  <div class="k-devam"><i>12</i>Marka</div>
+  <div class="bilim gor">
+    <h3>Türkiye teknolojiye hazır, robota henüz değil.</h3>
+    <div class="ras">
+      <div><b>%92,3</b><span>internet kullanan birey, 16–74 yaş (TÜİK, 2026)</span></div>
+      <div><b>%60</b><span>internetten sipariş veren birey; on yılda %21’den (TÜİK, 2026)</span></div>
+      <div><b>5’te 4</b><span>mağaza içi kartlı ödeme temassız (BKM, 2025)</span></div>
+    </div>
+    <p><b>Dijital hizmet hızla benimseniyor.</b> Uygulamadan sipariş, QR ve temassız ödeme kısa sürede gündelik hayatın parçası oldu. Bu hizmetlerde teknoloji arka planda çalışır; kullanıcı onu bir ekran ya da bir kart olarak görür.</p>
+    <p><b>Yüz yüze hizmette robot farklı algılanıyor.</b> Türkiye’de restoran robotları üzerine yapılan araştırmalar, kabulü belirleyen ana etkenlerin güven ve algılanan risk olduğunu gösteriyor; risk algısı arttıkça memnuniyet ve tekrar ziyaret niyeti düşüyor. Uluslararası çalışmalar da benzer: müşteriler robotu denemeye açık, ancak insanla etkileşimi tercih ediyor ve iş kaybı kaygısı taşıyor. Kültürel olarak da “usta eli”, “el emeği” yemekte olumlu çağrışım taşıyor.</p>
+    <p class="sonuc">Sonuç: teknoloji arkada kabul görüyor, önde insan bekleniyor. PIN’de makine arkada çalışır, müşteriyi gündüz bir insan karşılar. Robot gösteriye dönüşmez; müşteri sisteme kademeli olarak alışır.</p>
+  </div>
+
+  <div class="alt-bas gor">Nasıl ölçeceğiz</div>
+  <div class="neden">
+    <div class="gor"><h3>İlk yıl: farkındalık</h3><p>Kategoriyi biz kuruyoruz. Önce bilinmek, sonra bağlılık.</p></div>
+    <div class="gor"><h3>Tek ölçü: tekrar oranı</h3><p>Kaç kişi ikinci, üçüncü kez geldi. Anketle değil, kasadan ve QR’dan ölçülür.</p></div>
+    <div class="gor"><h3>Reklam değil, deneyim</h3><p>Dükkânın kendisi reklamdır. İndirim yok; ucuzluk yapısal.</p></div>
+  </div>
+
+</div>
+<div class="sayfa" data-b="12">
+  <div class="k-devam"><i>12</i>Marka</div>
+  <div class="alt-bas gor">Marka renkleri · taslak</div>
+  <div class="renk7 gor">
+    <div class="ana"><i style="background:#8A2C08"></i><b>Kiremit</b><code>#8A2C08</code></div>
+    <div class="ana"><i style="background:#FFF4E6"></i><b>Krem</b><code>#FFF4E6</code></div>
+    <div class="ana"><i style="background:#FFC083"></i><b>Şeftali</b><code>#FFC083</code></div>
+    <div><i style="background:#6B260B"></i><b>Koyu kiremit</b><code>#6B260B</code></div>
+    <div><i style="background:#F0D8C6"></i><b>Pudra</b><code>#F0D8C6</code></div>
+    <div><i style="background:#A66A46"></i><b>Taba</b><code>#A66A46</code></div>
+    <div><i style="background:#FFE0A0"></i><b>Bal</b><code>#FFE0A0</code></div>
+  </div>
+  <p class="renk-not gor">İlk üçü ana renk, diğerleri yardımcı. Yazı karakteri Poppins. Ekim 2026 tarihli ilk web sitesi ve müşteri ekranı tasarımından; logo ile birlikte kesinleşecek.</p>
+
+  <div class="alt-bas gor">Maskot</div>
+  <div class="maskot gor"><img src="img/pin_maskot_kedi.png" alt="PIN maskotu: pide dilimini tutarak uyuyan turuncu tekir kedi"><div><h3>Uyuyan kedi</h3><p>Karnı doymuş, telaşsız, keyifli. Markanın özünü, gönül rahatlığını tek bakışta anlatır. Tabelada, kutuda, teslim dolabının ekranında ve sosyal medyada markanın yüzü olur.</p></div></div>
+
+  <div class="durum gor" style="border-color:var(--pin)"><i style="background:var(--pin)"></i>Ad: PIN (çalışma adı) · Renk: kiremit ve krem (taslak) · Tescil: TÜRKPATENT sınıf 43 başvurusu yapılacak · Maskot: kedi · Logo: tasarlanacak</div>
+  <p class="kaynak gor">Kaynak: PIN marka kararları 01–11 (Eylül–Ekim 2026), D. A. Aaker marka vizyonu çerçevesi · TÜİK Hanehalkı Bilişim Teknolojileri Kullanım Araştırması 2026 (<a href="https://www.bloomberght.com/turkiye-de-internetten-siparis-10-yilda-yuzde-21-den-yuzde-60-a-cikti-3784751">Bloomberg HT</a>) · BKM 2025 bültenleri (<a href="https://bkm.com.tr/wp-content/uploads/2025/11/BKM-Ekim-2025-Basin-Bulteni.pdf">bkm.com.tr</a>) · “Restoranlarda Robot Garsonlar Kullanmanın Tüketicilerin Davranışsal Niyetlerine Etkisi”, Cumhuriyet Üniversitesi İİBF Dergisi 23(1), 338 katılımcı (<a href="https://www.researchgate.net/publication/357818143_Restoranlarda_Robot_Garsonlar_Kullanmanin_Tuketicilerin_Davranissal_Niyetlerine_Etkisi">ResearchGate</a>) · “Robot acceptability in quick service restaurants”, International Hospitality Review, 2024 (<a href="https://www.emerald.com/ihr/article/doi/10.1108/IHR-04-2024-0020/1249958/Robot-acceptability-in-quick-service-restaurants-a">Emerald</a>) · Jia, Garg ve Balasubramanian, International Journal of Human–Computer Interaction, 2024 (meta-analiz). Marka özü üç aday arasından seçilecek (“İçin rahat olsun”, “Rahat”, “Gönül rahatlığı”); sunumda resmî karşılık kullanıldı.</p>
+
+</div>
+</section>
+
+<section class="bolum b">
+<div class="sayfa" data-b="13">
+  <div class="k gor"><i>13</i>Müşteri deneyimi</div>
+  <h2 class="gor">Seç, takip et, dolaptan al.</h2>
+  <p class="lead gor">Sipariş üç yoldan gelir, hepsi aynı hatta üretilir ve aynı dolaptan teslim edilir.</p>
+  <figure class="gorsel gor"><img src="img/pin_cephe_konsept.jpg" alt="PIN dükkânı konsept görseli: kiremit cephe, çatıda uyuyan kedi heykeli, sağda numaralı teslim dolabı"><figcaption>Konsept görsel · kiremit cephe, maskot ve numaralı teslim dolabı. Son tasarım değildir.</figcaption></figure>
+
+</div>
+<div class="sayfa" data-b="13">
+  <div class="k-devam"><i>13</i>Müşteri deneyimi</div>
+  <div class="alt-bas gor" style="margin-top:0">Sipariş nasıl verilir</div>
+  <div class="neden">
+    <div class="gor"><h3>Dükkânda</h3><p>Gündüz kasiyere ya da dükkândaki sipariş ekranından. Kasiyer yalnız siparişi alır; ürün her zaman teslim dolabından alınır.</p></div>
+    <div class="gor"><h3>Telefondan</h3><p>Dükkândaki QR ya da uygulamayla. Menüden seç, öde; hazırlık durumunu telefonundan izle.</p></div>
+    <div class="gor"><h3>Sipariş platformundan</h3><p>Yemek siparişi uygulamalarından gelir, doğrudan hatta düşer. Kurye kodla dolaptan alır.</p></div>
+  </div>
+
+  <div class="alt-bas gor">Teslim</div>
+  <div class="sektor">
+    <div class="gor"><div class="n">01</div><h3>Ürün hazır</h3><p>Makine pişirir, keser, kutular ve teslim dolabındaki boş bir göze koyar.</p></div>
+    <div class="gor"><div class="n">02</div><h3>Ekranda görünür</h3><p>Telefonda ve dükkân önündeki ekranda sipariş numarası, kalan süre ve göz numarası görünür.</p></div>
+    <div class="gor"><div class="n">03</div><h3>Kod girilir</h3><p>Müşteri ya da kurye dolaptaki tuşlarla kodunu girer veya QR’ı okutur; yalnız kendi gözü açılır.</p></div>
+    <div class="gor"><div class="n">04</div><h3>Alınır</h3><p>Sıra yok, bekleme yok. Kutuyu ilk açan müşteri.</p></div>
+  </div>
+
+</div>
+<div class="sayfa" data-b="13">
+  <div class="k-devam"><i>13</i>Müşteri deneyimi</div>
+  <div class="alt-bas gor">Bir günün akışı</div>
+  <div class="gor">
+    <div class="gun-bar"><span class="sg gece" style="left:0;width:29.167%"></span><span class="sg ikmal" style="left:29.167%;width:8.333%"></span><span class="sg gun" style="left:37.500%;width:54.167%"></span><span class="sg gece" style="left:91.667%;width:8.333%"></span><span class="yo" style="left:50.000%;width:8.333%"></span><span class="yo" style="left:75.000%;width:12.500%"></span></div>
+    <div class="gun-saat"><span style="left:0.000%">00</span><span style="left:12.500%">03</span><span style="left:25.000%">06</span><span style="left:37.500%">09</span><span style="left:50.000%">12</span><span style="left:62.500%">15</span><span style="left:75.000%">18</span><span style="left:87.500%">21</span><span style="left:100.000%">24</span></div>
+    <div class="gun-lej"><span><i style="background:var(--pin-pudra)"></i>İkmal</span><span><i style="background:color-mix(in srgb,var(--pin) 30%,var(--bg2))"></i>Kasiyer var</span><span><i style="background:var(--pin)"></i>Yoğun saat</span><span><i style="background:#151a22;border:1px solid var(--line)"></i>Gece · yalnız teslim dolabı</span></div>
+  </div>
+  <div class="gun-liste">
+    <div class="gor"><div class="s">07:00 – 09:00</div><div><b>İkmal · iki günde bir, sabah</b><p>Tek kişi gelir: hamur, et, kaşar, içecek ve kutu yüklenir, kasetler değişir, temizlik yapılır. Ne getirileceğini makine önceden listeler.</p></div></div>
+    <div class="gor"><div class="s">09:00</div><div><b>Kasiyer gelir, dükkân açılır</b><p>Makine sabahtan beri sipariş almaya hazır; kasiyer karşılamaya başlar.</p></div></div>
+    <div class="gor"><div class="s">12:00 – 14:00</div><div><b>Öğle yoğunluğu</b><p>Dükkândan, telefondan ve platformlardan siparişler aynı hatta sıraya girer.</p></div></div>
+    <div class="gor"><div class="s">18:00 – 21:00</div><div><b>Akşam yoğunluğu</b><p>Günün en yoğun saatleri; paket siparişler artar, kuryeler dolaptan alır.</p></div></div>
+    <div class="gor"><div class="s">22:00</div><div><b>Kasiyer çıkar, kapı kapanır</b><p>Üretim ve teslim dolabı çalışmaya devam eder.</p></div></div>
+    <div class="gor"><div class="s">22:00 – 07:00</div><div><b>Gece · teslim dolabı</b><p>Sipariş telefondan ve platformdan gelir; müşteri ya da kurye kodla alır. Sabaha karşı en sessiz saatlerde makine stok ve sıcaklığı izlemeye devam eder.</p></div></div>
+  </div>
+  <p class="kaynak gor">Saatler örnektir; açılış, kapanış ve ikmal saati kesinleşecek. Teslim dolabı: 12 göz, her göz yalnız kendi koduyla açılır. Sipariş akışı ve ekranlar ilk müşteri arayüzü tasarımından (Ekim 2026). Görsel yapay zekâ ile üretilmiş konsept çalışmadır.</p>
+
+</div>
+</section>
+
+
+
+<section class="bolum b">
+<div class="sayfa" data-b="14">
+  <div class="k gor"><i>14</i>Birim ekonomisi</div>
+  <h2 class="gor">Daha ucuza satıp kâr ediyoruz.</h2>
+  <p class="lead gor">Fiyatlar Eylül 2026’da belirlendi ve dolar karşılığıyla birlikte yazıldı. Fiyatlar altı ayda bir, o günkü dolar kuruna göre güncellenir.</p>
+  <div class="kurbilgi gor"><span>Eylül 2026 fiyatları · 1 $ = 48,52 TL (TCMB, 11.09.2026)</span></div>
+
+  <div class="alt-bas gor" style="margin-top:0">Fiyat · dükkândan satış, KDV dahil</div>
+  <div class="rakip-sar gor"><table class="rakip fiyatkars" style="min-width:520px">
+    <thead><tr><th></th><th class="pin">PIN</th><th>Usta Pideci</th><th>Mahalle pidecisi</th></tr></thead>
+    <tbody>
+      <tr><th>Kaşarlı pide</th><td class="pin">180 TL<small class="usd">$3,71</small></td><td>230 TL<small class="usd">$4,74</small></td><td>350 TL<small class="usd">$7,21</small></td></tr>
+      <tr><th>Lahmacun</th><td class="pin">115 TL<small class="usd">$2,37</small></td><td>140 TL<small class="usd">$2,89</small></td><td>145 TL<small class="usd">$2,99</small></td></tr>
+    </tbody>
+  </table></div>
+  <p class="renk-not gor">PIN lahmacunu, Türkiye ortalamasının (153,9 TL, Haziran 2026) yaklaşık %25 altında. Sipariş platformlarında komisyon fiyata eklenir; her kanalda ürün başına kâr aynı kalır.</p>
+
+</div>
+<div class="sayfa" data-b="14">
+  <div class="k-devam"><i>14</i>Birim ekonomisi</div>
+  <div class="alt-bas gor">Bir ürün ne bırakıyor · dükkândan satış</div>
+  <div class="rakip-sar gor"><table class="rakip senaryo" style="min-width:520px">
+    <thead><tr><th></th><th>Kaşarlı pide</th><th>Lahmacun</th></tr></thead>
+    <tbody>
+      <tr><th>Satış fiyatı</th><td>180 TL<small class="usd">$3,71</small></td><td>115 TL<small class="usd">$2,37</small></td></tr>
+      <tr><th>Malzeme (hamur dahil)</th><td>− 73 TL<small class="usd">$1,50</small></td><td>− 49 TL<small class="usd">$1,01</small></td></tr>
+      <tr><th>Kutu ve ambalaj</th><td>− 8 TL<small class="usd">$0,17</small></td><td>− 12 TL<small class="usd">$0,24</small></td></tr>
+      <tr><th>KDV ve kart komisyonu</th><td>− 22 TL<small class="usd">$0,45</small></td><td>− 14 TL<small class="usd">$0,29</small></td></tr>
+      <tr class="kar"><th>Ürün başına katkı</th><td>77 TL<small class="usd">$1,59</small></td><td>40 TL<small class="usd">$0,83</small></td></tr>
+    </tbody>
+  </table></div>
+
+</div>
+<div class="sayfa" data-b="14">
+  <div class="k-devam"><i>14</i>Birim ekonomisi</div>
+  <div class="alt-bas gor">Bir dükkân bir ayda · üç senaryo</div>
+  <div class="rakip-sar gor"><table class="rakip senaryo" style="min-width:700px">
+    <thead><tr><th></th><th>Açılış · günde 170 ürün</th><th>Hedef · günde 280 ürün</th><th>Yüksek · günde 400 ürün <span style="color:var(--pin)">*</span></th></tr></thead>
+    <tbody>
+      <tr><th>Aylık satış</th><td>2.128 pide + 3.040 lahmacun</td><td>2.432 pide + 6.080 lahmacun</td><td>3.496 pide + 8.664 lahmacun</td></tr>
+      <tr><th>Aylık ciro</th><td>1,11 milyon TL<small class="usd">$22,9 bin</small></td><td>1,72 milyon TL<small class="usd">$35,5 bin</small></td><td>2,46 milyon TL<small class="usd">$50,8 bin</small></td></tr>
+      <tr><th>Sabit giderler</th><td>− 155 bin TL<small class="usd">$3,2 bin</small></td><td>− 155 bin TL<small class="usd">$3,2 bin</small></td><td>− 155 bin TL<small class="usd">$3,2 bin</small></td></tr>
+      <tr class="kar"><th>Aylık kâr · vergi ve amortisman öncesi</th><td>149 bin TL<small class="usd">$3,1 bin</small></td><td>306 bin TL<small class="usd">$6,3 bin</small></td><td>505 bin TL<small class="usd">$10,4 bin</small></td></tr>
+      <tr><th>Başabaş noktası<small class="usd">zarar etmemek için gereken en az satış</small></th><td>günde ~87 ürün</td><td>günde ~94 ürün</td><td>günde ~94 ürün</td></tr>
+    </tbody>
+  </table></div>
+  <p class="gor" style="margin-top:12px;font-size:14px;color:var(--fg)"><span style="color:var(--pin)">*</span> Günde 400 üründe soğuk dolap ikmali iki günde bir yerine <b>her gün</b> yapılır.</p>
+  <p class="renk-not gor">Sabit giderler: bir kasiyer, kira, enerji, su, muhasebe, yazılım ve yasal yükümlülükler. Satışların %90’ı sipariş platformundan varsayıldı. Makine saatte ~60 ürün üretir. Karşılaştırma: TAB Gıda restoranları 2025’te günde ortalama ~330 fiş kesti.</p>
+
+</div>
+<div class="sayfa" data-b="14">
+  <div class="k-devam"><i>14</i>Birim ekonomisi</div>
+  <div class="alt-bas gor">Yatırım · bir hat, ön tahmin</div>
+  <div class="rakip-sar gor"><table class="rakip senaryo" style="min-width:560px">
+    <thead><tr><th></th><th>Alt sınır</th><th>Üst sınır</th></tr></thead>
+    <tbody>
+      <tr><th>Hat<small class="usd">robot, açıcı, malzeme, fırın, kesme, kutulama, soğuk dolap, teslim dolabı, yazılım, montaj</small></th><td>4,2 mn TL<small class="usd">$86,6 bin</small></td><td>7,5 mn TL<small class="usd">$155,5 bin</small></td></tr>
+      <tr><th>Siemens kontrol ve motorlar<small class="usd">emniyetli PLC, ET 200SP, 35–45 servo motor ve sürücü</small></th><td>2,9 mn TL<small class="usd">$59,2 bin</small></td><td>4,4 mn TL<small class="usd">$90,0 bin</small></td></tr>
+      <tr><th>Nakliye ve beklenmeyen<small class="usd">gümrük dahil</small></th><td>0,9 mn TL<small class="usd">$18,9 bin</small></td><td>2,4 mn TL<small class="usd">$49,1 bin</small></td></tr>
+      <tr class="kar"><th>Toplam · KDV hariç</th><td>8,0 mn TL<small class="usd">$164,7 bin</small></td><td>14,3 mn TL<small class="usd">$294,6 bin</small></td></tr>
+    </tbody>
+  </table></div>
+  <div class="odeme" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+    <div class="gor"><b>54–96 ay</b><span>Açılış senaryosunda geri dönüş</span></div>
+    <div class="gor"><b>26–47 ay</b><span>Hedef senaryoda geri dönüş</span></div>
+    <div class="gor"><b>16–28 ay</b><span>Yüksek senaryoda geri dönüş</span></div>
+  </div>
+  <p class="kaynak gor">Kaynak: AUTOKITCH maliyet hesabı (Model M, malzeme toptan fiyatları 12 Eylül 2026) ve makine yatırım tablosu (16 Eylül 2026); Siemens: SINAMICS S200 dağıtıcı fiyatı (<a href="https://portal.vanegmond.nl/producten/siemens-frequentieregelaar-1-kv-6sl5510-1bb10-1af0/4363074">Van Egmond</a>), SIMOTICS 1FL2 liste fiyatı (<a href="https://mall.industry.siemens.com/mall/en/kr/Catalog/Product/1FL2102-2AF01-0HC0">Siemens Industry Mall</a>), CPU 1512SP F-1 PN (<a href="https://plc-direct.com/en-de/products/6es7512-1sm03-0ab0">PLC-Direct</a>); eksen sayısı güncel makine modelinden. Rakip fiyatları İstanbul, Eylül 2026. TAB Gıda 2025 Faaliyet Raporu: 247,2 milyon fiş, 2.030 restoran. Siemens tutarları teklif değil, liste ve dağıtıcı fiyatıdır.</p>
+
+</div>
+</section>
+
+<section class="bolum b">
+<div class="sayfa" data-b="15">
+  <div class="k gor"><i>15</i>PIN’in büyümesi · merkez depo</div>
+  <h2 class="gor">Bir depo, altı dükkân.</h2>
+  <p class="lead gor">İlk dükkân kanıtlandıktan sonra PIN çoğalır. Dükkân sayısı artınca hamur ve harç tek merkezde üretilir.</p>
+
+  <div class="alt-bas gor" style="margin-top:0">Yeni dükkân nasıl açılır · iki yol</div>
+  <div class="iki-yol">
+    <div class="gor"><h3>Kendi dükkânımız</h3><p><b>Yatırım bizden, kâr bizde.</b> Kaç dükkân açacağımızı alınacak yatırım belirler.</p></div>
+    <div class="gor"><h3>Franchise</h3><p><b>Yatırım franchise alandan.</b> Bize giriş ücreti, cirodan pay ve depodan hamur-harç satışı kalır; büyüme daha hızlı.</p></div>
+  </div>
+</div>
+<div class="sayfa" data-b="15">
+  <div class="k-devam"><i>15</i>PIN’in büyümesi · merkez depo</div>
+  <div class="alt-bas gor" style="margin-top:0">Merkez depo · bir araç, her gün bir tur</div>
+
+  <div class="depo">
+    <div class="gor"><svg viewBox="0 0 600 420" role="img" aria-label="Merkez depo ortada, çevresinde altı PIN dükkânı; A ve B grupları dönüşümlü ikmal alır"><line class="hA" x1="300" y1="210" x2="300" y2="60"/><line class="hB" x1="300" y1="210" x2="462" y2="135"/><line class="hA" x1="300" y1="210" x2="462" y2="285"/><line class="hB" x1="300" y1="210" x2="300" y2="360"/><line class="hA" x1="300" y1="210" x2="138" y2="285"/><line class="hB" x1="300" y1="210" x2="138" y2="135"/><rect class="dp" x="230" y="176" width="140" height="68" rx="8"/><text class="dpt" x="300" y="206" text-anchor="middle">Merkez depo</text><text class="dps" x="300" y="228" text-anchor="middle">hamur · harç</text><rect class="dA" x="248" y="38" width="104" height="44" rx="22"/><text class="dkt" x="300" y="65" text-anchor="middle">PIN 1 · A</text><rect class="dB" x="410" y="113" width="104" height="44" rx="22"/><text class="dkt" x="462" y="140" text-anchor="middle">PIN 2 · B</text><rect class="dA" x="410" y="263" width="104" height="44" rx="22"/><text class="dkt" x="462" y="290" text-anchor="middle">PIN 3 · A</text><rect class="dB" x="248" y="338" width="104" height="44" rx="22"/><text class="dkt" x="300" y="365" text-anchor="middle">PIN 4 · B</text><rect class="dA" x="86" y="263" width="104" height="44" rx="22"/><text class="dkt" x="138" y="290" text-anchor="middle">PIN 5 · A</text><rect class="dB" x="86" y="113" width="104" height="44" rx="22"/><text class="dkt" x="138" y="140" text-anchor="middle">PIN 6 · B</text></svg></div>
+    <div class="depo-not">
+      <div class="gor"><b>Üretim:</b> hamur ve harç her sabah depoda, tek reçeteyle hazırlanır. İleride otonom; depoyu tek kişi yönetir.</div>
+      <div class="gor"><b>Dağıtım:</b> altı dükkân iki gruba ayrılır. Her gün bir grup ikmal alır: tek araç, tek tur, üç dükkân.</div>
+      <div class="gor"><b>Sonuç:</b> her dükkân iki günde bir dolar; dükkândaki soğuk dolabın iki günlük stoğuyla birebir uyumlu.</div>
+    </div>
+  </div>
+  <div class="alt-bas gor">Örnek hafta</div>
+  <div class="hafta gor"><div class="gA"><b>Pzt</b><span>A</span></div><div class="gB"><b>Sal</b><span>B</span></div><div class="gA"><b>Çar</b><span>A</span></div><div class="gB"><b>Per</b><span>B</span></div><div class="gA"><b>Cum</b><span>A</span></div><div class="gB"><b>Cmt</b><span>B</span></div><div class="gA"><b>Paz</b><span>A</span></div></div>
+  <p class="renk-not gor">A: PIN 1, 3, 5 · B: PIN 2, 4, 6. Gruplar her gün dönüşümlü; hafta sonu da aynı düzen sürer.</p>
+
+</div>
+<div class="sayfa" data-b="15">
+  <div class="k-devam"><i>15</i>PIN’in büyümesi · merkez depo</div>
+  <div class="alt-bas gor">Depo neden önemli</div>
+  <div class="neden">
+    <div class="gor"><h3>Maliyet düşer</h3><p>Toplu alım ve tek merkezde üretim; dışarıdan hazır hamur almaya göre maliyetin düşmesi beklenir.</p></div>
+    <div class="gor"><h3>Tat her yerde aynı</h3><p>Bütün dükkânlar aynı hamuru ve aynı harcı kullanır.</p></div>
+    <div class="gor"><h3>Yeni gelir</h3><p>Franchise dükkânları da hamur ve harcı depodan alır; her ay tekrarlayan gelir.</p></div>
+  </div>
+  <p class="kitle-not gor">İlk depo üçüncü dükkânla birlikte kurulur ve altı dükkâna kadar besler. Kendi dükkân sayısını yatırım belirler; franchise ile aynı depo daha fazla dükkânı besler.</p>
+
+</div>
+</section>
+
+<div class="ayrac c"><b>C</b>İş ve gelecek</div>
+
+
+<section class="bolum">
+<div class="sayfa" data-b="16">
+  <div class="k gor"><i>16</i>Şimdiye kadar ne yaptık · Traction</div>
+  <h2 class="gor">Makine dijitalde hazır.</h2>
+  <p class="lead gor">Hat baştan sona tasarlandı, kontrol yazılımı yazıldı ve dijital ikizde gerçek programla çalıştırıldı. Sırada fiziksel prototip var.</p>
+  <div class="pazar" style="margin-top:0;padding-top:0;border-top:none">
+    <div class="gor"><b>11.188 / 11.188</b><span>Uçtan uca kontrol testi: PLC programı ile simülasyon 8 senaryoda adım adım aynı sonucu verdi</span></div>
+    <div class="gor"><b>45</b><span>Tedarikçiye teklif talebi; robot, fırın, açıcı ve dolap için ilk teklifler alındı</span></div>
+    <div class="gor"><b>3</b><span>Sipariş platformu bağlantısı yazıldı: Getir, Yemeksepeti, Trendyol Yemek</span></div>
+  </div>
+
+  <div class="yakin">
+    <figure class="gor"><img src="img/sunum_yakin_malzeme_v1.jpg" alt="Malzeme istasyonu ve açıcının 3B yakın görünümü" loading="lazy"><figcaption>Malzeme istasyonu ve açıcı · 3B model</figcaption></figure>
+    <figure class="gor"><img src="img/sunum_yakin_kutu_v1.jpg" alt="Kesme ve kutulama istasyonlarının 3B yakın görünümü" loading="lazy"><figcaption>Kesme ve kutulama · 3B model</figcaption></figure>
+  </div>
+
+</div>
+<div class="sayfa" data-b="16">
+  <div class="k-devam"><i>16</i>Şimdiye kadar ne yaptık · Traction</div>
+  <div class="alt-bas gor">Tamamlananlar</div>
+  <div class="yapildi">
+    <div class="gor"><h3>Makine</h3><ul>
+      <li><span><b>Tam 3B model:</b> soğuk dolap, robot, açıcı, malzeme, fırın, kesme, kutulama, teslim dolabı</span></li>
+      <li><span><b>Gerçek katalog parçaları:</b> Siemens kontrol ve motorlar, Pepperl+Fuchs sensörler; üreticinin kendi 3B dosyalarıyla</span></li>
+      <li><span><b>Üretime uygun gövde:</b> bükümlü sac, vida ve bağlantı detaylarıyla</span></li>
+      <li><span><b>Emniyet:</b> emniyet fonksiyonları EN ISO 13849’a göre tanımlandı, CE çalışması başladı</span></li>
+    </ul></div>
+    <div class="gor"><h3>Yazılım</h3><ul>
+      <li><span><b>Kontrol programı:</b> endüstriyel standart IEC 61131-3 ile yazıldı</span></li>
+      <li><span><b>Canlı dijital ikiz:</b> makinenin sanal kopyası, gerçek kontrol programıyla çalışıyor</span></li>
+      <li><span><b>Sipariş sistemi:</b> üç platformun resmî bağlantı belgeleriyle, test ortamında 12/12</span></li>
+      <li><span><b>Müşteri ekranları:</b> sipariş, takip, teslim dolabı ve dükkân önü ekranı</span></li>
+    </ul></div>
+    <div class="gor"><h3>İş</h3><ul>
+      <li><span><b>Maliyet modeli</b> ve makine yatırım tablosu</span></li>
+      <li><span><b>Rakip araştırması:</b> 4 kıtada 64 firma</span></li>
+      <li><span><b>Tedarikçi görüşmeleri:</b> 64 firma tarandı, 45’ine teklif talebi gönderildi</span></li>
+    </ul></div>
+    <div class="gor"><h3>Marka</h3><ul>
+      <li><span><b>PIN marka vizyonu:</b> 15 karar; konum, çekirdek ve hedef kitle</span></li>
+      <li><span><b>Görsel kimlik:</b> renkler, yazı karakteri, maskot, ilk web sitesi ve müşteri ekranı tasarımı</span></li>
+      <li><span><b>Marka araştırması:</b> TÜRKPATENT taraması; sınıf 43 için başvuru kararı</span></li>
+      <li><span><b>Şirket planı:</b> Türkiye’de kuruluş, Ocak 2027</span></li>
+    </ul></div>
+  </div>
+  <div class="durum gor"><i></i>Tasarım, yazılım ve simülasyon tamam · fiziksel prototip 2027</div>
+
+</div>
+</section>
+
+<section class="bolum">
+<div class="sayfa" data-b="17">
+  <div class="k gor"><i>17</i>Yol haritası</div>
+  <h2 class="gor">Ağustos 2027’de ilk dükkân.</h2>
+  <p class="lead gor">Tasarım bitti. Önümüzdeki on ay şirket, prototip ve ilk PIN dükkânı.</p>
+
+  <div class="alt-bas gor" style="margin-top:0">Önümüzdeki on ay</div>
+  <div class="yol">
+    <div class="gor simdi"><div class="ta">Ekim 2026</div><div><b>Tasarım ve dijital ikiz tamam</b><p>Makine, yazılım ve marka çalışmaları bugün burada.</p></div></div>
+    <div class="gor"><div class="ta">Kasım – Aralık 2026</div><div><b>Hazırlık</b><p>Marka başvurusu, dükkânın mimari tasarımı, tedarikçi tekliflerinin netleşmesi.</p></div></div>
+    <div class="gor"><div class="ta">Ocak 2027</div><div><b>Şirket kurulur</b><p>AUTOKITCH şirketi kurulur; ekibe ilk mühendis katılır.</p></div></div>
+    <div class="gor"><div class="ta">Nisan – Temmuz 2027</div><div><b>Fiziksel prototip</b><p>Hat üretilir, kurulur ve dijital ikizdeki senaryolarla sahada denenir; sonunda deneme satışı.</p></div></div>
+    <div class="gor hedef"><div class="ta">Ağustos 2027</div><div><b>İlk PIN dükkânı açılır</b><p>Gündüz kasiyer siparişi alır; ürün her saat teslim dolabından. Rakamlar sahada ölçülmeye başlar.</p></div></div>
+  </div>
+
+</div>
+<div class="sayfa" data-b="17">
+  <div class="k-devam"><i>17</i>Yol haritası</div>
+  <div class="alt-bas gor">Sonrası</div>
+  <div class="fazlar">
+    <div class="gor"><div class="no">Faz 2 · Çoğalt</div><h3>Yeni PIN dükkânları</h3><p>Kendi dükkânlarımız ya da franchise. Dükkân sayısı artınca merkez depo kurulur.</p><span>İlk dükkânın rakamları kanıtlandıktan sonra</span></div>
+    <div class="gor"><div class="no">Faz 3 · Sat</div><h3>Makine satışı</h3><p>AUTOKITCH Line ve Box: zincirler, kurumlar, şantiyeler, havalimanları, savunma.</p><span>Makine sahada olgunlaştıktan sonra</span></div>
+    <div class="gor"><div class="no">Faz 4 · Genişle</div><h3>Yeni ürün ve pazar</h3><p>Pin Burger, Pin Bowl, Pin Salat; AUTOKITCH Home ve yurt dışı.</p><span>Uzun vade</span></div>
+  </div>
+  <p class="kitle-not gor">Faz 2 ve sonrasının hızını alınacak yatırım belirler.</p>
+
+</div>
+</section>
+
+
+
+<section class="bolum">
+<div class="sayfa" data-b="18">
+  <div class="k gor"><i>18</i>Yatırım · iki talep</div>
+  <h2 class="gor">İki talep, iki adım.</h2>
+  <p class="lead gor">İlk talep teknolojiyi sahaya çıkarır ve ilk dükkânı açar. İkincisi PIN’i çoğaltır ve merkez depoyu kurar.</p>
+  <div class="kurbilgi gor"><span>Tutarlar dolar bazında · 1 $ = 48,52 TL (TCMB, 11.09.2026) · ön tahmin</span></div>
+
+</div>
+<div class="sayfa" data-b="18">
+  <div class="k-devam"><i>18</i>Yatırım · iki talep</div>
+  <div class="talep">
+    <div class="gor t-ak">
+      <div><div class="et">Talep 1 · 2027</div><h3>AUTOKITCH · sahaya çıkış</h3></div>
+      <div class="tutar">300 bin $<small>≈ 14,6 mn TL</small></div>
+      <div class="kul">
+        <div><span>İlk hat · prototip</span><i>%70</i><span class="cub"><b style="width:70%"></b></span></div>
+        <div><span>Mühendislik ekibi · 12 ay</span><i>%20</i><span class="cub"><b style="width:20%"></b></span></div>
+        <div><span>CE belgesi ve saha testleri</span><i>%10</i><span class="cub"><b style="width:10%"></b></span></div>
+      </div>
+      <p class="son"><b>Sonuç:</b> Ağustos 2027’de ilk PIN dükkânı açılır; makine sahada kanıtlanır.</p>
+    </div>
+    <div class="gor t-pin">
+      <div><div class="et">Talep 2 · ilk dükkândan sonra</div><h3>PIN · çoğalma</h3></div>
+      <div class="tutar">500 bin $<small>≈ 24,3 mn TL</small></div>
+      <div class="kul">
+        <div><span>İki yeni hat</span><i>%75</i><span class="cub"><b style="width:75%"></b></span></div>
+        <div><span>İki dükkânın açılışı</span><i>%10</i><span class="cub"><b style="width:10%"></b></span></div>
+        <div><span>Merkez depo · üretim ve dağıtım</span><i>%15</i><span class="cub"><b style="width:15%"></b></span></div>
+      </div>
+      <p class="son"><b>Sonuç:</b> üç PIN dükkânı ve merkez depo. Depo, sonraki kendi ve franchise dükkânlarını da besler.</p>
+    </div>
+  </div>
+  <div class="toplam gor"><span>Toplam</span><div><b>800 bin $</b><small>≈ 38,8 mn TL</small></div></div>
+  <p class="kaynak gor">Hat tutarı 14. bölümdeki yatırım tablosundan (bir hat 8,0–14,3 mn TL, Siemens dahil). Dükkân açılışı ve merkez depo tutarları tahmindir; tedarikçi teklifleriyle netleşecek.</p>
+
+</div>
+</section>
+
+<section class="son-sayfa">
+  <div class="k gor"><i>19</i>İletişim</div>
+  <h2 class="gor">AUTO<span>KITCH</span></h2>
+  <p class="alt gor">Mutfağın otonom geleceği. <b>Birlikte kuralım.</b></p>
+  <div class="iletisim">
+    <div class="gor"><div class="et">Kurucular</div><p>Kürşat Kemal Kul<span>Ürün ve sistem tasarımı</span></p><p style="margin-top:10px">Eslem Soylu Kul<span>Marka ve strateji</span></p></div>
+    <div class="gor"><div class="et">E-posta</div><p><a href="mailto:kemal@torinoarch.com">kemal@torinoarch.com</a></p></div>
+    <div class="gor"><div class="et">Web</div><p><a href="https://torinoarch.com">torinoarch.com</a><span>Torino · İstanbul</span></p></div>
+  </div>
+  <p class="eklenecek gor"><b>Sonraki sürümde eklenecek:</b> riskler ve önlemler · 3–5 yıllık plan · ekip planı · kısa yatırımcı sürümü · güncel makine görselleri ve güncel parça listesiyle yatırım tablosu. Yatırımcı payı görüşmede konuşulacak.</p>
+</section>
+
+<script>
+  (function(){
+    function duraklar(){ return [...document.querySelectorAll('.kapak,.akis,.sayfa,.ayrac,.son-sayfa')].map(e=>({y:Math.round(e.getBoundingClientRect().top+scrollY), h:e.offsetHeight})).sort((a,b)=>a.y-b.y); }
+    function git(yon){
+      var d = duraklar(), y = Math.round(scrollY), vh = innerHeight, hedef;
+      var simdi = d.slice().reverse().find(s => s.y <= y + 8);
+      if (yon > 0) {
+        if (simdi && simdi.y + simdi.h > y + vh + 40) hedef = Math.min(y + Math.round(vh * .85), simdi.y + simdi.h - vh);
+        else { var n = d.find(s => s.y > y + 8); hedef = n ? n.y : undefined; }
+      } else {
+        if (simdi && y > simdi.y + 8) hedef = Math.max(simdi.y, y - Math.round(vh * .85));
+        else { var p = d.slice().reverse().find(s => s.y < y - 8); hedef = p ? Math.max(p.y, p.y + p.h - vh) : 0; }
+      }
+      if (hedef !== undefined) scrollTo({top: hedef, behavior: 'smooth'});
+    }
+    addEventListener('keydown', function(e){
+      var ileri = ['ArrowDown','PageDown','ArrowRight'].includes(e.key) || (e.key===' ' && !e.shiftKey);
+      var geri = ['ArrowUp','PageUp','ArrowLeft'].includes(e.key) || (e.key===' ' && e.shiftKey);
+      if (!ileri && !geri) return;
+      e.preventDefault(); git(ileri ? 1 : -1);
+    });
+    /* fare tekerleği: slayt gibi bir sayfa */
+    var kilit = false, birik = 0, sonOlay = 0;
+    addEventListener('wheel', function(e){
+      if (e.ctrlKey || matchMedia('(pointer:coarse)').matches) return;
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+      e.preventDefault();
+      var simdi = Date.now(), ara = simdi - sonOlay; sonOlay = simdi;
+      if (kilit) return;
+      if (ara > 250) birik = 0;
+      birik += e.deltaY;
+      if (Math.abs(birik) < 30) return;
+      var yon = birik > 0 ? 1 : -1; birik = 0; kilit = true;
+      git(yon);
+      setTimeout(function(){ kilit = false; }, 750);
+    }, {passive:false});
+    var k = document.createElement('div'); k.className = 'gezin';
+    k.innerHTML = '<button type="button" aria-label="Önceki sayfa">↑</button><button type="button" aria-label="Sonraki sayfa">↓</button>';
+    k.children[0].onclick = function(){ git(-1); }; k.children[1].onclick = function(){ git(1); };
+    document.body.appendChild(k);
+  })();
+</script>
+<script>
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } }), {threshold:.15});
+  document.querySelectorAll('.gor').forEach((el, i) => { el.style.transitionDelay = (i % 4) * 90 + 'ms'; io.observe(el); });
+</script>
+</body>
+</html>
