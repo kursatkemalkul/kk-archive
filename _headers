@@ -3,5 +3,3 @@
   Referrer-Policy: strict-origin-when-cross-origin
 /digital-twin/live.json
   Cache-Control: no-store
-/digital-twin/e-taslak/live.json
-  Cache-Control: no-store
