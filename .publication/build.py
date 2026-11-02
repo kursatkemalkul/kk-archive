@@ -24,12 +24,12 @@ def copy_source(repo,destination):
    target=destination/name/'index.html';target.parent.mkdir(parents=True,exist_ok=True)
    target.write_text('<html><head><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=/digital-twin/"></head><body><a href="/digital-twin/">AUTOKITCH Digital Twin</a></body></html>','utf8')
   # Legacy E animation links stay reachable through authenticated publication.
-  redirect49='<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta http-equiv="refresh" content="0;url=/digital-twin/e-taslak/?gorunum=montaj"><title>AUTOKITCH · E montajı</title></head><body><a href="/digital-twin/e-taslak/?gorunum=montaj">Şifreli E montaj animasyonunu aç</a></body></html>'
+  redirect49='<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta http-equiv="refresh" content="0;url=/digital-twin/"><title>AUTOKITCH · E montajı</title></head><body><a href="/digital-twin/">Şifreli E montaj animasyonunu aç</a></body></html>'
   for rel in ['otonom/hat/e-montaj.html','otonom/hat/e-montaj/index.html']:
    target=destination/rel;target.parent.mkdir(parents=True,exist_ok=True);target.write_text(redirect49,'utf8')
 
 def compile_cloudflare(site):
- for suffix in ['', 'e-taslak/']:
+ for suffix in ['']:
   file=site/'digital-twin'/suffix/'index.html'
   text=file.read_text('utf8')
   # The legacy E address now opens the canonical protected main viewer.
@@ -58,7 +58,7 @@ def compile_cloudflare(site):
  worker=(ROOT/'video-worker.template.js').read_text('utf8').replace('__VIDEO_MANIFEST__',json.dumps(videos,separators=(',',':')))
  (site/'_worker.js').write_text(worker,'utf8')
  (site/'_routes.json').write_text(json.dumps({'version':1,'include':list(videos),'exclude':[]}),'utf8')
- (site/'_headers').write_text('/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n/digital-twin/live.json\n  Cache-Control: no-store\n/digital-twin/e-taslak/live.json\n  Cache-Control: no-store\n','utf8')
+ (site/'_headers').write_text('/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n/digital-twin/live.json\n  Cache-Control: no-store\n','utf8')
  return videos
 
 
