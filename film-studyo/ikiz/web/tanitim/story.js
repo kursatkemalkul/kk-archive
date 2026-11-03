@@ -91,7 +91,7 @@ export function createStory(I,data){
  const steamCanvas=document.createElement('canvas');steamCanvas.width=steamCanvas.height=64;const sc=steamCanvas.getContext('2d'),gr=sc.createRadialGradient(32,32,0,32,32,30);gr.addColorStop(0,'rgba(255,255,255,.35)');gr.addColorStop(1,'rgba(255,255,255,0)');sc.fillStyle=gr;sc.fillRect(0,0,64,64);const steamTex=new T.CanvasTexture(steamCanvas);const steam=[];for(let i=0;i<7;i++){const s=new T.Sprite(new T.SpriteMaterial({map:steamTex,transparent:true,depthWrite:false,opacity:.3}));stage.add(s);steam.push(s);}
  const curves=SHOTS.map(s=>({p:new T.CatmullRomCurve3(s.p.map(a=>new T.Vector3(...a)),false,'centripetal'),look:new T.CatmullRomCurve3(s.look.map(a=>new T.Vector3(...a)),false,'centripetal')}));
  // A single curve spans street and menu: no per-shot easing/stop behind the actor.
- const openingPath=new T.CubicBezierCurve3(...[[-1.8,4.1,8.0],[5.9,4.6,5.7],[4.35,1.92,2.32],[4.69,1.7,2.30]].map(p=>new T.Vector3(...p)));
+ const openingPath=new T.CubicBezierCurve3(...[[-1.8,4.1,8.0],[1.0,2.7,3.5],[4.15,1.92,2.32],[4.69,1.7,2.30]].map(p=>new T.Vector3(...p)));
  const openingLook=new T.CubicBezierCurve3(...[[2.9,1.9,2.6],[4.2,1.7,2.5],[5.2,1.37,2.43],[5.39,1.3,2.43]].map(p=>new T.Vector3(...p)));
 
  const hero=new T.Vector3(4.5992932,1.08,2.77),plate=new T.Vector3(...sample(data.clips.dough,data.clips.dough.release).slice(8,11)),topPlate=new T.Vector3(1.911,1.023,-.17),ovenPlate=new T.Vector3(3.25,.99,-.29);
