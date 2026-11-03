@@ -60,8 +60,9 @@ export function createStory(I,data){
   function pose(time,walk=0,right=null,left=null,tucked=false,wristOffsets=null,elbowTargets=null){for(let i=0;i<2;i++){const s=i?1:-1,swing=Math.sin(time*9+i*Math.PI)*.13*walk,knee=[s*.09,.49,swing*.7],foot=[s*.09,.10,-swing];legs[i][0].set([s*.09,.88,0],knee);legs[i][1].set(knee,foot);let hand=(i?right:left)||[s*.22,.96,.05+swing*.5];const shoulder=[s*.175,1.40,0],elbow=[s*(tucked?(.10+.13*(1-ease((hand[2]-.15)/.12))):.23),(1.40+hand[1])/2,hand[2]*(tucked?.42:.55)+(tucked?.02:.05)];if(elbowTargets?.[i])elbow.splice(0,3,...elbowTargets[i]);arms[i][0].set(shoulder,elbow);const wrist=hand.map((v,j)=>v+(wristOffsets?.[i]?.[j]||0));arms[i][1].set(elbow,wrist);hands[i].position.set(...hand);}}
   return {root,head,body,pose,hands,arms};
  }
- const customer=person('PROMO_MUSTERI',0x406779),passer=person('PROMO_YAYA',0xb5a38d);customer.hands.forEach(h=>h.scale.set(.85,.5,1.05));
- const pedestrians=[passer,...[0x6c7866,0x96716c,0x62788c].map((c,i)=>person('PROMO_SOKAK_'+i,c))];
+ const customer=person('PROMO_MUSTERI',0x406779);customer.hands.forEach(h=>h.scale.set(.85,.5,1.05));
+ // Keep only the ordering/handoff motion reference; no mannequin pedestrians.
+ const pedestrians=[];
  const phone=box(stage,[.075,.145,.012],material(0x15191e),[0,0,0]);
  const qrCanvas=document.createElement('canvas');qrCanvas.width=qrCanvas.height=128;const qc=qrCanvas.getContext('2d');qc.fillStyle='white';qc.fillRect(0,0,128,128);qc.fillStyle='#111';for(let y=0;y<21;y++)for(let x=0;x<21;x++)if(((x*17+y*11+x*y)%13)<6)qc.fillRect(8+x*5,8+y*5,5,5);for(const [x,y]of[[8,8],[78,8],[8,78]]){qc.fillRect(x,y,35,35);qc.clearRect(x+5,y+5,25,25);qc.fillRect(x+10,y+10,15,15)}const qrTex=new T.CanvasTexture(qrCanvas);const phoneScreen=mesh(new T.PlaneGeometry(.062,.108),new T.MeshBasicMaterial({map:qrTex}),phone);phoneScreen.position.z=.0065;
  const kiosk=scene.getObjectByName('DUKKAN__KIOSK_GOMME_QM32C');let orderCanvas,orderTexture,orderState=-1;
