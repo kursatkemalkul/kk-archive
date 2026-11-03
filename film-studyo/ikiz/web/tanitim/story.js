@@ -20,8 +20,8 @@ export const SHOTS=[
  {id:'oven',start:15.5,end:17,title:'Fırın · kızaran kenar',detail:'Oven macro · sıcaklık / çıtırtı',fov:[56,43],roll:[-10,5],p:[[3.05,1.14,-.04],[3.28,1.10,-.09],[3.43,1.09,-.12]],look:[[3.25,1.005,-.29],[3.25,1.005,-.29],[3.25,1.005,-.29]]},
  {id:'collect',start:17,end:19.2,title:'Robot ucu POV · kutuyu al',detail:'Tutucu POV · kavramada yakınlaş · geri açıl',fov:[56,54],roll:[0,0],p:[[4.606,.980,.577],[3.55,1.1,.775]],look:[[4.606,.980,-.073],[3.55,1.1,.125]]},
  {id:'delivery',start:19.2,end:23.9,title:'Robot ucu POV · QR rafına bırak',detail:'Aynı hareket · dönüşte zoom-out · rafa girerken zoom-in',fov:[54,49],roll:[0,0],p:[[3.55,1.1,.775],[4.636,1.175,1.670]],look:[[3.55,1.1,.125],[4.636,1.129,2.318]]},
- {id:'handoff',start:23.9,end:28,title:'Müşteri gözünden · iki elle alma',detail:'Müşteri POV · kutuyla birlikte geri çekilme',fov:[64,58],roll:[0,0],p:[[4.5992932,1.63,2.345],[4.5992932,1.63,2.985]],look:[[4.5992932,1.18,1.94],[4.5992932,1.105,2.77]]},
- {id:'hero',start:28,end:30,title:'POV · kutu açılır · AUTOKITCH',detail:'Müşteri gözünden · kutu / pide · yazı',fov:[58,76],roll:[0,0],p:[[4.5992932,1.63,2.985],[4.5992932,1.63,2.985]],look:[[4.5992932,1.105,2.77],[4.5992932,1.105,2.77]]}
+ {id:'handoff',start:23.9,end:28,title:'Müşteri gözünden · iki elle alma',detail:'Müşteri POV · kutuyla birlikte geri çekilme',fov:[76,76],roll:[0,0],p:[[4.5992932,1.63,2.345],[4.5992932,1.63,2.985]],look:[[4.5992932,1.18,1.94],[4.5992932,1.105,2.77]]},
+ {id:'hero',start:28,end:30,title:'POV · kutu açılır · AUTOKITCH',detail:'Müşteri gözünden · kutu / pide · yazı',fov:[76,76],roll:[0,0],p:[[4.5992932,1.63,2.985],[4.5992932,1.63,2.985]],look:[[4.5992932,1.105,2.77],[4.5992932,1.105,2.77]]}
 ];
 export const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
 export const ease=v=>{v=clamp(v);return v*v*(3-2*v)};
@@ -168,7 +168,7 @@ export function createStory(I,data){
   if(shot.id==='street'||shot.id==='menu'){const v=1-Math.pow(1-clamp(time/4.2),2);return {position:openingPath.getPoint(v),target:openingLook.getPoint(v),fov:mapped(time,[[0,64],[1.1,58],[2.5,46],[4.2,34]]),roll:-28*(1-progress(time,0,2))*Math.PI/180};}
   if(['grip','ride','collect','delivery'].includes(shot.id)){const frame=frameAt(time),row=frame.row,point=new T.Vector3(...row.slice(8,11));if(shot.id==='collect'||shot.id==='delivery'){const mount=wristPose(row,time);position.copy(mount.position);target.copy(mount.target);fov=mount.fov;roll=0;}
    else{const q=new T.Quaternion(...row.slice(11,15)).normalize(),wrist=new T.Euler().setFromQuaternion(q,'YXZ'),pov=shot.id!=='grip',yaw=clamp(wrist.y,-.8,.8),offset=new T.Vector3(pov?.24:.45,pov?.17:.25,pov?.40:.52).applyAxisAngle(new T.Vector3(0,1,0),yaw);offset.x+=.06*Math.sin(u*Math.PI*2);position.copy(point).add(offset);target.copy(point).add(new T.Vector3(0,.02,-.055));if(pov)roll+=.20*Math.sin(u*Math.PI*2)+.12*wrist.z;}}
-  if(shot.id==='handoff'||shot.id==='hero'){const pull=progress(time,26.4,PACE.pull),qrPoint=new T.Vector3(...sample(data.clips.carton,data.clips.carton.release).slice(8,11)),box=handoffBox(pull),bodyZ=2.45+.64*pull;position.set(hero.x,1.63,bodyZ-.105);target.copy(box).add(new T.Vector3(0,.025,0));roll=0;if(shot.id==='hero')fov=58+18*progress(time,28,.3);}
+  if(shot.id==='handoff'||shot.id==='hero'){const pull=progress(time,26.4,PACE.pull),qrPoint=new T.Vector3(...sample(data.clips.carton,data.clips.carton.release).slice(8,11)),box=handoffBox(pull),bodyZ=2.45+.64*pull;position.set(hero.x,1.63,bodyZ-.105);target.copy(box).add(new T.Vector3(0,.025,0));roll=0;fov=76;}
   return {position,target,fov,roll};
  }
  function mixPose(previous,pose,u){pose.position.lerpVectors(previous.position,pose.position,u);pose.target.lerpVectors(previous.target,pose.target,u);pose.fov=previous.fov+(pose.fov-previous.fov)*u;pose.roll=previous.roll+(pose.roll-previous.roll)*u;return pose;}
