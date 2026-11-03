@@ -1,5 +1,5 @@
 from pathlib import Path
-import json,shutil,hashlib,re
+import json,shutil,hashlib,re,mimetypes
 import argparse
 parser=argparse.ArgumentParser()
 parser.add_argument('--sources',type=Path,required=True)
@@ -47,13 +47,16 @@ def compile_cloudflare(site):
  videos={}
  for file in list(site.rglob('*')):
   if not file.is_file() or file.stat().st_size<=25*1024*1024:continue
-  assert file.suffix=='.mp4','Unexpected oversized file: '+str(file)
+  film_asset=file.relative_to(site).parts[0]=='film-studyo'
+  assert file.suffix=='.mp4' or film_asset,'Unexpected oversized file: '+str(file)
   sha=hashlib.sha256(file.read_bytes()).hexdigest();parts=[];size=file.stat().st_size
   with file.open('rb')as source:
    i=0
    while chunk:=source.read(CHUNK):
     rel=Path('_media_parts')/sha/(str(i)+'.part');target=site/rel;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(chunk);parts.append('/'+rel.as_posix());i+=1
   videos['/'+file.relative_to(site).as_posix()]={'size':size,'sha256':sha,'chunkSize':CHUNK,'parts':parts}
+  if film_asset:
+   videos['/'+file.relative_to(site).as_posix()]['contentType']=mimetypes.guess_type(file.name)[0] or 'application/octet-stream'
   file.unlink()
  worker=(ROOT/'video-worker.template.js').read_text('utf8').replace('__VIDEO_MANIFEST__',json.dumps(videos,separators=(',',':')))
  (site/'_worker.js').write_text(worker,'utf8')

@@ -21,7 +21,7 @@ export default {
   const range=request.headers.get('Range');
   const wanted=selectRange(request.headers.has('If-Range')&&request.headers.get('If-Range')!==etag?null:range,video.size);
   if(!wanted)return new Response(null,{status:416,headers:{'Content-Range':'bytes */'+video.size}});
-  const headers=new Headers({'Content-Type':'video/mp4','Accept-Ranges':'bytes','Content-Length':String(wanted.end-wanted.start+1),'Cache-Control':'public, max-age=86400','ETag':etag,'X-Content-Type-Options':'nosniff'});
+  const headers=new Headers({'Content-Type':video.contentType||'video/mp4','Accept-Ranges':'bytes','Content-Length':String(wanted.end-wanted.start+1),'Cache-Control':'public, max-age=86400','ETag':etag,'X-Content-Type-Options':'nosniff'});
   if(wanted.partial)headers.set('Content-Range',`bytes ${wanted.start}-${wanted.end}/${video.size}`);
   if(request.method==='HEAD')return new Response(null,{status:wanted.partial?206:200,headers});
   const first=Math.floor(wanted.start/video.chunkSize),last=Math.floor(wanted.end/video.chunkSize);
