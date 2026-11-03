@@ -469,7 +469,7 @@ modelYukle().then(async ({ gltf, E, ENT }) => {
   if (IKIZ.son) { canliGoruntu.yakala(); surucu.kareUygula(IKIZ.son, IKIZ.robotSon); }
   IKIZ.cepheOcclusion67=cepheOcclusion67(THREE,IKIZ);
   IKIZ.eskiMakineErken += eskiErkenGizle(scene);   // eski modüllerin sonradan eklediği eski parçalar (servis kapakları, K nozul kablosu): yeni makine yüklenirken çizilmez
-  { try { await (await import('./yeni_makine/yeni_makine.js?v=b596e972071b')).yeniMakine(THREE, IKIZ, scene); } catch (e) { throw e; } }   // ANA 24 Eki: yeni makine (iskelet_v1 + 5 istasyon modülü) PLC karesiyle sürülür; eski istasyonlar kalkar (tek güncel görünüm)
+  { try { await (await import('./yeni_makine/yeni_makine.js?v=0b21fea23cdc')).yeniMakine(THREE, IKIZ, scene); } catch (e) { throw e; } }   // ANA 24 Eki: yeni makine (iskelet_v1 + 5 istasyon modülü) PLC karesiyle sürülür; eski istasyonlar kalkar (tek güncel görünüm)
   try { await (await import('./acici32.js?v=32-1')).acici32(THREE, IKIZ, scene); } catch (e) { IKIZ.konsolHata.push('acici32: ' + e.message); console.error(e); }   // Kemal 1 Kas: A açıcısı (24 Eki geometrisi) + merdane inişi / dönüşü geri
   IKIZ.yuklendi = true; // Keep the loading mask through first-render compilation.
   siparisTuruKur(IKIZ);

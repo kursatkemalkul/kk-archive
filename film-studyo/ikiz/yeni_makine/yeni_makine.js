@@ -1,6 +1,6 @@
-import {blueMachine03} from '../blue_finish03.js?v=4cb7bf26ffaa';
+import {blueMachine03} from '../piano_black29.js?v=156eaf68ed0c';
 import {sceneAudit30} from '../scene_audit30.js?v=950a7c43140b';
-import {pianoBlack29,MACHINE_PIANO_FINISH30 as PIANO_FINISH30} from '../piano_black29.js?v=0f2f4cfd1656';
+import {pianoBlack29,MACHINE_PIANO_FINISH30 as PIANO_FINISH30} from '../piano_black29.js?v=156eaf68ed0c';
 /* YENİ MAKİNE (ANA, 24 Eki 2026 — Kemal: "yeni makineyi ana dijital ikize koy, eskisini kaldır; oradaki makine üstünde çalışan kurallar
    (çekmece açılması, PLC kodu, parçaların hareket ve hızları) bununla çalışsın" · "katman sistemi çalışmıyor, düzelt; hızlandır").
    · Gövde: yeni_makine_govde.glb (yeni_makine/iskelet_v1.html'den, hat/iskelet_glb_aktar.py; her düğümde extras kat = iskelet katmanı, ist = istasyon).
