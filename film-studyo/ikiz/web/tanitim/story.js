@@ -1,4 +1,5 @@
 import {kUrunSablon} from '../../k_urun.js';
+import {CAMERA as WRIST_CAMERA} from '../../robot_kamera.js';
 import {cameraAt} from './camera-keys.js?v=bb9c67aff12d';
 export const DURATION=25;
 export function actionTime(t){return t<3.9?t:t<9.5?3.9:t<10.3?3.9+1.4*ease((t-9.5)/.8):t-5}
@@ -12,8 +13,8 @@ export const SHOTS=[
  {id:'ride',start:12.3,end:14.1,title:'Robot ucunda dönüş',detail:'Tool-mounted POV · sağ / sol wrist roll',fov:[65,56],roll:[-8,15],p:[[2.5,1.3,1.1],[1.4,1.4,.6]],look:[[2.3,1,.7],[1.1,1,-.17]]},
  {id:'top',start:14.1,end:16.3,title:'Kaşar üstüne sucuk',detail:'Macro overhead · slow fall · orbit',fov:[55,51],roll:[15,-10],p:[[2.03,1.38,-.01],[1.96,1.34,-.02],[1.80,1.31,-.025]],look:[[1.911,1.04,-.17],[1.911,1.04,-.17],[1.911,1.04,-.17]]},
  {id:'oven',start:16.3,end:18.3,title:'Fırın · kızaran kenar',detail:'Oven macro · sıcaklık / çıtırtı',fov:[56,43],roll:[-10,5],p:[[3.05,1.14,-.04],[3.28,1.10,-.09],[3.43,1.09,-.12]],look:[[3.25,1.005,-.29],[3.25,1.005,-.29],[3.25,1.005,-.29]]},
- {id:'collect',start:18.3,end:19.5,title:'Kutuyu al · geri çekil',detail:'Tek kamera · kutuyu kavra / geri çekil',fov:[62,62],roll:[0,0],p:[[5.291,1.136,.214],[4.27,1.40,.90]],look:[[4.691,.976,-.206],[3.57,1.20,.52]]},
- {id:'delivery',start:19.5,end:21.2,title:'90° dön · QR dolabına gir',detail:'Aynı kamera · 90° dönüş · düz giriş',fov:[62,62],roll:[0,0],p:[[4.27,1.40,.90],[5.053,1.353,1.255]],look:[[3.57,1.20,.52],[4.599,1.178,1.903]]},
+ {id:'collect',start:18.3,end:19.5,title:'Robot ucu POV · kutuyu al',detail:'Kol ucundan · kavra / geri çekil',fov:[74,74],roll:[0,0],p:[[4.606,.980,.577],[3.55,1.1,.775]],look:[[4.606,.980,-.073],[3.55,1.1,.125]]},
+ {id:'delivery',start:19.5,end:21.2,title:'Robot ucu POV · QR rafına bırak',detail:'Kamerayla birlikte dönen uç · doğrudan bırakma',fov:[74,74],roll:[0,0],p:[[3.55,1.1,.775],[4.636,1.175,1.670]],look:[[3.55,1.1,.125],[4.636,1.129,2.318]]},
  {id:'handoff',start:21.2,end:23,title:'Müşteri gözünden · iki elle alma',detail:'Müşteri POV · kutuyla birlikte geri çekilme',fov:[64,58],roll:[0,0],p:[[4.5992932,1.63,2.345],[4.5992932,1.63,2.985]],look:[[4.5992932,1.18,1.94],[4.5992932,1.105,2.77]]},
  {id:'hero',start:23,end:25,title:'POV · kutu açılır · AUTOKITCH',detail:'Müşteri gözünden · kutu / pide · yazı',fov:[58,58],roll:[0,0],p:[[4.5992932,1.63,2.985],[4.5992932,1.63,2.985]],look:[[4.5992932,1.105,2.77],[4.5992932,1.105,2.77]]}
 ];
@@ -25,6 +26,16 @@ function sample(clip,time){const a=clip.samples;let lo=0,hi=a.length-1;time=clam
 export function createStory(I,data){
  const oldTitle=document.getElementById('endTitle');if(oldTitle?.style)oldTitle.style.display='none';
  const T=I.THREE,scene=I.sahne.scene,camera=I.sahne.kamera,orbit=I.sahne.kontrol,stage=new T.Group();stage.name='IKIZ_DUKKAN_TANITIM_20S';scene.add(stage);
+ // A geometry-free copy of the actual wrist chain keeps camera sampling pure
+ // when scrubbing. It uses the same rail and joint transforms as the renderer.
+ const wristSource=scene.getObjectByName('ROB_KAMERA_GOZ')||scene.getObjectByName('Tool');if(!wristSource)throw Error('Robot ucu kamera bağlantısı bulunamadı');
+ const wristAncestors=[];for(let o=wristSource;o;o=o.parent)wristAncestors.unshift(o);
+ const wristRoot=new T.Object3D(),wristNodes=new Map();let wristEye=wristRoot;
+ for(const source of wristAncestors){const node=new T.Object3D();node.name=source.name;node.position.copy(source.position);node.quaternion.copy(source.quaternion);node.scale.copy(source.scale);wristEye.add(node);wristEye=node;wristNodes.set(source.name,node);}
+ if(wristSource.name==='Tool'){const eye=new T.Object3D();eye.position.fromArray(WRIST_CAMERA.front);wristEye.add(eye);wristEye=eye;}
+ const robotBinding=I.frameContract27.motion_bindings.robot,wristJoints=Object.values(robotBinding.kol).map(j=>wristNodes.get(j.dugum)),wristRail=wristNodes.get(robotBinding.tum.RailJoint.dugum),wristZ=new T.Vector3(0,0,1);
+ if(wristJoints.some(j=>!j)||!wristRail)throw Error('Robot ucu kamera eklem zinciri eksik');
+ function wristPose(row){wristJoints.forEach((joint,i)=>joint.quaternion.setFromAxisAngle(wristZ,row[i+1]));wristRail.position.x=row[7]-robotBinding.ray.sinir_m[0];wristRoot.updateMatrixWorld(true);const position=wristEye.getWorldPosition(new T.Vector3()),q=wristEye.getWorldQuaternion(new T.Quaternion()),forward=wristZ.clone().applyQuaternion(q);return {position,target:position.clone().addScaledVector(forward,.65)};}
  const sharedGeometry=new Set(),borrowedTextures=new Set();
  const material=(color,roughness=.6)=>{const m=new T.MeshStandardMaterial({color,roughness});m.userData.gercekRenk=true;return m};const ownedMaterials=new Map();
  const mats={skin:material(0xc99170),shirt:material(0x3b6574),pants:material(0x263039),hair:material(0x2c2523),shoe:material(0x171b20),kraft:material(0xb89058,.9),cream:material(0xf1dfb9,.9)};
@@ -84,8 +95,7 @@ export function createStory(I,data){
  const logoCanvas=document.createElement('canvas');logoCanvas.width=1024;logoCanvas.height=320;const lg=logoCanvas.getContext('2d');lg.textAlign='center';lg.fillStyle='#f2bf72';lg.font='bold 104px sans-serif';lg.fillText('AUTOKITCH',512,150);lg.fillStyle='#f3f0e9';lg.font='28px sans-serif';lg.fillText('SİPARİŞTEN TESLİMATA.',512,220);const logoTex=new T.CanvasTexture(logoCanvas);logoTex.colorSpace=T.SRGBColorSpace;const logo=mesh(new T.PlaneGeometry(.56,.175),new T.MeshBasicMaterial({map:logoTex,transparent:true,depthTest:false,depthWrite:false,toneMapped:false}));logo.renderOrder=9999;logo.frustumCulled=false;
  let last=-1,currentPoint=new T.Vector3();const previousBeforeRender=scene.onBeforeRender;
  scene.onBeforeRender=function(...args){previousBeforeRender?.apply(this,args);for(const [o,m]of ownedMaterials)o.material=m;const p=actionTime(last),macro=p>=8.93&&p<11.34,isolated=last>=3.9&&last<10.3;for(const [o,visible]of sceneVisibility)o.visible=isolated?false:visible;if(originalLED)originalLED.visible=isolated?false:ledVisible;I.sahne.renderer.localClippingEnabled=true;for(const part of cutParts){part.o.material=Array.isArray(part.original)?part.clones:part.clones[0];for(const m of part.clones){if(part.macro!==macro){m.clippingPlanes=macro?[cutPlane]:null;m.needsUpdate=true}}part.macro=macro;}};
- const bMotion=data.clips.carton,cartonTimes=[[13.3,bMotion.entry-.5],[13.95,bMotion.grasp],[14.7,bMotion.clear],[16.15,bMotion.release],[17,bMotion.duration],[20,bMotion.duration]],followWeights=[1,4,7,10,12,10,7,4,1];
- function boxFocus(t){const point=new T.Vector3();for(let i=0;i<followWeights.length;i++){const s=clamp(mapped(t+(i-4)*.01,cartonTimes),bMotion.grasp,bMotion.release),p=sample(bMotion,s);point.addScaledVector(new T.Vector3(...p.slice(8,11)),followWeights[i]/56)}return point;}
+ const bMotion=data.clips.carton,cartonTimes=[[13.3,bMotion.entry-.5],[13.95,bMotion.grasp],[14.7,bMotion.clear],[16.15,bMotion.release],[17,bMotion.duration],[20,bMotion.duration]];
  function frameAt(time){const t=actionTime(time);
   const d=data.clips.dough,b=data.clips.carton;let clip=d,s=mapped(t,[[0,Math.max(0,d.entry-.8)],[5.3,d.entry-.8],[5.65,d.entry],[6.18,d.grasp-.12],[6.48,d.grasp+.24],[7.18,d.clear],[8.93,d.release],[9.18,d.duration],[13.3,d.duration]]);
   if(t>=13.3){clip=b;s=mapped(t,cartonTimes)}
@@ -117,14 +127,14 @@ export function createStory(I,data){
   }
   orbit.enabled=free;
   if(!free){const pose=keyed?{position:new T.Vector3(...keyed.position),target:new T.Vector3(...keyed.target),fov:keyed.fov,roll:0}:basePose(time),edit=keyed?null:edits[shot.id];if(edit){pose.position.add(new T.Vector3(...edit.positionOffset));pose.target.add(new T.Vector3(...edit.targetOffset));pose.fov=clamp(pose.fov+edit.fovOffset,15,90);}const center=customer.root.position.clone().add(new T.Vector3(0,1.62,0)),delta=pose.position.clone().sub(center);if(!eyeView&&customer.root.visible&&delta.length()<.22)pose.position.copy(center).add(delta.normalize().multiplyScalar(.22));camera.position.copy(pose.position);camera.up.set(0,1,0);camera.fov=pose.fov;camera.lookAt(pose.target);camera.rotateZ(pose.roll);camera.updateProjectionMatrix();orbit.target.copy(pose.target);}
-  document.getElementById('screen').dataset.cameraView=eyeView?'customer-pov':['collect','delivery'].includes(shot.id)?'box-follow-90':'scene';
+  document.getElementById('screen').dataset.cameraView=eyeView?'customer-pov':['collect','delivery'].includes(shot.id)?'robot-wrist-pov':'scene';
   camera.updateMatrixWorld(true);let veilOpacity=0,veilWarm=false;
   if(!free){veilOpacity=ease((time-3.72)/.17)*(1-ease((time-4.25)/.22));}
   veil.material.color.setHex(veilWarm?0xffdfad:0x000000);veil.material.opacity=veilOpacity;veil.visible=veilOpacity>.001;veil.position.set(0,0,-.16).applyQuaternion(camera.quaternion).add(camera.position);veil.quaternion.copy(camera.quaternion);
   logo.visible=t>=19.1;logo.material.opacity=ease((t-19.1)/.4);logo.position.set(0,.075,-.7).applyQuaternion(camera.quaternion).add(camera.position);logo.quaternion.copy(camera.quaternion);return shot;
  }
  function rawPose(time,index=SHOTS.indexOf(shotAt(time))){const shot=SHOTS[index],u=ease((time-shot.start)/(shot.end-shot.start)),t=actionTime(time);let position=curves[index].p.getPoint(u),target=curves[index].look.getPoint(u),roll=(shot.roll[0]+(shot.roll[1]-shot.roll[0])*u)*Math.PI/180;
-  if(['grip','ride','collect','delivery'].includes(shot.id)){const frame=frameAt(time),row=frame.row,point=new T.Vector3(...row.slice(8,11));if(shot.id==='collect'||shot.id==='delivery'){point.copy(boxFocus(t));const turn=Math.PI/2*ease((t-14.3)/1.1),pullback=1+.08*ease((t-13.95)/.35),offset=new T.Vector3(.60,.18,.42).multiplyScalar(pullback).applyAxisAngle(new T.Vector3(0,1,0),turn);position.copy(point).add(offset);target.copy(point).add(new T.Vector3(0,.02,0));roll=0;}
+  if(['grip','ride','collect','delivery'].includes(shot.id)){const frame=frameAt(time),row=frame.row,point=new T.Vector3(...row.slice(8,11));if(shot.id==='collect'||shot.id==='delivery'){const mount=wristPose(row);position.copy(mount.position);target.copy(mount.target);roll=0;}
    else{const q=new T.Quaternion(...row.slice(11,15)).normalize(),wrist=new T.Euler().setFromQuaternion(q,'YXZ'),pov=shot.id!=='grip',yaw=clamp(wrist.y,-.8,.8),offset=new T.Vector3(pov?.24:.45,pov?.17:.25,pov?.40:.52).applyAxisAngle(new T.Vector3(0,1,0),yaw);offset.x+=.06*Math.sin(u*Math.PI*2);position.copy(point).add(offset);target.copy(point).add(new T.Vector3(0,.02,-.055));if(pov)roll+=.20*Math.sin(u*Math.PI*2)+.12*wrist.z;}}
   if(shot.id==='handoff'||shot.id==='hero'){const pull=ease((t-17.0)/.9),qrPoint=new T.Vector3(...sample(data.clips.carton,data.clips.carton.release).slice(8,11)),box=qrPoint.lerp(hero,pull),bodyZ=2.45+.64*pull;position.set(hero.x,1.63,bodyZ-.105);target.copy(box).add(new T.Vector3(0,.025,0));roll=0;}
   return {position,target,fov:shot.fov[0]+(shot.fov[1]-shot.fov[0])*u,roll};
