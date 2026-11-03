@@ -56,10 +56,10 @@ export function createStory(I,data){
   for(const sign of[-1,1]){sphere(head,.009,mats.hair,[sign*.037,1.63,.102]);box(root,[.11,.08,.22],mats.shoe,[sign*.09,.05,.045]);}
   const legs=[-1,1].map(s=>[limb(root,.06,null,null,mats.pants),limb(root,.045,null,null,mats.pants)]);
   const arms=[-1,1].map(()=>[limb(root,.045,null,null,shirt),limb(root,.034,null,null,mats.skin)]);const hands=[sphere(root,.041,mats.skin,[0,0,0]),sphere(root,.041,mats.skin,[0,0,0])];
-  function pose(time,walk=0,right=null,left=null){for(let i=0;i<2;i++){const s=i?1:-1,swing=Math.sin(time*9+i*Math.PI)*.13*walk,knee=[s*.09,.49,swing*.7],foot=[s*.09,.10,-swing];legs[i][0].set([s*.09,.88,0],knee);legs[i][1].set(knee,foot);let hand=(i?right:left)||[s*.22,.96,.05+swing*.5];const shoulder=[s*.175,1.40,0],elbow=[s*.23,(1.40+hand[1])/2,hand[2]*.55+.05];arms[i][0].set(shoulder,elbow);arms[i][1].set(elbow,hand);hands[i].position.set(...hand);}}
-  return {root,head,pose};
+  function pose(time,walk=0,right=null,left=null,tucked=false){for(let i=0;i<2;i++){const s=i?1:-1,swing=Math.sin(time*9+i*Math.PI)*.13*walk,knee=[s*.09,.49,swing*.7],foot=[s*.09,.10,-swing];legs[i][0].set([s*.09,.88,0],knee);legs[i][1].set(knee,foot);let hand=(i?right:left)||[s*.22,.96,.05+swing*.5];const shoulder=[s*.175,1.40,0],elbow=[s*(tucked?(.10+.13*(1-ease((hand[2]-.15)/.12))):.23),(1.40+hand[1])/2,hand[2]*(tucked?.42:.55)+(tucked?.02:.05)];arms[i][0].set(shoulder,elbow);arms[i][1].set(elbow,hand);hands[i].position.set(...hand);}}
+  return {root,head,pose,hands,arms};
  }
- const customer=person('PROMO_MUSTERI',0x406779),passer=person('PROMO_YAYA',0xb5a38d);
+ const customer=person('PROMO_MUSTERI',0x406779),passer=person('PROMO_YAYA',0xb5a38d);customer.hands.forEach(h=>h.scale.set(.85,.5,1.05));
  const pedestrians=[passer,...[0x6c7866,0x96716c,0x62788c].map((c,i)=>person('PROMO_SOKAK_'+i,c))];
  const phone=box(stage,[.075,.145,.012],material(0x15191e),[0,0,0]);
  const qrCanvas=document.createElement('canvas');qrCanvas.width=qrCanvas.height=128;const qc=qrCanvas.getContext('2d');qc.fillStyle='white';qc.fillRect(0,0,128,128);qc.fillStyle='#111';for(let y=0;y<21;y++)for(let x=0;x<21;x++)if(((x*17+y*11+x*y)%13)<6)qc.fillRect(8+x*5,8+y*5,5,5);for(const [x,y]of[[8,8],[78,8],[8,78]]){qc.fillRect(x,y,35,35);qc.clearRect(x+5,y+5,25,25);qc.fillRect(x+10,y+10,15,15)}const qrTex=new T.CanvasTexture(qrCanvas);const phoneScreen=mesh(new T.PlaneGeometry(.062,.108),new T.MeshBasicMaterial({map:qrTex}),phone);phoneScreen.position.z=.0065;
@@ -72,6 +72,7 @@ export function createStory(I,data){
  const sausageCanvas=document.createElement('canvas');sausageCanvas.width=sausageCanvas.height=128;const sx=sausageCanvas.getContext('2d');sx.fillStyle='#9c3425';sx.fillRect(0,0,128,128);for(let i=0;i<85;i++){const x=(i*53+7)%128,y=(i*89+13)%128;sx.fillStyle=i%3?'#f0b17d':'#641c18';sx.beginPath();sx.ellipse(x,y,2+i%3,1+i%2,i*.9,0,Math.PI*2);sx.fill()}const sausageTexture=new T.CanvasTexture(sausageCanvas);sausageTexture.colorSpace=T.SRGBColorSpace;
  const sausageMaterial=new T.MeshStandardMaterial({map:sausageTexture,roughness:.62,color:0xcd7e61});
  const sourceName=I.frameContract27?.motion_bindings?.urun?.dugum?.PIDE;
+ const templateVisibility=[];for(const name of new Set([sourceName,'URUN__top','URUN__hamur','URUN__L2_hamur','ROBOT25_PRODUCT_Dough'])){const o=name&&scene.getObjectByName(name);if(o){templateVisibility.push([o,o.visible]);o.visible=false;}}
  const pideSource=sourceName&&scene.getObjectByName(sourceName);
  if(!pideSource)throw Error('Sistemin mevcut pide modeli bulunamadı: '+(sourceName||'PIDE şablon kaydı yok'));
  function food(){
@@ -82,8 +83,8 @@ export function createStory(I,data){
   root.userData.food={crustMaterials,cheese,pieces,source:sourceName};return root;
  }
  function cookFood(root,amount){const f=root.userData.food;for(const {m,color}of f.crustMaterials)m.color.copy(color).lerp(new T.Color(0xb96d2d),amount*.24);f.cheese.material.color.setHex(0xf2d38a).lerp(new T.Color(0xe2ad4f),amount);f.cheese.scale.y=1+.08*Math.sin(actionTime(last)*27)*amount;}
- const plated=food();stage.add(plated);const dough=I.urunGorsel28.models.hamur.clone(true);dough.name='PROMO_HAMUR';dough.visible=true;stage.add(dough);
- const carton=new T.Group();carton.name='PROMO_KUTU';stage.add(carton);box(carton,[.33,.008,.33],mats.kraft,[0,0,0]);box(carton,[.315,.003,.315],mats.cream,[0,.005,0]);for(const s of[-1,1]){box(carton,[.33,.04,.004],mats.kraft,[0,.02,s*.163]);box(carton,[.004,.04,.33],mats.kraft,[s*.163,.02,0]);}
+ const plated=food();plated.visible=false;stage.add(plated);const dough=I.urunGorsel28.models.hamur.clone(true);dough.name='PROMO_HAMUR';dough.visible=false;stage.add(dough);
+ const carton=new T.Group();carton.name='PROMO_KUTU';carton.visible=false;stage.add(carton);box(carton,[.33,.008,.33],mats.kraft,[0,0,0]);box(carton,[.315,.003,.315],mats.cream,[0,.005,0]);for(const s of[-1,1]){box(carton,[.33,.04,.004],mats.kraft,[0,.02,s*.163]);box(carton,[.004,.04,.33],mats.kraft,[s*.163,.02,0]);}
  const lid=new T.Group();lid.position.set(0,.042,-.165);carton.add(lid);box(lid,[.335,.005,.335],mats.kraft,[0,0,.165]);
  const brandCanvas=document.createElement('canvas');brandCanvas.width=512;brandCanvas.height=256;const bc=brandCanvas.getContext('2d');bc.fillStyle='#b89058';bc.fillRect(0,0,512,256);bc.fillStyle='#2c2922';bc.textAlign='center';bc.font='bold 54px sans-serif';bc.fillText('AUTOKITCH',256,126);bc.font='17px sans-serif';bc.fillText('SİPARİŞTEN TESLİMATA',256,164);const label=mesh(new T.PlaneGeometry(.27,.135),new T.MeshStandardMaterial({map:new T.CanvasTexture(brandCanvas),roughness:1}),lid);label.position.set(0,.003,.165);label.rotation.x=-Math.PI/2;
  const heroFood=food();heroFood.position.y=.007;carton.add(heroFood);
@@ -94,6 +95,9 @@ export function createStory(I,data){
  const openingLook=new T.CubicBezierCurve3(...[[2.9,1.9,2.6],[4.2,1.7,2.5],[5.2,1.37,2.43],[5.39,1.3,2.43]].map(p=>new T.Vector3(...p)));
 
  const hero=new T.Vector3(4.5992932,1.08,2.77),plate=new T.Vector3(...sample(data.clips.dough,data.clips.dough.release).slice(8,11)),topPlate=new T.Vector3(1.911,1.023,-.17),ovenPlate=new T.Vector3(3.25,.99,-.29);
+ const qrRest=new T.Vector3(...sample(data.clips.carton,data.clips.carton.release).slice(8,11));
+ function handoffBox(pull){const p=qrRest.clone().lerp(hero,pull);p.y+=.07*Math.sin(Math.PI*pull);return p;}
+ const lidAngle=time=>-1.95*progress(time,28.2,PACE.lid);
  const clipWas=I.sahne.renderer.localClippingEnabled,cutPlane=new T.Plane(new T.Vector3(0,-1,0),1.003),cutParts=[];scene.traverse(o=>{if(o.isMesh&&/^YM_(GOVDE|MEK)_TOP_ic|^YM_GOVDE_TOP_sac/.test(o.name)){const original=o.material,clones=[].concat(original).map(m=>m.clone());o.material=Array.isArray(original)?clones:clones[0];cutParts.push({o,original,clones})}});I.sahne.renderer.localClippingEnabled=true;
  const sceneVisibility=scene.children.filter(o=>o!==stage&&o!==I.yeniMakine?.kok&&!o.isLight).map(o=>[o,o.visible]);const originalLED=scene.getObjectByName('YM_KUSAK_PIKSEL_LED'),ledVisible=originalLED?.visible;
  const originalLights=[];scene.traverse(o=>{if(o.isLight)originalLights.push([o,o.intensity])});const originalBackground=scene.background?.clone?.();
@@ -105,12 +109,12 @@ export function createStory(I,data){
  const veil=mesh(new T.PlaneGeometry(2,2),new T.MeshBasicMaterial({color:0x000000,transparent:true,opacity:0,depthTest:false,depthWrite:false,toneMapped:false}));veil.renderOrder=9998;veil.frustumCulled=false;
  const logoCanvas=document.createElement('canvas');logoCanvas.width=1024;logoCanvas.height=320;const lg=logoCanvas.getContext('2d');lg.textAlign='center';lg.fillStyle='#f2bf72';lg.font='bold 104px sans-serif';lg.fillText('AUTOKITCH',512,150);lg.fillStyle='#f3f0e9';lg.font='28px sans-serif';lg.fillText('SİPARİŞTEN TESLİMATA.',512,220);const logoTex=new T.CanvasTexture(logoCanvas);logoTex.colorSpace=T.SRGBColorSpace;const logo=mesh(new T.PlaneGeometry(.56,.175),new T.MeshBasicMaterial({map:logoTex,transparent:true,depthTest:false,depthWrite:false,toneMapped:false}));logo.renderOrder=9999;logo.frustumCulled=false;
  let last=-1,currentPoint=new T.Vector3();const previousBeforeRender=scene.onBeforeRender;
- scene.onBeforeRender=function(...args){previousBeforeRender?.apply(this,args);for(const [o,m]of ownedMaterials)o.material=m;const p=actionTime(last),macro=last>=DOUGH_CUT-TRANSITION_SECONDS&&p<11.34,isolated=last>=4.2&&last<9.6;for(const [o,visible]of sceneVisibility)o.visible=isolated?false:visible;if(originalLED)originalLED.visible=isolated?false:ledVisible;I.sahne.renderer.localClippingEnabled=true;for(const part of cutParts){part.o.material=Array.isArray(part.original)?part.clones:part.clones[0];for(const m of part.clones){if(part.macro!==macro){m.clippingPlanes=macro?[cutPlane]:null;m.needsUpdate=true}}part.macro=macro;}};
+ scene.onBeforeRender=function(...args){previousBeforeRender?.apply(this,args);for(const [o]of templateVisibility)o.visible=false;for(const [o,m]of ownedMaterials)o.material=m;const p=actionTime(last),macro=last>=DOUGH_CUT-TRANSITION_SECONDS&&p<11.34,isolated=last>=4.2&&last<9.6;for(const [o,visible]of sceneVisibility)o.visible=isolated?false:visible;if(originalLED)originalLED.visible=isolated?false:ledVisible;I.sahne.renderer.localClippingEnabled=true;for(const part of cutParts){part.o.material=Array.isArray(part.original)?part.clones:part.clones[0];for(const m of part.clones){if(part.macro!==macro){m.clippingPlanes=macro?[cutPlane]:null;m.needsUpdate=true}}part.macro=macro;}};
  const bMotion=data.clips.carton,cartonTimes=[[17,bMotion.entry-.5],[17.8,bMotion.grasp],[19.2,bMotion.clear],[21.5,35],[22.7,bMotion.release],[23.9,bMotion.duration],[30,bMotion.duration]];
  function frameAt(time){const t=actionTime(time);
   const d=data.clips.dough,b=data.clips.carton;let clip=d,s=clockAt(time,[[0,Math.max(0,d.entry-.8)],[9.6,d.entry-.8],[10.05,d.entry],[10.65,d.grasp-.12],[10.95,d.grasp+.24],[12,d.clear],[14.1,d.release],[15,d.duration],[17,d.duration]]);
   if(t>=13.3){clip=b;s=clockAt(time,cartonTimes)}
-  const row=sample(clip,s),held=ease((s-clip.grasp+.12)/.24)*(1-ease((s-clip.release+.10)/.20));const f=structuredClone(data.baseline);f.t=t;f.urunler=[];f.robot={gorev:t<13.3?'HAMUR':'KUTU',cekmece:t<9.1?'K3_3':null};f.robot_poz={eklem:row.slice(1,7),ray_m:row[7],gripper:held,kapanma:held,gap_mm:102+((clip.closed_gap_mm??72)-102)*held,contact_radius_m:t<13.3?.0469:.018,urun:t<13.3?'Dough':'Box',urun_poz:{p:row.slice(8,11),q:row.slice(11,15)}};
+  const row=sample(clip,s),held=ease((s-clip.grasp+.12)/.24)*(1-ease((s-clip.release+.10)/.20));const f=structuredClone(data.baseline);f.t=t;f.urunler=[];f.robot={gorev:t<13.3?'HAMUR':'KUTU',cekmece:t<9.1?'K3_3':null};f.robot_poz={eklem:row.slice(1,7),ray_m:row[7],gripper:held,kapanma:held,gap_mm:102+((clip.closed_gap_mm??72)-102)*held,contact_radius_m:t<13.3?.0469:.02425,urun:t<13.3?'Dough':'Box',urun_poz:{p:row.slice(8,11),q:row.slice(11,15)}};
   const drawer=700*progress(time,9.2,.9)*(1-progress(time,11.8,.9));f.eksenler.AX_B_K3_3=drawer;f.hareket_degerleri27.AX_B_K3_3=drawer;f.cekmeceler={K3_3:{konum:drawer,acik:drawer>699}};
   const tableX=-350+(topPlate.x-plate.x)*1000*(time>=DOUGH_CUT?1:0)*(1-ease((t-11.2)/.3));f.eksenler.AX_TOP_X=tableX;f.hareket_degerleri27.AX_TOP_X=tableX;f.tabla_donus_deg=0;f.eksenler.AX_TOP_TABLA=0;f.hareket_degerleri27.AX_TOP_TABLA=0;
   const aTransferDoor=progress(time,10.9,PACE.door)*(1-progress(time,14.2,PACE.door)),eTransferDoor=progress(time,15.7,PACE.door)*(1-progress(time,19.3,PACE.door));f.servis_kapaklari={...f.servis_kapaklari,12:{konum:aTransferDoor},13:{konum:eTransferDoor}};
@@ -121,16 +125,31 @@ export function createStory(I,data){
   if(time!==last){
    const macro=time>=DOUGH_CUT-TRANSITION_SECONDS&&t<11.34;for(const part of cutParts)for(const m of part.clones)m.clippingPlanes=macro?[cutPlane]:null;
    orderScreen(t);const {f,row,clip,s}=frameAt(time),b=data.clips.carton,d=data.clips.dough;I.sunumKareKontrol=true;I.sunumGoruntuKaresi=f;I.goruntuKaresi=f;I.son=f;I.sunumUygula(f);for(const part of cutParts){part.o.material=Array.isArray(part.original)?part.clones:part.clones[0];for(const m of part.clones)m.clippingPlanes=macro?[cutPlane]:null;}currentPoint.fromArray(row.slice(8,11));
-   dough.visible=t>=5.3&&time<DOUGH_CUT;if(s>=d.grasp&&s<d.release&&time<DOUGH_CUT)dough.position.fromArray(row.slice(8,11));else dough.position.copy(t<6.2?new T.Vector3(...sample(d,d.grasp).slice(8,11)):plate);dough.quaternion.identity();
+   dough.visible=time>=10.1&&time<DOUGH_CUT;if(s>=d.grasp&&s<d.release&&time<DOUGH_CUT)dough.position.fromArray(row.slice(8,11));else dough.position.copy(s<d.grasp?new T.Vector3(...sample(d,d.grasp).slice(8,11)):plate);dough.quaternion.identity();
    plated.visible=time>=DOUGH_CUT&&t<13.34;plated.position.copy(t<11.3?topPlate:ovenPlate);const cook=ease((t-11.45)/1.45);cookFood(plated,cook);for(const a of plated.userData.food.pieces){const u=clamp((time-a.drop)/a.fall);a.o.visible=time>=a.drop;a.o.position.set(a.x,.020+.36*(1-u*u),a.z);a.o.rotation.set((1-u)*1.8,0,(1-u)*.55*Math.sin(a.x*60));}
    const pull=progress(time,26.4,PACE.pull),qrPoint=new T.Vector3(...sample(b,b.release).slice(8,11));customer.root.visible=!isolated;
+   customer.hands.forEach(h=>h.quaternion.identity());
    if(time<23.9){const walk=progress(time,22.4,1.5);customer.root.position.set(4.85+(hero.x-4.85)*walk,0,2.68+(2.45-2.68)*walk);customer.root.rotation.y=Math.PI/2+Math.PI/2*walk;const reach=ease((t-2.75)/.45)*(1-ease((t-3.5)/.25));customer.pose(time,time>22.4?.25:0,t<4?[.25,1.1+.2*reach,.08+.46*reach]:null,null)}
-   else{customer.root.position.set(hero.x,0,2.45+.64*pull);customer.root.rotation.y=Math.PI;const boxZ=qrPoint.z+(hero.z-qrPoint.z)*pull,handZ=customer.root.position.z-boxZ,handY=qrPoint.y-.045+(1.03-(qrPoint.y-.045))*pull,reach=progress(time,25.5,.9);customer.pose(time,time<27.9?.15:0,[.22-.03*reach,.96+(handY-.96)*reach,.08+(handZ-.08)*reach],[-.22+.03*reach,.96+(handY-.96)*reach,.08+(handZ-.08)*reach]);}
+   else{
+    customer.root.position.set(hero.x,0,2.45+.64*pull);customer.root.rotation.y=Math.PI;customer.root.updateMatrixWorld(true);
+    const boxP=handoffBox(pull),raise=progress(time,25.15,.65),reach=progress(time,25.8,.6),prepare=progress(time,27.8,.4),angle=lidAngle(time),boxQ=new T.Quaternion(...sample(b,b.release).slice(11,15)).normalize();
+    const world=(side)=>{
+     const rest=customer.root.localToWorld(new T.Vector3(side*.22,.96,.08)),hover=new T.Vector3(boxP.x-side*.21,boxP.y+.0445+.13,2.40),grip=new T.Vector3(boxP.x-side*.10,boxP.y+.0445+.0205,boxP.z+.07);
+     const p=rest.lerp(hover,raise).lerp(grip,reach);p.x=boxP.x-side*(.22-.01*raise-.11*progress(time,25.8,.2));return p;
+    };
+    const right=world(1),left=world(-1),support=new T.Vector3(boxP.x+.13,boxP.y-.004-.0205,boxP.z+.07),lidQ=new T.Quaternion().setFromAxisAngle(new T.Vector3(1,0,0),angle);
+    const lidPoint=new T.Vector3(.10,.0025,.31).applyQuaternion(lidQ).add(new T.Vector3(0,.042,-.165)),normal=new T.Vector3(0,1,0).applyQuaternion(lidQ);
+    lidPoint.addScaledVector(normal,.0205).applyQuaternion(boxQ).add(boxP);right.lerp(lidPoint,prepare);left.lerp(support,prepare);
+    customer.pose(time,time<27.9?.15:0,customer.root.worldToLocal(right.clone()).toArray(),customer.root.worldToLocal(left.clone()).toArray(),true);
+    customer.hands[0].quaternion.identity();customer.hands[1].quaternion.copy(lidQ).slerp(new T.Quaternion(),1-prepare);
+    customer.root.userData.handoff={right:right.toArray(),left:left.toArray(),reach,prepare,angle};
+   }
+
 
    pedestrians.forEach((p,i)=>{const dir=i%2?-1:1;p.root.visible=t<3.8;p.root.position.set([-1.4,2.6,5.7,7.0][i]+dir*t*.37,0,[4.1,5.6,4.35,6.0][i]);p.root.rotation.y=dir*Math.PI/2;p.pose(t+i,1)});
    phone.visible=false;phone.position.set(customer.root.position.x-.15,1.24,customer.root.position.z-.22);phone.rotation.set(-.2,Math.PI,0);
-   carton.visible=t>=13.3;if(t<16.15){const item=s<b.grasp?sample(b,b.grasp):row;carton.position.fromArray(item.slice(8,11));carton.quaternion.fromArray(item.slice(11,15)).normalize()}else{carton.position.lerpVectors(qrPoint,hero,pull);carton.quaternion.fromArray(sample(b,b.release).slice(11,15)).normalize();}
-   lid.rotation.x=-1.95*progress(time,28,PACE.lid);cookFood(heroFood,1);
+   carton.visible=t>=13.3;if(t<16.15){const item=s<b.grasp?sample(b,b.grasp):row;carton.position.fromArray(item.slice(8,11));carton.quaternion.fromArray(item.slice(11,15)).normalize()}else{carton.position.copy(handoffBox(pull));carton.quaternion.fromArray(sample(b,b.release).slice(11,15)).normalize();}
+   lid.rotation.x=lidAngle(time);cookFood(heroFood,1);
    steam.forEach((p,i)=>{const baking=t>=11.3&&t<13.3,final=t>18.3;p.visible=baking||final;const rise=((t*.45+i*.157)%1);p.position.copy(baking?ovenPlate:carton.position).add(new T.Vector3(Math.sin(i*3.1+t)*.04,.055+rise*.18,Math.cos(i*4.2+t)*.035));p.scale.setScalar(.035+rise*.06);p.material.opacity=(baking?.12:.2)*(1-rise)});
    street.visible=!isolated;const revealProgress=progress(time,4.8,4),lightBlend=progress(time,8.8,.8),machineReveal=.18*revealProgress+.82*lightBlend,ovenDim=1-.78*ease((t-11.3)/.12)*(1-ease((t-13.15)/.15)),dark=(isolated?machineReveal:1)*ovenDim;for(const [light,power]of originalLights)light.intensity=power*dark;if(originalBackground){scene.background.copy(originalBackground).multiplyScalar(dark);if(isolated)scene.background.setHex(0x000000)}
    scan.visible=time>=4.55&&time<9.6;const scanX=.8415+4.343*(.5-.5*Math.cos((time-4.8)*Math.PI*1.5));for(let i=0;i<scanCount;i++){const d=Math.abs(.8415+(i+.5)/scanCount*4.343-scanX),v=Math.exp(-d*d/.015);scanColor.setRGB(v,v*v*.035,v*v*.005);scan.setColorAt(i,scanColor)}scan.instanceColor.needsUpdate=true;
@@ -149,7 +168,7 @@ export function createStory(I,data){
   if(shot.id==='street'||shot.id==='menu'){const v=1-Math.pow(1-clamp(time/4.2),2);return {position:openingPath.getPoint(v),target:openingLook.getPoint(v),fov:mapped(time,[[0,64],[1.1,58],[2.5,46],[4.2,34]]),roll:-28*(1-progress(time,0,2))*Math.PI/180};}
   if(['grip','ride','collect','delivery'].includes(shot.id)){const frame=frameAt(time),row=frame.row,point=new T.Vector3(...row.slice(8,11));if(shot.id==='collect'||shot.id==='delivery'){const mount=wristPose(row,time);position.copy(mount.position);target.copy(mount.target);fov=mount.fov;roll=0;}
    else{const q=new T.Quaternion(...row.slice(11,15)).normalize(),wrist=new T.Euler().setFromQuaternion(q,'YXZ'),pov=shot.id!=='grip',yaw=clamp(wrist.y,-.8,.8),offset=new T.Vector3(pov?.24:.45,pov?.17:.25,pov?.40:.52).applyAxisAngle(new T.Vector3(0,1,0),yaw);offset.x+=.06*Math.sin(u*Math.PI*2);position.copy(point).add(offset);target.copy(point).add(new T.Vector3(0,.02,-.055));if(pov)roll+=.20*Math.sin(u*Math.PI*2)+.12*wrist.z;}}
-  if(shot.id==='handoff'||shot.id==='hero'){const pull=progress(time,26.4,PACE.pull),qrPoint=new T.Vector3(...sample(data.clips.carton,data.clips.carton.release).slice(8,11)),box=qrPoint.lerp(hero,pull),bodyZ=2.45+.64*pull;position.set(hero.x,1.63,bodyZ-.105);target.copy(box).add(new T.Vector3(0,.025,0));roll=0;}
+  if(shot.id==='handoff'||shot.id==='hero'){const pull=progress(time,26.4,PACE.pull),qrPoint=new T.Vector3(...sample(data.clips.carton,data.clips.carton.release).slice(8,11)),box=handoffBox(pull),bodyZ=2.45+.64*pull;position.set(hero.x,1.63,bodyZ-.105);target.copy(box).add(new T.Vector3(0,.025,0));roll=0;}
   return {position,target,fov,roll};
  }
  function mixPose(previous,pose,u){pose.position.lerpVectors(previous.position,pose.position,u);pose.target.lerpVectors(previous.target,pose.target,u);pose.fov=previous.fov+(pose.fov-previous.fov)*u;pose.roll=previous.roll+(pose.roll-previous.roll)*u;return pose;}
@@ -164,6 +183,6 @@ export function createStory(I,data){
  }
 
  I.sunumKareKontrol=true;orbit.enabled=false;I.sahne.renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));
- function dispose(){scene.onBeforeRender=previousBeforeRender;for(const [o,visible]of sceneVisibility)o.visible=visible;if(originalLED)originalLED.visible=ledVisible;for(const part of cutParts){part.o.material=part.original;for(const m of part.clones)m.dispose()}I.sahne.renderer.localClippingEnabled=clipWas;for(const [light,power]of originalLights)light.intensity=power;if(originalBackground)scene.background.copy(originalBackground);stage.removeFromParent();const geometries=new Set(),materials=new Set(),textures=new Set();stage.traverse(o=>{for(let q=o;q;q=q.parent)if(q===dough)return;if(o.geometry&&!sharedGeometry.has(o.geometry))geometries.add(o.geometry);for(const m of [].concat(o.material||[])){materials.add(m);if(m.map&&!borrowedTextures.has(m.map))textures.add(m.map)}});for(const g of geometries)g.dispose();for(const m of materials)m.dispose();for(const t of textures)t.dispose();}
- return {render,basePose,camera,orbit,scene,hero,plate,dispose,duration:DURATION};
+ function dispose(){scene.onBeforeRender=previousBeforeRender;for(const [o,visible]of templateVisibility)o.visible=visible;for(const [o,visible]of sceneVisibility)o.visible=visible;if(originalLED)originalLED.visible=ledVisible;for(const part of cutParts){part.o.material=part.original;for(const m of part.clones)m.dispose()}I.sahne.renderer.localClippingEnabled=clipWas;for(const [light,power]of originalLights)light.intensity=power;if(originalBackground)scene.background.copy(originalBackground);stage.removeFromParent();const geometries=new Set(),materials=new Set(),textures=new Set();stage.traverse(o=>{for(let q=o;q;q=q.parent)if(q===dough)return;if(o.geometry&&!sharedGeometry.has(o.geometry))geometries.add(o.geometry);for(const m of [].concat(o.material||[])){materials.add(m);if(m.map&&!borrowedTextures.has(m.map))textures.add(m.map)}});for(const g of geometries)g.dispose();for(const m of materials)m.dispose();for(const t of textures)t.dispose();}
+ return {render,basePose,camera,orbit,scene,hero,plate,actors:{customer},dispose,duration:DURATION};
 }
