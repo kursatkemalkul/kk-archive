@@ -1,10 +1,10 @@
 import {kUrunSablon} from '../../k_urun.js';
 import {CAMERA as WRIST_CAMERA} from '../../robot_kamera.js';
-import {cameraAt} from './camera-keys.js?v=0c3ebe639393';
-export const DURATION=30;
-// Spend the extra five seconds on the wrist turn, not on a frozen last frame.
+import {cameraAt} from './camera-keys.js?v=150333242fdb';
+export const DURATION=28;
+// Spend the extra three seconds on the wrist turn, not on a frozen last frame.
 // All props and doors consume this same clock, retaining the native path.
-export function actionTime(t){const a=19.98,b=20.4;t=t<a?t:t<b+5?a+(t-a)*(b-a)/(b-a+5):t-5;return t<3.9?t:t<9.5?3.9:t<10.3?3.9+1.4*ease((t-9.5)/.8):t-5}
+export function actionTime(t){const a=19.98,b=20.4;t=t<a?t:t<b+3?a+(t-a)*(b-a)/(b-a+3):t-3;return t<3.9?t:t<9.5?3.9:t<10.3?3.9+1.4*ease((t-9.5)/.8):t-5}
 export const SHOTS=[
  {id:'street',start:0,end:2.4,title:'Sokaktan tek akış',detail:'Soldan yüksek arc · twist · omuz yanı',fov:[59,49],roll:[-17,7],p:[[-.5,3.8,8.5],[.8,3.05,5.8],[3.3,2.3,3.6],[4.45,1.76,2.96]],look:[[2.95,1.75,2.65],[3.7,1.5,2.5],[4.95,1.35,2.48],[5.35,1.31,2.43]]},
  {id:'menu',start:2.4,end:3.9,title:'Omuz üstü · sipariş',detail:'Over-the-shoulder → parmak / menü',fov:[49,38],roll:[7,-4],p:[[4.45,1.76,2.96],[4.64,1.73,2.99],[4.99,1.61,2.81]],look:[[5.35,1.31,2.43],[5.37,1.29,2.43],[5.39,1.30,2.43]]},
@@ -16,9 +16,9 @@ export const SHOTS=[
  {id:'top',start:14.1,end:16.3,title:'Kaşar üstüne sucuk',detail:'Macro overhead · slow fall · orbit',fov:[55,51],roll:[15,-10],p:[[2.03,1.38,-.01],[1.96,1.34,-.02],[1.80,1.31,-.025]],look:[[1.911,1.04,-.17],[1.911,1.04,-.17],[1.911,1.04,-.17]]},
  {id:'oven',start:16.3,end:18.3,title:'Fırın · kızaran kenar',detail:'Oven macro · sıcaklık / çıtırtı',fov:[56,43],roll:[-10,5],p:[[3.05,1.14,-.04],[3.28,1.10,-.09],[3.43,1.09,-.12]],look:[[3.25,1.005,-.29],[3.25,1.005,-.29],[3.25,1.005,-.29]]},
  {id:'collect',start:18.3,end:19.5,title:'Robot ucu POV · kutuyu al',detail:'Tutucunun gerisinden · kutu ve kol görünür',fov:[55,55],roll:[0,0],p:[[4.606,.980,.577],[3.55,1.1,.775]],look:[[4.606,.980,-.073],[3.55,1.1,.125]]},
- {id:'delivery',start:19.5,end:26.2,title:'Robot ucu POV · QR rafına bırak',detail:'Yavaş dönüş · aynı kol üstü açı · doğrudan bırakma',fov:[55,55],roll:[0,0],p:[[3.55,1.1,.775],[4.636,1.175,1.670]],look:[[3.55,1.1,.125],[4.636,1.129,2.318]]},
- {id:'handoff',start:26.2,end:28,title:'Müşteri gözünden · iki elle alma',detail:'Müşteri POV · kutuyla birlikte geri çekilme',fov:[64,58],roll:[0,0],p:[[4.5992932,1.63,2.345],[4.5992932,1.63,2.985]],look:[[4.5992932,1.18,1.94],[4.5992932,1.105,2.77]]},
- {id:'hero',start:28,end:30,title:'POV · kutu açılır · AUTOKITCH',detail:'Müşteri gözünden · kutu / pide · yazı',fov:[58,58],roll:[0,0],p:[[4.5992932,1.63,2.985],[4.5992932,1.63,2.985]],look:[[4.5992932,1.105,2.77],[4.5992932,1.105,2.77]]}
+ {id:'delivery',start:19.5,end:24.2,title:'Robot ucu POV · QR rafına bırak',detail:'Düz geri çekil · yükselirken sola dön · rafa düz gir',fov:[55,55],roll:[0,0],p:[[3.55,1.1,.775],[4.636,1.175,1.670]],look:[[3.55,1.1,.125],[4.636,1.129,2.318]]},
+ {id:'handoff',start:24.2,end:26,title:'Müşteri gözünden · iki elle alma',detail:'Müşteri POV · kutuyla birlikte geri çekilme',fov:[64,58],roll:[0,0],p:[[4.5992932,1.63,2.345],[4.5992932,1.63,2.985]],look:[[4.5992932,1.18,1.94],[4.5992932,1.105,2.77]]},
+ {id:'hero',start:26,end:28,title:'POV · kutu açılır · AUTOKITCH',detail:'Müşteri gözünden · kutu / pide · yazı',fov:[58,58],roll:[0,0],p:[[4.5992932,1.63,2.985],[4.5992932,1.63,2.985]],look:[[4.5992932,1.105,2.77],[4.5992932,1.105,2.77]]}
 ];
 export const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
 export const ease=v=>{v=clamp(v);return v*v*(3-2*v)};
@@ -97,7 +97,7 @@ export function createStory(I,data){
  const logoCanvas=document.createElement('canvas');logoCanvas.width=1024;logoCanvas.height=320;const lg=logoCanvas.getContext('2d');lg.textAlign='center';lg.fillStyle='#f2bf72';lg.font='bold 104px sans-serif';lg.fillText('AUTOKITCH',512,150);lg.fillStyle='#f3f0e9';lg.font='28px sans-serif';lg.fillText('SİPARİŞTEN TESLİMATA.',512,220);const logoTex=new T.CanvasTexture(logoCanvas);logoTex.colorSpace=T.SRGBColorSpace;const logo=mesh(new T.PlaneGeometry(.56,.175),new T.MeshBasicMaterial({map:logoTex,transparent:true,depthTest:false,depthWrite:false,toneMapped:false}));logo.renderOrder=9999;logo.frustumCulled=false;
  let last=-1,currentPoint=new T.Vector3();const previousBeforeRender=scene.onBeforeRender;
  scene.onBeforeRender=function(...args){previousBeforeRender?.apply(this,args);for(const [o,m]of ownedMaterials)o.material=m;const p=actionTime(last),macro=p>=8.93&&p<11.34,isolated=last>=3.9&&last<10.3;for(const [o,visible]of sceneVisibility)o.visible=isolated?false:visible;if(originalLED)originalLED.visible=isolated?false:ledVisible;I.sahne.renderer.localClippingEnabled=true;for(const part of cutParts){part.o.material=Array.isArray(part.original)?part.clones:part.clones[0];for(const m of part.clones){if(part.macro!==macro){m.clippingPlanes=macro?[cutPlane]:null;m.needsUpdate=true}}part.macro=macro;}};
- const bMotion=data.clips.carton,cartonTimes=[[13.3,bMotion.entry-.5],[13.95,bMotion.grasp],[14.7,bMotion.clear],[16.15,bMotion.release],[17,bMotion.duration],[20,bMotion.duration]];
+ const bMotion=data.clips.carton,cartonTimes=[[13.3,bMotion.entry-.5],[13.95,bMotion.grasp],[14.85,bMotion.clear],[15.35,35],[16.15,bMotion.release],[17,bMotion.duration],[20,bMotion.duration]];
  function frameAt(time){const t=actionTime(time);
   const d=data.clips.dough,b=data.clips.carton;let clip=d,s=mapped(t,[[0,Math.max(0,d.entry-.8)],[5.3,d.entry-.8],[5.65,d.entry],[6.18,d.grasp-.12],[6.48,d.grasp+.24],[7.18,d.clear],[8.93,d.release],[9.18,d.duration],[13.3,d.duration]]);
   if(t>=13.3){clip=b;s=mapped(t,cartonTimes)}
@@ -105,7 +105,7 @@ export function createStory(I,data){
   const drawer=700*ease((t-4.9)/.55)*(1-ease((t-7.1)/.55));f.eksenler.AX_B_K3_3=drawer;f.hareket_degerleri27.AX_B_K3_3=drawer;f.cekmeceler={K3_3:{konum:drawer,acik:drawer>699}};
   const tableX=-350+(topPlate.x-plate.x)*1000*ease((t-8.8)/.3)*(1-ease((t-11.2)/.3));f.eksenler.AX_TOP_X=tableX;f.hareket_degerleri27.AX_TOP_X=tableX;f.tabla_donus_deg=0;f.eksenler.AX_TOP_TABLA=0;f.hareket_degerleri27.AX_TOP_TABLA=0;
   const aTransferDoor=ease((t-6.8)/.5)*(1-ease((t-9.25)/.45)),eTransferDoor=ease((t-12.85)/.45)*(1-ease((t-14.85)/.45));f.servis_kapaklari={...f.servis_kapaklari,12:{konum:aTransferDoor},13:{konum:eTransferDoor}};
-  f.qr={};for(let g=1;g<=12;g++){const chosen=g===b.eye,robotDoor=chosen?ease((t-15.15)/.35)*(1-ease((t-16.4)/.35)):0,customerDoor=chosen?ease((t-16.75)/.25)*(1-ease((t-17.95)/.35)):0;f.qr[g]={kapak:robotDoor,musteri_kapak:customerDoor,kapi:1-customerDoor,kilit:false,dolu:chosen&&t>16.15&&t<17.35};}return {f,row,clip,s};
+  f.qr={};for(let g=1;g<=12;g++){const chosen=g===b.eye,robotDoor=chosen?ease((t-14.85)/.35)*(1-ease((t-16.4)/.35)):0,customerDoor=chosen?ease((t-16.75)/.25)*(1-ease((t-17.95)/.35)):0;f.qr[g]={kapak:robotDoor,musteri_kapak:customerDoor,kapi:1-customerDoor,kilit:false,dolu:chosen&&t>16.15&&t<17.35};}return {f,row,clip,s};
  }
  function render(time,{free=false,edits={},cameraKeys=[]}={}){
   time=clamp(time,0,DURATION);const t=actionTime(time),shot=shotAt(time),isolated=time>=3.9&&time<10.3,keyed=free?null:cameraAt(cameraKeys,time),eyeView=!free&&!keyed&&(shot.id==='handoff'||shot.id==='hero');customer.head.visible=!eyeView;
@@ -119,7 +119,7 @@ export function createStory(I,data){
    else{customer.root.position.set(hero.x,0,2.45+.64*pull);customer.root.rotation.y=Math.PI;const boxZ=qrPoint.z+(hero.z-qrPoint.z)*pull,handZ=customer.root.position.z-boxZ,handY=qrPoint.y-.045+(1.03-(qrPoint.y-.045))*pull;customer.pose(t,t<17.85?.2:0,[.19,handY,handZ],[-.19,handY,handZ]);}
    pedestrians.forEach((p,i)=>{const dir=i%2?-1:1;p.root.visible=t<3.8;p.root.position.set([-1.4,2.6,5.7,7.0][i]+dir*t*.37,0,[4.1,5.6,4.35,6.0][i]);p.root.rotation.y=dir*Math.PI/2;p.pose(t+i,1)});
    phone.visible=false;phone.position.set(customer.root.position.x-.15,1.24,customer.root.position.z-.22);phone.rotation.set(-.2,Math.PI,0);
-   carton.visible=t>=13.3;carton.quaternion.identity();if(t<16.15){const item=s<b.grasp?sample(b,b.grasp):row;carton.position.fromArray(item.slice(8,11))}else carton.position.lerpVectors(qrPoint,hero,pull);
+   carton.visible=t>=13.3;if(t<16.15){const item=s<b.grasp?sample(b,b.grasp):row;carton.position.fromArray(item.slice(8,11));carton.quaternion.fromArray(item.slice(11,15)).normalize()}else{carton.position.lerpVectors(qrPoint,hero,pull);carton.quaternion.fromArray(sample(b,b.release).slice(11,15)).normalize();}
    lid.rotation.x=-1.95*ease((t-18.0)/.65);cookFood(heroFood,1);
    steam.forEach((p,i)=>{const baking=t>=11.3&&t<13.3,final=t>18.3;p.visible=baking||final;const rise=((t*.45+i*.157)%1);p.position.copy(baking?ovenPlate:carton.position).add(new T.Vector3(Math.sin(i*3.1+t)*.04,.055+rise*.18,Math.cos(i*4.2+t)*.035));p.scale.setScalar(.035+rise*.06);p.material.opacity=(baking?.12:.2)*(1-rise)});
    street.visible=!isolated;const revealProgress=ease((time-4.5)/5),lightBlend=ease((time-9.5)/.8),machineReveal=.18*revealProgress+.82*lightBlend,ovenDim=1-.78*ease((t-11.3)/.12)*(1-ease((t-13.15)/.15)),dark=(isolated?machineReveal:1)*ovenDim;for(const [light,power]of originalLights)light.intensity=power*dark;if(originalBackground){scene.background.copy(originalBackground).multiplyScalar(dark);if(isolated)scene.background.setHex(0x000000)}

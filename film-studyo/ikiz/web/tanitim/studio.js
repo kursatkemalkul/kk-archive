@@ -1,13 +1,13 @@
-import {cleanKeys,putKey} from './camera-keys.js?v=0c3ebe639393';
+import {cleanKeys,putKey} from './camera-keys.js?v=150333242fdb';
 import {openScene} from './scene-loader.js?v=d70a9a986c5e';
-import {SHOTS as INITIAL_SHOTS,DURATION as INITIAL_DURATION,actionTime,clamp,createStory} from './story.js?v=6f4f8d178369';
+import {SHOTS as INITIAL_SHOTS,DURATION as INITIAL_DURATION,actionTime,clamp,createStory} from './story.js?v=a828ddd05a16';
 let duration=INITIAL_DURATION,SHOTS=INITIAL_SHOTS;const shotAt=t=>SHOTS.find(s=>t>=s.start&&t<s.end)||SHOTS.at(-1);
-// The 25-second keys remain in v3; this 30-second timeline uses its own keys.
+// The 25-second keys remain in v3; this 28-second timeline uses its own keys.
 const $=id=>document.getElementById(id),state={time:0,playing:false,ready:false,speed:1,free:false,edits:{},cameraKeys:[]};
-try{const saved=JSON.parse(localStorage.getItem('autokitch.promo.director.v4')||'{}');for(const s of SHOTS){const v=saved[s.id];if(v&&['positionOffset','targetOffset'].every(k=>Array.isArray(v[k])&&v[k].length===3&&v[k].every(n=>Number.isFinite(n)&&Math.abs(n)<10))&&Number.isFinite(v.fovOffset)&&Math.abs(v.fovOffset)<60)state.edits[s.id]=v}}catch{}
-try{state.cameraKeys=cleanKeys(JSON.parse(localStorage.getItem('autokitch.film.director.v4')||'[]'))}catch{}
+try{const saved=JSON.parse(localStorage.getItem('autokitch.promo.director.v5')||'{}');for(const s of SHOTS){const v=saved[s.id];if(v&&['positionOffset','targetOffset'].every(k=>Array.isArray(v[k])&&v[k].length===3&&v[k].every(n=>Number.isFinite(n)&&Math.abs(n)<10))&&Number.isFinite(v.fovOffset)&&Math.abs(v.fovOffset)<60)state.edits[s.id]=v}}catch{}
+try{state.cameraKeys=cleanKeys(JSON.parse(localStorage.getItem('autokitch.film.director.v5')||'[]'))}catch{}
 let api,I,motionData,last=performance.now(),booting=false;
-function drawShots(){$('scrub').max=duration;document.querySelector('.film-top>span:last-child').textContent=duration+" SEC / DIRECTOR'S PREVIEW";document.querySelector('.ticks').innerHTML=Array.from({length:Math.floor(duration/5)+1},(_,i)=>'<span>'+i*5+(i===0||i*5===duration?' sn':'')+'</span>').join('');document.querySelector('.section-title small').textContent=SHOTS.length+' plan · '+duration+' saniye';$('exportVideo').textContent=duration+' sn videoyu indir';$('shots').replaceChildren();$('shotBands').replaceChildren();for(const [index,s]of SHOTS.entries()){
+function drawShots(){$('scrub').max=duration;document.querySelector('.film-top>span:last-child').textContent=duration+" SEC / DIRECTOR'S PREVIEW";document.querySelector('.ticks').innerHTML=Array.from({length:Math.ceil(duration/5)+1},(_,i)=>'<span>'+Math.min(i*5,duration)+(i===0||i*5>=duration?' sn':'')+'</span>').join('');document.querySelector('.section-title small').textContent=SHOTS.length+' plan · '+duration+' saniye';$('exportVideo').textContent=duration+' sn videoyu indir';$('shots').replaceChildren();$('shotBands').replaceChildren();for(const [index,s]of SHOTS.entries()){
  const button=document.createElement('button');button.className='shot';button.dataset.shot=s.id;button.innerHTML=`<span class="n">${String(index+1).padStart(2,'0')}</span><span><strong>${s.title}</strong><small>${s.start}–${s.end} sn · ${s.detail}</small></span>`;button.onclick=()=>{pause();seek(s.start+.001)};$('shots').append(button);
  const band=document.createElement('div');band.className='band';band.dataset.shot=s.id;band.style.width=((s.end-s.start)/duration*100)+'%';band.textContent=String(index+1).padStart(2,'0');$('shotBands').append(band);
 }
@@ -19,7 +19,7 @@ function seek(t){state.time=clamp(t,0,duration);if(state.ready)api.render(state.
 function play(){if(!state.ready)return;ensureSound();if(state.free){state.free=false;$('freeCamera').checked=false;$('screen').classList.remove('free');api.orbit.enabled=false;}if(state.time>=duration)state.time=0;state.playing=!state.playing;last=performance.now();paint()}
 $('play').onclick=play;$('restart').onclick=()=>{pause();seek(0)};$('back').onclick=()=>{pause();seek(state.time-.5)};$('forward').onclick=()=>{pause();seek(state.time+.5)};$('scrub').oninput=()=>{pause();seek(Number($('scrub').value))};$('speed').onchange=()=>state.speed=Number($('speed').value);
 $('freeCamera').onchange=()=>{pause();state.free=$('freeCamera').checked;$('screen').classList.toggle('free',state.free);if(api)api.orbit.enabled=state.free;paint()};
-function persistKeys(){try{localStorage.setItem('autokitch.film.director.v4',JSON.stringify(state.cameraKeys));return true}catch{return false}}
+function persistKeys(){try{localStorage.setItem('autokitch.film.director.v5',JSON.stringify(state.cameraKeys));return true}catch{return false}}
 function drawKeys(){
  const list=$('cameraKeys'),marks=$('cameraMarks');list.replaceChildren();marks.replaceChildren();
  for(const k of state.cameraKeys){
@@ -32,7 +32,7 @@ function drawKeys(){
  $('keySummary').textContent=state.cameraKeys.length===0?'Henüz kamera noktası yok.':state.cameraKeys.length===1?'1 nokta: ikinci bir zamanda açı kaydet.':state.cameraKeys.length+' nokta · Araları yumuşak geçiş';
 }
 $('saveCamera').onclick=()=>{if(!api||!state.free)return;state.cameraKeys=putKey(state.cameraKeys,{time:state.time,position:api.camera.position.toArray(),target:api.orbit.target.toArray(),fov:api.camera.fov});const stored=persistKeys();drawKeys();$('cameraStatus').textContent=state.time.toFixed(2).replace('.',',')+' sn açısı '+(stored?'kaydedildi.':'bu oturumda kaydedildi (tarayıcı depolaması kapalı).');paint()};
-$('resetCameras').onclick=()=>{state.edits={};state.cameraKeys=[];try{localStorage.removeItem('autokitch.promo.director.v4');localStorage.removeItem('autokitch.film.director.v4')}catch{}state.free=false;$('freeCamera').checked=false;$('screen').classList.remove('free');drawKeys();$('cameraStatus').textContent='Kamera noktaları silindi; özgün kamera planına dönüldü.';seek(state.time)};
+$('resetCameras').onclick=()=>{state.edits={};state.cameraKeys=[];try{localStorage.removeItem('autokitch.promo.director.v5');localStorage.removeItem('autokitch.film.director.v5')}catch{}state.free=false;$('freeCamera').checked=false;$('screen').classList.remove('free');drawKeys();$('cameraStatus').textContent='Kamera noktaları silindi; özgün kamera planına dönüldü.';seek(state.time)};
 $('capture').onclick=()=>{if(!state.ready)return;pause();I.sahne.renderer.render(api.scene,api.camera);I.sahne.renderer.domElement.toBlob(blob=>{if(!blob)return;const a=document.createElement('a'),url=URL.createObjectURL(blob);a.href=url;a.download='AUTOKITCH-plan-'+String(SHOTS.indexOf(shotAt(state.time))+1).padStart(2,'0')+'-'+state.time.toFixed(2)+'.png';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)},'image/png')};
 let filmSound=null;
 function ensureSound(){
@@ -86,7 +86,7 @@ $('exportScanner').onclick=()=>{pause();seek(4.5);exportFilm(5)};$('exportVideo'
 $('fullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await $('screen').requestFullscreen()}catch{}};
 addEventListener('keydown',e=>{if(recording)return;if(/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)||e.ctrlKey||e.metaKey||e.altKey)return;if(e.code==='Space'){e.preventDefault();play()}if(e.code==='ArrowRight'||e.code==='ArrowLeft'){e.preventDefault();pause();seek(state.time+(e.code==='ArrowRight'?1:-1)*(e.shiftKey ? 0.5 : 1/24))}if(e.code==='Home'){e.preventDefault();pause();seek(0)}if(e.code==='End'){e.preventDefault();pause();seek(duration)}});
 async function boot(){if(booting)return;booting=true;state.ready=false;state.playing=false;$('play').disabled=true;$('loading').hidden=false;$('retry').hidden=true;$('loadingTitle').textContent='Dükkân hazırlanıyor';try{
- const dataPromise=fetch(new URL('motion.json?v=2839944c622a',import.meta.url)).then(r=>{if(!r.ok)throw Error('Hareket verisi yüklenemedi');return r.json()});
+ const dataPromise=fetch(new URL('motion.json?v=6c9af5b7aa2e',import.meta.url)).then(r=>{if(!r.ok)throw Error('Hareket verisi yüklenemedi');return r.json()});
  I=await openScene($('scene'),text=>$('loadingTitle').textContent=text);const data=await dataPromise;motionData=data;api=createStory(I,data);I.kancalar.push(()=>api.render(state.time,state));state.ready=true;$('loading').hidden=true;$('play').disabled=false;$('capture').disabled=false;$('exportVideo').disabled=false;$('exportSample').disabled=false;$('exportScanner').disabled=false;$('reloadDirector').disabled=false;seek(0);window.AUTOKITCH_FILM={state,seek,pause,play,shots:SHOTS,get scene(){return I},get api(){return api}};
  }catch(e){$('loadingTitle').textContent='Sahne açılamadı';$('loadingDetail').textContent=e.message;$('retry').hidden=false;console.error(e)}finally{booting=false}}
 $('reloadDirector').onclick=async()=>{if(!state.ready||recording)return;pause();$('reloadDirector').disabled=true;try{const updated=await import('./story.js?director='+Date.now());api.dispose?.();api=updated.createStory(I,motionData);SHOTS=updated.SHOTS;duration=updated.DURATION;drawShots();state.free=false;$('freeCamera').checked=false;$('screen').classList.remove('free');seek(state.time);$('exportStatus').textContent='Kamera kurgusu güncellendi; CAD modelleri yeniden yüklenmedi.'}catch(e){$('exportStatus').textContent='Kamera güncellenemedi: '+e.message}finally{$('reloadDirector').disabled=false}};
