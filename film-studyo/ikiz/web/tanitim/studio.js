@@ -1,6 +1,6 @@
 import {cleanKeys,putKey} from './camera-keys.js?v=0c3ebe639393';
 import {openScene} from './scene-loader.js?v=d70a9a986c5e';
-import {SHOTS as INITIAL_SHOTS,DURATION as INITIAL_DURATION,actionTime as INITIAL_ACTION_TIME,clamp,createStory} from './story.js?v=f64d65e9e0df';
+import {SHOTS as INITIAL_SHOTS,DURATION as INITIAL_DURATION,actionTime as INITIAL_ACTION_TIME,clamp,createStory} from './story.js?v=83a1a45f6d83';
 let duration=INITIAL_DURATION,SHOTS=INITIAL_SHOTS,actionTime=INITIAL_ACTION_TIME;const shotAt=t=>SHOTS.find(s=>t>=s.start&&t<s.end)||SHOTS.at(-1);
 // The 25-second keys remain in v3; this 30-second timeline uses its own keys.
 const $=id=>document.getElementById(id),state={time:0,playing:false,ready:false,speed:1,free:false,edits:{},cameraKeys:[]};
@@ -86,7 +86,7 @@ $('exportScanner').onclick=()=>{pause();seek(4.8);exportFilm(4)};$('exportVideo'
 $('fullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await $('screen').requestFullscreen()}catch{}};
 addEventListener('keydown',e=>{if(recording)return;if(/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)||e.ctrlKey||e.metaKey||e.altKey)return;if(e.code==='Space'){e.preventDefault();play()}if(e.code==='ArrowRight'||e.code==='ArrowLeft'){e.preventDefault();pause();seek(state.time+(e.code==='ArrowRight'?1:-1)*(e.shiftKey ? 0.5 : 1/24))}if(e.code==='Home'){e.preventDefault();pause();seek(0)}if(e.code==='End'){e.preventDefault();pause();seek(duration)}});
 async function boot(){if(booting)return;booting=true;state.ready=false;state.playing=false;$('play').disabled=true;$('loading').hidden=false;$('retry').hidden=true;$('loadingTitle').textContent='Dükkân hazırlanıyor';try{
- const dataPromise=fetch(new URL('motion.json?v=9d8c467cc986',import.meta.url)).then(r=>{if(!r.ok)throw Error('Hareket verisi yüklenemedi');return r.json()});
+ const dataPromise=fetch(new URL('motion.json?v=1a4e558b02b1',import.meta.url)).then(r=>{if(!r.ok)throw Error('Hareket verisi yüklenemedi');return r.json()});
  I=await openScene($('scene'),text=>$('loadingTitle').textContent=text);const data=await dataPromise;motionData=data;api=createStory(I,data);I.kancalar.push(()=>api.render(state.time,state));state.ready=true;$('loading').hidden=true;$('play').disabled=false;$('capture').disabled=false;$('exportVideo').disabled=false;$('exportSample').disabled=false;$('exportScanner').disabled=false;$('reloadDirector').disabled=false;seek(0);window.AUTOKITCH_FILM={state,seek,pause,play,get shots(){return SHOTS},get scene(){return I},get api(){return api}};
  }catch(e){$('loadingTitle').textContent='Sahne açılamadı';$('loadingDetail').textContent=e.message;$('retry').hidden=false;console.error(e)}finally{booting=false}}
 $('reloadDirector').onclick=async()=>{if(!state.ready||recording)return;pause();$('reloadDirector').disabled=true;try{const updated=await import('./story.js?director='+Date.now());api.dispose?.();api=updated.createStory(I,motionData);SHOTS=updated.SHOTS;duration=updated.DURATION;actionTime=updated.actionTime;drawShots();state.free=false;$('freeCamera').checked=false;$('screen').classList.remove('free');seek(state.time);$('exportStatus').textContent='Kamera kurgusu güncellendi; CAD modelleri yeniden yüklenmedi.'}catch(e){$('exportStatus').textContent='Kamera güncellenemedi: '+e.message}finally{$('reloadDirector').disabled=false}};
