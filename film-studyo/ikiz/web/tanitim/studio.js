@@ -1,6 +1,6 @@
 import {cleanKeys,putKey} from './camera-keys.js?v=bb9c67aff12d';
 import {openScene} from './scene-loader.js?v=d70a9a986c5e';
-import {SHOTS as INITIAL_SHOTS,DURATION as INITIAL_DURATION,actionTime,clamp,createStory} from './story.js?v=f23728747571';
+import {SHOTS as INITIAL_SHOTS,DURATION as INITIAL_DURATION,actionTime,clamp,createStory} from './story.js?v=f9133fde07d9';
 let duration=INITIAL_DURATION,SHOTS=INITIAL_SHOTS;const shotAt=t=>SHOTS.find(s=>t>=s.start&&t<s.end)||SHOTS.at(-1);
 const $=id=>document.getElementById(id),state={time:0,playing:false,ready:false,speed:1,free:false,edits:{},cameraKeys:[]};
 try{const saved=JSON.parse(localStorage.getItem('autokitch.promo.director.v3')||'{}');for(const s of SHOTS){const v=saved[s.id];if(v&&['positionOffset','targetOffset'].every(k=>Array.isArray(v[k])&&v[k].length===3&&v[k].every(n=>Number.isFinite(n)&&Math.abs(n)<10))&&Number.isFinite(v.fovOffset)&&Math.abs(v.fovOffset)<60)state.edits[s.id]=v}}catch{}
