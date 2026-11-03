@@ -1,6 +1,6 @@
 import {cleanKeys,putKey} from './camera-keys.js?v=150333242fdb';
 import {openScene} from './scene-loader.js?v=d70a9a986c5e';
-import {SHOTS as INITIAL_SHOTS,DURATION as INITIAL_DURATION,actionTime,clamp,createStory} from './story.js?v=a828ddd05a16';
+import {SHOTS as INITIAL_SHOTS,DURATION as INITIAL_DURATION,actionTime,clamp,createStory} from './story.js?v=669b2b2cf5d9';
 let duration=INITIAL_DURATION,SHOTS=INITIAL_SHOTS;const shotAt=t=>SHOTS.find(s=>t>=s.start&&t<s.end)||SHOTS.at(-1);
 // The 25-second keys remain in v3; this 28-second timeline uses its own keys.
 const $=id=>document.getElementById(id),state={time:0,playing:false,ready:false,speed:1,free:false,edits:{},cameraKeys:[]};
