@@ -55,7 +55,8 @@ export function barCam29(T,facade,orange,glass,trim,IKIZ,liste=[]){
   for(let k=0;k<4;k++){const a=Math.PI/4+k*Math.PI/2;const bolt=new T.CylinderGeometry(.005,.005,.055,12);bolt.translate(.075*Math.cos(a),-.012,.075*Math.sin(a));add('TABURE_'+index+'_M10_ZEMIN_ANKRAJI_'+k,bolt,steel,group);}
   stools.push({center:[x,.720,z],seatDiameter:.320,angle});
  }
- stool(1,1.17);stool(2,.44);
+ // Keep the left eating seat; leave the right QR collection approach clear.
+ stool(1,1.17);
  // 5 + .76 + 5 mm laminated straight upper light and lower moving light.
 
  const left=1.804,right=cx-.032,lowerY=[1.023,1.548],upperY=[1.551,2.031],lowerZ=2.926,upperZ=2.951;
