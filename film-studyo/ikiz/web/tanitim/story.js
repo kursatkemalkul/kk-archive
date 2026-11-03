@@ -14,7 +14,7 @@ export const SHOTS=[
  {id:'oven',start:16.3,end:18.3,title:'Fırın · kızaran kenar',detail:'Oven macro · sıcaklık / çıtırtı',fov:[56,43],roll:[-10,5],p:[[3.05,1.14,-.04],[3.28,1.10,-.09],[3.43,1.09,-.12]],look:[[3.25,1.005,-.29],[3.25,1.005,-.29],[3.25,1.005,-.29]]},
  {id:'collect',start:18.3,end:19.5,title:'Sıcak ürün · robot POV',detail:'Match move · kutulu ürünü kavrama',fov:[60,66],roll:[5,-10],p:[[4.65,1.35,.3],[4.6,1.35,.4]],look:[[4.69,.96,-.206],[4.69,.96,-.206]]},
  {id:'delivery',start:19.5,end:21.2,title:'Robotla QR dolabına',detail:'Düz kutu · sağdan sola · QR girişinde kesme',fov:[66,56],roll:[-10,12],p:[[4.3,1.3,1.0],[4.7,1.4,2.45]],look:[[4.3,1.1,.5],[4.6,1.16,1.9]]},
- {id:'handoff',start:21.2,end:23,title:'Müşteri · iki elle çekme',detail:'Ters açı · vücut yanından geri takip',fov:[56,43],roll:[12,-5],p:[[4.80,1.48,2.65],[4.91,1.38,3.03],[4.55,1.36,3.35]],look:[[4.60,1.16,1.94],[4.50,1.16,2.4],[4.4,1.10,2.77]]},
+ {id:'handoff',start:21.2,end:23,title:'Müşteri gözünden · iki elle alma',detail:'Müşteri POV · kutuyla birlikte geri çekilme',fov:[64,58],roll:[0,0],p:[[4.5992932,1.63,2.345],[4.5992932,1.63,2.985]],look:[[4.5992932,1.18,1.94],[4.5992932,1.105,2.77]]},
  {id:'hero',start:23,end:25,title:'Kutu açılır · AUTOKITCH',detail:'Omuz / göğüs yanı · kapak açılır · logo',fov:[43,36],roll:[-5,0],p:[[4.55,1.36,3.35],[4.90,1.38,3.10],[5.07,1.34,2.78]],look:[[4.4,1.10,2.77],[4.4,1.10,2.77],[4.4,1.10,2.77]]}
 ];
 export const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
@@ -34,12 +34,12 @@ export function createStory(I,data){
  function limb(parent,r,a,b,m){const o=mesh(new T.CylinderGeometry(r,r,1,10),m,parent);return {o,set(a,b){const x=new T.Vector3(...a),y=new T.Vector3(...b),d=y.clone().sub(x);o.position.copy(x).add(y).multiplyScalar(.5);o.scale.y=d.length();o.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),d.normalize());}}}
  function person(name,color){
   const root=new T.Group();root.name=name;stage.add(root);const shirt=material(color);const body=mesh(new T.CapsuleGeometry(.155,.34,5,12),shirt,root);body.position.y=1.19;body.scale.z=.7;
-  box(root,[.26,.19,.18],mats.pants,[0,.88,0]);sphere(root,.035,mats.skin,[0,1.49,0]);sphere(root,.112,mats.skin,[0,1.62,0]);const hair=mesh(new T.SphereGeometry(.115,16,10,0,Math.PI*2,0,Math.PI*.56),mats.hair,root);hair.position.y=1.65;
-  for(const sign of[-1,1]){sphere(root,.009,mats.hair,[sign*.037,1.63,.102]);box(root,[.11,.08,.22],mats.shoe,[sign*.09,.05,.045]);}
+  box(root,[.26,.19,.18],mats.pants,[0,.88,0]);const head=new T.Group();head.name=name+'_BAS';root.add(head);sphere(head,.035,mats.skin,[0,1.49,0]);sphere(head,.112,mats.skin,[0,1.62,0]);const hair=mesh(new T.SphereGeometry(.115,16,10,0,Math.PI*2,0,Math.PI*.56),mats.hair,head);hair.position.y=1.65;
+  for(const sign of[-1,1]){sphere(head,.009,mats.hair,[sign*.037,1.63,.102]);box(root,[.11,.08,.22],mats.shoe,[sign*.09,.05,.045]);}
   const legs=[-1,1].map(s=>[limb(root,.06,null,null,mats.pants),limb(root,.045,null,null,mats.pants)]);
   const arms=[-1,1].map(()=>[limb(root,.045,null,null,shirt),limb(root,.034,null,null,mats.skin)]);const hands=[sphere(root,.041,mats.skin,[0,0,0]),sphere(root,.041,mats.skin,[0,0,0])];
   function pose(time,walk=0,right=null,left=null){for(let i=0;i<2;i++){const s=i?1:-1,swing=Math.sin(time*9+i*Math.PI)*.13*walk,knee=[s*.09,.49,swing*.7],foot=[s*.09,.10,-swing];legs[i][0].set([s*.09,.88,0],knee);legs[i][1].set(knee,foot);let hand=(i?right:left)||[s*.22,.96,.05+swing*.5];const shoulder=[s*.175,1.40,0],elbow=[s*.23,(1.40+hand[1])/2,hand[2]*.55+.05];arms[i][0].set(shoulder,elbow);arms[i][1].set(elbow,hand);hands[i].position.set(...hand);}}
-  return {root,pose};
+  return {root,head,pose};
  }
  const customer=person('PROMO_MUSTERI',0x406779),passer=person('PROMO_YAYA',0xb5a38d);
  const pedestrians=[passer,...[0x6c7866,0x96716c,0x62788c].map((c,i)=>person('PROMO_SOKAK_'+i,c))];
@@ -94,7 +94,7 @@ export function createStory(I,data){
   f.qr={};for(let g=1;g<=12;g++){const chosen=g===b.eye,robotDoor=chosen?ease((t-15.15)/.35)*(1-ease((t-16.4)/.35)):0,customerDoor=chosen?ease((t-16.75)/.25)*(1-ease((t-17.95)/.35)):0;f.qr[g]={kapak:robotDoor,musteri_kapak:customerDoor,kapi:1-customerDoor,kilit:false,dolu:chosen&&t>16.15&&t<17.35};}return {f,row,clip,s};
  }
  function render(time,{free=false,edits={},cameraKeys=[]}={}){
-  time=clamp(time,0,DURATION);const t=actionTime(time),shot=shotAt(time),isolated=time>=3.9&&time<10.3;
+  time=clamp(time,0,DURATION);const t=actionTime(time),shot=shotAt(time),isolated=time>=3.9&&time<10.3,keyed=free?null:cameraAt(cameraKeys,time),eyeView=!free&&!keyed&&(shot.id==='handoff'||(shot.id==='hero'&&time<shot.start+.18));customer.head.visible=!eyeView;
   if(time!==last){
    const macro=t>=9.08&&t<11.34;for(const part of cutParts)for(const m of part.clones)m.clippingPlanes=macro?[cutPlane]:null;
    orderScreen(t);const {f,row,clip,s}=frameAt(time),b=data.clips.carton,d=data.clips.dough;I.sunumKareKontrol=true;I.sunumGoruntuKaresi=f;I.goruntuKaresi=f;I.son=f;I.sunumUygula(f);for(const part of cutParts){part.o.material=Array.isArray(part.original)?part.clones:part.clones[0];for(const m of part.clones)m.clippingPlanes=macro?[cutPlane]:null;}currentPoint.fromArray(row.slice(8,11));
@@ -114,7 +114,8 @@ export function createStory(I,data){
    document.getElementById('screen').dataset.filmState=JSON.stringify({time,actionTime:t,shot:shot.id,blackScene:isolated,revealProgress,spotPower:revealLight.intensity,eTransferDoor:f.servis_kapaklari[13].konum,foodSource:sourceName,cartonUp:new T.Vector3(0,1,0).applyQuaternion(carton.quaternion).toArray(),cartonVisible:carton.visible,cartonPosition:carton.position.toArray(),cartonParts:carton.children.length,plateVisible:plated.visible,sausageLanded:plated.userData.food.pieces.filter(a=>t>=a.drop+a.fall).length,oven:t>=11.3&&t<13.3,scanner:scan.visible,isolated:true});last=time;
   }
   orbit.enabled=free;
-  if(!free){const keyed=cameraAt(cameraKeys,time),pose=keyed?{position:new T.Vector3(...keyed.position),target:new T.Vector3(...keyed.target),fov:keyed.fov,roll:0}:basePose(time),edit=keyed?null:edits[shot.id];if(edit){pose.position.add(new T.Vector3(...edit.positionOffset));pose.target.add(new T.Vector3(...edit.targetOffset));pose.fov=clamp(pose.fov+edit.fovOffset,15,90);}const center=customer.root.position.clone().add(new T.Vector3(0,1.62,0)),delta=pose.position.clone().sub(center);if(customer.root.visible&&delta.length()<.22)pose.position.copy(center).add(delta.normalize().multiplyScalar(.22));camera.position.copy(pose.position);camera.up.set(0,1,0);camera.fov=pose.fov;camera.lookAt(pose.target);camera.rotateZ(pose.roll);camera.updateProjectionMatrix();orbit.target.copy(pose.target);}
+  if(!free){const pose=keyed?{position:new T.Vector3(...keyed.position),target:new T.Vector3(...keyed.target),fov:keyed.fov,roll:0}:basePose(time),edit=keyed?null:edits[shot.id];if(edit){pose.position.add(new T.Vector3(...edit.positionOffset));pose.target.add(new T.Vector3(...edit.targetOffset));pose.fov=clamp(pose.fov+edit.fovOffset,15,90);}const center=customer.root.position.clone().add(new T.Vector3(0,1.62,0)),delta=pose.position.clone().sub(center);if(!eyeView&&customer.root.visible&&delta.length()<.22)pose.position.copy(center).add(delta.normalize().multiplyScalar(.22));camera.position.copy(pose.position);camera.up.set(0,1,0);camera.fov=pose.fov;camera.lookAt(pose.target);camera.rotateZ(pose.roll);camera.updateProjectionMatrix();orbit.target.copy(pose.target);}
+  document.getElementById('screen').dataset.cameraView=eyeView?'customer-pov':'scene';
   camera.updateMatrixWorld(true);let veilOpacity=0,veilWarm=false;
   if(!free){veilOpacity=ease((time-3.72)/.17)*(1-ease((time-4.25)/.22));}
   veil.material.color.setHex(veilWarm?0xffdfad:0x000000);veil.material.opacity=veilOpacity;veil.visible=veilOpacity>.001;veil.position.set(0,0,-.16).applyQuaternion(camera.quaternion).add(camera.position);veil.quaternion.copy(camera.quaternion);
@@ -123,7 +124,7 @@ export function createStory(I,data){
  function rawPose(time,index=SHOTS.indexOf(shotAt(time))){const shot=SHOTS[index],u=ease((time-shot.start)/(shot.end-shot.start)),t=actionTime(time);let position=curves[index].p.getPoint(u),target=curves[index].look.getPoint(u),roll=(shot.roll[0]+(shot.roll[1]-shot.roll[0])*u)*Math.PI/180;
   if(['grip','ride','collect','delivery'].includes(shot.id)){const row=frameAt(time).row,point=new T.Vector3(...row.slice(8,11));if(shot.id==='collect'||shot.id==='delivery'){const yaw=-Math.PI*ease((t-14.0)/2.15),offset=new T.Vector3(.32,.26,.42).applyAxisAngle(new T.Vector3(0,1,0),yaw);position.copy(point).add(offset);target.copy(point).add(new T.Vector3(0,.02,0));roll=0;}
    else{const q=new T.Quaternion(...row.slice(11,15)).normalize(),wrist=new T.Euler().setFromQuaternion(q,'YXZ'),pov=shot.id!=='grip',yaw=clamp(wrist.y,-.8,.8),offset=new T.Vector3(pov?.24:.45,pov?.17:.25,pov?.40:.52).applyAxisAngle(new T.Vector3(0,1,0),yaw);offset.x+=.06*Math.sin(u*Math.PI*2);position.copy(point).add(offset);target.copy(point).add(new T.Vector3(0,.02,-.055));if(pov)roll+=.20*Math.sin(u*Math.PI*2)+.12*wrist.z;}}
-  if(shot.id==='handoff'||shot.id==='hero'){const pull=ease((t-17.0)/.9),qrPoint=new T.Vector3(...sample(data.clips.carton,data.clips.carton.release).slice(8,11)),box=qrPoint.lerp(hero,pull),bodyZ=2.45+.64*pull;position.set(hero.x+.34-(shot.id==='hero'?.02*u:0),1.57-(shot.id==='hero'?.08*u:0),bodyZ+.27);target.copy(box).add(new T.Vector3(0,.025,0));roll=shot.id==='hero'?-3*(1-u)*Math.PI/180:0;}
+  if(shot.id==='handoff'||shot.id==='hero'){const pull=ease((t-17.0)/.9),qrPoint=new T.Vector3(...sample(data.clips.carton,data.clips.carton.release).slice(8,11)),box=qrPoint.lerp(hero,pull),bodyZ=2.45+.64*pull;if(shot.id==='handoff')position.set(hero.x,1.63,bodyZ-.105);else position.set(hero.x+.34-.02*u,1.57-.08*u,bodyZ+.27);target.copy(box).add(new T.Vector3(0,.025,0));roll=shot.id==='hero'?-3*(1-u)*Math.PI/180:0;}
   return {position,target,fov:shot.fov[0]+(shot.fov[1]-shot.fov[0])*u,roll};
  }
  function basePose(time){const i=SHOTS.indexOf(shotAt(time)),shot=SHOTS[i],pose=rawPose(time,i);if(i>0&&!['top','handoff'].includes(shot.id)&&time<shot.start+.18){const prev=rawPose(shot.start-1e-7,i-1),u=ease((time-shot.start)/.18);pose.position.lerpVectors(prev.position,pose.position,u);pose.target.lerpVectors(prev.target,pose.target,u);pose.fov=prev.fov+(pose.fov-prev.fov)*u;pose.roll=prev.roll+(pose.roll-prev.roll)*u;}return pose;}
