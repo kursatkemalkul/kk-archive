@@ -3,6 +3,7 @@ import {CAMERA as WRIST_CAMERA} from '../../robot_kamera.js';
 import {cameraAt} from './camera-keys.js?v=0c3ebe639393';
 export const DURATION=30;
 export const DOUGH_CUT=13.3;
+export const TOPPING_DISSOLVE=.55;
 export const TRANSITION_SECONDS=.18;
 export const PACE={door:1.2,pull:1.5,lid:1.3};
 // One film clock. Animation phases use the same smooth progress curve;
@@ -21,7 +22,7 @@ export const SHOTS=[
  {id:'collect',start:17,end:19.2,title:'Robot ucu POV · kutuyu al',detail:'Tutucu POV · kavramada yakınlaş · geri açıl',fov:[56,54],roll:[0,0],p:[[4.606,.980,.577],[3.55,1.1,.775]],look:[[4.606,.980,-.073],[3.55,1.1,.125]]},
  {id:'delivery',start:19.2,end:23.9,title:'Robot ucu POV · QR rafına bırak',detail:'Aynı hareket · dönüşte zoom-out · rafa girerken zoom-in',fov:[54,49],roll:[0,0],p:[[3.55,1.1,.775],[4.636,1.175,1.670]],look:[[3.55,1.1,.125],[4.636,1.129,2.318]]},
  {id:'handoff',start:23.9,end:28,title:'Müşteri gözünden · iki elle alma',detail:'Müşteri POV · kutuyla birlikte geri çekilme',fov:[76,76],roll:[0,0],p:[[4.5992932,1.63,2.345],[4.5992932,1.63,2.985]],look:[[4.5992932,1.18,1.94],[4.5992932,1.105,2.77]]},
- {id:'hero',start:28,end:30,title:'POV · kutu açılır · AUTOKITCH',detail:'Müşteri gözünden · kutu / pide · yazı',fov:[76,76],roll:[0,0],p:[[4.5992932,1.63,2.985],[4.5992932,1.63,2.985]],look:[[4.5992932,1.105,2.77],[4.5992932,1.105,2.77]]}
+ {id:'hero',start:28,end:30,title:'POV · kutu açılır · AUTOKITCH',detail:'Müşteri gözünden · kutu / pide · yazı',fov:[76,50],roll:[0,0],p:[[4.5992932,1.63,2.985],[4.5992932,1.63,2.985]],look:[[4.5992932,1.105,2.77],[4.5992932,1.105,2.77]]}
 ];
 export const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
 export const ease=v=>{v=clamp(v);return v*v*(3-2*v)};
@@ -108,8 +109,10 @@ export function createStory(I,data){
  const coils=new T.Group();coils.name='PROMO_FIRIN_REZISTANSI';stage.add(coils);const coilMat=new T.MeshBasicMaterial({color:0xff8626,toneMapped:false});for(let i=0;i<5;i++){const bar=mesh(new T.CylinderGeometry(.004,.004,.58,12),coilMat,coils);bar.rotation.z=Math.PI/2;bar.position.set(3.25,1.235,-.13-i*.105)}
  const veil=mesh(new T.PlaneGeometry(2,2),new T.MeshBasicMaterial({color:0x000000,transparent:true,opacity:0,depthTest:false,depthWrite:false,toneMapped:false}));veil.renderOrder=9998;veil.frustumCulled=false;
  const logoCanvas=document.createElement('canvas');logoCanvas.width=1024;logoCanvas.height=320;const lg=logoCanvas.getContext('2d');lg.textAlign='center';lg.fillStyle='#f2bf72';lg.font='bold 104px sans-serif';lg.fillText('AUTOKITCH',512,150);lg.fillStyle='#f3f0e9';lg.font='28px sans-serif';lg.fillText('SİPARİŞTEN TESLİMATA.',512,220);const logoTex=new T.CanvasTexture(logoCanvas);logoTex.colorSpace=T.SRGBColorSpace;const logo=mesh(new T.PlaneGeometry(.56,.175),new T.MeshBasicMaterial({map:logoTex,transparent:true,depthTest:false,depthWrite:false,toneMapped:false}));logo.renderOrder=9999;logo.frustumCulled=false;
+ const dissolve=mesh(new T.PlaneGeometry(2,2),new T.MeshBasicMaterial({transparent:true,opacity:0,depthTest:false,depthWrite:false,toneMapped:false}));dissolve.name='PROMO_TOPPING_DISSOLVE';dissolve.renderOrder=9997;dissolve.frustumCulled=false;dissolve.visible=false;
+ let dissolveTarget=null,dissolveKey=null,capturingDissolve=false;
  let last=-1,currentPoint=new T.Vector3();const previousBeforeRender=scene.onBeforeRender;
- scene.onBeforeRender=function(...args){previousBeforeRender?.apply(this,args);for(const [o]of templateVisibility)o.visible=false;for(const [o,m]of ownedMaterials)o.material=m;const p=actionTime(last),macro=last>=DOUGH_CUT-TRANSITION_SECONDS&&p<11.34,isolated=last>=4.2&&last<9.6;for(const [o,visible]of sceneVisibility)o.visible=isolated?false:visible;if(originalLED)originalLED.visible=isolated?false:ledVisible;I.sahne.renderer.localClippingEnabled=true;for(const part of cutParts){part.o.material=Array.isArray(part.original)?part.clones:part.clones[0];for(const m of part.clones){if(part.macro!==macro){m.clippingPlanes=macro?[cutPlane]:null;m.needsUpdate=true}}part.macro=macro;}};
+ scene.onBeforeRender=function(...args){previousBeforeRender?.apply(this,args);for(const [o]of templateVisibility)o.visible=false;for(const [o,m]of ownedMaterials)o.material=m;const p=actionTime(last),macro=last>=DOUGH_CUT&&p<11.34,isolated=last>=4.2&&last<9.6;for(const [o,visible]of sceneVisibility)o.visible=isolated?false:visible;if(originalLED)originalLED.visible=isolated?false:ledVisible;I.sahne.renderer.localClippingEnabled=true;for(const part of cutParts){part.o.material=Array.isArray(part.original)?part.clones:part.clones[0];for(const m of part.clones){if(part.macro!==macro){m.clippingPlanes=macro?[cutPlane]:null;m.needsUpdate=true}}part.macro=macro;}};
  const bMotion=data.clips.carton,cartonTimes=[[17,bMotion.entry-.5],[17.8,bMotion.grasp],[19.2,bMotion.clear],[21.5,35],[22.7,bMotion.release],[23.9,bMotion.duration],[30,bMotion.duration]];
  function frameAt(time){const t=actionTime(time);
   const d=data.clips.dough,b=data.clips.carton;let clip=d,s=clockAt(time,[[0,Math.max(0,d.entry-.8)],[9.6,d.entry-.8],[10.05,d.entry],[10.65,d.grasp-.12],[10.95,d.grasp+.24],[12,d.clear],[14.1,d.release],[15,d.duration],[17,d.duration]]);
@@ -121,9 +124,19 @@ export function createStory(I,data){
   f.qr={};for(let g=1;g<=12;g++){const chosen=g===b.eye,robotDoor=chosen?progress(time,19.9,PACE.door)*(1-progress(time,23.9,PACE.door)):0,customerDoor=chosen?progress(time,25.15,PACE.door)*(1-progress(time,28,PACE.door)):0;f.qr[g]={kapak:robotDoor,musteri_kapak:customerDoor,kapi:1-customerDoor,kilit:false,dolu:chosen&&time>22.7&&time<27.15};}return {f,row,clip,s};
  }
  function render(time,{free=false,edits={},cameraKeys=[]}={}){
-  time=clamp(time,0,DURATION);const t=actionTime(time),shot=shotAt(time),isolated=time>=4.2&&time<9.6,keyed=free?null:cameraAt(cameraKeys,time),eyeView=!free&&!keyed&&(shot.id==='handoff'||shot.id==='hero');customer.head.visible=!eyeView;
+  time=clamp(time,0,DURATION);
+  const dissolveWindow=!free&&!capturingDissolve&&time>=DOUGH_CUT&&time<DOUGH_CUT+TOPPING_DISSOLVE,renderer=I.sahne.renderer;
+  if(dissolveWindow&&renderer.setRenderTarget){
+   const size=renderer.getDrawingBufferSize(new T.Vector2()),key=JSON.stringify([size.x,size.y,edits,cameraKeys]);
+   if(dissolveKey!==key){
+    if(!dissolveTarget||dissolveTarget.width!==size.x||dissolveTarget.height!==size.y){dissolveTarget?.dispose();dissolveTarget=new T.WebGLRenderTarget(size.x,size.y);dissolveTarget.texture.colorSpace=T.SRGBColorSpace;dissolve.material.map=dissolveTarget.texture;dissolve.material.needsUpdate=true;}
+    const previousTarget=renderer.getRenderTarget();capturingDissolve=true;
+    try{render(DOUGH_CUT-.001,{free:false,edits,cameraKeys});renderer.setRenderTarget(dissolveTarget);renderer.render(scene,camera);dissolveKey=key;}finally{renderer.setRenderTarget(previousTarget);capturingDissolve=false;}
+   }
+  }
+  const t=actionTime(time),shot=shotAt(time),isolated=time>=4.2&&time<9.6,keyed=free?null:cameraAt(cameraKeys,time),eyeView=!free&&!keyed&&(shot.id==='handoff'||shot.id==='hero');customer.head.visible=!eyeView;
   if(time!==last){
-   const macro=time>=DOUGH_CUT-TRANSITION_SECONDS&&t<11.34;for(const part of cutParts)for(const m of part.clones)m.clippingPlanes=macro?[cutPlane]:null;
+   const macro=time>=DOUGH_CUT&&t<11.34;for(const part of cutParts)for(const m of part.clones)m.clippingPlanes=macro?[cutPlane]:null;
    orderScreen(t);const {f,row,clip,s}=frameAt(time),b=data.clips.carton,d=data.clips.dough;I.sunumKareKontrol=true;I.sunumGoruntuKaresi=f;I.goruntuKaresi=f;I.son=f;I.sunumUygula(f);for(const part of cutParts){part.o.material=Array.isArray(part.original)?part.clones:part.clones[0];for(const m of part.clones)m.clippingPlanes=macro?[cutPlane]:null;}currentPoint.fromArray(row.slice(8,11));
    dough.visible=time>=10.1&&time<DOUGH_CUT;if(s>=d.grasp&&s<d.release&&time<DOUGH_CUT)dough.position.fromArray(row.slice(8,11));else dough.position.copy(s<d.grasp?new T.Vector3(...sample(d,d.grasp).slice(8,11)):plate);dough.quaternion.identity();
    plated.visible=time>=DOUGH_CUT&&t<13.34;plated.position.copy(t<11.3?topPlate:ovenPlate);const cook=ease((t-11.45)/1.45);cookFood(plated,cook);for(const a of plated.userData.food.pieces){const u=clamp((time-a.drop)/a.fall);a.o.visible=time>=a.drop;a.o.position.set(a.x,.020+.36*(1-u*u),a.z);a.o.rotation.set((1-u)*1.8,0,(1-u)*.55*Math.sin(a.x*60));}
@@ -159,7 +172,9 @@ export function createStory(I,data){
   orbit.enabled=free;
   if(!free){const pose=keyed?{position:new T.Vector3(...keyed.position),target:new T.Vector3(...keyed.target),fov:keyed.fov,roll:0}:basePose(time),edit=keyed?null:edits[shot.id];if(edit){pose.position.add(new T.Vector3(...edit.positionOffset));pose.target.add(new T.Vector3(...edit.targetOffset));pose.fov=clamp(pose.fov+edit.fovOffset,15,90);}const center=customer.root.position.clone().add(new T.Vector3(0,1.62,0)),delta=pose.position.clone().sub(center);if(!eyeView&&customer.root.visible&&delta.length()<.22)pose.position.copy(center).add(delta.normalize().multiplyScalar(.22));camera.position.copy(pose.position);camera.up.set(0,1,0);camera.fov=pose.fov;camera.lookAt(pose.target);camera.rotateZ(pose.roll);camera.updateProjectionMatrix();orbit.target.copy(pose.target);}
   document.getElementById('screen').dataset.cameraView=eyeView?'customer-pov':['collect','delivery'].includes(shot.id)?'robot-wrist-pov':'scene';
-  camera.updateMatrixWorld(true);let veilOpacity=0,veilWarm=false;
+  camera.updateMatrixWorld(true);
+  dissolve.visible=dissolveWindow&&!!dissolveTarget;dissolve.material.opacity=1-progress(time,DOUGH_CUT,TOPPING_DISSOLVE);dissolve.position.set(0,0,-.12).applyQuaternion(camera.quaternion).add(camera.position);dissolve.quaternion.copy(camera.quaternion);const dissolveHeight=.24*Math.tan(camera.fov*Math.PI/360);dissolve.scale.set(dissolveHeight*camera.aspect/2,dissolveHeight/2,1);
+  let veilOpacity=0,veilWarm=false;
   if(!free){veilOpacity=progress(time,4.02,.18)*(1-progress(time,4.55,.22));}
   veil.material.color.setHex(veilWarm?0xffdfad:0x000000);veil.material.opacity=veilOpacity;veil.visible=veilOpacity>.001;veil.position.set(0,0,-.16).applyQuaternion(camera.quaternion).add(camera.position);veil.quaternion.copy(camera.quaternion);
   logo.visible=time>=29.35;logo.material.opacity=progress(time,29.35,.65);logo.position.set(0,.075,-.7).applyQuaternion(camera.quaternion).add(camera.position);logo.quaternion.copy(camera.quaternion);return shot;
@@ -168,14 +183,13 @@ export function createStory(I,data){
   if(shot.id==='street'||shot.id==='menu'){const v=1-Math.pow(1-clamp(time/4.2),2);return {position:openingPath.getPoint(v),target:openingLook.getPoint(v),fov:mapped(time,[[0,64],[1.1,58],[2.5,46],[4.2,34]]),roll:-28*(1-progress(time,0,2))*Math.PI/180};}
   if(['grip','ride','collect','delivery'].includes(shot.id)){const frame=frameAt(time),row=frame.row,point=new T.Vector3(...row.slice(8,11));if(shot.id==='collect'||shot.id==='delivery'){const mount=wristPose(row,time);position.copy(mount.position);target.copy(mount.target);fov=mount.fov;roll=0;}
    else{const q=new T.Quaternion(...row.slice(11,15)).normalize(),wrist=new T.Euler().setFromQuaternion(q,'YXZ'),pov=shot.id!=='grip',yaw=clamp(wrist.y,-.8,.8),offset=new T.Vector3(pov?.24:.45,pov?.17:.25,pov?.40:.52).applyAxisAngle(new T.Vector3(0,1,0),yaw);offset.x+=.06*Math.sin(u*Math.PI*2);position.copy(point).add(offset);target.copy(point).add(new T.Vector3(0,.02,-.055));if(pov)roll+=.20*Math.sin(u*Math.PI*2)+.12*wrist.z;}}
-  if(shot.id==='handoff'||shot.id==='hero'){const pull=progress(time,26.4,PACE.pull),qrPoint=new T.Vector3(...sample(data.clips.carton,data.clips.carton.release).slice(8,11)),box=handoffBox(pull),bodyZ=2.45+.64*pull;position.set(hero.x,1.63,bodyZ-.105);target.copy(box).add(new T.Vector3(0,.025,0));roll=0;fov=76;}
+  if(shot.id==='handoff'||shot.id==='hero'){const pull=progress(time,26.4,PACE.pull),qrPoint=new T.Vector3(...sample(data.clips.carton,data.clips.carton.release).slice(8,11)),box=handoffBox(pull),bodyZ=2.45+.64*pull;position.set(hero.x,1.63,bodyZ-.105);target.copy(box).add(new T.Vector3(0,.025,0));roll=0;const focus=progress(time,28.25,1.05);fov=76-26*focus;target.y-=.010*focus;}
   return {position,target,fov,roll};
  }
  function mixPose(previous,pose,u){pose.position.lerpVectors(previous.position,pose.position,u);pose.target.lerpVectors(previous.target,pose.target,u);pose.fov=previous.fov+(pose.fov-previous.fov)*u;pose.roll=previous.roll+(pose.roll-previous.roll)*u;return pose;}
  function basePose(time){
   const i=SHOTS.indexOf(shotAt(time)),shot=SHOTS[i],pose=rawPose(time,i),next=SHOTS[i+1];
-  // Finish the dough-to-topping move before the gripper enters the opening.
-  if(next?.id==='top'&&time>=next.start-TRANSITION_SECONDS){return mixPose(pose,rawPose(next.start,i+1),ease((time-next.start+TRANSITION_SECONDS)/TRANSITION_SECONDS));}
+  // The product changes station at this edit: dissolve the outgoing frame into the topping close-up.
   // Street/menu, wrist pickup/delivery and customer/final are already one path.
   // Every other angle change uses the same blend as topping -> oven.
   if(i>0&&!['menu','top','delivery','hero'].includes(shot.id)&&time<shot.start+TRANSITION_SECONDS){return mixPose(rawPose(shot.start-1e-7,i-1),pose,ease((time-shot.start)/TRANSITION_SECONDS));}
@@ -183,6 +197,6 @@ export function createStory(I,data){
  }
 
  I.sunumKareKontrol=true;orbit.enabled=false;I.sahne.renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));
- function dispose(){scene.onBeforeRender=previousBeforeRender;for(const [o,visible]of templateVisibility)o.visible=visible;for(const [o,visible]of sceneVisibility)o.visible=visible;if(originalLED)originalLED.visible=ledVisible;for(const part of cutParts){part.o.material=part.original;for(const m of part.clones)m.dispose()}I.sahne.renderer.localClippingEnabled=clipWas;for(const [light,power]of originalLights)light.intensity=power;if(originalBackground)scene.background.copy(originalBackground);stage.removeFromParent();const geometries=new Set(),materials=new Set(),textures=new Set();stage.traverse(o=>{for(let q=o;q;q=q.parent)if(q===dough)return;if(o.geometry&&!sharedGeometry.has(o.geometry))geometries.add(o.geometry);for(const m of [].concat(o.material||[])){materials.add(m);if(m.map&&!borrowedTextures.has(m.map))textures.add(m.map)}});for(const g of geometries)g.dispose();for(const m of materials)m.dispose();for(const t of textures)t.dispose();}
+ function dispose(){dissolveTarget?.dispose();scene.onBeforeRender=previousBeforeRender;for(const [o,visible]of templateVisibility)o.visible=visible;for(const [o,visible]of sceneVisibility)o.visible=visible;if(originalLED)originalLED.visible=ledVisible;for(const part of cutParts){part.o.material=part.original;for(const m of part.clones)m.dispose()}I.sahne.renderer.localClippingEnabled=clipWas;for(const [light,power]of originalLights)light.intensity=power;if(originalBackground)scene.background.copy(originalBackground);stage.removeFromParent();const geometries=new Set(),materials=new Set(),textures=new Set();stage.traverse(o=>{for(let q=o;q;q=q.parent)if(q===dough)return;if(o.geometry&&!sharedGeometry.has(o.geometry))geometries.add(o.geometry);for(const m of [].concat(o.material||[])){materials.add(m);if(m.map&&!borrowedTextures.has(m.map))textures.add(m.map)}});for(const g of geometries)g.dispose();for(const m of materials)m.dispose();for(const t of textures)t.dispose();}
  return {render,basePose,camera,orbit,scene,hero,plate,actors:{customer},dispose,duration:DURATION};
 }
