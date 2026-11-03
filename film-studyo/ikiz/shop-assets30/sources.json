@@ -1,0 +1,360 @@
+[
+  {
+    "id": "first-aid",
+    "slug": "opticians-and-eyewear-showroom-first-aid-box-a5156d0e",
+    "source": "https://3dassets.dev/assets/opticians-and-eyewear-showroom-first-aid-box-a5156d0e",
+    "download": "https://cdn.3dassets.dev/assets/35077/v1/model.glb",
+    "license": {
+      "slug": "cc0-1.0",
+      "name": "CC0 1.0 Universal",
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attributionRequired": false
+    },
+    "stats": {
+      "fileSize": 9692,
+      "triangles": 204,
+      "vertices": 302,
+      "meshes": 4,
+      "materials": 4,
+      "textures": 0,
+      "animations": [],
+      "boundingBox": {
+        "min": [
+          -0.16200000047683716,
+          9.160768044136347e-07,
+          -0.0670060123435949
+        ],
+        "max": [
+          0.16200000047683716,
+          0.2699981429369266,
+          0.07799966530964471
+        ]
+      },
+      "sizeMeters": [
+        0.324,
+        0.27,
+        0.145
+      ],
+      "hasDraco": false,
+      "hasMeshopt": false,
+      "hasKTX2": false,
+      "extensionsUsed": [
+        "KHR_mesh_quantization"
+      ]
+    },
+    "file": "first-aid.glb",
+    "kind": "downloaded generic visualization; not certified OEM CAD",
+    "aiGenerated": true,
+    "sha256": "f8addd92d8758577c4f9a63f8f05aaa3bf72b79e2bd62862e6536b64ca7c8892",
+    "reviewStatus": "rejected-visual-quality-not-for-placement"
+  },
+  {
+    "id": "extinguisher",
+    "slug": "signal-house-industrial-fire-extinguisher",
+    "source": "https://poly.pizza/m/LtrzDvRya9",
+    "download": "https://static.poly.pizza/30244587-f6af-4700-9a4e-d8f9338f5a20.glb",
+    "license": {
+      "name": "CC BY 3.0",
+      "url": "https://creativecommons.org/licenses/by/3.0/",
+      "attribution": "Fire Extinguisher by dook [CC-BY 3.0] via Poly Pizza"
+    },
+    "stats": {
+      "fileSize": 27772,
+      "triangles": 512,
+      "vertices": 1536,
+      "meshes": 4,
+      "materials": 4,
+      "textures": 0,
+      "animations": [],
+      "boundingBox": {
+        "min": [
+          -0.1000152607450815,
+          0,
+          -0.1000152607450815
+        ],
+        "max": [
+          0.15600149205149086,
+          0.5299999713897705,
+          0.11999999731779099
+        ]
+      },
+      "sizeMeters": [
+        0.256,
+        0.53,
+        0.22
+      ],
+      "hasDraco": false,
+      "hasMeshopt": false,
+      "hasKTX2": false,
+      "extensionsUsed": [
+        "KHR_mesh_quantization"
+      ]
+    },
+    "file": "extinguisher.glb",
+    "kind": "downloaded generic visualization; not certified OEM CAD",
+    "aiGenerated": false,
+    "sha256": "86d13e7cb98f8321c9101540bedba175e6d56eba02cbbd0e58a54f3204327506",
+    "changes": "Uniformly scaled to 530mm height; texture colours baked to mesh vertex colours; geometry shape retained.",
+    "reviewStatus": "rejected-visual-quality-not-for-placement"
+  },
+  {
+    "id": "soap",
+    "slug": "office-lobby-and-facilities-soap-dispenser-d2ab4367",
+    "source": "https://3dassets.dev/assets/office-lobby-and-facilities-soap-dispenser-d2ab4367",
+    "download": "https://cdn.3dassets.dev/assets/26185/v1/model.glb",
+    "license": {
+      "slug": "cc0-1.0",
+      "name": "CC0 1.0 Universal",
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attributionRequired": false
+    },
+    "stats": {
+      "fileSize": 22816,
+      "triangles": 438,
+      "vertices": 1314,
+      "meshes": 2,
+      "materials": 2,
+      "textures": 0,
+      "animations": [],
+      "boundingBox": {
+        "min": [
+          -0.06000366189600104,
+          0,
+          -0.059998788245545956
+        ],
+        "max": [
+          0.06000366189600104,
+          0.2199999988079071,
+          0.06097536192141685
+        ]
+      },
+      "sizeMeters": [
+        0.12,
+        0.22,
+        0.121
+      ],
+      "hasDraco": false,
+      "hasMeshopt": false,
+      "hasKTX2": false,
+      "extensionsUsed": [
+        "KHR_mesh_quantization"
+      ]
+    },
+    "file": "soap.glb",
+    "kind": "downloaded generic visualization; not certified OEM CAD",
+    "aiGenerated": true,
+    "sha256": "3da35970aae0cb1123c0c805935b4e5d7e01371e02e2a0bc26b793c3c5cb1ec0",
+    "reviewStatus": "rejected-visual-quality-not-for-placement"
+  },
+  {
+    "id": "paper-towel",
+    "slug": "office-lobby-and-facilities-paper-towel-dispenser-378a457c",
+    "source": "https://3dassets.dev/assets/office-lobby-and-facilities-paper-towel-dispenser-378a457c",
+    "download": "https://cdn.3dassets.dev/assets/26186/v1/model.glb",
+    "license": {
+      "slug": "cc0-1.0",
+      "name": "CC0 1.0 Universal",
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attributionRequired": false
+    },
+    "stats": {
+      "fileSize": 26684,
+      "triangles": 488,
+      "vertices": 1464,
+      "meshes": 3,
+      "materials": 2,
+      "textures": 0,
+      "animations": [
+        "open",
+        "close"
+      ],
+      "boundingBox": {
+        "min": [
+          -0.15000640420356778,
+          0,
+          -0.07000480589874697
+        ],
+        "max": [
+          0.15000640420356778,
+          0.41999998688697815,
+          0.07500832341391281
+        ]
+      },
+      "sizeMeters": [
+        0.3,
+        0.42,
+        0.145
+      ],
+      "hasDraco": false,
+      "hasMeshopt": false,
+      "hasKTX2": false,
+      "extensionsUsed": [
+        "KHR_mesh_quantization"
+      ]
+    },
+    "file": "paper-towel.glb",
+    "kind": "downloaded generic visualization; not certified OEM CAD",
+    "aiGenerated": true,
+    "sha256": "2ea659a78c47dbac35ed0d0dbe0b4a7cc84b8626a603de1f4ad83ad7535e32f4",
+    "reviewStatus": "rejected-visual-quality-not-for-placement"
+  },
+  {
+    "id": "handwash",
+    "slug": "restaurant-kitchen-and-dining-hand-wash-basin-8a6818d3",
+    "source": "https://www.delabie.es/nuestros-productos/aparatos-sanitarios-en-acero-inoxidable/lavabos-lavamanos/121370-lavamanos-wc-lavando",
+    "download": "https://www.delabie.es/download/datashare/bim/61797?key=96683",
+    "license": {
+      "name": "DELABIE manufacturer BIM download; manufacturer rights retained; not CC0"
+    },
+    "stats": {
+      "fileSize": 57484,
+      "triangles": 1144,
+      "vertices": 3432,
+      "meshes": 3,
+      "materials": 3,
+      "textures": 0,
+      "animations": [],
+      "boundingBox": {
+        "min": [
+          -0.22003449139663572,
+          0,
+          -0.21000686466760274
+        ],
+        "max": [
+          0.22003449139663572,
+          1.3899999856948853,
+          0.18000687837667104
+        ]
+      },
+      "sizeMeters": [
+        0.44,
+        1.39,
+        0.39
+      ],
+      "hasDraco": false,
+      "hasMeshopt": false,
+      "hasKTX2": false,
+      "extensionsUsed": [
+        "KHR_mesh_quantization"
+      ]
+    },
+    "file": "handwash.glb",
+    "kind": "Manufacturer 121370 IFC converted to GLB, metres and Y-up; stainless review material.",
+    "aiGenerated": false,
+    "sha256": "83f31af727a568f405f7fddc19a876e3d40873be2f7599b82ca8defc8f7692b5",
+    "reviewStatus": "accepted-manufacturer-source"
+  },
+  {
+    "id": "pedal-bin",
+    "slug": "hotel-and-resort-operations-bathroom-pedal-bin-7c7536ad",
+    "source": "https://3dassets.dev/assets/hotel-and-resort-operations-bathroom-pedal-bin-7c7536ad",
+    "download": "https://cdn.3dassets.dev/assets/25810/v1/model.glb",
+    "license": {
+      "slug": "cc0-1.0",
+      "name": "CC0 1.0 Universal",
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attributionRequired": false
+    },
+    "stats": {
+      "fileSize": 24720,
+      "triangles": 448,
+      "vertices": 1344,
+      "meshes": 3,
+      "materials": 2,
+      "textures": 0,
+      "animations": [
+        "open",
+        "close"
+      ],
+      "boundingBox": {
+        "min": [
+          -0.10699619100106719,
+          0,
+          -0.1053691881354627
+        ],
+        "max": [
+          0.10699619100106719,
+          0.30400334871209383,
+          0.11959937074728075
+        ]
+      },
+      "sizeMeters": [
+        0.214,
+        0.304,
+        0.225
+      ],
+      "hasDraco": false,
+      "hasMeshopt": false,
+      "hasKTX2": false,
+      "extensionsUsed": [
+        "KHR_mesh_quantization"
+      ]
+    },
+    "file": "pedal-bin.glb",
+    "kind": "downloaded generic visualization; not certified OEM CAD",
+    "aiGenerated": true,
+    "sha256": "a2000762ce084499d818635837e884b3b350b91f6911a637ea916e91994a1fa4",
+    "reviewStatus": "rejected-visual-quality-not-for-placement"
+  },
+  {
+    "id": "exit-sign",
+    "slug": "laser-tag-arena-and-activity-centre-fire-exit-sign-741e4e23",
+    "source": "https://3dassets.dev/assets/laser-tag-arena-and-activity-centre-fire-exit-sign-741e4e23",
+    "download": "https://cdn.3dassets.dev/assets/34507/v1/model.glb",
+    "license": {
+      "slug": "cc0-1.0",
+      "name": "CC0 1.0 Universal",
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attributionRequired": false
+    },
+    "stats": {
+      "fileSize": 12128,
+      "triangles": 216,
+      "vertices": 498,
+      "meshes": 3,
+      "materials": 3,
+      "textures": 0,
+      "animations": [],
+      "boundingBox": {
+        "min": [
+          -0.18000000715255737,
+          0,
+          -0.025005646917888154
+        ],
+        "max": [
+          0.18000000715255737,
+          0.36000001430511475,
+          0.05872365572142844
+        ]
+      },
+      "sizeMeters": [
+        0.36,
+        0.36,
+        0.084
+      ],
+      "hasDraco": false,
+      "hasMeshopt": false,
+      "hasKTX2": false,
+      "extensionsUsed": [
+        "KHR_mesh_quantization"
+      ]
+    },
+    "file": "exit-sign.glb",
+    "kind": "downloaded generic visualization; not certified OEM CAD",
+    "aiGenerated": true,
+    "sha256": "ebe3e710db863c4601da414c0c5bc39166c42881f22cb831b0f14d6ca395d692",
+    "reviewStatus": "rejected-visual-quality-not-for-placement"
+  },
+  {
+    "source": "https://www.innerscene.com/tools/library/3d-parts/tablet-stand-original-3d-printable-a38a80be",
+    "download": "https://www.innerscene.com/api/library/tablet-stand-original-3d-printable-a38a80be/download",
+    "license": "CC0 1.0",
+    "original": "tablet-stand.stl",
+    "conversion": "STL millimeters to GLB metres; no dimensions changed",
+    "certification": false,
+    "id": "tablet-stand",
+    "file": "tablet-stand.glb",
+    "sha256": "6ec67e8800e990672ff7c54b5109628aaaff5f6197a31d1a802a723908d36dac",
+    "reviewStatus": "rejected-visual-quality-not-for-placement"
+  }
+]

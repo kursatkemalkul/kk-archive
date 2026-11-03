@@ -1,0 +1,78 @@
+/* kompakt70 (21 Eki, Kemal): twin içi ikon / yazı ~%22 küçük, butonlar alçak.
+   Yalnız görünüm; tablet-ui.css'teki dokunmatik 44px'i "html body #sahne" özgüllüğüyle ezer. */
+
+/* --- Ortak (masaüstü + tablet) --- */
+html body #sahne button,
+html body #sahne select,
+html body #sahne .hud summary { font-size: 10px !important; line-height: 1.2 !important; }
+
+/* Başlat / Reset */
+html body #sahne #makineKontrol { gap: 4px !important; }
+html body #sahne #makineKontrol button { min-height: 0 !important; min-width: 0 !important; height: 30px !important; padding: 0 11px !important; }
+
+/* Gez / Personel */
+html body #sahne #roller { gap: 3px !important; }
+html body #sahne #roller button { min-height: 0 !important; min-width: 0 !important; height: 24px !important; padding: 0 8px !important; }
+
+/* Katmanlar / Araçlar */
+html body #sahne #katmanDugme,
+html body #sahne #eDraftToolsToggle22 { min-height: 0 !important; min-width: 0 !important; height: 28px !important; padding: 0 10px !important; }
+html body #sahne #katmanPanel { font-size: 10px !important; }
+html body #sahne #katmanPanel button { min-height: 0 !important; min-width: 0 !important; }
+
+/* Ekranlar / ×1 / ×10 / ×30 / Duvarları gizle / Donanım / Dolap / Sipariş turu / Senaryolar */
+html body #sahne #araclar { gap: 3px !important; }
+html body #sahne #araclar button { min-height: 0 !important; min-width: 0 !important; height: 26px !important; padding: 0 7px !important; }
+
+/* Sol KOD şeridi */
+html body #sahne #kodSerit { gap: 2px !important; padding: 3px 2px !important; }
+html body #sahne #kodSerit > div:first-child { font-size: 8px !important; }
+html body #sahne #kodSerit button { min-height: 0 !important; min-width: 0 !important; height: 24px !important; font-size: 8.5px !important; padding: 0 4px !important; }
+
+/* G1–G12 kilit rozetleri */
+html body #sahne #gozler { gap: 3px !important; grid-template-columns: 44px 44px !important; }
+html body #sahne #gozler > div { font-size: 8px !important; padding: 2px 4px !important; line-height: 1.3 !important; }
+
+/* HUD başlıkları */
+html body #sahne .hud summary { min-height: 0 !important; font-size: 9px !important; }
+
+/* Alt zaman şeridi */
+html body #sahne #zamanSerit { font-size: 9.5px !important; }
+html body #sahne #zamanSerit button,
+html body #sahne #zamanSerit select { min-height: 0 !important; min-width: 0 !important; height: 22px !important; padding: 0 6px !important; font-size: 9.5px !important; }
+html body #sahne #zEt { font-size: 9.5px !important; }
+
+/* --- Masaüstü: alt şerit ve üstündeki araç satırı alçalır --- */
+@media (min-width: 1401px) {
+  html body #sahne #zamanSerit { height: 34px !important; }
+  html body.zamanVar #sahne #araclar { bottom: 40px !important; }
+}
+
+/* --- Tablet / telefon (tablet-ui.css ≤1400px düzeni, 44px yerine ~32px) --- */
+@media (max-width: 1400px) {
+  html body #sahne button,
+  html body #sahne select,
+  html body #sahne .hud summary { min-height: 32px !important; min-width: 32px !important; }
+  html body #sahne #makineKontrol button { height: 32px !important; }
+  html body #sahne #roller { top: 48px !important; }
+  html body #sahne #roller button { height: 30px !important; }
+  html body #sahne #katmanDugme { top: 48px !important; height: 32px !important; }
+  html body #sahne #katmanPanel { top: 86px !important; }
+  html body #sahne #kodSerit { top: 86px !important; height: 36px !important; }
+  html body #sahne #kodSerit button { height: 30px !important; min-width: 32px !important; }
+  html body #sahne #kodPencere { top: 128px !important; }
+  html body #sahne #baglanti { top: 128px !important; }
+  html body #sahne #hudUst:not([open]) summary { min-height: 32px !important; }
+  html body #sahne #hudUst[open] { top: 48px !important; }
+  html body #sahne #araclar button { height: 30px !important; }
+  html body #sahne #zamanSerit { height: 74px !important; grid-template-rows: 32px 30px !important; grid-template-columns: 64px 36px 64px minmax(70px, 1fr) 120px !important; }
+  html body #sahne #zamanSerit button,
+  html body #sahne #zamanSerit select { height: 32px !important; }
+  html body #sahne #zKay { height: 30px !important; }
+  html body #sahne #zEt { font-size: 8px !important; }
+  html body.zamanVar #sahne #araclar { bottom: 80px !important; }
+  html body.zamanVar #sahne #hudAlt { bottom: 116px !important; }
+}
+@media (max-width: 600px) {
+  html body #sahne #zamanSerit { grid-template-columns: 52px 34px 52px 56px minmax(80px, 1fr) !important; }
+}

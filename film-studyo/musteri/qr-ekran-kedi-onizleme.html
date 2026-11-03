@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><title>QR ekran · kedi önizleme</title>
+<link rel="stylesheet" href="qr-ekran.css?v=64"></head>
+<body><main id="screen" data-mode="REKLAM"><header></header><div id="content"><section id="promotion"></section></div><footer></footer></main>
+<!-- QR-9 preview: ?t=<seconds> freezes the cat at that time; ?mod=SIPARIS shows the order screen. -->
+<script type="module">
+import './qr-ekran-kedi.js';
+const q=new URLSearchParams(location.search);await document.fonts.ready;
+if(q.get('mod'))document.getElementById('screen').dataset.mode=q.get('mod');
+if(q.has('t'))setTimeout(()=>window.qrKedi?.poz(+q.get('t')),50);
+</script></body></html>

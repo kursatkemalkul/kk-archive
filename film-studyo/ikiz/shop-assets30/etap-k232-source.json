@@ -1,0 +1,34 @@
+{
+  "id": "etap-k232",
+  "sourcePage": "https://www.etaplighting.com/en/series/k2-picto/products/k2323",
+  "download": "https://www.etaplighting.com/sites/default/files/revits/K232_IFC.zip",
+  "sourceFile": "K232-3 - single sided signage - linear - wall mounted_etap_K2_lxwxh 359x180x100 mm.ifc",
+  "sourceSha256": "6d98a3afe2f96f11de37bd3b3219a7a15206ebec5ad95caaaf3fb0a04766353b",
+  "glbSha256": "aa65b4860aad8ff6728db90e878988631938a0801aad75e5cc0da9dcba017532",
+  "units": "metres",
+  "conversion": "IFC manufacturer geometry and style groups; Z-up to Y-up only; no scale or geometry replacement",
+  "bounds": [
+    [
+      -0.17934898133584698,
+      -0.08965000000000499,
+      -3.99032298005438e-18
+    ],
+    [
+      0.179348981335872,
+      0.08964999999999981,
+      0.0987725057735634
+    ]
+  ],
+  "triangles": 4532,
+  "licence": "Manufacturer ETAP BIM content; original rights retained; layout use",
+  "variantNote": "K232/3 original manufacturer IFC; selected 60 min autonomous version",
+  "placementStatus": "visual layout proposal; illumination and evacuation project require verification",
+  "runtimeOptimization": {
+    "method": "Uniform 1 mm CAD vertex clustering; materials and articulated scene nodes preserved; large texture reduced to 512 pixels",
+    "beforeBytes": 83364,
+    "afterBytes": 98852,
+    "beforeTriangles": 4532,
+    "afterTriangles": 3916,
+    "sha256": "cfe2d6b6652e8bce7f14b84da4838987e66b811fe985c39e5c9d7763399b30eb"
+  }
+}

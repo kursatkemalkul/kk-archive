@@ -1,0 +1,65 @@
+/* iPad / small-screen view only; no machine or PLC behavior changes. */
+html,body {height:100%;height:var(--twin-view-height,100dvh);overscroll-behavior:none}
+button,summary,select,input[type=range] {touch-action:manipulation}
+#tabletPanelKapat {display:none}
+@media(max-width:1400px) {
+ #ana,body.panelGizli #ana {display:block!important;height:100%;height:var(--twin-view-height,100dvh)}
+ #sahne {width:100%;height:100%;overflow:hidden}
+ #kanvas {touch-action:none}
+ #yan {position:absolute;right:0;top:0;bottom:0;width:min(540px,96vw);z-index:60;box-shadow:-12px 0 40px #0009;max-height:var(--twin-view-height,100dvh)}
+ body.panelGizli #yan {display:none!important}
+ #tabletPanelKapat {display:block;position:absolute;right:8px;top:8px;z-index:62;width:44px;height:44px;font-size:23px}
+ #sekmeler {padding:8px 60px 8px 8px;gap:6px;max-height:168px;overflow:auto;-webkit-overflow-scrolling:touch}
+ #sekmeler button,#yan button {min-height:44px}
+ #cerceve {min-height:0;overflow:hidden}
+ #sahne button,#sahne select,.hud summary {min-height:44px!important;min-width:44px;font-size:13px}
+ #hudUst {top:max(8px,env(safe-area-inset-top));left:max(8px,env(safe-area-inset-left));min-width:0;max-width:calc(100% - 320px)}
+ #hudUst summary {font-size:12px!important}
+ #hudUst[open] {width:min(430px,calc(100% - 16px));max-width:calc(100% - 16px);top:64px;max-height:calc(100% - 240px);z-index:52}
+ #makineKontrol {top:max(8px,env(safe-area-inset-top));right:max(8px,env(safe-area-inset-right));gap:6px}
+ #makineKontrol button {padding:8px 12px}
+ #copDenemeMenu summary {min-height:44px;padding:12px 8px;font-size:12px}
+ #roller {top:62px;left:8px;transform:none;gap:6px}
+ #katmanDugme {top:62px!important;left:auto!important;right:8px!important;min-height:44px}
+ #katmanPanel {top:112px!important;left:auto!important;right:8px!important;width:min(430px,calc(100% - 16px))!important;max-width:calc(100% - 16px)!important;max-height:calc(100% - 230px)!important;z-index:53!important;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+ #katmanPanel select {max-width:100%}
+ #gozler {display:none}
+ #kodSerit {top:114px!important;left:8px!important;right:8px!important;bottom:auto!important;width:max-content!important;max-width:calc(100% - 16px)!important;height:50px!important;display:flex!important;flex-direction:row!important;align-items:center!important;gap:4px;overflow-x:auto!important;overflow-y:hidden!important;padding:3px!important;z-index:3!important}
+ #kodSerit button {flex:0 0 auto;min-width:44px!important;height:44px!important}
+ #kodSerit>div:first-child {display:none}
+ body.zamanVar #sahne #araclar {bottom:112px!important;right:8px;left:auto;max-width:calc(100% - 16px);gap:6px;flex-wrap:nowrap;overflow-x:auto}
+ #araclar button[data-hiz] {display:none} /* same speeds available in the playback select */
+ body.zamanVar #sahne #hudAlt {bottom:166px!important;left:8px;max-width:calc(100% - 16px)}
+ #hudAlt[open] {width:min(500px,calc(100% - 16px));max-height:38%;z-index:52}
+ #zamanSerit {height:104px!important;bottom:0!important;display:grid!important;grid-template-columns:84px 48px 84px minmax(80px,1fr) 150px!important;grid-template-rows:44px 40px!important;gap:4px 6px!important;padding:6px max(8px,env(safe-area-inset-right)) max(6px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))!important;align-content:center;}
+ #zamanSerit button,#zamanSerit select {height:44px!important;padding:0 6px!important;font-size:12px!important;white-space:nowrap}
+ #zKay {grid-row:2;grid-column:1/5;width:100%;min-width:0!important;height:40px;touch-action:pan-x}
+ #zEt {grid-row:2;grid-column:5;min-width:0!important;font-size:10px!important;white-space:normal;text-align:right}
+ #baglanti {top:172px;max-width:calc(100% - 24px);z-index:51;text-align:center}
+ .copDenemeIcerik {max-height:calc(100dvh - 170px);overflow:auto;overscroll-behavior:contain}
+ #yukle .cubuk {width:min(320px,80vw)}
+}
+@media(max-width:600px) {
+ #hudUst {max-width:calc(100% - 232px);padding:4px}
+ #hudUst summary {font-size:10px!important;gap:3px}
+ #copDenemeMenu summary {font-size:10px;max-width:98px}
+ #makineKontrol {gap:3px} #makineKontrol button {padding:6px}
+ #kodSerit {right:8px;width:calc(100% - 16px)!important}
+ #zamanSerit {grid-template-columns:64px 44px 64px 65px minmax(94px,1fr)!important;gap:4px!important}
+}
+
+@media(max-width:1400px){
+ #kodSerit .kb span,#kodSerit .kb em {display:none!important}
+ #kodSerit .kb b {flex:1!important}
+ #kodPencere {left:8px!important;top:172px!important;width:calc(100% - 16px)!important;height:min(480px,calc(100% - 290px))!important;z-index:54!important}
+ #kodPencere pre,#kodPencere ol {overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+}
+
+@media(max-width:1400px){.hud:not([open]){padding:0 10px}#hudUst:not([open]) summary{min-height:44px!important}}
+
+/* Fit the available frame, including Safari toolbar/keyboard changes. */
+html,body{width:100%;max-width:100%;min-height:0}
+#ana,#sahne,#yan{min-height:0;min-width:0}
+@media(max-width:1400px),(any-pointer:coarse){#ana,body.panelGizli #ana{height:var(--twin-view-height,100%)}#sahne{height:100%}#yan{max-height:100%;width:min(540px,100%)}#zamanSerit{max-width:100%;width:100%;min-width:0}#zKay{max-width:100%}}
+
+@media(min-width:601px) and (max-width:1400px){#zHiz{width:80px;justify-self:start}#zCanli{width:150px;justify-self:end}}

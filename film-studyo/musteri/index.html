@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="tr" data-tema="otomatik" data-yuzey="telefon">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#8a2c08">
+<title>AUTOKITCH · Sipariş</title>
+<link rel="stylesheet" href="../ortak/ak.css">
+<style>
+  .menu-ust{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:6px 0 14px}
+  .urun{display:flex;flex-direction:column;gap:10px;padding:12px;cursor:pointer;transition:transform .12s,box-shadow .12s}
+  .urun:hover{transform:translateY(-2px)}
+  .urun.tukendi{opacity:.55;cursor:default}.urun.tukendi:hover{transform:none}
+  .urun .ad{font-weight:650;font-size:1.05em;line-height:1.25}
+  .urun .alt{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto}
+  .urun .fiyat{font-weight:700;font-size:1.05em}
+  .urun .acik{color:var(--ak-yazi2);font-size:.86em;min-height:2.6em}
+  .urun .alerjenler{display:flex;gap:5px;flex-wrap:wrap}
+  .sepet-bar{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px var(--ak-bosluk) calc(10px + env(safe-area-inset-bottom));background:color-mix(in srgb,var(--ak-kart) 94%,transparent);
+    backdrop-filter:blur(12px);border-top:1px solid var(--ak-cizgi)}
+  .sepet-bar .ic{max-width:1100px;margin:auto;display:flex;align-items:center;gap:14px;justify-content:space-between}
+  .alt-bosluk{height:110px}
+  .satirkalem{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--ak-cizgi)}
+  .satirkalem:last-child{border-bottom:0}
+  .satirkalem .kucukresim{width:64px;height:48px;border-radius:10px;overflow:hidden;background:var(--ak-zemin2)}
+  .satirkalem .kucukresim svg{width:100%;height:100%;display:block}
+  .secenek{display:flex;gap:12px;align-items:flex-start;border:2px solid var(--ak-cizgi);border-radius:var(--ak-r);padding:14px;cursor:pointer;background:var(--ak-kart)}
+  .secenek.on{border-color:var(--ak-vurgu);background:var(--ak-vurgu-zemin)}
+  .secenek input{margin-top:4px;accent-color:var(--ak-vurgu);width:1.2em;height:1.2em}
+  .toplam{font-size:1.4em;font-weight:750}
+  .adimcubuk{display:flex;gap:8px;margin:2px 0 14px}
+  .adimcubuk i{flex:1;height:5px;border-radius:3px;background:var(--ak-cizgi)}.adimcubuk i.on{background:var(--ak-vurgu)}
+  .odeme-kutu{text-align:center;padding:24px 16px}
+  .test-uyari{border:2px dashed var(--ak-uyari);border-radius:var(--ak-r);padding:14px;background:var(--ak-uyari-zemin);color:var(--ak-uyari);font-weight:600;font-size:.9em}
+  .gecmis-satir{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--ak-cizgi);cursor:pointer}
+  .gecmis-satir:last-child{border-bottom:0}
+  .dil-dugme{min-width:46px}
+  /* kiosk */
+  [data-yuzey=kiosk] .ak-izgara{grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+  [data-yuzey=kiosk] .urun .ad{font-size:1.2em}
+  #baslangic{position:fixed;inset:0;z-index:90;background:var(--ak-zemin);display:none;flex-direction:column;align-items:center;justify-content:center;gap:28px;text-align:center;cursor:pointer;padding:40px}
+  [data-yuzey=kiosk] #baslangic.on{display:flex}
+  /* IKIZ-ARAYUZ-3 (10 Eki): kioskta kalıcı, büyük SİPARİŞ VER tuşu (boş sepette soluk 'Ürün seçin') */
+  [data-yuzey=kiosk] .sepet-bar .ic{flex-direction:column;align-items:stretch;gap:8px}
+  :root[data-yuzey=kiosk]{scroll-padding-top:96px;scroll-padding-bottom:240px}   /* büyük alt tuş + üst çubuk hiçbir tuşun üstüne binmesin (gerçek tıklama denetimi buldu) */
+  [data-yuzey=kiosk] .alt-bosluk{height:240px}
+  .ak-modal-perde{z-index:100} body:has(.ak-modal-perde) .sepet-bar{visibility:hidden}   /* C E17: ayrıntı kartı açıkken alt SİPARİŞ VER çubuğu Kapat'ı örtmesin */   /* C E2: alt çubuk (özet + 96 px tuş + pay ≈ 170 px) son satırın Ekle'sini örtmesin */
+  [data-yuzey=kiosk] #sepetGit{min-height:96px;width:100%;font-size:1.35em;font-weight:800;letter-spacing:.02em}
+  [data-yuzey=kiosk] .sepet-bar.bos #sepetGit{opacity:.5}
+  [data-yuzey=kiosk] .sepet-bar.bos .toplam,[data-yuzey=kiosk] .sepet-bar #sepetSay{display:none}
+  [data-yuzey=kiosk] #odemeyeGec,[data-yuzey=kiosk] #odeTest{min-height:96px;font-size:1.3em;font-weight:800}
+  [data-yuzey=kiosk] .kiosk-sms summary{cursor:pointer;font-weight:650;padding:6px 0}
+  #baslangic .buyuk{font-size:3.2em;font-weight:750;letter-spacing:-.02em;line-height:1.1}
+  #baslangic .donen{width:min(520px,80vw);aspect-ratio:4/3;border-radius:28px;overflow:hidden;background:var(--ak-zemin2);box-shadow:var(--ak-golge)}
+  #baslangic .donen svg{width:100%;height:100%;display:block}
+  #bosUyari{position:fixed;left:0;right:0;top:0;z-index:95;pointer-events:none;background:var(--ak-yazi);color:var(--ak-zemin);text-align:center;padding:18px;font-weight:650;font-size:1.1em}
+  @media (max-width:520px){.ak-izgara{grid-template-columns:repeat(2,1fr);gap:10px}.urun{padding:8px;gap:6px}.urun .acik{display:none}}
+</style>
+<style>@media(pointer:coarse){button,select,summary{min-height:44px;touch-action:manipulation}input,textarea,select{font-size:16px!important}html,body{overscroll-behavior:contain}button{touch-action:manipulation}}</style><link rel="stylesheet" href="kiosk57.css?v=64">
+<link rel="stylesheet" href="customer61.css?v=64">
+<link rel="stylesheet" href="customer-kiosk61.css?v=64">
+</head>
+<body>
+<div id="serit" class="ak-serit" hidden></div>
+<header class="ak-ust"><div class="ak-ust-ic">
+  <a class="ak-marka" href="index.html" style="text-decoration:none;color:inherit">AUTO<i>KITCH</i></a>
+  <span class="ak-bosluk"></span>
+  <button class="ak-dugme hayalet kucuk dil-dugme" id="dilD" data-t-aria="ust.dil" aria-label="Dil">EN</button>
+  <button class="ak-dugme hayalet kucuk" id="temaD" data-t-aria="ust.tema" aria-label="Tema">◐</button>
+  <button class="ak-dugme kucuk" id="hesapD"><span data-t="ust.hesap">Hesabım</span></button>
+</div></header>
+
+<main class="ak-kap" id="ana"></main>
+<div class="alt-bosluk"></div>
+<div class="sepet-bar" id="sepetBar" hidden><div class="ic">
+  <div><div class="ak-kucuk ak-soluk" id="sepetSay"></div><div class="toplam" id="sepetToplam"></div></div>
+  <button class="ak-dugme ana" id="sepetGit"><span data-t="sepet.git">Sepete git</span> →</button>
+</div></div>
+
+<div id="baslangic" role="button" tabindex="0">
+  <div class="ak-marka" style="font-size:1.2em">AUTO<i>KITCH</i></div>
+  <div class="donen" id="donen"></div>
+  <div class="buyuk" data-t="kiosk.dokun">Dokun, sipariş ver</div>
+  <div class="ak-soluk" data-t="kiosk.alt">Pide · Lahmacun — robot hazırlar, dolaptan alırsın</div>
+  <div class="ak-satir"><button class="ak-dugme" id="kTR">Türkçe</button><button class="ak-dugme" id="kEN">English</button></div>
+</div>
+<div id="bosUyari" hidden></div>
+
+<script src="../ortak/ak-dil.js"></script>
+<script src="../ortak/ak.js"></script>
+<script src="../ortak/ak-katalog.js"></script>
+<script src="../ortak/ak-demo-menu.js"></script>
+<script src="../ortak/ak-demo.js"></script>
+<script src="kiosk57.js?v=64"></script>
+<script src="customer61.js?v=64"></script>
+<script>
+(function () {
+  'use strict';
+  const { h, $, t, tl } = AK;
+  const KIOSK = AK.Q.get('mod') === 'kiosk';
+  if (KIOSK) document.documentElement.setAttribute('data-yuzey', 'kiosk');
+  const ana = $('#ana');
+  const sepet = AK.sakla.al('ak.sepet', {});          // {urunId: {adet, not}}
+  let menu = [], menuGrup = 'ana', gorunum = location.hash.replace('#', '') || 'menu';
+  let mevcut = null;                                  // {id, e, siparis}  ödeme aşamasındaki sipariş
+  let profil = null;                                   // oturumlu üye (sunucu /api/uye/ben) — telefon / geçmiş sunucuda
+  const teslim = { tur: AK.sakla.al('ak.teslim', 'dolap'), telefon: '', kvkk: false, not: '' };
+  let makine = null;
+  let featured57 = 'sucuklu';
+
+  /* ------------------------------------------------------------------ yardımcılar */
+  const kaydetSepet = () => AK.sakla.yaz('ak.sepet', sepet);
+  const urunBul = id => menu.find(u => u.id === id);
+  const sepetSatirlar = () => Object.entries(sepet).filter(([, v]) => v.adet > 0).map(([id, v]) => ({ id, adet: v.adet, not: v.not || '', u: urunBul(id) })).filter(x => x.u);
+  const sepetToplam = () => sepetSatirlar().reduce((a, x) => a + x.adet * x.u.fiyat_kurus, 0);
+  const sepetAdet = () => sepetSatirlar().reduce((a, x) => a + x.adet, 0);
+  const anaVar = () => sepetSatirlar().some(x => !x.u.ek);
+  const telNorm = s => { const d = String(s || '').replace(/[^\d+]/g, ''); const m = d.match(/^(?:\+?90|0)?(5\d{9})$/); return m ? '+90' + m[1] : null; };
+  const kat = id => (window.AK_KATALOG || {})[id] || {};
+  const urunAciklama = u => { const k = kat(u.id); return (AK.dil.kod === 'en' ? (u.aciklama_en || k.aciklama_en) : (u.aciklama || k.aciklama)) || ''; };
+  const resim = id => h('div', { sinif: 'ak-resim', html: AK_RESIM(id) });
+  const alerjenAd = (a, tam) => { const d = (tam ? window.AK_ALERJEN : (window.AK_ALERJEN_KISA && window.AK_ALERJEN_KISA[a] ? window.AK_ALERJEN_KISA : window.AK_ALERJEN))[a]; return d ? d[AK.dil.kod] || d.tr : a; };
+  function alerjenSatiri(u, tam) {
+    const k = kat(u.id), kap = h('div', { sinif: 'alerjenler' });
+    const liste = u.alerjen !== undefined ? u.alerjen : k.alerjen;           // sunucu alanı önce (null = bilinmiyor)
+    if (liste === null || liste === undefined) { if (tam) kap.append(h('span', { sinif: 'ak-alerjen', metin: t('alerjen.bilinmiyor') })); return kap; }
+    liste.forEach(a => kap.append(h('span', { sinif: 'ak-alerjen', title: t('alerjen.icerir'), metin: alerjenAd(a, tam) })));
+    if (!liste.length && tam) kap.append(h('span', { sinif: 'ak-rozet iyi', metin: t('alerjen.yok') }));
+    return kap;
+  }
+  function git(g) { gorunum = g; if (location.hash !== '#' + g) history.pushState(null, '', '#' + g); ciz(); scrollTo(0, 0); }
+  window.addEventListener('popstate', () => { gorunum = location.hash.replace('#', '') || 'menu'; ciz(); });
+
+  function serit() {
+    const s = $('#serit'); const m = AK.api.mod;
+    if (m === 'demo') { s.hidden = false; s.className = 'ak-serit'; s.textContent = t('serit.demo'); }
+    else if (makine && (makine.hazir === false || ['KAPALI', 'ISINMA', 'HATA', 'TEMIZLIK', 'SERVIS'].includes(makine.mod))) {
+      s.hidden = false; s.className = 'ak-serit'; s.textContent = t('serit.hat_kapali');
+    } else s.hidden = true;
+  }
+
+  /* ------------------------------------------------------------------ MENÜ */
+  const GRUPLAR = [['ana', 'grup.ana'], ['ek', 'grup.ek']];
+  const grupOf = u => u.grup || kat(u.id).grup || (u.ek ? 'ek' : 'ana');
+  function menuCiz() {
+    ana.replaceChildren();
+    const ust = h('div', { sinif: 'menu-ust' }, h('h1', { metin: t('menu.baslik') }),
+      h('div', { sinif: 'ak-sekme', role: 'tablist' }, GRUPLAR.map(([g, a]) => h('button', { sinif: g === menuGrup ? 'on' : '', role: 'tab', 'aria-selected': g === menuGrup, onclick: () => { menuGrup = g; menuCiz(); }, metin: t(a) }))));
+    if (KIOSK && window.AK_KIOSK57) {
+      if (menuGrup === 'ana') ana.append(AK_KIOSK57.hero(menu, featured57, id => { featured57 = id; menuCiz(); }, id => degistir(id, 1), urunDetay));
+    }
+    if (!KIOSK && window.AK_CUSTOMER61 && menuGrup==='ana') ana.append(AK_CUSTOMER61.hero());
+    ana.append(ust);
+    if (menu.some(u => u.ornek_fiyat)) ana.append(h('p', { sinif: 'ak-soluk ak-kucuk', metin: t('menu.ornek_fiyat') }));
+    const izgara = h('div', { sinif: 'ak-izgara',id:'urunler61' });
+    menu.filter(u => grupOf(u) === menuGrup).forEach(u => {
+      const n = (sepet[u.id] || {}).adet || 0, k = kat(u.id);
+      const kart = h('article', { sinif: 'ak-kart urun' + (u.tukendi ? ' tukendi' : ''), tabindex: 0, 'aria-label': AK.urunAd(u),
+        onclick: e => { if (!e.target.closest('button, .alt, .ak-adet') && !u.tukendi) urunDetay(u); }, /* C E17: Ekle / adet satırı ayrıntıyı açmaz */ onkeydown: e => { if (e.key === 'Enter' && !u.tukendi) urunDetay(u); } },
+        resim(u.id),
+        h('div', { sinif: 'ad', metin: AK.urunAd(u) }),
+        h('div', { sinif: 'acik', metin: urunAciklama(u) }),
+        alerjenSatiri(u, false),
+        h('div', { sinif: 'alt' }, h('span', { sinif: 'fiyat', metin: tl(u.fiyat_kurus) }),
+          u.tukendi ? h('span', { sinif: 'ak-rozet kotu', metin: t(u.gecici_yok ? 'menu.gecici_yok' : 'menu.tukendi') })
+            : n ? adetSecici(u, n) : h('button', { sinif: 'ak-dugme ana kucuk', onclick: e => { e.stopPropagation(); degistir(u.id, 1); }, metin: t('menu.ekle') })));
+      izgara.append(kart);
+    });
+    ana.append(izgara);
+    if (menuGrup === 'ek') ana.append(h('p', { sinif: 'ak-soluk ak-kucuk', metin: t('menu.ek_not') }));
+  }
+  function adetSecici(u, n, bitir) {
+    return h('div', { sinif: 'ak-adet', role: 'group', 'aria-label': AK.urunAd(u) },
+      h('button', { 'aria-label': t('sepet.azalt'), onclick: e => { e.stopPropagation(); degistir(u.id, -1); bitir && bitir(); } , metin: '−' }),
+      h('b', { metin: n }),
+      h('button', { 'aria-label': t('sepet.artir'), disabled: n >= Math.min(12, u.kalan), onclick: e => { e.stopPropagation(); degistir(u.id, 1); bitir && bitir(); }, metin: '+' }));
+  }
+  function degistir(id, d) {
+    const u = urunBul(id); if (!u) return;
+    const v = sepet[id] || { adet: 0, not: '' };
+    v.adet = Math.max(0, Math.min(12, Math.min(u.kalan, v.adet + d))); if (v.adet) sepet[id] = v; else delete sepet[id];
+    kaydetSepet(); ciz();
+  }
+  function urunDetay(u) {
+    const k = kat(u.id), icerik = AK.dil.kod === 'en' ? (u.icerik_liste_en !== undefined ? u.icerik_liste_en : k.icerik_en) : (u.icerik_liste !== undefined ? u.icerik_liste : k.icerik);
+    const g = (sepet[u.id] || {}).adet || 0;
+    const m = AK.modal(h('div', { sinif: 'ak-sutun' },
+      resim(u.id), h('h2', { metin: AK.urunAd(u) }), h('p', { metin: urunAciklama(u) }),
+      h('div', {}, h('div', { sinif: 'ak-kucuk ak-soluk ak-kalin', metin: t('detay.icindekiler') }),
+        h('p', { metin: icerik === null || icerik === undefined ? t('detay.icerik_yok') : (icerik.join(' · ') || '—') })),
+      h('div', {}, h('div', { sinif: 'ak-kucuk ak-soluk ak-kalin', metin: t('detay.alerjen') }), alerjenSatiri(u, true)),
+      u.alerjen_kesin === true ? null : h('p', { sinif: 'ak-ipucu uyari ak-kucuk', metin: t('alerjen.not') }),
+      h('div', { sinif: 'ak-satir ayir' }, h('b', { metin: tl(u.fiyat_kurus) }),
+        h('button', { sinif: 'ak-dugme ana', onclick: () => { degistir(u.id, 1); m.kapat(); AK.bildir(t('sepet.eklendi')); }, metin: t('menu.ekle') })),
+      h('button', { sinif: 'ak-dugme hayalet tam', onclick: () => m.kapat(), metin: t('ortak.kapat') })));
+  }
+
+  /* ------------------------------------------------------------------ SEPET + TESLİM */
+  function adimCubugu(n) { return h('div', { sinif: 'adimcubuk', 'aria-hidden': 'true' }, [0, 1, 2].map(i => h('i', { sinif: i <= n ? 'on' : '' }))); }
+  function sepetCiz() {
+    ana.replaceChildren();
+    const sat = sepetSatirlar();
+    ana.append(adimCubugu(0), h('div', { sinif: 'ak-satir ayir' }, h('h1', { metin: t('sepet.baslik') }), h('button', { sinif: 'ak-dugme hayalet kucuk', onclick: () => git('menu'), metin: '← ' + t('sepet.menuye') })));
+    if (!sat.length) { ana.append(h('div', { sinif: 'ak-kart ak-orta' }, h('p', { sinif: 'ak-soluk', metin: t('sepet.bos') }), h('button', { sinif: 'ak-dugme ana', onclick: () => git('menu'), metin: t('sepet.menuye') }))); return; }
+    const kart = h('div', { sinif: 'ak-kart' });
+    sat.forEach(x => {
+      const notAlan = h('input', { sinif: 'ak-giris', type: 'text', maxlength: 80, value: x.not, placeholder: t('sepet.kalem_not_ph'), 'aria-label': t('sepet.kalem_not'),
+        oninput: e => { sepet[x.id].not = e.target.value; kaydetSepet(); }, stil: { display: x.not ? 'block' : 'none', gridColumn: '1 / -1' } });
+      kart.append(h('div', { sinif: 'satirkalem' },
+        h('div', { sinif: 'kucukresim', html: AK_RESIM(x.id) }),
+        h('div', {}, h('div', { sinif: 'ak-kalin', metin: AK.urunAd(x.u) }), h('div', { sinif: 'ak-soluk ak-kucuk', metin: tl(x.u.fiyat_kurus) }),
+          h('button', { sinif: 'ak-dugme hayalet kucuk', stil: { minHeight: '30px', padding: '0 6px' }, onclick: () => { notAlan.style.display = notAlan.style.display === 'none' ? 'block' : 'none'; if (notAlan.style.display === 'block') notAlan.focus(); }, metin: (KIOSK ? '' : '✎ ') + t('sepet.kalem_not') })),
+        adetSecici(x.u, x.adet), notAlan));
+    });
+    ana.append(kart);
+    if (!anaVar()) ana.append(h('p', { sinif: 'ak-ipucu uyari', metin: t('sepet.ana_gerek') }));
+
+    teslim.tur = 'dolap';                                // K11 + ELESTIRMEN-EK13 (10 Eki): TEZGÂH teslimi kalktı — her sipariş dolaptan (kod / QR)
+    if (!KIOSK) {
+      ana.append(h('label', { sinif: 'ak-alan' }, h('span', { metin: t('sepet.siparis_notu') }),
+        h('textarea', { sinif: 'ak-giris', maxlength: 160, placeholder: t('sepet.siparis_notu_ph'), oninput: e => { teslim.not = e.target.value; } , metin: teslim.not })));
+    }
+
+    // bildirim (SMS) — isteğe bağlı, KVKK onaylı
+    const tel = profil && profil.telefon ? profil.telefon : '';
+    teslim.telefon = tel || teslim.telefon;
+    const telK = h('div', { sinif: 'ak-kart duz', stil: { marginTop: '12px' } },
+      h('div', { sinif: 'ak-kalin', metin: t('bildirim.baslik') }), h('p', { sinif: 'ak-soluk ak-kucuk', metin: t('bildirim.ac') }),
+      tel ? h('div', { sinif: 'ak-satir' }, h('span', { sinif: 'ak-rozet iyi', metin: t('hesap.kayitli') }), h('b', { metin: tel }))
+        : [h('label', { sinif: 'ak-alan' }, h('span', { metin: t('bildirim.telefon') }), h('input', { sinif: 'ak-giris', type: 'tel', inputmode: 'tel', autocomplete: 'tel', placeholder: '+90 5xx xxx xx xx', value: teslim.telefon, oninput: e => { teslim.telefon = e.target.value; } })),
+          h('label', { sinif: 'ak-onay' }, h('input', { type: 'checkbox', checked: teslim.kvkk, onchange: e => { teslim.kvkk = e.target.checked; } }),
+            h('span', {}, t('kvkk.onay_a') + ' ', h('a', { href: '#', onclick: e => { e.preventDefault(); kvkkMetni(); }, metin: t('kvkk.aydinlatma') }), ' ' + t('kvkk.onay_b')))]);
+    if (KIOSK) { const d = h('details', { sinif: 'kiosk-sms', stil: { marginTop: '12px' } }, h('summary', { metin: t('kiosk.sms_baslik') })); d.append(telK); ana.append(d); } else ana.append(telK);
+    ana.append(h('div', { sinif: 'ak-kart', stil: { marginTop: '16px' } },
+      h('div', { sinif: 'ak-satir ayir' }, h('span', { metin: t('sepet.toplam') }), h('span', { sinif: 'toplam', metin: tl(sepetToplam()) })),
+      h('p', { sinif: 'ak-soluk ak-kucuk', metin: t('sepet.kdv') }),
+      h('p', { sinif: 'ak-hata', id: 'sepetHata', role: 'alert' }),
+      h('button', { sinif: 'ak-dugme ana tam', id: 'odemeyeGec', disabled: !anaVar(), onclick: siparisVer, metin: KIOSK ? t('kiosk.onayla_ode') : t('sepet.odemeye_gec') + ' →' })));
+  }
+  function secenek(deger, baslik, aciklama) {
+    const on = teslim.tur === deger;
+    return h('label', { sinif: 'secenek' + (on ? ' on' : ''), stil: { marginBottom: '8px' } },
+      h('input', { type: 'radio', name: 'teslim', checked: on, onchange: () => { teslim.tur = deger; AK.sakla.yaz('ak.teslim', deger); sepetCiz(); } }),
+      h('div', {}, h('div', { sinif: 'ak-kalin', metin: baslik }), h('div', { sinif: 'ak-soluk ak-kucuk', metin: aciklama })));
+  }
+  function kvkkMetni() {
+    const m = AK.modal(h('div', { sinif: 'ak-sutun' }, h('h2', { metin: t('kvkk.aydinlatma') }),
+      h('p', { sinif: 'ak-ipucu uyari ak-kucuk', metin: t('kvkk.taslak') }),
+      ['kvkk.m1', 'kvkk.m2', 'kvkk.m3', 'kvkk.m4', 'kvkk.m5', 'kvkk.m6'].map(k => h('p', { metin: t(k) })),
+      h('button', { sinif: 'ak-dugme ana tam', onclick: () => m.kapat(), metin: t('ortak.tamam') })));
+  }
+  async function siparisVer() {
+    const hata = $('#sepetHata'); hata.textContent = '';
+    const tel = profil && profil.telefon ? profil.telefon : (teslim.telefon.trim() ? telNorm(teslim.telefon) : null);
+    if (!(profil && profil.telefon) && teslim.telefon.trim() && !tel) { hata.textContent = t('hata.telefon'); return; }
+    if (tel && !(profil && profil.telefon) && !teslim.kvkk) { hata.textContent = t('hata.kvkk'); return; }
+    const sat = sepetSatirlar();
+    const dugme = $('#odemeyeGec'); dugme.disabled = true;
+    try {
+      const j = await AK.siparis.olustur(sat.map(x => ({ urun: x.id, adet: x.adet, not: x.not })), { telefon: profil ? null : tel, kvkk: !!tel, not: teslim.not.slice(0, 160), teslim: teslim.tur === 'tezgah' ? 'TEZGAH' : 'DOLAP' });
+      mevcut = { id: j.id, e: j.erisim, siparis: j.siparis };
+      AK.siparis.kaydet(j.siparis, j.erisim, sat.map(x => x.adet + '× ' + AK.urunAd(x.u)).join(', '));
+      Object.keys(sepet).forEach(k => delete sepet[k]); kaydetSepet();
+      const q = new URLSearchParams(location.search); q.set('s', j.id); q.set('e', j.erisim); history.replaceState(null, '', '?' + q + location.hash);
+      git('odeme');
+    } catch (e) { hata.textContent = e.message; dugme.disabled = false; await yukleMenu(); }
+  }
+
+  /* ------------------------------------------------------------------ ÖDEME */
+  async function odemeCiz() {
+    ana.replaceChildren();
+    if (!mevcut) {                                       // iyzico dönüşü / sayfa yenileme
+      const s = AK.Q.get('s'), e = AK.Q.get('e') || (AK.siparis.gecmis().find(x => x.id === s) || {}).e;
+      if (s && e) { try { const sp = await AK.siparis.getir(s, e); mevcut = { id: s, e, siparis: sp }; } catch (x) { /* aşağıda */ } }
+      if (!mevcut) { git('menu'); return; }
+    }
+    const sp = mevcut.siparis;
+    if (sp.durum !== 'ODEME_BEKLIYOR') { location.href = AK.siparis.takipUrl(mevcut.id, mevcut.e) + (KIOSK ? '&mod=kiosk' : ''); return; }
+    ana.append(adimCubugu(2), h('h1', { metin: t('odeme.baslik') }));
+    const k = h('div', { sinif: 'ak-kart odeme-kutu' },
+      h('div', { sinif: 'ak-soluk', metin: t('odeme.siparis_no', { no: sp.kisa_no }) }), h('div', { sinif: 'toplam', stil: { fontSize: '2.2em' }, metin: tl(sp.toplam_kurus) }),
+      sp.kalemler.map(x => h('div', { sinif: 'ak-soluk ak-kucuk', metin: x.adet + '× ' + AK.urunAd({ id: x.urun_id, ad: x.ad }) })));
+    ana.append(k);
+    let ob = { url: null }; try { ob = await AK.siparis.odemeBaslat(mevcut.id, mevcut.e); } catch (e) { k.append(h('p', { sinif: 'ak-hata', metin: e.message })); }
+    const hata = h('p', { sinif: 'ak-hata', role: 'alert', metin: AK.Q.get('hata') === 'odeme' ? t('odeme.basarisiz') : '' });
+    if (ob.url) {
+      k.append(h('button', { sinif: 'ak-dugme ana tam', stil: { marginTop: '16px' }, onclick: () => { location.href = ob.url; }, metin: t('odeme.iyzico') }), h('p', { sinif: 'ak-soluk ak-kucuk', metin: t('odeme.guvenli') }));
+    } else {
+      k.append(h('div', { sinif: 'test-uyari', stil: { margin: '16px 0' }, metin: t('odeme.test_uyari') }),
+        h('div', { sinif: 'ak-sutun' },
+          h('button', { sinif: 'ak-dugme ana tam', id: 'odeTest', onclick: () => odeTest(null, hata), metin: KIOSK ? t('kiosk.ode_test') : t('odeme.test_ode') }),
+          h('button', { sinif: 'ak-dugme tam', id: 'odeRed', onclick: () => odeTest('RED', hata), metin: t('odeme.test_red') })));
+    }
+    if (KIOSK) {                                         // kioskta kart terminali yok → telefonla öde (QR) ya da tezgâh
+      const url = new URL('index.html', location.href.replace(/[?#].*$/, '')); url.searchParams.set('s', mevcut.id); url.searchParams.set('e', mevcut.e); if (AK.api.mod === 'demo') url.searchParams.set('demo', '1'); url.hash = 'odeme';
+      k.append(h('div', { sinif: 'ak-ara' }), h('div', { sinif: 'ak-kalin', metin: t('odeme.telefonla') }), AK.qrKutu(url.href, 300), h('p', { sinif: 'ak-soluk ak-kucuk', metin: t('odeme.telefonla_ac') }));
+      const izle = AK.dongu(async () => { const s2 = await AK.siparis.getir(mevcut.id, mevcut.e); if (s2.durum !== 'ODEME_BEKLIYOR') { izle.durdur(); sonrasi(); } }, 2000);
+    }
+    k.append(hata, h('button', { sinif: 'ak-dugme hayalet tam', onclick: vazgec, metin: t('odeme.vazgec') }));
+  }
+  async function odeTest(kart, hata) {
+    hata.textContent = '';
+    try { await AK.siparis.ode(mevcut.id, mevcut.e, kart); sonrasi(); }
+    catch (e) { hata.textContent = (e.kod === 402 ? t('odeme.reddedildi') + ' ' : '') + e.message; }
+  }
+  function sonrasi() { location.href = AK.siparis.takipUrl(mevcut.id, mevcut.e) + (KIOSK ? '&mod=kiosk' : ''); }
+  async function vazgec() { try { await AK.siparis.iptal(mevcut.id, mevcut.e, 'ödeme vazgeçildi'); } catch (e) { /* */ } AK.siparis.unut(mevcut.id); mevcut = null; temizUrl(); await yukleMenu(); git('menu'); }
+  function temizUrl() { const q = new URLSearchParams(location.search); q.delete('s'); q.delete('e'); q.delete('hata'); history.replaceState(null, '', location.pathname + (q.toString() ? '?' + q : '') + location.hash); }
+
+  /* ------------------------------------------------------------------ HESAP (sunucu: /api/uye/* — telefon + SMS doğrulama) */
+  let otpGonderildi = false, otpTel = '', otpKvkk = false, otpTest = null;
+  async function profilYukle() {
+    if (!AK.oturum.token()) { profil = null; return; }
+    try { const u = await AK.uye.ben(); profil = { telefon: u.telefon, ad: u.ad || '', ticari: !!u.ticari_izin, kvkk_t: (u.kvkk_zaman || 0) * 1000, dogrulandi: true }; }
+    catch (e) { if (e.kod === 401) AK.oturum.ayarla(null); profil = null; }
+  }
+  function hesapCiz() {
+    ana.replaceChildren();
+    ana.append(h('div', { sinif: 'ak-satir ayir' }, h('h1', { metin: t('hesap.baslik') }), h('button', { sinif: 'ak-dugme hayalet kucuk', onclick: () => git('menu'), metin: '← ' + t('sepet.menuye') })));
+    if (profil) {
+      ana.append(h('div', { sinif: 'ak-kart' },
+        h('div', { sinif: 'ak-satir ayir' }, h('div', {}, h('div', { sinif: 'ak-kalin', metin: profil.ad || t('hesap.misafir') }), h('div', { sinif: 'ak-soluk', metin: profil.telefon })),
+          h('span', { sinif: 'ak-rozet iyi', metin: t('hesap.dogrulandi') })),
+        h('label', { sinif: 'ak-alan' }, h('span', { metin: t('hesap.ad') }), h('input', { sinif: 'ak-giris', type: 'text', maxlength: 40, value: profil.ad || '', autocomplete: 'given-name',
+          onchange: async e => { try { await AK.uye.ad(e.target.value.trim()); profil.ad = e.target.value.trim(); AK.bildir(t('hesap.kaydedildi')); } catch (x) { AK.bildir(x.message); } } })),
+        h('label', { sinif: 'ak-onay' }, h('input', { type: 'checkbox', checked: !!profil.ticari, onchange: async e => {
+          try { await AK.uye.ticari(e.target.checked); profil.ticari = e.target.checked; AK.bildir(t('hesap.kaydedildi')); } catch (x) { e.target.checked = !e.target.checked; AK.bildir(x.message); } } }),
+          h('span', {}, t('hesap.ticari'))),
+        h('p', { sinif: 'ak-soluk ak-kucuk', metin: t('hesap.kvkk_tarih', { tarih: new Date(profil.kvkk_t).toLocaleDateString(AK.dil.kod === 'en' ? 'en-GB' : 'tr-TR') }) }),
+        h('div', { sinif: 'ak-satir' }, h('button', { sinif: 'ak-dugme', onclick: async () => { await AK.uye.cikis(); profil = null; hesapCiz(); }, metin: t('hesap.cikis') }),
+          h('button', { sinif: 'ak-dugme tehlike', onclick: verilerimiSil, metin: t('hesap.sil') }))));
+    } else if (!KIOSK) {
+      const hata = h('p', { sinif: 'ak-hata', role: 'alert' });
+      const tel = h('input', { sinif: 'ak-giris', type: 'tel', inputmode: 'tel', autocomplete: 'tel', placeholder: '+90 5xx xxx xx xx', value: otpTel, oninput: e => { otpTel = e.target.value; } });
+      const kvkk = h('input', { type: 'checkbox', checked: otpKvkk, onchange: e => { otpKvkk = e.target.checked; } });
+      const kod = h('input', { sinif: 'ak-giris', type: 'text', inputmode: 'numeric', maxlength: 6, placeholder: '• • • • • •', autocomplete: 'one-time-code', id: 'otpKod' });
+      ana.append(h('div', { sinif: 'ak-kart' }, h('h2', { metin: t('hesap.giris') }), h('p', { sinif: 'ak-soluk', metin: t('hesap.giris_ac') }),
+        h('label', { sinif: 'ak-alan' }, h('span', { metin: t('bildirim.telefon') }), tel),
+        h('label', { sinif: 'ak-onay' }, kvkk, h('span', {}, t('kvkk.onay_a') + ' ', h('a', { href: '#', onclick: e => { e.preventDefault(); kvkkMetni(); }, metin: t('kvkk.aydinlatma') }), ' ' + t('kvkk.onay_b'))),
+        otpGonderildi ? h('label', { sinif: 'ak-alan' }, h('span', { metin: t('hesap.sms_kod') }), kod) : null,
+        otpTest ? h('p', { sinif: 'ak-ipucu uyari ak-kucuk', id: 'otpTest', metin: t('hesap.test_kod', { kod: otpTest }) }) : null,
+        hata,
+        h('button', { sinif: 'ak-dugme ana tam', id: 'hesapDevam', onclick: async () => {
+          hata.textContent = '';
+          try {
+            if (!otpGonderildi) {
+              if (!otpTel.trim()) { hata.textContent = t('hata.telefon'); return; }
+              if (!otpKvkk) { hata.textContent = t('hata.kvkk'); return; }
+              const j = await AK.uye.kodIste(otpTel, true); otpGonderildi = true; otpTest = j.test_kodu || null; hesapCiz();
+            } else {
+              await AK.uye.dogrula(otpTel, kod.value); otpGonderildi = false; otpKvkk = false; otpTest = null; await profilYukle(); hesapCiz();
+            }
+          } catch (e) { hata.textContent = e.kod === 400 && /telefon/.test(e.message) ? t('hata.telefon') : e.message; }
+        }, metin: otpGonderildi ? t('hesap.dogrula') : t('hesap.kod_gonder') })));
+    } else {
+      ana.append(h('div', { sinif: 'ak-kart ak-orta', metin: t('hesap.kiosk_yok') }));
+    }
+    // geçmiş: üye ise sunucu (cihazlar arası), değilse bu cihaz
+    const kart = h('div', { sinif: 'ak-kart', stil: { marginTop: '14px' } }, h('h2', { stil: { marginBottom: '8px' }, metin: t('gecmis.baslik') }));
+    ana.append(kart);
+    (async () => {
+      let gec = AK.siparis.gecmis();
+      if (profil) {
+        try {
+          const j = await AK.uye.siparisler();
+          const sunucu = j.siparisler.map(x => ({ id: x.id, e: x.erisim, t: (x.olusma || 0) * 1000, kisa_no: x.kisa_no, toplam: x.toplam_kurus, ozet: x.kalemler.map(k => k.adet + '× ' + k.ad).join(', ') }));
+          gec = sunucu.concat(gec.filter(g => !sunucu.some(x => x.id === g.id)));
+        } catch (e) { /* yerel geçmiş */ }
+      }
+      if (!gec.length) kart.append(h('p', { sinif: 'ak-soluk', metin: t('gecmis.bos') }));
+      gec.forEach(g => {
+        const durumRozet = h('span', { sinif: 'ak-rozet', metin: '…' });
+        kart.append(h('div', { sinif: 'gecmis-satir', role: 'link', tabindex: 0, onclick: () => { location.href = AK.siparis.takipUrl(g.id, g.e) + (KIOSK ? '&mod=kiosk' : ''); } },
+          h('div', {}, h('div', { sinif: 'ak-kalin', metin: t('gecmis.siparis', { no: g.kisa_no }) + ' · ' + tl(g.toplam) }), h('div', { sinif: 'ak-soluk ak-kucuk', metin: new Date(g.t).toLocaleString(AK.dil.kod === 'en' ? 'en-GB' : 'tr-TR') + ' · ' + g.ozet })),
+          durumRozet));
+        AK.siparis.getir(g.id, g.e).then(x => { durumRozet.textContent = t('durum.' + x.durum); durumRozet.className = 'ak-rozet ' + (x.durum === 'TESLIM_EDILDI' ? 'iyi' : ['IPTAL', 'IADE', 'HATA'].includes(x.durum) ? 'kotu' : 'vurgu'); })
+          .catch(() => { durumRozet.textContent = t('gecmis.yok'); });
+      });
+    })();
+  }
+  async function verilerimiSil() {
+    if (!confirm(t('hesap.sil_onay'))) return;
+    try { await AK.uye.sil(); } catch (e) { AK.oturum.ayarla(null); }
+    profil = null; ['ak.profil', 'ak.gecmis', 'ak.sepet', 'ak.teslim'].forEach(k => AK.sakla.sil(k)); Object.keys(sepet).forEach(k => delete sepet[k]); hesapCiz(); AK.bildir(t('hesap.silindi'));
+  }
+
+  /* ------------------------------------------------------------------ çizim döngüsü */
+  function ciz() {
+    $('#dilD').textContent = AK.dil.kod === 'tr' ? 'EN' : 'TR';
+    $('#hesapD').hidden = KIOSK;
+    if (KIOSK) { document.documentElement.dataset.kioskView = gorunum; $('#temaD').hidden = true; }
+    const bar = $('#sepetBar'), n = sepetAdet();
+    bar.hidden = KIOSK ? gorunum !== 'menu' : !(n > 0 && ['menu'].includes(gorunum));   // kioskta çubuk menüde HER ZAMAN görünür
+    bar.classList.toggle('bos', !n);
+    if (n) { $('#sepetSay').textContent = t('sepet.urun_say', { n }); $('#sepetToplam').textContent = tl(sepetToplam()); }
+    if (KIOSK) { const b = $('#sepetGit'); b.disabled = !n; b.textContent = n ? AK_KIOSK57.say('Sepetim · ' + n + ' ürün', 'Basket · ' + n + ' items') : AK_KIOSK57.say('Başlamak için bir ürün seç', 'Choose a product to start'); if (n) b.append(AK_KIOSK57.icon('arrow-right')); }
+    serit();
+    if (gorunum === 'sepet') sepetCiz(); else if (gorunum === 'odeme') odemeCiz(); else if (gorunum === 'hesap' && !KIOSK) hesapCiz(); else { gorunum = 'menu'; menuCiz(); }
+    AK.dil.uygula();
+  }
+  async function yukleMenu() {
+    try { const j = await AK.siparis.menu(); menu = j.urunler; makine = j.makine || null; if (j.dukkan) document.title = j.dukkan + ' · ' + t('menu.baslik'); }
+    catch (e) { ana.replaceChildren(h('div', { sinif: 'ak-kart ak-orta' }, h('p', { sinif: 'ak-hata', metin: t('hata.menu') }), h('button', { sinif: 'ak-dugme', onclick: () => location.reload(), metin: t('ortak.tekrar') }))); throw e; }
+    Object.keys(sepet).forEach(id => { const u = urunBul(id); if (!u || u.tukendi) delete sepet[id]; else sepet[id].adet = Math.min(sepet[id].adet, u.kalan); }); kaydetSepet();
+  }
+
+  /* kiosk başlangıç ekranı + boşta sıfırlama */
+  function kioskKur() {
+    const b = $('#baslangic');
+    const redrawStart57 = AK_KIOSK57.start(menu);
+    window.addEventListener('ak-dil', redrawStart57);
+    const ac = () => { b.classList.remove('on'); AK_KIOSK57.setAttract(false); git('menu'); };
+    b.addEventListener('click', ac); // retain touch-anywhere wake behavior; product previews stop propagation
+    $('#kTR').onclick = e => { e.stopPropagation(); AK.dil.ayarla('tr'); ac(); }; $('#kEN').onclick = e => { e.stopPropagation(); AK.dil.ayarla('en'); ac(); };
+    b.classList.add('on'); AK_KIOSK57.setAttract(true);
+    const uyar = $('#bosUyari');
+    AK.bosta(75, 15, (goster2, kalan) => { uyar.hidden = !goster2; if (goster2) uyar.textContent = t('kiosk.bosta', { sn: kalan }); },
+      () => { Object.keys(sepet).forEach(k => delete sepet[k]); kaydetSepet(); mevcut = null; teslim.not = ''; teslim.telefon = ''; teslim.kvkk = false; AK.dil.ayarla('tr'); b.classList.add('on'); AK_KIOSK57.setAttract(true); gorunum = 'menu'; temizUrl(); ciz(); });
+  }
+
+  /* ------------------------------------------------------------------ başlat */
+  $('#dilD').onclick = () => AK.dil.ayarla(AK.dil.kod === 'tr' ? 'en' : 'tr');
+  $('#temaD').onclick = () => AK.tema.degistir();
+  $('#hesapD').onclick = () => git('hesap');
+  $('#sepetGit').onclick = () => git('sepet');
+  if (KIOSK) { const brand57 = document.querySelector('.ak-ust .ak-marka'); brand57.href = '#menu'; brand57.onclick = e => { e.preventDefault(); git('menu'); }; }
+  window.addEventListener('ak-dil', ciz);
+  (async function () {
+    try { await AK.api.hazir(); await yukleMenu(); await profilYukle(); } catch (e) { return; }
+    if (KIOSK) kioskKur();
+    if (!['menu', 'sepet', 'odeme', 'hesap'].includes(gorunum)) gorunum = 'menu';
+    if (gorunum === 'sepet' && !sepetAdet()) gorunum = 'menu';
+    ciz();
+    AK.dongu(async () => { if (gorunum === 'menu') { const j = await AK.siparis.menu(); menu = j.urunler; makine = j.makine || null; serit(); } }, 15000);
+  })();
+  window.AK_UYGULAMA = { sepet, git, get gorunum() { return gorunum; } };   // yalnız test
+})();
+</script>
+</body>
+</html>

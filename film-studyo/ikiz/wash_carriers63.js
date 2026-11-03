@@ -1,0 +1,27 @@
+import {solidTools42} from './wash_solid61.js';
+// Two brake-formed1.5mm C carriers, permanently welded to existing RHS.
+// Covers carry no pipes, cables or clamp fasteners.
+export function carriers63(T,F,root,clampRows){
+ const solid=solidTools42(T),parts=[],clamps=[],mark=(o,role,id)=>{o.userData={...o.userData,wash63:true,role63:role,clamp63:id};parts.push(o);return o;};
+ function mesh(n,g,role,id){const o=new T.Mesh(g,F.steel);o.name='YIKAMA__'+n;root.add(o);F.parts.push(o);return mark(o,role,id);}
+ function profile(){const s=new T.Shape(),R=.003,r=.0015,c=.012,z=.007;s.moveTo(-.015,0);s.lineTo(-.015,z);for(let i=1;i<=24;i++){const a=i*Math.PI/48;s.lineTo(-c-R*Math.cos(a),z+R*Math.sin(a));}s.lineTo(c,.010);for(let i=1;i<=24;i++){const a=i*Math.PI/48;s.lineTo(c+R*Math.sin(a),z+R*Math.cos(a));}s.lineTo(.015,0);s.lineTo(.0135,0);s.lineTo(.0135,z);for(let i=1;i<=24;i++){const a=i*Math.PI/48;s.lineTo(c+r*Math.cos(a),z+r*Math.sin(a));}s.lineTo(-c,.0085);for(let i=1;i<=24;i++){const a=i*Math.PI/48;s.lineTo(-c-r*Math.sin(a),z+r*Math.cos(a));}s.lineTo(-.0135,0);s.closePath();return s;}
+ const gh=new T.ExtrudeGeometry(profile(),{depth:2.654-2.039,bevelEnabled:false});const hp=gh.attributes.position;for(let i=0;i<hp.count;i++)hp.setXYZ(i,2.039+hp.getZ(i),.238+hp.getX(i),2.304+hp.getY(i));gh.computeVertexNormals();
+ const horizontal=mesh('TESISAT_SASI_C_YATAY_63',gh,'fixed carrier');
+ const gv=new T.ExtrudeGeometry(profile(),{depth:.8635-.130,bevelEnabled:false});gv.rotateX(Math.PI/2);gv.translate(3.100,.8635,2.304);const bore=new T.CylinderGeometry(.008,.008,.020,32);bore.rotateX(Math.PI/2);bore.translate(3.100,.750,2.31325);
+ const earthClear=new T.CylinderGeometry(.004,.004,.030,24);earthClear.rotateZ(Math.PI/2);earthClear.translate(3.115,.200,2.3015);const vertical=mesh('TESISAT_SASI_C_DIK_63',solid.subtract(gv,[bore,earthClear]),'fixed carrier');
+ for(const z of [2.3121,2.3144]){const o=F.ring('SASI_KABLO_GECIS_EPDM_63',0,-.0004,0,.0095,.00625,.0008,root,F.blue);o.rotation.x=Math.PI/2;o.position.set(3.100,.750,z);mark(o,'grommet');}
+ const sleeve=F.ring('SASI_KABLO_GECIS_BOYUN_63',0,-.00075,0,.008,.00625,.0015,root,F.blue);sleeve.rotation.x=Math.PI/2;sleeve.position.set(3.100,.750,2.31325);mark(sleeve,'grommet');
+ function plateOn(n,center,u,v,normal,width,height,thick,hole,id){const s=new T.Shape();s.moveTo(-width/2,-height/2);s.lineTo(width/2,-height/2);s.lineTo(width/2,height/2);s.lineTo(-width/2,height/2);s.closePath();if(hole){const h=new T.Path();h.absarc(0,0,hole,0,Math.PI*2,true);s.holes.push(h);}const g=new T.ExtrudeGeometry(s,{depth:thick,bevelEnabled:false,curveSegments:24}),p=g.attributes.position;for(let i=0;i<p.count;i++){const q=center.clone().addScaledVector(u,p.getX(i)).addScaledVector(v,p.getY(i)).addScaledVector(normal,p.getZ(i));p.setXYZ(i,q.x,q.y,q.z);}g.computeVertexNormals();return mesh(n,g,'clamp bracket',id);}
+ for(const {i,p,axis,r,clip}of clampRows){const N=new T.Vector3(0,0,1).addScaledVector(axis,-axis.z).normalize(),u=new T.Vector3().crossVectors(axis,N).normalize(),G=p.clone().addScaledVector(N,r+.002),H=G.clone().addScaledVector(u,.009),v=axis.clone();
+  const tail=plateOn('P_KELEPCE_CIVATALI_DIL_'+i,H,u,v,N,.022,.006,.0015,.00225,i),pad=plateOn('KELEPCE_63_ON_SACI_'+i,H.clone().addScaledVector(N,.0015),u,v,N,.018,.018,.0015,.00225,i);
+  const up=new T.Vector3(0,1,0).addScaledVector(N,-N.y).normalize(),P=H.clone().addScaledVector(up,.009).addScaledVector(N,.003),carrier=i===0||i===3?horizontal:vertical,targetX=i===0||i===3?H.x:3.100,targetY=i===0||i===3?.238:P.y,web=2.3125;
+  const depth=mark(F.plate('KELEPCE_63_DERINLIK_DILI_'+i,[H.x-.006,H.x+.006,P.y-.0015,P.y,P.z,web-.0015]),'clamp bracket',i);
+  const x0=Math.min(H.x-.006,targetX-.006),x1=Math.max(H.x+.006,targetX+.006),y0=Math.min(P.y-.0015,targetY-.006),y1=Math.max(P.y,targetY+.006),rear=mark(F.plate('KELEPCE_63_SASI_KAYNAK_DILI_'+i,[x0,x1,y0,y1,web-.0015,web]),'clamp bracket',i);
+  // Profile-cut the root to the real bend, then weld it to the fixed carrier.
+  for(const fitted of [rear,depth]){fitted.updateMatrixWorld(true);const cut=fitted.geometry.clone().applyMatrix4(fitted.matrixWorld);fitted.geometry=solid.subtract(cut,[carrier.geometry]);fitted.position.set(0,0,0);fitted.quaternion.identity();fitted.userData.carrier63=carrier.name;}
+  tail.userData.seat63={point:H.clone().addScaledVector(N,.0015).toArray(),normal:N.toArray()};pad.userData.seat63=tail.userData.seat63;const A=H.clone().addScaledVector(N,.007),B=H.clone().addScaledVector(N,-.0005);F.screw('KELEPCE_M4_'+i,A.toArray(),B.toArray(),.002);
+  const nut=F.ring('KELEPCE_M4_ESIR_SOMUN_'+i,0,-.0015,0,.0038,.00205,.003,root,F.steel,6);nut.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),N);nut.position.copy(H).addScaledVector(N,.0045);mark(nut,'clamp nut',i);nut.userData.seat63={point:H.clone().addScaledVector(N,.003).toArray(),normal:N.toArray()};
+  clip.userData.clamp63=i;tail.userData.matingBand=clip.name;clamps.push({i,carrier:carrier.name,tail:tail.name,pad:pad.name,depth:depth.name,rear:rear.name,point:H.toArray(),attachment:'profile-fitted welded strap to fixed C carrier; M4 bolted P tab',backCoverFasteners:0});
+ }
+ F.carriers63={parts,clamps,carriers:[horizontal,vertical],backCoverLoads:0,ends:[{name:horizontal.name,axis:'x',min:2.039,max:2.654},{name:vertical.name,axis:'y',min:.130,max:.8635}],material:'304L,1.5mm,Ri1.5/Ro3',physicalAcceptance:false};return F.carriers63;
+}

@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preload" href="kiosk57/fonts/Poppins-Regular.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="kiosk57/fonts/Poppins-ExtraBold.ttf" as="font" type="font/ttf" crossorigin>
+<title>AUTOKITCH · Menü ve sipariş ekranı</title><link rel="stylesheet" href="qr-ekran.css?v=64"><style>@media(pointer:coarse){button,select,summary{min-height:44px;touch-action:manipulation}input,textarea,select{font-size:16px!important}html,body{overscroll-behavior:contain}button{touch-action:manipulation}}</style></head>
+<body><main id="screen" data-mode="BAGLANTI" aria-label="Menü ve sipariş durumu">
+ <header><strong class="brand">AUTO<span>KITCH</span></strong><span id="headline">Menü ve siparişler yükleniyor</span><time id="clock"></time></header>
+ <div id="content">
+  <section id="ready" class="status ready"><h2>HAZIR <small>READY</small><span class="pages"></span></h2><div class="orders"></div></section>
+  <section id="preparing" class="status preparing"><h2>HAZIRLANIYOR <small>PREPARING</small><span class="pages"></span></h2><div class="orders"></div></section>
+  <section id="promotion" aria-label="Ürün tanıtımı"></section>
+  <section id="menu" aria-label="Menü"><div id="menuCards"></div></section>
+ </div>
+ <footer><span id="guide">Siparişini kiosktan ver · Hazır olunca QR / kodunla dolaptan al</span><span id="priceNote"></span></footer>
+</main><script src="../ortak/goz-etiket.js"></script><script src="../ortak/ak-katalog.js"></script><script type="module" src="qr-ekran.js?v=64"></script><script type="module" src="qr-ekran-kedi.js?v=1"></script></body></html>

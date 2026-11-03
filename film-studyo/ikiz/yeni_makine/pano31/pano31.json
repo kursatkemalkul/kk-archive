@@ -1,0 +1,36 @@
+{
+ "istasyon": [
+  "E",
+  "K",
+  "B",
+  "TOP",
+  "F"
+ ],
+ "ek_katman": {
+  "TOP": [
+   "icsac",
+   "yalitim"
+  ]
+ },
+ "say": {
+  "pano_TOP": 20,
+  "pano_F": 90,
+  "pano_K": 32,
+  "pano_E": 60,
+  "pano_B": 18,
+  "cihaz_TOP": 25,
+  "cihaz_F": 29,
+  "cihaz_K": 43,
+  "cihaz_E": 80,
+  "cihaz_B": 35,
+  "icsac_TOP": 138,
+  "yalitim_TOP": 95
+ },
+ "cihaz": 212,
+ "yeni_tip": {},
+ "yeni_eksen": {},
+ "yeni_model": [],
+ "iskelet_valf_kusagi": 9,
+ "glb_bayt": 1242072,
+ "sha": "4a73ec414ca603ac4abc2168c4f22b01b6fea80bd2d9405f8616db8140add391"
+}

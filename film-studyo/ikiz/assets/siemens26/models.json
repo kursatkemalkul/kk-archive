@@ -1,0 +1,1078 @@
+[
+  {
+    "id": "CPU",
+    "key": "G_ST70_XX_04913",
+    "title": "SIMATIC ET 200SP CPU 1512SP F-1 PN",
+    "url": "https://www.automation.siemens.com/bilddb/download.aspx?reqInsID=2100346",
+    "page": "https://www.automation.siemens.com/bilddb/index.aspx?objkey=G_ST70_XX_04913",
+    "file": "G_ST70_XX_04913.stp",
+    "bytes": 9931810,
+    "sha256": "ef6a42c7e99d3c424203a022a75467dd35fe4b88009466a648f4b0dc3e11bd77",
+    "manufacturerCAD": true,
+    "glb": "cpu.glb",
+    "stepBounds_mm": [
+      -1e-07,
+      -1e-07,
+      -1.8686504836142649e-07,
+      107.10000009999999,
+      117.35000016254844,
+      74.00461361373847
+    ],
+    "size_mm": [
+      107.10000019999998,
+      117.35000026254843,
+      74.00461380060352
+    ],
+    "glbBytes": 2190820,
+    "fullDetailGLBBytes": 4280120,
+    "glbSHA256": "b9e848fb63ca90374fcef90ec87024023a6864d48cb702e982a6d7581c1b4e43",
+    "displayBatching": {
+      "id": "CPU",
+      "inputPrimitives": 4281,
+      "displayPrimitives": 6,
+      "triangles": 61223,
+      "boundsChange_mm": 0.0,
+      "geometryDecimated": false,
+      "separateServerRemoved": true
+    },
+    "installed27": true,
+    "selectedPart27": "6ES7512-1SM03-0AB0",
+    "quantity27": 1,
+    "selectionStatus27": "mechanical CAD selection; electrical release pending"
+  },
+  {
+    "id": "DI",
+    "key": "G_ST70_XX_02119",
+    "title": "ET 200SP DI 16X24VDC ST",
+    "url": "https://www.automation.siemens.com/bilddb/download.aspx?reqInsID=1581022",
+    "page": "https://www.automation.siemens.com/bilddb/index.aspx?objkey=G_ST70_XX_02119",
+    "file": "G_ST70_XX_02119.stp",
+    "bytes": 3721844,
+    "sha256": "5a8291753c4f9d1ffe799dda76fd7abc0c250c25827555018eee450d21c3b4d0",
+    "manufacturerCAD": true,
+    "glb": "di.glb",
+    "stepBounds_mm": [
+      0.0,
+      -4.440892098500626e-15,
+      -1.0658141036401503e-14,
+      15.0000001,
+      73.2000000000032,
+      58.33627492234676
+    ],
+    "size_mm": [
+      15.0000001,
+      73.2000000000032,
+      58.336274922346774
+    ],
+    "glbBytes": 978276,
+    "fullDetailGLBBytes": 1458692,
+    "glbSHA256": "69e338b492cc93b3c31484280cec58fcfe434e0c873a2717c40683a8cf59b2d7",
+    "displayBatching": {
+      "id": "DI",
+      "inputPrimitives": 1486,
+      "displayPrimitives": 5,
+      "triangles": 27164,
+      "boundsChange_mm": 0.0,
+      "geometryDecimated": false,
+      "separateServerRemoved": false
+    },
+    "installed27": true,
+    "selectedPart27": "6ES7131-6BH01-0BA0",
+    "quantity27": 2,
+    "selectionStatus27": "mechanical CAD selection; electrical release pending"
+  },
+  {
+    "id": "DQ",
+    "key": "G_ST70_XX_02124",
+    "title": "ET 200SP DQ 16x24VDC/0,5A ST",
+    "url": "https://www.automation.siemens.com/bilddb/download.aspx?reqInsID=1581027",
+    "page": "https://www.automation.siemens.com/bilddb/index.aspx?objkey=G_ST70_XX_02124",
+    "file": "G_ST70_XX_02124.stp",
+    "bytes": 4245649,
+    "sha256": "8adbf5085c4a871321eca10b4ed38e7544a73ef79e2dd0e2c9340c1b6be101c5",
+    "manufacturerCAD": true,
+    "glb": "dq.glb",
+    "stepBounds_mm": [
+      0.0,
+      -4.440892098500626e-15,
+      0.0,
+      15.0000001,
+      73.2000000000032,
+      58.336274922346774
+    ],
+    "size_mm": [
+      15.0000001,
+      73.2000000000032,
+      58.336274922346774
+    ],
+    "glbBytes": 1253712,
+    "fullDetailGLBBytes": 1707728,
+    "glbSHA256": "5419c1248803fe4773bd049ceb62bcd57c373d1d5d42c73191afdfe88eb9aef0",
+    "displayBatching": {
+      "id": "DQ",
+      "inputPrimitives": 1571,
+      "displayPrimitives": 5,
+      "triangles": 37176,
+      "boundsChange_mm": 0.0,
+      "geometryDecimated": false,
+      "separateServerRemoved": false
+    },
+    "installed27": true,
+    "selectedPart27": "6ES7132-6BH01-0BA0",
+    "quantity27": 1,
+    "selectionStatus27": "mechanical CAD selection; electrical release pending"
+  },
+  {
+    "id": "FDI",
+    "key": "G_ST70_XX_04174",
+    "title": "ET 200SP F-DI 8x24VDC HF",
+    "url": "https://www.automation.siemens.com/bilddb/download.aspx?reqInsID=1965768",
+    "page": "https://www.automation.siemens.com/bilddb/index.aspx?objkey=G_ST70_XX_04174",
+    "file": "G_ST70_XX_04174.stp",
+    "bytes": 4105298,
+    "sha256": "409a4b3889c3fd1bb6403287a4f6cf6b74b1602409d8e5d3d59eb1555e74ff16",
+    "manufacturerCAD": true,
+    "glb": "fdi.glb",
+    "stepBounds_mm": [
+      0.0,
+      2.886579864025407e-15,
+      0.0,
+      15.0000001,
+      73.9976816283261,
+      57.91166263148185
+    ],
+    "size_mm": [
+      15.0000001,
+      73.9976816283261,
+      57.91166263148185
+    ],
+    "glbBytes": 1030108,
+    "fullDetailGLBBytes": 1622696,
+    "glbSHA256": "6eb856fb567f3faf74b46756650a135064fb1b833a8877b0297bb63a244a71e2",
+    "displayBatching": {
+      "id": "FDI",
+      "inputPrimitives": 1732,
+      "displayPrimitives": 6,
+      "triangles": 27933,
+      "boundsChange_mm": 0.0,
+      "geometryDecimated": false,
+      "separateServerRemoved": false
+    },
+    "installed27": true,
+    "selectedPart27": "6ES7136-6BA01-0CA0",
+    "quantity27": 1,
+    "selectionStatus27": "mechanical CAD selection; electrical release pending"
+  },
+  {
+    "id": "FDQ",
+    "key": "G_ST70_XX_98319",
+    "title": "ET 200SP F-DQ 4x24VDC/2A PM (HF)",
+    "url": "https://www.automation.siemens.com/bilddb/download.aspx?reqInsID=979376",
+    "page": "https://www.automation.siemens.com/bilddb/index.aspx?objkey=G_ST70_XX_98319",
+    "file": "G_ST70_XX_98319.stp",
+    "bytes": 3521984,
+    "sha256": "75b108094735b4fe6a6aaf86ca3abb5373c26d14270fbd378f213ae6518062b9",
+    "manufacturerCAD": true,
+    "glb": "fdq.glb",
+    "stepBounds_mm": [
+      -1e-07,
+      -4.440892098500626e-15,
+      -1.0658141036401503e-14,
+      15.06648946170213,
+      73.2000000000112,
+      58.33484321520115
+    ],
+    "size_mm": [
+      15.066489561702129,
+      73.2000000000112,
+      58.33484321520116
+    ],
+    "glbBytes": 876740,
+    "fullDetailGLBBytes": 1314284,
+    "glbSHA256": "cbdbec33650a24d30c5d1831df66dbcf2b5c402c649cd4f4dcd6e8c2fc2b631e",
+    "displayBatching": {
+      "id": "FDQ",
+      "inputPrimitives": 1383,
+      "displayPrimitives": 6,
+      "triangles": 24834,
+      "boundsChange_mm": 0.0,
+      "geometryDecimated": false,
+      "separateServerRemoved": false
+    },
+    "installed27": true,
+    "selectedPart27": "6ES7136-6DB00-0CA0",
+    "quantity27": 1,
+    "selectionStatus27": "mechanical CAD selection; electrical release pending"
+  },
+  {
+    "id": "BU",
+    "key": "G_ST70_XX_97954",
+    "title": "ET 200SP Baseunit Typ A0, BU15-P16+A0+2B",
+    "url": "https://www.automation.siemens.com/bilddb/download.aspx?reqInsID=871644",
+    "page": "https://www.automation.siemens.com/bilddb/index.aspx?objkey=G_ST70_XX_97954",
+    "file": "G_ST70_XX_97954.stp",
+    "bytes": 6157862,
+    "sha256": "7fbc779513344cc4d4455e21e07073bf3ed5d3b29fa667f3dbcaca9391994a47",
+    "manufacturerCAD": true,
+    "glb": "bu.glb",
+    "stepBounds_mm": [
+      -5.3085000001000004,
+      1.9000017002530514e-06,
+      1.9539925233402755e-14,
+      15.100000099900033,
+      117.03730403120142,
+      35.000000000000185
+    ],
+    "size_mm": [
+      20.408500100000033,
+      117.03730213119971,
+      35.00000000000016
+    ],
+    "glbBytes": 2503556,
+    "fullDetailGLBBytes": 3238936,
+    "glbSHA256": "64c994a686a29d44229b1a75ea257df56fd47783d32d9fe4a0a5d5bd79e32d90",
+    "displayBatching": {
+      "id": "BU",
+      "inputPrimitives": 2803,
+      "displayPrimitives": 7,
+      "triangles": 77974,
+      "boundsChange_mm": 0.0,
+      "geometryDecimated": false,
+      "separateServerRemoved": false
+    },
+    "installed27": true,
+    "selectedPart27": "6ES7193-6BP00-0BA0",
+    "quantity27": 2,
+    "selectionStatus27": "mechanical CAD selection; electrical release pending"
+  },
+  {
+    "id": "BULIGHT",
+    "key": "G_ST70_XX_97956",
+    "title": "ET 200SP Baseunit Typ A0, BU15-P16+A0+2D",
+    "url": "https://www.automation.siemens.com/bilddb/download.aspx?reqInsID=871646",
+    "page": "https://www.automation.siemens.com/bilddb/index.aspx?objkey=G_ST70_XX_97956",
+    "file": "G_ST70_XX_97956.stp",
+    "bytes": 6078396,
+    "sha256": "f4e7f7fb88dcae325db2d1f5c90159ee94bd7aacee6e4715e67638c612fc5cf6",
+    "manufacturerCAD": true,
+    "glb": "bulight.glb",
+    "stepBounds_mm": [
+      -5.308500000000002,
+      -9.999690203367208e-08,
+      1.9539925233402755e-14,
+      15.126709065686514,
+      117.03730203120281,
+      35.000000000000185
+    ],
+    "size_mm": [
+      20.435209065686514,
+      117.03730213119971,
+      35.00000000000016
+    ],
+    "glbBytes": 2489224,
+    "fullDetailGLBBytes": 3214272,
+    "glbSHA256": "884d2d4d1fe660006a3e7b9a7e72c1774b0ed93ae152e44125995c21d68e8a1e",
+    "displayBatching": {
+      "id": "BULIGHT",
+      "inputPrimitives": 2797,
+      "displayPrimitives": 8,
+      "triangles": 77500,
+      "boundsChange_mm": 0.0,
+      "geometryDecimated": false,
+      "separateServerRemoved": false
+    },
+    "installed27": true,
+    "selectedPart27": "6ES7193-6BP00-0DA0",
+    "quantity27": 3,
+    "selectionStatus27": "mechanical CAD selection; electrical release pending"
+  },
+  {
+    "id": "SERVER",
+    "key": "G_ST70_XX_97971",
+    "title": "ET 200SP Servermodul",
+    "url": "https://www.automation.siemens.com/bilddb/download.aspx?reqInsID=871623",
+    "page": "https://www.automation.siemens.com/bilddb/index.aspx?objkey=G_ST70_XX_97971",
+    "file": "G_ST70_XX_97971.stp",
+    "bytes": 1886364,
+    "sha256": "772a63334c3a4af176e881f6e969d03474577a63ebafac9f36886da36c9b32af",
+    "manufacturerCAD": true,
+    "glb": "server.glb",
+    "stepBounds_mm": [
+      -5.0000001,
+      0.0,
+      -1.0000002042810365e-07,
+      7.1000001,
+      117.1370001,
+      35.90370090511623
+    ],
+    "size_mm": [
+      12.1000002,
+      117.1370001,
+      35.903701005116254
+    ],
+    "glbBytes": 715076,
+    "fullDetailGLBBytes": 1015740,
+    "glbSHA256": "ff1b75c57135e69d76a84fcefff64ea4446389824d59b26d8ac6495931ac62b7",
+    "displayBatching": {
+      "id": "SERVER",
+      "inputPrimitives": 1027,
+      "displayPrimitives": 5,
+      "triangles": 20016,
+      "boundsChange_mm": 0.0,
+      "geometryDecimated": false,
+      "separateServerRemoved": false
+    },
+    "installed27": true,
+    "selectedPart27": "6ES7193-6PA00-0AA0",
+    "quantity27": 3,
+    "selectionStatus27": "mechanical CAD selection; electrical release pending"
+  },
+  {
+    "id": "PSU",
+    "key": "G_KT01_XX_00735",
+    "title": "SITOP PSU100S 24 V, 10 A",
+    "url": "https://www.automation.siemens.com/bilddb/download.aspx?reqInsID=1967592",
+    "page": "https://www.automation.siemens.com/bilddb/index.aspx?objkey=G_KT01_XX_00735",
+    "file": "G_KT01_XX_00735.stp",
+    "bytes": 2016198,
+    "sha256": "f58cc5444a5ca538e2d659cd9e182676999ba79bfe32449b330684628dd3b46a",
+    "manufacturerCAD": true,
+    "glb": "psu.glb",
+    "stepBounds_mm": [
+      -1.4210854715202004e-14,
+      -4.0000000052720086e-05,
+      4.9960036108132e-13,
+      70.0,
+      125.00000000000001,
+      126.60000009999999
+    ],
+    "size_mm": [
+      70.00000000000001,
+      125.00004000000007,
+      126.60000009999949
+    ],
+    "glbBytes": 721980,
+    "fullDetailGLBBytes": 990520,
+    "glbSHA256": "cc1f53506866466bd5844de7dd061e8920ad5f84cac321402597054c0ec2c0a8",
+    "displayBatching": {
+      "id": "PSU",
+      "inputPrimitives": 889,
+      "displayPrimitives": 1,
+      "triangles": 19228,
+      "boundsChange_mm": 0.0,
+      "geometryDecimated": false,
+      "separateServerRemoved": false
+    },
+    "installed27": true,
+    "selectedPart27": "6EP1334-2BA20",
+    "quantity27": 3,
+    "selectionStatus27": "mechanical CAD selection; electrical release pending"
+  },
+  {
+    "id": "UPS",
+    "key": "G_KT01_XX_00806",
+    "title": "SITOP UPS1600 20 A Ethernet/ Profinet",
+    "url": "https://www.automation.siemens.com/bilddb/download.aspx?reqInsID=1007014",
+    "page": "https://www.automation.siemens.com/bilddb/index.aspx?objkey=G_KT01_XX_00806",
+    "file": "G_KT01_XX_00806.stp",
+    "bytes": 10775652,
+    "sha256": "7e3cef91718ee6f29e97418058a110eba8cb58b55389730d2b1a0049b7b1bd02",
+    "manufacturerCAD": true,
+    "glb": "ups.glb",
+    "stepBounds_mm": [
+      -2.69630192214213e-30,
+      -13.663098833543836,
+      -6.000000000000007,
+      50.01000643727717,
+      125.0,
+      125.0200001
+    ],
+    "size_mm": [
+      50.01000643727717,
+      138.66309883354384,
+      131.0200001
+    ],
+    "glbBytes": 4704520,
+    "fullDetailGLBBytes": 5520712,
+    "glbSHA256": "36584edc5d019839ad1ab9d369c192feeb16c350a681164f847998206bee9683",
+    "displayBatching": {
+      "id": "UPS",
+      "inputPrimitives": 3657,
+      "displayPrimitives": 8,
+      "triangles": 130004,
+      "boundsChange_mm": 0.0,
+      "geometryDecimated": false,
+      "separateServerRemoved": false
+    },
+    "installed27": true,
+    "selectedPart27": "6EP4136-3AB00-2AY0",
+    "quantity27": 1,
+    "selectionStatus27": "mechanical CAD selection; electrical release pending"
+  },
+  {
+    "id": "BATTERY",
+    "key": "G_KT01_XX_01738",
+    "title": "SITOP BAT1600 3,2 Ah Pb",
+    "url": "https://www.automation.siemens.com/bilddb/download.aspx?reqInsID=1899350",
+    "page": "https://www.automation.siemens.com/bilddb/index.aspx?objkey=G_KT01_XX_01738",
+    "file": "G_KT01_XX_01738.stp",
+    "bytes": 2613599,
+    "sha256": "3236f36136842671c77cc2d39a98044f7e0a6919b1d290f3ce6423c88606aa53",
+    "manufacturerCAD": true,
+    "glb": "battery.glb",
+    "stepBounds_mm": [
+      -0.01619207110814358,
+      -26.2992978123111,
+      -6.200046619589117,
+      89.0000443768484,
+      156.200001766569,
+      177.99995067782402
+    ],
+    "size_mm": [
+      89.01623644795654,
+      182.49929957888008,
+      184.19999729741315
+    ],
+    "glbBytes": 1058132,
+    "fullDetailGLBBytes": 1426264,
+    "glbSHA256": "f3f6184d0d0d6ea7e16a144a71d6416f98ffb5b550903271d523db054a4f9a6b",
+    "displayBatching": {
+      "id": "BATTERY",
+      "inputPrimitives": 1223,
+      "displayPrimitives": 1,
+      "triangles": 30535,
+      "boundsChange_mm": 0.0,
+      "geometryDecimated": false,
+      "separateServerRemoved": false
+    },
+    "installed27": true,
+    "selectedPart27": "6EP4133-0GA00-0AY0",
+    "quantity27": 1,
+    "selectionStatus27": "mechanical CAD selection; electrical release pending"
+  },
+  {
+    "id": "IPC",
+    "key": "G_ST70_XX_02641",
+    "title": "SIMATIC IPC127E, Extended, 3xLAN, 4xUSB",
+    "url": "https://www.automation.siemens.com/bilddb/download.aspx?reqInsID=1698964",
+    "page": "https://www.automation.siemens.com/bilddb/index.aspx?objkey=G_ST70_XX_02641",
+    "file": "G_ST70_XX_02641.stp",
+    "bytes": 4544491,
+    "sha256": "d7b7287c6507c2de48fb096ea9bbef6a2e0843f83d1a432023c7cf368c836a32",
+    "manufacturerCAD": true,
+    "glb": "ipc.glb",
+    "stepBounds_mm": [
+      -1.599086340528683,
+      -11.800000000000134,
+      -0.10000009999999787,
+      83.50091385947132,
+      104.30000010000008,
+      41.10000010000359
+    ],
+    "size_mm": [
+      85.10000020000001,
+      116.10000010000022,
+      41.200000200003586
+    ],
+    "glbBytes": 7526656,
+    "fullDetailGLBBytes": 7018508,
+    "glbSHA256": "d170950776e586993ba06c9062040ddf44a82741daf647154bf8b4fe4ee441b9",
+    "displayBatching": {
+      "id": "IPC",
+      "inputPrimitives": 2238,
+      "displayPrimitives": 8,
+      "triangles": 250828,
+      "boundsChange_mm": 0.0,
+      "geometryDecimated": false,
+      "separateServerRemoved": false
+    },
+    "installed27": true,
+    "selectedPart27": "6AG4021-0AB12-0CA0",
+    "quantity27": 1,
+    "selectionStatus27": "mechanical CAD selection; electrical release pending"
+  },
+  {
+    "id": "IPCMOUNT",
+    "key": "G_ST70_XX_02642",
+    "title": "SIMATIC IPC127E & BX-21, Montage-Set Hutschiene",
+    "url": "https://www.automation.siemens.com/bilddb/download.aspx?reqInsID=1698965",
+    "page": "https://www.automation.siemens.com/bilddb/index.aspx?objkey=G_ST70_XX_02642",
+    "file": "G_ST70_XX_02642.stp",
+    "bytes": 74053,
+    "sha256": "eae61fef5a7354979541dfb09efcbb04ae88f01bee397617b4d5d6acaeed81dd",
+    "manufacturerCAD": true,
+    "glb": "ipcmount.glb",
+    "stepBounds_mm": [
+      2.9999999999999867,
+      -20.900000000000066,
+      -4.4000000000000234,
+      47.000000000000085,
+      29.100000000000037,
+      4.4000001000465945
+    ],
+    "size_mm": [
+      44.0000000000001,
+      50.0000000000001,
+      8.800000100046617
+    ],
+    "glbBytes": 79548,
+    "fullDetailGLBBytes": 83736,
+    "glbSHA256": "ed9885a42e96749b8bc9ae5bf6b2ec56a73b0119d66591a0c1ee1f32da1dbdf7",
+    "displayBatching": {
+      "id": "IPCMOUNT",
+      "inputPrimitives": 44,
+      "displayPrimitives": 1,
+      "triangles": 2264,
+      "boundsChange_mm": 0.0,
+      "geometryDecimated": false,
+      "separateServerRemoved": false
+    },
+    "installed27": true,
+    "selectedPart27": "6AG4021-0AA20-0AA1",
+    "quantity27": 1,
+    "selectionStatus27": "mechanical CAD selection; electrical release pending"
+  },
+  {
+    "id": "NETWORK",
+    "key": "G_IK10_XX_90872",
+    "title": "SCALANCE XB005",
+    "url": "https://www.automation.siemens.com/bilddb/download.aspx?reqInsID=1064971",
+    "page": "https://www.automation.siemens.com/bilddb/index.aspx?objkey=G_IK10_XX_90872",
+    "file": "G_IK10_XX_90872.stp",
+    "bytes": 7096441,
+    "sha256": "d0905e6f93a46766ec3de1f4670d376b46c5bc41319dc469547035571858c3c7",
+    "manufacturerCAD": true,
+    "glb": "network.glb",
+    "stepBounds_mm": [
+      -22.500000000000004,
+      -51.217932663312276,
+      -49.082042541827015,
+      22.802387605637396,
+      35.91795766386215,
+      66.21795755817298
+    ],
+    "size_mm": [
+      45.3023876056374,
+      87.13589032717442,
+      115.3000001
+    ],
+    "glbBytes": 1294088,
+    "fullDetailGLBBytes": 2545736,
+    "glbSHA256": "3f0ab295311e8061556f1da4dbf2c8aaf395be9d47afde0daf7b253d554a1c97",
+    "displayBatching": {
+      "id": "NETWORK",
+      "inputPrimitives": 3295,
+      "displayPrimitives": 8,
+      "triangles": 32808,
+      "boundsChange_mm": 0.0,
+      "geometryDecimated": false,
+      "separateServerRemoved": false
+    },
+    "installed27": true,
+    "selectedPart27": "6GK5005-0BA00-1AB2",
+    "quantity27": 1,
+    "selectionStatus27": "mechanical CAD selection; electrical release pending"
+  },
+  {
+    "id": "MCB",
+    "key": "G_I202_XX_18116",
+    "title": "Leitungsschutzschalter 5SY, 1-polig",
+    "url": "https://www.automation.siemens.com/bilddb/download.aspx?reqInsID=1280414",
+    "page": "https://www.automation.siemens.com/bilddb/index.aspx?objkey=G_I202_XX_18116",
+    "file": "G_I202_XX_18116.stp",
+    "bytes": 831501,
+    "sha256": "bbdf24353bd33082451cc3c48d76424e3ecaff4edc9433c638bf6930c286573b",
+    "manufacturerCAD": true,
+    "glb": "mcb.glb",
+    "stepBounds_mm": [
+      -9.998949817836546e-08,
+      -1.6399326341343112e-11,
+      8.899103676185405e-12,
+      17.6000001000105,
+      89.7999999999845,
+      76.1560233549918
+    ],
+    "size_mm": [
+      17.6000002,
+      89.80000000000089,
+      76.1560233549829
+    ],
+    "glbBytes": 148372,
+    "fullDetailGLBBytes": 224620,
+    "glbSHA256": "28bb7474ca07a238efc37b044b7d1281dca6d404b4f98dc08360c9c222db7fe3",
+    "displayBatching": {
+      "id": "MCB",
+      "inputPrimitives": 224,
+      "displayPrimitives": 1,
+      "triangles": 3816,
+      "boundsChange_mm": 0.0,
+      "geometryDecimated": false,
+      "separateServerRemoved": false
+    },
+    "installed27": true,
+    "selectedPart27": "5SY7106-7",
+    "quantity27": 3,
+    "selectionStatus27": "mechanical CAD selection; electrical release pending"
+  },
+  {
+    "id": "CONTACTOR",
+    "key": "G_NSA0_XX_00825",
+    "title": "Schütz S00, Schraubanschluss, DC Beschaltung integriert, 1S integriert",
+    "url": "https://www.automation.siemens.com/bilddb/download.aspx?reqInsID=660771",
+    "page": "https://www.automation.siemens.com/bilddb/index.aspx?objkey=G_NSA0_XX_00825",
+    "file": "G_NSA0_XX_00825.stp",
+    "bytes": 1760523,
+    "sha256": "5cbcb27b5a2d0c57cf2964ef299f3a597c64e88cb5e238bf599e50f61d4fbe13",
+    "manufacturerCAD": true,
+    "glb": "contactor.glb",
+    "stepBounds_mm": [
+      -1e-07,
+      0.0,
+      0.0,
+      45.0000001,
+      57.49999973000015,
+      72.99999660000043
+    ],
+    "size_mm": [
+      45.0000002,
+      57.49999973000015,
+      72.99999660000043
+    ],
+    "glbBytes": 361904,
+    "fullDetailGLBBytes": 564000,
+    "glbSHA256": "8b0e1093a1594f9276cede4dc9f50dbbdc72f53c2bb8d6a0cb9610718e282c54",
+    "displayBatching": {
+      "id": "CONTACTOR",
+      "inputPrimitives": 629,
+      "displayPrimitives": 1,
+      "triangles": 9224,
+      "boundsChange_mm": 0.0,
+      "geometryDecimated": false,
+      "separateServerRemoved": false
+    },
+    "installed27": true,
+    "selectedPart27": "3RT2015-1BB41",
+    "quantity27": 2,
+    "selectionStatus27": "mechanical CAD selection; electrical release pending"
+  },
+  {
+    "id": "SELECTIVITY",
+    "key": "G_KT01_XX_00429",
+    "title": "SITOP PSE200U Selektivitätsmodul 24 V, 4 x 10 A",
+    "url": "https://www.automation.siemens.com/bilddb/download.aspx?reqInsID=691108",
+    "page": "https://www.automation.siemens.com/bilddb/index.aspx?objkey=G_KT01_XX_00429",
+    "file": "G_KT01_XX_00429.stp",
+    "bytes": 4978912,
+    "sha256": "d513cb3674630bf473e3ea4a1e42685a4285249e9304a99262736caf2e3a3c13",
+    "manufacturerCAD": true,
+    "glb": "selectivity.glb",
+    "stepBounds_mm": [
+      -0.0017593675567591754,
+      -1.0000000002058974e-07,
+      -1e-07,
+      72.00175936755673,
+      80.00000000000006,
+      71.8
+    ],
+    "size_mm": [
+      72.00351873511349,
+      80.00000010000005,
+      71.80000009999999
+    ],
+    "glbBytes": 1920724,
+    "fullDetailGLBBytes": 2493444,
+    "glbSHA256": "caa5ae4a1667398d19fd9b322ec2d33ad29b13e5a33e77bfc909a0c564f190bd",
+    "displayBatching": {
+      "id": "SELECTIVITY",
+      "inputPrimitives": 2109,
+      "displayPrimitives": 1,
+      "triangles": 54764,
+      "boundsChange_mm": 0.0,
+      "geometryDecimated": false,
+      "separateServerRemoved": false
+    },
+    "installed27": true,
+    "selectedPart27": "6EP1961-2BA21",
+    "quantity27": 1,
+    "selectionStatus27": "mechanical CAD selection; electrical release pending"
+  },
+  {
+    "id": "STEPDRIVE",
+    "key": "G_D211_XX_00635",
+    "title": "SIMATIC F-TM StepDrive ST 1x24..48V 5A",
+    "url": "https://www.automation.siemens.com/bilddb/download.aspx?reqInsID=2068001",
+    "page": "https://www.automation.siemens.com/bilddb/index.aspx?objkey=G_D211_XX_00635",
+    "file": "G_D211_XX_00635.stp",
+    "bytes": 22079112,
+    "sha256": "1046298c42671c74405adc198753a78a3a1d285e46c60f87c2dac00b1f4f4e47",
+    "manufacturerCAD": true,
+    "glb": "stepdrive.glb",
+    "stepBounds_mm": [
+      10.079422827705569,
+      -34.259394498533304,
+      9.676986344511603,
+      30.100673221074906,
+      39.7396088852363,
+      67.77698654988504
+    ],
+    "size_mm": [
+      20.021250393369336,
+      73.9990033837696,
+      58.10000020537343
+    ],
+    "glbBytes": 9109776,
+    "fullDetailGLBBytes": 12754248,
+    "glbSHA256": "5b123b12df137726f5959bf4624809ce46f8657af041daeca7e899ef7ed67060",
+    "displayBatching": {
+      "id": "STEPDRIVE",
+      "inputPrimitives": 11917,
+      "displayPrimitives": 13,
+      "triangles": 257289,
+      "boundsChange_mm": 0.0,
+      "geometryDecimated": false,
+      "separateServerRemoved": false
+    },
+    "installed27": true,
+    "selectedPart27": "6BK1136-6SB00-0BU0",
+    "quantity27": 13,
+    "selectionStatus27": "mechanical CAD selection; electrical release pending",
+    "originalCADTitle": "F-TM ServoDrive ST"
+  },
+  {
+    "id": "BU20",
+    "key": "G_ST70_XX_02204",
+    "title": "ET 200SP, Base-Unit BU20-P16+A0+2B, BU-Typ U0",
+    "url": "https://www.automation.siemens.com/bilddb/download.aspx?reqInsID=1593397",
+    "page": "https://www.automation.siemens.com/bilddb/index.aspx?objkey=G_ST70_XX_02204",
+    "file": "G_ST70_XX_02204.stp",
+    "bytes": 6662505,
+    "sha256": "25f69249976289cacb7131361dfcd90c02718f60d518dc5cf6c1176a858a174b",
+    "manufacturerCAD": true,
+    "glb": "bu20.glb",
+    "stepBounds_mm": [
+      -5.3085,
+      -3.4567560192044766e-07,
+      -7.632467295158775e-08,
+      20.000000110354645,
+      117.13732894338531,
+      35.000000459376665
+    ],
+    "size_mm": [
+      25.308500110354643,
+      117.13732928906092,
+      35.00000053570134
+    ],
+    "glbBytes": 1799088,
+    "fullDetailGLBBytes": 2788580,
+    "glbSHA256": "721c2a09444947a804a40e02755b4c40eb3fee6270a3f610ed76ed2900d15e81",
+    "displayBatching": {
+      "id": "BU20",
+      "inputPrimitives": 2835,
+      "displayPrimitives": 8,
+      "triangles": 48126,
+      "boundsChange_mm": 0.0,
+      "geometryDecimated": false,
+      "separateServerRemoved": false
+    },
+    "installed27": true,
+    "selectedPart27": "6ES7193-6BP00-0BU0",
+    "quantity27": 6,
+    "selectionStatus27": "mechanical CAD selection; electrical release pending"
+  },
+  {
+    "id": "BU20LIGHT",
+    "key": "G_ST70_XX_02206",
+    "title": "ET 200SP, Base-Unit BU20-P16+A0+2D, BU-Typ U0",
+    "url": "https://www.automation.siemens.com/bilddb/download.aspx?reqInsID=1593398",
+    "page": "https://www.automation.siemens.com/bilddb/index.aspx?objkey=G_ST70_XX_02206",
+    "file": "G_ST70_XX_02206.stp",
+    "bytes": 7815490,
+    "sha256": "d14c0ec492183812cbbcb88a29afc969de4695bdf5249dd14d6d6f9973df49bf",
+    "manufacturerCAD": true,
+    "glb": "bu20light.glb",
+    "stepBounds_mm": [
+      -5.3085,
+      1.0916969017671363e-07,
+      5.00162492151901e-05,
+      20.000000100000012,
+      117.13732947326221,
+      35.00005074909019
+    ],
+    "size_mm": [
+      25.30850010000001,
+      117.13732936409252,
+      35.000000732840974
+    ],
+    "glbBytes": 2150248,
+    "fullDetailGLBBytes": 3351352,
+    "glbSHA256": "eb1d8ed00139c1f65b8746bab5d0c5be0f1ba7c997be64ccfd7eb4028ac33461",
+    "displayBatching": {
+      "id": "BU20LIGHT",
+      "inputPrimitives": 3443,
+      "displayPrimitives": 7,
+      "triangles": 57104,
+      "boundsChange_mm": 0.0,
+      "geometryDecimated": false,
+      "separateServerRemoved": false
+    },
+    "installed27": true,
+    "selectedPart27": "6ES7193-6BP00-0DU0",
+    "quantity27": 7,
+    "selectionStatus27": "mechanical CAD selection; electrical release pending"
+  },
+  {
+    "id": "IM",
+    "key": "G_ST70_XX_02433",
+    "title": "IM155-6 PN HF inkl. Servermodul",
+    "url": "https://www.automation.siemens.com/bilddb/download.aspx?reqInsID=1639265",
+    "page": "https://www.automation.siemens.com/bilddb/index.aspx?objkey=G_ST70_XX_02433",
+    "file": "G_ST70_XX_02433.stp",
+    "bytes": 6822923,
+    "sha256": "069e81fd28c395f0c8a6f30bf75ca86fa841b073c4667245ce46dddc95bd3257",
+    "manufacturerCAD": true,
+    "glb": "im.glb",
+    "stepBounds_mm": [
+      2.458809202361904e-05,
+      -0.0005131696535443098,
+      -0.017089571187312913,
+      57.100024689819826,
+      118.23684983780636,
+      73.98426565801886
+    ],
+    "size_mm": [
+      57.1000001017278,
+      118.2373630074599,
+      74.00135522920617
+    ],
+    "glbBytes": 1448424,
+    "fullDetailGLBBytes": 3104160,
+    "glbSHA256": "5004272769599fe3ddf9a0b1ba6dbb33eb70d9e87fa512da5e8492723d2b01cb",
+    "displayBatching": {
+      "id": "IM",
+      "inputPrimitives": 3060,
+      "displayPrimitives": 6,
+      "triangles": 41362,
+      "boundsChange_mm": 0.0,
+      "geometryDecimated": false,
+      "separateServerRemoved": true
+    },
+    "installed27": true,
+    "selectedPart27": "6ES7155-6AU01-0CN0",
+    "quantity27": 2,
+    "selectionStatus27": "mechanical CAD selection; electrical release pending"
+  },
+  {
+    "id": "BUSADAPTER",
+    "part": "6ES7193-6AR00-0AA0",
+    "key": "G_ST70_XX_97953",
+    "title": "ET 200SP Busadapter BA 2xRJ45",
+    "url": "https://www.automation.siemens.com/bilddb/download.aspx?reqInsID=871643",
+    "page": "https://www.automation.siemens.com/bilddb/index.aspx?objkey=G_ST70_XX_97953",
+    "file": "G_ST70_XX_97953.stp",
+    "bytes": 3534220,
+    "sha256": "bbbdace8e2bddc51491968aa63f60344e7153faa0a53e543cff754f23c736c6b",
+    "manufacturerCAD": true,
+    "glb": "busadapter.glb",
+    "stepBounds_mm": [
+      -1e-07,
+      -1e-07,
+      -4.4000001000001605,
+      22.5000001,
+      69.3278003221739,
+      59.10933156313062
+    ],
+    "size_mm": [
+      22.500000200000002,
+      69.3278004221739,
+      63.50933166313078
+    ],
+    "glbBytes": 1116204,
+    "glbSHA256": "1dbb2936a941fa3a929f97aa4fba8bd38724d19efdf76b40e27c5591a0b03b4f",
+    "displayBatching": {
+      "displayPrimitives": 5,
+      "geometryDecimated": false
+    },
+    "installed27": true,
+    "selectedPart27": "6ES7193-6AR00-0AA0",
+    "quantity27": 3,
+    "selectionStatus27": "mechanical CAD selection; electrical release pending"
+  },
+  {
+    "id": "TERMINALPE",
+    "part": "8WH2000-0CF07",
+    "key": "G_I202_XX_65127",
+    "title": "Klemme, Federzuganschluss, PE/PEN-Klemme, 2,5mm², grün-gelb",
+    "url": "https://www.automation.siemens.com/bilddb/download.aspx?reqInsID=1951502",
+    "page": "https://www.automation.siemens.com/bilddb/index.aspx?objkey=G_I202_XX_65127",
+    "file": "G_I202_XX_65127.stp",
+    "bytes": 403662,
+    "sha256": "fceffee9ce3646d8ee08400ddc5b6f5ea2e74b9c9ad4248b2e81df0920899617",
+    "manufacturerCAD": true,
+    "glb": "terminalpe.glb",
+    "stepBounds_mm": [
+      -3.481659405224489e-13,
+      1.3999523762461792e-11,
+      -1.3642487387901625e-12,
+      5.1500001000011855,
+      50.80000000001471,
+      41.50000000000684
+    ],
+    "size_mm": [
+      5.150000100001534,
+      50.800000000000715,
+      41.50000000000821
+    ],
+    "glbBytes": 84016,
+    "glbSHA256": "664600abfaa3b52c6490d1cbbf9368f0974ee9cca0c38664dc1e36dc6ab52e62",
+    "displayBatching": {
+      "displayPrimitives": 1,
+      "geometryDecimated": false
+    },
+    "installed27": true,
+    "selectedPart27": "8WH2000-0CF07",
+    "quantity27": 6,
+    "selectionStatus27": "mechanical CAD selection; electrical release pending"
+  },
+  {
+    "id": "PSU48",
+    "part": "6EP3346-7SB00-3AX0",
+    "key": "G_KT01_XX_01518",
+    "title": "SITOP PSU6200 1-phasig 48 V, 10 A",
+    "url": "https://www.automation.siemens.com/bilddb/download.aspx?reqInsID=1942305",
+    "page": "https://www.automation.siemens.com/bilddb/index.aspx?objkey=G_KT01_XX_01518",
+    "file": "G_KT01_XX_01518.stp",
+    "bytes": 4024145,
+    "sha256": "9452953ce789f0c160c1b7478c11504470e1d6a396047841b447d73954d4a9e0",
+    "manufacturerCAD": true,
+    "glb": "psu48.glb",
+    "stepBounds_mm": [
+      -0.0468651893856078,
+      0.09997129594679134,
+      0.0056804962778375,
+      70.00000010001344,
+      139.29561598359604,
+      161.73940010000004
+    ],
+    "size_mm": [
+      70.04686528939905,
+      139.19564468764924,
+      161.7337196037222
+    ],
+    "glbBytes": 1275096,
+    "glbSHA256": "80ea2202b50c34b1acba32c8924d4eddf172c00e941e7e5cb4bb8bbf8cc393e2",
+    "displayBatching": {
+      "displayPrimitives": 1,
+      "geometryDecimated": false
+    },
+    "installed27": false,
+    "selectionStatus27": "downloaded alternative, not fitted"
+  },
+  {
+    "id": "SELECT48",
+    "part": "6EP4448-7FB00-3CX0",
+    "key": "G_KT01_XX_01963",
+    "title": "SITOP SEL1200 Selektivitätsmodul 48 V, 4 x 10 A, 4-kanalig, mit schaltender Charakteristik",
+    "url": "https://www.automation.siemens.com/bilddb/download.aspx?reqInsID=2072013",
+    "page": "https://www.automation.siemens.com/bilddb/index.aspx?objkey=G_KT01_XX_01963",
+    "file": "G_KT01_XX_01963.stp",
+    "bytes": 5459501,
+    "sha256": "dd470ddfad960fff1dbde568224871564c886ac20c362d63c22b8791b62b31d5",
+    "manufacturerCAD": true,
+    "glb": "select48.glb",
+    "stepBounds_mm": [
+      -1e-07,
+      -1.00000000037447e-07,
+      -2.098321516541558e-14,
+      45.0000001,
+      135.00000010000002,
+      131.20075281517228
+    ],
+    "size_mm": [
+      45.0000002,
+      135.00000020000002,
+      131.2007528151723
+    ],
+    "glbBytes": 1585936,
+    "glbSHA256": "72a6850ce66ba936e8e2087bf77a20d27fc3550e64177bd45036f84aa99a8ea3",
+    "displayBatching": {
+      "displayPrimitives": 1,
+      "geometryDecimated": false
+    },
+    "installed27": false,
+    "selectionStatus27": "downloaded alternative, not fitted"
+  },
+  {
+    "part": "8MF1460-2AM02-0",
+    "key": "G_I202_XX_28206",
+    "file": "G_I202_XX_28206.stp",
+    "url": "https://www.automation.siemens.com/bilddb/download.aspx?reqInsID=1128156",
+    "page": "https://www.automation.siemens.com/bilddb/index.aspx?objkey=G_I202_XX_28206",
+    "sha256": "bd67e24cfc472e5f6e9e49e68ce466a8c31cfa40d3593026fa4a1cedf5a45248",
+    "bytes": 807906,
+    "id": "LOCALPLATE",
+    "title": "Siemens SIVACON 8MF1 mounting plate 8MF1460-2AM02-0",
+    "manufacturerCAD": true,
+    "selectedPart28": "8MF1460-2AM02-0",
+    "glb": "localplate.glb",
+    "stepBounds_mm": [
+      0.0,
+      -3.019806626980426e-14,
+      0.0,
+      533.0,
+      398.00000000000006,
+      24.75
+    ],
+    "size_mm": [
+      533.0,
+      398.0000000000001,
+      24.75
+    ],
+    "glbBytes": 666784,
+    "glbSHA256": "8124e0cbefe26c6ecbc64dd513f9f48390c5c1d13c98f51b0a2eeade1901496d",
+    "displayBatching": {
+      "displayPrimitives": 1,
+      "geometryDecimated": false
+    },
+    "installed28": true,
+    "quantity28": 1,
+    "plateScale28": 1,
+    "selectionStatus28": "manufacturer STEP, native dimensions, retained brackets and fastening geometry"
+  },
+  {
+    "part": "8MF1380-2AM02-0",
+    "key": "G_I202_XX_28216",
+    "file": "G_I202_XX_28216.stp",
+    "url": "https://www.automation.siemens.com/bilddb/download.aspx?reqInsID=1128206",
+    "page": "https://www.automation.siemens.com/bilddb/index.aspx?objkey=G_I202_XX_28216",
+    "sha256": "88c084a2cd6965d9783a7777fed353df7a63adb7173861210dea08c6000e781d",
+    "bytes": 807912,
+    "id": "MAINPLATE",
+    "title": "Siemens SIVACON 8MF1 mounting plate 8MF1380-2AM02-0",
+    "manufacturerCAD": true,
+    "selectedPart28": "8MF1380-2AM02-0",
+    "glb": "mainplate.glb",
+    "stepBounds_mm": [
+      0.0,
+      -3.019806626980426e-14,
+      0.0,
+      733.0,
+      298.00000000000006,
+      24.75
+    ],
+    "size_mm": [
+      733.0,
+      298.0000000000001,
+      24.75
+    ],
+    "glbBytes": 666784,
+    "glbSHA256": "bd1e76a6882fbea0adaf9812c998d56b2b71cff0fe36a27b2755b77f79e06696",
+    "displayBatching": {
+      "displayPrimitives": 1,
+      "geometryDecimated": false
+    },
+    "installed28": true,
+    "quantity28": 1,
+    "plateScale28": 1,
+    "selectionStatus28": "manufacturer STEP, native dimensions, retained brackets and fastening geometry"
+  }
+]

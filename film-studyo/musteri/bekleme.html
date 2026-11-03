@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="tr" data-tema="koyu" data-yuzey="bekleme">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AUTOKITCH · Bekleme ekranı</title>
+<link rel="stylesheet" href="../ortak/ak.css">
+<style>
+  /* IKIZ-ARAYUZ-4 (10 Eki): gelen müşteri için SADE — yalnız 'numaram hazır mı, ne kadar kaldı'. İki mod: AKTİF (sipariş var) · BOŞ (≥ 20 s boş → reklam döngüsü).
+     43" dikey (720 × 1280, ≈ 0,735 mm/px): üst 80 px · HAZIR %45 (numara 160 px) · HAZIRLANIYOR %35 (numara 96 px + ≈ dk) · alt %12 (tek satır + QR). Dokunmatik değil, imleç gizli. */
+  html,body{height:100%;overflow:hidden;cursor:none;margin:0}
+  .tv{height:100vh;display:grid;grid-template-rows:6.25vh 45vh 35vh 1fr;background:var(--ak-zemin)}
+  .ust{display:flex;align-items:center;justify-content:space-between;padding:0 4vw;border-bottom:1px solid var(--ak-cizgi)}
+  .ust .ak-marka{font-size:3.1vh}.ust .saat{font-size:3.1vh;font-weight:750}
+  .blok{padding:1.6vh 4vw;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+  .blok h2{margin:0 0 1.2vh;font-size:2.4vh;letter-spacing:.16em;font-weight:800;color:var(--ak-soluk)}
+  .hz-izgara{display:grid;grid-template-columns:repeat(auto-fill,minmax(28vw,1fr));gap:1.6vh;align-content:start}
+  .hz{background:var(--ak-iyi-zemin);border:.35vh solid var(--ak-iyi);border-radius:2.2vh;text-align:center;padding:.8vh .4vw}
+  .hz b{display:block;font-size:12.5vh;line-height:1;font-weight:850;letter-spacing:-.02em}
+  .hz small{display:block;font-size:2.6vh;font-weight:700;color:var(--ak-yazi2);white-space:nowrap}
+  .hz-izgara.cok .hz b{font-size:8vh}.hz-izgara.cok .hz small{font-size:2.1vh}.hz-izgara.cok{gap:1.1vh}
+  .hz.yeni{animation:yanip .5s step-end 10}.hz.plat{background:var(--ak-uyari-zemin);border-color:var(--ak-uyari)}
+  @keyframes yanip{50%{background:var(--ak-iyi);color:#fff}}
+  .hzr-izgara{display:flex;flex-wrap:wrap;gap:1.4vh 2.6vw;align-content:start}
+  .hzr{display:flex;flex-direction:column;align-items:center;min-width:20vw;padding:.6vh 1vw;border-radius:1.6vh;background:var(--ak-kart);border:.25vh solid var(--ak-cizgi)}
+  .hzr b{font-size:7.5vh;line-height:1.05;font-weight:800}.hzr small{font-size:2.3vh;color:var(--ak-yazi2);font-weight:650}
+  .bos-not{font-size:2.6vh;color:var(--ak-soluk)}
+  .alt{display:flex;align-items:center;gap:3vw;padding:1vh 4vw;border-top:1px solid var(--ak-cizgi)}
+  .alt .yon{flex:1;font-size:2.1vh;font-weight:650;line-height:1.22;min-width:0}.alt .yon small{display:block;font-weight:500;color:var(--ak-yazi2);font-size:1.65vh;margin-top:.4vh}
+  .alt .ak-qr{width:9vh!important;background:#fff;padding:.4vh;border-radius:.8vh}
+  /* BOŞ: tam ekran reklam döngüsü (8 s, geçiş 0,8 s) */
+  #reklam{position:fixed;inset:0;background:var(--ak-zemin);display:none}
+  body.bos #reklam{display:block}
+  .slayt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3vh;padding:6vh 6vw;text-align:center;opacity:0;transition:opacity .8s ease}
+  .slayt.on{opacity:1}
+  .slayt .ak-marka{font-size:9vh}.slayt .slogan{font-size:3.4vh;color:var(--ak-yazi2);max-width:80vw}
+  .slayt .resim{width:70vw;max-width:62vh}.slayt .resim svg{width:100%;height:auto;display:block}
+  .slayt .ad{font-size:6vh;font-weight:800}.slayt .fiyat{font-size:5vh;font-weight:750;color:var(--ak-vurgu)}
+  .slayt .metin{font-size:4.6vh;font-weight:750;line-height:1.25}.slayt .metin small{display:block;font-size:2.8vh;font-weight:500;color:var(--ak-yazi2);margin-top:1.4vh}
+  .slayt .ak-qr{width:34vh!important;background:#fff;padding:1.2vh;border-radius:1.6vh}
+  /* yatay ekran (ör. sağ paneldeki önizleme): aynı bloklar, numaralar biraz küçülür */
+  @media (orientation: landscape){ .tv{grid-template-rows:9vh 47vh 30vh 1fr} .hz b{font-size:15vh} .hz-izgara{grid-template-columns:repeat(auto-fill,minmax(16vw,1fr))} .hzr{min-width:11vw} }
+  /* QR cabinet bar, 16:1 native pixels. Ready and preparing remain visible together. */
+  @media (min-aspect-ratio:4/1){
+    .tv{grid-template-columns:15% 43% 42%;grid-template-rows:78% 22%;grid-template-areas:"brand ready prep" "hint hint hint";gap:0}
+    .ust{grid-area:brand;flex-direction:column;justify-content:center;gap:8vh;padding:4vh 1vw;border-right:1px solid var(--ak-cizgi);border-bottom:0}
+    .ust .ak-marka{font-size:11vh}.ust .saat{font-size:10vh}
+    .blok{padding:4vh 1.5vw;gap:2vh}.blok:nth-child(2){grid-area:ready}.blok:nth-child(3){grid-area:prep;border-left:1px solid var(--ak-cizgi)}
+    .blok h2{font-size:9vh;letter-spacing:.04em;margin:0;white-space:nowrap}
+    .hz-izgara,.hz-izgara.cok{display:flex;flex-wrap:nowrap;gap:.7vw;overflow:hidden}
+    .hz{flex:0 0 5.7vw;padding:1vh .3vw;border-width:1px;border-radius:3vh}
+    .hz b,.hz-izgara.cok .hz b{font-size:16vh}.hz small,.hz-izgara.cok .hz small{font-size:8vh}
+    .hzr-izgara{flex-wrap:nowrap;gap:.7vw;overflow:hidden}.hzr{min-width:5.4vw;padding:2vh .3vw;border-width:1px;border-radius:3vh}
+    .hzr b{font-size:16vh}.hzr small{font-size:9vh}.bos-not{font-size:11vh;padding-top:6vh}
+    .alt{grid-area:hint;padding:1vh 1.5vw;gap:1vw}.alt .yon{font-size:9vh;display:flex;gap:2vw;align-items:center}.alt .yon small{font-size:8vh;margin:0}
+    .alt .ak-qr,#qrYer{display:none}
+    body.bos #reklam{display:none} /* Keep status visible instead of portrait advertisements. */
+  }
+  @media (min-aspect-ratio:12/1){
+    .tv{grid-template-rows:82% 18%}
+    .ust{gap:5vh;padding:2vh 1vw}.ust .ak-marka{font-size:20vh}.ust .saat{font-size:17vh}
+    .blok{padding:2vh 1.5vw;gap:2vh}.blok h2{font-size:16vh}
+    .hz{padding:0 .3vw}.hz b,.hz-izgara.cok .hz b,.hzr b{font-size:30vh}
+    .hz small,.hz-izgara.cok .hz small,.hzr small{font-size:13vh}
+    .hzr{padding:0 .3vw}.bos-not{font-size:19vh;padding-top:5vh}
+    .alt{padding:0 1.5vw}.alt .yon,.alt .yon small{font-size:13vh;white-space:nowrap}
+  }
+</style>
+</head>
+<body>
+<div class="tv">
+  <div class="ust"><span class="ak-marka">AUTO<i>KITCH</i></span><span class="saat" id="saat"></span></div>
+  <section class="blok"><h2 id="hazirBaslik"></h2><div class="hz-izgara" id="hazirlar"></div></section>
+  <section class="blok"><h2 id="hzrBaslik"></h2><div class="hzr-izgara" id="hazirlaniyor"></div></section>
+  <div class="alt"><div class="yon" id="nasil"></div><div id="qrYer"></div></div>
+</div>
+<div id="reklam" aria-live="off"></div>
+
+<script src="../ortak/goz-etiket.js"></script>
+<script src="../ortak/ak-dil.js"></script>
+<script src="../ortak/ak.js"></script>
+<script src="../ortak/ak-katalog.js"></script>
+<script src="../ortak/ak-vitrin.js"></script>
+<script src="../ortak/ak-demo-menu.js"></script>
+<script src="../ortak/ak-demo.js"></script>
+<script>
+(function () {
+  'use strict';
+  const { h, $ } = AK;
+  const yerel={'bek.hazirlanan_yok':['Hazırlanan sipariş yok','No orders in preparation'],'bek.nasil_sade':['Hazır olunca kodunla dolaptan al.','Collect from the locker with your code when ready.']};
+  const metin=(d,k,v)=>{const t=AK.tDil(d,k,v);return t===k&&yerel[k]?yerel[k][d==='tr'?0:1]:t;};
+  const TR = (k, v) => metin('tr', k, v), EN = (k, v) => metin('en', k, v), IKI = (k, v) => TR(k, v) + ' · ' + EN(k, v);
+  const BOS_S = 20, SLAYT_S = 8;
+  let ekran = [], gorulen = new Set(), ilk = true, bosSaniye = 0, menu = [], slaytlar = [], si = -1, slaytZaman = null;
+  const siparisUrl = () => new URL('index.html', location.href.replace(/[?#].*$/, '')).href;
+  function saat() { $('#saat').textContent = new Date().toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' }); }
+  function barSayfa(items,cap){const page=Math.floor(Date.now()/7000)%Math.max(1,Math.ceil(items.length/cap));return items.slice(page*cap,(page+1)*cap);}
+  function liste() {
+    const bar=matchMedia('(min-aspect-ratio:4/1)').matches;
+    const hz = ekran.filter(s => ['HAZIR', 'ZAMAN_ASIMI'].includes(s.durum)), hzr = ekran.filter(s => !['HAZIR', 'ZAMAN_ASIMI'].includes(s.durum));
+    $('#hazirBaslik').textContent = IKI('dis.hazir'); $('#hzrBaslik').textContent = IKI('dis.hazirlaniyor');
+    const kap = $('#hazirlar'); kap.replaceChildren(); kap.classList.toggle('cok', hz.length > 3);   // 4–6 hazır: numara 160 → 106 px (blok %45'e sığar)
+    if (!hz.length) kap.append(h('div', { sinif: 'bos-not', metin: IKI('dis.hazir_yok') }));
+    (bar?barSayfa(hz,6):hz.slice(0,6)).forEach(s => kap.append(h('div', { sinif: 'hz' + (!ilk && !gorulen.has(s.kisa_no) ? ' yeni' : '') + (s.platform ? ' plat' : ''), 'data-no': s.kisa_no },
+      h('b', { metin: s.kisa_no }), h('small', { metin: s.platform || (TR('dis.goz') + ' / ' + EN('dis.goz') + ' ' + (s.dolap_gozu ? AK_GOZ.etiket(s.dolap_gozu) : '–')) }))));
+    hz.forEach(s => gorulen.add(s.kisa_no)); ilk = false;
+    const hk = $('#hazirlaniyor'); hk.replaceChildren();
+    if (!hzr.length) hk.append(h('div', { sinif: 'bos-not', metin: IKI('bek.hazirlanan_yok') }));
+    (bar?barSayfa(hzr,6):hzr.slice(0,12)).forEach(s => hk.append(h('div', { sinif: 'hzr', 'data-no': s.kisa_no }, h('b', { metin: s.kisa_no }), h('small', { metin: s.kalan_dk ? '≈ ' + s.kalan_dk + ' dk' : '…' }))));
+    $('#nasil').replaceChildren(document.createTextNode(TR('bek.nasil_sade')), h('small', { metin: EN('bek.nasil_sade') }));
+  }
+  function slaytKur() {
+    const R = (window.AK_VITRIN || {}).reklamlar;
+    const kampanya = ((window.AK_VITRIN || {}).kampanyalar || []).filter(x => !x.ornek || AK.api.mod === 'demo');
+    const S = [];
+    S.push(() => h('div', { sinif: 'slayt' }, h('div', { sinif: 'ak-marka', html: 'AUTO<i>KITCH</i>' }), h('div', { sinif: 'slogan', metin: TR('bek.reklam_slogan') + ' · ' + EN('bek.reklam_slogan') })));
+    const urunler = Array.isArray(R) && R.length ? R.filter(r => r.tur === 'urun').map(r => menu.find(u => u.id === r.kaynak)).filter(Boolean) : menu.filter(u => u.grup !== 'ek').slice(0, 7);
+    for (const u of urunler) S.push(() => h('div', { sinif: 'slayt' }, h('div', { sinif: 'resim', html: window.AK_RESIM ? AK_RESIM(u.id) : '' }), h('div', { sinif: 'ad', metin: u.ad + (u.ad_en ? ' · ' + u.ad_en : '') }),
+      h('div', { sinif: 'fiyat', metin: AK.tl(u.fiyat_kurus || 0) })));
+    S.push(() => h('div', { sinif: 'slayt' }, h('div', { sinif: 'metin', html: TR('bek.reklam_telefon') + '<small>' + EN('bek.reklam_telefon') + '</small>' }), AK.qrKutu(siparisUrl(), 340)));
+    for (const k of kampanya) S.push(() => h('div', { sinif: 'slayt' }, h('div', { sinif: 'metin', html: k.tr + '<small>' + k.en + '</small>' })));
+    if (Array.isArray(R)) for (const r of R.filter(x => x.tur === 'gorsel')) S.push(() => h('div', { sinif: 'slayt' }, h('img', { src: r.kaynak, alt: '', stil: { maxWidth: '86vw', maxHeight: '86vh' } })));
+    slaytlar = S;
+  }
+  function slaytIleri() {
+    if (!slaytlar.length) slaytKur(); if (!slaytlar.length) return;
+    si = (si + 1) % slaytlar.length; const y = $('#reklam'), yeni = slaytlar[si](); y.append(yeni);
+    requestAnimationFrame(() => requestAnimationFrame(() => yeni.classList.add('on')));
+    const eski = [...y.children].filter(c => c !== yeni); eski.forEach(c => c.classList.remove('on')); setTimeout(() => eski.forEach(c => c.remove()), 900);
+    document.body.dataset.slayt = String(si);
+  }
+  function mod(bos) {
+    if (bos === document.body.classList.contains('bos')) return;
+    document.body.classList.toggle('bos', bos); document.body.dataset.mod = bos ? 'BOS' : 'AKTIF';
+    clearInterval(slaytZaman); slaytZaman = null;
+    if (bos) { slaytKur(); si = -1; slaytIleri(); slaytZaman = setInterval(slaytIleri, SLAYT_S * 1000); } else $('#reklam').replaceChildren();
+  }
+  async function yenile() {
+    try { const j = await AK.siparis.ekran(); ekran = j.siparisler || []; liste(); } catch (e) { /* son görüntü kalır */ }
+    bosSaniye = ekran.length ? 0 : bosSaniye + 2;
+    mod(!ekran.length && bosSaniye >= BOS_S);
+  }
+  (async function () {
+    await AK.api.hazir(); if (AK.api.mod === 'demo') AK_DEMO.ortam(true);
+    document.documentElement.lang = 'tr'; document.body.dataset.mod = 'AKTIF';
+    await AK.vitrinYukle(); setInterval(() => { AK.vitrinYukle().then(() => { slaytlar = []; }); }, 300000);
+    try { const m = await AK.siparis.menu(); menu = m.urunler || []; } catch (e) { menu = []; }
+    $('#qrYer').append(AK.qrKutu(siparisUrl(), 90)); saat(); await yenile();
+    setInterval(saat, 1000); setInterval(yenile, 2000);
+  })();
+})();
+</script>
+</body>
+</html>

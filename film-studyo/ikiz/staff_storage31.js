@@ -1,0 +1,19 @@
+// Lightweight staff storage; no control commands, new cabinets or aisle expansion.
+export function staffStorage31(T,g,IKIZ){
+ if(IKIZ.staffStorage31)return IKIZ.staffStorage31;
+ const wash=g.getObjectByName('DUKKAN__YIKAMA_ISTASYONU');if(!wash)throw Error('Existing wash station missing');
+ const placed=[],info={revision:'staff-layout31',zones:{washLower:'Closed chemicals only; existing dosing bottles plus sealed reserves',washUpper:'Clean dry tools and EMPTY washed spare machine units',washTop:'Existing enclosed carton stock, 210 blanks; no loose roof storage',personalCabinet:'Clothing, bag and personal items only',counterUpper:'Cash and receipts',counterMiddle:'Dry consumables and receipt rolls',counterLower:'Existing removable waste bin; sealed replacement liners beside it',charging:'Existing dry counter'},added:[],notIncluded:['No food or drink stock under sink','No chemicals in personal cabinet','No new sink, counter or cabinet','No spare-day capacity claim without approved demand and carton pack dimensions']};
+ function clone(name,newName,delta){const original=wash.getObjectByName(name);if(!original)throw Error('Storage source missing '+name);const o=original.clone(true);o.name=newName;o.position.add(new T.Vector3(...delta));original.parent.add(o);o.traverse(m=>{m.userData={...m.userData,visualOnly:true,assemblyOwner:'WASH',storage31:true,sealedReserve:true};});placed.push(o);return o;}
+ clone('YIKAMA__DETERJAN_5L','YIKAMA__YEDEK_DETERJAN_5L',[0,0,.230]);clone('YIKAMA__DETERJAN_KAPAK','YIKAMA__YEDEK_DETERJAN_KAPAK',[0,0,.230]);
+ clone('YIKAMA__PARLATICI_1L','YIKAMA__YEDEK_PARLATICI_1L',[0,0,.130]);clone('YIKAMA__PARLATICI_KAPAK','YIKAMA__YEDEK_PARLATICI_KAPAK',[0,0,.130]);
+ clone('YIKAMA__KAGIT_HAVLU_RULO','YIKAMA__YEDEK_KAGIT_HAVLU_RULO',[0,1.7815-1.9615,.130]);
+ // Attach dry stock to the actual moving drawer, using its own local bounds.
+ const table=IKIZ.personelTezgah71.root;const paper=new T.MeshStandardMaterial({color:0xe9e4da,roughness:1}),dark=new T.MeshStandardMaterial({color:0x38413f,roughness:.9});
+ for(const m of[paper,dark])m.userData={gercekRenk:true,preserveReviewMaterial:true,storefront60Finish:true};
+ function drawer(id){const moving=table.getObjectByName('PERSONEL_TEZGAH71__CEKMECE_'+id),body=moving?.getObjectByName('PERSONEL_TEZGAH71__CEKMECE_KUTU_'+id);if(!body)throw Error('Actual drawer missing '+id);body.geometry.computeBoundingBox();return{moving,b:body.geometry.boundingBox};}
+ const {moving,b}=drawer('SARF');const w=Math.min(.09,(b.max.x-b.min.x)*.34),d=Math.min(.09,(b.max.z-b.min.z)*.50);
+ for(let i=0;i<2;i++){const o=new T.Mesh(new T.BoxGeometry(w,.025,d),paper);o.name='PERSONEL_SARF31_KAPALI_PECETE_PAKETI_'+i;o.position.set((b.min.x+b.max.x)/2,b.min.y+.005+.0125+i*.026,(b.min.z+b.max.z)/2);o.userData={visualOnly:true,assemblyOwner:'PERSONEL',storage31:true,sealed:true};moving.add(o);placed.push(o);}
+ const lower=drawer('COP_TEMIZLIK'),r=new T.Mesh(new T.CylinderGeometry(.018,.018,.09,12),dark);r.rotation.x=Math.PI/2;r.name='PERSONEL_SARF31_YEDEK_COP_POS_ETI_RULO';r.position.set(lower.b.max.x-.030,lower.b.min.y+.023,lower.b.min.z+.080);r.userData={visualOnly:true,assemblyOwner:'PERSONEL',storage31:true,sealed:true};lower.moving.add(r);placed.push(r);
+ info.added=[{item:'Deterjan',active:'5 L',reserve:'5 L',location:'Lavabo altı, sol sızıntı tavası'},{item:'Parlatıcı',active:'1 L',reserve:'1 L',location:'Lavabo altı, sağ ön sızıntı tavası'},{item:'Yüzey ürünü',quantity:'500 ml',location:'Lavabo altı sağ arka ayrı tava'},{item:'Düşük köpüklü ekipman temizleyici',quantity:'1 L',location:'Lavabo altı sağ arka ayrı tava'},{item:'Kağıt havlu',quantity:'2 rulo toplam',location:'Üst sol temiz bölme; yedek doğrudan raf üzerinde'},{item:'Peçete',quantity:'2 kapalı paket',location:'Tezgâh orta kuru sarf çekmecesi'},{item:'Çöp poşeti',quantity:'1 kapalı yedek rulo',location:'Alt çekmecede mevcut kovadan ayrı yan bölüm'}];
+ return IKIZ.staffStorage31={info,placed,wash};
+}

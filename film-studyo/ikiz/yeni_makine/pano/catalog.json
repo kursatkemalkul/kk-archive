@@ -1,0 +1,406 @@
+{
+ "schema": "autokitch.panel-cad/1",
+ "types": {
+  "CPU": "cpu",
+  "IM": "im",
+  "BU": "bu",
+  "BUL": "bulight",
+  "DI": "di",
+  "DQ": "dq",
+  "FDI": "fdi",
+  "FDQ": "fdq",
+  "SERVER": "server",
+  "BA": "busadapter",
+  "PSU": "psu",
+  "MCB": "mcb",
+  "CONTACTOR": "contactor",
+  "PE": "terminalpe",
+  "SELECTIVITY": "selectivity",
+  "NETWORK": "network",
+  "UPS": "ups",
+  "BATTERY": "battery",
+  "IPC": "ipc",
+  "IPCMOUNT": "ipcmount",
+  "PSU40": "psu40",
+  "AIRTD": "ai_rtd",
+  "AIUI": "ai_ui",
+  "FUSE": "fuse",
+  "CM4IOL": "fdq",
+  "S1": "drive100",
+  "S2": "drive200",
+  "S4": "drive400",
+  "CPU14": "cpu1514",
+  "XB216": "xb216",
+  "TMP": "tmpulse",
+  "BU20": "bu20",
+  "BU20L": "bu20light",
+  "IOL": "iol",
+  "AQ": "aq",
+  "POSIN": "posin",
+  "PTO": "pto",
+  "SEL12": "sel1200",
+  "NW14": "nw7014",
+  "RLY": "rly3rq",
+  "BRK": "brk8288",
+  "MCB4": "mcb4",
+  "CT26": "ct2026",
+  "D507": "d507",
+  "FLT": "flt200",
+  "LSP36": "lsp36",
+  "BWG": "bwg250",
+  "DQ8": "dq8",
+  "PSU20": "psu20",
+  "KL": "klemens",
+  "CANOPEN": "cmcan",
+  "PSU62": "psu6200",
+  "MC36": "mc3603s"
+ },
+ "axes": {
+  "AX_TOP_X": "S1",
+  "AX_TOP_TABLA": "S1",
+  "AX_TOP_BANT": "D507",
+  "AX_TOP_KASAR_HEL": "D507",
+  "AX_TOP_KASAR_KAR": "S1",
+  "AX_TOP_SUCUK_HEL": "D507",
+  "AX_TOP_SUCUK_KAR": "S1",
+  "AX_F_YBANT": "S1",
+  "AX_E_ASANSOR": "S4",
+  "AX_E_PISTON": "S4",
+  "AX_E_DESTEK": "S2",
+  "AX_E_KOSE_KALDIR": "S2",
+  "AX_E_BESLEYICI": "S2",
+  "AX_E_PARMAK": "S2",
+  "AX_E_KOSE_SOL_ARKA": "S2",
+  "AX_E_KOSE_SOL_ON": "S2",
+  "AX_E_KOSE_SAG_ARKA": "S2",
+  "AX_E_KOSE_SAG_ON": "S2",
+  "AX_E_KOPRU": "S1",
+  "AX_E_FLAP": "S1",
+  "AX_E_KOL": "S1",
+  "AX_K_BANT": "S2",
+  "AX_K_POMPA": "S1",
+  "AX_E_TUTUCU": "S2",
+  "AX_K_BICAK": "S4",
+  "AX_K_ITICI_Z": "S2",
+  "AX_TOP_SILECEK": "S4"
+ },
+ "models": {
+  "ai_rtd": {
+   "file": "ai_rtd.glb.gz",
+   "sha256": "f19bb4a33a457f8a54e1453c88953d837985fd03b964d7baf13f307f9642118c",
+   "bytes": 174901,
+   "meshes": 1
+  },
+  "ai_ui": {
+   "file": "ai_ui.glb.gz",
+   "sha256": "65d9f17a9f67da98a10f125aa0e344a961c8a93486a10a45849db79ced897d4d",
+   "bytes": 157930,
+   "meshes": 1
+  },
+  "battery": {
+   "file": "battery.glb.gz",
+   "sha256": "f3f6184d0d0d6ea7e16a144a71d6416f98ffb5b550903271d523db054a4f9a6b",
+   "bytes": 424654,
+   "meshes": 1
+  },
+  "bu": {
+   "file": "bu.glb.gz",
+   "sha256": "64c994a686a29d44229b1a75ea257df56fd47783d32d9fe4a0a5d5bd79e32d90",
+   "bytes": 709228,
+   "meshes": 7
+  },
+  "bu20": {
+   "file": "bu20.glb.gz",
+   "sha256": "721c2a09444947a804a40e02755b4c40eb3fee6270a3f610ed76ed2900d15e81",
+   "bytes": 623758,
+   "meshes": 8
+  },
+  "bu20light": {
+   "file": "bu20light.glb.gz",
+   "sha256": "eb1d8ed00139c1f65b8746bab5d0c5be0f1ba7c997be64ccfd7eb4028ac33461",
+   "bytes": 731832,
+   "meshes": 7
+  },
+  "bulight": {
+   "file": "bulight.glb.gz",
+   "sha256": "884d2d4d1fe660006a3e7b9a7e72c1774b0ed93ae152e44125995c21d68e8a1e",
+   "bytes": 701967,
+   "meshes": 8
+  },
+  "busadapter": {
+   "file": "busadapter.glb.gz",
+   "sha256": "1dbb2936a941fa3a929f97aa4fba8bd38724d19efdf76b40e27c5591a0b03b4f",
+   "bytes": 506360,
+   "meshes": 5
+  },
+  "contactor": {
+   "file": "contactor.glb.gz",
+   "sha256": "8b0e1093a1594f9276cede4dc9f50dbbdc72f53c2bb8d6a0cb9610718e282c54",
+   "bytes": 93651,
+   "meshes": 1
+  },
+  "cpu": {
+   "file": "cpu.glb.gz",
+   "sha256": "b9e848fb63ca90374fcef90ec87024023a6864d48cb702e982a6d7581c1b4e43",
+   "bytes": 921214,
+   "meshes": 6
+  },
+  "cpu1514": {
+   "file": "cpu1514.glb.gz",
+   "sha256": "a0779da2ee58165f1d838aaf43a77d500e96fa49c98bc983f64a13e56fb3ecf8",
+   "bytes": 496728,
+   "meshes": 3
+  },
+  "di": {
+   "file": "di.glb.gz",
+   "sha256": "69e338b492cc93b3c31484280cec58fcfe434e0c873a2717c40683a8cf59b2d7",
+   "bytes": 453094,
+   "meshes": 5
+  },
+  "dq": {
+   "file": "dq.glb.gz",
+   "sha256": "5419c1248803fe4773bd049ceb62bcd57c373d1d5d42c73191afdfe88eb9aef0",
+   "bytes": 572510,
+   "meshes": 5
+  },
+  "drive100": {
+   "file": "drive100.glb.gz",
+   "sha256": "56e492645558b6a076b7cfbc256b1f46a4441db4ab3edbcb565bc7545dfdacc7",
+   "bytes": 303651,
+   "meshes": 2335
+  },
+  "drive200": {
+   "file": "drive200.glb.gz",
+   "sha256": "97bdbea4ecfc850fa66d84313ad0088723ac4fc5b998ad37c08714c21a0494f9",
+   "bytes": 303682,
+   "meshes": 2335
+  },
+  "drive400": {
+   "file": "drive400.glb.gz",
+   "sha256": "a7dc841a6bec614627f635e750f9caa4624b491086b8b75982fee2d118c07fba",
+   "bytes": 308156,
+   "meshes": 2500
+  },
+  "fdi": {
+   "file": "fdi.glb.gz",
+   "sha256": "6eb856fb567f3faf74b46756650a135064fb1b833a8877b0297bb63a244a71e2",
+   "bytes": 465262,
+   "meshes": 6
+  },
+  "fdq": {
+   "file": "fdq.glb.gz",
+   "sha256": "cbdbec33650a24d30c5d1831df66dbcf2b5c402c649cd4f4dcd6e8c2fc2b631e",
+   "bytes": 376438,
+   "meshes": 6
+  },
+  "fuse": {
+   "file": "fuse.glb.gz",
+   "sha256": "52d8abf1bb0a10fef5f578599209770cc07524489829483815eb23f58447a0af",
+   "bytes": 78348,
+   "meshes": 1
+  },
+  "im": {
+   "file": "im.glb.gz",
+   "sha256": "5004272769599fe3ddf9a0b1ba6dbb33eb70d9e87fa512da5e8492723d2b01cb",
+   "bytes": 613071,
+   "meshes": 6
+  },
+  "ipc": {
+   "file": "ipc.glb.gz",
+   "sha256": "d170950776e586993ba06c9062040ddf44a82741daf647154bf8b4fe4ee441b9",
+   "bytes": 3151936,
+   "meshes": 8
+  },
+  "ipcmount": {
+   "file": "ipcmount.glb.gz",
+   "sha256": "ed9885a42e96749b8bc9ae5bf6b2ec56a73b0119d66591a0c1ee1f32da1dbdf7",
+   "bytes": 27814,
+   "meshes": 1
+  },
+  "mcb": {
+   "file": "mcb.glb.gz",
+   "sha256": "28bb7474ca07a238efc37b044b7d1281dca6d404b4f98dc08360c9c222db7fe3",
+   "bytes": 36190,
+   "meshes": 1
+  },
+  "network": {
+   "file": "network.glb.gz",
+   "sha256": "3f0ab295311e8061556f1da4dbf2c8aaf395be9d47afde0daf7b253d554a1c97",
+   "bytes": 433662,
+   "meshes": 8
+  },
+  "psu": {
+   "file": "psu.glb.gz",
+   "sha256": "cc1f53506866466bd5844de7dd061e8920ad5f84cac321402597054c0ec2c0a8",
+   "bytes": 223522,
+   "meshes": 1
+  },
+  "psu40": {
+   "file": "psu40.glb.gz",
+   "sha256": "daad674f9ae2a016b0ff60424081a2b82fe2c627597a965a2118514c4cf076bf",
+   "bytes": 584399,
+   "meshes": 1
+  },
+  "selectivity": {
+   "file": "selectivity.glb.gz",
+   "sha256": "caa5ae4a1667398d19fd9b322ec2d33ad29b13e5a33e77bfc909a0c564f190bd",
+   "bytes": 707506,
+   "meshes": 1
+  },
+  "server": {
+   "file": "server.glb.gz",
+   "sha256": "ff1b75c57135e69d76a84fcefff64ea4446389824d59b26d8ac6495931ac62b7",
+   "bytes": 259014,
+   "meshes": 5
+  },
+  "terminalpe": {
+   "file": "terminalpe.glb.gz",
+   "sha256": "664600abfaa3b52c6490d1cbbf9368f0974ee9cca0c38664dc1e36dc6ab52e62",
+   "bytes": 33417,
+   "meshes": 1
+  },
+  "tmpulse": {
+   "file": "tmpulse.glb.gz",
+   "sha256": "118512b7221eff39412276ab43569e7e01fc6efcf71fa36a7da32ddfb139c25c",
+   "bytes": 216472,
+   "meshes": 2
+  },
+  "ups": {
+   "file": "ups.glb.gz",
+   "sha256": "36584edc5d019839ad1ab9d369c192feeb16c350a681164f847998206bee9683",
+   "bytes": 1387670,
+   "meshes": 8
+  },
+  "xb216": {
+   "file": "xb216.glb.gz",
+   "sha256": "a9f96cd4848871d7ba1c41342cccb70fab343dfec58f24586c13d2f9afebc966",
+   "bytes": 227188,
+   "meshes": 3
+  },
+  "iol": {
+   "file": "iol.glb.gz",
+   "sha256": "1d3015fd045bd16bc7e40797be120f4012f86140e7be6f6de2f04e6cc4f46cf2",
+   "bytes": 174062,
+   "meshes": 71
+  },
+  "aq": {
+   "file": "aq.glb.gz",
+   "sha256": "362d3d6e705793e878929d43203885c3c3f189e059c3b6de455e374188eab8d9",
+   "bytes": 154377,
+   "meshes": 52
+  },
+  "posin": {
+   "file": "posin.glb.gz",
+   "sha256": "fe85d0a43957efa3bb5d6751f8aaf996f89da152cb6ff9d19dcbcdca5261aa8e",
+   "bytes": 195255,
+   "meshes": 80
+  },
+  "pto": {
+   "file": "pto.glb.gz",
+   "sha256": "1bbc898e262e0f1a2fe047ff7334baeecfbfd90bff2fcaed432dbd2e721ed6aa",
+   "bytes": 190637,
+   "meshes": 85
+  },
+  "sel1200": {
+   "file": "sel1200.glb.gz",
+   "sha256": "14bb89e6ea86257c325aaefca051fd4c07582a8efa93d565b48c1a3ded5ebe87",
+   "bytes": 297915,
+   "meshes": 87
+  },
+  "nw7014": {
+   "file": "nw7014.glb.gz",
+   "sha256": "571e9efd29d9d29826d19dd1d6ed57b14bfa3127b3def643ac3f3fcb980deb8a",
+   "bytes": 22753,
+   "meshes": 1
+  },
+  "rly3rq": {
+   "file": "rly3rq.glb.gz",
+   "sha256": "8406e65b5309698187f82af8ec56e0de697723b98a1e41343b3445afe323288d",
+   "bytes": 84369,
+   "meshes": 1
+  },
+  "brk8288": {
+   "file": "brk8288.glb.gz",
+   "sha256": "73e55b49ebb96a32b3dac14871452bf4d7bb2ae4a3d3949566cfa7e902bdd01c",
+   "bytes": 999,
+   "meshes": 4
+  },
+  "mcb4": {
+   "file": "mcb4.glb.gz",
+   "sha256": "77a8457212136f527b05534f1402a02ef3a33d97e5cd3547307b5c3541672eab",
+   "bytes": 30208,
+   "meshes": 1
+  },
+  "ct2026": {
+   "file": "ct2026.glb.gz",
+   "sha256": "4da94d198cf6bd2f20ddf198edcbc7537ebab085408947ab9d854256d0df8f66",
+   "bytes": 124068,
+   "meshes": 1
+  },
+  "d507": {
+   "file": "d507.glb.gz",
+   "sha256": "e034fd255431f04e11ffe127b41d1368882847cd76c355e111c4cc82dbe6854c",
+   "bytes": 425913,
+   "meshes": 2
+  },
+  "flt200": {
+   "file": "flt200.glb.gz",
+   "sha256": "5582abff7e21ffff1bff7f96a6edf176b67ebe06ec203164b168110f579c4c14",
+   "bytes": 3376,
+   "meshes": 6
+  },
+  "lsp36": {
+   "file": "lsp36.glb.gz",
+   "sha256": "a630fc7ca40676725a4123096b6b3d5b81fecff7cbb4f6da6661d00bb45f08e8",
+   "bytes": 5475,
+   "meshes": 1
+  },
+  "bwg250": {
+   "file": "bwg250.glb.gz",
+   "sha256": "ac7e4e15c69a78fa955c1f7dbe460c3fc7adc0c53dab5d45678a0d415d866861",
+   "bytes": 3341,
+   "meshes": 1
+  },
+  "dq8": {
+   "file": "dq8.glb.gz",
+   "sha256": "2ca5e0b41bef95b6578ef589a827827d0dc59b1ecf02492c655436a606600392",
+   "bytes": 200787,
+   "meshes": 69
+  },
+  "psu20": {
+   "file": "psu20.glb.gz",
+   "sha256": "34e41d1f0aa4e8397eb8d3df3af5a353e173597151829f06de843d65f67ed50f",
+   "bytes": 181278,
+   "meshes": 59
+  },
+  "klemens": {
+   "file": "klemens.glb.gz",
+   "sha256": "9d81c03cb0c417dea85309c14ff9c20291e51bc9d4757be59026c69fbf2c9841",
+   "bytes": 13574,
+   "meshes": 2
+  },
+  "cmcan": {
+   "file": "cmcan.glb.gz",
+   "sha256": "e386043d15bbdfcde15d03c2089ef6b3d2bf14c935a4fbd07ae6b00700c4e6e0",
+   "bytes": 118286,
+   "meshes": 52
+  },
+  "psu6200": {
+   "file": "psu6200.glb.gz",
+   "sha256": "30b1f674498659b1d1b6b649d54ca125a3139c3c24f25e13ccd08d160adfdbb2",
+   "bytes": 205333,
+   "meshes": 108
+  },
+  "mc3603s": {
+   "file": "mc3603s.glb.gz",
+   "sha256": "589fee6fd2f3bf84cb84eea6255ed75c1c5a66a3033f3e6991420ef0dc1e36e2",
+   "bytes": 423213,
+   "meshes": 1
+  }
+ },
+ "units": "mm",
+ "placement": "existing exported device datum; no device moves",
+ "substitutions": {
+  "CM4IOL": "Existing F-DQ housing placeholder: exact manufacturer CAD unavailable in source project"
+ }
+}
