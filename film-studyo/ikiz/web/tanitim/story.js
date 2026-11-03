@@ -57,8 +57,8 @@ export function createStory(I,data){
   for(const sign of[-1,1]){sphere(head,.009,mats.hair,[sign*.037,1.63,.102]);box(root,[.11,.08,.22],mats.shoe,[sign*.09,.05,.045]);}
   const legs=[-1,1].map(s=>[limb(root,.06,null,null,mats.pants),limb(root,.045,null,null,mats.pants)]);
   const arms=[-1,1].map(()=>[limb(root,.045,null,null,shirt),limb(root,.034,null,null,mats.skin)]);const hands=[sphere(root,.041,mats.skin,[0,0,0]),sphere(root,.041,mats.skin,[0,0,0])];
-  function pose(time,walk=0,right=null,left=null,tucked=false){for(let i=0;i<2;i++){const s=i?1:-1,swing=Math.sin(time*9+i*Math.PI)*.13*walk,knee=[s*.09,.49,swing*.7],foot=[s*.09,.10,-swing];legs[i][0].set([s*.09,.88,0],knee);legs[i][1].set(knee,foot);let hand=(i?right:left)||[s*.22,.96,.05+swing*.5];const shoulder=[s*.175,1.40,0],elbow=[s*(tucked?(.10+.13*(1-ease((hand[2]-.15)/.12))):.23),(1.40+hand[1])/2,hand[2]*(tucked?.42:.55)+(tucked?.02:.05)];arms[i][0].set(shoulder,elbow);arms[i][1].set(elbow,hand);hands[i].position.set(...hand);}}
-  return {root,head,pose,hands,arms};
+  function pose(time,walk=0,right=null,left=null,tucked=false,wristOffsets=null,elbowTargets=null){for(let i=0;i<2;i++){const s=i?1:-1,swing=Math.sin(time*9+i*Math.PI)*.13*walk,knee=[s*.09,.49,swing*.7],foot=[s*.09,.10,-swing];legs[i][0].set([s*.09,.88,0],knee);legs[i][1].set(knee,foot);let hand=(i?right:left)||[s*.22,.96,.05+swing*.5];const shoulder=[s*.175,1.40,0],elbow=[s*(tucked?(.10+.13*(1-ease((hand[2]-.15)/.12))):.23),(1.40+hand[1])/2,hand[2]*(tucked?.42:.55)+(tucked?.02:.05)];if(elbowTargets?.[i])elbow.splice(0,3,...elbowTargets[i]);arms[i][0].set(shoulder,elbow);const wrist=hand.map((v,j)=>v+(wristOffsets?.[i]?.[j]||0));arms[i][1].set(elbow,wrist);hands[i].position.set(...hand);}}
+  return {root,head,body,pose,hands,arms};
  }
  const customer=person('PROMO_MUSTERI',0x406779),passer=person('PROMO_YAYA',0xb5a38d);customer.hands.forEach(h=>h.scale.set(.85,.5,1.05));
  const pedestrians=[passer,...[0x6c7866,0x96716c,0x62788c].map((c,i)=>person('PROMO_SOKAK_'+i,c))];
@@ -99,6 +99,7 @@ export function createStory(I,data){
  const qrRest=new T.Vector3(...sample(data.clips.carton,data.clips.carton.release).slice(8,11));
  function handoffBox(pull){const p=qrRest.clone().lerp(hero,pull);p.y+=.07*Math.sin(Math.PI*pull);return p;}
  const lidAngle=time=>-1.95*progress(time,28.2,PACE.lid);
+ const customerBodyZ=(time,pull)=>2.45+.64*pull+.16*progress(time,28.2,PACE.lid);
  const clipWas=I.sahne.renderer.localClippingEnabled,cutPlane=new T.Plane(new T.Vector3(0,-1,0),1.003),cutParts=[];scene.traverse(o=>{if(o.isMesh&&/^YM_(GOVDE|MEK)_TOP_ic|^YM_GOVDE_TOP_sac/.test(o.name)){const original=o.material,clones=[].concat(original).map(m=>m.clone());o.material=Array.isArray(original)?clones:clones[0];cutParts.push({o,original,clones})}});I.sahne.renderer.localClippingEnabled=true;
  const sceneVisibility=scene.children.filter(o=>o!==stage&&o!==I.yeniMakine?.kok&&!o.isLight).map(o=>[o,o.visible]);const originalLED=scene.getObjectByName('YM_KUSAK_PIKSEL_LED'),ledVisible=originalLED?.visible;
  const originalLights=[];scene.traverse(o=>{if(o.isLight)originalLights.push([o,o.intensity])});const originalBackground=scene.background?.clone?.();
@@ -144,16 +145,19 @@ export function createStory(I,data){
    customer.hands.forEach(h=>h.quaternion.identity());
    if(time<23.9){const walk=progress(time,22.4,1.5);customer.root.position.set(4.85+(hero.x-4.85)*walk,0,2.68+(2.45-2.68)*walk);customer.root.rotation.y=Math.PI/2+Math.PI/2*walk;const reach=ease((t-2.75)/.45)*(1-ease((t-3.5)/.25));customer.pose(time,time>22.4?.25:0,t<4?[.25,1.1+.2*reach,.08+.46*reach]:null,null)}
    else{
-    customer.root.position.set(hero.x,0,2.45+.64*pull);customer.root.rotation.y=Math.PI;customer.root.updateMatrixWorld(true);
+    customer.root.position.set(hero.x,0,customerBodyZ(time,pull));customer.root.rotation.y=Math.PI;customer.root.updateMatrixWorld(true);
     const boxP=handoffBox(pull),raise=progress(time,25.15,.65),reach=progress(time,25.8,.6),prepare=progress(time,27.8,.4),angle=lidAngle(time),boxQ=new T.Quaternion(...sample(b,b.release).slice(11,15)).normalize();
     const world=(side)=>{
      const rest=customer.root.localToWorld(new T.Vector3(side*.22,.96,.08)),hover=new T.Vector3(boxP.x-side*.21,boxP.y+.0445+.13,2.40),grip=new T.Vector3(boxP.x-side*.10,boxP.y+.0445+.0205,boxP.z+.07);
      const p=rest.lerp(hover,raise).lerp(grip,reach);p.x=boxP.x-side*(.22-.01*raise-.11*progress(time,25.8,.2));return p;
     };
-    const right=world(1),left=world(-1),support=new T.Vector3(boxP.x+.13,boxP.y-.004-.0205,boxP.z+.07),lidQ=new T.Quaternion().setFromAxisAngle(new T.Vector3(1,0,0),angle);
+    const right=world(1),left=world(-1),lidQ=new T.Quaternion().setFromAxisAngle(new T.Vector3(1,0,0),angle);
     const lidPoint=new T.Vector3(.10,.0025,.31).applyQuaternion(lidQ).add(new T.Vector3(0,.042,-.165)),normal=new T.Vector3(0,1,0).applyQuaternion(lidQ);
-    lidPoint.addScaledVector(normal,.0205).applyQuaternion(boxQ).add(boxP);right.lerp(lidPoint,prepare);left.lerp(support,prepare);
-    customer.pose(time,time<27.9?.15:0,customer.root.worldToLocal(right.clone()).toArray(),customer.root.worldToLocal(left.clone()).toArray(),true);
+    lidPoint.addScaledVector(normal,.0205).applyQuaternion(boxQ).add(boxP);right.lerp(lidPoint,prepare);
+    if(prepare>0)left.set(boxP.x+.10+.15*progress(prepare,0,.3)-.12*progress(prepare,.7,.3),boxP.y+.065-.0895*progress(prepare,.3,.4),boxP.z+.07);
+    const rightLocal=customer.root.worldToLocal(right.clone()),leftLocal=customer.root.worldToLocal(left.clone()),lower=progress(prepare,.3,.4);
+    const supportElbow=[-(.10+.15*progress(prepare,0,.3)),(1.4+leftLocal.y)/2*(1-lower)+(boxP.y-.06)*lower,(leftLocal.z*.42+.02)*(1-lower)+.18*lower];
+    customer.pose(time,time<27.9?.15:0,rightLocal.toArray(),leftLocal.toArray(),true,[[0,.025*(1-2*lower),0],new T.Vector3(0,.025,0).applyQuaternion(lidQ).toArray()],[prepare>0?supportElbow:null,null]);
     customer.hands[0].quaternion.identity();customer.hands[1].quaternion.copy(lidQ).slerp(new T.Quaternion(),1-prepare);
     customer.root.userData.handoff={right:right.toArray(),left:left.toArray(),reach,prepare,angle};
    }
@@ -183,7 +187,7 @@ export function createStory(I,data){
   if(shot.id==='street'||shot.id==='menu'){const v=1-Math.pow(1-clamp(time/4.2),2);return {position:openingPath.getPoint(v),target:openingLook.getPoint(v),fov:mapped(time,[[0,64],[1.1,58],[2.5,46],[4.2,34]]),roll:-28*(1-progress(time,0,2))*Math.PI/180};}
   if(['grip','ride','collect','delivery'].includes(shot.id)){const frame=frameAt(time),row=frame.row,point=new T.Vector3(...row.slice(8,11));if(shot.id==='collect'||shot.id==='delivery'){const mount=wristPose(row,time);position.copy(mount.position);target.copy(mount.target);fov=mount.fov;roll=0;}
    else{const q=new T.Quaternion(...row.slice(11,15)).normalize(),wrist=new T.Euler().setFromQuaternion(q,'YXZ'),pov=shot.id!=='grip',yaw=clamp(wrist.y,-.8,.8),offset=new T.Vector3(pov?.24:.45,pov?.17:.25,pov?.40:.52).applyAxisAngle(new T.Vector3(0,1,0),yaw);offset.x+=.06*Math.sin(u*Math.PI*2);position.copy(point).add(offset);target.copy(point).add(new T.Vector3(0,.02,-.055));if(pov)roll+=.20*Math.sin(u*Math.PI*2)+.12*wrist.z;}}
-  if(shot.id==='handoff'||shot.id==='hero'){const pull=progress(time,26.4,PACE.pull),qrPoint=new T.Vector3(...sample(data.clips.carton,data.clips.carton.release).slice(8,11)),box=handoffBox(pull),bodyZ=2.45+.64*pull;position.set(hero.x,1.63,bodyZ-.105);target.copy(box).add(new T.Vector3(0,.025,0));roll=0;const focus=progress(time,28.25,1.05);fov=76-26*focus;target.y-=.010*focus;}
+  if(shot.id==='handoff'||shot.id==='hero'){const pull=progress(time,26.4,PACE.pull),qrPoint=new T.Vector3(...sample(data.clips.carton,data.clips.carton.release).slice(8,11)),box=handoffBox(pull),bodyZ=customerBodyZ(time,pull);position.set(hero.x,1.63,bodyZ-.105);target.copy(box).add(new T.Vector3(0,.025,0));roll=0;const focus=progress(time,28.25,1.05);fov=76-26*focus;target.y-=.010*focus;}
   return {position,target,fov,roll};
  }
  function mixPose(previous,pose,u){pose.position.lerpVectors(previous.position,pose.position,u);pose.target.lerpVectors(previous.target,pose.target,u);pose.fov=previous.fov+(pose.fov-previous.fov)*u;pose.roll=previous.roll+(pose.roll-previous.roll)*u;return pose;}
