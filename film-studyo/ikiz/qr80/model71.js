@@ -1,5 +1,6 @@
+import {COBALT03} from '../blue_finish03.js?v=4cb7bf26ffaa';
 import * as T from '../vendor/three.module.min.js';
-import {kapaklar33} from './kapaklar71.js?v=89-shared-faces';
+import {kapaklar33} from './kapaklar71.js?v=4bb2414b40a2';
 import {mekanizma34} from './mekanizma71.js';
 import {donanim34} from './donanim71.js?v=77-floor';
 export function kur71(C){
@@ -15,6 +16,7 @@ export function kur71(C){
   const outer=loops.filter(p=>T.ShapeUtils.area(p)>0).map(p=>new T.Shape(p)),inside=(p,P)=>{let c=false;for(let i=0,j=P.length-1;i<P.length;j=i++)if((P[i].y>p.y)!==(P[j].y>p.y)&&p.x<(P[j].x-P[i].x)*(p.y-P[i].y)/(P[j].y-P[i].y)+P[i].x)c=!c;return c;};for(const p of loops.filter(p=>T.ShapeUtils.area(p)<0)){const sh=outer.find(sh=>inside(p[0],sh.getPoints()));if(!sh)throw Error('Sac deliği dışarıda');sh.holes.push(new T.Path(p));}return new T.ExtrudeGeometry(outer,{depth:t,bevelEnabled:false});
  }
 
+ mats.backBlue=new T.MeshPhysicalMaterial({color:COBALT03.color,roughness:.16,metalness:.25,clearcoat:1,clearcoatRoughness:.06});
  const [W,H,D]=C.outer_mm,t=1.5,columns=C.column_lefts_mm,rows=C.shelf_tops_mm,Z=C.clear_depth_mm,drop=C.removed_pedestal_mm||0,base=112-drop;
  const posts=[1.5,546.5,1091.5,1636.5,2181.5];
  for(const x of posts)for(const z of [1.5,371.5])rhs('QR71_TEK_DIKEY_'+x+'_'+z,'y',[x,x+20,base,H-12,z,z+20]);
@@ -38,7 +40,7 @@ export function kur71(C){
  const openings=bays.map(b=>({id:'G'+String(b.id).padStart(2,'0'),kind:'eye',x0:b.min[0],x1:b.max[0],y0:b.min[1],y1:b.max[1]}));
  for(const[name,lo,hi,hinge]of [['ALT',126-drop,564-drop,'side'],['UST_IC',upperFloor,1798,'top'],['UST_TEKNIK',1822,2175,'top']])for(const[k,a,b]of [['SOL',21.5,1091.5],['SAG',1111.5,2181.5]])openings.push({id:name+'_'+k,kind:'service',hinge,x0:a,x1:b,y0:lo,y1:hi,hand:name==='ALT'?'SOL':k});
  const eyeHoles=openings.filter(q=>q.kind==='eye').map(q=>[q.x0,q.x1,q.y0,q.y1]);
- for(const side of ['ROBOT','MUSTERI']){const holes=side==='ROBOT'?openings.map(q=>[q.x0,q.x1,q.y0,q.y1]):[...eyeHoles,[20,1907,2068,2163]];const g=cutGeometry([1.5,W-1.5,base+2,H-1.5],holes,1.5);const fixedZ=side==='ROBOT'?2.5:D-4;g.translate(0,0,fixedZ);add('QR71_'+side+'_SABIT_ON_SAC',g,'sac',side==='ROBOT'?'skin':'orange',[1.5,W-1.5,base+2,H-1.5,fixedZ,fixedZ+1.5],{doorLand:true,sealSeat89:true});}
+ for(const side of ['ROBOT','MUSTERI']){const holes=side==='ROBOT'?openings.map(q=>[q.x0,q.x1,q.y0,q.y1]):[...eyeHoles,[20,1907,2068,2163]];const g=cutGeometry([1.5,W-1.5,base+2,H-1.5],holes,1.5);const fixedZ=side==='ROBOT'?2.5:D-4;g.translate(0,0,fixedZ);add('QR71_'+side+'_SABIT_ON_SAC',g,'sac',side==='ROBOT'?'backBlue':'orange',[1.5,W-1.5,base+2,H-1.5,fixedZ,fixedZ+1.5],{doorLand:true,sealSeat89:true});}
  const doors=kapaklar33(T,C,{root,groups,parts,box,add,cutGeometry,openings}),M={root,groups,parts,bays,doors,config:C};M.donanim=donanim34(T,M);M.mechanisms=mekanizma34(T,M,{cutGeometry});root.scale.setScalar(.001);root.updateMatrixWorld(true);
  return M;
 }

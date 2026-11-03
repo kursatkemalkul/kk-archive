@@ -1,4 +1,4 @@
-import {kur71} from './qr80/model71.js?v=89-shared-faces';
+import {kur71} from './qr80/model71.js?v=153f342fa927';
 import {QR_EKRAN} from './qr_ekran.js';
 const C=await(await fetch(new URL('./qr80/config71.json',import.meta.url))).json();
 Object.assign(QR_EKRAN,{x0:3.293,x1:5.341,y0:1.907,y1:2.163,z:2.105,on:2.105,aktif:[2.048,.256]});
