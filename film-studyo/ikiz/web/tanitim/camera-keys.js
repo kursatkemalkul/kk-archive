@@ -3,7 +3,7 @@
 export function cleanKeys(value){
  if(!Array.isArray(value))return [];
  const keys=new Map();
- for(const k of value){if(!k||!Number.isFinite(k.time)||k.time<0||k.time>25||!['position','target'].every(n=>Array.isArray(k[n])&&k[n].length===3&&k[n].every(v=>Number.isFinite(v)&&Math.abs(v)<10000))||!Number.isFinite(k.fov)||k.fov<10||k.fov>120)continue;
+ for(const k of value){if(!k||!Number.isFinite(k.time)||k.time<0||k.time>30||!['position','target'].every(n=>Array.isArray(k[n])&&k[n].length===3&&k[n].every(v=>Number.isFinite(v)&&Math.abs(v)<10000))||!Number.isFinite(k.fov)||k.fov<10||k.fov>120)continue;
  const time=Math.round(k.time*100)/100;keys.set(time,{time,position:[...k.position],target:[...k.target],fov:k.fov});}
  return [...keys.values()].sort((a,b)=>a.time-b.time);
 }

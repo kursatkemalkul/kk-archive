@@ -1,8 +1,10 @@
 import {kUrunSablon} from '../../k_urun.js';
 import {CAMERA as WRIST_CAMERA} from '../../robot_kamera.js';
-import {cameraAt} from './camera-keys.js?v=bb9c67aff12d';
-export const DURATION=25;
-export function actionTime(t){return t<3.9?t:t<9.5?3.9:t<10.3?3.9+1.4*ease((t-9.5)/.8):t-5}
+import {cameraAt} from './camera-keys.js?v=0c3ebe639393';
+export const DURATION=30;
+// Spend the extra five seconds on the wrist turn, not on a frozen last frame.
+// All props and doors consume this same clock, retaining the native path.
+export function actionTime(t){const a=19.98,b=20.4;t=t<a?t:t<b+5?a+(t-a)*(b-a)/(b-a+5):t-5;return t<3.9?t:t<9.5?3.9:t<10.3?3.9+1.4*ease((t-9.5)/.8):t-5}
 export const SHOTS=[
  {id:'street',start:0,end:2.4,title:'Sokaktan tek akış',detail:'Soldan yüksek arc · twist · omuz yanı',fov:[59,49],roll:[-17,7],p:[[-.5,3.8,8.5],[.8,3.05,5.8],[3.3,2.3,3.6],[4.45,1.76,2.96]],look:[[2.95,1.75,2.65],[3.7,1.5,2.5],[4.95,1.35,2.48],[5.35,1.31,2.43]]},
  {id:'menu',start:2.4,end:3.9,title:'Omuz üstü · sipariş',detail:'Over-the-shoulder → parmak / menü',fov:[49,38],roll:[7,-4],p:[[4.45,1.76,2.96],[4.64,1.73,2.99],[4.99,1.61,2.81]],look:[[5.35,1.31,2.43],[5.37,1.29,2.43],[5.39,1.30,2.43]]},
@@ -13,10 +15,10 @@ export const SHOTS=[
  {id:'ride',start:12.3,end:14.1,title:'Robot ucunda dönüş',detail:'Tool-mounted POV · sağ / sol wrist roll',fov:[65,56],roll:[-8,15],p:[[2.5,1.3,1.1],[1.4,1.4,.6]],look:[[2.3,1,.7],[1.1,1,-.17]]},
  {id:'top',start:14.1,end:16.3,title:'Kaşar üstüne sucuk',detail:'Macro overhead · slow fall · orbit',fov:[55,51],roll:[15,-10],p:[[2.03,1.38,-.01],[1.96,1.34,-.02],[1.80,1.31,-.025]],look:[[1.911,1.04,-.17],[1.911,1.04,-.17],[1.911,1.04,-.17]]},
  {id:'oven',start:16.3,end:18.3,title:'Fırın · kızaran kenar',detail:'Oven macro · sıcaklık / çıtırtı',fov:[56,43],roll:[-10,5],p:[[3.05,1.14,-.04],[3.28,1.10,-.09],[3.43,1.09,-.12]],look:[[3.25,1.005,-.29],[3.25,1.005,-.29],[3.25,1.005,-.29]]},
- {id:'collect',start:18.3,end:19.5,title:'Robot ucu POV · kutuyu al',detail:'Kol ucundan · kavra / geri çekil',fov:[74,74],roll:[0,0],p:[[4.606,.980,.577],[3.55,1.1,.775]],look:[[4.606,.980,-.073],[3.55,1.1,.125]]},
- {id:'delivery',start:19.5,end:21.2,title:'Robot ucu POV · QR rafına bırak',detail:'Kamerayla birlikte dönen uç · doğrudan bırakma',fov:[74,74],roll:[0,0],p:[[3.55,1.1,.775],[4.636,1.175,1.670]],look:[[3.55,1.1,.125],[4.636,1.129,2.318]]},
- {id:'handoff',start:21.2,end:23,title:'Müşteri gözünden · iki elle alma',detail:'Müşteri POV · kutuyla birlikte geri çekilme',fov:[64,58],roll:[0,0],p:[[4.5992932,1.63,2.345],[4.5992932,1.63,2.985]],look:[[4.5992932,1.18,1.94],[4.5992932,1.105,2.77]]},
- {id:'hero',start:23,end:25,title:'POV · kutu açılır · AUTOKITCH',detail:'Müşteri gözünden · kutu / pide · yazı',fov:[58,58],roll:[0,0],p:[[4.5992932,1.63,2.985],[4.5992932,1.63,2.985]],look:[[4.5992932,1.105,2.77],[4.5992932,1.105,2.77]]}
+ {id:'collect',start:18.3,end:19.5,title:'Robot ucu POV · kutuyu al',detail:'Tutucunun gerisinden · kutu ve kol görünür',fov:[55,55],roll:[0,0],p:[[4.606,.980,.577],[3.55,1.1,.775]],look:[[4.606,.980,-.073],[3.55,1.1,.125]]},
+ {id:'delivery',start:19.5,end:26.2,title:'Robot ucu POV · QR rafına bırak',detail:'Yavaş dönüş · aynı kol üstü açı · doğrudan bırakma',fov:[55,55],roll:[0,0],p:[[3.55,1.1,.775],[4.636,1.175,1.670]],look:[[3.55,1.1,.125],[4.636,1.129,2.318]]},
+ {id:'handoff',start:26.2,end:28,title:'Müşteri gözünden · iki elle alma',detail:'Müşteri POV · kutuyla birlikte geri çekilme',fov:[64,58],roll:[0,0],p:[[4.5992932,1.63,2.345],[4.5992932,1.63,2.985]],look:[[4.5992932,1.18,1.94],[4.5992932,1.105,2.77]]},
+ {id:'hero',start:28,end:30,title:'POV · kutu açılır · AUTOKITCH',detail:'Müşteri gözünden · kutu / pide · yazı',fov:[58,58],roll:[0,0],p:[[4.5992932,1.63,2.985],[4.5992932,1.63,2.985]],look:[[4.5992932,1.105,2.77],[4.5992932,1.105,2.77]]}
 ];
 export const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
 export const ease=v=>{v=clamp(v);return v*v*(3-2*v)};
@@ -35,7 +37,7 @@ export function createStory(I,data){
  if(wristSource.name==='Tool'){const eye=new T.Object3D();eye.position.fromArray(WRIST_CAMERA.front);wristEye.add(eye);wristEye=eye;}
  const robotBinding=I.frameContract27.motion_bindings.robot,wristJoints=Object.values(robotBinding.kol).map(j=>wristNodes.get(j.dugum)),wristRail=wristNodes.get(robotBinding.tum.RailJoint.dugum),wristZ=new T.Vector3(0,0,1);
  if(wristJoints.some(j=>!j)||!wristRail)throw Error('Robot ucu kamera eklem zinciri eksik');
- function wristPose(row){wristJoints.forEach((joint,i)=>joint.quaternion.setFromAxisAngle(wristZ,row[i+1]));wristRail.position.x=row[7]-robotBinding.ray.sinir_m[0];wristRoot.updateMatrixWorld(true);const position=wristEye.getWorldPosition(new T.Vector3()),q=wristEye.getWorldQuaternion(new T.Quaternion()),forward=wristZ.clone().applyQuaternion(q);return {position,target:position.clone().addScaledVector(forward,.65)};}
+ function wristPose(row){wristJoints.forEach((joint,i)=>joint.quaternion.setFromAxisAngle(wristZ,row[i+1]));wristRail.position.x=row[7]-robotBinding.ray.sinir_m[0];wristRoot.updateMatrixWorld(true);const eye=wristEye.getWorldPosition(new T.Vector3()),q=wristEye.getWorldQuaternion(new T.Quaternion()),forward=wristZ.clone().applyQuaternion(q);forward.y=0;forward.normalize();const position=eye.clone().addScaledVector(forward,-.30).add(new T.Vector3(0,.23,0)),target=new T.Vector3(...(row[0]<data.clips.carton.grasp?sample(data.clips.carton,data.clips.carton.grasp):row).slice(8,11)).add(new T.Vector3(0,.025,0));return {position,target};}
  const sharedGeometry=new Set(),borrowedTextures=new Set();
  const material=(color,roughness=.6)=>{const m=new T.MeshStandardMaterial({color,roughness});m.userData.gercekRenk=true;return m};const ownedMaterials=new Map();
  const mats={skin:material(0xc99170),shirt:material(0x3b6574),pants:material(0x263039),hair:material(0x2c2523),shoe:material(0x171b20),kraft:material(0xb89058,.9),cream:material(0xf1dfb9,.9)};
