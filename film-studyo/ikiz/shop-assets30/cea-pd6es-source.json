@@ -1,0 +1,27 @@
+{
+  "id": "cea-pd6es",
+  "manufacturer": "CEA Estintori",
+  "sku": "PD6ES",
+  "source": "https://www.ceaestintori.it/en/estintore-portatile-polvere-6-kg-4",
+  "download": "https://www.ceaestintori.it/en/file/43229/download?token=hP9-vy0t",
+  "original": "CEA-PD6ES-BIM.zip / PD6ES / OBJ+MTL+PD_6ES.png",
+  "conversion": "mm to metres, Z up to Y up; original shape, UV and texture retained",
+  "boundsSize_mm": [
+    269.6912,
+    496.7186,
+    166.77508
+  ],
+  "triangles": 8877,
+  "license": "Manufacturer BIM download; CEA rights retained; no CC0 claim",
+  "sha256": "4016bd7a26439d4b414708f3fa04b6a747b530ba0495baeca5d635a73a300fcc",
+  "reviewStatus": "accepted-manufacturer-geometry-visual-review",
+  "purpose": "3D placement; not fire design or purchase approval",
+  "runtimeOptimization": {
+    "method": "Uniform 1 mm CAD vertex clustering; materials and articulated scene nodes preserved; large texture reduced to 512 pixels",
+    "beforeBytes": 668764,
+    "afterBytes": 241008,
+    "beforeTriangles": 8877,
+    "afterTriangles": 8877,
+    "sha256": "51a9ef33e5f1bce1338ecbb8dc68026e4ba962933d50208694e0bb11ba62baf6"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "routes": {
+    "/film-studyo/ikiz/web/tanitim/body.glb.gz": "body.glb.gz",
+    "/film-studyo/ikiz/web/tanitim/": "index.html",
+    "/film-studyo/ikiz/web/tanitim/motion.json": "motion.json",
+    "/film-studyo/ikiz/web/tanitim/offline-mqtt.js": "offline-mqtt.js",
+    "/film-studyo/ikiz/web/tanitim/scene-loader.js": "scene-loader.js",
+    "/film-studyo/ikiz/web/tanitim/scene-source.json": "scene-source.json",
+    "/film-studyo/ikiz/web/tanitim/story.js": "story.js",
+    "/film-studyo/ikiz/web/tanitim/studio.css": "studio.css",
+    "/film-studyo/ikiz/web/tanitim/studio.js": "studio.js",
+    "/film-studyo/ikiz/web/tanitim/index.html": "index.html",
+    "/film-studyo/ikiz/web/tanitim/routes.web.json": "routes.web.json",
+    "/film-studyo/ikiz/web/tanitim/README.md": "README.md"
+  },
+  "version": 1
+}

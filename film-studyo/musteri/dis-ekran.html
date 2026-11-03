@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="tr" data-tema="koyu" data-yuzey="dis">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AUTOKITCH · Sipariş panosu</title>
+<link rel="stylesheet" href="../ortak/ak.css">
+<!-- IKIZ-ARAYUZ-5 (10 Eki, Kemal): 49" 32:9 şerit (3840 × 1080, ≈ 0,315 mm/px) hücre duvarının personel yüzünde, sokağa bakar (pencereden görünür) — McDonald's tipi sipariş panosu.
+     SOL 1600 px: HAZIRLANIYOR (numara 120 px + ≈ dk 56 px) | HAZIR (numara 170 px yeşil + göz; yeni gelen 5 kez nabız) · SAĞ 2240 px: kayan menü (3 kart görünür, 6 s'de 1 kart sola, 0,8 s; sonsuz).
+     Eski cephe A bölgesi (saat / QR / AÇIK-KAPALI duvar saatiyle) KALKTI; QR menü döngüsünde bir kart. Sahne bu ölçüde çizilir, pencereye sığacak kadar küçültülür. -->
+<style>
+  :root{--W:3840px;--H:1080px}
+  html,body{margin:0;height:100%;overflow:hidden;background:#000;cursor:none}
+  #kasa{position:fixed;left:0;top:0;width:var(--W);height:var(--H);transform-origin:0 0;background:var(--ak-zemin)}
+  #sahne{position:absolute;inset:0;display:grid;grid-template-columns:800px 800px 2240px;font-size:36px}
+  .zon{position:relative;padding:40px 46px;display:flex;flex-direction:column;min-width:0;overflow:hidden}
+  .zon h2{margin:0 0 26px;font-size:46px;letter-spacing:.14em;font-weight:850}
+  .zon h2 small{display:block;font-size:30px;letter-spacing:.2em;color:var(--ak-soluk);font-weight:700}
+  .hzr-z{background:var(--ak-zemin2)}.hzr-z h2{color:var(--ak-yazi2)}
+  .hz-z{background:color-mix(in srgb,var(--ak-iyi) 14%,var(--ak-zemin))}.hz-z h2{color:var(--ak-iyi)}
+  .numaralar{display:grid;grid-template-columns:1fr 1fr;gap:22px 28px;align-content:start}
+  .no{display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:26px;padding:8px 0}
+  .hzr-z .no b{font-size:120px;line-height:1;font-weight:850}.hzr-z .no small{font-size:56px;font-weight:700;color:var(--ak-yazi2)}
+  .hz-z .no{background:var(--ak-iyi-zemin);border:6px solid var(--ak-iyi)}
+  .hz-z .no b{font-size:170px;line-height:1;font-weight:900;color:var(--ak-iyi)}.hz-z .no small{font-size:44px;font-weight:750;color:var(--ak-yazi2)}
+  .hz-z .no.plat{background:var(--ak-uyari-zemin);border-color:var(--ak-uyari)}.hz-z .no.plat b{color:var(--ak-uyari)}
+  .no.yeni{animation:nabiz 1s ease-in-out 5}
+  @keyframes nabiz{50%{transform:scale(1.08);box-shadow:0 0 0 18px color-mix(in srgb,var(--ak-iyi) 35%,transparent)}}
+  .bos{font-size:40px;color:var(--ak-soluk);grid-column:1/-1}
+  .menu-z{padding:40px 0;background:var(--ak-zemin)}
+  .serit{display:flex;height:100%;will-change:transform}
+  .serit.kay{transition:transform .8s ease}
+  .mk{flex:0 0 746.6px;box-sizing:border-box;padding:0 28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center}
+  .mk .resim{width:560px}.mk .resim svg{width:100%;height:auto;display:block}
+  .mk .ad{font-size:58px;font-weight:850;line-height:1.05}.mk .ad small{display:block;font-size:34px;font-weight:600;color:var(--ak-yazi2);margin-top:6px}
+  .mk .fiyat{font-size:64px;font-weight:850;color:var(--ak-vurgu)}
+  .mk .tukendi{font-size:52px;font-weight:850;color:var(--ak-kotu)}
+  .mk.qr .ak-qr{width:440px!important;background:#fff;padding:18px;border-radius:24px}
+  .mk.qr .ad{font-size:50px}
+</style>
+</head>
+<body>
+<div id="kasa"><div id="sahne">
+  <section class="zon hzr-z"><h2 id="hzrB"></h2><div class="numaralar" id="hazirlaniyor"></div></section>
+  <section class="zon hz-z"><h2 id="hzB"></h2><div class="numaralar" id="hazirlar"></div></section>
+  <section class="zon menu-z"><div class="serit" id="serit"></div></section>
+</div></div>
+
+<script src="../ortak/goz-etiket.js"></script>
+<script src="../ortak/ak-dil.js"></script>
+<script src="../ortak/ak.js"></script>
+<script src="../ortak/ak-katalog.js"></script>
+<script src="../ortak/ak-vitrin.js"></script>
+<script src="../ortak/ak-demo-menu.js"></script>
+<script src="../ortak/ak-demo.js"></script>
+<script>
+(function () {
+  'use strict';
+  const { h, $ } = AK;
+  const TR = (k, v) => AK.tDil('tr', k, v), EN = (k, v) => AK.tDil('en', k, v);
+  const KART_PX = 746.6, KAYMA_S = 6;
+  let ekran = [], gorulen = new Set(), ilk = true, menu = [], kartlar = [], bas = 0;
+  function olcekle() {
+    const W = 3840, H = 1080, s = Math.min(innerWidth / W, innerHeight / H), kasa = $('#kasa');
+    kasa.style.transform = 'translate(' + ((innerWidth - W * s) / 2) + 'px,' + ((innerHeight - H * s) / 2) + 'px) scale(' + s + ')';
+  }
+  addEventListener('resize', olcekle); olcekle();
+  function baslik(el, k) { el.replaceChildren(document.createTextNode(TR(k)), h('small', { metin: EN(k) })); }
+  function liste() {
+    baslik($('#hzrB'), 'dis.hazirlaniyor'); baslik($('#hzB'), 'dis.hazir');
+    const hz = ekran.filter(s => ['HAZIR', 'ZAMAN_ASIMI'].includes(s.durum)), hzr = ekran.filter(s => !['HAZIR', 'ZAMAN_ASIMI'].includes(s.durum));
+    const a = $('#hazirlaniyor'); a.replaceChildren();
+    if (!hzr.length) a.append(h('div', { sinif: 'bos', metin: TR('bek.hazirlanan_yok') }));
+    hzr.slice(0, 10).forEach(s => a.append(h('div', { sinif: 'no', 'data-no': s.kisa_no }, h('b', { metin: s.kisa_no }), h('small', { metin: s.kalan_dk ? '≈ ' + s.kalan_dk + ' dk' : '…' }))));
+    const b = $('#hazirlar'); b.replaceChildren();
+    if (!hz.length) b.append(h('div', { sinif: 'bos', metin: TR('dis.hazir_yok') }));
+    hz.slice(0, 8).forEach(s => b.append(h('div', { sinif: 'no' + (!ilk && !gorulen.has(s.kisa_no) ? ' yeni' : '') + (s.platform ? ' plat' : ''), 'data-no': s.kisa_no },
+      h('b', { metin: s.kisa_no }), h('small', { metin: s.platform || (TR('dis.goz') + ' ' + (s.dolap_gozu ? AK_GOZ.etiket(s.dolap_gozu) : '–')) }))));
+    hz.forEach(s => gorulen.add(s.kisa_no)); ilk = false;
+  }
+  function kartKur() {
+    const k = menu.map(u => h('div', { sinif: 'mk', 'data-urun': u.id }, h('div', { sinif: 'resim', html: window.AK_RESIM ? AK_RESIM(u.id) : '' }),
+      h('div', { sinif: 'ad', html: AK.h('span', { metin: u.ad }).outerHTML + (u.ad_en ? '<small>' + u.ad_en + '</small>' : '') }),
+      u.tukendi ? h('div', { sinif: 'tukendi', metin: TR(u.gecici_yok ? 'menu.gecici_yok' : 'menu.tukendi') + ' · ' + EN(u.gecici_yok ? 'menu.gecici_yok' : 'menu.tukendi') }) : h('div', { sinif: 'fiyat', metin: AK.tl(u.fiyat_kurus || 0) })));
+    const url = new URL('index.html', location.href.replace(/[?#].*$/, '')).href;
+    k.push(h('div', { sinif: 'mk qr', 'data-urun': 'qr' }, AK.qrKutu(url, 440), h('div', { sinif: 'ad', html: TR('bek.reklam_telefon') + '<small>' + EN('bek.reklam_telefon') + '</small>' })));
+    kartlar = k;
+  }
+  function seritCiz() {                                             // 3 görünür + 1 sağda hazır; kayınca ilk kart sona gider (sonsuz)
+    const s = $('#serit'); if (!kartlar.length) return; s.classList.remove('kay'); s.style.transform = 'translateX(0)';
+    s.replaceChildren(...[0, 1, 2, 3].map(i => kartlar[(bas + i) % kartlar.length].cloneNode(true)));
+    $('#sahne').dataset.menuBas = String(bas % kartlar.length);
+  }
+  function kaydir() {
+    const s = $('#serit'); if (kartlar.length < 4) return;
+    s.classList.add('kay'); s.style.transform = 'translateX(' + (-KART_PX) + 'px)';
+    setTimeout(() => { bas = (bas + 1) % kartlar.length; seritCiz(); }, 850);
+  }
+  async function menuYenile() { try { const m = await AK.siparis.menu(); menu = m.urunler || []; /* 7 ürün + içecek / tatlı */ kartKur(); seritCiz(); } catch (e) { /* son menü kalır */ } }
+  async function yenile() { try { const j = await AK.siparis.ekran(); ekran = j.siparisler || []; liste(); } catch (e) { /* son görüntü kalır */ } }
+  (async function () {
+    await AK.api.hazir(); if (AK.api.mod === 'demo') AK_DEMO.ortam(true);
+    document.documentElement.lang = 'tr'; await AK.vitrinYukle();
+    await menuYenile(); await yenile();
+    setInterval(yenile, 2000); setInterval(menuYenile, 60000); setInterval(kaydir, KAYMA_S * 1000);
+  })();
+})();
+</script>
+</body>
+</html>

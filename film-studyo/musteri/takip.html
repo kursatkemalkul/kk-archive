@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="tr" data-tema="otomatik" data-yuzey="telefon">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#8a2c08">
+<meta name="referrer" content="no-referrer">
+<title>AUTOKITCH · Sipariş takibi</title>
+<link rel="stylesheet" href="../ortak/ak.css">
+<style>
+  .durum-kart{text-align:center;padding:22px 16px}
+  .durum-kart .no{font-size:.85em;color:var(--ak-soluk);letter-spacing:.06em;text-transform:uppercase;font-weight:650}
+  .durum-kart .buyuk{font-size:1.9em;font-weight:750;line-height:1.15;margin:6px 0 4px}
+  .goz{display:inline-flex;align-items:baseline;gap:10px;margin:8px 0 2px;padding:10px 26px;border-radius:99px;background:var(--ak-vurgu);color:var(--ak-vurgu-yazi)}
+  .goz b{font-size:2.6em;line-height:1}
+  .kodkart{margin-top:12px;display:grid;gap:14px;justify-items:center;text-align:center}
+  .adim-liste{counter-reset:a;text-align:left;margin:6px 0 0;padding:0;list-style:none;display:grid;gap:8px;width:100%}
+  .adim-liste li{counter-increment:a;display:flex;gap:12px;align-items:flex-start;font-size:.95em}
+  .adim-liste li::before{content:counter(a);flex:none;width:1.9em;height:1.9em;border-radius:50%;background:var(--ak-zemin2);display:grid;place-items:center;font-weight:700;font-size:.9em}
+  .kalem{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--ak-cizgi)}.kalem:last-child{border:0}
+  .hazir-vurgu{border:2px solid var(--ak-iyi);box-shadow:0 0 0 6px var(--ak-iyi-zemin),var(--ak-golge)}
+  [data-yuzey=kiosk] .ak-kod{font-size:5.5em}
+  #kioskDon{position:fixed;left:0;right:0;bottom:0;background:var(--ak-yazi);color:var(--ak-zemin);text-align:center;padding:16px;font-weight:650}
+</style>
+<style>@media(pointer:coarse){button,select,summary{min-height:44px;touch-action:manipulation}input,textarea,select{font-size:16px!important}html,body{overscroll-behavior:contain}button{touch-action:manipulation}}</style><link rel="stylesheet" href="kiosk57.css?v=64">
+<link rel="stylesheet" href="customer61.css?v=64">
+<link rel="stylesheet" href="customer-kiosk61.css?v=64">
+</head>
+<body>
+<div id="serit" class="ak-serit" hidden></div>
+<header class="ak-ust"><div class="ak-ust-ic">
+  <a class="ak-marka" href="index.html" id="markaA" style="text-decoration:none;color:inherit">AUTO<i>KITCH</i></a>
+  <span class="ak-bosluk"></span>
+  <button class="ak-dugme hayalet kucuk" id="dilD">EN</button>
+  <button class="ak-dugme hayalet kucuk" id="temaD" data-t-aria="ust.tema">◐</button>
+</div></header>
+<main class="ak-kap dar" id="ana"><div class="ak-kart ak-orta ak-soluk" data-t="ortak.yukleniyor">Yükleniyor…</div></main>
+<div id="kioskDon" hidden></div>
+
+<script src="../ortak/goz-etiket.js"></script>
+<script src="../ortak/ak-dil.js"></script>
+<script src="../ortak/ak.js"></script>
+<script src="../ortak/ak-katalog.js"></script>
+<script src="../ortak/ak-demo-menu.js"></script>
+<script src="../ortak/ak-demo.js"></script>
+<script>
+(function () {
+  'use strict';
+  const { h, $, t, tl } = AK;
+  const KIOSK = AK.Q.get('mod') === 'kiosk';
+  if (KIOSK) document.documentElement.setAttribute('data-yuzey', 'kiosk');
+  const ana = $('#ana');
+  const sid = AK.Q.get('s'), erisim = AK.Q.get('e');
+  const yeniSiparis = 'index.html' + (KIOSK ? '?mod=kiosk' + (AK.Q.get('demo') ? '&demo=1' : '') : '') ;
+  let son = null, oncekiDurum = null, anim = null, kiosk0 = Date.now();
+  $('#markaA').href = yeniSiparis;
+  $('#dilD').onclick = () => AK.dil.ayarla(AK.dil.kod === 'tr' ? 'en' : 'tr');
+  $('#temaD').onclick = () => AK.tema.degistir();
+  window.addEventListener('ak-dil', () => { $('#dilD').textContent = AK.dil.kod === 'tr' ? 'EN' : 'TR'; if (son) ciz(son); });
+  $('#dilD').textContent = AK.dil.kod === 'tr' ? 'EN' : 'TR';
+
+  const IPTAL_EDILEBILIR = ['ODENDI', 'MAKINEYE_GONDERILDI', 'MAKINE_KABUL'];
+  const ILERIDE = { ODEME_BEKLIYOR: 'odeme', ODENDI: 'sirada', MAKINEYE_GONDERILDI: 'sirada', MAKINE_KABUL: 'sirada', URETIMDE: 'uretim', KUTU_HAZIR: 'uretim' };
+
+  function hataKart(mesaj) {
+    ana.replaceChildren(h('div', { sinif: 'ak-kart ak-orta' }, h('h2', { metin: t('takip.bulunamadi') }), h('p', { sinif: 'ak-soluk', metin: mesaj || t('takip.bulunamadi_ac') }),
+      h('a', { sinif: 'ak-dugme ana', href: yeniSiparis, metin: t('takip.yeni') })));
+  }
+  function ciz(s) {
+    ana.replaceChildren();
+    const d = s.durum, adim = AK.siparis.adimIndeks(d), hazir = d === 'HAZIR', bitti = AK.siparis.BITMIS.includes(d);
+    const kart = h('section', { sinif: 'ak-kart durum-kart' + (hazir ? ' hazir-vurgu' : ''), 'aria-live': 'polite' },
+      h('div', { sinif: 'no', metin: t('takip.siparis_no', { no: s.kisa_no }) }),
+      h('div', { sinif: 'buyuk', metin: t('takip.baslik.' + (s.gecici_yok ? 'GECICI_YOK' : d)) }),   /* G/Ç a677890f MALZEME_YOK: HATA değil, geçici yok */
+      h('p', { sinif: 'ak-soluk', metin: t('takip.metin.' + (s.gecici_yok ? 'GECICI_YOK' : d)) }));
+    if (hazir || d === 'ZAMAN_ASIMI') {
+      if (s.dolap_gozu && d === 'HAZIR' && s.teslim !== 'TEZGAH') kart.append(h('div', { sinif: 'goz' }, h('span', { metin: t('takip.goz') }), h('b', { metin: gozMetni(s) })));
+    }
+    if (['IPTAL', 'IADE', 'HATA'].includes(d) === false && d !== 'ODEME_BEKLIYOR') {
+      kart.append(h('div', { sinif: 'ak-adimlar', role: 'list', stil: { marginTop: '14px' } }, AK.siparis.ADIMLAR.map(([ad, a], i) =>
+        h('div', { sinif: 'ad ' + (i < adim ? 'bitti' : i === adim ? 'simdi' : ''), role: 'listitem', metin: t(a) }))));
+    }
+    if (!bitti && s.tahmini_hazir && !hazir && d !== 'ODEME_BEKLIYOR' && d !== 'ZAMAN_ASIMI') {
+      kart.append(h('div', { sinif: 'ak-kalin', stil: { marginTop: '10px' } }, t('takip.tahmini'), ' ', h('span', { id: 'kalanSure' }), h('span', { sinif: 'ak-soluk ak-kucuk', metin: '  ·  ' + t('takip.saat', { saat: AK.saat(s.tahmini_hazir) }) })));
+    }
+    if(hazir)kart.append(h('span',{sinif:'ready-paw65','aria-label':'Siparişin hazır',metin:'🐾'}));
+    ana.append(kart);
+
+    if (d === 'ODEME_BEKLIYOR') {
+      ana.append(h('div', { sinif: 'ak-kart ak-orta', stil: { marginTop: '12px' } }, AK.Q.get('hata') === 'odeme' ? h('p', { sinif: 'ak-hata', metin: t('odeme.basarisiz') }) : null, h('p', { metin: t('takip.odeme_bekliyor') }),
+        h('a', { sinif: 'ak-dugme ana', href: 'index.html?s=' + encodeURIComponent(s.id) + '&e=' + encodeURIComponent(erisim) + (KIOSK ? '&mod=kiosk' : '') + (AK.api.mod === 'demo' ? '&demo=1' : '') + '#odeme', metin: t('takip.odemeye_don') })));
+    }
+    // kod + QR
+    if (s.teslim_kodu && !bitti) {
+      const kod = h('section', { sinif: 'ak-kart kodkart' },
+        h('div', { sinif: 'ak-soluk ak-kalin ak-kucuk', metin: t('takip.kodunuz') }),
+        h('div', { sinif: 'ak-kod', 'aria-label': s.teslim_kodu.split('').join(' '), metin: s.teslim_kodu }));
+      if (hazir && s.teslim === 'TEZGAH') {
+        kod.append(h('p', { sinif: 'ak-kalin', metin: t('takip.tezgah_not') }));
+      } else if (hazir) {
+        kod.append(AK.qrKutu('AK:' + s.teslim_kodu, KIOSK ? 260 : 190), h('div', { sinif: 'ak-soluk ak-kucuk', metin: t('takip.qr_ipucu') }),
+          h('ol', { sinif: 'adim-liste' }, ['takip.nasil1', 'takip.nasil2', 'takip.nasil3'].map(k => h('li', { metin: t(k) }))));
+        if (s.tahmini_hazir) kod.append(h('p', { sinif: 'ak-soluk ak-kucuk', metin: t('takip.sure_not') }));
+      } else {
+        kod.append(h('p', { sinif: 'ak-soluk ak-kucuk', metin: t('takip.kod_not') }));
+      }
+      ana.append(kod);
+    }
+    if (d === 'ZAMAN_ASIMI') ana.append(h('div', { sinif: 'ak-ipucu uyari', stil: { marginTop: '12px' }, metin: t('takip.zaman_asimi_not') }));
+    // kalemler
+    ana.append(h('section', { sinif: 'ak-kart', stil: { marginTop: '12px' } }, h('h3', { stil: { marginBottom: '6px' }, metin: t('takip.icerik') }),
+      s.kalemler.map(x => h('div', { sinif: 'kalem' }, h('span', { metin: x.adet + '× ' + AK.urunAd({ id: x.urun_id, ad: x.ad }) }), h('span', { sinif: 'ak-soluk', metin: tl(x.birim_kurus * x.adet) }))),
+      h('div', { sinif: 'kalem ak-kalin' }, h('span', { metin: t('sepet.toplam') }), h('span', { metin: tl(s.toplam_kurus) })),
+      s.not_ ? h('p', { sinif: 'ak-soluk ak-kucuk', metin: t('takip.not') + ': ' + s.not_ }) : null));
+    // eylemler
+    const eyl = h('div', { sinif: 'ak-satir', stil: { marginTop: '14px', justifyContent: 'center' } });
+    if (IPTAL_EDILEBILIR.includes(d)) eyl.append(h('button', { sinif: 'ak-dugme tehlike', onclick: iptalEt, metin: t('takip.iptal') }));
+    if (bitti || d === 'HATA') eyl.append(h('a', { sinif: 'ak-dugme ana', href: yeniSiparis, metin: t('takip.yeni') }));
+    else eyl.append(h('a', { sinif: 'ak-dugme', href: yeniSiparis, metin: t('takip.yeni_ek') }));
+    ana.append(eyl, h('p', { id: 'hata', sinif: 'ak-hata ak-orta', role: 'alert' }));
+    AK.dil.uygula(); sureYaz();
+  }
+  function gozMetni(s) {
+    return (s.dolap_gozlari && s.dolap_gozlari.length ? s.dolap_gozlari : [s.dolap_gozu]).map(AK_GOZ.etiket).join(' · ');
+  }
+  function sureYaz() {
+    const e = $('#kalanSure'); if (!e || !son || !son.tahmini_hazir) return;
+    const kalan = son.tahmini_hazir - Date.now() / 1000;
+    e.textContent = kalan > 5 ? '≈ ' + AK.dk(kalan) : t('takip.birazdan');
+  }
+  async function iptalEt() {
+    if (!confirm(t('takip.iptal_onay'))) return;
+    try { await AK.siparis.iptal(sid, erisim); await yenile(); } catch (e) { const x = $('#hata'); if (x) x.textContent = e.message; }
+  }
+  async function yenile() {
+    const s = await AK.siparis.getir(sid, erisim);
+    const degisti = !son || son.durum !== s.durum || son.dolap_gozu !== s.dolap_gozu || String(son.dolap_gozlari) !== String(s.dolap_gozlari) || son.teslim_kodu !== s.teslim_kodu || son.tahmini_hazir !== s.tahmini_hazir;
+    son = s;
+    if (degisti) {
+      ciz(s);
+      if (oncekiDurum && oncekiDurum !== s.durum) {
+        if (s.durum === 'HAZIR') { try { navigator.vibrate && navigator.vibrate([250, 120, 250, 120, 400]); } catch (e) { /* */ } document.title = '✔ ' + t('takip.baslik.HAZIR') + ' · AUTOKITCH'; }
+      }
+      oncekiDurum = s.durum;
+      if (!AK.siparis.gecmis().some(x => x.id === s.id)) AK.siparis.kaydet(s, erisim, s.kalemler.map(k => k.adet + '× ' + k.ad).join(', '));
+    }
+    if (AK.siparis.BITMIS.includes(s.durum) && dongu) { dongu.durdur(); dongu = null; if (KIOSK) kioskDon(); }
+  }
+  let dongu = null;
+  function kioskDon() {                      // kioskta teslim / iptal sonrası otomatik ana ekrana
+    const bar = $('#kioskDon'); bar.hidden = false; let n = 20;
+    const z = setInterval(() => { bar.textContent = t('kiosk.donus', { sn: n }); if (--n < 0) { clearInterval(z); location.href = yeniSiparis; } }, 1000);
+  }
+  (async function () {
+    try {
+      await AK.api.hazir();
+      const q = AK.api.mod === 'demo'; if (q) { const x = $('#serit'); x.hidden = false; x.textContent = t('serit.demo'); }
+      if (!sid || !erisim) { const g = AK.siparis.gecmis()[0]; if (g) { location.replace('takip.html?s=' + encodeURIComponent(g.id) + '&e=' + encodeURIComponent(g.e) + (q ? '&demo=1' : '') + (KIOSK ? '&mod=kiosk' : '')); return; } hataKart(); return; }
+      await yenile();
+    } catch (e) { hataKart(e.kod === 404 || e.kod === 401 ? t('takip.bulunamadi_ac') : e.message); return; }
+    dongu = AK.dongu(yenile, 1500);
+    setInterval(sureYaz, 1000);
+    if (KIOSK) AK.bosta(120, 0, () => {}, () => { if (son && !AK.siparis.BITMIS.includes(son.durum)) return; location.href = yeniSiparis; });
+  })();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "manufacturer": "K.A. Schmersal GmbH & Co. KG",
+  "part": "103054265",
+  "product": "ACC-AZM40-LEV-T",
+  "sourcePage": "https://products.schmersal.com/view/103054265",
+  "catalogue": "TraceParts manufacturer catalogue; authenticated download",
+  "stepSha256": "5cfdef4bf0f1e49aa51ed1be944d67c956ff5437d2563458aa300efe8a2b1749",
+  "glbSha256": "4582dfbfa4f45e5b5f01375a567ab2ca20de7c3f8d072ed5275f0ea06d082d3b",
+  "conversion": "Original STEP CAF colors and placements; OCCT tessellation 0.2 mm / 0.35 rad; mm to metres; merge by original material only. No geometric redesign.",
+  "license": "Manufacturer CAD; original rights retained",
+  "use": "Visual layout only; mounting fasteners, frame support and safety circuit require engineering validation",
+  "runtimeOptimization": {
+    "method": "Uniform 1 mm CAD vertex clustering; materials and articulated scene nodes preserved; large texture reduced to 512 pixels",
+    "beforeBytes": 785508,
+    "afterBytes": 94240,
+    "beforeTriangles": 35436,
+    "afterTriangles": 4693,
+    "sha256": "5968d162c8a4b736c4c28f9ad5163d5ac60078d5b5e4d9d8ed1e6821ecf58531"
+  }
+}

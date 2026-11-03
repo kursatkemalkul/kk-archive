@@ -1,0 +1,18 @@
+{
+  "product": "AUTOKITCH robot door safety hardware assembly",
+  "source": "Manufacturer full STEP assemblies: 103034187 + 103034199 + 103054265 + 103053182",
+  "assembly": "Locally arranged CAD assembly, not a factory-supplied combined SKU",
+  "units": "metres",
+  "placement": "Fixed lock and escape inside robot room; moving actuator on door; SZ40 parked on staff wall; nothing on machine roof",
+  "shaftKit": "PT-T40/PT-T170 alternatives retained in source library; not installed",
+  "sha256": "b349a727260589ec20dd496408a824fce75677b6358aa9badffb296b57b8a88a",
+  "validation": "Visual layout only. Mounting support, fasteners and real safety circuit require validation.",
+  "runtimeOptimization": {
+    "method": "Uniform 1 mm CAD vertex clustering; materials and articulated scene nodes preserved; large texture reduced to 512 pixels",
+    "beforeBytes": 6258772,
+    "afterBytes": 724688,
+    "beforeTriangles": 294789,
+    "afterTriangles": 38635,
+    "sha256": "7e959e0e17b40dbe9fd0f9f852749b63a4276d9b0eaeb192b6a7df2d52787136"
+  }
+}

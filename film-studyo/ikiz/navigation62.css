@@ -1,0 +1,8 @@
+#sekmeler button[hidden],.customer-preview62[hidden],.preview-open62[hidden]{display:none!important}
+.customer-preview62{flex:none;padding:8px 12px;border-bottom:1px solid var(--cz);display:flex;flex-wrap:wrap;gap:6px}
+.customer-preview62 button{font-size:11px;min-height:36px}
+.customer-preview62 p{flex-basis:100%;margin:2px 0 0;color:var(--sol);font-size:11px;line-height:1.4}
+.device-caption59 .preview-open62{color:var(--vr);font-size:11px;text-decoration:none;align-self:flex-start;padding:3px 0}
+.preview-open62:hover{text-decoration:underline}
+.preview-open62:focus-visible{outline:2px solid var(--vr);outline-offset:3px}
+[data-device-kind=website] .device-case59{background:#17202a;border-color:#4b5968;box-shadow:0 12px 40px #0007}

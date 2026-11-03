@@ -1,0 +1,14 @@
+[
+  {
+    "file": "fire-sign.svg",
+    "download": "https://upload.wikimedia.org/wikipedia/commons/3/3e/ISO_7010_F001.svg",
+    "license": "Public domain; simple ISO7010 pictogram, per Wikimedia Commons file metadata",
+    "sha256": "8eab9ee3de88fa5a8fe09f22bc3b3f659af44a68e6887799422d3ba817cddd49"
+  },
+  {
+    "file": "first-aid-sign.svg",
+    "download": "https://upload.wikimedia.org/wikipedia/commons/0/0e/ISO_7010_E003_-_First_aid_sign.svg",
+    "license": "Public domain; simple ISO7010 pictogram, per Wikimedia Commons file metadata",
+    "sha256": "beb947d67ed4d41cb29ca5104933bea20b7012acfe610702fe3f3486112ac333"
+  }
+]

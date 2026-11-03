@@ -1,0 +1,20 @@
+{
+  "manufacturer": "K.A. Schmersal GmbH & Co. KG",
+  "part": "103034187",
+  "product": "AZM40Z-ST-1P2P",
+  "sourcePage": "https://products.schmersal.com/view/103034187",
+  "catalogue": "TraceParts manufacturer catalogue; authenticated download",
+  "stepSha256": "e0183e5df5d6d2afc4bfc2ab515cb60b5070b51531e9ffcb2bde3ceddcbc1bd1",
+  "glbSha256": "dfbb6de8b5414d979adc1e7838d9b7b8d47a798f4cdd9b71133fca8923c9cb23",
+  "conversion": "Original STEP CAF colors and placements; OCCT tessellation 0.2 mm / 0.35 rad; mm to metres; merge by original material only. No geometric redesign.",
+  "license": "Manufacturer CAD; original rights retained",
+  "use": "Visual layout only; mounting fasteners, frame support and safety circuit require engineering validation",
+  "runtimeOptimization": {
+    "method": "Uniform 1 mm CAD vertex clustering; materials and articulated scene nodes preserved; large texture reduced to 512 pixels",
+    "beforeBytes": 1437600,
+    "afterBytes": 201852,
+    "beforeTriangles": 63743,
+    "afterTriangles": 10244,
+    "sha256": "a6c1fc35a5a5f294b524fafc523bb77f4b6f1c654b618479524ec3010d2b58e9"
+  }
+}

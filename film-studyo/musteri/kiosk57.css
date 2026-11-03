@@ -1,0 +1,504 @@
+@font-face{font-family:Poppins57;src:url('kiosk57/fonts/Poppins-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
+
+@font-face{font-family:Poppins57;src:url('kiosk57/fonts/Poppins-SemiBold.ttf') format('truetype');font-weight:600;font-display:swap}
+
+@font-face{font-family:Poppins57;src:url('kiosk57/fonts/Poppins-ExtraBold.ttf') format('truetype');font-weight:800;font-display:swap}
+
+:root[data-yuzey=kiosk][data-tema]{--ak-zemin:#8a2c08;--ak-zemin2:#7b2b0d;--ak-kart:#7f290b;--ak-yazi:#fff4e6;--ak-yazi2:#f0d8c6;--ak-soluk:#e8c7ae;--ak-cizgi:#a66a46;--ak-vurgu:#fff4e6;--ak-vurgu2:#f4e2d2;--ak-vurgu-zemin:#a13b10;--ak-vurgu-yazi:#6b260b;--ak-iyi:#ffd2a3;--ak-iyi-zemin:#a13b10;--ak-uyari:#ffe0a0;--ak-uyari-zemin:#4b3d21;--ak-kotu:#ffb4a7;--ak-kotu-zemin:#592f28;--ak-font:Poppins57,sans-serif;--ak-yazi-boy:18px;--ak-tus:64px;--ak-bosluk:32px;--ak-r:20px;--ak-r2:14px;--ak-golge:none;color-scheme:dark;scroll-padding-top:116px;scroll-padding-bottom:144px}
+
+[data-yuzey=kiosk] body{background:#8a2c08 url('kiosk57/images/studio-orange64.png') center top/cover fixed no-repeat}
+
+[data-yuzey=kiosk] body.attract57{overflow:hidden}
+
+[data-yuzey=kiosk] button{font-family:var(--ak-font);touch-action:manipulation}
+
+[data-yuzey=kiosk] :focus-visible{outline:3px solid #dbad8c!important;outline-offset:5px}
+
+[data-yuzey=kiosk] .ak-marka{font-size:19px;letter-spacing:.15em;font-weight:800;white-space:nowrap}
+
+[data-yuzey=kiosk] .ak-marka i{color:#ffc083}
+
+[data-yuzey=kiosk] .ak-ust{background:#8a2c08e8;border-color:#ffffff20;backdrop-filter:blur(18px)}
+
+[data-yuzey=kiosk] .ak-ust-ic{max-width:1440px;min-height:94px;padding:16px 40px}
+
+[data-yuzey=kiosk] #temaD{display:none}
+
+[data-yuzey=kiosk] #dilD{border:1px solid #a9998d;border-radius:99px;min-width:64px;min-height:52px;color:var(--ak-yazi)}
+
+[data-yuzey=kiosk] .ak-serit{font-size:13px;line-height:1.5;padding:9px 20px;background:#80320f;color:#f4d9b9;border:0}
+
+[data-yuzey=kiosk] .ak-kap{max-width:1440px;padding:22px 40px 36px}
+
+[data-yuzey=kiosk] .menu-ust{margin:12px 0 24px;align-items:center;gap:20px}
+
+[data-yuzey=kiosk] .menu-ust h1{font-size:28px;font-weight:600;letter-spacing:-.04em}
+
+[data-yuzey=kiosk] .ak-sekme{padding:5px;border:1px solid #ffffff35;background:#702407;border-radius:99px;gap:3px}
+
+[data-yuzey=kiosk] .ak-sekme button{min-height:56px;padding:0 22px;border-radius:99px;font-weight:600;font-size:15px;color:#f4dfcd}
+
+[data-yuzey=kiosk] .ak-sekme button.on{background:#fff4e6;color:#6b260b;box-shadow:none}
+
+[data-yuzey=kiosk] .campaign57{min-height:490px;position:relative;display:grid;grid-template-columns:47% 53%;align-items:center;margin:-22px -40px 30px;padding:50px 40px 26px;isolation:isolate;overflow:hidden}
+
+[data-yuzey=kiosk] .campaign-copy57{z-index:2;align-self:center;padding-bottom:65px}
+
+[data-yuzey=kiosk] .eyebrow57{font-size:14px;font-weight:600;letter-spacing:.13em;color:#ffc083;margin:0 0 20px}
+
+[data-yuzey=kiosk] .campaign-title57{font-size:clamp(44px,5.7vw,79px);font-weight:400;letter-spacing:-.055em;line-height:1.12;margin:0 0 22px;white-space:nowrap}
+
+[data-yuzey=kiosk] .campaign-title57 span,[data-yuzey=kiosk] .campaign-title57 strong{display:block}
+
+[data-yuzey=kiosk] .campaign-title57 strong{font-weight:800;letter-spacing:-.045em}
+
+[data-yuzey=kiosk] .campaign-name57{font-size:18px;color:#e9e3df;margin:0 0 18px;font-weight:400}
+
+[data-yuzey=kiosk] .campaign-actions57{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+
+[data-yuzey=kiosk] .price57{display:inline-flex;align-items:center;justify-content:center;min-height:58px;padding:6px 24px;border-radius:99px;background:#5f3416;color:#fff4e6;font-size:24px;letter-spacing:-.04em;font-weight:800;white-space:nowrap}
+
+[data-yuzey=kiosk] .hero-add57{font-size:15px;min-height:58px;padding:0 22px;font-weight:800;gap:16px}
+
+[data-yuzey=kiosk] .detail57{display:inline-flex;align-items:center;gap:12px;border:0;background:none;color:#f0d9c4;padding:16px 0;min-height:52px;font-size:12px;text-align:left;cursor:pointer}
+
+[data-yuzey=kiosk] .visual57{position:absolute;inset:0;pointer-events:none;z-index:1}
+
+[data-yuzey=kiosk] .hero-food57{position:absolute;width:71%;height:100%;left:35%;top:-6%;display:flex;align-items:center;justify-content:center;z-index:2}
+
+[data-yuzey=kiosk] .food57{display:block;width:100%;height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none;filter:drop-shadow(3px 22px 18px #30100675)}
+
+[data-yuzey=kiosk] .hero-food57 .food57{transform:rotate(-12deg)}
+
+[data-yuzey=kiosk] .food57-kasarli{transform:rotate(18deg)}
+
+[data-yuzey=kiosk] .hero-food57 .food57-kasarli{transform:rotate(5deg)}
+
+[data-yuzey=kiosk] .vertical57{position:absolute;right:3.5%;top:6%;bottom:23%;display:flex;align-items:center;gap:0;writing-mode:vertical-rl;transform:rotate(180deg);font-size:clamp(64px,9vw,122px);font-weight:800;letter-spacing:-.05em;line-height:.88;color:#d6bca9;opacity:.38;white-space:nowrap}
+
+[data-yuzey=kiosk] .vertical57 span{color:transparent;-webkit-text-stroke:1px #decec2}
+
+[data-yuzey=kiosk] .product-strip57{grid-column:1/-1;display:flex;align-items:end;gap:12px;z-index:3;max-width:760px;margin-top:-45px}
+
+[data-yuzey=kiosk] .thumb57{border:1px solid transparent;border-radius:14px;background:#481e0080;color:#e2d9d3;cursor:pointer;min-width:0;flex:1;padding:4px 6px 9px;font-size:10px;max-width:102px;transition:background .2s,border-color .2s;line-height:1.25}
+
+[data-yuzey=kiosk] .thumb57.selected{border-color:#d3b29b;background:#733b1399;color:#fff}
+
+[data-yuzey=kiosk] .thumb-image57{display:block;height:62px;width:100%}
+
+[data-yuzey=kiosk] .thumb57 .food57{filter:drop-shadow(0 4px 3px #0005)}
+
+[data-yuzey=kiosk] .ak-izgara{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+
+[data-yuzey=kiosk] .ak-kart.urun{padding:20px 22px 22px;gap:10px;border:1px solid #ffffff25;border-radius:20px;background:#7e2b0dcc;box-shadow:none;overflow:hidden;margin:0}
+
+[data-yuzey=kiosk] .urun:hover{transform:translateY(-3px);border-color:#c6a38a}
+
+[data-yuzey=kiosk] .ak-resim{height:170px;aspect-ratio:auto;background:none;border-radius:0;overflow:visible}
+
+[data-yuzey=kiosk] .urun .ak-resim{margin:-22px -12px -10px;width:calc(100% + 24px);height:195px;pointer-events:none}
+
+[data-yuzey=kiosk] .urun .ad{font-size:20px;font-weight:800;letter-spacing:-.025em;line-height:1.3}
+
+[data-yuzey=kiosk] .urun .acik{font-size:12px;line-height:1.6;min-height:0;display:block}
+
+[data-yuzey=kiosk] .ak-alerjen{font-size:10px;color:#f0d9c4;background:#ffffff0a;border-color:#ffffff20;padding:3px 8px}
+
+[data-yuzey=kiosk] .urun .alt{padding-top:10px;gap:12px}
+
+[data-yuzey=kiosk] .urun .fiyat{font-size:20px;font-weight:600;white-space:nowrap}
+
+[data-yuzey=kiosk] .ak-dugme.kucuk{min-height:52px;min-width:56px;border-radius:99px;padding:0 20px;font-size:14px;font-weight:600}
+
+[data-yuzey=kiosk] .ak-adet{border-color:#b88b6d;background:#702607;border-radius:99px}
+
+[data-yuzey=kiosk] .ak-adet button{min-width:52px;min-height:52px;width:52px;height:52px;font-size:24px}
+
+[data-yuzey=kiosk] .ak-adet b{min-width:26px;font-size:17px}
+
+[data-yuzey=kiosk] .sepet-bar{background:#792608f5;border-top:1px solid #b88b6d60;padding:18px 40px;backdrop-filter:blur(18px)}
+
+[data-yuzey=kiosk] .sepet-bar .ic{max-width:1360px;flex-direction:row;align-items:center;gap:24px}
+
+[data-yuzey=kiosk] .sepet-bar .toplam{font-size:28px;font-weight:800;white-space:nowrap}
+
+[data-yuzey=kiosk] .sepet-bar #sepetSay{display:block;font-size:12px;color:#cbb9ac}
+
+[data-yuzey=kiosk] #sepetGit{width:auto;flex:1;max-width:560px;margin-left:auto;min-height:72px;font-size:18px;font-weight:800;letter-spacing:-.025em}
+
+[data-yuzey=kiosk] .sepet-bar.bos #sepetGit{max-width:none;opacity:.65;background:#775f4e;border-color:#775f4e;color:#f5eee9}
+
+[data-yuzey=kiosk] .sepet-bar.bos .ic>div{display:none}
+
+[data-yuzey=kiosk] .alt-bosluk{height:126px}
+
+[data-yuzey=kiosk] .ak-modal{max-width:680px;background:#7b2b0d;border:1px solid #b88b6d;padding:32px;border-radius:24px}
+
+[data-yuzey=kiosk] .ak-modal .ak-resim{height:230px;margin:-20px 0 -10px}
+
+[data-yuzey=kiosk] .ak-modal h2{font-size:30px;font-weight:800}
+
+[data-yuzey=kiosk] .ak-modal p{font-size:15px}
+
+[data-yuzey=kiosk] .satirkalem{grid-template-columns:110px minmax(0,1fr) auto;gap:18px;padding:22px 0}
+
+[data-yuzey=kiosk] .satirkalem .kucukresim{width:110px;height:100px;overflow:visible;background:none}
+
+[data-yuzey=kiosk] .satirkalem .kucukresim img{width:100%;height:100%;object-fit:contain}
+
+[data-yuzey=kiosk] .ak-kart:not(.urun){background:#7f290beb;border-color:#ffffff30}
+
+[data-yuzey=kiosk] #odemeyeGec,[data-yuzey=kiosk] #odeTest{min-height:80px;font-size:21px}
+
+[data-yuzey=kiosk] .ak-giris{background:#8a2c08;border-color:#b88b6d;color:#fff4e6}
+
+[data-yuzey=kiosk] #bosUyari{background:#f2e8c9;color:#361600;font-size:16px;padding:14px}
+
+[data-yuzey=kiosk] .icon57{display:inline-block;flex:none;width:24px;height:24px;background:currentColor;mask:center/contain no-repeat;vertical-align:middle}
+
+.icon57-arrow-right{mask-image:url('kiosk57/icons/arrow-right.svg')!important}.icon57-arrow-left{mask-image:url('kiosk57/icons/arrow-left.svg')!important}.icon57-plus{mask-image:url('kiosk57/icons/plus.svg')!important}.icon57-minus{mask-image:url('kiosk57/icons/minus.svg')!important}.icon57-shopping-bag{mask-image:url('kiosk57/icons/shopping-bag.svg')!important}.icon57-globe{mask-image:url('kiosk57/icons/globe.svg')!important}
+
+/* Attract screen follows the selected commercial reference. All text stays live. */
+
+[data-yuzey=kiosk] #baslangic{background:#8a2c08 url('kiosk57/images/studio-orange64.png') center/cover no-repeat;padding:38px 5.5vw 28px;text-align:left;cursor:default;gap:0;align-items:stretch;justify-content:space-between;overflow:auto}
+
+[data-yuzey=kiosk] #baslangic.on{display:flex}
+
+[data-yuzey=kiosk] .start-top57{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:3;width:100%;gap:20px}
+
+[data-yuzey=kiosk] .start-tag57{font-size:11px;letter-spacing:.22em;color:#d5c5ba;font-weight:400}
+
+[data-yuzey=kiosk] .start-campaign57{position:relative;isolation:isolate;display:flex;align-items:center;flex:1;min-height:380px}
+
+[data-yuzey=kiosk] .start-copy57{position:relative;z-index:3;width:54%;padding:40px 0 15px;pointer-events:none}
+
+[data-yuzey=kiosk] #baslangic .campaign-title57{font-size:clamp(48px,7.1vw,100px);line-height:1.12;margin-bottom:24px}
+
+[data-yuzey=kiosk] #baslangic .eyebrow57{margin-bottom:23px;font-size:clamp(11px,1.4vw,18px)}
+
+[data-yuzey=kiosk] .start-product57{font-size:clamp(16px,2vw,23px);margin:0 0 20px;color:#e7dfd9}
+
+[data-yuzey=kiosk] .start-price57{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+
+[data-yuzey=kiosk] .price-note57{font-size:10px;max-width:125px;color:#ded5ce;line-height:1.5}
+
+[data-yuzey=kiosk] #baslangic .donen{position:absolute;inset:0;aspect-ratio:auto;width:100%;height:100%;background:none;box-shadow:none;overflow:visible;border-radius:0;pointer-events:none;z-index:1}
+
+[data-yuzey=kiosk] #baslangic .hero-food57{left:34%;width:77%;height:122%;top:-9%}
+
+[data-yuzey=kiosk] #baslangic .vertical57{font-size:clamp(95px,13vw,166px);top:4%;bottom:2%;right:0;opacity:.35}
+
+[data-yuzey=kiosk] .start-selector57{position:relative;z-index:4;display:flex;gap:14px;max-width:480px;margin:0 0 26px}
+
+[data-yuzey=kiosk] .start-selector57 .thumb57{max-width:110px;font-size:11px}
+
+[data-yuzey=kiosk] .start-selector57 .thumb-image57{height:70px}
+
+[data-yuzey=kiosk] .start-bottom57{display:grid;grid-template-columns:1fr auto;align-items:center;gap:18px 32px;position:relative;z-index:4}
+
+[data-yuzey=kiosk] .start-cta57{justify-content:space-between;min-height:78px;max-width:510px;padding:0 30px;gap:40px;font-size:20px;font-weight:800}
+
+[data-yuzey=kiosk] .start-languages57{display:flex;gap:10px;align-items:center;color:#ddd4ce}
+
+[data-yuzey=kiosk] .language57{min-height:56px;padding:10px 14px;background:transparent;color:#fff4e6;border:1px solid #ae9d91;border-radius:99px;cursor:pointer;font-size:14px}
+
+[data-yuzey=kiosk] .start-hint57{grid-column:1/-1;font-size:12px;letter-spacing:.015em;color:#cfc2b9;margin:0}
+
+@media(min-width:1500px){[data-yuzey=kiosk] #baslangic{padding-left:max(6vw,calc((100vw - 1440px)/2));padding-right:max(6vw,calc((100vw - 1440px)/2))}}
+
+@media(max-width:900px){[data-yuzey=kiosk] .ak-izgara{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}[data-yuzey=kiosk] .ak-kap{padding:20px 28px 32px}[data-yuzey=kiosk] .ak-ust-ic{padding:14px 28px}[data-yuzey=kiosk] .campaign57{margin:-20px -28px 24px;padding:36px 28px 22px;min-height:450px}[data-yuzey=kiosk] .campaign-copy57{padding-bottom:80px}[data-yuzey=kiosk] .hero-food57{left:40%;width:70%;top:-9%}[data-yuzey=kiosk] .campaign-title57{font-size:clamp(43px,6.2vw,58px)}[data-yuzey=kiosk] .campaign-actions57{gap:10px;max-width:260px}[data-yuzey=kiosk] .product-strip57{gap:8px;margin-top:-42px}[data-yuzey=kiosk] .thumb57{font-size:9px;padding:3px 3px 8px}[data-yuzey=kiosk] .thumb-image57{height:52px}[data-yuzey=kiosk] .campaign57 .vertical57{right:4%;font-size:90px}[data-yuzey=kiosk] .menu-ust{gap:15px}[data-yuzey=kiosk] .menu-ust h1{font-size:26px}[data-yuzey=kiosk] .ak-sekme button{padding:0 17px;font-size:13px}[data-yuzey=kiosk] #baslangic{padding:30px 6vw 26px}[data-yuzey=kiosk] .start-tag57{font-size:9px}[data-yuzey=kiosk] .start-bottom57{gap:20px;grid-template-columns:1fr}[data-yuzey=kiosk] .start-cta57{max-width:none;width:100%}[data-yuzey=kiosk] .start-languages57{justify-content:center}[data-yuzey=kiosk] .start-hint57{text-align:center;font-size:11px}[data-yuzey=kiosk] .start-campaign57{min-height:330px}[data-yuzey=kiosk] #baslangic .hero-food57{width:87%;left:27%;top:-3%;height:111%}[data-yuzey=kiosk] #baslangic .campaign-title57{font-size:clamp(45px,7.8vw,70px)}[data-yuzey=kiosk] .start-selector57{margin-bottom:22px;max-width:100%}[data-yuzey=kiosk] .start-selector57 .thumb57{max-width:none}[data-yuzey=kiosk] .start-selector57 .thumb-image57{height:62px}}
+
+@media(max-width:600px){:root[data-yuzey=kiosk][data-tema]{--ak-yazi-boy:16px;--ak-bosluk:22px}[data-yuzey=kiosk] .ak-ust-ic{min-height:78px;padding:12px 22px}[data-yuzey=kiosk] .ak-marka{font-size:16px}[data-yuzey=kiosk] .ak-kap{padding:20px 22px 32px}[data-yuzey=kiosk] .campaign57{margin:-20px -22px 20px;padding:26px 22px 20px;min-height:460px;grid-template-columns:53% 47%}[data-yuzey=kiosk] .campaign-copy57{padding-bottom:100px}[data-yuzey=kiosk] .eyebrow57{font-size:10px;margin-bottom:17px}[data-yuzey=kiosk] .campaign-title57{font-size:clamp(35px,7.6vw,46px);margin-bottom:18px}[data-yuzey=kiosk] .campaign-name57{font-size:14px;margin-bottom:16px}[data-yuzey=kiosk] .campaign-actions57{gap:9px}[data-yuzey=kiosk] .price57{font-size:22px;min-height:48px;padding:4px 21px}[data-yuzey=kiosk] .hero-add57{font-size:13px;min-height:52px;padding:0 18px;gap:10px}[data-yuzey=kiosk] .detail57{font-size:10px;max-width:200px;line-height:1.5;gap:8px;padding:12px 0}[data-yuzey=kiosk] .hero-food57{width:86%;left:30%;top:-5%;height:95%}[data-yuzey=kiosk] .campaign57 .vertical57{top:7%;bottom:37%;font-size:75px;right:2%}[data-yuzey=kiosk] .product-strip57{gap:7px;overflow-x:auto;margin-top:-65px;padding:4px 0;scrollbar-width:none;max-width:calc(100vw - 44px)}[data-yuzey=kiosk] .product-strip57 .thumb57{min-width:68px;max-width:68px;min-height:78px}[data-yuzey=kiosk] .thumb-image57{height:49px}[data-yuzey=kiosk] .menu-ust{display:block;margin:0 0 20px}[data-yuzey=kiosk] .menu-ust h1{font-size:25px;margin-bottom:18px}[data-yuzey=kiosk] .ak-sekme{display:flex;width:100%;justify-content:stretch}[data-yuzey=kiosk] .ak-sekme button{flex:1;min-height:54px;padding:0 13px;font-size:12px}[data-yuzey=kiosk] .ak-kart.urun{padding:12px 14px 16px;gap:9px;border-radius:17px}[data-yuzey=kiosk] .urun .ak-resim{height:145px;margin:-22px -12px -15px}[data-yuzey=kiosk] .urun .ad{font-size:17px}[data-yuzey=kiosk] .urun .acik{font-size:11px;min-height:34px}[data-yuzey=kiosk] .urun .fiyat{font-size:16px}[data-yuzey=kiosk] .urun .alt{flex-wrap:wrap;gap:10px}[data-yuzey=kiosk] .urun .alt>.ak-dugme{margin-left:auto}[data-yuzey=kiosk] .urun .ak-adet{margin-left:auto}[data-yuzey=kiosk] .ak-adet button{width:44px;min-width:44px;height:48px;min-height:48px}[data-yuzey=kiosk] .ak-adet b{min-width:21px}[data-yuzey=kiosk] .ak-dugme.kucuk{font-size:13px;min-height:48px;padding:0 17px}[data-yuzey=kiosk] .sepet-bar{padding:14px 22px}[data-yuzey=kiosk] #sepetGit{font-size:15px;min-height:64px;padding:0 20px}[data-yuzey=kiosk] .sepet-bar .toplam{font-size:22px}[data-yuzey=kiosk] .sepet-bar .ic{gap:16px}[data-yuzey=kiosk] .alt-bosluk{height:110px}[data-yuzey=kiosk] .ak-modal{padding:24px;max-height:88dvh}[data-yuzey=kiosk] .ak-modal .ak-resim{height:170px}[data-yuzey=kiosk] .satirkalem{grid-template-columns:70px minmax(0,1fr);gap:12px}[data-yuzey=kiosk] .satirkalem .kucukresim{width:70px;height:80px}[data-yuzey=kiosk] .satirkalem>.ak-adet{grid-column:2;justify-self:start}[data-yuzey=kiosk] #baslangic{padding:25px 6vw 22px}[data-yuzey=kiosk] .start-campaign57{min-height:280px}[data-yuzey=kiosk] .start-copy57{padding:25px 0 10px;width:60%}[data-yuzey=kiosk] #baslangic .campaign-title57{font-size:clamp(40px,8.5vw,54px);margin-bottom:17px}[data-yuzey=kiosk] #baslangic .eyebrow57{font-size:9px;margin-bottom:18px}[data-yuzey=kiosk] .start-product57{font-size:14px;margin-bottom:14px}[data-yuzey=kiosk] .start-price57{gap:7px}[data-yuzey=kiosk] .price-note57{font-size:8px;max-width:150px}[data-yuzey=kiosk] #baslangic .vertical57{font-size:clamp(80px,18vw,112px);right:0;top:2%;bottom:2%;opacity:.33}[data-yuzey=kiosk] #baslangic .hero-food57{left:25%;width:89%;height:114%;top:-3%}[data-yuzey=kiosk] .start-selector57{gap:10px;margin-bottom:18px}[data-yuzey=kiosk] .start-selector57 .thumb57{font-size:10px}[data-yuzey=kiosk] .start-selector57 .thumb-image57{height:49px}[data-yuzey=kiosk] .start-cta57{min-height:68px;font-size:18px;padding:0 24px}[data-yuzey=kiosk] .start-bottom57{gap:16px}[data-yuzey=kiosk] .language57{min-height:48px;font-size:12px;padding:8px 15px}[data-yuzey=kiosk] .start-hint57{font-size:9px}[data-yuzey=kiosk] .start-tag57{font-size:8px;letter-spacing:.12em}}
+
+@media(max-height:740px) and (max-width:900px){[data-yuzey=kiosk] #baslangic{padding-top:23px;padding-bottom:20px}[data-yuzey=kiosk] .start-campaign57{min-height:265px}[data-yuzey=kiosk] .start-bottom57{gap:12px}[data-yuzey=kiosk] .start-selector57{margin-bottom:16px}[data-yuzey=kiosk] .start-selector57 .thumb-image57{height:42px}[data-yuzey=kiosk] .start-cta57{min-height:62px}}
+
+@media(prefers-reduced-motion:reduce){[data-yuzey=kiosk] *,[data-yuzey=kiosk] *::before,[data-yuzey=kiosk] *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+
+
+[data-yuzey=kiosk] #baslangic{overflow-x:hidden;overflow-y:auto}
+
+[data-yuzey=kiosk] .ak-kap.dar{max-width:820px;padding-bottom:100px}
+
+@media(max-width:900px){
+
+  [data-yuzey=kiosk] .campaign57{min-height:0;padding-top:26px;grid-template-rows:auto auto}
+
+  [data-yuzey=kiosk] .campaign-copy57{padding-bottom:0}
+
+  [data-yuzey=kiosk] .campaign57 .campaign-title57{font-size:42px;margin-bottom:14px}
+
+  [data-yuzey=kiosk] .campaign57 .eyebrow57{margin-bottom:14px;font-size:10px}
+
+  [data-yuzey=kiosk] .campaign-name57{font-size:14px;margin-bottom:13px}
+
+  [data-yuzey=kiosk] .campaign-actions57{flex-wrap:nowrap;max-width:none;gap:9px}
+
+  [data-yuzey=kiosk] .campaign-actions57 .price57{font-size:17px;padding:5px 12px;min-height:50px}
+
+  [data-yuzey=kiosk] .hero-add57{min-height:50px;font-size:12px;padding:0 14px;gap:8px;white-space:nowrap}
+
+  [data-yuzey=kiosk] .hero-add57 .icon57{width:18px;height:18px}
+
+  [data-yuzey=kiosk] .detail57{min-height:44px;font-size:10px;padding:10px 0}
+
+  [data-yuzey=kiosk] .product-strip57{margin-top:22px;overflow-x:auto;scrollbar-width:none;max-width:calc(100vw - 56px)}
+
+  [data-yuzey=kiosk] .product-strip57 .thumb57{flex:none;width:74px;min-width:74px;min-height:77px}
+
+  [data-yuzey=kiosk] .campaign57 .hero-food57{left:40%;width:70%;top:-4%;height:88%}
+
+  [data-yuzey=kiosk] .campaign57 .vertical57{bottom:32%;top:7%;font-size:76px}
+
+}
+
+@media(max-width:450px){
+
+  [data-yuzey=kiosk] .campaign57 .campaign-title57{font-size:34px}
+
+  [data-yuzey=kiosk] .campaign-actions57{flex-wrap:wrap}
+
+  [data-yuzey=kiosk] .campaign57 .hero-food57{left:37%;width:80%;top:-1%;height:84%}
+
+  [data-yuzey=kiosk] .ak-izgara{gap:12px}
+
+}
+
+/* Actual AUTOKITCH product is round: keep its complete circular rim visible. */
+
+[data-yuzey=kiosk] .food57-kasarli,[data-yuzey=kiosk] .hero-food57 .food57{transform:none}
+
+[data-yuzey=kiosk] .campaign57 .hero-food57{left:48%;width:50%;height:82%;top:0}
+
+[data-yuzey=kiosk] #baslangic .hero-food57{left:43%;width:56%;height:100%;top:0}
+
+[data-yuzey=kiosk] #baslangic .vertical57{font-size:clamp(72px,min(13vw,13vh),166px)}
+
+[data-yuzey=kiosk][lang=en] #baslangic .campaign-title57{font-size:clamp(36px,6.2vw,85px)}
+
+@media(max-width:900px){[data-yuzey=kiosk][lang=en] .campaign57 .campaign-title57{font-size:35px}}
+
+@media(max-width:450px){[data-yuzey=kiosk][lang=en] .campaign57 .campaign-title57{font-size:28px}[data-yuzey=kiosk][lang=en] #baslangic .campaign-title57{font-size:29px}}
+
+@media(min-height:1000px) and (max-aspect-ratio:3/4){
+
+  [data-yuzey=kiosk] #baslangic{padding:48px 5.5vw 34px}
+
+  [data-yuzey=kiosk] .start-top57 .ak-marka{font-size:24px}
+
+  [data-yuzey=kiosk] .start-tag57{font-size:12px}
+
+  [data-yuzey=kiosk] .start-campaign57{min-height:0;align-items:flex-start}
+
+  [data-yuzey=kiosk] .start-copy57{position:absolute;top:0;left:0;width:100%;padding:64px 0 0}
+
+  [data-yuzey=kiosk] #baslangic .campaign-title57{font-size:clamp(64px,8.6vw,100px);line-height:1.06;margin-bottom:24px}
+
+  [data-yuzey=kiosk][lang=en] #baslangic .campaign-title57{font-size:clamp(52px,7.5vw,82px)}
+
+  [data-yuzey=kiosk] #baslangic .eyebrow57{font-size:16px;margin-bottom:22px}
+
+  [data-yuzey=kiosk] .start-product57{font-size:24px;margin-bottom:22px}
+
+  [data-yuzey=kiosk] .start-price57 .price57{min-height:64px;font-size:29px;padding:8px 28px}
+
+  [data-yuzey=kiosk] .price-note57{font-size:12px;max-width:150px}
+
+  [data-yuzey=kiosk] #baslangic .hero-food57{left:7%;width:94%;height:67%;top:32%}
+
+  [data-yuzey=kiosk] #baslangic .vertical57{font-size:clamp(105px,13vw,145px);top:35%;bottom:7%;right:0;opacity:.23}
+
+  [data-yuzey=kiosk] .start-selector57{max-width:none;margin:18px 0 32px;gap:18px}
+
+  [data-yuzey=kiosk] .start-selector57 .thumb57{max-width:none;flex:1;font-size:17px;padding:8px 10px 16px;min-height:150px;border-radius:20px}
+
+  [data-yuzey=kiosk] .start-selector57 .thumb-image57{height:112px}
+
+  [data-yuzey=kiosk] .start-bottom57{grid-template-columns:1fr;gap:22px}
+
+  [data-yuzey=kiosk] .start-cta57{max-width:none;width:100%;min-height:104px;font-size:28px;padding:0 36px}
+
+  [data-yuzey=kiosk] .start-cta57 .icon57{width:34px;height:34px}
+
+  [data-yuzey=kiosk] .start-languages57{justify-content:center;gap:18px}
+
+  [data-yuzey=kiosk] .language57{min-height:60px;font-size:17px;padding:12px 24px}
+
+  [data-yuzey=kiosk] .start-hint57{text-align:center;font-size:13px}
+
+  [data-yuzey=kiosk] .ak-ust-ic{min-height:116px;padding:20px 44px}
+
+  [data-yuzey=kiosk] .ak-ust .ak-marka{font-size:24px}
+
+  [data-yuzey=kiosk] #dilD{min-height:64px;min-width:80px;font-size:20px}
+
+  [data-yuzey=kiosk] .ak-kap{padding:30px 44px 40px}
+
+  [data-yuzey=kiosk] .campaign57{margin:-30px -44px 32px;padding:44px 44px 24px}
+
+  [data-yuzey=kiosk] .ak-izgara{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px}
+
+  [data-yuzey=kiosk] .urun .ak-resim{height:250px;margin:-20px -12px -12px}
+
+  [data-yuzey=kiosk] .urun .ad{font-size:26px}
+
+  [data-yuzey=kiosk] .urun .acik{font-size:16px}
+
+  [data-yuzey=kiosk] .urun .fiyat{font-size:26px}
+
+  [data-yuzey=kiosk] .ak-alerjen{font-size:13px;padding:4px 10px}
+
+  [data-yuzey=kiosk] .ak-dugme.kucuk{min-height:64px;font-size:18px;padding:0 27px}
+
+  [data-yuzey=kiosk] .menu-ust h1{font-size:34px}
+
+  [data-yuzey=kiosk] .ak-sekme button{font-size:17px;min-height:64px}
+
+  [data-yuzey=kiosk] .sepet-bar{padding:22px 44px}
+
+  [data-yuzey=kiosk] #sepetGit{min-height:92px;font-size:24px}
+
+  [data-yuzey=kiosk] .sepet-bar .toplam{font-size:34px}
+
+  [data-yuzey=kiosk] .alt-bosluk{height:150px}
+
+}
+
+@media(max-height:800px) and (min-aspect-ratio:4/3){
+
+  [data-yuzey=kiosk] #baslangic{padding:24px 5.5vw 20px}
+
+  [data-yuzey=kiosk] .start-campaign57{min-height:max(310px,calc(100vh - 400px))}
+
+  [data-yuzey=kiosk] .start-copy57{padding:0}
+
+  [data-yuzey=kiosk] #baslangic .campaign-title57{font-size:clamp(52px,10vh,82px);margin-bottom:14px}
+
+  [data-yuzey=kiosk][lang=en] #baslangic .campaign-title57{font-size:clamp(39px,8vh,65px)}
+
+  [data-yuzey=kiosk] #baslangic .eyebrow57{font-size:14px;margin-bottom:12px}
+
+  [data-yuzey=kiosk] .start-product57{font-size:20px;margin-bottom:12px}
+
+  [data-yuzey=kiosk] .start-price57 .price57{min-height:50px;font-size:24px}
+
+  [data-yuzey=kiosk] .start-selector57{margin-bottom:18px;gap:14px}
+
+  [data-yuzey=kiosk] .start-selector57 .thumb-image57{height:56px}
+
+  [data-yuzey=kiosk] .start-bottom57{grid-template-columns:minmax(0,510px) auto;gap:14px 28px}
+
+  [data-yuzey=kiosk] .start-cta57{min-height:68px;font-size:20px}
+
+  [data-yuzey=kiosk] .start-hint57{text-align:left}
+
+  [data-yuzey=kiosk] .start-languages57{justify-content:flex-end}
+
+}
+
+/* Embedded physical kiosk uses a 540 x 960 CSS viewport. */
+
+@media(min-width:500px) and (max-width:700px) and (min-height:850px) and (max-aspect-ratio:3/4){
+
+  [data-yuzey=kiosk] #baslangic{padding:24px 5.5vw 22px}
+
+  [data-yuzey=kiosk] .start-top57 .ak-marka{font-size:17px}
+
+  [data-yuzey=kiosk] .start-tag57{font-size:8px}
+
+  [data-yuzey=kiosk] .start-campaign57{min-height:0;align-items:flex-start}
+
+  [data-yuzey=kiosk] .start-copy57{position:absolute;top:0;left:0;width:100%;padding:30px 0 0}
+
+  [data-yuzey=kiosk] #baslangic .campaign-title57{font-size:46px;line-height:1.06;margin-bottom:16px}
+
+  [data-yuzey=kiosk][lang=en] #baslangic .campaign-title57{font-size:39px}
+
+  [data-yuzey=kiosk] #baslangic .eyebrow57{font-size:10px;margin-bottom:14px}
+
+  [data-yuzey=kiosk] .start-product57{font-size:16px;margin-bottom:14px}
+
+  [data-yuzey=kiosk] .start-price57 .price57{min-height:48px;font-size:22px;padding:5px 22px}
+
+  [data-yuzey=kiosk] .price-note57{font-size:9px;max-width:110px}
+
+  [data-yuzey=kiosk] #baslangic .hero-food57{left:7%;width:94%;height:64%;top:35%}
+
+  [data-yuzey=kiosk] #baslangic .vertical57{font-size:76px;top:40%;bottom:6%;right:0;opacity:.23}
+
+  [data-yuzey=kiosk] .start-selector57{max-width:none;margin:10px 0 20px;gap:10px}
+
+  [data-yuzey=kiosk] .start-selector57 .thumb57{max-width:none;flex:1;font-size:10px;padding:5px 6px 10px;min-height:87px}
+
+  [data-yuzey=kiosk] .start-selector57 .thumb-image57{height:56px}
+
+  [data-yuzey=kiosk] .start-bottom57{grid-template-columns:1fr;gap:14px}
+
+  [data-yuzey=kiosk] .start-cta57{max-width:none;width:100%;min-height:68px;font-size:19px;padding:0 25px}
+
+  [data-yuzey=kiosk] .start-languages57{justify-content:center;gap:12px}
+
+  [data-yuzey=kiosk] .language57{min-height:48px;font-size:12px;padding:8px 18px}
+
+  [data-yuzey=kiosk] .start-hint57{text-align:center;font-size:10px}
+
+}
+
+/* UI58: one product on the advertising start screen; the product alone moves. */
+
+[data-yuzey=kiosk] #baslangic.intro58 .start-campaign57{min-height:0}
+
+[data-yuzey=kiosk] #baslangic.intro58 .hero-food57 .food57{animation:pide58-float 7s ease-in-out infinite;animation-play-state:paused;transform-origin:50% 52%;will-change:transform}
+
+[data-yuzey=kiosk] body.attract57 #baslangic.intro58 .hero-food57 .food57{animation-play-state:running}
+
+@keyframes pide58-float{
+
+  0%,100%{transform:translateY(4px) rotate(-2deg) scale(.985)}
+
+  50%{transform:translateY(-10px) rotate(2deg) scale(1.012)}
+
+}
+
+@media(max-aspect-ratio:3/4){
+
+  [data-yuzey=kiosk] #baslangic.intro58 .start-campaign57{align-items:flex-start}
+
+  [data-yuzey=kiosk] #baslangic.intro58 .start-copy57{position:absolute;left:0;top:0;width:100%;padding:clamp(24px,4vw,64px) 0 0}
+
+  [data-yuzey=kiosk] #baslangic.intro58 .campaign-title57{font-size:clamp(38px,8.6vw,100px);line-height:1.06;margin-bottom:0}
+
+  [data-yuzey=kiosk][lang=en] #baslangic.intro58 .campaign-title57{font-size:clamp(32px,7.5vw,82px)}
+
+  [data-yuzey=kiosk] #baslangic.intro58 .hero-food57{left:6%;width:94%;height:72%;top:25%}
+
+  [data-yuzey=kiosk] #baslangic.intro58 .vertical57{top:32%;bottom:7%;right:0;opacity:.23}
+
+}
+
+[data-yuzey=kiosk] .ak-ust{border:0;box-shadow:none;background:transparent}
+
+[data-yuzey=kiosk] .adimcubuk{display:none}
+
+[data-yuzey=kiosk] .urun .ak-resim:has(.food57-kola),
+
+[data-yuzey=kiosk] .urun .ak-resim:has(.food57-tatli){margin-top:2px;margin-bottom:0;padding:12px 0;box-sizing:border-box}
+
+@media(prefers-reduced-motion:reduce){[data-yuzey=kiosk] #baslangic.intro58 .hero-food57 .food57{animation:none!important;will-change:auto}}
+
+
+
+/* Same sleepy shop mascot. Lightweight breathing; original image-slot geometry retained. */
+
+@keyframes mascot64-breathe{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-3px) scale(1.008)}}
+
+[data-yuzey=kiosk] #baslangic.intro58 .hero-food57 .mascot64{animation:mascot64-breathe 5.5s ease-in-out infinite;animation-play-state:paused;transform-origin:50% 75%}
+
+[data-yuzey=kiosk] body.attract57 #baslangic.intro58 .hero-food57 .mascot64{animation-play-state:running}
+
+@media(prefers-reduced-motion:reduce){[data-yuzey=kiosk] #baslangic.intro58 .hero-food57 .mascot64{animation:none;transform:none}}
+
+
+.ready-paw65{display:block;color:#ffc083;font-size:30px;margin:18px auto;animation:paw65 2.6s ease-in-out infinite;transform-origin:50% 85%}
+@keyframes paw65{0%,65%,100%{transform:rotate(0deg)}73%{transform:rotate(-12deg)}82%{transform:rotate(12deg)}91%{transform:rotate(-7deg)}}
+@media(prefers-reduced-motion:reduce){.ready-paw65{animation:none}}

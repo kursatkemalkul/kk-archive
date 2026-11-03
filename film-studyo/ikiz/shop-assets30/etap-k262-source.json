@@ -1,0 +1,34 @@
+{
+  "id": "etap-k262",
+  "sourcePage": "https://www.etaplighting.com/en/series/k2-light/products/k2626s2",
+  "download": "https://www.etaplighting.com/sites/default/files/revits/K262_IFC.zip",
+  "sourceFile": "K262-3 - comfort version - linear - ceiling mounted_etap_K2_lxwxh 359x180x100 mm.ifc",
+  "sourceSha256": "2a6c7d050fbd48dfc66ac23be1a0406605b49d3053775c706cdd225408f4cb09",
+  "glbSha256": "719b1c708aa60140bc606dc0b5204ce5f285f7f80e38b926881ea5273ddc86dd",
+  "units": "metres",
+  "conversion": "IFC manufacturer geometry and style groups; Z-up to Y-up only; no scale or geometry replacement",
+  "bounds": [
+    [
+      -0.17934898133584698,
+      -0.0987725057735634,
+      -0.08965000000000499
+    ],
+    [
+      0.179348981335872,
+      3.99032298005438e-18,
+      0.08964999999999981
+    ]
+  ],
+  "triangles": 4532,
+  "licence": "Manufacturer ETAP BIM content; original rights retained; layout use",
+  "variantNote": "Generic K262-3 family BIM used for K262/6S2 selected product; nominal 359 x 180 x 100 mm",
+  "placementStatus": "visual layout proposal; illumination and evacuation project require verification",
+  "runtimeOptimization": {
+    "method": "Uniform 1 mm CAD vertex clustering; materials and articulated scene nodes preserved; large texture reduced to 512 pixels",
+    "beforeBytes": 83364,
+    "afterBytes": 98852,
+    "beforeTriangles": 4532,
+    "afterTriangles": 3916,
+    "sha256": "7f1279e89d53e38d242b5b0cc94e56ce3ef81de39c0f776e0fa8e06c15945ad3"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "manufacturer": "SCHNEEWEISS interior / ROSCONI",
+  "product": "CREW 110",
+  "sourcePage": "https://www.schneeweiss.world/en/products/detailed-view/crew-110",
+  "download": "https://owds.pcon-solutions.com/api/v1/shared_files/files/019651ff-b3bc-4c4d-af47-e6608a58fda6",
+  "export": "Manufacturer pCon configurator AR-share GLB export via visible QR code",
+  "sha256": "7897ea300fedfd54e008798895a3f6bfb85b361b5da86b3bc616febea0b9e3e5",
+  "licence": "Manufacturer CAD/layout export; original rights retained",
+  "configuration": "RAL 9016/ol fine textured matt; ohne Fuellung (unfilled)",
+  "catalogueConflict": "Page intro states 340x340x165 mm; current manufacturer configurator states outer 360x360x170 mm. Keep actual downloaded geometry, verify current purchasing variant.",
+  "bounds": [
+    [
+      -0.17999999517577692,
+      1.0640716641141523e-09,
+      -0.08349999810713578
+    ],
+    [
+      0.18000000422817664,
+      0.359999985566864,
+      0.0834999976013298
+    ]
+  ],
+  "extents": [
+    0.35999999940395355,
+    0.35999998450279236,
+    0.16699999570846558
+  ],
+  "runtimeOptimization": {
+    "method": "Uniform 1 mm CAD vertex clustering; materials and articulated scene nodes preserved; large texture reduced to 512 pixels",
+    "beforeBytes": 283496,
+    "afterBytes": 323912,
+    "beforeTriangles": 6728,
+    "afterTriangles": 6728,
+    "sha256": "042cc132d8224f190cb8ac3a1fa7c56c561e1ecf44c87293f719b7fb96466936"
+  }
+}

@@ -1,0 +1,20 @@
+/* Phone order and tracking: exactly the kiosk palette and asset treatment. */
+
+:root[data-yuzey=telefon][data-tema]{--ak-zemin:#8a2c08;--ak-zemin2:#7b2b0d;--ak-kart:#7f290b;--ak-yazi:#fff4e6;--ak-yazi2:#f0d8c6;--ak-soluk:#e8c7ae;--ak-cizgi:#a66a46;--ak-vurgu:#fff4e6;--ak-vurgu2:#f4e2d2;--ak-vurgu-zemin:#a13b10;--ak-vurgu-yazi:#6b260b;--ak-iyi:#ffd2a3;--ak-iyi-zemin:#a13b10;--ak-uyari:#ffe0a0;--ak-uyari-zemin:#4b3d21;--ak-kotu:#ffb4a7;--ak-kotu-zemin:#592f28;color-scheme:dark}
+
+[data-yuzey=telefon] body{background:#8a2c08 url('kiosk57/images/studio-orange64.png') center top/cover fixed no-repeat}[data-yuzey=telefon] .ak-marka{font-weight:800}[data-yuzey=telefon] .ak-marka i{color:#ffc083}[data-yuzey=telefon] #temaD{display:none}[data-yuzey=telefon] .ak-ust{background:#8a2c08e8}[data-yuzey=telefon] .urun{background:#7e2b0dcc;border-color:#a66a46;border-radius:20px}[data-yuzey=telefon] .urun .ad{font-weight:800}[data-yuzey=telefon] .ak-resim img{filter:drop-shadow(0 10px 8px #30100670)}[data-yuzey=telefon] .ak-serit{background:#80320f;color:#f4d9b9}[data-yuzey=telefon] .ak-adet{background:#702607;border-color:#b88b6d}[data-yuzey=telefon] .ak-alerjen{color:#f0d9c4;background:#ffffff0a;border-color:#ffffff20}[data-yuzey=telefon] .ak-modal{background:#7b2b0d;border-color:#b88b6d}[data-yuzey=telefon] .ak-giris{background:#8a2c08;color:#fff4e6;border-color:#b88b6d}.customer-hero61{background:none;border-radius:0;margin:0 -20px}.customer-copy61 h2{letter-spacing:-.055em}.customer-copy61 p{color:#ffc083}.customer-menu61{font-weight:800}
+
+
+
+/* Same sleepy shop mascot. Lightweight breathing; original image-slot geometry retained. */
+
+@keyframes mascot64-breathe{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-3px) scale(1.008)}}
+
+.customer-hero61 img.mascot64{animation:mascot64-breathe 5.5s ease-in-out infinite;transform-origin:50% 75%}
+
+@media(prefers-reduced-motion:reduce){.customer-hero61 img.mascot64{animation:none;transform:none}}
+
+
+.ready-paw65{display:block;color:#ffc083;font-size:30px;margin:18px auto;animation:paw65 2.6s ease-in-out infinite;transform-origin:50% 85%}
+@keyframes paw65{0%,65%,100%{transform:rotate(0deg)}73%{transform:rotate(-12deg)}82%{transform:rotate(12deg)}91%{transform:rotate(-7deg)}}
+@media(prefers-reduced-motion:reduce){.ready-paw65{animation:none}}

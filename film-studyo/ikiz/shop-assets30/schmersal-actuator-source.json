@@ -1,0 +1,20 @@
+{
+  "manufacturer": "K.A. Schmersal GmbH & Co. KG",
+  "part": "103034199",
+  "product": "AZM40-B1",
+  "sourcePage": "https://products.schmersal.com/view/103034199",
+  "catalogue": "TraceParts manufacturer catalogue; authenticated download",
+  "stepSha256": "9d2a7d0e8b68140e5c3d780728191ad50e38746fbfbe46643aac8591636a5178",
+  "glbSha256": "a2c6736cd966db1c40ab76e0b85d3693ea2f63de661105b02c7a8d9ffe5c7227",
+  "conversion": "Original STEP CAF colors and placements; OCCT tessellation 0.2 mm / 0.35 rad; mm to metres; merge by original material only. No geometric redesign.",
+  "license": "Manufacturer CAD; original rights retained",
+  "use": "Visual layout only; mounting fasteners, frame support and safety circuit require engineering validation",
+  "runtimeOptimization": {
+    "method": "Uniform 1 mm CAD vertex clustering; materials and articulated scene nodes preserved; large texture reduced to 512 pixels",
+    "beforeBytes": 976096,
+    "afterBytes": 118140,
+    "beforeTriangles": 44312,
+    "afterTriangles": 6351,
+    "sha256": "d1021d8cbddbfad5953e69471156f680f860ae6afc47840e0fa5d65341e18b9b"
+  }
+}

@@ -1,0 +1,2 @@
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./web-C0fxdb37.js","./native-Bu8lDah1.js","./native-C2eZMAMo.css"])))=>i.map(i=>d[i]);
+import{r as e,t}from"./native-Bu8lDah1.js";var n=e(`App`,{web:()=>t(()=>import(`./web-C0fxdb37.js`).then(e=>new e.AppWeb),__vite__mapDeps([0,1,2]),import.meta.url)});export{n as App};

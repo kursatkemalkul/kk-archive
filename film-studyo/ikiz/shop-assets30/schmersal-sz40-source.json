@@ -1,0 +1,20 @@
+{
+  "manufacturer": "K.A. Schmersal GmbH & Co. KG",
+  "part": "103053182",
+  "product": "SZ40",
+  "sourcePage": "https://products.schmersal.com/view/103053182",
+  "catalogue": "TraceParts manufacturer catalogue; authenticated download",
+  "stepSha256": "17f7780248bd2698008f136d2a6927e0efceb09a2c1cfa8777e696b7f8d49d3c",
+  "glbSha256": "0e855adb5143cd28271107fc24d760cde37dbdfc7625230bc196fc3fe4a209dd",
+  "conversion": "Original STEP CAF colors and placements; OCCT tessellation 0.2 mm / 0.35 rad; mm to metres; merge by original material only. No geometric redesign.",
+  "license": "Manufacturer CAD; original rights retained",
+  "use": "Visual layout only; mounting fasteners, frame support and safety circuit require engineering validation",
+  "runtimeOptimization": {
+    "method": "Uniform 1 mm CAD vertex clustering; materials and articulated scene nodes preserved; large texture reduced to 512 pixels",
+    "beforeBytes": 3059396,
+    "afterBytes": 310696,
+    "beforeTriangles": 151298,
+    "afterTriangles": 17347,
+    "sha256": "6576f500c458c73732a0cffbaec93d2ce89ddef0c8ccb286c18f67775eff9712"
+  }
+}

@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="tr" data-tema="koyu" data-yuzey="dolap">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>AUTOKITCH · Dolap ekranı</title>
+<link rel="stylesheet" href="../ortak/ak.css">
+<style>
+  html,body{height:100%;overflow:hidden;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+  :root[data-yuzey=dolap]{--ak-yazi-boy:clamp(13px,1.95vw,22px);--ak-tus:clamp(46px,9.4vh,78px)}
+  .cerceve{height:100%;display:grid;grid-template-columns:1.18fr 1fr;grid-template-rows:auto 1fr auto;gap:0}
+  .ust{grid-column:1/3;display:flex;align-items:center;gap:12px;padding:8px 18px;border-bottom:1px solid var(--ak-cizgi);background:var(--ak-zemin2)}
+  .ust .saat{font-weight:650}
+  .kaynak{display:inline-flex;align-items:center;gap:6px;font-size:.72em;color:var(--ak-soluk)}
+  .kaynak i{width:.7em;height:.7em;border-radius:50%;background:var(--ak-kotu);display:inline-block}.kaynak.on i{background:var(--ak-iyi)}
+  .sol{padding:18px 22px;display:flex;flex-direction:column;min-height:0;position:relative}
+  .sag{padding:14px 20px 14px 8px;display:flex;flex-direction:column;gap:12px;min-height:0;justify-content:center}
+  .alt{grid-column:1/3;border-top:1px solid var(--ak-cizgi);padding:8px 18px;color:var(--ak-yazi2);font-size:.82em;min-height:2.4em;display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--ak-zemin2)}
+  .baslik{font-size:1.9em;font-weight:750;line-height:1.1;letter-spacing:-.01em}
+  .altbaslik{color:var(--ak-yazi2);margin:6px 0 14px;font-size:1.02em}
+  .liste-baslik{font-size:.74em;font-weight:700;letter-spacing:.12em;color:var(--ak-soluk);margin:10px 0 8px}
+  .hazirlar{display:flex;flex-wrap:wrap;gap:10px;align-content:flex-start;overflow:hidden;max-height:34vh}
+  .hz{border:2px solid var(--ak-iyi);border-radius:16px;padding:6px 14px;text-align:center;min-width:5.2em;background:var(--ak-iyi-zemin)}
+  .hz b{display:block;font-size:1.6em;line-height:1.1}.hz small{color:var(--ak-yazi2);font-size:.74em}
+  .hz.plat{border-color:var(--ak-uyari);background:var(--ak-uyari-zemin)}
+  .kod-kutular{display:flex;gap:12px;justify-content:center}
+  .kod-kutular span{width:clamp(48px,8.6vw,92px);height:clamp(60px,12vh,104px);border-radius:16px;border:2px solid var(--ak-cizgi);background:var(--ak-kart);display:grid;place-items:center;font-size:2.4em;font-weight:750}
+  .kod-kutular span.dolu{border-color:var(--ak-vurgu)}
+  .kod-kutular.sars{animation:ak-sars .4s}
+  @keyframes ak-sars{20%{transform:translateX(-14px)}40%{transform:translateX(12px)}60%{transform:translateX(-8px)}80%{transform:translateX(6px)}}
+  .ipucu{text-align:center;color:var(--ak-yazi2);font-size:.82em;min-height:1.4em}
+  .goz-buyuk{display:flex;gap:14px;flex-wrap:wrap;margin:8px 0 12px}
+  .goz-buyuk .g{min-width:3.4em;text-align:center;border-radius:26px;padding:8px 24px;background:var(--ak-vurgu);color:var(--ak-vurgu-yazi)}
+  .goz-buyuk .g b{display:block;font-size:4.6em;line-height:1}.goz-buyuk .g small{font-size:.8em;letter-spacing:.14em;font-weight:700}
+  .goz-buyuk .g.kapandi{background:var(--ak-iyi-zemin);color:var(--ak-iyi)}
+  .kapi{width:clamp(80px,14vw,150px);height:auto;margin-left:auto}
+  .kapi .kanat{transform-origin:20px 0;animation:ak-kapi 1.6s ease-in-out infinite alternate}
+  @keyframes ak-kapi{from{transform:rotateY(0)}to{transform:rotateY(-62deg)}}
+  .orta-ekran{flex:1;display:flex;flex-direction:column;justify-content:center;gap:6px;text-align:left}
+  .tamam{font-size:4em;line-height:1}
+  .platformlar{display:grid;gap:10px;margin-top:6px}
+  .platformlar button{min-height:calc(var(--ak-tus) * .95);font-size:1.15em}
+  .kurye-etiket{display:inline-block;padding:4px 14px;border-radius:99px;background:var(--ak-uyari-zemin);color:var(--ak-uyari);font-weight:700;font-size:.85em;margin-bottom:6px}
+  .dil-d{min-width:3.2em}
+  .kilitli .ak-tus-izgara{opacity:.35;pointer-events:none}
+  .donen{width:2.2em;height:2.2em;border-radius:50%;border:4px solid var(--ak-cizgi);border-top-color:var(--ak-vurgu);animation:don 0.9s linear infinite}
+  @keyframes don{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="cerceve" id="cerceve">
+  <div class="ust">
+    <span class="ak-marka">AUTO<i>KITCH</i></span>
+    <span class="ak-rozet" id="hatRozet">—</span>
+    <span class="ak-bosluk"></span>
+    <span class="kaynak" id="kaynak"><i></i><span id="kaynakMetin"></span></span>
+    <button class="ak-dugme kucuk hayalet dil-d" id="dilD">EN</button>
+    <span class="saat" id="saat"></span>
+  </div>
+  <section class="sol" id="sol"></section>
+  <section class="sag" id="sag">
+    <div class="kod-kutular" id="kutular" aria-live="polite"></div>
+    <div class="ipucu" id="ipucu"></div>
+    <div class="ak-tus-izgara" id="tuslar"></div>
+    <div class="ak-satir" style="justify-content:center">
+      <button class="ak-dugme" id="kuryeD" data-t="dolap.kurye">Kuryeyim</button>
+      <button class="ak-dugme hayalet" id="yardimD" data-t="dolap.yardim">Yardım</button>
+    </div>
+  </section>
+  <div class="alt"><span id="tick"></span><span class="ak-soluk ak-kucuk" id="demoIpucu"></span></div>
+</div>
+
+<script src="../ortak/goz-etiket.js"></script>
+<script src="../ortak/ak-dil.js"></script>
+<script src="../ortak/ak.js"></script>
+<script src="../ortak/ak-katalog.js"></script>
+<script src="../ortak/ak-vitrin.js"></script>
+<script src="../ortak/ak-demo-menu.js"></script>
+<script src="../ortak/ak-demo.js"></script>
+<script>
+(function () {
+  'use strict';
+  const { h, $, t } = AK;
+  const KOD_UZ = 4, DENEME = 3, KILIT_SN = 30;
+  let hazirOldu = false;
+  let durum = 'bosta';            // bosta | gonder | acik | tesekkur | red | kilit | kurye | belirsiz | yardim
+  let girilen = '', platform = null, yanlis = [], kilitBitis = 0;
+  let acikGozler = new Map();     // goz → 'acik' | 'kapandi'
+  let hazirlar = [], hazirlaniyor = 0, idleZ = Date.now();
+  let gonderZ = null, tesekkurZ = null, kaynakAd = 'yok';
+
+  if (AK.Q.get('tema')) AK.tema.uygula();
+  /* ------------------------------------------------------------------ ses (donanım zili yoksa tarayıcı bip'i) */
+  let ctx = null;
+  function bip(f, ms, tip) { try { if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)(); const o = ctx.createOscillator(), g = ctx.createGain(); o.type = tip || 'sine'; o.frequency.value = f; g.gain.value = 0.06; o.connect(g); g.connect(ctx.destination); o.start(); o.stop(ctx.currentTime + ms / 1000); } catch (e) { /* ses yok */ } }
+  addEventListener('pointerdown', () => { idleZ = Date.now(); try { if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { /* */ } }, { passive: true });
+
+  /* ------------------------------------------------------------------ tuş takımı */
+  const tuslar = $('#tuslar');
+  ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'sil', '0', 'bos'].forEach(k => {
+    if (k === 'bos') { tuslar.append(h('span')); return; }
+    tuslar.append(h('button', { type: 'button', sinif: k === 'sil' ? 'ik' : '', 'aria-label': k === 'sil' ? t('dolap.sil') : k, onclick: () => tus(k), metin: k === 'sil' ? '⌫' : k }));
+  });
+  function tus(k) {
+    if (!['bosta', 'kurye'].includes(durum) || (durum === 'kurye' && !platform)) return;
+    if (k === 'sil') girilen = girilen.slice(0, -1); else if (girilen.length < KOD_UZ) girilen += k;
+    bip(660, 40); kutulariCiz();
+    if (girilen.length === KOD_UZ) kodGonder(girilen);
+  }
+  function kutulariCiz() {
+    const k = $('#kutular'); k.replaceChildren();
+    for (let i = 0; i < KOD_UZ; i++) k.append(h('span', { sinif: i < girilen.length ? 'dolu' : '', metin: i < girilen.length ? '•' : '' }));
+    const ip = $('#ipucu');
+    ip.textContent = durum === 'kilit' ? t('dolap.kilit_kalan', { sn: Math.max(0, Math.ceil((kilitBitis - Date.now()) / 1000)) }) : durum === 'kurye' && platform ? t('dolap.kurye_ipucu') : ['bosta', 'kurye'].includes(durum) ? t('dolap.kod_ipucu') : '';
+    $('#cerceve').classList.toggle('kilitli', !['bosta', 'kurye'].includes(durum) || (durum === 'kurye' && !platform));
+  }
+  addEventListener('keydown', e => {                       // fiziksel klavye / QR okuyucu (klavye gibi yazar, Enter ile biter)
+    if (e.key.length === 1) {
+      const z = Date.now(); if (z - okuZ > 120) okuT = ''; okuZ = z; okuT += e.key;
+      if (/^\d$/.test(e.key) && ['bosta', 'kurye'].includes(durum)) tus(e.key);
+    } else if (e.key === 'Backspace') tus('sil');
+    else if (e.key === 'Enter') {
+      const m = okuT.match(/AK:?(\d{4,8})$/i) || (okuT.length >= 6 ? okuT.match(/(\d{4,8})$/) : null);
+      okuT = '';
+      if (m && ['bosta', 'kurye', 'red'].includes(durum)) { girilen = m[1].slice(-KOD_UZ).padStart(KOD_UZ, '0'); if (m[1].length !== KOD_UZ) girilen = m[1]; kutulariCiz(); kodGonder(m[1]); }
+    }
+  });
+  let okuT = '', okuZ = 0;
+
+  /* ------------------------------------------------------------------ kod gönderme */
+  async function kodGonder(kod) {
+    if (Date.now() < kilitBitis) return;
+    durum = 'gonder'; render(); clearTimeout(gonderZ); acikGozler = new Map();
+    gonderZ = setTimeout(() => { if (durum === 'gonder') { durum = 'belirsiz'; render(); setTimeout(() => { if (durum === 'belirsiz') sifirla(); }, 12000); } }, 7000);
+    try {
+      if (AK.hmi.bagli) {
+        const c = await AK.hmi.komut({ tip: 'qr.code_entered', kod });
+        if (c.ok === false && c.hata !== 'yanıt gelmedi') return reddedildi(kod);
+        if (c.ok) { (c.gozler || []).forEach(g => acikGozler.set(g, 'acik')); if (acikGozler.size) { durum = 'acik'; clearTimeout(gonderZ); render(); bip(880, 180); } }
+      } else {
+        await AK.api.gonder('/api/dolap/kod', { kod });
+      }
+    } catch (e) { durum = 'belirsiz'; render(); setTimeout(() => { if (durum === 'belirsiz') sifirla(); }, 12000); }
+  }
+  function reddedildi() {
+    if (['red', 'kilit'].includes(durum)) return;
+    clearTimeout(gonderZ); yanlis = yanlis.filter(z => Date.now() - z < 60000); yanlis.push(Date.now());
+    bip(220, 400, 'square');
+    if (yanlis.length >= DENEME) { durum = 'kilit'; kilitBitis = Date.now() + KILIT_SN * 1000; yanlis = []; }
+    else durum = 'red';
+    girilen = ''; render();
+    $('#kutular').classList.remove('sars'); void $('#kutular').offsetWidth; $('#kutular').classList.add('sars');
+    if (durum === 'red') setTimeout(() => { if (durum === 'red') { durum = platform ? 'kurye' : 'bosta'; render(); } }, 3500);
+  }
+  function sifirla() { clearTimeout(gonderZ); clearTimeout(tesekkurZ); durum = 'bosta'; girilen = ''; platform = null; acikGozler = new Map(); render(); }
+
+  /* ------------------------------------------------------------------ olaylar (HMI WebSocket ya da DEMO) */
+  function olay(o) {
+    if (o.tip === 'qr.opened') { acikGozler.set(+o.goz, 'acik'); if (['bosta', 'gonder', 'kurye', 'belirsiz', 'red', 'acik'].includes(durum)) { durum = 'acik'; clearTimeout(gonderZ); render(); bip(880, 180); } }
+    else if (o.tip === 'qr.closed') {
+      if (acikGozler.has(+o.goz)) acikGozler.set(+o.goz, 'kapandi');
+      if (durum === 'acik') { render(); if ([...acikGozler.values()].every(v => v === 'kapandi')) { bip(990, 120); setTimeout(() => bip(1320, 160), 160); tesekkurZ = setTimeout(() => { durum = 'tesekkur'; render(); tesekkurZ = setTimeout(sifirla, 6500); }, 700); } }
+      yenileListe();
+    }
+    else if (o.tip === 'qr.code_rejected') { if (['gonder', 'bosta', 'kurye'].includes(durum)) reddedildi(o.kod); }
+    else if (o.tip === 'qr.loaded' || o.tip === 'order.complete') yenileListe();
+  }
+  AK.hmi.abone(x => {
+    if (x.tip === 'olay' && (x.konu === 'dolap/olay' || /^qr\./.test(x.olay && x.olay.tip))) olay(x.olay);
+    else if (x.tip === 'olay' && x.olay && ['qr.loaded', 'order.complete'].includes(x.olay.tip)) olay(x.olay);
+    if (x.tip === 'durum') hatCiz(x.durum);
+    if (x.tip === 'baglandi' || x.tip === 'koptu') { kaynakYaz(); }
+  });
+  let olayId = null;
+  /** HMI WebSocket yokken: sunucudan son dolap olayları (qr.opened · qr.closed · qr.code_rejected). İlk çağrı yalnız saati alır (eski olaylar oynatılmaz). */
+  async function olayCek() {
+    if (AK.hmi.bagli || !AK.api.mod || AK.api.mod === 'bekle') return;
+    const ilk = olayId == null, j = await AK.api.al(ilk ? '/api/dolap/olay?son=1' : '/api/dolap/olay?sonra=' + olayId + '&son=50');
+    j.olaylar.forEach(o => { olayId = Math.max(olayId == null ? 0 : olayId, o.id); if (!ilk) olay(o); });
+    if (olayId == null) olayId = 0;
+  }
+
+  function kaynakYaz() {
+    kaynakAd = AK.hmi.bagli ? 'hmi' : AK.api.mod === 'demo' ? 'demo' : AK.api.mod === 'gercek' ? 'siparis' : 'yok';
+    $('#kaynak').className = 'kaynak' + (kaynakAd === 'hmi' || kaynakAd === 'siparis' ? ' on' : '');   // C E18: sipariş sunucusundan yoklanan makine olayları da canlı bağlantı
+    $('#kaynakMetin').textContent = t('dolap.kaynak.' + kaynakAd);
+  }
+  function hatCiz(d) {
+    const r = $('#hatRozet'); const mod = d && d.mod;
+    if (!mod) { r.textContent = '—'; r.className = 'ak-rozet'; return; }
+    r.textContent = t('dolap.hat.' + mod); r.className = 'ak-rozet ' + (['BOSTA', 'SIPARIS'].includes(mod) ? 'iyi' : ['HATA', 'SERVIS'].includes(mod) ? 'kotu' : 'uyari');
+  }
+
+  /* ------------------------------------------------------------------ boşta listesi */
+  async function yenileListe() {
+    try {
+      const j = await AK.siparis.ekran();
+      hazirlar = j.siparisler.filter(s => ['HAZIR', 'ZAMAN_ASIMI'].includes(s.durum));
+      hazirlaniyor = j.siparisler.filter(s => !['HAZIR', 'ZAMAN_ASIMI'].includes(s.durum)).length;
+      if (durum === 'bosta') render();
+    } catch (e) { /* sessiz */ }
+  }
+
+  /* ------------------------------------------------------------------ çizim */
+  function kapiSvg() {
+    return h('div', { sinif: 'kapi', html: '<svg viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="14" y="6" width="92" height="138" rx="8" fill="none" stroke="currentColor" stroke-width="5" opacity=".5"/>' +
+      '<g style="perspective:200px"><g class="kanat"><rect x="20" y="12" width="80" height="126" rx="5" fill="currentColor" opacity=".85"/><circle cx="88" cy="76" r="5" fill="#fff"/></g></g></svg>', style: 'color:var(--ak-vurgu)' });
+  }
+  function render() {
+    const sol = $('#sol'); sol.replaceChildren(); kutulariCiz();
+    const kuryeBtn = $('#kuryeD'); kuryeBtn.hidden = ['acik', 'tesekkur', 'gonder'].includes(durum);
+    kuryeBtn.textContent = durum === 'kurye' ? t('dolap.musteri') : t('dolap.kurye');
+    if (durum === 'bosta') {
+      sol.append(h('div', { sinif: 'baslik', metin: t('dolap.baslik') }), h('div', { sinif: 'altbaslik', metin: t('dolap.alt') }),
+        h('div', { sinif: 'liste-baslik', metin: hazirlar.length ? t('dolap.hazir_liste') : t('dolap.hazir_yok') }),
+        h('div', { sinif: 'hazirlar' }, hazirlar.slice(0, 12).map(s => h('div', { sinif: 'hz' + (s.platform ? ' plat' : '') }, h('b', { metin: s.kisa_no }), h('small', { metin: s.platform ? s.platform : t('dolap.goz', { n: s.dolap_gozu }) })))),
+        h('p', { sinif: 'ak-soluk', stil: { marginTop: '12px' }, metin: hazirlaniyor ? t('dolap.hazirlaniyor', { n: hazirlaniyor }) : '' }));
+    } else if (durum === 'kurye') {
+      if (!platform) {
+        sol.append(h('span', { sinif: 'kurye-etiket', metin: t('dolap.kurye') }), h('div', { sinif: 'baslik', metin: t('dolap.platform_sec') }),
+          h('div', { sinif: 'platformlar' }, ['GETIR', 'YEMEKSEPETI', 'TRENDYOL'].map(p => h('button', { sinif: 'ak-dugme', onclick: () => { platform = p; render(); }, metin: { GETIR: 'Getir', YEMEKSEPETI: 'Yemeksepeti', TRENDYOL: 'Trendyol Yemek' }[p] }))));
+      } else {
+        sol.append(h('span', { sinif: 'kurye-etiket', metin: t('dolap.kurye') + ' · ' + { GETIR: 'Getir', YEMEKSEPETI: 'Yemeksepeti', TRENDYOL: 'Trendyol Yemek' }[platform] }), h('div', { sinif: 'baslik', metin: t('dolap.kurye_kod') }),
+          h('div', { sinif: 'altbaslik', metin: t('dolap.kurye_alt') }));
+      }
+    } else if (durum === 'gonder') {
+      sol.append(h('div', { sinif: 'orta-ekran' }, h('div', { sinif: 'donen' }), h('div', { sinif: 'baslik', metin: t('dolap.kontrol') })));
+    } else if (durum === 'acik') {
+      const hepsi = [...acikGozler.values()].every(v => v === 'kapandi');
+      sol.append(h('div', { sinif: 'orta-ekran' },
+        h('div', { sinif: 'ak-satir', stil: { flexWrap: 'nowrap' } }, h('div', {}, h('div', { sinif: 'liste-baslik', metin: acikGozler.size > 1 ? t('dolap.gozler_acildi') : t('dolap.goz_acildi') }),
+          h('div', { sinif: 'goz-buyuk' }, [...acikGozler].sort((a, b) => a[0] - b[0]).map(([g, d]) => h('div', { sinif: 'g' + (d === 'kapandi' ? ' kapandi' : '') }, h('small', { metin: t('dolap.goz_kisa') }), h('b', { metin: AK_GOZ.etiket(g) }))))), kapiSvg()),
+        h('div', { sinif: 'baslik', stil: { fontSize: '1.5em' }, metin: hepsi ? t('dolap.kapandi') : t('dolap.al_kapat') })));
+    } else if (durum === 'tesekkur') {
+      sol.append(h('div', { sinif: 'orta-ekran' }, h('div', { sinif: 'tamam', metin: '✓' }), h('div', { sinif: 'baslik', metin: t('dolap.afiyet') }), h('div', { sinif: 'altbaslik', metin: t('dolap.tesekkur') })));
+    } else if (durum === 'red') {
+      sol.append(h('div', { sinif: 'orta-ekran' }, h('div', { sinif: 'baslik', stil: { color: 'var(--ak-kotu)' }, metin: t('dolap.red') }), h('div', { sinif: 'altbaslik', metin: t('dolap.red_alt', { n: Math.max(0, DENEME - yanlis.length) }) })));
+    } else if (durum === 'kilit') {
+      sol.append(h('div', { sinif: 'orta-ekran' }, h('div', { sinif: 'baslik', stil: { color: 'var(--ak-kotu)' }, metin: t('dolap.kilit') }), h('div', { sinif: 'altbaslik', metin: t('dolap.kilit_alt') }),
+        h('button', { sinif: 'ak-dugme', onclick: yardim, metin: t('dolap.personel') })));
+    } else if (durum === 'belirsiz') {
+      sol.append(h('div', { sinif: 'orta-ekran' }, h('div', { sinif: 'baslik', metin: t('dolap.belirsiz') }), h('div', { sinif: 'altbaslik', metin: t('dolap.belirsiz_alt') }), h('button', { sinif: 'ak-dugme', onclick: yardim, metin: t('dolap.personel') })));
+    } else if (durum === 'yardim') {
+      sol.append(h('div', { sinif: 'orta-ekran' }, h('div', { sinif: 'baslik', metin: yardimMetin.baslik }), h('div', { sinif: 'altbaslik', metin: yardimMetin.alt }), h('button', { sinif: 'ak-dugme', onclick: sifirla, metin: t('ortak.tamam') })));
+    }
+    AK.dil.uygula();
+  }
+  let yardimMetin = { baslik: '', alt: '' };
+  async function yardim() {
+    let cagrildi = false;
+    try { await AK.api.gonder('/api/personel-cagir', { yer: 'dolap', neden: 'dolap ekranından yardım' }); cagrildi = true; } catch (e) { /* uç yok (İSTEK) → yalnız yönlendirme */ }
+    yardimMetin = cagrildi ? { baslik: t('dolap.cagrildi'), alt: t('dolap.cagrildi_alt') } : { baslik: t('dolap.tezgaha'), alt: t('dolap.tezgaha_alt') };
+    durum = 'yardim'; render(); clearTimeout(tesekkurZ); tesekkurZ = setTimeout(sifirla, 15000);
+  }
+
+  /* ------------------------------------------------------------------ alt şerit (kampanya akışı) + saat */
+  let kampIdx = 0;
+  function tick() {
+    const v = window.AK_VITRIN, kamp = v.kampanyalar.filter(k => !k.ornek || AK.api.mod === 'demo'); if (!kamp.length) return;
+    const k = kamp[kampIdx++ % kamp.length]; $('#tick').textContent = AK.dil.kod === 'en' ? k.en : k.tr;
+  }
+  function saat() { $('#saat').textContent = new Date().toLocaleTimeString(AK.dil.kod === 'en' ? 'en-GB' : 'tr-TR', { hour: '2-digit', minute: '2-digit' }); if (durum === 'kilit') { if (Date.now() >= kilitBitis) { durum = 'bosta'; render(); } else kutulariCiz(); } }
+
+  /* ------------------------------------------------------------------ başlat */
+  $('#dilD').onclick = () => { AK.dil.ayarla(AK.dil.kod === 'tr' ? 'en' : 'tr'); };
+  window.addEventListener('ak-dil', () => { $('#dilD').textContent = AK.dil.kod === 'tr' ? 'EN' : 'TR'; render(); tick(); kaynakYaz(); });
+  $('#kuryeD').onclick = () => { if (durum === 'kurye') { durum = 'bosta'; platform = null; } else if (durum === 'bosta') { durum = 'kurye'; platform = null; } girilen = ''; render(); };
+  $('#yardimD').onclick = yardim;
+  (async function () {
+    await AK.api.hazir();
+    if (AK.api.mod === 'demo') AK_DEMO.ortam(true);
+    AK.hmi.baglan();
+    $('#dilD').textContent = AK.dil.kod === 'tr' ? 'EN' : 'TR';
+    await AK.vitrinYukle(); setInterval(() => AK.vitrinYukle(), 300000);
+    await olayCek().catch(() => {});            // olay saatini kod girilmeden önce al (ilk çağrı eski olayları oynatmaz)
+    render(); kaynakYaz(); tick(); saat(); yenileListe();
+    hazirOldu = true;
+    setInterval(tick, 7000); setInterval(saat, 1000); setInterval(yenileListe, 2500); setInterval(() => olayCek().catch(() => {}), 350); setInterval(kaynakYaz, 3000);
+    setInterval(() => { if (durum === 'bosta' && AK.dil.kod !== 'tr' && Date.now() - idleZ > 25000) AK.dil.ayarla('tr'); if (['kurye', 'red'].includes(durum) && Date.now() - idleZ > 30000) sifirla(); }, 2000);
+    if (AK.api.mod === 'demo') setInterval(() => { const i = AK_DEMO.ipucuKod(), g = AK_DEMO.gercekHazirKod(); $('#demoIpucu').textContent = 'DEMO · ' + (g ? 'senin siparişin: ' + g : i ? (i.platform ? 'kurye (' + i.platform + ') kodu ' : 'hazır sipariş kodu ') + i.kod : 'hazır sipariş yok'); }, 1500);
+  })();
+  window.AK_DOLAP = { get durum() { return durum; }, get hazir() { return hazirOldu; }, kodGonder, tus };      // yalnız test
+})();
+</script>
+</body>
+</html>
