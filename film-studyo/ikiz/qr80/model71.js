@@ -1,6 +1,6 @@
-import {COBALT03} from '../blue_finish03.js?v=4cb7bf26ffaa';
+import {COBALT03} from '../piano_black29.js?v=156eaf68ed0c';
 import * as T from '../vendor/three.module.min.js';
-import {kapaklar33} from './kapaklar71.js?v=4bb2414b40a2';
+import {kapaklar33} from './kapaklar71.js?v=2a15be2a5b27';
 import {mekanizma34} from './mekanizma71.js';
 import {donanim34} from './donanim71.js?v=77-floor';
 export function kur71(C){

@@ -1,4 +1,4 @@
-import {COBALT03} from '../blue_finish03.js?v=4cb7bf26ffaa';
+import {COBALT03} from '../piano_black29.js?v=156eaf68ed0c';
 import {slulKur,slulPoz} from '../slul.js';
 export function acikliklar33(C,bays){const d=bays.map(b=>({id:'G'+String(b.id).padStart(2,'0'),kind:'eye',x0:b.min[0],x1:b.max[0],y0:b.min[1],y1:b.max[1]}));
  for(const[name,y0,y1,hinge]of[['ALT',126,564,'side'],['UST_IC',1437,1798,'top'],['UST_TEKNIK',1822,2175,'top']])for(const[k,x0,x1]of[['SOL',20,982],['SAG',994,1956]])d.push({id:name+'_'+k,kind:'service',hinge,x0,x1,y0,y1,hand:name==='ALT'?'SOL':k});
