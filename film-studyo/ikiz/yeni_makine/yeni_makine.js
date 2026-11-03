@@ -1,3 +1,4 @@
+import {blueMachine03} from '../blue_finish03.js?v=4cb7bf26ffaa';
 import {sceneAudit30} from '../scene_audit30.js?v=950a7c43140b';
 import {pianoBlack29,MACHINE_PIANO_FINISH30 as PIANO_FINISH30} from '../piano_black29.js?v=0f2f4cfd1656';
 /* YENİ MAKİNE (ANA, 24 Eki 2026 — Kemal: "yeni makineyi ana dijital ikize koy, eskisini kaldır; oradaki makine üstünde çalışan kurallar
@@ -522,6 +523,7 @@ export async function yeniMakine(THREE, IKIZ, scene) {
   // E kutusu (karton) E'nin iç sistemiyle gizlenir — şasi görünümünde 'kutunun parçaları' kalmasın (Kemal 24 Eki); anlaşılır renkte de kendi renginde
   { const ek = scene.getObjectByName('E_KUTU__B_ROOT'); if (ek) { ek.userData.katman = 'ic'; ek.userData.renkSinif = 'gercek'; } }
   durum.cizimToplam = () => { let n = 0; kok.traverse(o => { if ((o.isMesh || o.isLineSegments) && gorunur(o)) n++; }); return n; };
+  blueMachine03(THREE,IKIZ,kok);
   durum.hazir = true; yukleme.tamam();
   setTimeout(()=>sceneAudit30(THREE,scene,IKIZ),1500);
   return durum;
