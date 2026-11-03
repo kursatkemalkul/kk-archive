@@ -3,6 +3,7 @@ import {CAMERA as WRIST_CAMERA} from '../../robot_kamera.js';
 import {cameraAt} from './camera-keys.js?v=150333242fdb';
 export const DURATION=28;
 export const DOUGH_CUT=13.2;
+export const TRANSITION_SECONDS=.18;
 // Spend the extra three seconds on the wrist turn, not on a frozen last frame.
 // All props and doors consume this same clock, retaining the native path.
 export function actionTime(t){const a=19.98,b=20.4;t=t<a?t:t<b+3?a+(t-a)*(b-a)/(b-a+3):t-3;return t<3.9?t:t<9.5?3.9:t<10.3?3.9+1.4*ease((t-9.5)/.8):t-5}
@@ -100,7 +101,7 @@ export function createStory(I,data){
  const veil=mesh(new T.PlaneGeometry(2,2),new T.MeshBasicMaterial({color:0x000000,transparent:true,opacity:0,depthTest:false,depthWrite:false,toneMapped:false}));veil.renderOrder=9998;veil.frustumCulled=false;
  const logoCanvas=document.createElement('canvas');logoCanvas.width=1024;logoCanvas.height=320;const lg=logoCanvas.getContext('2d');lg.textAlign='center';lg.fillStyle='#f2bf72';lg.font='bold 104px sans-serif';lg.fillText('AUTOKITCH',512,150);lg.fillStyle='#f3f0e9';lg.font='28px sans-serif';lg.fillText('SİPARİŞTEN TESLİMATA.',512,220);const logoTex=new T.CanvasTexture(logoCanvas);logoTex.colorSpace=T.SRGBColorSpace;const logo=mesh(new T.PlaneGeometry(.56,.175),new T.MeshBasicMaterial({map:logoTex,transparent:true,depthTest:false,depthWrite:false,toneMapped:false}));logo.renderOrder=9999;logo.frustumCulled=false;
  let last=-1,currentPoint=new T.Vector3();const previousBeforeRender=scene.onBeforeRender;
- scene.onBeforeRender=function(...args){previousBeforeRender?.apply(this,args);for(const [o,m]of ownedMaterials)o.material=m;const p=actionTime(last),macro=last>=DOUGH_CUT&&p<11.34,isolated=last>=3.9&&last<10.3;for(const [o,visible]of sceneVisibility)o.visible=isolated?false:visible;if(originalLED)originalLED.visible=isolated?false:ledVisible;I.sahne.renderer.localClippingEnabled=true;for(const part of cutParts){part.o.material=Array.isArray(part.original)?part.clones:part.clones[0];for(const m of part.clones){if(part.macro!==macro){m.clippingPlanes=macro?[cutPlane]:null;m.needsUpdate=true}}part.macro=macro;}};
+ scene.onBeforeRender=function(...args){previousBeforeRender?.apply(this,args);for(const [o,m]of ownedMaterials)o.material=m;const p=actionTime(last),macro=last>=DOUGH_CUT-TRANSITION_SECONDS&&p<11.34,isolated=last>=3.9&&last<10.3;for(const [o,visible]of sceneVisibility)o.visible=isolated?false:visible;if(originalLED)originalLED.visible=isolated?false:ledVisible;I.sahne.renderer.localClippingEnabled=true;for(const part of cutParts){part.o.material=Array.isArray(part.original)?part.clones:part.clones[0];for(const m of part.clones){if(part.macro!==macro){m.clippingPlanes=macro?[cutPlane]:null;m.needsUpdate=true}}part.macro=macro;}};
  const bMotion=data.clips.carton,cartonTimes=[[13.3,bMotion.entry-.5],[13.95,bMotion.grasp],[14.85,bMotion.clear],[15.35,35],[16.15,bMotion.release],[17,bMotion.duration],[20,bMotion.duration]];
  function frameAt(time){const t=actionTime(time);
   const d=data.clips.dough,b=data.clips.carton;let clip=d,s=mapped(t,[[0,Math.max(0,d.entry-.8)],[5.3,d.entry-.8],[5.65,d.entry],[6.18,d.grasp-.12],[6.48,d.grasp+.24],[7.18,d.clear],[8.93,d.release],[9.18,d.duration],[13.3,d.duration]]);
@@ -114,7 +115,7 @@ export function createStory(I,data){
  function render(time,{free=false,edits={},cameraKeys=[]}={}){
   time=clamp(time,0,DURATION);const t=actionTime(time),shot=shotAt(time),isolated=time>=3.9&&time<10.3,keyed=free?null:cameraAt(cameraKeys,time),eyeView=!free&&!keyed&&(shot.id==='handoff'||shot.id==='hero');customer.head.visible=!eyeView;
   if(time!==last){
-   const macro=time>=DOUGH_CUT&&t<11.34;for(const part of cutParts)for(const m of part.clones)m.clippingPlanes=macro?[cutPlane]:null;
+   const macro=time>=DOUGH_CUT-TRANSITION_SECONDS&&t<11.34;for(const part of cutParts)for(const m of part.clones)m.clippingPlanes=macro?[cutPlane]:null;
    orderScreen(t);const {f,row,clip,s}=frameAt(time),b=data.clips.carton,d=data.clips.dough;I.sunumKareKontrol=true;I.sunumGoruntuKaresi=f;I.goruntuKaresi=f;I.son=f;I.sunumUygula(f);for(const part of cutParts){part.o.material=Array.isArray(part.original)?part.clones:part.clones[0];for(const m of part.clones)m.clippingPlanes=macro?[cutPlane]:null;}currentPoint.fromArray(row.slice(8,11));
    dough.visible=t>=5.3&&time<DOUGH_CUT;if(s>=d.grasp&&s<d.release&&time<DOUGH_CUT)dough.position.fromArray(row.slice(8,11));else dough.position.copy(t<6.2?new T.Vector3(...sample(d,d.grasp).slice(8,11)):plate);dough.quaternion.identity();
    plated.visible=time>=DOUGH_CUT&&t<13.34;plated.position.copy(t<11.3?topPlate:ovenPlate);const cook=ease((t-11.45)/1.45);cookFood(plated,cook);for(const a of plated.userData.food.pieces){const u=clamp((t-a.drop)/a.fall);a.o.visible=t>=a.drop;a.o.position.set(a.x,.020+.36*(1-u*u),a.z);a.o.rotation.set((1-u)*1.8,0,(1-u)*.55*Math.sin(a.x*60));}
@@ -146,7 +147,17 @@ export function createStory(I,data){
   if(shot.id==='handoff'||shot.id==='hero'){const pull=ease((t-17.0)/.9),qrPoint=new T.Vector3(...sample(data.clips.carton,data.clips.carton.release).slice(8,11)),box=qrPoint.lerp(hero,pull),bodyZ=2.45+.64*pull;position.set(hero.x,1.63,bodyZ-.105);target.copy(box).add(new T.Vector3(0,.025,0));roll=0;}
   return {position,target,fov,roll};
  }
- function basePose(time){const i=SHOTS.indexOf(shotAt(time)),shot=SHOTS[i],pose=rawPose(time,i);if(i>0&&!['menu','top','collect','delivery','handoff'].includes(shot.id)&&time<shot.start+.18){const prev=rawPose(shot.start-1e-7,i-1),u=ease((time-shot.start)/.18);pose.position.lerpVectors(prev.position,pose.position,u);pose.target.lerpVectors(prev.target,pose.target,u);pose.fov=prev.fov+(pose.fov-prev.fov)*u;pose.roll=prev.roll+(pose.roll-prev.roll)*u;}return pose;}
+ function mixPose(previous,pose,u){pose.position.lerpVectors(previous.position,pose.position,u);pose.target.lerpVectors(previous.target,pose.target,u);pose.fov=previous.fov+(pose.fov-previous.fov)*u;pose.roll=previous.roll+(pose.roll-previous.roll)*u;return pose;}
+ function basePose(time){
+  const i=SHOTS.indexOf(shotAt(time)),shot=SHOTS[i],pose=rawPose(time,i),next=SHOTS[i+1];
+  // Finish the dough-to-topping move before the gripper enters the opening.
+  if(next?.id==='top'&&time>=next.start-TRANSITION_SECONDS){return mixPose(pose,rawPose(next.start,i+1),ease((time-next.start+TRANSITION_SECONDS)/TRANSITION_SECONDS));}
+  // Street/menu, wrist pickup/delivery and customer/final are already one path.
+  // Every other angle change uses the same blend as topping -> oven.
+  if(i>0&&!['menu','top','delivery','hero'].includes(shot.id)&&time<shot.start+TRANSITION_SECONDS){return mixPose(rawPose(shot.start-1e-7,i-1),pose,ease((time-shot.start)/TRANSITION_SECONDS));}
+  return pose;
+ }
+
  I.sunumKareKontrol=true;orbit.enabled=false;I.sahne.renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));
  function dispose(){scene.onBeforeRender=previousBeforeRender;for(const [o,visible]of sceneVisibility)o.visible=visible;if(originalLED)originalLED.visible=ledVisible;for(const part of cutParts){part.o.material=part.original;for(const m of part.clones)m.dispose()}I.sahne.renderer.localClippingEnabled=clipWas;for(const [light,power]of originalLights)light.intensity=power;if(originalBackground)scene.background.copy(originalBackground);stage.removeFromParent();const geometries=new Set(),materials=new Set(),textures=new Set();stage.traverse(o=>{for(let q=o;q;q=q.parent)if(q===dough)return;if(o.geometry&&!sharedGeometry.has(o.geometry))geometries.add(o.geometry);for(const m of [].concat(o.material||[])){materials.add(m);if(m.map&&!borrowedTextures.has(m.map))textures.add(m.map)}});for(const g of geometries)g.dispose();for(const m of materials)m.dispose();for(const t of textures)t.dispose();}
  return {render,basePose,camera,orbit,scene,hero,plate,dispose,duration:DURATION};
