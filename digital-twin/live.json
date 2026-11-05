@@ -1,7 +1,7 @@
 {
   "url": "https://oecd-trivia-maintain-guests.trycloudflare.com",
-  "version": "AUTOKITCH · e61ac0467504",
+  "version": "AUTOKITCH · eb0a74ec95c5",
   "mode": "live",
   "requires_host_running": true,
-  "package_hash": "e61ac0467504b4a09c7e82c9406f5c9134d300a999e3901c15ed01cf6c31d03c"
+  "package_hash": "eb0a74ec95c5750abe71a04288ce185d49ca09aac11e906d104a8a6b08009896"
 }
