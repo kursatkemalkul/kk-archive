@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><meta name="robots" content="noindex,nofollow"><title>PIN · Film stüdyosu</title>
+<style>*{box-sizing:border-box}html,body{margin:0;height:100%;background:#101418;color:#edf2f5;font:15px Arial,sans-serif}main{position:relative;height:100%}iframe{width:100%;height:100%;border:0;display:block}#status{position:absolute;inset:0;display:grid;place-content:center;text-align:center;padding:24px;background:#101418;color:#c5ccce;pointer-events:none}#status[hidden],[hidden]{display:none!important}</style></head>
+<body><main><div id="status" role="status">Film stüdyosu hazırlanıyor…</div><iframe id="viewer" title="PIN · Bağımsız film stüdyosu" sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-downloads" allow="fullscreen; autoplay; clipboard-write" allowfullscreen referrerpolicy="no-referrer" hidden></iframe></main>
+<script>
+const registry='/pin-film/live.json';
+const entry=new URLSearchParams(location.search).get('view')==='frames'?'/ikiz/web/tanitim/camera-final.html':'/ikiz/web/tanitim/';
+const frame=document.getElementById('viewer'),statusEl=document.getElementById('status');
+let pending=false,lastLookup=0,record=null,activeOrigin='',loaded=false;
+frame.addEventListener('load',()=>{if(!activeOrigin)return;loaded=true;frame.hidden=false;statusEl.hidden=true;});
+async function connect(){
+ if(pending)return;pending=true;
+ try{
+  if(!record||Date.now()-lastLookup>60000){
+   const response=await fetch(registry+'?v='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(10000)});if(!response.ok)throw Error();
+   record=await response.json();lastLookup=Date.now();
+  }
+  const url=new URL(record.url);if(record.application!=='PIN-Film-Studyo'||url.protocol!=='https:'||!url.hostname.endsWith('.trycloudflare.com')||url.username||url.password)throw Error();
+  if(url.origin!==activeOrigin){
+   activeOrigin=url.origin;url.pathname=entry;url.search='';url.hash='';frame.hidden=false;loaded=false;statusEl.hidden=false;frame.src=url.href;
+  }
+ }catch{if(!loaded){statusEl.hidden=false;statusEl.textContent='Film yayını şu anda hazır değil. Bağlantı otomatik olarak tekrar denenecek.';}}
+ finally{pending=false;}
+}
+connect();setInterval(connect,5000);
+</script></body></html>
