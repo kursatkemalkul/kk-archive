@@ -1,0 +1,8 @@
+{
+  "url": "https://file-julie-minneapolis-basically.trycloudflare.com",
+  "application": "PIN-Film-Studyo",
+  "entrypoint": "/ikiz/web/tanitim/",
+  "duration_seconds": 80,
+  "requires_host_running": true,
+  "mode": "live"
+}
