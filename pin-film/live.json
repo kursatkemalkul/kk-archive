@@ -1,8 +1,8 @@
 {
-  "url": "https://file-julie-minneapolis-basically.trycloudflare.com",
+  "url": "https://chess-wax-applicant-limiting.trycloudflare.com",
   "application": "PIN-Film-Studyo",
   "entrypoint": "/ikiz/web/tanitim/",
-  "duration_seconds": 80,
+  "duration_seconds": 150,
   "requires_host_running": true,
   "mode": "live"
 }
