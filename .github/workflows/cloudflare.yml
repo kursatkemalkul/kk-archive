@@ -36,6 +36,7 @@ jobs:
             !/_local/
             !/arastirma/
             !/uretim/
+            /uretim/index.html
             !/supplier-review/
             !/otonom/hat/
             !/otonom/hat3d/

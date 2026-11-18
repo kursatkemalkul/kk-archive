@@ -54,6 +54,7 @@ jobs:
             !/_local/
             !/arastirma/
             !/uretim/
+            /uretim/index.html
             !/supplier-review/
             !/otonom/hat/
             !/otonom/hat3d/
@@ -100,6 +101,8 @@ jobs:
           root=Path('_site/autokitch').resolve()
           private=['_local','arastirma','uretim','supplier-review','otonom/hat','otonom/hat3d','otonom/birlesik','otonom/kaset3d','otonom/elektrik','otonom/onizleme-9eki']
           redirect='<html><head><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=/digital-twin/"></head><body><a href="/digital-twin/">AUTOKITCH Digital Twin</a></body></html>'
+          factory=root/'uretim/index.html'
+          factory_page=factory.read_bytes() if factory.is_file() else None
           for name in private:
               target=(root/name).resolve()
               assert root in target.parents
@@ -107,6 +110,9 @@ jobs:
               if name.startswith('otonom/'):
                   target.mkdir(parents=True,exist_ok=True)
                   (target/'index.html').write_text(redirect,encoding='utf8')
+          if factory_page is not None:
+              factory.parent.mkdir(parents=True,exist_ok=True)
+              factory.write_bytes(factory_page)
           redirect49='<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta http-equiv="refresh" content="0;url=/digital-twin/"><title>AUTOKITCH · E montajı</title></head><body><a href="/digital-twin/">Şifreli E montaj animasyonunu aç</a></body></html>'
           for rel in ['otonom/hat/e-montaj.html','otonom/hat/e-montaj/index.html']:
               target=root/rel;target.parent.mkdir(parents=True,exist_ok=True);target.write_text(redirect49,encoding='utf8')

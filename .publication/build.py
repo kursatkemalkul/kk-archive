@@ -16,7 +16,7 @@ def copy_source(repo,destination):
   rel=item.relative_to(source);posix=rel.as_posix()
   if any(x.startswith('.') for x in rel.parts) or item.name=='CNAME':continue
   if repo=='kk-archive' and rel.parts[0] in {'alancast','autokitch','highline','nakit'}:continue
-  if repo=='autokitch' and (posix.startswith(PRIVATE) or item.suffix.lower()in DENIED or '.glb.'in item.name.lower()):continue
+  if repo=='autokitch' and ((posix.startswith(PRIVATE) and posix!='uretim/index.html') or item.suffix.lower()in DENIED or '.glb.'in item.name.lower()):continue
   target=destination/rel;target.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(item,target)
  if repo=='autokitch':
   for name in PRIVATE:
