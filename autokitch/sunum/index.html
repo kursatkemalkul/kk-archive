@@ -693,12 +693,24 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
 </style>
 <link rel="stylesheet" href="/autokitch/sunum/sunum-r120.css?v=121">
 <script src="/autokitch/sunum/firma-r120.js?v=121"></script>
+<link rel="stylesheet" href="/autokitch/sunum/duzen-r123.css?v=123">
 </head>
 <body>
 
+<div id="site-giris" role="dialog" aria-modal="true" aria-labelledby="giris-baslik">
+  <form id="giris-form">
+    <h1 id="giris-baslik">AUTOKITCH</h1>
+    <label for="site-kod">Giriş şifresi</label>
+    <input id="site-kod" name="password" type="password" autocomplete="current-password" required>
+    <button type="submit">Giriş</button>
+    <p id="giris-hata" role="alert"></p>
+  </form>
+</div>
+<script src="/autokitch/sunum/giris-r123.js?v=123"></script>
+
 <div class="isik" aria-hidden="true"><i class="l1"></i><i class="l2"></i><i class="l3"></i></div>
 
-<header><span class="logo">AUTOKITCH</span><nav class="sunum-nav" aria-label="Sunum bölümleri"><a href="#film">Film</a><a href="#fiyat">Fiyat ve maliyet</a><a href="#yatirim">Yatırım</a></nav></header>
+<header><span class="logo">AUTOKITCH</span><nav class="sunum-nav" aria-label="Sunum bölümleri"><a href="/autokitch/portal/">AUTOKITCH</a><a href="#film">Film</a><a href="#fiyat">Fiyat ve maliyet</a><a href="#yatirim">Yatırım</a></nav></header>
 <div class="ilerleme" aria-hidden="true"></div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1027,31 +1039,13 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
 <section id="fiyat" class="finance" aria-labelledby="f-baslik">
   <div class="icx">
     <h2 class="baslik" id="f-baslik">Pideyi kaça satabiliriz, <span class="grad">bize ne kalır?</span></h2>
-    <div class="f-ic">
-      <div class="fiyatlar kutu">
-        <h3>Dükkânda satış fiyatı</h3>
-        <div id="f-urunler"></div>
-        <p class="dipnot" id="f-kaynak">Maliyet tablosunun yayımlanmış varsayımları</p>
-      </div>
-      <div class="karlar kutu">
-        <h3>Personelli PIN dükkânı</h3>
-        <p class="f-label">Ürün başına katkı</p>
-        <div class="katki"><div><b data-cost="pide-contribution">…</b><small>Kaşarlı pide</small></div><div><b data-cost="lahmacun-contribution">…</b><small>Lahmacun</small></div></div>
-        <p class="f-label">Günlük satışa göre aylık faaliyet kârı</p>
-        <div id="f-senaryolar"></div>
-        <p class="dipnot">Vergi ve amortisman öncesi tahmin. Her senaryonun ürün dağılımı aşağıdaki hesapta.</p>
-      </div>
+    <div class="sonuc-ozeti">
+      <article class="sonuc-kart"><h3>SATIŞ FİYATI</h3><div id="f-urunler"></div></article>
+      <article class="sonuc-kart"><h3>AYLIK FAALİYET KÂRI</h3><div id="f-senaryolar"></div><p>Personelli PIN · vergi ve amortisman öncesi</p></article>
     </div>
     <details id="maliyet" class="maliyet">
       <summary>Maliyet hesabı <span aria-hidden="true" class="m-chevron"></span></summary>
-      <div class="m-body">
-        <div id="m-tables"></div>
-        <p id="m-durum" role="status"></p>
-        <button type="button" id="m-canli" hidden>Kaydedilmiş hesabı bağla</button>
-        <button type="button" id="m-asli-ac" aria-controls="m-asli" aria-expanded="false">Asıl tabloyu burada aç</button>
-        <a id="m-kayit" href="https://industrialproductdesigner.com/autokitch/otonom/maliyet/#hesap" target="_blank" rel="noopener">Asıl maliyet hesabını aç ↗</a>
-        <div id="m-asli" hidden></div>
-      </div>
+      <div id="maliyet-tablosu" class="asil-tablo"></div>
     </details>
   </div>
 </section>
@@ -1592,7 +1586,7 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
 </script>
 <script src="/autokitch/sunum/film-r119.js?v=121" defer></script>
 <script src="/autokitch/sunum/hesap-model-r120.js?v=121" defer></script>
-<script src="/autokitch/sunum/hesap-r120.js?v=121" defer></script>
-<script src="/autokitch/sunum/hesap-baglanti.js?v=121" defer></script>
+<script src="/autokitch/sunum/hesap-r123.js?v=123" defer></script>
+<script src="/autokitch/sunum/hesap-link-r123.js?v=123" defer></script>
 </body>
 </html>

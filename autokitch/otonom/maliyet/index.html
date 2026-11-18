@@ -558,6 +558,17 @@ details.arsiv[open] > summary{margin-bottom:10px}
 #hesap table.hs tr.gyat td label.aksw{margin-right:10px}
 #hesap table.hs tr.gyat td span:not(.aksw span){margin-left:10px;font-weight:400}
 </style>
+<script>if(new URLSearchParams(location.search).has('embed')) document.documentElement.classList.add('tablo-icerde');</script>
+<style>
+html.tablo-icerde, .tablo-icerde body{background:#fff;scroll-behavior:auto}
+.tablo-icerde #nav,.tablo-icerde #stoc,.tablo-icerde footer,.tablo-icerde #akcloud,.tablo-icerde #hesap>h2,.tablo-icerde #hesap>p,.tablo-icerde body>details{display:none!important}
+.tablo-icerde #hesap{padding:16px 6px;margin:0 auto;max-width:none;opacity:1!important;transform:none!important}
+.tablo-icerde #gate{position:absolute;min-height:360px;bottom:auto;height:360px;background:white;color:#1f1f1f}
+.tablo-icerde #gate .glogo{color:#1f1f1f}.tablo-icerde #gate .gsub{font-size:0}.tablo-icerde #gate .gsub:after{content:'Maliyet hesabı şifresi';font-size:15px;color:#586378}
+.tablo-icerde #gate input{background:#f5f7fb;color:#1f1f1f;border-color:#ccd6ee}
+.tablo-icerde:has(#gate) #hesap{visibility:hidden}
+.tablo-icerde body.glocked{overflow:hidden;min-height:360px}
+</style>
 </head>
 
 <body>
@@ -588,7 +599,7 @@ details.arsiv[open] > summary{margin-bottom:10px}
 (function(){
   var CODE="alfa"; /* <<< ŞİFRE BURADA (büyük/küçük harf farketmez) */
   var gate=document.getElementById('gate');
-  if(sessionStorage.getItem('ak_ok')==='1'){ gate.remove(); return; }
+  if(sessionStorage.getItem('ak_ok')==='1' && !new URLSearchParams(location.search).has('embed')){ gate.remove(); return; }
   document.body.classList.add('glocked');
   var inp=document.getElementById('gpin'), err=document.getElementById('gerr');
   setTimeout(function(){inp.focus();},120);
@@ -1596,5 +1607,7 @@ details.arsiv[open] > summary{margin-bottom:10px}
     });
   })();
 </script>
+<script src="/autokitch/sunum/hesap-model-r120.js"></script>
+<script src="/autokitch/sunum/tablo-r123.js?v=123"></script>
 </body>
 </html>
