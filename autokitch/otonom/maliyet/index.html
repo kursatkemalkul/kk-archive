@@ -1537,7 +1537,7 @@ details.arsiv[open] > summary{margin-bottom:10px}
     }
     function localMt(){ try{ return parseInt(localStorage.getItem('ak_mt')||'0'); }catch(e){ return 0; } }
     function push(){
-      if(!cl.ref || cl.applying) return;
+      if(!cl.ref || cl.applying || cl.first) return;
       var mt = Date.now(); try{ localStorage.setItem('ak_mt', String(mt)); }catch(e){}
       cl.ref.set({ data: JSON.stringify(payload()), cid: CID, mt: mt })
         .then(function(){ stat('\u2601 e\u015fitlendi', true); })
@@ -1576,10 +1576,11 @@ details.arsiv[open] > summary{margin-bottom:10px}
       cl.ref = db.collection('autokitch').doc('hesap');
       cl.ref.onSnapshot(function(snap){
         if(snap.metadata.hasPendingWrites) return;
-        if(!snap.exists){ push(); return; }
+        if(!snap.exists){ cl.first = false; stat('Henüz kayıt yok — bir değer düzenleyince kaydedilir', false); return; }
         var r = snap.data();
         if(cl.first){ cl.first = false;
-          if((r.mt||0) > localMt()) applyRemote(r); else push();
+          /* Initial rendering and one-time local migrations must never replace an existing cloud record. */
+          applyRemote(r);
           return; }
         if(r.cid === CID) return;
         applyRemote(r);

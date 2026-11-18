@@ -263,6 +263,13 @@ const pinFirebaseConfig={
     };
 (() => {
   'use strict';
+  if(location.hash==='#cihaz-kaydi'){
+    const keys=['ak_hesap_v4','ak_yatirim_v2','ak_flags_v1','ak_mt'];
+    const saved=Object.fromEntries(keys.map(k=>[k,localStorage.getItem(k)]));
+    const title=document.createElement('h2');title.textContent='Bu cihazdaki maliyet kaydı';
+    const text=document.createElement('pre');text.id='cihaz-kaydi';text.style.cssText='white-space:pre-wrap;font-size:12px';
+    text.textContent=JSON.stringify(saved,null,2);document.body.append(title,text);
+  }
   const allowedHashes=["fe97000a2c1054fe83f174b25c03caa9d44ec4d90a31ba996a20cd107a8d6bf7", "8beab1038d860e06886645adbde4eac08a28e0a70d02c488c518cb8cac4b8a0e"];
   let host=null;
   const parentWindow=window.opener || (window.parent!==window ? window.parent : null);
