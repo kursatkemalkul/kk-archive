@@ -1,0 +1,250 @@
+// Read-only extract of the published AUTOKITCH calculator. No editor, storage, or database writes.
+(() => {
+  'use strict';
+  var AK_URUNLER = [
+    {id:'pide',     p:'pd_', ad:'pide',     gen:'pidenin',    Gen:'Pidenin',    eski:'ak_hesap_pide_v1'},
+    {id:'lahmacun', p:'lh_', ad:'lahmacun', gen:'lahmacunun', Gen:'Lahmacunun', eski:'ak_hesap_lahm_v1'},
+    {id:'pizza',    p:'pz_', ad:'pizza',    gen:'pizzanın',   Gen:'Pizzanın',   eski:'ak_hesap_v3'}
+  ];
+  var AK_ORTAK = ['pers','maas','p1','p2','p3','p4','p5','p6','isvor','kira','elek','su','muh','sis','bakim','zorunlu','roy','yan','ick','ick_alis','ick_oran','yat','omur','vergi','kdv','ppay','pkom','isim'];
+  /* Ortak alanlar pide varsayilanlarindan: rakip zincir Usta Pideci (TAB Gida), esnaf mahalle pidecisi.
+     Malzeme (Eyl 2026 toptan): pide kasar 130 g x ~420 TL/kg; lahmacun 55 g kiyma x 690 TL/kg; pizza mozzarella ~533 TL/kg.
+     FIYAT KARARDIR ve sabittir (HDEF_FIYAT varsayilan); kar = fiyattan ve o anki adet/giderden hesaplanir. */
+  var HDEF = {
+    S: {pers:0, maas:45000, kira:25000, elek:12000, su:3500, muh:4000, sis:2500, bakim:3.5, zorunlu:3000, roy:0, yan:0, ick:60, ick_alis:40, ick_oran:25, yat:3504269, omur:7, vergi:25, kdv:10, ppay:90, pkom:35, isim:0,
+        pd_adet:55, pd_kutu:8.3, lh_adet:80, lh_kutu:11.7, pz_adet:0, pz_kutu:10.3},
+    M: {pers:1, maas:40875, kira:60000, elek:14000, su:4500, muh:5000, sis:2500, bakim:3.5, zorunlu:3500, roy:0, yan:0, ick:60, ick_alis:40, ick_oran:25, yat:3397169, omur:7, vergi:25, kdv:10, ppay:90, pkom:35, isim:0,
+        pd_adet:70, pd_kutu:8.3, lh_adet:100, lh_kutu:11.7, pz_adet:0, pz_kutu:10.3},
+    D: {pers:4, maas:45000, kira:120000, elek:25000, su:6000, muh:8000, sis:5000, bakim:2, zorunlu:6000, roy:9, yan:0, ick:80, ick_alis:40, ick_oran:25, yat:8000000, omur:7, vergi:25, kdv:10, ppay:60, pkom:22, isim:7000000,
+        pd_adet:60, pd_kutu:8.3, lh_adet:90, lh_kutu:11.7, pz_adet:0, pz_kutu:10.3},
+    P: {pers:3, maas:40875, kira:70000, elek:16000, su:5000, muh:5000, sis:1500, bakim:2, zorunlu:3000, roy:0, yan:0, ick:80, ick_alis:40, ick_oran:25, yat:2500000, omur:7, vergi:25, kdv:10, ppay:70, pkom:35, isim:0,
+        pd_adet:90, pd_kutu:8.3, lh_adet:225, lh_kutu:11.7, pz_adet:0, pz_kutu:10.3}
+  };
+  var HDEF_FIYAT = { M:{pide:180, lahmacun:115, pizza:190}, S:{pide:180, lahmacun:115, pizza:190},
+                     D:{pide:230, lahmacun:140, pizza:190}, P:{pide:350, lahmacun:145, pizza:230} };   /* mahalle pide 350 kendi kuryesi, YS 525 (Kemal, 12 Eyl) */
+  /* MALZEME ALIS FIYATLARI (TL/kg, KDV haric, 12 Eyl 2026) — kaynaklar sitedeki 3. tablonun notlarinda; dort kolonda ayni.
+     TARIF (gram / 1 adet): malzeme maliyeti = SUM(gram/1000 x kg fiyati) x (1 + fire). */
+  var AK_MALZ = [{k:'un', ad:'Un'}, {k:'kasar', ad:'Kaşar'}, {k:'kiyma', ad:'Dana kıyma'}, {k:'mozz', ad:'Mozzarella'}, {k:'sucuk', ad:'Sucuk'}, {k:'salca', ad:'Domates salçası'}, {k:'yag', ad:'Ayçiçek yağı'}, {k:'sogan', ad:'Kuru soğan'}, {k:'domates', ad:'Domates'}, {k:'biber', ad:'Sivri biber'}, {k:'maydanoz', ad:'Maydanoz'}, {k:'baharat', ad:'Pul biber + baharat'}];
+  var HDEF_FY = {un:27, kasar:420, kiyma:690, mozz:533, sucuk:832, salca:64, yag:112, sogan:16.5, domates:27, biber:37.5, maydanoz:12.75, baharat:270};
+  var AK_TARIF = {pide:{un:135, kasar:130, yag:10}, lahmacun:{un:68, kiyma:55, sogan:20, domates:15, biber:8, maydanoz:5, yag:3, baharat:2}, pizza:{un:170, mozz:110, salca:80, sucuk:40, yag:8}};
+  /* HAMUR (17 Eyl 2026): bizim kolonlar (M, S) hamur topunu firindan hazir alir -> adet fiyati, un 0; rakipler (D, P) kendi yapar -> un grami, hamur 0.
+     Adet fiyati VARSAYIM: Istanbul ekmegi 200 g 17,50 TL (kg 87,5) -> 220 g pide 17, 110 g lahmacun 9, 250 g pizza 20 TL. Firin teklifi gelince guncellenir. */
+  var HDEF_HAMUR = { M:{pide:17, lahmacun:9, pizza:20}, S:{pide:17, lahmacun:9, pizza:20}, D:{pide:0, lahmacun:0, pizza:0}, P:{pide:0, lahmacun:0, pizza:0} };
+  var AK_MALZ_AD = {hamur:'hamur topu'}; AK_MALZ.forEach(function(m){ AK_MALZ_AD[m.k] = m.ad.toLocaleLowerCase('tr-TR'); });
+  function akMalzeme(v, u){
+    var urun = AK_URUNLER.filter(function(x){ return x.id === u; })[0], top = 0, kalem = [];
+    var hamur = v[urun.p+'hamur'] || 0; if(hamur > 0){ top += hamur; kalem.push({k:'hamur', tl:hamur}); }
+    Object.keys(AK_TARIF[u]).forEach(function(m){
+      if(m === 'un' && hamur > 0) return;   /* hazir hamur alan kolonda un ayrica sayilmaz */
+      var tl = (v[urun.p+'g_'+m] || 0) / 1000 * (v['fy_'+m] || 0);
+      top += tl; kalem.push({k:m, tl:tl});
+    });
+    var fire = (v[urun.p+'fire'] || 0) / 100;
+    return {tl: top * (1 + fire), ham: top, fire: fire, kalem: kalem};
+  }
+  /* kisi kisi personel maliyeti (p1..p6): doluysa o kolonda pers x maas yerine net maastan bordro hesabi */
+  var AK_PKISI = ['p1','p2','p3','p4','p5','p6'];
+  function akKisiler(v){ return AK_PKISI.map(function(k){ return v[k] || 0; }).filter(function(x){ return x > 0; }); }
+  /* 2026 BORDRO PARAMETRELERI — kaynak: Asgari Ucret Tespit Komisyonu 2025/1, GVGT Seri No 332 (ucret tarifesi),
+     7566 sayili Kanun (MYO isveren +1 puan, SGK tavani 9 x asgari). Yil degisince yalniz bu blok guncellenir. */
+  var BORDRO = { asgBrut: 33030, sgkIsci: 0.14, issizIsci: 0.01, sgkTavan: 297270, damga: 0.00759,
+    dilim: [[190000, 0.15], [400000, 0.20], [1500000, 0.27], [5300000, 0.35], [Infinity, 0.40]] };
+  BORDRO.asgMatrah = BORDRO.asgBrut * (1 - BORDRO.sgkIsci - BORDRO.issizIsci);   /* 28.075,50 */
+  BORDRO.asgDamga  = BORDRO.asgBrut * BORDRO.damga;                                /* 250,70 */
+  function bordroGV(m){ var v = 0, alt = 0; for(var i = 0; i < BORDRO.dilim.length; i++){ var ust = BORDRO.dilim[i][0];
+      if(m > alt){ v += (Math.min(m, ust) - alt) * BORDRO.dilim[i][1]; } alt = ust; } return v; }
+  /* bir ayin kesintileri: K = kisinin yil ici birikmis GV matrahi, KA = asgari ucretin birikmis matrahi (istisna icin) */
+  function bordroAy(brut, K, KA){
+    var sgkMatrah = Math.min(brut, BORDRO.sgkTavan);
+    var isciPay = sgkMatrah * (BORDRO.sgkIsci + BORDRO.issizIsci);
+    var gvMatrah = brut - isciPay;
+    var gv = bordroGV(K + gvMatrah) - bordroGV(K);
+    var gvIst = Math.min(gv, bordroGV(KA + BORDRO.asgMatrah) - bordroGV(KA));
+    var dv = Math.max(0, brut * BORDRO.damga - BORDRO.asgDamga);
+    return { net: brut - isciPay - (gv - gvIst) - dv, gvMatrah: gvMatrah, sgkMatrah: sgkMatrah };
+  }
+  /* net maastan yillik ortalama brut ve isveren maliyeti — her ay brut ikiye bolme ile bulunur */
+  var BORDRO_ONBELLEK = {};
+  function bordroNettenMaliyet(net, isvOran){
+    var key = net + '|' + isvOran; if(BORDRO_ONBELLEK[key]) return BORDRO_ONBELLEK[key];
+    var K = 0, KA = 0, topBrut = 0, topMal = 0;
+    for(var ay = 0; ay < 12; ay++){
+      var lo = net, hi = net * 2.5 + 1000;
+      for(var it = 0; it < 60; it++){ var mid = (lo + hi) / 2; if(bordroAy(mid, K, KA).net < net) lo = mid; else hi = mid; }
+      var r = bordroAy(hi, K, KA);
+      K += r.gvMatrah; KA += BORDRO.asgMatrah;
+      topBrut += hi; topMal += hi + r.sgkMatrah * isvOran;
+    }
+    return (BORDRO_ONBELLEK[key] = { brut: topBrut / 12, maliyet: topMal / 12 });
+  }
+  /* isveren maliyetinden net maas — eski "kisi sayisi x isverene maliyet" kayitlarini kisi kisi nete cevirmek icin */
+  function bordroMaliyettenNet(maliyet, isvOran){
+    var lo = 0, hi = maliyet;
+    for(var it = 0; it < 40; it++){ var mid = Math.round((lo + hi) / 2); if(bordroNettenMaliyet(mid, isvOran).maliyet < maliyet) lo = mid; else hi = mid; if(hi - lo <= 1) break; }
+    return hi;
+  }
+  /* pers (kisi) x maas (isverene toplam) alanlari doluysa ve kisi girilmemisse ayni maliyeti veren net maaslara cevirir */
+  function akKisiyeCevir(v){
+    if(akKisiler(v).length || !(v.pers > 0) || !(v.maas > 0)) return false;
+    var n = Math.min(AK_PKISI.length, Math.round(v.pers)), net = bordroMaliyettenNet(v.maas, akIsvOran(v));
+    for(var i = 0; i < n; i++) v[AK_PKISI[i]] = net;
+    return n > 0;
+  }
+  function akIsvOran(v){ return ((v.isvor > 0 ? v.isvor : 23.75) / 100); }
+  var HPOS = 0.03, HGUN = 30.4, HCOLS = ['S','M','D','P'];
+  function akHKey(){ return 'ak_hesap_v4'; }
+  /* kar ekle -> fiyat (bir kez hesaplanir, 0,1 TL); uretim ve dKapi fiyattan bagimsizdir */
+  function akFiyatKardan(v, u, kar){ var x = hmodel(v).U[u]; return x.dKapi > 0 ? Math.round((x.uretim + kar) / x.dKapi * 10) / 10 : 0; }
+  function akHDEF(){
+    var out = {};
+    HCOLS.forEach(function(c){
+      var v = JSON.parse(JSON.stringify(HDEF[c]));
+      AK_PKISI.forEach(function(k){ v[k] = 0; }); v.isvor = 23.75; akKisiyeCevir(v);
+      if(c === 'M'){ v.p2 = 16845; }   /* 7 gun x 10 saat = 70 saat/hafta, yasal 45 -> 1,6 kisi: 2. kisi yari zamanli (asgari x 0,6) */
+      AK_MALZ.forEach(function(m){ v['fy_'+m.k] = HDEF_FY[m.k]; });
+      AK_URUNLER.forEach(function(u){ Object.keys(AK_TARIF[u.id]).forEach(function(m){ v[u.p+'g_'+m] = AK_TARIF[u.id][m]; }); v[u.p+'fire'] = 0; });
+      AK_URUNLER.forEach(function(u){ v[u.p+'fiyat'] = HDEF_FIYAT[c][u.id]; v[u.p+'hamur'] = HDEF_HAMUR[c][u.id]; if(HDEF_HAMUR[c][u.id] > 0) v[u.p+'g_un'] = 0; });
+      out[c] = v;
+    });
+    return out;
+  }
+  function hmodel(v, AKFL){
+    var kdvK = 1 + (v.kdv || 0)/100;
+    var kisiler  = akKisiler(v);
+    var isvOran  = akIsvOran(v);
+    var personel = kisiler.reduce(function(a, n){ return a + bordroNettenMaliyet(n, isvOran).maliyet; }, 0);
+    var yatAcik  = !!(AKFL && AKFL.yat === 1);          /* yatirim kapaliyken bakim, amortisman, geri donus hesaba girmez */
+    var bakimTL  = yatAcik ? v.yat * (v.bakim/100) / 12 : 0;
+    var sabit    = personel + v.kira + v.elek + v.su + v.muh + v.sis + bakimTL + v.zorunlu;
+    var fatKdv   = (v.elek + v.su + v.sis + v.muh + bakimTL) * 0.20;      /* faturalarda odenen KDV (mahsup edilir) */
+    var ePpay = (AKFL && AKFL.plat === 0) ? 0 : (v.ppay || 0);
+    var pPay = ePpay/100, kom = Math.min(0.9, (v.pkom || 0)/100), roy = (v.roy || 0)/100;
+    var dKapi = 1/kdvK - HPOS - roy/kdvK;
+    var dPlat = 1/kdvK - kom - roy/kdvK;
+    var ayToplam = 0;
+    AK_URUNLER.forEach(function(u){ ayToplam += Math.max(0, v[u.p+'adet'] || 0) * HGUN; });
+    var sabitPay = ayToplam > 0 ? sabit/ayToplam : 0;
+    var fatKdvPay = ayToplam > 0 ? fatKdv/ayToplam : 0;
+    var U = {}, T = {ciro:0, kdv:0, malz:0, kom:0, kar:0};
+    AK_URUNLER.forEach(function(u){
+      var adet = Math.max(0, v[u.p+'adet'] || 0), malzD = akMalzeme(v, u.id), malz = malzD.tl, kutu = v[u.p+'kutu'] || 0, fiyat = v[u.p+'fiyat'] || 0;
+      var uretim = sabitPay + malz + kutu;
+      var kapi  = fiyat;                            /* FIYAT SABIT (karar) — adet degisince fiyat degil KAR degisir */
+      var kar   = kapi*dKapi - uretim;              /* cebe kalan: KDV, kart, franchise ve sabit gider payi dusulmus */
+      var plat  = (pPay > 0 && dPlat > 0) ? (uretim + kar)/dPlat : kapi;
+      var satis = pPay*plat + (1 - pPay)*kapi;                       /* kanal payina gore harmanlanmis fiyat */
+      var kPlat = pPay*plat*kom, kPos = (1 - pPay)*kapi*HPOS, kRoy = satis/kdvK*roy;
+      /* KDV: satista %10 hesaplanir; alista odenen KDV dusulur — temel gida %1, ambalaj + faturalar %20,
+         platform komisyonu ve franchise faturasi %20 (nakit olarak odenir, beyannamede dusulur; kart komisyonunda KDV yok) */
+      var kdvS  = satis - satis/kdvK, kdvA = malz*0.01 + kutu*0.20 + fatKdvPay + (kPlat + kRoy)*0.20;
+      var kdvPay = kdvS - kdvA;                                       /* eksi = devreden KDV (ay toplaminda sifirlanir) */
+      var ay = adet*HGUN;
+      T.ciro += ay*satis; T.kdv += ay*kdvPay; T.malz += ay*(malz*1.01 + kutu*1.20); T.kom += ay*((kPlat + kRoy)*1.20 + kPos); T.kar += ay*kar;
+      U[u.id] = {adet:adet, ay:ay, malz:malz, malzD:malzD, kutu:kutu, kar:kar, uretim:uretim, kapi:kapi, plat:plat, satis:satis,
+                 kPlat:kPlat, kPos:kPos, kRoy:kRoy, kdvPay:kdvPay, dKapi:dKapi, dPlat:dPlat,
+                 kapiKdv:kapi - kapi/kdvK, kapiPos:kapi*HPOS, kapiRoy:kapi/kdvK*roy,
+                 platKdv:plat - plat/kdvK, platKom:plat*kom, platRoy:plat/kdvK*roy};
+    });
+    var mSabit = sabit + fatKdv;
+    var mYan   = (v.yan || 0) * ayToplam;
+    /* ICECEK: kapida satis fiyati; platformda ayni kar kalacak sekilde liste fiyati. Alis KDV'si mahsup edildigi icin kari etkilemez. */
+    var ickS = v.ick || 0, ickA = v.ick_alis || 0, ickOran = Math.max(0, v.ick_oran || 0) / 100;
+    var ickKar = ickS * dKapi - ickA;
+    var ickPlat = dPlat > 0 ? (ickKar + ickA) / dPlat : NaN;
+    var ickAy = ayToplam * ickOran, mIck = ickAy * ickKar;
+    var mKdv   = Math.max(0, T.kdv);                                  /* eksiyse devreden KDV: odenmez, sonraki aya sarkar */
+    var mVonce = T.ciro - mKdv - T.malz - T.kom - mSabit + mYan + mIck;
+    var amort  = (yatAcik && v.omur > 0) ? v.yat/(v.omur*12) : 0;
+    var mAmort = (AKFL && AKFL.amort === 0) ? 0 : amort;
+    var mMatrah = mVonce - mAmort;
+    var mVergi = (AKFL && AKFL.gv === 0) ? 0 : (mMatrah > 0 ? mMatrah*(v.vergi/100) : 0);
+    var mNet   = mVonce - mVergi;
+    return {personel:personel, bakimTL:bakimTL, sabit:sabit, fatKdv:fatKdv, sabitPay:sabitPay, ayToplam:ayToplam, mKdv:mKdv,
+            ePpay:ePpay, pPay:pPay, U:U, T:T, mSabit:mSabit, mYan:mYan, mVonce:mVonce,
+            ickKar:ickKar, ickPlat:ickPlat, ickAy:ickAy, mIck:mIck,
+            amort:amort, mAmort:mAmort, mVergi:mVergi, mNet:mNet, netKar:mMatrah - mVergi,
+            geri: (yatAcik && mNet > 0) ? (v.yat + (v.isim || 0))/mNet : NaN, v:v};
+  }
+
+  let investments = [["M","robot","A",1700000.0],["S","robot","A",1700000.0],["M","yolc","C",4710000.0],["S","yolc","C",4710000.0],["M","kol","AB",720000.0],["S","kol","AB",720000.0],["M","dolap","AB",165000.0],["S","dolap","AB",205000.0],["M","yazilim","A",40000.0],["S","yazilim","A",40000.0],["M","btaban","B",90000.0],["S","btaban","B",90000.0],["M","bpres","B",250000.0],["S","bpres","B",250000.0],["M","btop","B",375000.0],["S","btop","B",375000.0],["M","bfirin","B",300000.0],["S","bfirin","B",300000.0],["M","bkes","B",225000.0],["S","bkes","B",225000.0],["M","byaz","B",225000.0],["S","byaz","B",225000.0],["M","kiosk","ABC",30000.0],["S","kiosk","ABC",220000.0],["M","buzdolabi","ABC",57500.0],["S","buzdolabi","ABC",40000.0],["M","icecek","ABC",34918.0],["S","icecek","ABC",34918.0],["M","kamera","ABC",12500.0],["S","kamera","ABC",12500.0],["M","klima","ABC",26500.0],["S","klima","ABC",26500.0],["M","ups","ABC",14150.0],["S","ups","ABC",14150.0],["M","ag","ABC",7000.0],["S","ag","ABC",7000.0],["M","tezgah","ABC",47000.0],["S","tezgah","ABC",25000.0],["M","evye","ABC",24000.0],["S","evye","ABC",24000.0],["M","pos","ABC",10000.0],["S","pos","ABC",0.0],["M","elektrik","ABC",45000.0],["S","elektrik","ABC",45000.0],["M","su","ABC",18000.0],["S","su","ABC",18000.0],["M","zemin","ABC",25000.0],["S","zemin","ABC",18000.0],["M","duvar","ABC",30000.0],["S","duvar","ABC",22000.0],["M","hava","ABC",22000.0],["S","hava","ABC",22000.0],["M","cephe","ABC",55000.0],["S","cephe","ABC",45000.0],["M","tabela","ABC",45000.0],["S","tabela","ABC",38000.0],["M","pencere","ABC",28000.0],["S","pencere","ABC",0.0],["M","nis","ABC",20000.0],["S","nis","ABC",26000.0],["M","aydinlatma","ABC",12000.0],["S","aydinlatma","ABC",9000.0],["M","isci","ABC",20000.0],["S","isci","ABC",16000.0],["M","proje","ABC",25000.0],["S","proje","ABC",25000.0],["M","yangin","ABC",8000.0],["S","yangin","ABC",8000.0],["M","ambalaj","ABC",21842.0],["S","ambalaj","ABC",21842.0],["M","temizlik","ABC",9271.0],["S","temizlik","ABC",9271.0],["M","gida","ABC",91088.0],["S","gida","ABC",91088.0],["M","demirbas","ABC",26400.0],["S","demirbas","ABC",14000.0],["M","gorsel","ABC",7000.0],["S","gorsel","ABC",7000.0]];
+  const groups = ['M','S','D','P'];
+  const scenarios = [[70,100],[80,200],[115,285]];
+  const valid = value => typeof value === 'number' && Number.isFinite(value);
+  function numeric(value) {
+    if (valid(value)) return value;
+    if (typeof value !== 'string' || !value.trim()) return 0;
+    const compact = value.trim();
+    return Number(/^\d{1,3}(\.\d{3})+$/.test(compact) ? compact.replaceAll('.','') : compact.replace(',','.'));
+  }
+  function readObject(value) { return typeof value === 'string' ? JSON.parse(value) : value || {}; }
+  function columnSummary(R) {
+    const products = {};
+    let contribution = R.mYan + R.mIck;
+    for (const {id} of AK_URUNLER) {
+      const u = R.U[id];
+      const margin = u.kar + R.sabitPay;
+      products[id] = {price:u.kapi, daily:u.adet, ingredients:u.malz, box:u.kutu, cost:u.uretim, contribution:margin};
+      contribution += u.ay * margin;
+    }
+    return {products, daily:R.ayToplam/HGUN, revenue:R.T.ciro, ingredients:R.T.malz, fees:R.T.kom,
+      fixed:R.mSabit, tax:R.mKdv, drinks:R.mIck, sides:R.mYan, profit:R.mVonce,
+      breakEven:R.ayToplam>0 && contribution>0 ? R.sabit/(contribution/R.ayToplam)/HGUN : null};
+  }
+  function summary(record={}) {
+    const data = readObject(record.data || record);
+    const flags = readObject(data.ak_flags_v1), saved = readObject(data.ak_hesap_v4);
+    const chosen = {amort:flags.amort===0?0:1,gv:flags.gv===1?1:0,plat:flags.plat===0?0:1,
+      yat:flags.yat===1?1:0,ymode:['A','B'].includes(flags.ymode)?flags.ymode:'C'};
+    const models = akHDEF();
+    const equipment = readObject(data.ak_yatirim_v2);
+    const columns = {};
+    for (const group of groups) {
+      const v = models[group];
+      if (saved[group]) for (const key of Object.keys(v)) {
+        if (Object.hasOwn(saved[group],key)) {
+          const value = numeric(saved[group][key]);
+          if (valid(value)) v[key]=value;
+        }
+      }
+      if (['M','S'].includes(group) && chosen.yat) {
+        v.yat = investments.filter(row=>row[0]===group && row[2].includes(chosen.ymode)).reduce((sum,row)=>{
+          const key=group+'-'+row[1];
+          const n=Object.hasOwn(equipment,key)?numeric(equipment[key]):row[3];
+          return sum + (valid(n) ? n : row[3]);
+        },0);
+      }
+      columns[group] = columnSummary(hmodel(v,chosen));
+    }
+    return {columns, scenarios:scenarios.map(([pide,lahmacun])=>({
+      daily:pide+lahmacun, pide, lahmacun, profit:hmodel({...models.M,pd_adet:pide,lh_adet:lahmacun,pz_adet:0},chosen).mVonce
+    }))};
+  }
+  // The published source uses numeric object literals for its inputs. Parse data only.
+  function readPublished(documentText) {
+    const previous=[HDEF,HDEF_FIYAT,HDEF_FY,HDEF_HAMUR,AK_TARIF];
+    const names=['HDEF','HDEF_FIYAT','HDEF_FY','HDEF_HAMUR','AK_TARIF'];
+    function values(template,input) {
+      if (typeof template==='number') {
+        if (!valid(input)) throw Error('Eksik sayı');
+        return input;
+      }
+      if (!input||typeof input!=='object') throw Error('Eksik değer');
+      return Object.fromEntries(Object.keys(template).map(key=>[key,values(template[key],input[key])]));
+    }
+    const parsed = names.map((name,i)=>{
+      const block=documentText.match(new RegExp('\\bvar\\s+'+name+'\\s*=\\s*(\\{[^;]+\\})\\s*;'));
+      if (!block) throw Error('Maliyet biçimi değişti');
+      const json=block[1].replace(/([{,]\s*)([a-zA-Z_]\w*)\s*:/g,'$1"$2":').replace(/,\s*}/g,'}');
+      return values(previous[i],JSON.parse(json));
+    });
+    [HDEF,HDEF_FIYAT,HDEF_FY,HDEF_HAMUR,AK_TARIF]=parsed;
+    // Read the equipment schedule as inert text, without instantiating foreign frames or scripts.
+    const template=document.createElement('template');
+    template.innerHTML=documentText.slice(documentText.indexOf('<tr class="ydet"'),documentText.lastIndexOf('data-yg=')+1);
+    const rows=Array.from(template.content.querySelectorAll('input[data-y][data-yk]'), n=>[
+      n.dataset.y,n.dataset.yk,n.closest('tr')?.dataset.mode||'ABC',numeric(n.getAttribute('value')||0)]);
+    if (rows.length===investments.length && rows.every(r=>valid(r[3]))) investments=rows;
+  }
+  window.PinCost = {summary,readPublished};
+
+})();
