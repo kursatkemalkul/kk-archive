@@ -56,9 +56,28 @@
 .teklif-kart .teklif-fiyat{color:#145742;font-weight:650}
 .teklif-kart .teklif-not,.teklif-kart .teklif-durum{font-size:12px}
 .teklif-kart .teklif-durum{background:#f0f4fb;padding:7px 9px;border-radius:8px}
-.yapanlar-videolar{max-width:1000px;margin:0 auto;padding:0 16px 32px;scroll-margin-top:72px}
-.yapanlar-videolar[hidden]{display:none}
-.yapanlar-videolar>.arastirma-icerik{padding:0}
+.sunum-acilir.yapanlar-videolar{width:calc(100% - 32px);max-width:1000px;margin:0 auto 24px;scroll-margin-top:72px}
+.basabas-kart{display:flex;flex-direction:row;justify-content:space-between;align-items:center;gap:16px;background:#edf3ff;border-color:#d8e4fc}
+.basabas-kart p{margin-top:4px}.basabas-sonuc{display:flex;align-items:baseline;justify-content:flex-end;gap:5px;flex-wrap:wrap;text-align:right;color:#314f91;font-size:12px}
+.basabas-sonuc strong{font-size:clamp(19px,3vw,31px);line-height:1.1;color:#2146af}
+.f-urun-maliyet{display:flex;align-items:baseline;gap:4px 8px;flex-wrap:wrap;margin:2px 0 4px}
+.f-urun-maliyet b{color:#253e79;font-size:14px}
+.bordro-modeller{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;margin-top:6px}
+.bordro-modeller>div+div{border-left:1px solid #d0dcf4;padding-left:10px}
+.bordro-modeller h5{margin:0 0 2px;color:#3e5482;font-size:12px}.bordro-modeller p{margin-top:6px}
+.makine-ozeti{width:100%;text-align:left}
+.makine-kart h3{margin:0;font-size:16px;color:#1d315c}
+.makine-kart strong{font-size:clamp(23px,3.6vw,36px);color:#2146af;letter-spacing:-.03em}
+.makine-kart p{font-size:13px}.makine-kart a{color:#2656ba;font-size:13px}
+.makine-fiyatlar{margin:0;display:grid;gap:8px}
+.makine-fiyatlar>div{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;padding-top:8px;border-top:1px solid #e5eaf4}
+.makine-fiyatlar dt{font-size:13px;line-height:1.4}.makine-fiyatlar small{display:block;color:#58647a}
+.makine-fiyatlar dd{font-size:14px;color:#2146af;font-weight:750;margin:0;white-space:nowrap}
+@media(max-width:620px){
+  #pizza-bordro,.makine-ozeti{grid-template-columns:1fr}
+  .basabas-kart{gap:8px}.basabas-sonuc{row-gap:0}
+  .makine-kart p{font-size:12px}
+}
 @media(max-width:720px){
   header{gap:10px}
   header .logo{flex:none}

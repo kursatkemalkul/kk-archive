@@ -494,13 +494,7 @@ main{position:relative;z-index:1}
 
 /* tedarikçi özeti */
 .tedarik{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:clamp(70px,12vh,120px) 16px;display:flex;flex-direction:column;align-items:center;gap:20px}
-/* video sayfası (yapanlar sahnesinden açılır) */
-.vs-ac{font:inherit;align-self:center;display:inline-flex;align-items:center;gap:8px;margin-top:4px;padding:8px 8px 8px 16px;border:0;border-radius:999px;background:#fff;box-shadow:var(--golge);font-size:14px;font-weight:700;color:var(--ink);cursor:pointer}
-.vs-ac .ms{color:#7b5cff;font-size:20px}
-.vs-ac b{color:#5b4cf0}
-.vs-ac span{padding:5px 14px;border-radius:999px;background:var(--grad);color:#fff;font-size:13px}
-.vs-ac:hover span,.vs-ac:focus-visible span{filter:brightness(1.1)}
-.vs-ac:focus-visible{outline:3px solid #7b5cff;outline-offset:2px}
+
 
 @media (max-width:760px){
   :root{--kh:clamp(84px,12.5vh,118px)}
@@ -625,8 +619,8 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
 @media(prefers-reduced-motion:reduce){#film *,body.pin-film-view>header{transition:none!important}}
 </style>
 <link rel="stylesheet" href="/autokitch/sunum/sunum-r120.css?v=121">
-<script src="/autokitch/sunum/arastirma-r125.js?v=126" defer></script>
-<link rel="stylesheet" href="/autokitch/sunum/duzen-r123.css?v=127">
+<script src="/autokitch/sunum/arastirma-r125.js?v=130" defer></script>
+<link rel="stylesheet" href="/autokitch/sunum/duzen-r123.css?v=130">
 <style>@media(max-width:440px){header .sunum-nav{justify-content:flex-end;flex-wrap:wrap;gap:0 8px}header .sunum-nav a{white-space:nowrap;padding:3px 0}}</style>
 </head>
 <body>
@@ -775,12 +769,12 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
       <div class="firma"><span class="no">7</span><div><b>Yo-Kai Express</b><small>ABD · Ramen otomatı, ~90 saniyede sıcak servis</small></div></div>
       <div class="firma"><span class="no">8</span><div><b>RoboBurger</b><small>ABD · Burgeri siparişe göre pişiren otomat</small></div></div>
     </div>
-    <button type="button" class="vs-ac" id="vs-ac" aria-expanded="false" aria-controls="sektor-videolari"><i class="ms" aria-hidden="true">video_library</i>Kim ne yapıyor? <b>63 video</b><span aria-hidden="true">Aç</span></button>
     </div>
   </div>
-  <div id="sektor-videolari" class="yapanlar-videolar" role="region" aria-labelledby="vs-ac" tabindex="-1" hidden>
+  <details id="sektor-videolari" class="sunum-acilir yapanlar-videolar">
+    <summary>Kim ne yapıyor?</summary>
     <div class="arastirma-icerik"></div>
-  </div>
+  </details>
 </section>
 
 <!-- 6 · TÜRKİYE: FAST FOOD + MUTFAK BOŞALIYOR -->
@@ -916,15 +910,15 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
       </div></div>
 
       <div class="kart"><div class="ic">
-        <div class="yuz on"><div class="bas"><i class="ms">help_center</i><b>Hangi ürün nerede satıyor, bilinmez</b></div><div class="alt-s"><small>Yeni şube yeri tahmine kalır.</small></div></div>
-        <div class="yuz arka"><i class="ms">insights</i><span class="buyuk">Veriyle büyür</span><small>Her satış kayıt; yeni nokta veriyle seçilir.</small></div>
+        <div class="yuz on"><div class="bas"><i class="ms">help_center</i><b>Şubeleri ayrı ayrı takip etmek zor</b></div><div class="alt-s"><small>Satış ve stok bilgisi farklı yerlerde kalır.</small></div></div>
+        <div class="yuz arka"><i class="ms">insights</i><span class="buyuk">Tüm şubeler tek ekranda</span><small>Uygulamadan her restoranı takip et. Hangi ürünün hangi saatte kaç adet satıldığını ve stoku anlık gör.</small></div>
       </div></div>
 
       <div class="etiket etiket-2">Müşterinin sorunları</div>
 
       <div class="kart mus"><div class="ic">
         <div class="yuz on"><div class="bas"><i class="ms">sell</i><b>Yemek pahalı</b></div><div class="alt-s"><span class="sayi">308 TL</span><small>iki lahmacun = günlük asgari ücretin ⅓'ü</small></div></div>
-        <div class="yuz arka"><i class="ms">savings</i><span class="buyuk">Daha ucuz</span><small>Ucuzluk düşük işletme maliyetinden.</small></div>
+        <div class="yuz arka"><i class="ms">price_check</i><span class="buyuk">Daha ucuz</span><small>Ucuzluk düşük işletme maliyetinden.</small></div>
       </div></div>
 
       <div class="kart mus"><div class="ic">
@@ -957,9 +951,17 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
   <div class="icx">
     <h2 class="baslik" id="f-baslik">Pideyi kaça satabiliriz, <span class="grad">bize ne kalır?</span></h2>
     <div class="sonuc-ozeti">
-      <article class="sonuc-kart"><h3>SATIŞ FİYATI</h3><div id="f-urunler"></div></article>
+      <article class="sonuc-kart"><h3>SATIŞ FİYATI VE BİRİM MALİYET</h3><div id="f-urunler"></div></article>
       <article class="sonuc-kart"><h3>AYLIK FAALİYET KÂRI</h3><div id="f-senaryolar"></div><p>Personelli PIN · vergi ve amortisman öncesi</p></article>
     </div>
+    <article class="sonuc-kart basabas-kart">
+      <div>
+        <h3>GİDERLERİ KARŞILAMAK İÇİN</h3>
+        <p>Personelli PIN · tablodaki fiyat ve ürün dağılımıyla</p>
+      </div>
+      <div class="basabas-sonuc"><strong id="f-basabas">—</strong><span id="f-basabas-birim"></span></div>
+    </article>
+    <p class="bordro-not" id="hesap-kaynak">Maliyet hesabının varsayılan senaryosu</p>
     <section class="bordro" aria-labelledby="bordro-baslik">
       <h3 id="bordro-baslik">Aylık ve yıllık personel gideri</h3>
       <div class="sonuc-ozeti" id="pizza-bordro">
@@ -971,31 +973,23 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
         </article>
         <article class="sonuc-kart bordro-kart pin-bordro">
           <h4>NOVOKITCH otonom pizza hattı</h4>
-          <p>1 malzeme yükleme görevlisi</p>
-          <div class="bordro-deger"><strong>≈ 45.000 TL</strong><span> / ay</span></div>
-          <div class="bordro-yil"><b>≈ 540.000 TL</b><span> / yıl</span></div>
+          <div class="bordro-modeller">
+            <div>
+              <h5>İnsanlı</h5>
+              <div class="bordro-deger"><strong>45.000 TL</strong><span> / ay</span></div>
+              <div class="bordro-yil"><b>540.000 TL</b><span> / yıl</span></div>
+              <p>1 yükleme görevlisi</p>
+            </div>
+            <div>
+              <h5>İnsansız hedef</h5>
+              <div class="bordro-deger"><strong>0 TL</strong><span> / ay</span></div>
+              <div class="bordro-yil"><b>0 TL</b><span> / yıl</span></div>
+              <p>Yerinde personel</p>
+            </div>
+          </div>
         </article>
       </div>
-      <p class="bordro-not">Pizza hattı için örnek işveren maliyeti. <a href="/autokitch/moduller/">Line hesabını incele</a></p>
-
-      <h4 class="bordro-alt-baslik">Pide mutfağı ve PIN</h4>
-      <div class="sonuc-ozeti">
-        <article class="sonuc-kart bordro-kart">
-          <h4>Geleneksel pide mutfağı</h4>
-          <p>Mahalle pidecisi</p>
-          <div class="bordro-deger"><strong data-payroll="P-month">—</strong><span> / ay</span></div>
-          <div class="bordro-yil"><b data-payroll="P-year">—</b><span> / yıl</span></div>
-        </article>
-        <article class="sonuc-kart bordro-kart pin-bordro">
-          <h4>PIN otonom üretim hattı</h4>
-          <p>İnsansız noktada yerinde personel</p>
-          <div class="bordro-deger"><strong data-payroll="S-month">—</strong><span> / ay</span></div>
-          <div class="bordro-yil"><b data-payroll="S-year">—</b><span> / yıl</span></div>
-          <p>Personelli PIN <b data-payroll="M-month">—</b> / ay · <b data-payroll="M-year">—</b> / yıl</p>
-        </article>
-      </div>
-      <p class="bordro-not">Noktadaki toplam işveren gideri. Merkez depo ve ortak ikmal ekibi bu karşılaştırmaya dahil değil.</p>
-      <p class="bordro-not" id="hesap-kaynak">Maliyet hesabının varsayılan senaryosu</p>
+      <p class="bordro-not">Pizza hattı için örnek bordro. İnsansız hedefe merkez depo ve ortak ikmal giderleri dahil değil. <a href="/autokitch/moduller/">Line hesabını incele</a></p>
     </section>
     <details id="maliyet" class="maliyet">
       <summary>Maliyet hesabı <span aria-hidden="true" class="m-chevron"></span></summary>
@@ -1060,7 +1054,24 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
 </section>
 
 <section class="tedarik" id="tedarik" aria-labelledby="arastirma-baslik">
-  <h2 class="baslik" id="arastirma-baslik">Tedarikçiler ve teklifler</h2>
+  <h2 class="baslik" id="arastirma-baslik">Makine ne kadara mal olur?</h2>
+  <div class="sonuc-ozeti makine-ozeti">
+    <article class="sonuc-kart makine-kart">
+      <h3>Üretim hattı ön tahmini</h3>
+      <strong>4,71–8,29 milyon TL</strong>
+      <p>İki robot ve üç fırınlı hat. Robotlar, hazırlık ve pişirme ekipmanı, teslim dolabı, pano, yazılım ve montaj dahil.</p>
+      <p>16 Eylül 2026 bütçe çalışması · nakliye, gümrük ve beklenmeyen gider payı dahil · KDV hariç.</p>
+      <a href="#maliyet">Maliyet hesabını aç</a>
+    </article>
+    <article class="sonuc-kart makine-kart">
+      <h3>Teklif ve fiyat örnekleri</h3>
+      <dl class="makine-fiyatlar">
+        <div><dt>Let's Pizza GEN 2 · hazır makine <small>Teklif · 14 Ağustos 2026</small></dt><dd>30.000 €</dd></div>
+        <div><dt>Fersah OPM-400 · alternatif hamur presi <small>Teklif</small></dt><dd>8.500 €</dd></div>
+        <div><dt>Logorob / Fairino · 2 FR5 robot kol <small>Liste fiyatı · 16 Eylül 2026</small></dt><dd>16.980 €</dd></div>
+      </dl>
+    </article>
+  </div>
   <details class="sunum-acilir" id="tedarik-teklifleri">
     <summary>Tedarikçiler, fiyatlar ve teklifler</summary>
     <div class="arastirma-icerik"></div>
@@ -1273,7 +1284,6 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
     gsap.set('#yapanlar .pin',{scale:0,transformOrigin:'50% 50%'});
     gsap.set('#yapanlar .firma',{opacity:0,y:24,scale:.92});
     gsap.set('#yapanlar .baslik .grad',{opacity:0});
-    gsap.set('#vs-ac',{opacity:0,y:12});
     const t=tl('#yapanlar-sahne',230);
     const pinler=[...document.querySelectorAll('#yapanlar .pin')], firmalar=[...document.querySelectorAll('#yapanlar .firma')];
     pinler.forEach((p,i)=>{
@@ -1282,7 +1292,6 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
        .to(firmalar[i],{opacity:1,y:0,scale:1,duration:.35,ease:'back.out(1.7)'},'<');
     });
     t.to('#yapanlar .baslik .grad',{opacity:1,duration:.4});
-    t.to('#vs-ac',{opacity:1,y:0,duration:.3});
     bekle(t,.6);
   }
 
@@ -1460,7 +1469,7 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
 </script>
 <script src="/autokitch/sunum/film-r119.js?v=121" defer></script>
 <script src="/autokitch/sunum/hesap-model-r120.js?v=125" defer></script>
-<script src="/autokitch/sunum/hesap-r123.js?v=125" defer></script>
+<script src="/autokitch/sunum/hesap-r123.js?v=130" defer></script>
 <script src="/autokitch/sunum/hesap-link-r123.js?v=125" defer></script>
 </body>
 </html>

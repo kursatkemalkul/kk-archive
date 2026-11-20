@@ -2,12 +2,17 @@
   const area=document.getElementById('maliyet'), slot=document.getElementById('maliyet-tablosu');
   const number=new Intl.NumberFormat('tr-TR',{maximumFractionDigits:0});
   const money=n=>number.format(n)+' TL';
+  const costMoney=new Intl.NumberFormat('tr-TR',{minimumFractionDigits:1,maximumFractionDigits:1});
   const node=(tag,text)=>{const el=document.createElement(tag);if(text!==undefined)el.textContent=text;return el;};
   function display(report, source){
     const cols=report.columns,prices=[];
     for(const [key,title] of [['pide','Kaşarlı pide'],['lahmacun','Lahmacun']]){
       const row=node('div');row.className='f-urun';
-      row.append(node('span',title),node('strong',money(cols.M.products[key].price)),
+      const product=cols.M.products[key];
+      const cost=node('div');
+      cost.className='f-urun-maliyet';
+      cost.append(node('span','Birim maliyet'),node('b',costMoney.format(product.cost)+' TL'));
+      row.append(node('span',title),node('strong',money(product.price)),cost,
         node('small','Usta Pideci '+money(cols.D.products[key].price)+' · Mahalle '+money(cols.P.products[key].price)));
       prices.push(row);
     }
@@ -17,10 +22,10 @@
       row.append(node('span','Günde '+s.daily+' ürün'),node('strong',money(s.profit)));return row;
     }));
     document.querySelector('[data-cost="current-profit"]').textContent=money(cols.M.profit);
-    for(const group of ['P','M','S']){
-      document.querySelector('[data-payroll="'+group+'-month"]').textContent=money(cols[group].payroll);
-      document.querySelector('[data-payroll="'+group+'-year"]').textContent=money(cols[group].payroll*12);
-    }
+    const breakEven=cols.M.breakEven;
+    const hasBreakEven=Number.isFinite(breakEven);
+    document.getElementById('f-basabas').textContent=hasBreakEven ? number.format(Math.ceil(breakEven)) : 'Ulaşılamıyor';
+    document.getElementById('f-basabas-birim').textContent=hasBreakEven ? 'ürün / gün' : 'bu satış planıyla';
     document.getElementById('hesap-kaynak').textContent=source;
   }
   let frame=null;
@@ -28,7 +33,7 @@
     if(!area.open){slot.replaceChildren();frame=null;window.ScrollTrigger?.refresh();return;}
     if(frame)return;
     frame=node('iframe');frame.title='Maliyet hesabı';
-    frame.src='/autokitch/otonom/maliyet/?embed=1&v=125';
+    frame.src='/autokitch/otonom/maliyet/?embed=1&v=130';
     slot.append(frame);
   }
   area.addEventListener('toggle',showTable);
