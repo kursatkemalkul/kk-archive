@@ -620,7 +620,8 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
 </style>
 <link rel="stylesheet" href="/autokitch/sunum/sunum-r120.css?v=121">
 <script src="/autokitch/sunum/arastirma-r125.js?v=130" defer></script>
-<link rel="stylesheet" href="/autokitch/sunum/duzen-r123.css?v=130">
+<script src="/autokitch/sunum/makine-plani-r131.js" defer></script>
+<link rel="stylesheet" href="/autokitch/sunum/duzen-r123.css?v=131">
 <style>@media(max-width:440px){header .sunum-nav{justify-content:flex-end;flex-wrap:wrap;gap:0 8px}header .sunum-nav a{white-space:nowrap;padding:3px 0}}</style>
 </head>
 <body>
@@ -1054,24 +1055,122 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
 </section>
 
 <section class="tedarik" id="tedarik" aria-labelledby="arastirma-baslik">
-  <h2 class="baslik" id="arastirma-baslik">Makine ne kadara mal olur?</h2>
-  <div class="sonuc-ozeti makine-ozeti">
-    <article class="sonuc-kart makine-kart">
-      <h3>Üretim hattı ön tahmini</h3>
-      <strong>4,71–8,29 milyon TL</strong>
-      <p>İki robot ve üç fırınlı hat. Robotlar, hazırlık ve pişirme ekipmanı, teslim dolabı, pano, yazılım ve montaj dahil.</p>
-      <p>16 Eylül 2026 bütçe çalışması · nakliye, gümrük ve beklenmeyen gider payı dahil · KDV hariç.</p>
-      <a href="#maliyet">Maliyet hesabını aç</a>
-    </article>
-    <article class="sonuc-kart makine-kart">
-      <h3>Teklif ve fiyat örnekleri</h3>
-      <dl class="makine-fiyatlar">
-        <div><dt>Let's Pizza GEN 2 · hazır makine <small>Teklif · 14 Ağustos 2026</small></dt><dd>30.000 €</dd></div>
-        <div><dt>Fersah OPM-400 · alternatif hamur presi <small>Teklif</small></dt><dd>8.500 €</dd></div>
-        <div><dt>Logorob / Fairino · 2 FR5 robot kol <small>Liste fiyatı · 16 Eylül 2026</small></dt><dd>16.980 €</dd></div>
-      </dl>
-    </article>
-  </div>
+  <h2 class="baslik" id="arastirma-baslik">Makine ve kurulum maliyeti</h2>
+  <details class="sunum-acilir" id="makine-plani">
+    <summary>İstasyon planı ve teklifler</summary>
+    <div class="hat-teklif">
+      <p class="hat-yonerge">Tekliflerini görmek için bir istasyona dokun.</p>
+      <div class="hat-plan" aria-label="Üretim hattının şematik ön görünüşü">
+        <div class="hat-ust"><span>NOVOKITCH</span><span>Üretim hattı · ön görünüş</span></div>
+        <div class="hat-kabin" role="group" aria-label="Üretim istasyonları">
+          <button type="button" data-station="store" aria-expanded="false" aria-controls="ist-store"><i class="ms" aria-hidden="true">kitchen</i><span>Soğuk depo</span></button>
+          <button type="button" data-station="press" aria-expanded="false" aria-controls="ist-press"><i class="ms" aria-hidden="true">compress</i><span>Hamur ve pres</span></button>
+          <button type="button" data-station="topping" aria-expanded="false" aria-controls="ist-topping"><i class="ms" aria-hidden="true">water_drop</i><span>Malzeme dozajı</span></button>
+          <button type="button" data-station="oven" aria-expanded="false" aria-controls="ist-oven"><i class="ms" aria-hidden="true">oven_gen</i><span>Fırın</span></button>
+          <button type="button" data-station="pack" aria-expanded="false" aria-controls="ist-pack"><i class="ms" aria-hidden="true">package_2</i><span>Kesme ve kutu</span></button>
+          <button type="button" data-station="delivery" aria-expanded="false" aria-controls="ist-delivery"><i class="ms" aria-hidden="true">qr_code_2</i><span>Teslim dolabı</span></button>
+        </div>
+        <div class="hat-ray">
+          <button type="button" data-station="robot" aria-expanded="false" aria-controls="ist-robot"><i class="ms" aria-hidden="true">precision_manufacturing</i><span>Robot kolu ve ray</span></button>
+        </div>
+      </div>
+      <div class="hat-kurulum" role="group" aria-label="Makinenin destek ve kurulum kalemleri">
+        <button type="button" data-station="control" aria-expanded="false" aria-controls="ist-control"><i class="ms" aria-hidden="true">developer_board</i><span>Pano ve yazılım</span></button>
+        <button type="button" data-station="wash" aria-expanded="false" aria-controls="ist-wash"><i class="ms" aria-hidden="true">dishwasher_gen</i><span>Yıkama</span></button>
+        <button type="button" data-station="build" aria-expanded="false" aria-controls="ist-build"><i class="ms" aria-hidden="true">construction</i><span>İnşaat ve montaj</span></button>
+      </div>
+
+      <div class="hat-detaylar">
+        <section class="hat-detay" id="ist-store" hidden>
+          <h3>Soğuk depo</h3>
+          <dl class="hat-fiyat">
+            <div><dt>Öztiryakiler / Empero · soğutmalı çekmece <small>Birim liste fiyatı · Eylül tedarik kaydı</small></dt><dd>12.300–19.800 TL</dd></div>
+            <div><dt>Embraco · özel depoda soğutma grubu <small>Tedarik araştırmasındaki alternatif</small></dt><dd>65.000–88.000 TL</dd></div>
+          </dl>
+          <p>Çekmece sayısı ve özel gövdeye göre toplam değişiyor. Montajlı STORE için fiyat kaydı yok.</p>
+        </section>
+        <section class="hat-detay" id="ist-press" hidden>
+          <h3>Hamur ve pres</h3>
+          <dl class="hat-fiyat">
+            <div><dt>Fersah Makina · OPM-400 otomatik bantlı hamur açma <small>Firma e-postası · 26 Ağustos 2026 · standart makine</small></dt><dd data-teklif-tutar="8500" data-para="EUR">8.500 €</dd></div>
+            <div><dt>Fersah Makina · CP-330 hamur açma <small>Alternatif · otomatik beslemeye uygunluk teyit edilmedi</small></dt><dd>3.500 €</dd></div>
+            <div><dt>Fersah Makina · PZR-250 hamur bölme <small>Opsiyonel kalem · konveyör ve özel uyarlamalar ayrıca fiyatlanır</small></dt><dd>5.250 €</dd></div>
+            <div><dt>Fersah Makina · PZP-400 ısıtmalı pres <small>Katalog · robotla açma ve çıkış uyarlaması hariç</small></dt><dd>3.750 €</dd></div>
+          </dl>
+          <p>OPM-400 fiyatı teklif ara toplamında referans. Firma, pide için aynı makinenin uygunluğunu teyit etmedi.</p>
+        </section>
+        <section class="hat-detay" id="ist-topping" hidden>
+          <h3>Malzeme dozajı</h3>
+          <dl class="hat-fiyat">
+            <div><dt>Sanat Makina · 5 lineer aktüatörlü dozaj ünitesi <small>24 Ekim 2026 proforması · adet 1.650 USD · KDV hariç</small></dt><dd data-teklif-tutar="8250" data-para="USD">8.250 USD</dd></div>
+            <div><dt>Yindu / Atosa · Auto Pizza Artisan <small>18 Eylül yazışması · harç için özel çözüm gerekiyor</small></dt><dd>Fiyat verilmedi</dd></div>
+          </dl>
+          <p>Sanat Makina’nın 28 Ekim’e kadar geçerli teklifi yenilenmeli. Aynı proformadaki pano bedelini aşağıdaki pano kaleminde gösteriyoruz.</p>
+        </section>
+        <section class="hat-detay" id="ist-oven" hidden>
+          <h3>Fırın ve havalandırma</h3>
+          <dl class="hat-fiyat">
+            <div><dt>Senoven · SF 1300LS konveyörlü fırın <small>Liste fiyatı · alternatif tasarım</small></dt><dd>12.245 €</dd></div>
+            <div><dt>Kapaklı fırın gözleri, davlumbaz ve bağlantı <small>Mevcut tasarım için ölçüye göre teklif gerekli</small></dt><dd>Fiyat teyidi yok</dd></div>
+          </dl>
+        </section>
+        <section class="hat-detay" id="ist-pack" hidden>
+          <h3>Kesme ve kutulama</h3>
+          <dl class="hat-fiyat">
+            <div><dt>Kesme başlığı, yağlama ve tepsi aktarımı</dt><dd>Fiyat teyidi yok</dd></div>
+            <div><dt>Kutu şarjörü, kapak mekanizması ve montaj</dt><dd>Fiyat teyidi yok</dd></div>
+          </dl>
+        </section>
+        <section class="hat-detay" id="ist-delivery" hidden>
+          <h3>QR teslim dolabı</h3>
+          <dl class="hat-fiyat">
+            <div><dt>12 gözlü ısıtmalı dolap <small>Tedarik raporundaki liste örneği</small></dt><dd>3.300 USD</dd></div>
+            <div><dt>Özel gövde, kilitler ve sipariş sistemi bağlantısı</dt><dd>Fiyat teyidi yok</dd></div>
+          </dl>
+        </section>
+        <section class="hat-detay" id="ist-robot" hidden>
+          <h3>Robot kolu, ray ve tutucular</h3>
+          <dl class="hat-fiyat">
+            <div><dt>Logorob / Fairino · FR5 robot kolu <small>16 Eylül 2026 tarihli katalog · birim fiyat</small></dt><dd>8.490 € / adet</dd></div>
+            <div><dt>Logorob · FR5 WML / FR10 <small>Firma yazışmasındaki alternatifler · katalog fiyatları</small></dt><dd>12.000 € / 13.590 €</dd></div>
+            <div><dt>Logorob · servo yer rayı <small>Firma, fiyat için çalışma videosu ve yerleşim istedi.</small></dt><dd>Fiyat teyidi yok</dd></div>
+            <div><dt>ROCHU · DAC-2GN4087 / DAC-1G3527 tutucu <small>10 Ekim yazışması · hamur, kutu içecek ve tatlı kabı değerlendirildi. Pide kutusu testi gerekiyor.</small></dt><dd>Fiyat teyidi yok</dd></div>
+          </dl>
+        </section>
+        <section class="hat-detay" id="ist-control" hidden>
+          <h3>Pano, PLC ve yazılım</h3>
+          <dl class="hat-fiyat">
+            <div><dt>Sanat Makina · dozaj otomasyonu, PLC ve elektrik panosu <small>24 Ekim 2026 proforması · dozaj paketinin parçası · KDV hariç</small></dt><dd data-teklif-tutar="3500" data-para="USD">3.500 USD</dd></div>
+            <div><dt>Ana hat panosu, robot yazılımı, kiosk ve sipariş entegrasyonu</dt><dd>Fiyat teyidi yok</dd></div>
+          </dl>
+          <p>Sanat Makina dozaj paketi toplamı 11.750 USD + KDV. Proformada KDV dahil 14.100 USD.</p>
+        </section>
+        <section class="hat-detay" id="ist-wash" hidden>
+          <h3>Yıkama ve hijyen</h3>
+          <dl class="hat-fiyat">
+            <div><dt>Empero EMP.500 · tezgâh altı bulaşık makinesi <small><a href="https://www.empero.com.tr/katalog/Empero2025.pdf" target="_blank" rel="noopener">2025 üretici kataloğu</a> · güncel teklif gerekli</small></dt><dd>2.135 €</dd></div>
+            <div><dt><a href="https://oztiryakiler.com.tr/urun/tezgahalti-bulasik-mak-touch-panel-50x50-cm-075t-11110-ad/" target="_blank" rel="noopener">Öztiryakiler OBY 50T PDRT</a> · alternatif</dt><dd>Fiyat teyidi yok</dd></div>
+            <div><dt>Su yumuşatma ve tesisat bağlantısı</dt><dd>Fiyat teyidi yok</dd></div>
+            <div><dt>Evye, tezgâh, tahliye ve temizlik ekipmanı</dt><dd>Fiyat teyidi yok</dd></div>
+          </dl>
+        </section>
+        <section class="hat-detay" id="ist-build" hidden>
+          <h3>İnşaat ve montaj</h3>
+          <dl class="hat-fiyat">
+            <div><dt>Makine gövdesi, taşıyıcı imalatı ve koruyucu kapaklar</dt><dd>Fiyat teyidi yok</dd></div>
+            <div><dt>Tadilat, elektrik, su, havalandırma, zemin ve cephe</dt><dd>Fiyat teyidi yok</dd></div>
+            <div><dt>Saha montajı, devreye alma ve teslimat</dt><dd>Fiyat teyidi yok</dd></div>
+          </dl>
+        </section>
+      </div>
+
+      <div class="hat-toplam">
+        <div><h3>Fiyatı kayıtlı teklif kalemleri</h3><p>Fersah OPM-400 referansı ve Sanat Makina’nın dozaj paketi.</p></div>
+        <strong id="hat-teklif-toplami">—</strong>
+        <p>Fersah e-postasında KDV belirtilmemiş. Sanat Makina tutarı KDV hariç. Liste fiyatları, alternatif makineler ve teyitsiz kalemler bu ara toplama dahil değil. Makinenin tamamı için kesin fiyat açık.</p>
+      </div>
+    </div>
+  </details>
   <details class="sunum-acilir" id="tedarik-teklifleri">
     <summary>Tedarikçiler, fiyatlar ve teklifler</summary>
     <div class="arastirma-icerik"></div>

@@ -65,18 +65,51 @@
 .bordro-modeller{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;margin-top:6px}
 .bordro-modeller>div+div{border-left:1px solid #d0dcf4;padding-left:10px}
 .bordro-modeller h5{margin:0 0 2px;color:#3e5482;font-size:12px}.bordro-modeller p{margin-top:6px}
-.makine-ozeti{width:100%;text-align:left}
-.makine-kart h3{margin:0;font-size:16px;color:#1d315c}
-.makine-kart strong{font-size:clamp(23px,3.6vw,36px);color:#2146af;letter-spacing:-.03em}
-.makine-kart p{font-size:13px}.makine-kart a{color:#2656ba;font-size:13px}
-.makine-fiyatlar{margin:0;display:grid;gap:8px}
-.makine-fiyatlar>div{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;padding-top:8px;border-top:1px solid #e5eaf4}
-.makine-fiyatlar dt{font-size:13px;line-height:1.4}.makine-fiyatlar small{display:block;color:#58647a}
-.makine-fiyatlar dd{font-size:14px;color:#2146af;font-weight:750;margin:0;white-space:nowrap}
 @media(max-width:620px){
-  #pizza-bordro,.makine-ozeti{grid-template-columns:1fr}
+  #pizza-bordro{grid-template-columns:1fr}
   .basabas-kart{gap:8px}.basabas-sonuc{row-gap:0}
-  .makine-kart p{font-size:12px}
+}
+
+.hat-teklif{padding:0 14px 14px;display:grid;grid-template-columns:minmax(0,1fr);gap:12px;color:#24375f}
+.hat-yonerge,.hat-detay p,.hat-toplam p{margin:0;color:#536480;font-size:13px;line-height:1.5}
+.hat-plan{padding:10px 10px 13px;border:1px solid #d4dfef;border-radius:16px;background:#edf2fa}
+.hat-ust{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:4px 3px 10px;font-size:11px;color:#526887}
+.hat-ust span:first-child{font-size:12px;font-weight:750;letter-spacing:.09em;color:#234582}
+.hat-kabin,.hat-kurulum{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px}
+.hat-kabin{padding:7px;border-radius:10px;background:#233b61;border:1px solid #263f65}
+.hat-teklif button{font:inherit;display:flex;align-items:center;justify-content:center;gap:6px;min-width:0;border:1px solid #cad9ef;border-radius:8px;padding:8px;color:#274776;background:#f8fbff;font-size:12px;font-weight:650;cursor:pointer}
+.hat-teklif button .ms{flex:none;width:1em;overflow:hidden}
+.hat-teklif button:hover{background:#e9f1ff;border-color:#9ab9ee}
+.hat-teklif button[aria-expanded=true]{background:#2858c7;color:#fff;border-color:#2858c7}
+.hat-teklif button:focus-visible{outline:2px solid #295bd1;outline-offset:2px}
+.hat-kabin button{flex-direction:column;text-align:center;min-height:95px;padding:8px 4px;background:linear-gradient(180deg,#fff,#e6eef9)}
+.hat-kabin button .ms{font-size:30px}
+.hat-kabin button[aria-expanded=true]{background:#2858c7}
+.hat-ray{display:flex;justify-content:center;align-items:center;position:relative;isolation:isolate;margin:12px 12px 0}
+.hat-ray::before{content:"";position:absolute;z-index:-1;inset:0 0 auto;top:50%;height:7px;border:1px solid #bacbe4;border-radius:8px;background:#dbe5f4}
+.hat-ray button{padding:5px 14px;border-radius:999px}
+.hat-ray .ms{font-size:32px}
+.hat-kurulum{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.hat-kurulum button .ms{font-size:19px}
+.hat-detay,.hat-toplam{background:#f7faff;border:1px solid #d8e3f5;border-radius:12px;padding:12px}
+.hat-detay h3,.hat-toplam h3{font-size:15px;margin:0 0 6px;color:#263e70}
+.hat-fiyat{margin:0 0 8px}
+.hat-fiyat>div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;padding:9px 0;border-top:1px solid #e1e9f6}
+.hat-fiyat dt{font-size:13px;line-height:1.4}.hat-fiyat small{display:block;color:#52627c;font-size:11px}
+.hat-fiyat a{color:#2854a8}
+.hat-fiyat dd{margin:0;font-size:12px;font-weight:730;text-align:right;color:#244a9a}
+.hat-toplam{display:grid;grid-template-columns:1fr auto;gap:8px 16px;align-items:center;background:#edf3ff}
+.hat-toplam strong{font-size:clamp(18px,3.2vw,28px);letter-spacing:-.025em;color:#2146af}
+.hat-toplam>p{grid-column:1/-1}
+@media(max-width:580px){
+  .hat-teklif{padding:0 9px 9px}
+  .hat-kabin{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+  .hat-kabin button{min-height:66px;font-size:11px}
+  .hat-kabin button .ms{font-size:23px}
+  .hat-kurulum button{flex-direction:column;text-align:center;font-size:11px;padding:6px 2px}
+  .hat-toplam{grid-template-columns:1fr;gap:5px}
+  .hat-fiyat>div{gap:7px}
+  .hat-fiyat dd{max-width:102px}
 }
 @media(max-width:720px){
   header{gap:10px}
