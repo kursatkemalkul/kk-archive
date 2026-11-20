@@ -599,7 +599,15 @@ html.tablo-icerde, .tablo-icerde body{background:#fff;scroll-behavior:auto}
 (function(){
   var CODE="alfa"; /* <<< ŞİFRE BURADA (büyük/küçük harf farketmez) */
   var gate=document.getElementById('gate');
-  if(sessionStorage.getItem('ak_ok')==='1' && !new URLSearchParams(location.search).has('embed')){ gate.remove(); return; }
+  var embedded = new URLSearchParams(location.search).get('embed') === '1' && parent !== window;
+  var unlockedPresentation = false;
+  if(embedded){
+    try {
+      unlockedPresentation = parent.sessionStorage.getItem('ak_main_ok') === '1' &&
+        parent.document.querySelector('#maliyet-tablosu iframe') === window.frameElement;
+    } catch {}
+  }
+  if(unlockedPresentation || (!embedded && sessionStorage.getItem('ak_ok')==='1')){ gate.remove(); return; }
   document.body.classList.add('glocked');
   var inp=document.getElementById('gpin'), err=document.getElementById('gerr');
   setTimeout(function(){inp.focus();},120);
@@ -1607,7 +1615,7 @@ html.tablo-icerde, .tablo-icerde body{background:#fff;scroll-behavior:auto}
     });
   })();
 </script>
-<script src="/autokitch/sunum/hesap-model-r120.js"></script>
-<script src="/autokitch/sunum/tablo-r123.js?v=123"></script>
+<script src="/autokitch/sunum/hesap-model-r120.js?v=125"></script>
+<script src="/autokitch/sunum/tablo-r123.js?v=125"></script>
 </body>
 </html>

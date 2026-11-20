@@ -225,30 +225,6 @@ main{position:relative;z-index:1}
 .yuk .ms.ok2{color:#7b5cff}
 .alinti{margin:0;padding:12px 22px;border-radius:999px;background:#fff;box-shadow:var(--golge);font-size:clamp(15px,1.8vw,21px);font-weight:700;text-align:center}
 
-/* 10–11 · HER YEMEĞİ → PİDE */
-.her-alan{display:flex;align-items:center;justify-content:center;gap:clamp(20px,4vw,56px);width:100%}
-.dukkan{position:relative;width:clamp(170px,22vw,280px);aspect-ratio:300/290;flex:none;--tc:#7b5cff}
-.d-tabela{position:absolute;left:9%;right:9%;top:0;height:19%;border-radius:12px;background:#1f1f1f;color:#fff;display:grid;place-items:center;overflow:hidden;box-shadow:var(--golge)}
-.d-tabela span{grid-area:1/1;font-weight:800;letter-spacing:.08em;font-size:clamp(18px,2.3vw,30px);opacity:0}
-.d-tente{position:absolute;left:1%;right:1%;top:23%;height:12%;border-radius:8px 8px 18px 18px;background:repeating-linear-gradient(90deg,var(--tc) 0 12.5%,#ffffff 12.5% 25%);box-shadow:0 6px 16px rgba(40,60,120,.14);z-index:2}
-.d-duvar{position:absolute;left:5%;right:5%;top:33%;bottom:0;border-radius:0 0 10px 10px;background:#fff;box-shadow:var(--golge)}
-.d-vitrin{position:absolute;left:12%;width:46%;top:45%;bottom:11%;border-radius:10px;background:#eef2f9;display:grid;place-items:center}
-.d-vitrin>*{grid-area:1/1;opacity:0}
-.d-vitrin .ms{font-size:clamp(44px,5.4vw,70px);color:var(--tc)}
-.d-vitrin svg{width:72%}
-.d-kapi{position:absolute;right:12%;width:24%;top:45%;bottom:0;border-radius:8px 8px 0 0;background:#dfe5f1}
-.d-kapi::after{content:"";position:absolute;left:14%;top:52%;width:9%;aspect-ratio:1;border-radius:50%;background:#a9b4c8}
-.d-tabela .son,.d-vitrin .son{opacity:1}
-.pide-veri{display:flex;flex-direction:column;gap:10px;width:min(100%,460px);min-width:0}
-.pide-veri>span{font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--mut);text-transform:uppercase}
-.zs{display:grid;grid-template-columns:96px 1fr 44px;gap:10px;align-items:center;font-size:13px;font-weight:700}
-.zs .cb{height:14px;border-radius:7px;background:#cfd7e6;transform-origin:0 50%}
-.zs.pd .cb{background:var(--grad)}
-.zs em{font-style:normal;text-align:right;font-variant-numeric:tabular-nums}
-.nedenler{display:flex;flex-direction:column;gap:6px;margin-top:6px}
-.nedenler div{display:flex;gap:8px;align-items:center;font-size:13.5px;font-weight:600;line-height:1.3}
-.nedenler .ms{color:#7b5cff;font-size:20px;flex:none}
-
 /* 14 · FİLM */
 .film{position:relative;width:min(100%,960px);aspect-ratio:16/9;border-radius:24px;overflow:hidden;background:radial-gradient(120% 90% at 20% 10%,#3b4fd8 0%,#2a1f63 55%,#14112b 100%);color:#fff;display:grid;place-items:center;box-shadow:0 30px 80px rgba(40,30,120,.35)}
 .film .oynat{width:clamp(64px,8vw,96px);aspect-ratio:1;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center;backdrop-filter:blur(6px)}
@@ -518,20 +494,6 @@ main{position:relative;z-index:1}
 
 /* tedarikçi özeti */
 .tedarik{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:clamp(70px,12vh,120px) 16px;display:flex;flex-direction:column;align-items:center;gap:20px}
-.t-sayilar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;width:100%;max-width:760px}
-.t-sayilar .sk{text-align:center}
-.t-liste{width:100%;display:flex;flex-direction:column;gap:8px}
-.t-liste details{border-radius:16px;background:#fff;box-shadow:var(--golge);overflow:hidden}
-.t-liste summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:13px 16px;font-size:14.5px;font-weight:700}
-.t-liste summary::-webkit-details-marker{display:none}
-.t-liste summary:focus-visible{outline:3px solid #7b5cff;outline-offset:-3px}
-.t-liste summary .say{margin-left:auto;padding:2px 9px;border-radius:999px;background:#eef1ff;color:#5b4cf0;font-size:12px;font-weight:800}
-.t-liste summary .ms{color:var(--mut);transition:rotate .2s}
-.t-liste details[open] summary .ms{rotate:180deg}
-.t-liste .firmalar2{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 14px}
-.t-liste .firmalar2 span{padding:4px 10px;border-radius:999px;background:#f4f6fb;font-size:12.5px;font-weight:600}
-.t-ac{font:inherit;font-size:13px;font-weight:700;padding:8px 16px;border-radius:999px;border:0;background:var(--grad);color:#fff;cursor:pointer}
-
 /* video sayfası (yapanlar sahnesinden açılır) */
 .vs-ac{font:inherit;align-self:center;display:inline-flex;align-items:center;gap:8px;margin-top:4px;padding:8px 8px 8px 16px;border:0;border-radius:999px;background:#fff;box-shadow:var(--golge);font-size:14px;font-weight:700;color:var(--ink);cursor:pointer}
 .vs-ac .ms{color:#7b5cff;font-size:20px}
@@ -539,32 +501,6 @@ main{position:relative;z-index:1}
 .vs-ac span{padding:5px 14px;border-radius:999px;background:var(--grad);color:#fff;font-size:13px}
 .vs-ac:hover span,.vs-ac:focus-visible span{filter:brightness(1.1)}
 .vs-ac:focus-visible{outline:3px solid #7b5cff;outline-offset:2px}
-.vsayfa{position:fixed;inset:0;z-index:35;overflow-y:auto;overscroll-behavior:contain;background:rgba(248,249,253,.97);backdrop-filter:blur(6px);padding:calc(24px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) 40px max(16px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;align-items:center;gap:18px}
-.vsayfa[hidden]{display:none}
-.vs-ust{width:100%;max-width:1180px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
-.vs-ust>div{display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-width:0}
-.vs-ust .baslik{text-align:left;margin:0}
-.vs-ust button{font:inherit;flex:none;width:42px;height:42px;border-radius:999px;border:0;background:#fff;box-shadow:var(--golge);display:grid;place-items:center;cursor:pointer}
-.vsayfa .vk-izgara{max-width:1180px}
-/* video kütüphanesi */
-.vk-izgara{width:100%;margin:0 auto;columns:3 300px;column-gap:14px}
-.vkat2{break-inside:avoid;margin-bottom:14px;padding:16px 18px;border-radius:20px;background:#fff;box-shadow:var(--golge)}
-.vkat2 h3{margin:0 0 8px;font-size:15px;font-weight:800;display:flex;align-items:center;gap:8px}
-.vkat2 h3 span{padding:1px 8px;border-radius:999px;background:#eef1ff;color:#5b4cf0;font-size:12px}
-.vkat2 ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
-.vad{font:inherit;width:100%;display:flex;align-items:center;gap:8px;padding:6px 6px;border:0;border-radius:10px;background:none;color:var(--ink);text-align:left;cursor:pointer;font-size:14px;font-weight:600}
-.vad .ms{font-size:18px;color:#b8bfd0;transition:color .15s}
-.vad small{color:var(--mut);font-weight:500;font-size:12px}
-.vad:hover,.vad:focus-visible,.vad.aktif{background:#f4f2ff;outline:none}
-.vad:hover .ms,.vad:focus-visible .ms,.vad.aktif .ms{color:#7b5cff}
-.vmini{position:fixed;z-index:41;width:300px;border-radius:14px;overflow:hidden;background:#14112b;color:#fff;box-shadow:0 24px 60px rgba(20,20,60,.4);pointer-events:none}
-.vmini[hidden]{display:none}
-.vmini .vk2{position:relative;aspect-ratio:16/9;background:#000}
-.vmini iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.vmini .vyok2{position:absolute;inset:0;display:none;align-items:center;justify-content:center;padding:14px;text-align:center;font-size:12.5px;font-weight:700;background:radial-gradient(120% 90% at 20% 10%,#3b4fd8 0%,#2a1f63 55%,#14112b 100%)}
-.vmini.engel .vyok2{display:flex}.vmini.engel iframe{display:none}
-.vmini b{display:block;padding:9px 12px 0;font-size:13.5px}
-.vmini small{display:block;padding:2px 12px 10px;font-size:12px;line-height:1.4;color:#c9cbe0}
 
 @media (max-width:760px){
   :root{--kh:clamp(84px,12.5vh,118px)}
@@ -614,8 +550,6 @@ main{position:relative;z-index:1}
   .sema .kalem{flex:1;padding:7px 9px}.sema .kalem b{font-size:12px}.sema .kalem small{font-size:10.5px}
   .tab-merkez{padding:10px}.tab-merkez b{font-size:16px;margin-bottom:6px}.markalar span{font-size:11px}
   .yuk{gap:8px 8px}.yuk .z,.yuk .b{font-size:12.5px;padding:9px 10px}
-  .her-alan{flex-direction:column;gap:14px}
-  .dukkan{width:clamp(150px,44vw,190px)}
   .zs{grid-template-columns:84px 1fr 40px;font-size:12px}
   .nedenler div{font-size:12px}
   .h-ic{flex-direction:column;gap:14px}
@@ -673,7 +607,6 @@ main{position:relative;z-index:1}
   .konum-alan>*{grid-area:1/1}
   .avantaj{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;align-self:center}
   .av{padding:11px 12px}.av b{font-size:13.5px}.av span{font-size:11.5px}
-  .t-sayilar{gap:8px}
 }
 </style>
 <style id="pin-film-style-r119">
@@ -692,8 +625,8 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
 @media(prefers-reduced-motion:reduce){#film *,body.pin-film-view>header{transition:none!important}}
 </style>
 <link rel="stylesheet" href="/autokitch/sunum/sunum-r120.css?v=121">
-<script src="/autokitch/sunum/firma-r120.js?v=121"></script>
-<link rel="stylesheet" href="/autokitch/sunum/duzen-r123.css?v=123">
+<script src="/autokitch/sunum/arastirma-r125.js" defer></script>
+<link rel="stylesheet" href="/autokitch/sunum/duzen-r123.css?v=125">
 <style>@media(max-width:440px){header .sunum-nav{justify-content:flex-end;flex-wrap:wrap;gap:0 8px}header .sunum-nav a{white-space:nowrap;padding:3px 0}}</style>
 </head>
 <body>
@@ -711,7 +644,7 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
 
 <div class="isik" aria-hidden="true"><i class="l1"></i><i class="l2"></i><i class="l3"></i></div>
 
-<header><span class="logo">AUTOKITCH</span><nav class="sunum-nav" aria-label="Sunum bölümleri"><a href="/autokitch/portal/">AUTOKITCH</a><a href="#film">Film</a><a href="#fiyat">Fiyat ve maliyet</a><a href="#yatirim">Yatırım</a><a href="/digital-twin/" target="_blank" rel="noopener">Digital Twin ↗</a></nav></header>
+<header><span class="logo">AUTOKITCH</span><nav class="sunum-nav" aria-label="Sunum bölümleri"><a href="/autokitch/portal/">AUTOKITCH</a><a href="#film">Film</a><a href="#fiyat">Fiyat ve maliyet</a><a href="#yatirim">Yatırım</a><a href="/autokitch/uretim/">Fabrika</a><a href="/digital-twin/" target="_blank" rel="noopener">Digital Twin ↗</a></nav></header>
 <div class="ilerleme" aria-hidden="true"></div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -841,7 +774,7 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
       <div class="firma"><span class="no">7</span><div><b>Yo-Kai Express</b><small>ABD · Ramen otomatı, ~90 saniyede sıcak servis</small></div></div>
       <div class="firma"><span class="no">8</span><div><b>RoboBurger</b><small>ABD · Burgeri siparişe göre pişiren otomat</small></div></div>
     </div>
-    <button type="button" class="vs-ac" id="vs-ac" aria-haspopup="dialog"><i class="ms">video_library</i>Kim ne yapıyor? <b>63 video</b><span>Aç</span></button>
+    <a class="vs-ac" id="vs-ac" href="#sektor-videolari"><i class="ms" aria-hidden="true">video_library</i>Sektör videoları <span>İncele</span></a>
   </div>
 </section>
 
@@ -1004,28 +937,6 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
   <div class="bizde-dev" aria-hidden="true">Bizde</div>
 </section>
 
-<!-- 10–11 · HER YEMEĞİ → İLK PİDE -->
-<section class="sahne" id="her">
-  <div class="icx">
-    <div class="ust2">
-      <h2 class="baslik h-b1">Otonom mutfak yapıyoruz. <span class="grad">Her yemeği.</span></h2>
-    </div>
-    <div class="her-alan">
-      <div class="dukkan" aria-hidden="true">
-        <div class="d-tabela"><span>BOWL</span><span>BURGER</span><span>PİZZA</span><span class="son">PİDE</span></div>
-        <div class="d-duvar"></div>
-        <div class="d-tente"></div>
-        <div class="d-vitrin">
-          <i class="ms">rice_bowl</i><i class="ms">lunch_dining</i><i class="ms">local_pizza</i>
-          <svg class="son" viewBox="0 0 60 26"><path d="M2 13 C12 1 48 1 58 13 C48 25 12 25 2 13Z" fill="#e2a85c"/><path d="M13 13 C22 7 38 7 47 13 C38 19 22 19 13 13Z" fill="#c4572e"/><circle cx="24" cy="12" r="1.6" fill="#f7d77a"/><circle cx="33" cy="14" r="1.6" fill="#f7d77a"/><circle cx="40" cy="12" r="1.4" fill="#f7d77a"/></svg>
-        </div>
-        <div class="d-kapi"></div>
-      </div>
-    </div>
-    <p class="ilk-pin">İlk markamız <strong>PIN Pide.</strong></p>
-  </div>
-</section>
-
 <!-- 14 · TANITIM FİLMİ -->
 <section class="sahne" id="film" aria-label="AUTOKITCH tanıtım filmi">
  <div class="film pin-film-stage" id="pinFilmStage">
@@ -1043,6 +954,34 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
     <div class="sonuc-ozeti">
       <article class="sonuc-kart"><h3>SATIŞ FİYATI</h3><div id="f-urunler"></div></article>
       <article class="sonuc-kart"><h3>AYLIK FAALİYET KÂRI</h3><div id="f-senaryolar"></div><p>Personelli PIN · vergi ve amortisman öncesi</p></article>
+    </div>
+    <div class="bordro" aria-labelledby="bordro-baslik">
+      <h3 id="bordro-baslik">Personel maliyeti</h3>
+      <div class="sonuc-ozeti">
+        <article class="sonuc-kart bordro-kart">
+          <h4>Geleneksel pide mutfağı</h4>
+          <p>Mahalle pidecisi</p>
+          <div class="bordro-deger"><strong data-payroll="P-month">—</strong><span> / ay</span></div>
+          <div class="bordro-yil"><b data-payroll="P-year">—</b><span> / yıl</span></div>
+        </article>
+        <article class="sonuc-kart bordro-kart pin-bordro">
+          <h4>PIN otonom üretim hattı</h4>
+          <p>İnsansız noktada yerinde personel</p>
+          <div class="bordro-deger"><strong data-payroll="S-month">—</strong><span> / ay</span></div>
+          <div class="bordro-yil"><b data-payroll="S-year">—</b><span> / yıl</span></div>
+          <p>Personelli PIN <b data-payroll="M-month">—</b> / ay · <b data-payroll="M-year">—</b> / yıl</p>
+        </article>
+      </div>
+      <p class="bordro-not">Noktadaki toplam işveren gideri. Merkez depo ve ortak ikmal ekibi bu karşılaştırmaya dahil değil.</p>
+      <p class="bordro-not" id="hesap-kaynak">Maliyet hesabının varsayılan senaryosu</p>
+      <details class="sunum-acilir pizza-ornek">
+        <summary>Pizza hattı · Line karşılaştırması</summary>
+        <div class="sonuc-ozeti">
+          <article class="sonuc-kart bordro-kart"><h4>Geleneksel pizza mutfağı</h4><p>5 çalışan</p><div class="bordro-deger"><strong>≈ 275.000 TL</strong><span> / ay</span></div><div class="bordro-yil"><b>≈ 3.300.000 TL</b> / yıl</div></article>
+          <article class="sonuc-kart bordro-kart pin-bordro"><h4>AUTOKITCH pizza hattı</h4><p>1 malzeme yükleme görevlisi</p><div class="bordro-deger"><strong>≈ 45.000 TL</strong><span> / ay</span></div><div class="bordro-yil"><b>≈ 540.000 TL</b> / yıl</div></article>
+        </div>
+        <p class="bordro-not">Line sayfasındaki örnek bordro. PIN maliyet hesabından ayrı bir pizza üretim senaryosu. <a href="/autokitch/moduller/">Line sunumu</a></p>
+      </details>
     </div>
     <details id="maliyet" class="maliyet">
       <summary>Maliyet hesabı <span aria-hidden="true" class="m-chevron"></span></summary>
@@ -1083,7 +1022,7 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
       <div class="durak"><span class="t">Etap 2</span><b>Bayilikler ve depo</b><small>İlk dükkân kanıtlanınca</small></div>
       <div class="durak"><span class="t">Etap 3</span><b>Fabrika</b><small>Makine satışı, yeni ürünler</small></div>
     </div>
-    <div class="durum"><span><b>Bugün</b> model, yazılım ve testler dijital ortamda.</span><span><b>Prototip</b> İlk fiziksel hat için üretim ve saha denemeleri planlanıyor.</span><span><b>Elimizde</b> 64 üretici tarandı, 45'inden teklif istendi.</span></div>
+    <div class="durum"><span><b>Bugün</b> model, yazılım ve testler dijital ortamda.</span><span><b>Prototip</b> İlk fiziksel hat için üretim ve saha denemeleri planlanıyor.</span></div>
   </div>
 </section>
 
@@ -1106,37 +1045,19 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
   </div>
 </section>
 
-<!-- TEDARİKÇİ ÖZETİ -->
-<section class="tedarik" id="tedarik">
-  <span class="chip">Tedarikçi araştırması · Ağustos–Eylül 2026</span>
-  <h2 class="baslik">Dünyada kim ne yapıyor, <span class="grad">tek tek baktık.</span></h2>
-  <div class="t-sayilar">
-    <div class="sk"><b>64</b><span>üretici tarandı</span></div>
-    <div class="sk"><b>45</b><span>üreticiye teklif soruldu</span></div>
-    <div class="sk"><b>5</b><span>kategori: robot, hat, modül, içecek, otomat</span></div>
-  </div>
-  <button type="button" class="t-ac" id="t-ac" aria-expanded="false" aria-controls="t-liste">Listeyi aç</button>
-  <div class="t-liste" id="t-liste" hidden><details><summary><i class="ms" style="color:#7b5cff">precision_manufacturing</i>Kendi hattımız için görüşülenler · Eylül 2026<span class="say">12</span><i class="ms">expand_more</i></summary><div class="firmalar2"><span>Logorob · Fairino</span><span>KUKA</span><span>EVST</span><span>Stable Auto</span><span>Yindu · Atosa</span><span>TCN</span><span>Anno Robotics</span><span>Fersah Makina</span><span>Senoven</span><span>Öztiryakiler · Empero</span><span>Göktürk fırınları</span><span>Kasap ve toptancı</span></div></details><details><summary><i class="ms" style="color:#7b5cff">local_pizza</i>Tam isabet · doğrudan işimize yarayanlar<span class="say">15</span><i class="ms">expand_more</i></summary><div class="firmalar2"><span>Let's Pizza</span><span>PAZZI</span><span>Nala Robotics</span><span>Lab2Fab (Middleby)</span><span>xRobotics</span><span>Appetronix</span><span>Pizzabot</span><span>Juyou</span><span>Chanda</span><span>Circus · CA-1</span><span>BOTINKIT</span><span>Eatch</span><span>Aniai</span><span>RoboEatz</span><span>goodBytz</span></div></details><details><summary><i class="ms" style="color:#7b5cff">extension</i>Hatta modül olabilecek makineler<span class="say">14</span><i class="ms">expand_more</i></summary><div class="firmalar2"><span>TechMagic</span><span>MEGCOOK</span><span>Semikron</span><span>Moton Robotics</span><span>Suzumo</span><span>AUTEC</span><span>Popcake</span><span>Belshaw</span><span>Lil' Orbits</span><span>Inblan</span><span>Posha</span><span>Moley Robotics</span><span>Yamato Noodle</span><span>Qianxi Robotics</span></div></details><details><summary><i class="ms" style="color:#7b5cff">local_cafe</i>İçecek · taze sıkım ve demleme<span class="say">14</span><i class="ms">expand_more</i></summary><div class="firmalar2"><span>Zumex</span><span>Zummo</span><span>WEIMI</span><span>IJOOZ</span><span>Blendid</span><span>Alberts</span><span>Botrista</span><span>CERĒS</span><span>Smyze</span><span>Makr Shakr</span><span>Macco Robotics</span><span>Mana Robotics</span><span>Artly</span><span>Richtech Robotics</span></div></details><details><summary><i class="ms" style="color:#7b5cff">kitchen</i>Isıtma, otomat ve destek ekipmanı<span class="say">32</span><i class="ms">expand_more</i></summary><div class="firmalar2"><span>Adial · Pizzadoor</span><span>PizzaForno</span><span>Pizza ATM</span><span>Jawo</span><span>Foodline</span><span>XYZ Vending</span><span>Haloo</span><span>Winnsen</span><span>RoboBurger</span><span>Yo-Kai Express</span><span>FreshPod</span><span>Miso Robotics</span><span>Chef Robotics</span><span>Cibotica</span><span>Armstrong Robotics</span><span>Beyond Honeycomb</span><span>Dobot</span><span>wetechfood</span><span>Hyphen</span><span>Rolo Robotics</span><span>Gastronomous</span><span>PERSOBOTS</span><span>RoboChef</span><span>Cook-e</span><span>Else Labs</span><span>Kyol</span><span>Fries & Go</span><span>SmartFoodie</span><span>InstaChef</span><span>Doosan Robotics</span><span>Liffo</span><span>Chefee Robotics</span></div></details></div>
-  <button type="button" class="t-ac kutuphane-ac" id="t-videolar">63 firma videosunu incele</button>
+<section class="tedarik" id="tedarik" aria-labelledby="arastirma-baslik">
+  <h2 class="baslik" id="arastirma-baslik">Sektör ve tedarik</h2>
+  <details class="sunum-acilir" id="sektor-videolari">
+    <summary>Sektör videoları</summary>
+    <div class="arastirma-icerik"></div>
+  </details>
+  <details class="sunum-acilir" id="tedarik-teklifleri">
+    <summary>Tedarikçiler, fiyatlar ve teklifler</summary>
+    <div class="arastirma-icerik"></div>
+  </details>
 </section>
 
 <div class="vperde" id="vperde" hidden></div>
-<div class="vsayfa" id="vsayfa" role="dialog" aria-modal="true" aria-labelledby="vs-b" hidden>
-  <div class="vs-ust"><div><span class="chip">63 video · 9 kategori</span><h2 class="baslik" id="vs-b">Kim ne yapıyor? <span class="grad">Üstüne gel, izle.</span></h2></div><button type="button" id="vs-kapat" aria-label="Kapat"><i class="ms">close</i></button></div>
-  <div class="vk-izgara">
-    <div class="vkat2"><h3>Pizza robotları ve otomatları <span>9</span></h3><ul><li><button type="button" class="vad" data-yt="w629j9Pd8vQ" data-ad="Hyper Food Robotics" data-not="Konteyner içinde tam insansız pizza restoranı; Pizza Hut İsrail için çalışıyor."><i class="ms">play_circle</i><span>Hyper Food Robotics <small>İsrail</small></span></button></li><li><button type="button" class="vad" data-yt="5Ij6T2q75Lo" data-ad="Let&#x27;s Pizza GEN 2" data-not="Taban, sos, fırın ve kutu tek otomatta; satılık tek komple sistem."><i class="ms">play_circle</i><span>Let&#x27;s Pizza GEN 2 <small>İtalya</small></span></button></li><li><button type="button" class="vad" data-yt="ewPMWyXT5eI" data-ad="Pazzi" data-not="3 robot kollu pizzacı; Paris ve Val d&#x27;Europe&#x27;ta çalışan şube."><i class="ms">play_circle</i><span>Pazzi <small>Fransa</small></span></button></li><li><button type="button" class="vad" data-yt="84U72eii5mY" data-ad="Nala Pizzaiola" data-not="7 eksenli kol hamuru presler ve malzemeyi serer; saatte 50 pizza."><i class="ms">play_circle</i><span>Nala Pizzaiola <small>ABD</small></span></button></li><li><button type="button" class="vad" data-yt="Umv8HLiHjoA" data-ad="Lab2Fab PizzaBot" data-not="Sos, peynir ve pepperoni hattı; Middleby grubunun çözümü."><i class="ms">play_circle</i><span>Lab2Fab PizzaBot <small>ABD</small></span></button></li><li><button type="button" class="vad" data-yt="hqEaC2igCrs" data-ad="XRobotics xPizza Cube 3.0" data-not="Tezgâh üstü topping robotu; mevcut pizzacıya eklenir."><i class="ms">play_circle</i><span>XRobotics xPizza Cube 3.0 <small>ABD</small></span></button></li><li><button type="button" class="vad" data-yt="_dCC96BOlDU" data-ad="Picnic" data-not="Hamurun üstüne sos, peynir ve malzemeyi otomatik dizen hat."><i class="ms">play_circle</i><span>Picnic <small>ABD</small></span></button></li><li><button type="button" class="vad" data-yt="drgGuFU6JDw" data-ad="Appetronix" data-not="Columbus havalimanında Donatos için insansız pizza kioskı."><i class="ms">play_circle</i><span>Appetronix <small>ABD</small></span></button></li><li><button type="button" class="vad" data-yt="5h572vnufCY" data-ad="Pizzabot" data-not="Sydney Bondi&#x27;de 7/24 çalışan pizza otomatı."><i class="ms">play_circle</i><span>Pizzabot <small>Avustralya</small></span></button></li></ul></div>
-    <div class="vkat2"><h3>Otonom robotik mutfaklar <span>15</span></h3><ul><li><button type="button" class="vad" data-yt="WpuD0xHoH9g" data-ad="Circus CA-1" data-not="7 m²&#x27;de saatte 100 öğüne kadar; REWE süpermarketlerinde canlı."><i class="ms">play_circle</i><span>Circus CA-1 <small>Almanya</small></span></button></li><li><button type="button" class="vad" data-yt="GiG6Kmz_FfE" data-ad="goodBytz" data-not="Modüler robotik mutfak; kantin ve restoran için."><i class="ms">play_circle</i><span>goodBytz <small>Almanya</small></span></button></li><li><button type="button" class="vad" data-yt="9ltFcBn9lKU" data-ad="Beastro · Kitchen Robotics" data-not="Bowl ve sıcak yemek pişiren kapalı robotik mutfak."><i class="ms">play_circle</i><span>Beastro · Kitchen Robotics <small>İsrail</small></span></button></li><li><button type="button" class="vad" data-yt="qtkONuUDwHI" data-ad="Eatch" data-not="Merkez mutfakta günde 5.000 öğün üreten robotik hat."><i class="ms">play_circle</i><span>Eatch <small>Hollanda</small></span></button></li><li><button type="button" class="vad" data-yt="Ey1yIivlgCk" data-ad="RoboEatz ARK" data-not="Riga&#x27;da çalışan otonom robotik mutfak noktası (AFP)."><i class="ms">play_circle</i><span>RoboEatz ARK <small>Letonya</small></span></button></li><li><button type="button" class="vad" data-yt="Kcw0kw2v8ps" data-ad="Botinkit OMNI" data-not="Akıllı wok istasyonu; yapay zekâ destekli mutfak yönetimi."><i class="ms">play_circle</i><span>Botinkit OMNI <small>Çin</small></span></button></li><li><button type="button" class="vad" data-yt="8JNItus53bU" data-ad="Sweetgreen Infinite Kitchen" data-not="New York&#x27;ta bowl&#x27;ları porsiyonlayıp soslayan otomatik mutfak."><i class="ms">play_circle</i><span>Sweetgreen Infinite Kitchen <small>ABD</small></span></button></li><li><button type="button" class="vad" data-yt="zPwQlKlYA9U" data-ad="Remy Robotics" data-not="Yapay zekâlı robot mutfak ve Miami restoran konsepti."><i class="ms">play_circle</i><span>Remy Robotics <small>İspanya</small></span></button></li><li><button type="button" class="vad" data-yt="jgMFj94Y4V4" data-ad="RoboChef" data-not="Doğrayıp pişirip servis eden tam otomatik robot mutfak."><i class="ms">play_circle</i><span>RoboChef <small>Hindistan</small></span></button></li><li><button type="button" class="vad" data-yt="T5tUEaxpaLg" data-ad="Rolo Robotics Maya 2.0" data-not="Kampüste yemek pişirip servis eden robot şef."><i class="ms">play_circle</i><span>Rolo Robotics Maya 2.0 <small>Singapur</small></span></button></li><li><button type="button" class="vad" data-yt="2MLoj4gSVXY" data-ad="Cook-e" data-not="Taze malzemeden sıcak yemek pişiren modüler robot mutfak."><i class="ms">play_circle</i><span>Cook-e <small>Avrupa</small></span></button></li><li><button type="button" class="vad" data-yt="BFTWTxaiIh4" data-ad="DaVinci Kitchen" data-not="Leipzig girişiminin robot kollu şef kioskunun tanıtımı."><i class="ms">play_circle</i><span>DaVinci Kitchen <small>Almanya</small></span></button></li><li><button type="button" class="vad" data-yt="vGgE7XiKImw" data-ad="wetechfood LEX" data-not="Poke kâselerini otomatik hazırlayıp servis eden robot."><i class="ms">play_circle</i><span>wetechfood LEX <small>İspanya</small></span></button></li><li><button type="button" class="vad" data-yt="mKDV682I1NA" data-ad="KAIKAKU" data-not="Londra&#x27;da kaselere malzeme dağıtan modüler salata robotu."><i class="ms">play_circle</i><span>KAIKAKU <small>İngiltere</small></span></button></li><li><button type="button" class="vad" data-yt="Hkpocscz5Mw" data-ad="Moley Robotics" data-not="Şef hareketlerini taklit ederek pişiren robot kollu mutfak."><i class="ms">play_circle</i><span>Moley Robotics <small>İngiltere</small></span></button></li></ul></div>
-    <div class="vkat2"><h3>Montaj hatları ve porsiyonlama <span>4</span></h3><ul><li><button type="button" class="vad" data-yt="ZGtGzLdDRUU" data-ad="Chef Robotics" data-not="Fabrikada bant üstünde yemek kaplarını dolduran Chef+ robotu."><i class="ms">play_circle</i><span>Chef Robotics <small>ABD</small></span></button></li><li><button type="button" class="vad" data-yt="aD4ctvEX07Q" data-ad="Hyphen" data-not="Tezgâh altında kaseleri otomatik dolduran robotlu hat."><i class="ms">play_circle</i><span>Hyphen <small>ABD</small></span></button></li><li><button type="button" class="vad" data-yt="LdOYUq3BuxA" data-ad="Dexai Alfred" data-not="Robot kol kepçeyle kaselere yemek porsiyonluyor."><i class="ms">play_circle</i><span>Dexai Alfred <small>ABD</small></span></button></li><li><button type="button" class="vad" data-yt="KtDvObHzXhk" data-ad="Cibotica" data-not="Porsiyonlama ve yemek dağıtma sisteminin tanıtımı."><i class="ms">play_circle</i><span>Cibotica <small>Kanada</small></span></button></li></ul></div>
-    <div class="vkat2"><h3>Pişirme ve ızgara robotları <span>7</span></h3><ul><li><button type="button" class="vad" data-yt="HLvhpA6ceew" data-ad="Aniai Alpha Grill" data-not="Çift plakalı otonom burger ızgarası."><i class="ms">play_circle</i><span>Aniai Alpha Grill <small>ABD</small></span></button></li><li><button type="button" class="vad" data-yt="35sMoU_-Gpk" data-ad="Miso Robotics Flippy" data-not="Robot kol fritözde patates kızartıyor."><i class="ms">play_circle</i><span>Miso Robotics Flippy <small>ABD</small></span></button></li><li><button type="button" class="vad" data-yt="wDuG27ds7OE" data-ad="RoboChef SmartFryer" data-not="Bulut tabanlı robot şef mutfakta otomatik pişiriyor."><i class="ms">play_circle</i><span>RoboChef SmartFryer <small>ABD</small></span></button></li><li><button type="button" class="vad" data-yt="hAdF07mevIc" data-ad="Doosan Robotics" data-not="Cobot kolu restoranda tavuk kızartıyor."><i class="ms">play_circle</i><span>Doosan Robotics <small>Güney Kore</small></span></button></li><li><button type="button" class="vad" data-yt="vYq62YQ1Pmo" data-ad="Beyond Honeycomb GRILL X" data-not="Yapay zekâlı ızgara robotu eti şef standardında pişiriyor."><i class="ms">play_circle</i><span>Beyond Honeycomb GRILL X <small>Güney Kore</small></span></button></li><li><button type="button" class="vad" data-yt="wLVWGtjE31Q" data-ad="Else Labs Oliver" data-not="Kaplardan malzeme alıp kendiliğinden pişiren robot."><i class="ms">play_circle</i><span>Else Labs Oliver <small>ABD</small></span></button></li><li><button type="button" class="vad" data-yt="XJLFVg1xXgE" data-ad="Juyou sos makinesi" data-not="Pizza sosu serme istasyonu; TOPPING için incelenen aday."><i class="ms">play_circle</i><span>Juyou sos makinesi <small>Çin</small></span></button></li></ul></div>
-    <div class="vkat2"><h3>Otomatlar ve kiosklar <span>5</span></h3><ul><li><button type="button" class="vad" data-yt="YiaJYVeT3wc" data-ad="Yo-Kai Express" data-not="Ramen otomatı yaklaşık 90 saniyede sıcak servis ediyor."><i class="ms">play_circle</i><span>Yo-Kai Express <small>ABD</small></span></button></li><li><button type="button" class="vad" data-yt="-YCnpUE3DN4" data-ad="RoboBurger" data-not="Burgeri siparişe göre pişirip hazırlayan otomat."><i class="ms">play_circle</i><span>RoboBurger <small>ABD</small></span></button></li><li><button type="button" class="vad" data-yt="Mu_39D4reJY" data-ad="InstaChef" data-not="Kaliforniya&#x27;da sıcak pizza ve makarna pişiren otomat."><i class="ms">play_circle</i><span>InstaChef <small>ABD</small></span></button></li><li><button type="button" class="vad" data-yt="tsoyhTsl_vM" data-ad="Alberts" data-not="İşyerinde taze, kişiye özel smoothie hazırlayan istasyon."><i class="ms">play_circle</i><span>Alberts <small>Belçika</small></span></button></li><li><button type="button" class="vad" data-yt="AdSFSHvUOUQ" data-ad="Kyol" data-not="Kurucu taze yemek otomatı konseptini anlatıyor."><i class="ms">play_circle</i><span>Kyol <small>Fransa</small></span></button></li></ul></div>
-    <div class="vkat2"><h3>İçecek ve barista robotları <span>7</span></h3><ul><li><button type="button" class="vad" data-yt="iOwGhmRRHFI" data-ad="Artly" data-not="Seattle&#x27;da robot barista kahve ve içecek hazırlıyor."><i class="ms">play_circle</i><span>Artly <small>ABD</small></span></button></li><li><button type="button" class="vad" data-yt="Q3MFehbBGps" data-ad="CERES" data-not="Robot kahve kioskı çalışırken."><i class="ms">play_circle</i><span>CERES <small>ABD</small></span></button></li><li><button type="button" class="vad" data-yt="lK6LbfqdOkA" data-ad="Richtech ADAM" data-not="İki kollu robot barista kahve hazırlayıp servis ediyor."><i class="ms">play_circle</i><span>Richtech ADAM <small>ABD</small></span></button></li><li><button type="button" class="vad" data-yt="_LbtlWvkcQ8" data-ad="Botrista DrinkBot Pro" data-not="Otomatik içecek makinesinin kullanımı."><i class="ms">play_circle</i><span>Botrista DrinkBot Pro <small>ABD</small></span></button></li><li><button type="button" class="vad" data-yt="H6GgpzqBPPg" data-ad="Makr Shakr Toni" data-not="Robot barmen kokteyli otomatik hazırlıyor."><i class="ms">play_circle</i><span>Makr Shakr Toni <small>İtalya</small></span></button></li><li><button type="button" class="vad" data-yt="JWPZtjOCo40" data-ad="Macco Robotics KIME" data-not="Sevilla&#x27;da insansı robot kiosk bira dolduruyor."><i class="ms">play_circle</i><span>Macco Robotics KIME <small>İspanya</small></span></button></li><li><button type="button" class="vad" data-yt="o_XaiAvwROo" data-ad="Smyze" data-not="İsviçre&#x27;nin ilk kalıcı robot barı."><i class="ms">play_circle</i><span>Smyze <small>İsviçre</small></span></button></li></ul></div>
-    <div class="vkat2"><h3>Ev mutfak robotları <span>4</span></h3><ul><li><button type="button" class="vad" data-yt="Ubd6NkZOEkM" data-ad="Posha" data-not="Tezgâh robotu canlı olarak yemek pişiriyor."><i class="ms">play_circle</i><span>Posha <small>ABD</small></span></button></li><li><button type="button" class="vad" data-yt="eqnyKK9hUCo" data-ad="Chefee" data-not="Ev mutfağına gömülen robotun geliştirilmesi ve çalışması."><i class="ms">play_circle</i><span>Chefee <small>İsrail · ABD</small></span></button></li><li><button type="button" class="vad" data-yt="bsDfaWvQtMg" data-ad="Liffo" data-not="Robot ilk tarifi adım adım otomatik pişiriyor."><i class="ms">play_circle</i><span>Liffo <small>İtalya</small></span></button></li><li><button type="button" class="vad" data-yt="qhV1lXGUOsQ" data-ad="Nosh" data-not="Evler için tezgâh üstü robot şef (CES 2026)."><i class="ms">play_circle</i><span>Nosh <small>Hindistan</small></span></button></li></ul></div>
-    <div class="vkat2"><h3>Servis ve genel amaçlı robotlar <span>7</span></h3><ul><li><button type="button" class="vad" data-yt="9gQsz0XMoK0" data-ad="Bear Robotics Servi" data-not="Restoranda masalara yemek taşıyan servis robotu."><i class="ms">play_circle</i><span>Bear Robotics Servi <small>ABD</small></span></button></li><li><button type="button" class="vad" data-yt="jGh95pmtiN0" data-ad="KEENON T8" data-not="Hafif servis robotu masalara yemek taşıyor."><i class="ms">play_circle</i><span>KEENON T8 <small>Çin</small></span></button></li><li><button type="button" class="vad" data-yt="_1trAIrAj6c" data-ad="Pudu Robotics" data-not="Avusturya&#x27;da otel restoranında servis yapan robotlar."><i class="ms">play_circle</i><span>Pudu Robotics <small>Çin</small></span></button></li><li><button type="button" class="vad" data-yt="Qhpkz4iXopg" data-ad="OrionStar LuckiBot" data-not="Yiyecek ve içecekleri masalara taşıyan servis robotu."><i class="ms">play_circle</i><span>OrionStar LuckiBot <small>Çin</small></span></button></li><li><button type="button" class="vad" data-yt="Nfzm4-VmxeA" data-ad="Alphadroid" data-not="Otel ve restoranda yemek taşıyan servis robotları."><i class="ms">play_circle</i><span>Alphadroid <small>Hindistan</small></span></button></li><li><button type="button" class="vad" data-yt="S9RHYCIIhwQ" data-ad="Galbot G1" data-not="İki kollu insansı robot nesne kavrayıp taşıyor (CES 2026)."><i class="ms">play_circle</i><span>Galbot G1 <small>Çin</small></span></button></li><li><button type="button" class="vad" data-yt="TsFlc_RwIY4" data-ad="Dobot Atom" data-not="İnsansı robot mutfakta kahvaltı hazırlıyor."><i class="ms">play_circle</i><span>Dobot Atom <small>Çin</small></span></button></li></ul></div>
-    <div class="vkat2"><h3>Sektör derlemeleri <span>5</span></h3><ul><li><button type="button" class="vad" data-yt="FdyGRRmhDwg" data-ad="10 restoran robotu" data-not="Foodverge: yemek sektörünü değiştiren 10 restoran robotu."><i class="ms">play_circle</i><span>10 restoran robotu <small>Derleme</small></span></button></li><li><button type="button" class="vad" data-yt="u7x2HqQ9A1U" data-ad="4 dakikada pişiren mutfak" data-not="Siparişi 4 dakikanın altında pişiren robotik mutfak."><i class="ms">play_circle</i><span>4 dakikada pişiren mutfak <small>Derleme</small></span></button></li><li><button type="button" class="vad" data-yt="zyFJp_x72Os" data-ad="Auto-Chef" data-not="Kendi kendine pişiren otonom mutfak konsepti."><i class="ms">play_circle</i><span>Auto-Chef <small>Tanıtım</small></span></button></li><li><button type="button" class="vad" data-yt="ipD41yLKA8E" data-ad="Auto-Chef · kullanım" data-not="Elle pişirmeyi ortadan kaldıran ev mutfağı kurgusu."><i class="ms">play_circle</i><span>Auto-Chef · kullanım <small>Tanıtım</small></span></button></li><li><button type="button" class="vad" data-yt="RbVWv-9E4-4" data-ad="Akıllı otomatik mutfaklar" data-not="Yüksek teknolojili otomatik mutfak örnekleri."><i class="ms">play_circle</i><span>Akıllı otomatik mutfaklar <small>Derleme</small></span></button></li></ul></div>
-  </div>
-  <p class="dipnot">Videolar firmaların ve basının YouTube kanallarından.</p>
-</div>
-<div class="vmini" id="vmini" hidden aria-hidden="true"><div class="vk2"><iframe id="vmframe" title="Önizleme" allow="autoplay; encrypted-media"></iframe><div class="vyok2">Önizleme burada oynamıyor · tıkla, YouTube'da aç</div></div><b id="vmad"></b><small id="vmnot"></small></div>
 <div class="vpanel" id="vpanel" role="dialog" aria-modal="true" aria-labelledby="vbaslik" hidden>
   <div class="vk"><iframe id="vframe" title="Firma videosu" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
     <div class="vyok"><span>Video bu önizlemede oynamıyor; sitede burada oynayacak.<br>YouTube yeni sekmede açılır, dönünce sunum kaldığın yerden devam eder.</span><a id="vlink" href="#" target="_blank" rel="noopener">YouTube'da izle</a></div>
@@ -1197,7 +1118,7 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
     const VID=['w629j9Pd8vQ','','WpuD0xHoH9g','ZGtGzLdDRUU','35sMoU_-Gpk','8JNItus53bU','YiaJYVeT3wc','-YCnpUE3DN4'];
     const panel=document.getElementById('vpanel'), perde=document.getElementById('vperde'), fr=document.getElementById('vframe');
     let engel=false, acik=null, kapanZ=null;
-    document.addEventListener('securitypolicyviolation',e=>{if(/youtube/.test(e.blockedURI||'')){engel=true; panel.classList.add('engel'); document.getElementById('vmini').classList.add('engel');}});
+    document.addEventListener('securitypolicyviolation',e=>{if(/youtube/.test(e.blockedURI||'')){engel=true; panel.classList.add('engel');}});
     const kapat=()=>{ if(!acik) return; panel.hidden=true; perde.hidden=true; fr.src='about:blank'; acik.focus&&acik.focus({preventScroll:true}); acik=null; };
     const ac=(kart,id)=>{
       clearTimeout(kapanZ); if(acik===kart) return;
@@ -1219,47 +1140,11 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
       k.addEventListener('mouseleave',()=>clearTimeout(kapanZ));
     });
 
-    /* video kütüphanesi: üstüne gelince küçük önizleme, tıklayınca büyük pencere */
-    const mini=document.getElementById('vmini'), mfr=document.getElementById('vmframe');
-    let mZ=null, mAktif=null;
-    const mKapat=()=>{ clearTimeout(mZ); if(mAktif){ mAktif.classList.remove('aktif'); mAktif=null; } mini.hidden=true; mfr.src='about:blank'; };
-    const mAc=b=>{
-      mAktif=b; b.classList.add('aktif');
-      document.getElementById('vmad').textContent=b.dataset.ad; document.getElementById('vmnot').textContent=b.dataset.not;
-      if(!engel) mfr.src='https://www.youtube-nocookie.com/embed/'+b.dataset.yt+'?autoplay=1&mute=1&controls=0&rel=0&playsinline=1';
-      mini.hidden=false;
-      const r=b.getBoundingClientRect(), w=mini.offsetWidth, h=mini.offsetHeight;
-      const x=Math.min(Math.max(8,r.left+24),innerWidth-w-8);
-      const y=r.bottom+8+h<innerHeight?r.bottom+8:Math.max(8,r.top-h-8);
-      mini.style.left=x+'px'; mini.style.top=y+'px';
-    };
-    window.pinFirmaVideolariniBagla?.();
-    document.querySelectorAll('#vsayfa .vad, #t-liste button[data-yt]').forEach(b=>{
-      b.addEventListener('mouseenter',()=>{ if(!matchMedia('(hover:hover)').matches) return; clearTimeout(mZ); mZ=setTimeout(()=>{ mKapat(); mAc(b); },250); });
-      b.addEventListener('mouseleave',mKapat);
-      b.addEventListener('focus',()=>{ if(b.matches(':focus-visible')&&panel.hidden){ mKapat(); mAc(b); } });
-      b.addEventListener('blur',mKapat);
-      b.addEventListener('click',()=>{ mKapat(); ac(b,b.dataset.yt); });
-    });
-    window.addEventListener('scroll',mKapat,{passive:true});
-    const vs=document.getElementById('vsayfa'), vsAc=document.getElementById('vs-ac');
-    vs.addEventListener('scroll',mKapat,{passive:true});
-    let kitapDugmesi=vsAc;
-    const vsKapat=()=>{ if(vs.hidden) return; mKapat(); vs.hidden=true; document.documentElement.style.overflow=''; kitapDugmesi.focus({preventScroll:true}); };
-    [vsAc, document.getElementById('t-videolar')].forEach(dugme=>dugme.addEventListener('click',()=>{ kitapDugmesi=dugme; vs.hidden=false; vs.scrollTop=0; document.documentElement.style.overflow='hidden'; document.getElementById('vs-kapat').focus({preventScroll:true}); }));
-    document.getElementById('vs-kapat').addEventListener('click',vsKapat);
     perde.addEventListener('click',kapat);
     document.getElementById('vkapat').addEventListener('click',kapat);
-    document.addEventListener('keydown',e=>{if(e.key!=='Escape') return; if(acik) kapat(); else if(mAktif) mKapat(); else vsKapat();});
+    document.addEventListener('keydown',e=>{if(e.key!=='Escape') return; if(acik) kapat();});
     window.addEventListener('scroll',()=>{ if(acik&&!panel.matches(':hover')) kapat(); },{passive:true});
   }
-
-  /* tedarikçi listesi aç/kapa */
-  document.getElementById('t-ac').addEventListener('click',e=>{
-    const l=document.getElementById('t-liste'), b=e.currentTarget; l.hidden=!l.hidden;
-    b.setAttribute('aria-expanded',String(!l.hidden)); b.textContent=l.hidden?'Listeyi aç':'Listeyi kapat';
-    if(window.ScrollTrigger) ScrollTrigger.refresh();
-  });
 
   const azHareket=matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(!window.gsap||!window.ScrollTrigger||azHareket) return;
@@ -1507,28 +1392,6 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
   kartlar.forEach((k,i)=>t3.to(k.querySelector('.ic'),{rotationY:180,duration:.7,ease:'power2.inOut'},i===0?'+=.1':'-=.45'));
   t3.to('.sonuc',{opacity:1,y:0,duration:.5}).to({},{duration:.6});
 
-  /* 10–11 · HER YEMEĞİ → PİDE */
-  {
-    const tab=[...document.querySelectorAll('.d-tabela span')], vit=[...document.querySelectorAll('.d-vitrin>*')];
-    const renk=['#81c995','#f28b82','#f6b93b','#7b5cff'];
-    gsap.set(tab,{opacity:0,yPercent:100}); gsap.set(tab[0],{opacity:1,yPercent:0});
-    gsap.set(vit,{opacity:0,scale:.5}); gsap.set(vit[0],{opacity:1,scale:1});
-    gsap.set('.dukkan',{'--tc':renk[0]});
-    gsap.set('.ilk-pin',{opacity:0,y:12});
-    const t=tl('#her',165);
-    for(let i=1;i<4;i++){
-      t.to(tab[i-1],{yPercent:-100,opacity:0,duration:.25},'+=.25')
-       .to(tab[i],{yPercent:0,opacity:1,duration:.25},'<')
-       .to(vit[i-1],{opacity:0,scale:.5,duration:.2},'<')
-       .to(vit[i],{opacity:1,scale:1,duration:.3,ease:'back.out(2)'},'<.1')
-       .to('.dukkan',{'--tc':renk[i],duration:.25},'<');
-    }
-    t.fromTo('.dukkan',{scale:1},{scale:1.06,duration:.15,yoyo:true,repeat:1},'+=.1');
-    bekle(t,.3);
-    t.to('.ilk-pin',{opacity:1,y:0,duration:.3});
-    bekle(t,.5);
-  }
-
   /* F · GELİR */
   {
     gsap.set('#gelir .gk-r',{opacity:0,y:12});
@@ -1563,7 +1426,7 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
   gsap.from('#yatirim .tl',{opacity:0,y:24,stagger:.12,duration:.45,scrollTrigger:{trigger:'#yatirim',start:'top 72%'}});
 
   /* TEDARİKÇİ */
-  gsap.from('#tedarik > :not(.t-liste)',{opacity:0,y:24,stagger:.1,duration:.5,ease:'power2.out',scrollTrigger:{trigger:'#tedarik',start:'top 75%'}});
+  gsap.from('#tedarik > .baslik',{opacity:0,y:24,stagger:.1,duration:.5,ease:'power2.out',scrollTrigger:{trigger:'#tedarik',start:'top 75%'}});
 
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(()=>ScrollTrigger.refresh());
 
@@ -1586,8 +1449,8 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
 })();
 </script>
 <script src="/autokitch/sunum/film-r119.js?v=121" defer></script>
-<script src="/autokitch/sunum/hesap-model-r120.js?v=121" defer></script>
-<script src="/autokitch/sunum/hesap-r123.js?v=123" defer></script>
-<script src="/autokitch/sunum/hesap-link-r123.js?v=123" defer></script>
+<script src="/autokitch/sunum/hesap-model-r120.js?v=125" defer></script>
+<script src="/autokitch/sunum/hesap-r123.js?v=125" defer></script>
+<script src="/autokitch/sunum/hesap-link-r123.js?v=125" defer></script>
 </body>
 </html>

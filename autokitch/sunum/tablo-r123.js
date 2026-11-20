@@ -9,10 +9,9 @@
     if(next!==height){height=next;parent.postMessage({protocol,kind:'size',height},origin);}
     if(locked||!window.PinCost||!window.hread)return;
     const models=Object.fromEntries(['M','S','D','P'].map(c=>[c,hread(c)]));
-    const record={ak_hesap_v4:JSON.stringify(models),ak_flags_v1:JSON.stringify(AKFL)};
-    const current=JSON.stringify(record);
+    const current=JSON.stringify([models,AKFL]);
     if(current===previous)return;
-    previous=current;parent.postMessage({protocol,kind:'report',report:window.PinCost.summary({data:record})},origin);
+    previous=current;parent.postMessage({protocol,kind:'report',report:window.PinCost.reportFromModels(models, window.hmodel)},origin);
   }
   const schedule=()=>{if(!scheduled){scheduled=true;requestAnimationFrame(update);}};
   new ResizeObserver(schedule).observe(document.body);

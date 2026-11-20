@@ -18,3 +18,51 @@
 .asil-tablo{background:#fff;border-top:1px solid #e5e8ee;border-radius:0 0 16px 16px;overflow:hidden}
 .asil-tablo iframe{display:block;width:100%;border:0;height:380px;background:#fff}
 @media(max-width:720px){.finance{padding:78px 10px 36px}.sonuc-ozeti{gap:8px}.sonuc-kart{padding:14px 11px;gap:12px;border-radius:12px}.sonuc-kart h3{font-size:10px!important;letter-spacing:.025em}.sonuc-kart #f-urunler{grid-template-columns:1fr;gap:10px}.f-urun{gap:2px}.f-urun strong{font-size:25px}.f-urun span{font-size:11px}.f-urun small{font-size:9px}.f-senaryo{flex-direction:column;gap:0}.f-senaryo span{font-size:10px}.f-senaryo strong{font-size:20px}.sunum-nav{gap:10px}.sunum-nav a{font-size:10px}header{padding-left:12px;padding-right:12px}header .logo{font-size:12px;letter-spacing:.025em}.sonuc-kart p{font-size:9px}}
+
+/* Bordro ve açılır sektör araştırması */
+.bordro{display:grid;gap:10px;text-align:left;margin-top:8px}
+.bordro .bordro-kart{gap:5px;padding:16px 20px}
+.bordro h4{margin:0;font-size:clamp(13px,2vw,18px);line-height:1.25}
+.pin-bordro{background:#edf3ff;border-color:#d8e4fc}
+.bordro-deger,.bordro-yil{color:#526079;font-size:12px}
+.bordro-deger strong{font-size:clamp(18px,3vw,34px);color:#234ab0;letter-spacing:-.035em;white-space:nowrap}
+.bordro-yil b{color:#263759;font-size:clamp(12px,1.7vw,18px)}
+.bordro-not{margin:0;font-size:12px;color:#58647a;line-height:1.55}
+.bordro-not a,.arastirma-kart a,.arastirma-icerik>a{color:#2656ba}
+#hesap-kaynak{font-size:11px}
+.sunum-acilir{width:100%;border:1px solid #dce3f0;border-radius:14px;background:#fff;text-align:left;scroll-margin-top:76px}
+.sunum-acilir>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;list-style:none;padding:14px 16px;font-weight:650;color:#243c75;cursor:pointer}
+.sunum-acilir>summary::-webkit-details-marker{display:none}
+.sunum-acilir>summary::after{content:'';width:8px;height:8px;flex:none;border:solid #4866a5;border-width:0 2px 2px 0;transform:rotate(45deg);margin:0 3px 4px}
+.sunum-acilir[open]>summary::after{transform:rotate(225deg);margin-bottom:0}
+.sunum-acilir>summary:focus-visible{outline:2px solid #547aee;outline-offset:-3px;border-radius:12px}
+.pizza-ornek>.sonuc-ozeti{padding:0 12px}
+.pizza-ornek>.bordro-not{padding:10px 12px}
+.tedarik .arastirma-icerik{display:grid;gap:8px;padding:0 12px 12px}
+.tedarik .arastirma-grup{background:#f8faff;border-color:#e6eaf2}
+.arastirma-video-izgara{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:0 10px 10px}
+.arastirma-kart{background:#fff;border:1px solid #e5eaf4;border-radius:12px;min-width:0;overflow:hidden}
+.arastirma-kart h3{font-size:16px;line-height:1.25;margin:0}
+.arastirma-kart p,.arastirma-durum{font-size:13px;color:#495773;line-height:1.5;margin:0}
+.video-kart{display:flex;flex-direction:column}
+.video-kart-metin{display:grid;align-content:start;gap:5px;flex:1;padding:12px}
+.video-kart-metin small{font-size:11px;font-weight:650;color:#355aab}
+.video-kart>a{font-size:12px;padding:8px 12px}
+.arastirma-oynatici{aspect-ratio:16/9;background:#17243d}
+.arastirma-oynatici iframe{display:block;width:100%;height:100%;border:0}
+.teklif-grup{padding:0 10px 10px;display:grid;gap:8px}
+.teklif-alt{margin:8px 4px 0;font-size:14px;color:#415371}
+.teklif-kart{display:grid;gap:6px;padding:12px;overflow-wrap:anywhere}
+.teklif-kart .teklif-fiyat{color:#145742;font-weight:650}
+.teklif-kart .teklif-not,.teklif-kart .teklif-durum{font-size:12px}
+.teklif-kart .teklif-durum{background:#f0f4fb;padding:7px 9px;border-radius:8px}
+#vs-ac{text-decoration:none}
+@media(max-width:720px){
+  header{gap:10px}
+  header .logo{flex:none}
+  .sunum-nav{min-width:0;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+  .sunum-nav a{flex:none}
+  .bordro .bordro-kart{padding:11px}
+  .arastirma-video-izgara{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:480px){.arastirma-video-izgara{grid-template-columns:1fr}}

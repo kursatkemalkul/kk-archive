@@ -187,7 +187,7 @@
       contribution += u.ay * margin;
     }
     return {products, daily:R.ayToplam/HGUN, revenue:R.T.ciro, ingredients:R.T.malz, fees:R.T.kom,
-      fixed:R.mSabit, tax:R.mKdv, drinks:R.mIck, sides:R.mYan, profit:R.mVonce,
+      payroll:R.personel, fixed:R.mSabit, tax:R.mKdv, drinks:R.mIck, sides:R.mYan, profit:R.mVonce,
       breakEven:R.ayToplam>0 && contribution>0 ? R.sabit/(contribution/R.ayToplam)/HGUN : null};
   }
   function summary(record={}) {
@@ -197,7 +197,6 @@
       yat:flags.yat===1?1:0,ymode:['A','B'].includes(flags.ymode)?flags.ymode:'C'};
     const models = akHDEF();
     const equipment = readObject(data.ak_yatirim_v2);
-    const columns = {};
     for (const group of groups) {
       const v = models[group];
       if (saved[group]) for (const key of Object.keys(v)) {
@@ -213,10 +212,13 @@
           return sum + (valid(n) ? n : row[3]);
         },0);
       }
-      columns[group] = columnSummary(hmodel(v,chosen));
     }
+    return reportFromModels(models, values => hmodel(values, chosen));
+  }
+  function reportFromModels(models, calculate) {
+    const columns = Object.fromEntries(groups.map(group => [group, columnSummary(calculate(models[group]))]));
     return {columns, scenarios:scenarios.map(([pide,lahmacun])=>({
-      daily:pide+lahmacun, pide, lahmacun, profit:hmodel({...models.M,pd_adet:pide,lh_adet:lahmacun,pz_adet:0},chosen).mVonce
+      daily:pide+lahmacun, pide, lahmacun, profit:calculate({...models.M,pd_adet:pide,lh_adet:lahmacun,pz_adet:0}).mVonce
     }))};
   }
   // The published source uses numeric object literals for its inputs. Parse data only.
@@ -245,6 +247,6 @@
       n.dataset.y,n.dataset.yk,n.closest('tr')?.dataset.mode||'ABC',numeric(n.getAttribute('value')||0)]);
     if (rows.length===investments.length && rows.every(r=>valid(r[3]))) investments=rows;
   }
-  window.PinCost = {summary,readPublished};
+  window.PinCost = {summary,readPublished,reportFromModels};
 
 })();
