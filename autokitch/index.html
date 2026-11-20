@@ -625,8 +625,8 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
 @media(prefers-reduced-motion:reduce){#film *,body.pin-film-view>header{transition:none!important}}
 </style>
 <link rel="stylesheet" href="/autokitch/sunum/sunum-r120.css?v=121">
-<script src="/autokitch/sunum/arastirma-r125.js" defer></script>
-<link rel="stylesheet" href="/autokitch/sunum/duzen-r123.css?v=125">
+<script src="/autokitch/sunum/arastirma-r125.js?v=126" defer></script>
+<link rel="stylesheet" href="/autokitch/sunum/duzen-r123.css?v=126">
 <style>@media(max-width:440px){header .sunum-nav{justify-content:flex-end;flex-wrap:wrap;gap:0 8px}header .sunum-nav a{white-space:nowrap;padding:3px 0}}</style>
 </head>
 <body>
@@ -760,9 +760,10 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
 </section>
 
 <!-- 4 · BU İŞİ BUGÜN YAPANLAR -->
-<section class="sahne" id="yapanlar">
+<section id="yapanlar" aria-labelledby="yapanlar-baslik">
+  <div class="sahne" id="yapanlar-sahne">
   <div class="icx">
-    <h2 class="baslik">Bu işi bugün yapanlar. <span class="grad">Her yerdeler.</span></h2>
+    <h2 class="baslik" id="yapanlar-baslik">Bu işi bugün yapanlar. <span class="grad">Her yerdeler.</span></h2>
     <div class="dunya"><svg id="dunya-svg" viewBox="0 0 720 264" aria-hidden="true"><g class="kara"></g><g class="pinler"></g></svg></div>
     <div class="firmalar">
       <div class="firma"><span class="no">1</span><div><b>Hyper Food Robotics</b><small>İsrail · Konteynerde insansız pizza restoranı; Pizza Hut İsrail ile</small></div></div>
@@ -774,7 +775,11 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
       <div class="firma"><span class="no">7</span><div><b>Yo-Kai Express</b><small>ABD · Ramen otomatı, ~90 saniyede sıcak servis</small></div></div>
       <div class="firma"><span class="no">8</span><div><b>RoboBurger</b><small>ABD · Burgeri siparişe göre pişiren otomat</small></div></div>
     </div>
-    <a class="vs-ac" id="vs-ac" href="#sektor-videolari"><i class="ms" aria-hidden="true">video_library</i>Sektör videoları <span>İncele</span></a>
+    <button type="button" class="vs-ac" id="vs-ac" aria-expanded="false" aria-controls="sektor-videolari"><i class="ms" aria-hidden="true">video_library</i>Kim ne yapıyor? <b>63 video</b><span aria-hidden="true">Aç</span></button>
+    </div>
+  </div>
+  <div id="sektor-videolari" class="yapanlar-videolar" role="region" aria-labelledby="vs-ac" tabindex="-1" hidden>
+    <div class="arastirma-icerik"></div>
   </div>
 </section>
 
@@ -1046,11 +1051,7 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
 </section>
 
 <section class="tedarik" id="tedarik" aria-labelledby="arastirma-baslik">
-  <h2 class="baslik" id="arastirma-baslik">Sektör ve tedarik</h2>
-  <details class="sunum-acilir" id="sektor-videolari">
-    <summary>Sektör videoları</summary>
-    <div class="arastirma-icerik"></div>
-  </details>
+  <h2 class="baslik" id="arastirma-baslik">Tedarikçiler ve teklifler</h2>
   <details class="sunum-acilir" id="tedarik-teklifleri">
     <summary>Tedarikçiler, fiyatlar ve teklifler</summary>
     <div class="arastirma-icerik"></div>
@@ -1264,7 +1265,7 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
     gsap.set('#yapanlar .firma',{opacity:0,y:24,scale:.92});
     gsap.set('#yapanlar .baslik .grad',{opacity:0});
     gsap.set('#vs-ac',{opacity:0,y:12});
-    const t=tl('#yapanlar',230);
+    const t=tl('#yapanlar-sahne',230);
     const pinler=[...document.querySelectorAll('#yapanlar .pin')], firmalar=[...document.querySelectorAll('#yapanlar .firma')];
     pinler.forEach((p,i)=>{
       t.to(p,{scale:1,duration:.35,ease:'back.out(3)'},i?'-=.15':0)

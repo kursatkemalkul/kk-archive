@@ -1,5 +1,6 @@
 (() => {
   const videos = document.getElementById('sektor-videolari');
+  const videoToggle = document.getElementById('vs-ac');
   const suppliers = document.getElementById('tedarik-teklifleri');
   const sourceURL = '/autokitch/otonom/';
   let sourceRequest;
@@ -75,7 +76,7 @@
 
   function updatePlayers(group) {
     for (const player of group.querySelectorAll('[data-video]')) {
-      if (!videos.open || !group.open) {
+      if (videos.hidden || !group.open) {
         player.replaceChildren();
       } else if (!player.firstChild) {
         const frame = element('iframe');
@@ -150,12 +151,12 @@
     }).observe(container);
   }
 
-  function loadOnOpen(details, build) {
-    const target = details.querySelector('.arastirma-icerik');
+  function loadWhenVisible(panel, isVisible, build) {
+    const target = panel.querySelector('.arastirma-icerik');
     let pending = false;
     let ready = false;
     async function load() {
-      if (!details.open || pending || ready) return;
+      if (!isVisible() || pending || ready) return;
       pending = true;
       target.replaceChildren(element('p', 'arastirma-durum', 'Yükleniyor…'));
       try {
@@ -165,23 +166,45 @@
         ready = true;
       } catch {
         const fallback = element('a', '', 'Otonom sayfasında aç');
-        fallback.href = sourceURL + (details === suppliers ? '#fiyatlar' : '#dunya');
+        fallback.href = sourceURL + (panel === suppliers ? '#fiyatlar' : '#dunya');
         target.replaceChildren(element('p', 'arastirma-durum', 'Bu bölüm yüklenemedi.'), fallback);
       } finally {
         pending = false;
       }
     }
-    details.addEventListener('toggle', load);
     refreshWhenResized(target);
-    load();
+    return load;
   }
 
-  loadOnOpen(videos, buildVideos);
-  loadOnOpen(suppliers, buildSuppliers);
-  videos.addEventListener('toggle', () => {
-    for (const group of videos.querySelectorAll('.arastirma-grup')) updatePlayers(group);
-  });
-  document.getElementById('vs-ac').addEventListener('click', () => { videos.open = true; });
-  if (location.hash === '#sektor-videolari') videos.open = true;
+  const loadVideos = loadWhenVisible(videos, () => !videos.hidden, buildVideos);
+  const loadSuppliers = loadWhenVisible(suppliers, () => suppliers.open, buildSuppliers);
+  suppliers.addEventListener('toggle', loadSuppliers);
   if (location.hash === '#tedarik-teklifleri') suppliers.open = true;
+  loadSuppliers();
+
+  function toggleVideos(open) {
+    videos.hidden = !open;
+    videoToggle.setAttribute('aria-expanded', String(open));
+    videoToggle.querySelector('span').textContent = open ? 'Kapat' : 'Aç';
+    for (const group of videos.querySelectorAll('.arastirma-grup')) updatePlayers(group);
+    if (open) {
+      loadVideos();
+      window.ScrollTrigger?.refresh();
+      videos.focus({preventScroll:true});
+      videos.scrollIntoView({block:'start'});
+    }
+  }
+
+  videoToggle.addEventListener('click', () => toggleVideos(videos.hidden));
+  videos.addEventListener('keydown', event => {
+    if (event.key !== 'Escape') return;
+    toggleVideos(false);
+    videoToggle.focus();
+  });
+  function openLinkedVideos() {
+    if (location.hash === '#sektor-videolari' && !document.getElementById('site-giris')) toggleVideos(true);
+  }
+  window.addEventListener('autokitch-unlocked', openLinkedVideos, {once:true});
+  window.addEventListener('hashchange', openLinkedVideos);
+  openLinkedVideos();
 })();

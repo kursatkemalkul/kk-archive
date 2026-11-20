@@ -38,8 +38,8 @@
 .sunum-acilir>summary:focus-visible{outline:2px solid #547aee;outline-offset:-3px;border-radius:12px}
 .pizza-ornek>.sonuc-ozeti{padding:0 12px}
 .pizza-ornek>.bordro-not{padding:10px 12px}
-.tedarik .arastirma-icerik{display:grid;gap:8px;padding:0 12px 12px}
-.tedarik .arastirma-grup{background:#f8faff;border-color:#e6eaf2}
+.arastirma-icerik{display:grid;gap:8px;padding:0 12px 12px}
+.arastirma-grup{background:#f8faff;border-color:#e6eaf2}
 .arastirma-video-izgara{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:0 10px 10px}
 .arastirma-kart{background:#fff;border:1px solid #e5eaf4;border-radius:12px;min-width:0;overflow:hidden}
 .arastirma-kart h3{font-size:16px;line-height:1.25;margin:0}
@@ -56,7 +56,9 @@
 .teklif-kart .teklif-fiyat{color:#145742;font-weight:650}
 .teklif-kart .teklif-not,.teklif-kart .teklif-durum{font-size:12px}
 .teklif-kart .teklif-durum{background:#f0f4fb;padding:7px 9px;border-radius:8px}
-#vs-ac{text-decoration:none}
+.yapanlar-videolar{max-width:1000px;margin:0 auto;padding:0 16px 32px;scroll-margin-top:72px}
+.yapanlar-videolar[hidden]{display:none}
+.yapanlar-videolar>.arastirma-icerik{padding:0}
 @media(max-width:720px){
   header{gap:10px}
   header .logo{flex:none}
