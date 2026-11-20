@@ -1,7 +1,7 @@
 name: deploy
 
 # industrialproductdesigner.com — portfolyo + alt siteleri birlestirip yayinlar.
-# Alt siteler kendi depolarindan cekilir: alancast, autokitch, highline, nakit.
+# Alt siteler kendi depolarindan cekilir: alancast, highline, nakit.
 
 on:
   push:
@@ -32,7 +32,8 @@ jobs:
         run: |
           mkdir -p _site
           rsync -a --exclude '.git' --exclude '.github' --exclude '.publication' --exclude '_site' \
-                --exclude 'alancast' --exclude 'autokitch' \
+                --exclude 'alancast' --exclude 'autokitch' --exclude 'digital-twin' \
+                --exclude 'film-studyo' --exclude 'montaj' --exclude 'pin-film' \
                 --exclude 'highline' --exclude 'nakit' \
                 ./ _site/
 
@@ -42,33 +43,6 @@ jobs:
           path: _site/alancast
           ssh-key: ${{ secrets.ALANCAST_SITE_READ_KEY }}
           persist-credentials: false
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-        with:
-          repository: kursatkemalkul/autokitch
-          path: _site/autokitch
-          ssh-key: ${{ secrets.AUTOKITCH_SITE_READ_KEY }}
-          persist-credentials: false
-          sparse-checkout-cone-mode: false
-          sparse-checkout: |
-            /*
-            !/_local/
-            !/arastirma/
-            !/uretim/
-            /uretim/index.html
-            !/supplier-review/
-            !/otonom/hat/
-            !/otonom/hat3d/
-            !/otonom/birlesik/
-            !/otonom/kaset3d/
-            !/otonom/elektrik/
-            !/otonom/onizleme-9eki/
-            !*.glb*
-            !*.gltf*
-            !*.stp
-            !*.step
-            !*.stl
-            !*.bin
-            !*.zip
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           repository: kursatkemalkul/highline
@@ -84,43 +58,6 @@ jobs:
 
       - name: Drop nested .git dirs
         run: rm -rf _site/*/.git
-
-      # Güvenlik: autokitch'in _local klasörü (yerel yedekler, oturum kayıtları) siteye konmaz; GitHub'da kalır
-      - name: Drop autokitch _local
-        run: rm -rf _site/autokitch/_local
-
-      # Güvenlik: autokitch'in _local klasörü (yerel yedekler, oturum kayıtları) siteye konmaz
-      - name: Drop autokitch _local
-        run: rm -rf _site/autokitch/_local
-
-      - name: Keep machine models and engineering sources private
-        shell: python
-        run: |
-          from pathlib import Path
-          import shutil
-          root=Path('_site/autokitch').resolve()
-          private=['_local','arastirma','uretim','supplier-review','otonom/hat','otonom/hat3d','otonom/birlesik','otonom/kaset3d','otonom/elektrik','otonom/onizleme-9eki']
-          redirect='<html><head><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=/digital-twin/"></head><body><a href="/digital-twin/">AUTOKITCH Digital Twin</a></body></html>'
-          factory=root/'uretim/index.html'
-          factory_page=factory.read_bytes() if factory.is_file() else None
-          for name in private:
-              target=(root/name).resolve()
-              assert root in target.parents
-              if target.exists(): shutil.rmtree(target)
-              if name.startswith('otonom/'):
-                  target.mkdir(parents=True,exist_ok=True)
-                  (target/'index.html').write_text(redirect,encoding='utf8')
-          if factory_page is not None:
-              factory.parent.mkdir(parents=True,exist_ok=True)
-              factory.write_bytes(factory_page)
-          redirect49='<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta http-equiv="refresh" content="0;url=/digital-twin/"><title>AUTOKITCH · E montajı</title></head><body><a href="/digital-twin/">Şifreli E montaj animasyonunu aç</a></body></html>'
-          for rel in ['otonom/hat/e-montaj.html','otonom/hat/e-montaj/index.html']:
-              target=root/rel;target.parent.mkdir(parents=True,exist_ok=True);target.write_text(redirect49,encoding='utf8')
-          suffixes={'.md','.py','.ps1','.sh','.yaml','.yml','.glb','.gltf','.stp','.step','.stl','.obj','.mtl','.iges','.igs','.sldprt','.sldasm','.fcstd','.blend','.fbx','.dae','.3dm','.dxf','.dwg','.bin','.zip','.scl','.st','.awl','.lad','.fbd','.zap','.ap17','.ap18','.ap19','.db','.sqlite','.sqlite3'}
-          for item in root.rglob('*'):
-              if item.is_file() and (item.suffix.lower() in suffixes or '.glb.' in item.name.lower()): item.unlink()
-          remaining=[str(p.relative_to(root)) for p in root.rglob('*') if p.is_file() and (p.suffix.lower() in suffixes or '.glb.' in p.name.lower())]
-          assert not remaining, 'Private model files found in website artifact'
 
       - name: Archive GitHub Pages artifact
         run: tar --dereference --hard-dereference --directory _site -cf "$RUNNER_TEMP/artifact.tar" --exclude=.git --exclude=.github .

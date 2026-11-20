@@ -26,33 +26,6 @@ jobs:
           persist-credentials: false
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
-          repository: kursatkemalkul/autokitch
-          path: sources/autokitch
-          ssh-key: ${{ secrets.AUTOKITCH_SITE_READ_KEY }}
-          persist-credentials: false
-          sparse-checkout-cone-mode: false
-          sparse-checkout: |
-            /*
-            !/_local/
-            !/arastirma/
-            !/uretim/
-            /uretim/index.html
-            !/supplier-review/
-            !/otonom/hat/
-            !/otonom/hat3d/
-            !/otonom/birlesik/
-            !/otonom/kaset3d/
-            !/otonom/elektrik/
-            !/otonom/onizleme-9eki/
-            !*.glb*
-            !*.gltf*
-            !*.stp
-            !*.step
-            !*.stl
-            !*.bin
-            !*.zip
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-        with:
           repository: kursatkemalkul/highline
           path: sources/highline
           ssh-key: ${{ secrets.HIGHLINE_SITE_READ_KEY }}
