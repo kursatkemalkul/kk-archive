@@ -1,7 +1,6 @@
 name: deploy
 
-# industrialproductdesigner.com — portfolyo + alt siteleri birlestirip yayinlar.
-# Alt siteler kendi depolarindan cekilir: alancast, highline, nakit.
+# industrialproductdesigner.com — portfolyo yayını.
 
 on:
   push:
@@ -36,28 +35,6 @@ jobs:
                 --exclude 'film-studyo' --exclude 'montaj' --exclude 'pin-film' \
                 --exclude 'highline' --exclude 'nakit' \
                 ./ _site/
-
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-        with:
-          repository: kursatkemalkul/alancast
-          path: _site/alancast
-          ssh-key: ${{ secrets.ALANCAST_SITE_READ_KEY }}
-          persist-credentials: false
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-        with:
-          repository: kursatkemalkul/highline
-          path: _site/highline
-          ssh-key: ${{ secrets.HIGHLINE_SITE_READ_KEY }}
-          persist-credentials: false
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-        with:
-          repository: kursatkemalkul/nakit
-          path: _site/nakit
-          ssh-key: ${{ secrets.NAKIT_SITE_READ_KEY }}
-          persist-credentials: false
-
-      - name: Drop nested .git dirs
-        run: rm -rf _site/*/.git
 
       - name: Archive GitHub Pages artifact
         run: tar --dereference --hard-dereference --directory _site -cf "$RUNNER_TEMP/artifact.tar" --exclude=.git --exclude=.github .

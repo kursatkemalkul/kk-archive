@@ -41,11 +41,9 @@ def compile_cloudflare(site):
 if OUTPUT.exists():raise RuntimeError('Output directory already exists')
 OUTPUT.mkdir(parents=True)
 copy_source('kk-archive',OUTPUT)
-for dependency in ['alancast','highline','nakit']:
- copy_source(dependency,OUTPUT/dependency)
 compile_cloudflare(OUTPUT)
 files=[x for x in OUTPUT.rglob('*') if x.is_file()]
 assert all(x.stat().st_size<=25*1024*1024 for x in files)
 assert not any(x.name.startswith('.') for x in files)
-assert not any((OUTPUT / route).exists() for route in NOVOKITCH_ROUTES)
+assert not any((OUTPUT / route).exists() for route in SEPARATE_PUBLISHES | NOVOKITCH_ROUTES)
 print('Compiled public website:',len(files),'files; NOVOKITCH publication excluded.')

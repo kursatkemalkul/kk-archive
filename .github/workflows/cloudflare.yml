@@ -18,24 +18,6 @@ jobs:
         with:
           path: sources/kk-archive
           persist-credentials: false
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-        with:
-          repository: kursatkemalkul/alancast
-          path: sources/alancast
-          ssh-key: ${{ secrets.ALANCAST_SITE_READ_KEY }}
-          persist-credentials: false
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-        with:
-          repository: kursatkemalkul/highline
-          path: sources/highline
-          ssh-key: ${{ secrets.HIGHLINE_SITE_READ_KEY }}
-          persist-credentials: false
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-        with:
-          repository: kursatkemalkul/nakit
-          path: sources/nakit
-          ssh-key: ${{ secrets.NAKIT_SITE_READ_KEY }}
-          persist-credentials: false
       - name: Compile public assets
         run: python3 sources/kk-archive/.publication/build.py --sources sources --output public
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
