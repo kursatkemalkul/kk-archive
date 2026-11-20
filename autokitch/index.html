@@ -626,7 +626,7 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
 </style>
 <link rel="stylesheet" href="/autokitch/sunum/sunum-r120.css?v=121">
 <script src="/autokitch/sunum/arastirma-r125.js?v=126" defer></script>
-<link rel="stylesheet" href="/autokitch/sunum/duzen-r123.css?v=126">
+<link rel="stylesheet" href="/autokitch/sunum/duzen-r123.css?v=127">
 <style>@media(max-width:440px){header .sunum-nav{justify-content:flex-end;flex-wrap:wrap;gap:0 8px}header .sunum-nav a{white-space:nowrap;padding:3px 0}}</style>
 </head>
 <body>
@@ -960,8 +960,25 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
       <article class="sonuc-kart"><h3>SATIŞ FİYATI</h3><div id="f-urunler"></div></article>
       <article class="sonuc-kart"><h3>AYLIK FAALİYET KÂRI</h3><div id="f-senaryolar"></div><p>Personelli PIN · vergi ve amortisman öncesi</p></article>
     </div>
-    <div class="bordro" aria-labelledby="bordro-baslik">
-      <h3 id="bordro-baslik">Personel maliyeti</h3>
+    <section class="bordro" aria-labelledby="bordro-baslik">
+      <h3 id="bordro-baslik">Aylık ve yıllık personel gideri</h3>
+      <div class="sonuc-ozeti" id="pizza-bordro">
+        <article class="sonuc-kart bordro-kart">
+          <h4>Geleneksel pizza mutfağı</h4>
+          <p>5 çalışan</p>
+          <div class="bordro-deger"><strong>≈ 275.000 TL</strong><span> / ay</span></div>
+          <div class="bordro-yil"><b>≈ 3.300.000 TL</b><span> / yıl</span></div>
+        </article>
+        <article class="sonuc-kart bordro-kart pin-bordro">
+          <h4>AUTOKITCH otonom pizza hattı</h4>
+          <p>1 malzeme yükleme görevlisi</p>
+          <div class="bordro-deger"><strong>≈ 45.000 TL</strong><span> / ay</span></div>
+          <div class="bordro-yil"><b>≈ 540.000 TL</b><span> / yıl</span></div>
+        </article>
+      </div>
+      <p class="bordro-not">Pizza hattı için örnek işveren maliyeti. <a href="/autokitch/moduller/">Line hesabını incele</a></p>
+
+      <h4 class="bordro-alt-baslik">Pide mutfağı ve PIN</h4>
       <div class="sonuc-ozeti">
         <article class="sonuc-kart bordro-kart">
           <h4>Geleneksel pide mutfağı</h4>
@@ -979,15 +996,7 @@ body.pin-film-view>header,body.pin-film-view>.ilerleme{opacity:0;pointer-events:
       </div>
       <p class="bordro-not">Noktadaki toplam işveren gideri. Merkez depo ve ortak ikmal ekibi bu karşılaştırmaya dahil değil.</p>
       <p class="bordro-not" id="hesap-kaynak">Maliyet hesabının varsayılan senaryosu</p>
-      <details class="sunum-acilir pizza-ornek">
-        <summary>Pizza hattı · Line karşılaştırması</summary>
-        <div class="sonuc-ozeti">
-          <article class="sonuc-kart bordro-kart"><h4>Geleneksel pizza mutfağı</h4><p>5 çalışan</p><div class="bordro-deger"><strong>≈ 275.000 TL</strong><span> / ay</span></div><div class="bordro-yil"><b>≈ 3.300.000 TL</b> / yıl</div></article>
-          <article class="sonuc-kart bordro-kart pin-bordro"><h4>AUTOKITCH pizza hattı</h4><p>1 malzeme yükleme görevlisi</p><div class="bordro-deger"><strong>≈ 45.000 TL</strong><span> / ay</span></div><div class="bordro-yil"><b>≈ 540.000 TL</b> / yıl</div></article>
-        </div>
-        <p class="bordro-not">Line sayfasındaki örnek bordro. PIN maliyet hesabından ayrı bir pizza üretim senaryosu. <a href="/autokitch/moduller/">Line sunumu</a></p>
-      </details>
-    </div>
+    </section>
     <details id="maliyet" class="maliyet">
       <summary>Maliyet hesabı <span aria-hidden="true" class="m-chevron"></span></summary>
       <div id="maliyet-tablosu" class="asil-tablo"></div>

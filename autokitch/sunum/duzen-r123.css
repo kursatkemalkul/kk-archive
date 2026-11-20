@@ -26,6 +26,7 @@
 .pin-bordro{background:#edf3ff;border-color:#d8e4fc}
 .bordro-deger,.bordro-yil{color:#526079;font-size:12px}
 .bordro-deger strong{font-size:clamp(18px,3vw,34px);color:#234ab0;letter-spacing:-.035em;white-space:nowrap}
+.bordro-deger span,.bordro-yil span{white-space:nowrap}
 .bordro-yil b{color:#263759;font-size:clamp(12px,1.7vw,18px)}
 .bordro-not{margin:0;font-size:12px;color:#58647a;line-height:1.55}
 .bordro-not a,.arastirma-kart a,.arastirma-icerik>a{color:#2656ba}
@@ -36,8 +37,7 @@
 .sunum-acilir>summary::after{content:'';width:8px;height:8px;flex:none;border:solid #4866a5;border-width:0 2px 2px 0;transform:rotate(45deg);margin:0 3px 4px}
 .sunum-acilir[open]>summary::after{transform:rotate(225deg);margin-bottom:0}
 .sunum-acilir>summary:focus-visible{outline:2px solid #547aee;outline-offset:-3px;border-radius:12px}
-.pizza-ornek>.sonuc-ozeti{padding:0 12px}
-.pizza-ornek>.bordro-not{padding:10px 12px}
+.bordro .bordro-alt-baslik{margin-top:10px}
 .arastirma-icerik{display:grid;gap:8px;padding:0 12px 12px}
 .arastirma-grup{background:#f8faff;border-color:#e6eaf2}
 .arastirma-video-izgara{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:0 10px 10px}
